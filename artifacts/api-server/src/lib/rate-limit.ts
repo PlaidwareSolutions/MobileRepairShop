@@ -1,11 +1,72 @@
-import { sql } from "drizzle-orm";
+import { and, lt, sql } from "drizzle-orm";
 import { db, rateLimitCountersTable } from "@workspace/db";
+import { logger } from "./logger";
 
 export type RateLimitResult = {
   allowed: boolean;
   retryAfterSeconds: number;
   remaining: number;
 };
+
+/**
+ * How long after a row's window has expired we keep it before deleting.
+ * Giving a day of grace means an in-flight request whose transaction started
+ * just before the row expired will still find its row, and avoids a thundering
+ * herd of cleanup-vs-insert races at the exact moment of expiry.
+ */
+const CLEANUP_GRACE_MS = 24 * 60 * 60 * 1000;
+
+/**
+ * Probability that any given checkRateLimit call also kicks off a background
+ * cleanup. Low enough that it adds negligible overhead under load, high enough
+ * that even modest traffic keeps the table bounded between restarts.
+ */
+const OPPORTUNISTIC_CLEANUP_PROBABILITY = 0.01;
+
+let cleanupInFlight = false;
+
+/**
+ * Delete rate-limit rows whose window has been expired for longer than the
+ * grace period. Safe to run concurrently with normal limiter traffic:
+ *   - We require BOTH reset_at AND updated_at to be older than the grace
+ *     threshold, so a freshly-inserted row (updated_at = now) is never
+ *     deleted out from under an in-flight checkRateLimit transaction even
+ *     though its initial reset_at is the epoch.
+ *   - DELETE in Postgres takes row locks and will wait for any concurrent
+ *     SELECT ... FOR UPDATE on the same row to finish.
+ */
+export async function cleanupExpiredRateLimits(
+  graceMs: number = CLEANUP_GRACE_MS,
+): Promise<number> {
+  const threshold = new Date(Date.now() - graceMs);
+  const result = await db
+    .delete(rateLimitCountersTable)
+    .where(
+      and(
+        lt(rateLimitCountersTable.resetAt, threshold),
+        lt(rateLimitCountersTable.updatedAt, threshold),
+      ),
+    );
+  return result.rowCount ?? 0;
+}
+
+function maybeOpportunisticCleanup(): void {
+  if (cleanupInFlight) return;
+  if (Math.random() >= OPPORTUNISTIC_CLEANUP_PROBABILITY) return;
+  cleanupInFlight = true;
+  cleanupExpiredRateLimits()
+    .then((deleted) => {
+      if (deleted > 0) {
+        logger.info({ deleted }, "rate_limit.cleanup");
+      }
+    })
+    .catch((err) => {
+      logger.warn({ err }, "rate_limit.cleanup_failed");
+    })
+    .finally(() => {
+      cleanupInFlight = false;
+    });
+}
 
 /**
  * Persistent, per-key rate limiter backed by Postgres.
@@ -20,7 +81,7 @@ export async function checkRateLimit(
   max: number,
   windowMs: number,
 ): Promise<RateLimitResult> {
-  return await db.transaction(async (tx) => {
+  const result = await db.transaction(async (tx) => {
     // Make sure a row exists for this key without disturbing an existing one.
     await tx
       .insert(rateLimitCountersTable)
@@ -69,4 +130,10 @@ export async function checkRateLimit(
       remaining: max - currentCount - 1,
     };
   });
+
+  // Fire-and-forget: keeps the table bounded under live traffic without
+  // blocking the request that triggered it.
+  maybeOpportunisticCleanup();
+
+  return result;
 }

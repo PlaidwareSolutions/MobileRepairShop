@@ -1,6 +1,7 @@
 import app from "./app";
 import { logger } from "./lib/logger";
 import { seedInventoryIfEmpty } from "./lib/seedInventory";
+import { cleanupExpiredRateLimits } from "./lib/rate-limit";
 
 const rawPort = process.env["PORT"];
 
@@ -41,6 +42,16 @@ async function seedWithRetry(attempts = 3): Promise<void> {
 
 async function start() {
   await seedWithRetry();
+  // Best-effort: drop any rate-limit rows whose windows expired more than the
+  // grace period ago. We don't block startup on the result, so a transient DB
+  // hiccup here can never prevent the server from accepting traffic.
+  cleanupExpiredRateLimits()
+    .then((deleted) => {
+      if (deleted > 0) logger.info({ deleted }, "rate_limit.cleanup_startup");
+    })
+    .catch((err) => {
+      logger.warn({ err }, "rate_limit.cleanup_startup_failed");
+    });
   app.listen(port, (err) => {
     if (err) {
       logger.error({ err }, "Error listening on port");
