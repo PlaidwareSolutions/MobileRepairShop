@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SavedReplies } from "./SavedReplies";
-import type { PlaceholderValues } from "./placeholders";
+import { findUnfilledPlaceholders, type PlaceholderValues } from "./placeholders";
 
 export type ComposerMode = "email" | "sms";
 
@@ -53,6 +53,16 @@ export function Composer({
       setSending(false);
     }
   }, [open, initial.to, initial.subject, initial.body]);
+
+  const unfilledPlaceholders = useMemo(
+    () =>
+      findUnfilledPlaceholders(
+        mode === "email" ? subject : null,
+        body,
+      ),
+    [mode, subject, body],
+  );
+  const hasUnfilledPlaceholders = unfilledPlaceholders.length > 0;
 
   async function handleSend() {
     setError(null);
@@ -133,6 +143,21 @@ export function Composer({
               data-testid="composer-body"
             />
           </div>
+          {hasUnfilledPlaceholders && (
+            <div
+              className="bg-yellow-400 text-black px-4 py-3 font-black uppercase text-xs tracking-widest border-2 border-yellow-600"
+              data-testid="composer-placeholder-warning"
+              role="alert"
+            >
+              <div>Unfilled placeholders</div>
+              <div className="mt-1 font-mono normal-case tracking-normal text-sm break-all">
+                {unfilledPlaceholders.map((k) => `{{${k}}}`).join(", ")}
+              </div>
+              <div className="mt-1 normal-case tracking-normal text-xs font-bold">
+                Fix or remove these tokens before sending.
+              </div>
+            </div>
+          )}
           {error && (
             <div className="bg-red-500 text-white px-4 py-3 font-black uppercase text-sm" data-testid="composer-error">
               {error}
@@ -151,7 +176,19 @@ export function Composer({
             <Button
               type="button"
               onClick={handleSend}
-              disabled={sending || !to || (!body && !(mode === "email" && subject))}
+              disabled={
+                sending ||
+                !to ||
+                (!body && !(mode === "email" && subject)) ||
+                hasUnfilledPlaceholders
+              }
+              title={
+                hasUnfilledPlaceholders
+                  ? `Unfilled placeholders: ${unfilledPlaceholders
+                      .map((k) => `{{${k}}}`)
+                      .join(", ")}`
+                  : undefined
+              }
               className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest"
               data-testid="composer-send"
             >

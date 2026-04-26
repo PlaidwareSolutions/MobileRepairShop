@@ -127,6 +127,26 @@ export function applyPlaceholders(
   });
 }
 
+export function findUnfilledPlaceholders(
+  ...texts: Array<string | null | undefined>
+): string[] {
+  const seen = new Set<string>();
+  const ordered: string[] = [];
+  const re = /\{\{\s*([a-zA-Z0-9_]+)\s*\}\}/g;
+  for (const text of texts) {
+    if (!text) continue;
+    let m: RegExpExecArray | null;
+    while ((m = re.exec(text)) !== null) {
+      const key = m[1];
+      if (!seen.has(key)) {
+        seen.add(key);
+        ordered.push(key);
+      }
+    }
+  }
+  return ordered;
+}
+
 export function placeholderKeysForScope(scope: string): readonly string[] {
   if (scope && PLACEHOLDER_KEYS_BY_TYPE[scope]) {
     return PLACEHOLDER_KEYS_BY_TYPE[scope];
