@@ -19,6 +19,7 @@ import {
 } from "@/lib/api";
 import { telLink, whatsappLink, normalizeUsPhone } from "./utils";
 import { STATUS_BADGE_CLASS, STATUS_LABEL, STATUSES } from "./types";
+import type { PlaceholderValues } from "./placeholders";
 
 export type ActionBarProps = {
   password: string;
@@ -31,6 +32,7 @@ export type ActionBarProps = {
   emailDefaults: { to?: string; subject: string; html: string; text: string };
   smsDefaults: { to?: string; body: string };
   messaging: MessagingConfig | null;
+  placeholderValues?: PlaceholderValues;
   onChanged: () => void;
 };
 
@@ -45,6 +47,7 @@ export function ActionBar({
   emailDefaults,
   smsDefaults,
   messaging,
+  placeholderValues,
   onChanged,
 }: ActionBarProps) {
   const [composer, setComposer] = useState<ComposerMode | null>(null);
@@ -256,6 +259,7 @@ export function ActionBar({
           fromLabel={messaging?.mailFrom ?? "shop email"}
           password={password}
           leadType={leadType}
+          placeholderValues={placeholderValues}
           initial={{
             to: emailDefaults.to ?? email ?? "",
             subject: emailDefaults.subject,
@@ -272,6 +276,7 @@ export function ActionBar({
           fromLabel={messaging?.smsFrom ?? "shop number"}
           password={password}
           leadType={leadType}
+          placeholderValues={placeholderValues}
           initial={{
             to: smsDefaults.to ?? normPhone ?? phone ?? "",
             body: smsDefaults.body,

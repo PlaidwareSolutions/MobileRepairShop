@@ -11,6 +11,7 @@ import {
 } from "./types";
 import type { MessagingConfig } from "@/lib/api";
 import { emailTemplate, smsTemplate } from "./templates";
+import { getPlaceholderValues } from "./placeholders";
 
 type CardShellProps = {
   testId: string;
@@ -181,6 +182,7 @@ export function RepairQuoteCard({
           emailDefaults={{ to: email ?? "", subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}
+          placeholderValues={getPlaceholderValues("repair-quote", lead)}
           onChanged={rest.onChanged}
         />
       }
@@ -271,6 +273,7 @@ export function SellPhoneCard({
           emailDefaults={{ subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}
+          placeholderValues={getPlaceholderValues("sell-phone", lead)}
           onChanged={rest.onChanged}
         />
       }
@@ -317,6 +320,7 @@ export function AppointmentCard({
           emailDefaults={{ subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}
+          placeholderValues={getPlaceholderValues("appointment", lead)}
           onChanged={rest.onChanged}
         />
       }
@@ -356,6 +360,7 @@ export function ContactCard({
           emailDefaults={{ to: email ?? "", subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}
+          placeholderValues={getPlaceholderValues("contact", lead)}
           onChanged={rest.onChanged}
         />
       }
@@ -398,6 +403,7 @@ export function ReservationCard({
           emailDefaults={{ subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}
+          placeholderValues={getPlaceholderValues("reservation", lead)}
           onChanged={rest.onChanged}
         />
       }

@@ -12,6 +12,11 @@ import {
   type ReplyTemplate,
 } from "@/lib/api";
 import type { LeadType } from "./types";
+import {
+  applyPlaceholders,
+  placeholderKeysForScope,
+  type PlaceholderValues,
+} from "./placeholders";
 
 const LEAD_TYPE_LABEL: Record<string, string> = {
   "repair-quote": "Repair Quote",
@@ -34,6 +39,7 @@ export type SavedRepliesProps = {
   password: string;
   channel: "email" | "sms";
   leadType: LeadType | string;
+  placeholderValues?: PlaceholderValues;
   onApply: (tpl: { subject: string | null; body: string }) => void;
 };
 
@@ -46,6 +52,7 @@ export function SavedReplies({
   password,
   channel,
   leadType,
+  placeholderValues,
   onApply,
 }: SavedRepliesProps) {
   const [open, setOpen] = useState(false);
@@ -193,9 +200,15 @@ export function SavedReplies({
   }
 
   function applyTemplate(t: ReplyTemplate) {
-    onApply({ subject: t.subject, body: t.body });
+    const values = placeholderValues ?? {};
+    onApply({
+      subject: t.subject == null ? null : applyPlaceholders(t.subject, values),
+      body: applyPlaceholders(t.body, values),
+    });
     setOpen(false);
   }
+
+  const hintKeys = useMemo(() => placeholderKeysForScope(scope), [scope]);
 
   return (
     <div className="border-2 border-zinc-800 bg-zinc-900" data-testid="saved-replies">
@@ -417,6 +430,25 @@ export function SavedReplies({
                     </option>
                   ))}
                 </select>
+              </div>
+              <div
+                className="bg-black border-2 border-zinc-800 px-3 py-2"
+                data-testid="saved-replies-form-placeholder-hint"
+              >
+                <div className="font-black uppercase text-[10px] tracking-widest text-zinc-400 mb-1">
+                  Available placeholders
+                </div>
+                <div className="flex flex-wrap gap-1">
+                  {hintKeys.map((k) => (
+                    <code
+                      key={k}
+                      className="px-1.5 py-0.5 bg-zinc-900 border border-zinc-700 text-[11px] text-zinc-200 font-mono"
+                    >{`{{${k}}}`}</code>
+                  ))}
+                </div>
+                <div className="text-[10px] text-zinc-500 mt-1">
+                  Filled in from the lead when you apply this reply.
+                </div>
               </div>
               {channel === "email" && (
                 <div>

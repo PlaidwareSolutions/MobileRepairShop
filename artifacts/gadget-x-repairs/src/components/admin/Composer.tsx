@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SavedReplies } from "./SavedReplies";
+import type { PlaceholderValues } from "./placeholders";
 
 export type ComposerMode = "email" | "sms";
 
@@ -21,6 +22,7 @@ export type ComposerProps = {
   fromLabel: string;
   password: string;
   leadType: string;
+  placeholderValues?: PlaceholderValues;
   onClose: () => void;
   onSend: (payload: { to: string; subject?: string; body: string }) => Promise<void>;
 };
@@ -32,6 +34,7 @@ export function Composer({
   fromLabel,
   password,
   leadType,
+  placeholderValues,
   onClose,
   onSend,
 }: ComposerProps) {
@@ -84,6 +87,7 @@ export function Composer({
             password={password}
             channel={mode}
             leadType={leadType}
+            placeholderValues={placeholderValues}
             onApply={(tpl) => {
               if (mode === "email" && tpl.subject) setSubject(tpl.subject);
               setBody(tpl.body);
