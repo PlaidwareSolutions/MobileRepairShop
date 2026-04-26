@@ -1,4 +1,4 @@
-import { useRoute } from "wouter";
+import { useRoute, Link } from "wouter";
 import { CheckCircle2 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { PageHero } from "@/components/PageHero";
@@ -9,8 +9,14 @@ import { LocationCard } from "@/components/LocationCard";
 import { SEO, localBusinessJsonLd, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/components/SEO";
 import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
-import { SERVICES_BY_SLUG } from "@/data/services";
+import { ContactForm } from "@/components/forms/ContactForm";
+import { SERVICES_BY_SLUG, SERVICES_DATA } from "@/data/services";
 import NotFound from "@/pages/not-found";
+
+const REPAIR_HUB_SLUGS = new Set([
+  "repair-services-houston-tx",
+  "phone-repair-houston-tx",
+]);
 
 function getRepairParentHub(slug: string): { name: string; path: string } | null {
   if (slug === "repair-services-houston-tx") return null;
@@ -48,6 +54,7 @@ export default function ServicePage() {
   if (!data) return <NotFound />;
   const path = `/${data.slug}`;
   const parent = getRepairParentHub(data.slug);
+  const isHub = REPAIR_HUB_SLUGS.has(data.slug);
 
   const breadcrumbItems = parent
     ? [{ label: parent.name, to: parent.path }, { label: data.title }]
@@ -55,6 +62,14 @@ export default function ServicePage() {
   const jsonLdBreadcrumb = parent
     ? [{ name: parent.name, path: parent.path }, { name: data.title, path }]
     : [{ name: data.title, path }];
+
+  const hubChildren = isHub
+    ? SERVICES_DATA.filter(
+        (s) =>
+          s.slug !== data.slug &&
+          (data.related.includes(s.slug) || getRepairParentHub(s.slug)?.path === path),
+      ).slice(0, 12)
+    : [];
 
   return (
     <PageShell hideTicker>
@@ -147,29 +162,67 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* Quote form */}
-      <section className="py-16 px-4 bg-black border-t border-zinc-900">
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-white">
-              GET A <span className="text-red-500">QUOTE</span>
+      {/* Lead-capture form: Contact on hubs, Quote+Appointment on detail pages */}
+      {REPAIR_HUB_SLUGS.has(data.slug) ? (
+        <section className="py-16 px-4 bg-black border-t border-zinc-900">
+          <div className="max-w-[900px] mx-auto">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-white text-center">
+              NOT SURE WHAT YOU NEED? <span className="text-red-500">ASK US.</span>
             </h2>
-            <p className="text-lg font-bold text-zinc-400 mb-6 max-w-md">
-              Tell us what's broken and we'll text or call you back today with a firm price.
+            <p className="text-lg font-bold text-zinc-400 mb-8 max-w-2xl mx-auto text-center">
+              Send us a quick note about your device — we'll text or call back today with a firm price and the fastest way to get it fixed.
             </p>
-            <RepairQuoteForm defaultDeviceType={data.hero.eyebrow} />
+            <ContactForm />
           </div>
-          <div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-white">
-              OR <span className="text-yellow-400 text-stroke-black">BOOK A SLOT</span>
+        </section>
+      ) : (
+        <section className="py-16 px-4 bg-black border-t border-zinc-900">
+          <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
+            <div>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-white">
+                GET A <span className="text-red-500">QUOTE</span>
+              </h2>
+              <p className="text-lg font-bold text-zinc-400 mb-6 max-w-md">
+                Tell us what's broken and we'll text or call you back today with a firm price.
+              </p>
+              <RepairQuoteForm defaultDeviceType={data.hero.eyebrow} />
+            </div>
+            <div>
+              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-white">
+                OR <span className="text-yellow-400 text-stroke-black">BOOK A SLOT</span>
+              </h2>
+              <p className="text-lg font-bold text-zinc-400 mb-6 max-w-md">
+                Walk-ins always welcome — but if you want a guaranteed slot, book here.
+              </p>
+              <AppointmentForm defaultServiceType={data.serviceType} />
+            </div>
+          </div>
+        </section>
+      )}
+
+      {isHub && hubChildren.length > 0 && (
+        <section className="py-16 px-4 bg-zinc-950 border-t border-zinc-900">
+          <div className="max-w-[1240px] mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-white">
+              EVERY <span className="text-yellow-400 text-stroke-black">REPAIR</span> WE DO
             </h2>
-            <p className="text-lg font-bold text-zinc-400 mb-6 max-w-md">
-              Walk-ins always welcome — but if you want a guaranteed slot, book here.
-            </p>
-            <AppointmentForm defaultServiceType={data.serviceType} />
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="repair-hub-children">
+              {hubChildren.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/${c.slug}`}
+                  className="bg-black border-2 border-zinc-800 hover:border-red-500 p-5 transition-colors group"
+                  data-testid={`repair-hub-child-${c.slug}`}
+                >
+                  <div className="font-black uppercase text-base text-white group-hover:text-red-500 transition-colors leading-tight">
+                    {c.title}
+                  </div>
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       <Faq items={data.faqs} />
       <LocationCard />

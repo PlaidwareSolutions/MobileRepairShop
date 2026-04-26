@@ -9,18 +9,33 @@ import { LocationCard } from "@/components/LocationCard";
 import { SEO, localBusinessJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/components/SEO";
 import { SellPhoneForm } from "@/components/forms/SellPhoneForm";
 import { ReservationForm } from "@/components/forms/ReservationForm";
+import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
-import { SALES_BY_SLUG } from "@/data/sales";
+import { SALES_BY_SLUG, SALES_DATA } from "@/data/sales";
 import { BUSINESS } from "@/content";
 import NotFound from "@/pages/not-found";
 
-type SalesPageType = "sell" | "shop-hub" | "shop-brand" | "accessories";
+type SalesPageType = "sell" | "shop-hub" | "shop-brand" | "accessories-hub" | "accessories";
+
+const ACCESSORY_HUB_SLUGS = new Set(["phone-accessories-houston-tx"]);
+const SHOP_BRAND_HUB_SLUGS = new Set([
+  "phones-for-sale-houston-tx",
+  "laptops-for-sale-houston-tx",
+  "used-phones-houston-tx",
+  "refurbished-phones-houston-tx",
+  "new-phones-houston-tx",
+]);
 
 function getSalesPageType(slug: string): SalesPageType {
   if (slug.startsWith("sell-")) return "sell";
   if (slug === "shop-houston-tx") return "shop-hub";
-  if (slug.startsWith("buy-") || slug === "phones-for-sale-houston-tx" || slug === "used-phones-houston-tx" || slug === "refurbished-phones-houston-tx" || slug === "new-phones-houston-tx" || slug === "laptops-for-sale-houston-tx") return "shop-brand";
+  if (ACCESSORY_HUB_SLUGS.has(slug)) return "accessories-hub";
+  if (slug.startsWith("buy-") || SHOP_BRAND_HUB_SLUGS.has(slug)) return "shop-brand";
   return "accessories";
+}
+
+function isHubPage(slug: string, pageType: SalesPageType): boolean {
+  return pageType === "shop-hub" || pageType === "accessories-hub" || SHOP_BRAND_HUB_SLUGS.has(slug);
 }
 
 function getParentHub(slug: string, pageType: SalesPageType): { name: string; path: string } | null {
@@ -56,6 +71,7 @@ export default function SalesPage() {
   const parent = getParentHub(data.slug, pageType);
   const isBuyback = data.slug === "sell-phone-houston-tx";
   const isSellPage = pageType === "sell";
+  const isHub = isHubPage(data.slug, pageType);
 
   const breadcrumbItems = parent
     ? [{ label: parent.name, to: parent.path }, { label: data.title }]
@@ -63,6 +79,45 @@ export default function SalesPage() {
   const jsonLdBreadcrumb = parent
     ? [{ name: parent.name, path: parent.path }, { name: data.title, path }]
     : [{ name: data.title, path }];
+
+  const childPages = isHub
+    ? SALES_DATA.filter(
+        (s) =>
+          s.slug !== data.slug &&
+          (data.related.includes(s.slug) || getParentHub(s.slug, getSalesPageType(s.slug))?.path === path),
+      ).slice(0, 12)
+    : [];
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: data.title,
+    category: data.title,
+    description: data.intro,
+    brand: { "@type": "Brand", name: "Gadget X Repairs" },
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "USD",
+      lowPrice: "49",
+      highPrice: "999",
+      offerCount: data.highlights.length,
+      availability: "https://schema.org/InStock",
+      seller: { "@type": "ElectronicsStore", name: "Gadget X Repairs" },
+    },
+  };
+  const itemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: data.title,
+    description: data.intro,
+    numberOfItems: childPages.length,
+    itemListElement: childPages.map((c, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `https://gadget-x-repairs.replit.app/${c.slug}`,
+      name: c.title,
+    })),
+  };
 
   return (
     <PageShell hideTicker>
@@ -74,23 +129,7 @@ export default function SalesPage() {
           localBusinessJsonLd(),
           faqJsonLd(data.faqs),
           breadcrumbJsonLd(jsonLdBreadcrumb),
-          {
-            "@context": "https://schema.org",
-            "@type": "Product",
-            name: data.title,
-            category: data.title,
-            description: data.intro,
-            brand: { "@type": "Brand", name: "Gadget X Repairs" },
-            offers: {
-              "@type": "AggregateOffer",
-              priceCurrency: "USD",
-              lowPrice: "49",
-              highPrice: "999",
-              offerCount: data.highlights.length,
-              availability: "https://schema.org/InStock",
-              seller: { "@type": "ElectronicsStore", name: "Gadget X Repairs" },
-            },
-          },
+          isHub && childPages.length > 0 ? itemListJsonLd : productJsonLd,
         ]}
       />
       <Breadcrumbs items={breadcrumbItems} />
@@ -132,6 +171,16 @@ export default function SalesPage() {
                 </p>
                 <SellPhoneForm />
               </>
+            ) : isHub ? (
+              <>
+                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
+                  ASK ABOUT <span className="text-red-500">STOCK</span>
+                </h2>
+                <p className="text-lg font-bold text-zinc-400 mb-6">
+                  Looking for something specific? Send us a quick message and we'll text or call you back today with what we have in stock and the price.
+                </p>
+                <ContactForm />
+              </>
             ) : (
               <>
                 <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
@@ -146,6 +195,30 @@ export default function SalesPage() {
           </div>
         </div>
       </section>
+
+      {isHub && childPages.length > 0 && (
+        <section className="py-16 px-4 bg-black border-t border-zinc-900">
+          <div className="max-w-[1240px] mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-white">
+              BROWSE <span className="text-yellow-400 text-stroke-black">{data.hero.eyebrow.toUpperCase()}</span>
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="hub-children">
+              {childPages.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/${c.slug}`}
+                  className="bg-zinc-950 border-2 border-zinc-800 hover:border-red-500 p-5 transition-colors group"
+                  data-testid={`hub-child-${c.slug}`}
+                >
+                  <div className="font-black uppercase text-base text-white group-hover:text-red-500 transition-colors leading-tight">
+                    {c.title}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <Faq items={data.faqs} />
       <LocationCard />
