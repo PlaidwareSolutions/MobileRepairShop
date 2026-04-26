@@ -10,7 +10,21 @@ export type RouteEntry = {
   metaDescription: string;
 };
 
+// Home page meta — kept identical for `/` and `/phone-repair-houston-tx` since both
+// render the same HomePage component. The canonical URL emitted by <SEO> still points
+// to /phone-repair-houston-tx so existing search-engine signals are preserved.
+const HOME_META = {
+  metaTitle:
+    "Phone Repair Houston, TX | iPhone, Samsung, Pixel, Laptop, PS5 — Gadget X Repairs",
+  metaDescription:
+    "Same-day phone, tablet, laptop and game console repair in Houston, TX. iPhone, Samsung, Pixel, MacBook, PS5, Xbox — fix, sell, prepaid activation. (346) 623-6898.",
+};
+
 export const STATIC_ROUTES: RouteEntry[] = [
+  {
+    path: "/",
+    ...HOME_META,
+  },
   {
     path: "/about",
     metaTitle: "About Gadget X Repairs | 15 Years in Houston",
@@ -51,4 +65,9 @@ export const ALL_ROUTES: RouteEntry[] = [
   ...ARTICLES_DATA.map((a): RouteEntry => ({ path: `/articles/${a.slug}`, metaTitle: a.metaTitle, metaDescription: a.metaDescription })),
 ];
 
-export const SITEMAP_ROUTES = ALL_ROUTES.filter((r) => !r.path.startsWith("/admin"));
+// `/` is prerendered (so the static host has a real index.html) but excluded from the
+// sitemap because the canonical home URL is `/phone-repair-houston-tx`. We don't want
+// crawlers to see two URLs for the same content.
+export const SITEMAP_ROUTES = ALL_ROUTES.filter(
+  (r) => !r.path.startsWith("/admin") && r.path !== "/",
+);

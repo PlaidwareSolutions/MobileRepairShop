@@ -2,6 +2,10 @@ import { Switch, Route, Redirect } from "wouter";
 
 import NotFound from "@/pages/not-found";
 import HomePage from "@/pages/HomePage";
+// Note: bare `/` is rendered by HomePage too (route below), so the SSG-prerendered
+// dist/public/index.html is a real page — not a redirect stub. The static host's
+// SPA-style fallback to index.html for unknown URLs therefore lands on the home
+// page instead of an infinite redirect loop.
 import ServicePage from "@/pages/ServicePage";
 import SalesPage from "@/pages/SalesPage";
 import PrepaidPage from "@/pages/PrepaidPage";
@@ -37,12 +41,19 @@ export function Routes() {
       ))}
 
       {/*
-        Home page is canonical at /phone-repair-houston-tx; bare `/` redirects via LEGACY_REDIRECTS above.
-        Note: SERVICES_DATA still contains a "phone-repair-houston-tx" entry so that other services can
-        reference it via their `related` arrays. We intentionally shadow that ServicePage route by
-        registering HomePage at /phone-repair-houston-tx FIRST — wouter's <Switch> picks the first match,
-        so the SERVICES map below never claims this slug. Do not move this Route below the SERVICES map.
+        Home page is canonical at /phone-repair-houston-tx (SEO canonical URL set in HomePage's
+        <SEO path="/phone-repair-houston-tx" />), but we also render it directly at `/` so that
+        the SSG-prerendered dist/public/index.html is a real page. Without this, the static
+        host's SPA fallback to index.html for unknown URLs would serve a redirect stub and
+        loop forever.
+
+        SERVICES_DATA still contains a "phone-repair-houston-tx" entry so that other services
+        can reference it via their `related` arrays. We intentionally shadow that ServicePage
+        route by registering HomePage at /phone-repair-houston-tx FIRST — wouter's <Switch>
+        picks the first match, so the SERVICES map below never claims this slug. Do not move
+        these Routes below the SERVICES map.
       */}
+      <Route path="/" component={HomePage} />
       <Route path="/phone-repair-houston-tx" component={HomePage} />
 
       <Route path="/about" component={AboutPage} />

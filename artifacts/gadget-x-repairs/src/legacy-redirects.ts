@@ -1,5 +1,4 @@
 export const LEGACY_REDIRECTS: Record<string, string> = {
-  "/": "/phone-repair-houston-tx",
   "/contact": "/contact-houston-tx",
   "/reviews": "/reviews-houston-tx",
 

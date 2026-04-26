@@ -64,7 +64,20 @@ function redirectHtml(toPath) {
 }
 
 async function writeLegacyRedirect(fromPath, toPath) {
-  const dir = path.join(DIST_DIR, fromPath.replace(/^\//, ""));
+  // Defensive guard: a `fromPath` of "/" (or any path that strips to empty) would
+  // resolve to DIST_DIR itself and OVERWRITE the prerendered home page (dist/public/
+  // index.html) with a redirect stub. Combined with the deployed static host's SPA
+  // fallback to index.html for unknown routes, that turns the entire site into an
+  // infinite redirect loop. Refuse to do that — the home page must always be a real
+  // page, not a redirect to itself.
+  const stripped = fromPath.replace(/^\//, "");
+  if (stripped === "" || stripped === ".") {
+    console.warn(
+      `build-seo: refusing to write legacy redirect for ${JSON.stringify(fromPath)} — would overwrite dist/public/index.html. Render a real page at "/" via routes-config instead.`,
+    );
+    return;
+  }
+  const dir = path.join(DIST_DIR, stripped);
   await mkdir(dir, { recursive: true });
   await writeFile(path.join(dir, "index.html"), redirectHtml(toPath), "utf8");
 }
@@ -80,8 +93,18 @@ async function loadRender() {
   return mod.render;
 }
 
+// Routes that share the same canonical URL as another route (i.e. they render the
+// same component but live at multiple paths). The home page is rendered at both `/`
+// and `/phone-repair-houston-tx`; the latter is the canonical SEO URL, so when we
+// prerender `/` the safety-net <link rel="canonical"> must still point at
+// /phone-repair-houston-tx — otherwise crawlers would see two competing canonicals.
+const CANONICAL_OVERRIDES = {
+  "/": "/phone-repair-houston-tx",
+};
+
 function injectRendered(baseHtml, route, rendered) {
-  const canonical = `${SITE_URL}${route.path}`;
+  const canonicalPath = CANONICAL_OVERRIDES[route.path] || route.path;
+  const canonical = `${SITE_URL}${canonicalPath}`;
   let out = baseHtml;
   const headStr = rendered.head || "";
 
