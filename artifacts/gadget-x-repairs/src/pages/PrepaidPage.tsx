@@ -1,16 +1,18 @@
-import { useRoute } from "wouter";
+import { useRoute, Link } from "wouter";
 import { CheckCircle2 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Faq } from "@/components/Faq";
 import { LocationCard } from "@/components/LocationCard";
-import { SEO, localBusinessJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/components/SEO";
+import { SEO, localBusinessJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/components/SEO";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
-import { PREPAID_BY_SLUG } from "@/data/prepaid";
+import { PREPAID_BY_SLUG, PREPAID_DATA } from "@/data/prepaid";
 import { BUSINESS } from "@/content";
 import NotFound from "@/pages/not-found";
+
+const PREPAID_HUB_SLUG = "phone-activation-houston-tx";
 
 export default function PrepaidPage() {
   const [, params] = useRoute<{ slug: string }>("/:slug");
@@ -18,6 +20,32 @@ export default function PrepaidPage() {
   const data = PREPAID_BY_SLUG[slug];
   if (!data) return <NotFound />;
   const path = `/${data.slug}`;
+  const isHub = data.slug === PREPAID_HUB_SLUG;
+
+  const hubChildren = isHub
+    ? PREPAID_DATA.filter((p) => p.slug !== PREPAID_HUB_SLUG)
+    : [];
+
+  const breadcrumbItems = isHub
+    ? [{ label: data.title }]
+    : [{ label: "Prepaid", to: `/${PREPAID_HUB_SLUG}` }, { label: data.title }];
+  const jsonLdBreadcrumb = isHub
+    ? [{ name: data.title, path }]
+    : [{ name: "Prepaid", path: `/${PREPAID_HUB_SLUG}` }, { name: data.title, path }];
+
+  const jsonLdBlocks: Record<string, unknown>[] = [
+    localBusinessJsonLd(),
+    faqJsonLd(data.faqs),
+    breadcrumbJsonLd(jsonLdBreadcrumb),
+  ];
+  if (isHub && hubChildren.length > 0) {
+    jsonLdBlocks.push(
+      itemListJsonLd(
+        data.title,
+        hubChildren.map((c) => ({ name: c.title, path: `/${c.slug}` })),
+      ),
+    );
+  }
 
   return (
     <PageShell hideTicker>
@@ -25,13 +53,9 @@ export default function PrepaidPage() {
         title={data.metaTitle}
         description={data.metaDescription}
         path={path}
-        jsonLd={[
-          localBusinessJsonLd(),
-          faqJsonLd(data.faqs),
-          breadcrumbJsonLd([{ name: "Prepaid", path: "/phone-activation-houston-tx" }, { name: data.title, path }]),
-        ]}
+        jsonLd={jsonLdBlocks}
       />
-      <Breadcrumbs items={[{ label: "Prepaid", to: "/phone-activation-houston-tx" }, { label: data.title }]} />
+      <Breadcrumbs items={breadcrumbItems} />
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
@@ -74,6 +98,30 @@ export default function PrepaidPage() {
           </div>
         </div>
       </section>
+
+      {isHub && hubChildren.length > 0 && (
+        <section className="py-16 px-4 bg-zinc-950 border-t border-zinc-900">
+          <div className="max-w-[1240px] mx-auto">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-white">
+              EVERY <span className="text-yellow-400 text-stroke-black">CARRIER</span> WE ACTIVATE
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="prepaid-hub-children">
+              {hubChildren.map((c) => (
+                <Link
+                  key={c.slug}
+                  href={`/${c.slug}`}
+                  className="bg-black border-2 border-zinc-800 hover:border-red-500 p-5 transition-colors group"
+                  data-testid={`prepaid-hub-child-${c.slug}`}
+                >
+                  <div className="font-black uppercase text-base text-white group-hover:text-red-500 transition-colors leading-tight">
+                    {c.title}
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       <Faq items={data.faqs} />
       <LocationCard />

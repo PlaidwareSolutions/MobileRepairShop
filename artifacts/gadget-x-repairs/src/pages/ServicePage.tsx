@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Faq } from "@/components/Faq";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { LocationCard } from "@/components/LocationCard";
-import { SEO, localBusinessJsonLd, serviceJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/components/SEO";
+import { SEO, localBusinessJsonLd, serviceJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/components/SEO";
 import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -79,7 +79,9 @@ export default function ServicePage() {
         path={path}
         jsonLd={[
           localBusinessJsonLd(),
-          serviceJsonLd(data.title, data.metaDescription, path),
+          ...(isHub && hubChildren.length > 0
+            ? [itemListJsonLd(data.title, hubChildren.map((c) => ({ name: c.title, path: `/${c.slug}` })))]
+            : [serviceJsonLd(data.title, data.metaDescription, path)]),
           faqJsonLd(data.faqs),
           breadcrumbJsonLd(jsonLdBreadcrumb),
         ]}
