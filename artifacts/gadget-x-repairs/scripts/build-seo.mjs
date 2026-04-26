@@ -153,7 +153,7 @@ function buildSitemap(routes) {
     .map((r) => {
       let priority = "0.6";
       let changefreq = "monthly";
-      if (r.path === "/") {
+      if (r.path === "/phone-repair-houston-tx") {
         priority = "1.0";
         changefreq = "weekly";
       } else if (r.path.startsWith("/articles/")) {

@@ -22,7 +22,13 @@ import { LEGACY_REDIRECTS } from "@/legacy-redirects";
 export function Routes() {
   return (
     <Switch>
-      {/* Home page is canonical at /phone-repair-houston-tx; bare / redirects via LEGACY_REDIRECTS below */}
+      {/*
+        Home page is canonical at /phone-repair-houston-tx; bare `/` redirects via LEGACY_REDIRECTS below.
+        Note: SERVICES_DATA still contains a "phone-repair-houston-tx" entry so that other services can
+        reference it via their `related` arrays. We intentionally shadow that ServicePage route by
+        registering HomePage at /phone-repair-houston-tx FIRST — wouter's <Switch> picks the first match,
+        so the SERVICES map below never claims this slug. Do not move this Route below the SERVICES map.
+      */}
       <Route path="/phone-repair-houston-tx" component={HomePage} />
 
       <Route path="/about" component={AboutPage} />
