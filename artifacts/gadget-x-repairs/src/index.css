@@ -257,10 +257,13 @@
   100% { transform: translateX(-100%); }
 }
 
-/* Hollow black-stroke text used by display headlines */
+/* Sign-painter accent: solid fill (from text color utility) with black outline.
+   Previously used `color: transparent`, which made the accent invisible against
+   dark sections. Keeping the stroke preserves the bold display look while the
+   element's own text color (e.g. text-yellow-400) provides the readable fill. */
 .text-stroke-black {
   -webkit-text-stroke: 2px black;
-  color: transparent;
+  paint-order: stroke fill;
 }
 
 /**
