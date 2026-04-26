@@ -155,4 +155,28 @@
     color: hsl(var(--muted-foreground));
     pointer-events: none;
   }
+
+  /* Marquee animation used by Bold Urban Store ticker tape */
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-100%); }
+  }
+
+  /* Hollow black-stroke text used by Bold Urban Store display headlines */
+  .text-stroke-black {
+    -webkit-text-stroke: 2px black;
+    color: transparent;
+  }
+}
+
+/* Theme-scoped Archivo Black display font for Bold Urban Store only */
+[data-theme="bold-urban-store"] h1,
+[data-theme="bold-urban-store"] h2,
+[data-theme="bold-urban-store"] h3,
+[data-theme="bold-urban-store"] h4,
+[data-theme="bold-urban-store"] h5,
+[data-theme="bold-urban-store"] h6,
+[data-theme="bold-urban-store"] .font-black {
+  font-family: 'Archivo Black', 'Inter', sans-serif;
+  font-weight: 400;
 }

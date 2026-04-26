@@ -75,7 +75,7 @@ export function BoldUrbanStore() {
   const [ctaCall, ctaQuote, ctaDirections] = HERO.ctas;
 
   return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-red-500 selection:text-white pb-20">
+    <div data-theme="bold-urban-store" className="min-h-screen bg-black text-white font-sans selection:bg-red-500 selection:text-white pb-20">
       {/* 1. Top utility bar */}
       <div className="bg-zinc-900 border-b border-zinc-800 text-xs font-mono py-2 px-4 flex justify-between items-center tracking-tight text-zinc-400">
         <div className="flex items-center gap-4">
@@ -546,30 +546,6 @@ export function BoldUrbanStore() {
           </Button>
         </div>
       </div>
-      
-      {/* Add global styles for marquee and specific fonts via style tag */}
-      <style dangerouslySetInnerHTML={{__html: `
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;700;900&display=swap');
-        
-        .font-sans {
-          font-family: 'Inter', sans-serif;
-        }
-        
-        h1, h2, h3, h4, h5, h6, .font-black {
-          font-family: 'Archivo Black', sans-serif;
-          font-weight: 400;
-        }
-        
-        @keyframes marquee {
-          0% { transform: translateX(0%); }
-          100% { transform: translateX(-100%); }
-        }
-        
-        .text-stroke-black {
-          -webkit-text-stroke: 2px black;
-          color: transparent;
-        }
-      `}} />
     </div>
   );
 }
