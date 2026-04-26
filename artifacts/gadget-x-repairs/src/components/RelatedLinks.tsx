@@ -1,0 +1,38 @@
+import { Link } from "wouter";
+import { ArrowRight } from "lucide-react";
+import { SERVICES_BY_SLUG } from "@/data/services";
+import { SALES_BY_SLUG } from "@/data/sales";
+import { PREPAID_BY_SLUG } from "@/data/prepaid";
+import { AREAS_BY_SLUG } from "@/data/areas";
+import { ARTICLES_BY_SLUG } from "@/data/articles";
+
+function lookup(slug: string): { title: string; to: string } | null {
+  if (SERVICES_BY_SLUG[slug]) return { title: SERVICES_BY_SLUG[slug].title, to: `/${slug}` };
+  if (SALES_BY_SLUG[slug]) return { title: SALES_BY_SLUG[slug].title, to: `/${slug}` };
+  if (PREPAID_BY_SLUG[slug]) return { title: PREPAID_BY_SLUG[slug].title, to: `/${slug}` };
+  if (AREAS_BY_SLUG[slug]) return { title: AREAS_BY_SLUG[slug].title, to: `/${slug}` };
+  if (ARTICLES_BY_SLUG[slug]) return { title: ARTICLES_BY_SLUG[slug].title, to: `/articles/${slug}` };
+  return null;
+}
+
+export function RelatedLinks({ slugs }: { slugs: string[] }) {
+  const items = slugs.map(lookup).filter((x): x is { title: string; to: string } => x !== null);
+  if (items.length === 0) return null;
+  return (
+    <section className="py-16 px-4 bg-zinc-950 border-t border-zinc-900">
+      <div className="max-w-[1240px] mx-auto">
+        <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-8 text-white">Related</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {items.map((it) => (
+            <Link key={it.to} href={it.to} className="group block bg-black border-2 border-zinc-800 p-5 hover:border-red-500 transition-colors">
+              <div className="flex justify-between items-center gap-2">
+                <span className="font-black uppercase text-sm md:text-base text-white group-hover:text-yellow-400 transition-colors">{it.title}</span>
+                <ArrowRight className="w-4 h-4 text-red-500 shrink-0" />
+              </div>
+            </Link>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}

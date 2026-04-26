@@ -1,7 +1,5 @@
+import { Link } from "wouter";
 import {
-  MapPin,
-  Clock,
-  Phone,
   Smartphone,
   Tablet,
   Laptop,
@@ -12,161 +10,91 @@ import {
   Star,
   ShieldCheck,
   ArrowRight,
-  MessageCircle,
   CheckCircle2,
   Battery,
   Wifi,
-  Navigation,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  BUSINESS,
-  HERO,
-  TRUST_POINTS,
-  SERVICES,
-  WHY_CHOOSE,
-  FEATURED_OFFERS,
-  SELL_PRODUCTS,
-  PREPAID_CARRIERS,
-  SERVICE_AREAS,
-  FOOTER_LINKS,
-  COPYRIGHT,
-} from "@/content";
+import { PageShell } from "@/components/PageShell";
+import { LocationCard } from "@/components/LocationCard";
+import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
+import { SEO, localBusinessJsonLd } from "@/components/SEO";
+import { BUSINESS, HERO } from "@/content";
 
-type IconKey =
-  | "smartphone"
-  | "tablet"
-  | "laptop"
-  | "gamepad"
-  | "headphones"
-  | "wrench"
-  | "phone"
-  | "map"
-  | "star"
-  | "zap"
-  | "shield"
-  | "check"
-  | "battery"
-  | "wifi";
+const SERVICE_TILES: { name: string; desc: string; icon: LucideIcon; to: string }[] = [
+  { name: "iPhone Repair", desc: "Screen, battery, charging port.", icon: Smartphone, to: "/iphone-repair-houston" },
+  { name: "Samsung Repair", desc: "Galaxy S, Note, A and Z series.", icon: Smartphone, to: "/samsung-phone-repair-houston" },
+  { name: "Pixel Repair", desc: "Google Pixel 3 through 9 Pro.", icon: Smartphone, to: "/google-pixel-repair-houston" },
+  { name: "iPad / Tablet", desc: "Glass, LCD, battery replacement.", icon: Tablet, to: "/ipad-tablet-repair-houston" },
+  { name: "MacBook Repair", desc: "Screen, battery, keyboard, board.", icon: Laptop, to: "/macbook-repair-houston" },
+  { name: "Laptop Repair", desc: "HP, Dell, Lenovo, ASUS, Acer.", icon: Laptop, to: "/laptop-repair-houston" },
+  { name: "PS5 Repair", desc: "HDMI port, disc drive, no power.", icon: Gamepad2, to: "/ps5-repair-houston" },
+  { name: "Xbox Repair", desc: "Power issues, HDMI, disc drive.", icon: Gamepad2, to: "/xbox-repair-houston" },
+  { name: "Battery Replace", desc: "Phones, tablets, laptops.", icon: Battery, to: "/battery-replacement-houston" },
+  { name: "Accessories", desc: "Cases, chargers, screen protectors.", icon: Headphones, to: "/phone-accessories-houston" },
+];
 
-const ICON_MAP: Record<IconKey, LucideIcon> = {
-  smartphone: Smartphone,
-  tablet: Tablet,
-  laptop: Laptop,
-  gamepad: Gamepad2,
-  headphones: Headphones,
-  wrench: Wrench,
-  phone: Phone,
-  map: Navigation,
-  star: Star,
-  zap: Zap,
-  shield: ShieldCheck,
-  check: CheckCircle2,
-  battery: Battery,
-  wifi: Wifi,
-};
+const WHY_TILES = [
+  { title: "15 Years Heritage", desc: "Houston's trusted repair shop since 2010.", icon: Star },
+  { title: "Same-Day Turnaround", desc: "Most repairs done in 1–2 hours while you wait.", icon: Zap },
+  { title: "Certified Technicians", desc: "Skilled techs who know every device, inside and out.", icon: ShieldCheck },
+  { title: "90-Day Warranty", desc: "Every repair backed by our 90-day warranty.", icon: CheckCircle2 },
+];
 
-function getIcon(key: string): LucideIcon {
-  return ICON_MAP[key as IconKey] ?? Wrench;
-}
+const FEATURED_OFFERS = [
+  { title: "iPhone Screen", price: "from $79", note: "Most models in stock", icon: Smartphone, to: "/iphone-repair-houston" },
+  { title: "Battery Replacement", price: "from $49", note: "Phones, tablets, laptops", icon: Battery, to: "/battery-replacement-houston" },
+  { title: "HDMI Port Repair", price: "from $99", note: "PS5, Xbox, Switch", icon: Gamepad2, to: "/hdmi-port-repair-houston" },
+  { title: "Used Phones", price: "from $99", note: "Unlocked, tested, warrantied", icon: Smartphone, to: "/used-phones-houston" },
+  { title: "Prepaid Activation", price: "Walk in", note: "Cricket, Metro, T-Mobile, AT&T", icon: Wifi, to: "/prepaid-phone-activations-houston" },
+];
+
+const SELL_TILES = [
+  { name: "Unlocked Phones", desc: "Apple, Samsung, Pixel & more", icon: Smartphone, to: "/phones-for-sale-houston" },
+  { name: "iPads & Tablets", desc: "Cellular and Wi-Fi", icon: Tablet, to: "/ipad-tablet-repair-houston" },
+  { name: "MacBooks & Laptops", desc: "Refurbished and tested", icon: Laptop, to: "/laptops-for-sale-houston" },
+  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: "/gaming-console-repair-houston" },
+];
+
+const PREPAID_TILES = [
+  { label: "Cricket", to: "/prepaid-phone-activations-houston" },
+  { label: "Metro by T-Mobile", to: "/prepaid-phone-activations-houston" },
+  { label: "T-Mobile", to: "/prepaid-phone-activations-houston" },
+  { label: "AT&T Prepaid", to: "/att-prepaid-activation-houston" },
+  { label: "Boost Mobile", to: "/boost-mobile-activation-houston" },
+  { label: "Gen Mobile", to: "/gen-mobile-activation-houston" },
+  { label: "Simple Mobile", to: "/simple-mobile-activation-houston" },
+  { label: "H2O Wireless", to: "/h2o-wireless-activation-houston" },
+  { label: "Lyca Mobile", to: "/lyca-mobile-activation-houston" },
+  { label: "Verizon Prepaid", to: "/verizon-prepaid-activation-houston" },
+];
+
+const AREA_TILES = [
+  { label: "Houston", to: "/" },
+  { label: "Sugar Land", to: "/phone-repair-sugar-land" },
+  { label: "Missouri City", to: "/phone-repair-missouri-city" },
+  { label: "Stafford", to: "/phone-repair-stafford" },
+  { label: "Katy", to: "/phone-repair-katy" },
+  { label: "Alief", to: "/phone-repair-alief" },
+  { label: "Sharpstown", to: "/phone-repair-sharpstown" },
+];
 
 export default function HomePage() {
   const [ctaCall, ctaQuote, ctaDirections] = HERO.ctas;
 
   return (
-    <div data-theme="bold-urban-store" className="min-h-screen bg-black text-white font-sans selection:bg-red-500 selection:text-white pb-20 md:pb-0">
-      {/* 1. Top utility bar */}
-      <div className="bg-zinc-900 border-b border-zinc-800 text-xs font-mono py-2 px-4 flex justify-between items-center tracking-tight text-zinc-400">
-        <div className="flex items-center gap-4">
-          <span className="hidden sm:inline-flex items-center gap-1">
-            <MapPin className="w-3 h-3 text-red-500" />
-            {BUSINESS.addressFull}
-          </span>
-          <span className="hidden md:inline-flex items-center gap-1">
-            <Clock className="w-3 h-3 text-red-500" />
-            {BUSINESS.hoursShort}
-          </span>
-        </div>
-        <div className="flex items-center gap-4">
-          <span className="bg-red-500 text-white px-2 py-0.5 uppercase font-bold text-[10px] tracking-wider transform -skew-x-12">
-            {HERO.badgeSameDay}
-          </span>
-          <a
-            href={BUSINESS.phoneTel}
-            className="hover:text-red-500 transition-colors flex items-center gap-1"
-          >
-            <Phone className="w-3 h-3" />
-            {BUSINESS.phoneDisplay}
-          </a>
-        </div>
-      </div>
+    <PageShell>
+      <SEO
+        title="Gadget X Repairs — Same-Day Phone, Tablet, Laptop & Console Repair in Houston"
+        description="15 years of trusted same-day phone, iPad, MacBook, laptop, PlayStation, Xbox & Nintendo repair in Houston, TX. Walk-ins welcome at 8389 Almeda Rd. Call (346) 623-6898."
+        path="/"
+        jsonLd={localBusinessJsonLd()}
+      />
 
-      {/* 2. Header */}
-      <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b-4 border-red-500">
-        <div className="max-w-[1240px] mx-auto px-4 py-4 flex justify-between items-center">
-          <a href="/" className="flex items-center gap-2" aria-label={`${BUSINESS.name} home`}>
-            <img
-              src={BUSINESS.logo}
-              alt={BUSINESS.name}
-              className="h-10 md:h-12 object-contain"
-              width={120}
-              height={48}
-            />
-          </a>
-          <nav className="hidden lg:flex items-center gap-8 font-black uppercase tracking-tighter text-sm" aria-label="Primary">
-            <a href="#repair" className="hover:text-red-500 transition-colors">
-              Repair
-            </a>
-            <a href="#sell" className="hover:text-red-500 transition-colors">
-              Sell
-            </a>
-            <a href="#sell" className="hover:text-red-500 transition-colors">
-              Accessories
-            </a>
-            <a href="#prepaid" className="hover:text-red-500 transition-colors">
-              Prepaid
-            </a>
-            <a href="#location" className="hover:text-red-500 transition-colors">
-              Locations
-            </a>
-            <a href="#location" className="hover:text-red-500 transition-colors">
-              Contact
-            </a>
-          </nav>
-          <Button
-            asChild
-            className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-sm px-6 h-12"
-          >
-            <a href={BUSINESS.phoneTel}>Call Now</a>
-          </Button>
-        </div>
-      </header>
-
-      {/* Ticker Tape */}
-      <div className="w-full overflow-hidden bg-yellow-400 py-2 border-y-2 border-black flex items-center" aria-hidden="true">
-        <div className="animate-[marquee_20s_linear_infinite] whitespace-nowrap font-black uppercase text-black text-xl tracking-tighter flex gap-8">
-          <span>SAME-DAY REPAIR</span>
-          <span>•</span>
-          <span>15 YEARS EXPERIENCE</span>
-          <span>•</span>
-          <span>HOUSTON'S BEST</span>
-          <span>•</span>
-          <span>CALL NOW</span>
-          <span>•</span>
-          <span>SAME-DAY REPAIR</span>
-          <span>•</span>
-          <span>15 YEARS EXPERIENCE</span>
-          <span>•</span>
-          <span>HOUSTON'S BEST</span>
-          <span>•</span>
-          <span>CALL NOW</span>
-        </div>
-      </div>
-
-      {/* 3. Hero */}
+      {/* Hero */}
       <section className="relative overflow-hidden py-24 md:py-32 px-4 border-b border-zinc-900">
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(#ef4444 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#ef4444 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
         <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
           <div className="space-y-8">
             <div className="flex flex-wrap gap-3">
@@ -180,36 +108,21 @@ export default function HomePage() {
             <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-black uppercase tracking-tighter text-white">
               {HERO.h1}
             </h1>
-            <p className="text-xl md:text-2xl font-bold text-zinc-400 max-w-lg">
-              {HERO.subhead}
-            </p>
+            <p className="text-xl md:text-2xl font-bold text-zinc-400 max-w-lg">{HERO.subhead}</p>
             <div className="flex flex-wrap gap-4 pt-4">
-              <Button
-                asChild
-                className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(250,204,21,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(250,204,21,1)]"
-              >
+              <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(250,204,21,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(250,204,21,1)]">
                 <a href={ctaCall.href}>{ctaCall.label}</a>
               </Button>
-              <Button
-                asChild
-                className="rounded-none bg-yellow-400 hover:bg-white text-black font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(239,68,68,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(239,68,68,1)]"
-              >
+              <Button asChild className="rounded-none bg-yellow-400 hover:bg-white text-black font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(239,68,68,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(239,68,68,1)]">
                 <a href={ctaQuote.href} target="_blank" rel="noreferrer">{ctaQuote.label}</a>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="rounded-none border-4 border-white bg-transparent hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-lg h-16 px-8"
-              >
-                <a href={ctaDirections.href} target="_blank" rel="noreferrer">
-                  {ctaDirections.label}
-                </a>
+              <Button asChild variant="outline" className="rounded-none border-4 border-white bg-transparent hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-lg h-16 px-8">
+                <a href={ctaDirections.href} target="_blank" rel="noreferrer">{ctaDirections.label}</a>
               </Button>
             </div>
           </div>
 
           <div className="relative h-[500px] w-full hidden md:block" aria-hidden="true">
-            {/* Abstract device pattern composition */}
             <div className="absolute inset-0 flex items-center justify-center">
               <div className="w-64 h-96 border-8 border-red-500 absolute transform rotate-12 bg-black/50 backdrop-blur"></div>
               <div className="w-72 h-80 border-8 border-yellow-400 absolute transform -rotate-6 bg-black/50 backdrop-blur z-10 flex items-center justify-center">
@@ -226,76 +139,65 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Trust Strip */}
+      {/* Trust Strip */}
       <div className="bg-white border-y-8 border-red-500 py-6">
         <div className="max-w-[1240px] mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-12 font-black uppercase tracking-tighter text-black text-lg md:text-2xl text-center">
-          {TRUST_POINTS.map((point, i) => {
-            const Icon = getIcon(point.icon);
-            return (
-              <div key={i} className="flex items-center gap-2">
-                <Icon className="w-7 h-7 text-red-500" /> {point.label}
-              </div>
-            );
-          })}
+          <div className="flex items-center gap-2"><Star className="w-7 h-7 text-red-500" /> 15+ Years in Houston</div>
+          <div className="flex items-center gap-2"><Zap className="w-7 h-7 text-red-500" /> Same-Day Repair</div>
+          <div className="flex items-center gap-2"><ShieldCheck className="w-7 h-7 text-red-500" /> 90-Day Warranty</div>
+          <div className="flex items-center gap-2"><Star className="w-7 h-7 text-red-500" /> 5-Star Reviews</div>
+          <div className="flex items-center gap-2"><Smartphone className="w-7 h-7 text-red-500" /> All Brands Welcome</div>
         </div>
       </div>
 
-      {/* 5. Service Grid */}
-      <section id="repair" className="py-24 px-4 bg-zinc-950 relative scroll-mt-20">
+      {/* Services Grid */}
+      <section className="py-24 px-4 bg-zinc-950">
         <div className="max-w-[1240px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
             <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none">
-              WHAT WE <br/><span className="text-yellow-400 text-stroke-black">REPAIR</span>
+              WHAT WE <br /><span className="text-yellow-400 text-stroke-black">REPAIR</span>
             </h2>
             <div className="bg-red-500 p-4 transform rotate-2 max-w-sm">
-              <p className="font-bold text-white uppercase text-sm leading-tight">
-                No matter how badly you broke it, bring it in. We've seen worse.
-              </p>
+              <p className="font-bold text-white uppercase text-sm leading-tight">No matter how badly you broke it, bring it in. We've seen worse.</p>
             </div>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {SERVICES.map((s, i) => {
-              const Icon = getIcon(s.icon);
+            {SERVICE_TILES.map((s) => {
+              const Icon = s.icon;
               return (
-                <a href={BUSINESS.phoneTel} key={i} className="group block relative bg-black border-4 border-zinc-800 p-6 hover:border-red-500 transition-colors">
+                <Link key={s.to} href={s.to} className="group block relative bg-black border-4 border-zinc-800 p-6 hover:border-red-500 transition-colors" data-testid={`tile-${s.to}`}>
                   <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
                     <ArrowRight className="w-6 h-6 text-red-500" />
                   </div>
                   <Icon className="w-12 h-12 mb-6 text-white group-hover:text-yellow-400 transition-colors" />
                   <h3 className="text-xl font-black uppercase tracking-tight mb-2">{s.name}</h3>
                   <p className="text-sm font-bold text-zinc-500 mb-6">{s.desc}</p>
-                  <div className="text-red-500 font-black uppercase text-sm group-hover:underline">
-                    Call for quote
-                  </div>
-                </a>
+                  <div className="text-red-500 font-black uppercase text-sm group-hover:underline">View details</div>
+                </Link>
               );
             })}
           </div>
         </div>
       </section>
 
-      {/* 6. Why Choose Us */}
+      {/* Why Choose */}
       <section className="py-24 px-4 bg-red-500 text-black">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-7xl md:text-[120px] font-black uppercase tracking-tighter leading-[0.8] mb-8">
-              WHY <br/><span className="text-white">GADGET X</span>
+              WHY <br /><span className="text-white">GADGET X</span>
             </h2>
             <div className="text-2xl font-bold uppercase border-l-8 border-black pl-6 py-2">
               "We don't just fix devices. We bring them back from the dead."
             </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-8">
-            {WHY_CHOOSE.map((item, i) => {
-              const Icon = getIcon(item.icon);
+            {WHY_TILES.map((item, i) => {
+              const Icon = item.icon;
               const isDark = i % 2 === 0;
               const stagger = i === 1 || i === 3 ? "mt-0 sm:mt-12" : "";
               return (
-                <div
-                  key={i}
-                  className={`${isDark ? "bg-black text-white" : "bg-white text-black"} p-8 transform hover:-translate-y-2 transition-transform ${stagger}`}
-                >
+                <div key={item.title} className={`${isDark ? "bg-black text-white" : "bg-white text-black"} p-8 transform hover:-translate-y-2 transition-transform ${stagger}`}>
                   <div className={`text-6xl font-black mb-4 ${isDark ? "text-yellow-400" : "text-red-500"}`}>
                     <Icon className="w-12 h-12" />
                   </div>
@@ -308,21 +210,19 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 7. Featured Offers & 8. We Sell Too */}
-      <section id="sell" className="py-24 px-4 bg-zinc-900 border-b-8 border-yellow-400 scroll-mt-20">
-        <div className="max-w-[1240px] mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16">
-
-            {/* Featured Offers */}
-            <div>
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-white">
-                HOT <span className="text-red-500">DEALS</span>
-              </h2>
-              <div className="space-y-4">
-                {FEATURED_OFFERS.map((offer, i) => {
-                  const Icon = getIcon(offer.icon);
-                  return (
-                    <div key={i} className="bg-black border-2 border-zinc-800 p-6 flex justify-between items-center group hover:border-white transition-colors">
+      {/* Hot Deals + Sell */}
+      <section className="py-24 px-4 bg-zinc-900 border-b-8 border-yellow-400">
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-16">
+          <div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-white">
+              HOT <span className="text-red-500">DEALS</span>
+            </h2>
+            <div className="space-y-4">
+              {FEATURED_OFFERS.map((offer) => {
+                const Icon = offer.icon;
+                return (
+                  <Link key={offer.title} href={offer.to} className="block bg-black border-2 border-zinc-800 p-6 hover:border-white transition-colors" data-testid={`offer-${offer.to}`}>
+                    <div className="flex justify-between items-center gap-4">
                       <div className="flex items-center gap-4">
                         <Icon className="w-8 h-8 text-yellow-400 shrink-0" />
                         <div>
@@ -331,225 +231,88 @@ export default function HomePage() {
                           <div className="text-zinc-500 font-bold text-xs uppercase">{offer.note}</div>
                         </div>
                       </div>
-                      <Button asChild variant="outline" className="rounded-none font-black uppercase text-xs sm:text-sm border-2">
-                        <a href={BUSINESS.phoneTel}>Claim</a>
-                      </Button>
+                      <ArrowRight className="w-5 h-5 text-red-500 shrink-0" />
                     </div>
-                  );
-                })}
-              </div>
+                  </Link>
+                );
+              })}
             </div>
-
-            {/* We Sell Too */}
-            <div>
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-white">
-                WE <span className="text-yellow-400">SELL</span> TOO
-              </h2>
-              <p className="text-lg font-bold text-zinc-400 mb-8 max-w-md">
-                {BUSINESS.tagline}
-              </p>
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {SELL_PRODUCTS.map((product, i) => {
-                  const Icon = getIcon(product.icon);
-                  const accent = i % 2 === 0 ? "hover:border-red-500" : "hover:border-yellow-400";
-                  return (
-                    <div key={i} className={`bg-zinc-800 aspect-square flex flex-col items-center justify-center border-4 border-transparent ${accent} transition-colors p-4 text-center`}>
-                      <Icon className="w-12 h-12 text-zinc-500 mb-3" />
-                      <span className="font-black uppercase text-sm">{product.name}</span>
-                      <span className="font-bold text-zinc-500 text-xs mt-1">{product.desc}</span>
-                    </div>
-                  );
-                })}
-              </div>
-              <Button asChild className="w-full rounded-none bg-white text-black hover:bg-yellow-400 hover:text-black font-black uppercase tracking-widest text-lg h-14">
-                <a href={BUSINESS.phoneTel}>Call to Browse Inventory</a>
-              </Button>
+          </div>
+          <div>
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-white">
+              WE <span className="text-yellow-400">SELL</span> TOO
+            </h2>
+            <p className="text-lg font-bold text-zinc-400 mb-8 max-w-md">{BUSINESS.tagline}</p>
+            <div className="grid grid-cols-2 gap-4 mb-8">
+              {SELL_TILES.map((product, i) => {
+                const Icon = product.icon;
+                const accent = i % 2 === 0 ? "hover:border-red-500" : "hover:border-yellow-400";
+                return (
+                  <Link key={product.to} href={product.to} className={`bg-zinc-800 aspect-square flex flex-col items-center justify-center border-4 border-transparent ${accent} transition-colors p-4 text-center`} data-testid={`sell-${product.to}`}>
+                    <Icon className="w-12 h-12 text-zinc-500 mb-3" />
+                    <span className="font-black uppercase text-sm">{product.name}</span>
+                    <span className="font-bold text-zinc-500 text-xs mt-1">{product.desc}</span>
+                  </Link>
+                );
+              })}
             </div>
-
+            <Button asChild className="w-full rounded-none bg-white text-black hover:bg-yellow-400 hover:text-black font-black uppercase tracking-widest text-lg h-14">
+              <Link href="/inventory">Browse Inventory</Link>
+            </Button>
           </div>
         </div>
       </section>
 
-      {/* 9. Prepaid Plans & 10. Service Areas */}
-      <section id="prepaid" className="py-12 bg-black border-b border-zinc-900 scroll-mt-20">
+      {/* Quote form */}
+      <section className="py-24 px-4 bg-black border-b border-zinc-900">
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12 items-start">
+          <div>
+            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-white">
+              GET A <span className="text-red-500">QUOTE</span>
+            </h2>
+            <p className="text-lg font-bold text-zinc-400 mb-6 max-w-md">
+              Tell us what's broken. We'll text or call you back today with a firm quote.
+            </p>
+            <ul className="space-y-2 text-base font-bold text-zinc-300 mb-8">
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-red-500" /> Free diagnostic</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-red-500" /> Same-day repair where possible</li>
+              <li className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-red-500" /> 90-day warranty on every fix</li>
+            </ul>
+          </div>
+          <RepairQuoteForm />
+        </div>
+      </section>
+
+      {/* Prepaid + Areas */}
+      <section className="py-12 bg-zinc-950 border-b border-zinc-900">
         <div className="max-w-[1240px] mx-auto px-4 grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">Prepaid Activations</h3>
+            <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">Prepaid Activations & Bill Pay</h3>
             <div className="flex flex-wrap gap-2 items-center mb-6">
-              {PREPAID_CARRIERS.map(carrier => (
-                <span key={carrier} className="bg-zinc-900 border border-zinc-800 px-4 py-2 font-black uppercase text-sm">
-                  {carrier}
-                </span>
+              {PREPAID_TILES.map((carrier) => (
+                <Link key={carrier.label} href={carrier.to} className="bg-zinc-900 border border-zinc-800 px-4 py-2 font-black uppercase text-sm hover:border-red-500 transition-colors" data-testid={`prepaid-${carrier.label}`}>
+                  {carrier.label}
+                </Link>
               ))}
             </div>
-            <a href={BUSINESS.phoneTel} className="text-red-500 font-black uppercase hover:underline inline-flex items-center gap-1">
-              Call about plans <ArrowRight className="w-4 h-4" />
-            </a>
+            <Link href="/bill-payments-houston" className="text-red-500 font-black uppercase hover:underline inline-flex items-center gap-1">
+              Pay your bill in cash <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
           <div>
             <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">Service Areas</h3>
             <div className="flex flex-wrap gap-2">
-              {SERVICE_AREAS.map(area => (
-                <span key={area} className="text-zinc-400 font-bold uppercase text-sm border-b-2 border-zinc-800 pb-1">
-                  {area}
-                </span>
+              {AREA_TILES.map((area) => (
+                <Link key={area.label} href={area.to} className="text-zinc-400 font-bold uppercase text-sm border-b-2 border-zinc-800 pb-1 hover:text-red-500 hover:border-red-500 transition-colors px-2" data-testid={`area-${area.label}`}>
+                  {area.label}
+                </Link>
               ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* 11. Location / Visit Us */}
-      <section id="location" className="py-24 px-4 bg-zinc-950 scroll-mt-20">
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
-          <div>
-            <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none mb-8 text-white">
-              COME <br/><span className="text-red-500">THROUGH</span>
-            </h2>
-
-            <div className="space-y-8 mb-12">
-              <div>
-                <h4 className="text-zinc-500 font-bold uppercase tracking-widest text-sm mb-2">Location</h4>
-                <p className="text-2xl font-black uppercase text-white">
-                  {BUSINESS.addressLine1}<br/>
-                  {BUSINESS.addressLine2}
-                </p>
-              </div>
-
-              <div>
-                <h4 className="text-zinc-500 font-bold uppercase tracking-widest text-sm mb-2">Store Hours</h4>
-                <div className="space-y-2 max-w-xs font-bold text-lg">
-                  {BUSINESS.hours.map((h) => (
-                    <div key={h.day} className="flex justify-between border-b border-zinc-800 pb-2">
-                      <span className="uppercase">{h.day}</span>
-                      <span className="text-yellow-400">{h.time}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div>
-                <h4 className="text-zinc-500 font-bold uppercase tracking-widest text-sm mb-2">Contact</h4>
-                <div className="space-y-2 font-bold text-lg">
-                  <a href={BUSINESS.phoneTel} className="flex items-center gap-2 text-white hover:text-red-500">
-                    <Phone className="w-5 h-5 text-red-500" /> {BUSINESS.phoneDisplay}
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-4">
-              <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest h-14 px-8">
-                <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer">
-                  Get Directions
-                </a>
-              </Button>
-              <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-14 px-6">
-                <a href={BUSINESS.phoneTel}>Call</a>
-              </Button>
-              <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-14 px-6">
-                <a href={BUSINESS.sms}>Text</a>
-              </Button>
-              <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-14 px-6">
-                <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">
-                  WhatsApp
-                </a>
-              </Button>
-            </div>
-          </div>
-
-          <div className="relative border-8 border-white bg-zinc-900 overflow-hidden shadow-[12px_12px_0px_0px_rgba(239,68,68,1)]">
-            <iframe
-              src={BUSINESS.mapsEmbed}
-              width="100%"
-              height={400}
-              loading="lazy"
-              title={`${BUSINESS.name} location map`}
-              className="block w-full border-0"
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 12. Footer */}
-      <footer className="bg-black pt-16 pb-32 md:pb-16 border-t border-zinc-900">
-        <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-zinc-400 font-bold">
-          <div>
-            <img
-              src={BUSINESS.logo}
-              alt={BUSINESS.name}
-              className="h-10 object-contain mb-6 grayscale opacity-50"
-              width={120}
-              height={40}
-            />
-            <p className="text-sm mb-6">
-              {BUSINESS.tagline}
-            </p>
-            <div className="text-xl text-white font-black uppercase tracking-widest">
-              {BUSINESS.yearsInBusiness} Years Strong.
-            </div>
-          </div>
-
-          <div>
-            <h4 className="text-white font-black uppercase tracking-widest mb-6">Contact</h4>
-            <ul className="space-y-4 text-sm uppercase">
-              <li><a href={BUSINESS.phoneTel} className="hover:text-red-500 flex items-center gap-2"><Phone className="w-4 h-4"/> {BUSINESS.phoneDisplay}</a></li>
-              <li><a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-center gap-2"><MessageCircle className="w-4 h-4"/> WhatsApp Us</a></li>
-              <li><a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-start gap-2"><MapPin className="w-4 h-4 mt-0.5 shrink-0"/><span>{BUSINESS.addressLine1}<br/>{BUSINESS.addressLine2}</span></a></li>
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-black uppercase tracking-widest mb-6">Hours</h4>
-            <ul className="space-y-2 text-sm uppercase">
-              {BUSINESS.hours.map((h) => (
-                <li key={h.day} className="flex justify-between gap-4">
-                  <span>{h.day}</span> <span className="text-zinc-500">{h.time}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h4 className="text-white font-black uppercase tracking-widest mb-6">Repair</h4>
-            <ul className="space-y-2 text-sm uppercase">
-              {FOOTER_LINKS.repair.map((link) => (
-                <li key={link}><a href="#repair" className="hover:text-red-500">{link}</a></li>
-              ))}
-            </ul>
-            <h4 className="text-white font-black uppercase tracking-widest mt-6 mb-6">Shop</h4>
-            <ul className="space-y-2 text-sm uppercase">
-              {FOOTER_LINKS.shop.map((link) => (
-                <li key={link}><a href="#sell" className="hover:text-red-500">{link}</a></li>
-              ))}
-            </ul>
-          </div>
-        </div>
-        <div className="max-w-[1240px] mx-auto px-4 mt-16 pt-8 border-t border-zinc-900 text-center text-sm font-bold text-zinc-600 uppercase">
-          {COPYRIGHT}
-        </div>
-      </footer>
-
-      {/* 13. Sticky mobile-only bottom bar */}
-      <div className="md:hidden fixed bottom-0 left-0 w-full bg-black border-t-4 border-red-500 z-50 p-2">
-        <div className="max-w-[1240px] mx-auto grid grid-cols-3 gap-2">
-          <Button asChild className="rounded-none bg-zinc-900 hover:bg-white text-white hover:text-black font-black uppercase text-xs md:text-sm h-12">
-            <a href={BUSINESS.phoneTel}>
-              <Phone className="w-4 h-4 mr-2" /> Call
-            </a>
-          </Button>
-          <Button asChild className="rounded-none bg-green-600 hover:bg-green-500 text-white font-black uppercase text-xs md:text-sm h-12">
-            <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">
-              <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
-            </a>
-          </Button>
-          <Button asChild className="rounded-none bg-blue-600 hover:bg-blue-500 text-white font-black uppercase text-xs md:text-sm h-12">
-            <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer">
-              <MapPin className="w-4 h-4 mr-2" /> Directions
-            </a>
-          </Button>
-        </div>
-      </div>
-    </div>
+      <LocationCard />
+    </PageShell>
   );
 }
