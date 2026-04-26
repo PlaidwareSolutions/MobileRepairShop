@@ -14,6 +14,7 @@ import {
 import type { LeadType } from "./types";
 import {
   applyPlaceholders,
+  findUnfilledPlaceholders,
   placeholderKeysForScope,
   type PlaceholderValues,
 } from "./placeholders";
@@ -130,6 +131,13 @@ export function SavedReplies({
       setError("Name and body are required");
       return;
     }
+    if (unknownKeys.length > 0) {
+      const list = unknownKeys.map((k) => `{{${k}}}`).join(", ");
+      const ok = confirm(
+        `This reply contains unknown placeholders that won't be filled in: ${list}.\n\nThey'll be sent literally to the customer. Save anyway?`,
+      );
+      if (!ok) return;
+    }
     setSaving(true);
     setError(null);
     try {
@@ -209,6 +217,18 @@ export function SavedReplies({
   }
 
   const hintKeys = useMemo(() => placeholderKeysForScope(scope), [scope]);
+
+  // Find any {{...}} tokens in the saved-reply form that aren't valid for the
+  // current scope. We check subject + body together so admins catch typos in
+  // either field before the reply is ever applied to a real lead.
+  const unknownKeys = useMemo(() => {
+    const validSet = new Set(hintKeys);
+    const tokens = findUnfilledPlaceholders(
+      channel === "email" ? subject : null,
+      body,
+    );
+    return tokens.filter((k) => !validSet.has(k));
+  }, [hintKeys, subject, body, channel]);
 
   return (
     <div className="border-2 border-zinc-800 bg-zinc-900" data-testid="saved-replies">
@@ -450,6 +470,28 @@ export function SavedReplies({
                   Filled in from the lead when you apply this reply.
                 </div>
               </div>
+              {unknownKeys.length > 0 && (
+                <div
+                  className="bg-yellow-400 text-black px-3 py-2 border-2 border-yellow-400"
+                  data-testid="saved-replies-form-unknown-placeholders"
+                >
+                  <div className="font-black uppercase text-[10px] tracking-widest mb-1">
+                    Unknown placeholders
+                  </div>
+                  <div className="flex flex-wrap gap-1 mb-1">
+                    {unknownKeys.map((k) => (
+                      <code
+                        key={k}
+                        className="px-1.5 py-0.5 bg-black text-yellow-400 text-[11px] font-mono"
+                        data-testid={`saved-replies-form-unknown-${k}`}
+                      >{`{{${k}}}`}</code>
+                    ))}
+                  </div>
+                  <div className="text-[10px]">
+                    These won't be filled in — check for typos against the available placeholders above.
+                  </div>
+                </div>
+              )}
               {channel === "email" && (
                 <div>
                   <Label
