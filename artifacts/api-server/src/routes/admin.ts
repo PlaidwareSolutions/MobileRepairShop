@@ -17,6 +17,7 @@ import {
   inventoryItemsTable,
   AVAILABILITY_VALUES,
   leadCommunicationsTable,
+  leadReplyTemplatesTable,
 } from "@workspace/db";
 import { ObjectStorageService } from "../lib/objectStorage";
 import { serializeAdminInventoryItem } from "../lib/inventoryMapper";
@@ -630,5 +631,155 @@ function serializeDates<T extends { createdAt: Date; updatedAt: Date }>(row: T) 
     updatedAt: row.updatedAt.toISOString(),
   };
 }
+
+// ---------------- Reply Templates (saved replies) ----------------
+
+const REPLY_CHANNELS = ["email", "sms"] as const;
+const REPLY_LEAD_TYPES = [
+  "repair-quote",
+  "sell-phone",
+  "appointment",
+  "contact",
+  "reservation",
+] as const;
+
+const ReplyTemplateCreateSchema = z
+  .object({
+    name: z.string().min(1).max(120),
+    channel: z.enum(REPLY_CHANNELS),
+    leadType: z.enum(REPLY_LEAD_TYPES).nullable().optional(),
+    subject: z.string().max(300).nullable().optional(),
+    body: z.string().min(1).max(20000),
+    sortOrder: z.number().int().optional(),
+  })
+  .refine(
+    (v) => v.channel === "email" || !v.subject,
+    { message: "subject is only allowed for email templates", path: ["subject"] },
+  );
+
+const ReplyTemplateUpdateSchema = z.object({
+  name: z.string().min(1).max(120).optional(),
+  channel: z.enum(REPLY_CHANNELS).optional(),
+  leadType: z.enum(REPLY_LEAD_TYPES).nullable().optional(),
+  subject: z.string().max(300).nullable().optional(),
+  body: z.string().min(1).max(20000).optional(),
+  sortOrder: z.number().int().optional(),
+});
+
+router.get(
+  "/reply-templates",
+  async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+      const rows = await db
+        .select()
+        .from(leadReplyTemplatesTable)
+        .orderBy(
+          asc(leadReplyTemplatesTable.sortOrder),
+          asc(leadReplyTemplatesTable.id),
+        );
+      res.json({ items: rows.map(serializeDates) });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
+
+router.post(
+  "/reply-templates",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const body = ReplyTemplateCreateSchema.parse(req.body);
+      const [row] = await db
+        .insert(leadReplyTemplatesTable)
+        .values({
+          name: body.name,
+          channel: body.channel,
+          leadType: body.leadType ?? null,
+          subject: body.channel === "email" ? body.subject ?? null : null,
+          body: body.body,
+          sortOrder: body.sortOrder ?? 0,
+        })
+        .returning();
+      res.status(201).json({ ok: true, item: serializeDates(row) });
+    } catch (err) {
+      if (handleZod(err, res)) return;
+      next(err as Error);
+    }
+  },
+);
+
+router.patch(
+  "/reply-templates/:id",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const numericId = Number(req.params.id);
+      if (!Number.isFinite(numericId)) {
+        res.status(400).json({ error: "Invalid id" });
+        return;
+      }
+      const body = ReplyTemplateUpdateSchema.parse(req.body);
+      if (Object.keys(body).length === 0) {
+        res.status(400).json({ error: "No fields to update" });
+        return;
+      }
+      const updates: Record<string, unknown> = { updatedAt: new Date() };
+      if (body.name !== undefined) updates.name = body.name;
+      if (body.channel !== undefined) updates.channel = body.channel;
+      if (body.leadType !== undefined) updates.leadType = body.leadType ?? null;
+      if (body.subject !== undefined) updates.subject = body.subject ?? null;
+      if (body.body !== undefined) updates.body = body.body;
+      if (body.sortOrder !== undefined) updates.sortOrder = body.sortOrder;
+
+      // If switching to sms (either via this update or already sms), strip subject.
+      const targetChannel =
+        body.channel ??
+        (
+          await db
+            .select({ channel: leadReplyTemplatesTable.channel })
+            .from(leadReplyTemplatesTable)
+            .where(eq(leadReplyTemplatesTable.id, numericId))
+        )[0]?.channel;
+      if (targetChannel === "sms") updates.subject = null;
+
+      const [row] = await db
+        .update(leadReplyTemplatesTable)
+        .set(updates)
+        .where(eq(leadReplyTemplatesTable.id, numericId))
+        .returning();
+      if (!row) {
+        res.status(404).json({ error: "Template not found" });
+        return;
+      }
+      res.json({ ok: true, item: serializeDates(row) });
+    } catch (err) {
+      if (handleZod(err, res)) return;
+      next(err as Error);
+    }
+  },
+);
+
+router.delete(
+  "/reply-templates/:id",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const numericId = Number(req.params.id);
+      if (!Number.isFinite(numericId)) {
+        res.status(400).json({ error: "Invalid id" });
+        return;
+      }
+      const [deleted] = await db
+        .delete(leadReplyTemplatesTable)
+        .where(eq(leadReplyTemplatesTable.id, numericId))
+        .returning({ id: leadReplyTemplatesTable.id });
+      if (!deleted) {
+        res.status(404).json({ error: "Template not found" });
+        return;
+      }
+      res.json({ ok: true, id: deleted.id });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
 
 export default router;

@@ -283,3 +283,72 @@ export async function adminUploadImage(password: string, file: File): Promise<st
 }
 
 void adminHeaders;
+
+// ---------------- Admin Reply Templates (saved replies) ----------------
+
+export type ReplyTemplate = {
+  id: number;
+  name: string;
+  channel: "email" | "sms";
+  leadType: string | null;
+  subject: string | null;
+  body: string;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type ReplyTemplateInput = {
+  name: string;
+  channel: "email" | "sms";
+  leadType?: string | null;
+  subject?: string | null;
+  body: string;
+  sortOrder?: number;
+};
+
+export async function adminListReplyTemplates(password: string) {
+  return await adminJson<{ items: ReplyTemplate[] }>(
+    password,
+    "/admin/reply-templates",
+  );
+}
+
+export async function adminCreateReplyTemplate(
+  password: string,
+  body: ReplyTemplateInput,
+) {
+  return await adminJson<{ ok: boolean; item: ReplyTemplate }>(
+    password,
+    "/admin/reply-templates",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    },
+  );
+}
+
+export async function adminUpdateReplyTemplate(
+  password: string,
+  id: number,
+  body: Partial<ReplyTemplateInput>,
+) {
+  return await adminJson<{ ok: boolean; item: ReplyTemplate }>(
+    password,
+    `/admin/reply-templates/${id}`,
+    {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    },
+  );
+}
+
+export async function adminDeleteReplyTemplate(password: string, id: number) {
+  return await adminJson<{ ok: boolean; id: number }>(
+    password,
+    `/admin/reply-templates/${id}`,
+    { method: "DELETE" },
+  );
+}

@@ -248,6 +248,8 @@ export function ActionBar({
           open={true}
           mode="email"
           fromLabel={messaging?.mailFrom ?? "shop email"}
+          password={password}
+          leadType={leadType}
           initial={{
             to: emailDefaults.to ?? email ?? "",
             subject: emailDefaults.subject,
@@ -262,6 +264,8 @@ export function ActionBar({
           open={true}
           mode="sms"
           fromLabel={messaging?.smsFrom ?? "shop number"}
+          password={password}
+          leadType={leadType}
           initial={{
             to: smsDefaults.to ?? normPhone ?? phone ?? "",
             body: smsDefaults.body,

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { SavedReplies } from "./SavedReplies";
 
 export type ComposerMode = "email" | "sms";
 
@@ -18,11 +19,22 @@ export type ComposerProps = {
   mode: ComposerMode;
   initial: ComposerInitial;
   fromLabel: string;
+  password: string;
+  leadType: string;
   onClose: () => void;
   onSend: (payload: { to: string; subject?: string; body: string }) => Promise<void>;
 };
 
-export function Composer({ open, mode, initial, fromLabel, onClose, onSend }: ComposerProps) {
+export function Composer({
+  open,
+  mode,
+  initial,
+  fromLabel,
+  password,
+  leadType,
+  onClose,
+  onSend,
+}: ComposerProps) {
   const [to, setTo] = useState(initial.to);
   const [subject, setSubject] = useState(initial.subject ?? "");
   const [body, setBody] = useState(initial.body);
@@ -68,6 +80,15 @@ export function Composer({ open, mode, initial, fromLabel, onClose, onSend }: Co
           From: <span className="text-zinc-300">{fromLabel}</span>
         </div>
         <div className="space-y-3">
+          <SavedReplies
+            password={password}
+            channel={mode}
+            leadType={leadType}
+            onApply={(tpl) => {
+              if (mode === "email" && tpl.subject) setSubject(tpl.subject);
+              setBody(tpl.body);
+            }}
+          />
           <div>
             <Label htmlFor="composer-to" className="font-black uppercase text-xs tracking-widest text-zinc-300">
               To
