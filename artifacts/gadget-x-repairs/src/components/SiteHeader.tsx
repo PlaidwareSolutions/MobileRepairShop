@@ -3,31 +3,228 @@ import { MapPin, Clock, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BUSINESS, HERO } from "@/content";
 
-const REPAIR_DROPDOWN: { label: string; to: string }[] = [
-  { label: "All Repairs", to: "/phone-repair-houston-tx" },
-  { label: "iPhone Repair", to: "/iphone-repair-houston-tx" },
-  { label: "Samsung Repair", to: "/samsung-repair-houston-tx" },
-  { label: "iPad / Tablet", to: "/tablet-repair-houston-tx" },
-  { label: "Laptop Repair", to: "/laptop-repair-houston-tx" },
-  { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
-  { label: "Game Consoles", to: "/gaming-console-repair-houston-tx" },
-  { label: "PS5 Repair", to: "/ps5-repair-houston-tx" },
-  { label: "Xbox Repair", to: "/xbox-repair-houston-tx" },
-  { label: "Battery Replacement", to: "/battery-replacement-houston-tx" },
-  { label: "HDMI Port Repair", to: "/hdmi-port-repair-houston-tx" },
-  { label: "Phone Unlocking", to: "/phone-unlocking-houston-tx" },
+type MegaMenuColumn = { heading: string; items: { label: string; to: string }[] };
+
+const REPAIR_MEGA: MegaMenuColumn[] = [
+  {
+    heading: "iPhone",
+    items: [
+      { label: "All iPhone Repair", to: "/iphone-repair-houston-tx" },
+      { label: "iPhone Screen", to: "/iphone-screen-repair-houston-tx" },
+      { label: "iPhone Battery", to: "/iphone-battery-replacement-houston-tx" },
+      { label: "iPhone Back Glass", to: "/iphone-back-glass-repair-houston-tx" },
+      { label: "iPhone Charging Port", to: "/iphone-charging-port-repair-houston-tx" },
+      { label: "iPhone Water Damage", to: "/iphone-water-damage-repair-houston-tx" },
+      { label: "iPhone 16 / 16 Pro", to: "/iphone-16-pro-repair-houston-tx" },
+      { label: "iPhone 15", to: "/iphone-15-repair-houston-tx" },
+      { label: "iPhone 14", to: "/iphone-14-repair-houston-tx" },
+    ],
+  },
+  {
+    heading: "Samsung & Android",
+    items: [
+      { label: "Samsung Galaxy", to: "/samsung-repair-houston-tx" },
+      { label: "Galaxy S24", to: "/samsung-galaxy-s24-repair-houston-tx" },
+      { label: "Galaxy S23", to: "/samsung-galaxy-s23-repair-houston-tx" },
+      { label: "Samsung Screen", to: "/samsung-screen-repair-houston-tx" },
+      { label: "Samsung Battery", to: "/samsung-battery-replacement-houston-tx" },
+      { label: "Google Pixel", to: "/google-pixel-repair-houston-tx" },
+      { label: "Motorola", to: "/motorola-repair-houston-tx" },
+      { label: "T-Mobile Revvl", to: "/revvl-repair-houston-tx" },
+    ],
+  },
+  {
+    heading: "Tablet & Laptop",
+    items: [
+      { label: "iPad / Tablet", to: "/tablet-repair-houston-tx" },
+      { label: "iPad", to: "/ipad-repair-houston-tx" },
+      { label: "iPad Pro", to: "/ipad-pro-repair-houston-tx" },
+      { label: "Samsung Tablet", to: "/samsung-tablet-repair-houston-tx" },
+      { label: "Tablet Screen", to: "/tablet-screen-repair-houston-tx" },
+      { label: "Laptop Repair", to: "/laptop-repair-houston-tx" },
+      { label: "Laptop Screen", to: "/laptop-screen-repair-houston-tx" },
+      { label: "Laptop Battery", to: "/laptop-battery-replacement-houston-tx" },
+      { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
+    ],
+  },
+  {
+    heading: "Console & Other",
+    items: [
+      { label: "All Repair Services", to: "/repair-services-houston-tx" },
+      { label: "Gaming Consoles", to: "/gaming-console-repair-houston-tx" },
+      { label: "PS5 Repair", to: "/ps5-repair-houston-tx" },
+      { label: "PS5 HDMI Repair", to: "/ps5-hdmi-repair-houston-tx" },
+      { label: "Xbox Repair", to: "/xbox-repair-houston-tx" },
+      { label: "HDMI Port Repair", to: "/hdmi-port-repair-houston-tx" },
+      { label: "Battery Replacement", to: "/battery-replacement-houston-tx" },
+      { label: "Phone Unlocking", to: "/phone-unlocking-houston-tx" },
+      { label: "Google Lock Removal", to: "/google-lock-removal-houston-tx" },
+    ],
+  },
+];
+
+const SHOP_MEGA: MegaMenuColumn[] = [
+  {
+    heading: "Phones",
+    items: [
+      { label: "All Phones for Sale", to: "/phones-for-sale-houston-tx" },
+      { label: "Used Phones", to: "/used-phones-houston-tx" },
+      { label: "Refurbished Phones", to: "/refurbished-phones-houston-tx" },
+      { label: "New Phones", to: "/new-phones-houston-tx" },
+      { label: "Buy iPhone", to: "/buy-iphone-houston-tx" },
+      { label: "Buy Samsung", to: "/buy-samsung-phones-houston-tx" },
+      { label: "Buy Pixel", to: "/buy-google-pixel-phones-houston-tx" },
+      { label: "Buy Motorola", to: "/buy-motorola-phones-houston-tx" },
+    ],
+  },
+  {
+    heading: "Laptops",
+    items: [
+      { label: "All Laptops for Sale", to: "/laptops-for-sale-houston-tx" },
+      { label: "Buy MacBook", to: "/buy-macbook-houston-tx" },
+      { label: "Buy HP Laptops", to: "/buy-hp-laptops-houston-tx" },
+      { label: "Buy Dell Laptops", to: "/buy-dell-laptops-houston-tx" },
+      { label: "Buy Lenovo Laptops", to: "/buy-lenovo-laptops-houston-tx" },
+      { label: "Laptop Accessories", to: "/laptop-accessories-houston-tx" },
+    ],
+  },
+  {
+    heading: "Accessories",
+    items: [
+      { label: "All Phone Accessories", to: "/phone-accessories-houston-tx" },
+      { label: "Phone Cases", to: "/phone-cases-houston-tx" },
+      { label: "OtterBox Cases", to: "/otterbox-cases-houston-tx" },
+      { label: "Screen Protectors", to: "/screen-protectors-houston-tx" },
+      { label: "Phone Chargers", to: "/phone-chargers-houston-tx" },
+      { label: "Charging Cables", to: "/charging-cables-houston-tx" },
+      { label: "Wireless Chargers", to: "/wireless-chargers-houston-tx" },
+      { label: "Power Banks", to: "/power-banks-houston-tx" },
+      { label: "Apple Accessories", to: "/apple-accessories-houston-tx" },
+    ],
+  },
+  {
+    heading: "Audio & More",
+    items: [
+      { label: "Earbuds", to: "/earbuds-houston-tx" },
+      { label: "Headphones", to: "/headphones-houston-tx" },
+      { label: "Bluetooth Speakers", to: "/bluetooth-speakers-houston-tx" },
+      { label: "Car Chargers", to: "/car-chargers-houston-tx" },
+      { label: "Wall Adapters", to: "/wall-adapters-houston-tx" },
+      { label: "Smart Watch Bands", to: "/smart-watch-bands-houston-tx" },
+      { label: "Shop Index", to: "/shop-houston-tx" },
+    ],
+  },
+];
+
+const PREPAID_DROPDOWN: { label: string; to: string }[] = [
+  { label: "All Prepaid Activations", to: "/phone-activation-houston-tx" },
+  { label: "Bill Payments", to: "/bill-payments-houston-tx" },
+  { label: "Boost Mobile", to: "/boost-mobile-activation-houston-tx" },
+  { label: "AT&T Prepaid", to: "/att-activation-houston-tx" },
+  { label: "Gen Mobile", to: "/gen-mobile-activation-houston-tx" },
+  { label: "Simple Mobile", to: "/simple-mobile-activation-houston-tx" },
+  { label: "Xfinity Mobile", to: "/xfinity-mobile-activation-houston-tx" },
+  { label: "H2O Wireless", to: "/h2o-wireless-activation-houston-tx" },
+  { label: "Lyca Mobile", to: "/lyca-mobile-activation-houston-tx" },
+  { label: "Verizon Prepaid", to: "/verizon-prepaid-activation-houston-tx" },
+];
+
+const SELL_DROPDOWN: { label: string; to: string }[] = [
+  { label: "Sell Any Phone", to: "/sell-phone-houston-tx" },
+  { label: "Sell iPhone", to: "/sell-iphone-houston-tx" },
+  { label: "Sell Samsung", to: "/sell-samsung-phone-houston-tx" },
 ];
 
 const NAV: { label: string; to: string }[] = [
-  { label: "Sell", to: "/sell-phone-houston-tx" },
-  { label: "Phones", to: "/phones-for-sale-houston-tx" },
-  { label: "Accessories", to: "/phone-accessories-houston-tx" },
-  { label: "Prepaid", to: "/phone-activation-houston-tx" },
   { label: "Inventory", to: "/inventory" },
   { label: "Reviews", to: "/reviews-houston-tx" },
   { label: "About", to: "/about" },
   { label: "Contact", to: "/contact-houston-tx" },
 ];
+
+function SimpleDropdown({
+  label,
+  testIdSuffix,
+  items,
+}: {
+  label: string;
+  testIdSuffix: string;
+  items: { label: string; to: string }[];
+}) {
+  return (
+    <div className="relative group" data-testid={`nav-${testIdSuffix}`}>
+      <button
+        type="button"
+        className="hover:text-red-500 transition-colors flex items-center gap-1"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {label} <ChevronDown className="w-4 h-4" />
+      </button>
+      <div className="absolute left-0 top-full pt-2 w-64 hidden group-hover:block group-focus-within:block z-50">
+        <div className="bg-black border-2 border-red-500 py-2 shadow-2xl">
+          {items.map((item) => (
+            <Link
+              key={item.to}
+              href={item.to}
+              className="block px-4 py-2 text-xs hover:bg-red-500 hover:text-white text-zinc-200 transition-colors"
+              data-testid={`nav-${testIdSuffix}-${item.to.replace(/\//g, "")}`}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MegaMenuTrigger({
+  label,
+  testIdSuffix,
+  columns,
+}: {
+  label: string;
+  testIdSuffix: string;
+  columns: MegaMenuColumn[];
+}) {
+  return (
+    <div className="relative group" data-testid={`nav-${testIdSuffix}`}>
+      <button
+        type="button"
+        className="hover:text-red-500 transition-colors flex items-center gap-1"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        {label} <ChevronDown className="w-4 h-4" />
+      </button>
+      <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-50">
+        <div className="bg-black border-2 border-red-500 shadow-2xl p-6 grid grid-cols-4 gap-6 w-[860px]">
+          {columns.map((col) => (
+            <div key={col.heading}>
+              <h4 className="text-red-500 text-[11px] font-black uppercase tracking-wider mb-2 border-b border-zinc-800 pb-1">
+                {col.heading}
+              </h4>
+              <ul className="space-y-1">
+                {col.items.map((item) => (
+                  <li key={item.to}>
+                    <Link
+                      href={item.to}
+                      className="block text-xs text-zinc-200 hover:text-yellow-400 transition-colors"
+                      data-testid={`nav-${testIdSuffix}-${item.to.replace(/\//g, "")}`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export function TopUtilityBar() {
   return (
@@ -63,30 +260,10 @@ export function SiteHeader() {
           <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 md:h-12 object-contain" width={120} height={48} />
         </Link>
         <nav className="hidden lg:flex items-center gap-6 font-black uppercase tracking-tighter text-sm" aria-label="Primary">
-          <div className="relative group" data-testid="nav-repair-services">
-            <button
-              type="button"
-              className="hover:text-red-500 transition-colors flex items-center gap-1"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Repair Services <ChevronDown className="w-4 h-4" />
-            </button>
-            <div className="absolute left-0 top-full pt-2 w-64 hidden group-hover:block group-focus-within:block z-50">
-              <div className="bg-black border-2 border-red-500 py-2 shadow-2xl">
-                {REPAIR_DROPDOWN.map((item) => (
-                  <Link
-                    key={item.to}
-                    href={item.to}
-                    className="block px-4 py-2 text-xs hover:bg-red-500 hover:text-white text-zinc-200 transition-colors"
-                    data-testid={`nav-repair-${item.to.replace(/\//g, "")}`}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
+          <MegaMenuTrigger label="Repair" testIdSuffix="repair" columns={REPAIR_MEGA} />
+          <MegaMenuTrigger label="Shop" testIdSuffix="shop" columns={SHOP_MEGA} />
+          <SimpleDropdown label="Sell" testIdSuffix="sell" items={SELL_DROPDOWN} />
+          <SimpleDropdown label="Prepaid" testIdSuffix="prepaid" items={PREPAID_DROPDOWN} />
           {NAV.map((item) => (
             <Link key={item.to} href={item.to} className="hover:text-red-500 transition-colors" data-testid={`nav-${item.to.replace(/\//g, "")}`}>
               {item.label}

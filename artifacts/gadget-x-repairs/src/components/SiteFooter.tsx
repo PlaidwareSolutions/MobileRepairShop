@@ -3,21 +3,27 @@ import { Phone, MapPin, MessageCircle } from "lucide-react";
 import { BUSINESS, COPYRIGHT } from "@/content";
 
 const REPAIR_LINKS = [
+  { label: "All Repair Services", to: "/repair-services-houston-tx" },
   { label: "iPhone Repair", to: "/iphone-repair-houston-tx" },
+  { label: "iPhone Screen", to: "/iphone-screen-repair-houston-tx" },
   { label: "Samsung Repair", to: "/samsung-repair-houston-tx" },
-  { label: "iPad / Tablet Repair", to: "/tablet-repair-houston-tx" },
-  { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
+  { label: "iPad / Tablet", to: "/tablet-repair-houston-tx" },
   { label: "Laptop Repair", to: "/laptop-repair-houston-tx" },
-  { label: "PS5 Repair", to: "/ps5-repair-houston-tx" },
-  { label: "Xbox Repair", to: "/xbox-repair-houston-tx" },
+  { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
+  { label: "PS5 / Xbox HDMI", to: "/ps5-hdmi-repair-houston-tx" },
   { label: "Battery Replacement", to: "/battery-replacement-houston-tx" },
+  { label: "Phone Unlocking", to: "/phone-unlocking-houston-tx" },
 ];
 
 const SHOP_LINKS = [
+  { label: "Shop Index", to: "/shop-houston-tx" },
   { label: "Phones for Sale", to: "/phones-for-sale-houston-tx" },
-  { label: "Used Phones", to: "/used-phones-houston-tx" },
-  { label: "Refurbished Phones", to: "/refurbished-phones-houston-tx" },
+  { label: "Buy iPhone", to: "/buy-iphone-houston-tx" },
+  { label: "Buy Samsung", to: "/buy-samsung-phones-houston-tx" },
   { label: "Laptops for Sale", to: "/laptops-for-sale-houston-tx" },
+  { label: "Buy MacBook", to: "/buy-macbook-houston-tx" },
+  { label: "Phone Cases", to: "/phone-cases-houston-tx" },
+  { label: "Phone Chargers", to: "/phone-chargers-houston-tx" },
   { label: "Sell Your Phone", to: "/sell-phone-houston-tx" },
   { label: "Inventory", to: "/inventory" },
 ];
