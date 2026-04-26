@@ -13,8 +13,8 @@ import type { SellPhoneRecord } from "./sellPhoneRecord";
 
 export interface AdminLeads {
   repairQuotes: RepairQuoteRecord[];
-  sellPhone: SellPhoneRecord[];
+  sellPhoneSubmissions: SellPhoneRecord[];
   appointments: AppointmentRecord[];
-  contact: ContactRecord[];
-  reservations: ReservationRecord[];
+  contactMessages: ContactRecord[];
+  itemReservations: ReservationRecord[];
 }

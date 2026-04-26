@@ -7,7 +7,7 @@ import {
   numeric,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
-import { z } from "zod";
+import { z } from "zod/v4";
 
 const baseColumns = {
   id: serial("id").primaryKey(),

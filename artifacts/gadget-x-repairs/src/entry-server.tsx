@@ -1,5 +1,5 @@
 import { renderToString } from "react-dom/server";
-import { HelmetProvider, type FilledContext } from "react-helmet-async";
+import { HelmetProvider, type HelmetServerState } from "react-helmet-async";
 import { Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -7,9 +7,11 @@ import { Routes } from "@/Routes";
 
 export type RenderResult = { html: string; head: string };
 
+type HelmetContext = { helmet?: HelmetServerState };
+
 export function render(url: string): RenderResult {
   const queryClient = new QueryClient();
-  const helmetContext: Record<string, unknown> = {};
+  const helmetContext: HelmetContext = {};
 
   const html = renderToString(
     <HelmetProvider context={helmetContext}>
@@ -23,7 +25,7 @@ export function render(url: string): RenderResult {
     </HelmetProvider>,
   );
 
-  const helmet = (helmetContext as FilledContext).helmet;
+  const helmet = helmetContext.helmet;
   const head = helmet
     ? [
         helmet.title.toString(),

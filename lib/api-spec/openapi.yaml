@@ -354,23 +354,30 @@ components:
       properties:
         status:
           type: string
-          enum: [new, contacted, handled]
+          enum: [new, in_progress, done, archived]
     AdminLeads:
       type: object
-      required: [repairQuotes, sellPhone, appointments, contact, reservations]
+      required:
+        [
+          repairQuotes,
+          sellPhoneSubmissions,
+          appointments,
+          contactMessages,
+          itemReservations,
+        ]
       properties:
         repairQuotes:
           type: array
           items: { $ref: "#/components/schemas/RepairQuoteRecord" }
-        sellPhone:
+        sellPhoneSubmissions:
           type: array
           items: { $ref: "#/components/schemas/SellPhoneRecord" }
         appointments:
           type: array
           items: { $ref: "#/components/schemas/AppointmentRecord" }
-        contact:
+        contactMessages:
           type: array
           items: { $ref: "#/components/schemas/ContactRecord" }
-        reservations:
+        itemReservations:
           type: array
           items: { $ref: "#/components/schemas/ReservationRecord" }

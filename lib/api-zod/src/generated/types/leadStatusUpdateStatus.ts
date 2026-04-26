@@ -11,6 +11,7 @@ export type LeadStatusUpdateStatus =
 
 export const LeadStatusUpdateStatus = {
   new: "new",
-  contacted: "contacted",
-  handled: "handled",
+  in_progress: "in_progress",
+  done: "done",
+  archived: "archived",
 } as const;

@@ -229,27 +229,27 @@ export const getAdminLeadsResponseRepairQuotesItemTwoNotesMax = 2000;
 
 export const getAdminLeadsResponseRepairQuotesItemTwoPhotoUrlMax = 500;
 
-export const getAdminLeadsResponseSellPhoneItemTwoNameMax = 120;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoNameMax = 120;
 
-export const getAdminLeadsResponseSellPhoneItemTwoPhoneMin = 7;
-export const getAdminLeadsResponseSellPhoneItemTwoPhoneMax = 40;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoPhoneMin = 7;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoPhoneMax = 40;
 
-export const getAdminLeadsResponseSellPhoneItemTwoBrandMax = 80;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoBrandMax = 80;
 
-export const getAdminLeadsResponseSellPhoneItemTwoModelMax = 120;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoModelMax = 120;
 
-export const getAdminLeadsResponseSellPhoneItemTwoStorageMax = 40;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoStorageMax = 40;
 
-export const getAdminLeadsResponseSellPhoneItemTwoCarrierMax = 80;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoCarrierMax = 80;
 
-export const getAdminLeadsResponseSellPhoneItemTwoBatteryHealthMin = 0;
-export const getAdminLeadsResponseSellPhoneItemTwoBatteryHealthMax = 100;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoBatteryHealthMin = 0;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoBatteryHealthMax = 100;
 
-export const getAdminLeadsResponseSellPhoneItemTwoDamageNotesMax = 2000;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoDamageNotesMax = 2000;
 
-export const getAdminLeadsResponseSellPhoneItemTwoExpectedPriceMax = 20;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoExpectedPriceMax = 20;
 
-export const getAdminLeadsResponseSellPhoneItemTwoPhotoUrlMax = 500;
+export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoPhotoUrlMax = 500;
 
 export const getAdminLeadsResponseAppointmentsItemTwoNameMax = 120;
 
@@ -260,23 +260,23 @@ export const getAdminLeadsResponseAppointmentsItemTwoPreferredDatetimeMax = 80;
 
 export const getAdminLeadsResponseAppointmentsItemTwoNotesMax = 2000;
 
-export const getAdminLeadsResponseContactItemTwoNameMax = 120;
+export const getAdminLeadsResponseContactMessagesItemTwoNameMax = 120;
 
-export const getAdminLeadsResponseContactItemTwoContactMin = 3;
-export const getAdminLeadsResponseContactItemTwoContactMax = 200;
+export const getAdminLeadsResponseContactMessagesItemTwoContactMin = 3;
+export const getAdminLeadsResponseContactMessagesItemTwoContactMax = 200;
 
-export const getAdminLeadsResponseContactItemTwoMessageMax = 4000;
+export const getAdminLeadsResponseContactMessagesItemTwoMessageMax = 4000;
 
-export const getAdminLeadsResponseReservationsItemTwoNameMax = 120;
+export const getAdminLeadsResponseItemReservationsItemTwoNameMax = 120;
 
-export const getAdminLeadsResponseReservationsItemTwoPhoneMin = 7;
-export const getAdminLeadsResponseReservationsItemTwoPhoneMax = 40;
+export const getAdminLeadsResponseItemReservationsItemTwoPhoneMin = 7;
+export const getAdminLeadsResponseItemReservationsItemTwoPhoneMax = 40;
 
-export const getAdminLeadsResponseReservationsItemTwoItemIdMax = 120;
+export const getAdminLeadsResponseItemReservationsItemTwoItemIdMax = 120;
 
-export const getAdminLeadsResponseReservationsItemTwoItemLabelMax = 200;
+export const getAdminLeadsResponseItemReservationsItemTwoItemLabelMax = 200;
 
-export const getAdminLeadsResponseReservationsItemTwoNotesMax = 1000;
+export const getAdminLeadsResponseItemReservationsItemTwoNotesMax = 1000;
 
 export const GetAdminLeadsResponse = zod.object({
   repairQuotes: zod.array(
@@ -334,7 +334,7 @@ export const GetAdminLeadsResponse = zod.object({
         }),
       ),
   ),
-  sellPhone: zod.array(
+  sellPhoneSubmissions: zod.array(
     zod
       .object({
         id: zod.number(),
@@ -347,45 +347,51 @@ export const GetAdminLeadsResponse = zod.object({
           name: zod
             .string()
             .min(1)
-            .max(getAdminLeadsResponseSellPhoneItemTwoNameMax),
+            .max(getAdminLeadsResponseSellPhoneSubmissionsItemTwoNameMax),
           phone: zod
             .string()
-            .min(getAdminLeadsResponseSellPhoneItemTwoPhoneMin)
-            .max(getAdminLeadsResponseSellPhoneItemTwoPhoneMax),
+            .min(getAdminLeadsResponseSellPhoneSubmissionsItemTwoPhoneMin)
+            .max(getAdminLeadsResponseSellPhoneSubmissionsItemTwoPhoneMax),
           brand: zod
             .string()
             .min(1)
-            .max(getAdminLeadsResponseSellPhoneItemTwoBrandMax),
+            .max(getAdminLeadsResponseSellPhoneSubmissionsItemTwoBrandMax),
           model: zod
             .string()
             .min(1)
-            .max(getAdminLeadsResponseSellPhoneItemTwoModelMax),
+            .max(getAdminLeadsResponseSellPhoneSubmissionsItemTwoModelMax),
           storage: zod
             .string()
-            .max(getAdminLeadsResponseSellPhoneItemTwoStorageMax)
+            .max(getAdminLeadsResponseSellPhoneSubmissionsItemTwoStorageMax)
             .optional(),
           carrier: zod
             .string()
-            .max(getAdminLeadsResponseSellPhoneItemTwoCarrierMax)
+            .max(getAdminLeadsResponseSellPhoneSubmissionsItemTwoCarrierMax)
             .optional(),
           lockedStatus: zod.enum(["locked", "unlocked"]).optional(),
           condition: zod.enum(["mint", "good", "fair", "broken"]).optional(),
           batteryHealth: zod
             .number()
-            .min(getAdminLeadsResponseSellPhoneItemTwoBatteryHealthMin)
-            .max(getAdminLeadsResponseSellPhoneItemTwoBatteryHealthMax)
+            .min(
+              getAdminLeadsResponseSellPhoneSubmissionsItemTwoBatteryHealthMin,
+            )
+            .max(
+              getAdminLeadsResponseSellPhoneSubmissionsItemTwoBatteryHealthMax,
+            )
             .optional(),
           damageNotes: zod
             .string()
-            .max(getAdminLeadsResponseSellPhoneItemTwoDamageNotesMax)
+            .max(getAdminLeadsResponseSellPhoneSubmissionsItemTwoDamageNotesMax)
             .optional(),
           expectedPrice: zod
             .string()
-            .max(getAdminLeadsResponseSellPhoneItemTwoExpectedPriceMax)
+            .max(
+              getAdminLeadsResponseSellPhoneSubmissionsItemTwoExpectedPriceMax,
+            )
             .optional(),
           photoUrl: zod
             .string()
-            .max(getAdminLeadsResponseSellPhoneItemTwoPhotoUrlMax)
+            .max(getAdminLeadsResponseSellPhoneSubmissionsItemTwoPhotoUrlMax)
             .optional(),
         }),
       ),
@@ -428,7 +434,7 @@ export const GetAdminLeadsResponse = zod.object({
         }),
       ),
   ),
-  contact: zod.array(
+  contactMessages: zod.array(
     zod
       .object({
         id: zod.number(),
@@ -441,19 +447,19 @@ export const GetAdminLeadsResponse = zod.object({
           name: zod
             .string()
             .min(1)
-            .max(getAdminLeadsResponseContactItemTwoNameMax),
+            .max(getAdminLeadsResponseContactMessagesItemTwoNameMax),
           contact: zod
             .string()
-            .min(getAdminLeadsResponseContactItemTwoContactMin)
-            .max(getAdminLeadsResponseContactItemTwoContactMax),
+            .min(getAdminLeadsResponseContactMessagesItemTwoContactMin)
+            .max(getAdminLeadsResponseContactMessagesItemTwoContactMax),
           message: zod
             .string()
             .min(1)
-            .max(getAdminLeadsResponseContactItemTwoMessageMax),
+            .max(getAdminLeadsResponseContactMessagesItemTwoMessageMax),
         }),
       ),
   ),
-  reservations: zod.array(
+  itemReservations: zod.array(
     zod
       .object({
         id: zod.number(),
@@ -466,22 +472,22 @@ export const GetAdminLeadsResponse = zod.object({
           name: zod
             .string()
             .min(1)
-            .max(getAdminLeadsResponseReservationsItemTwoNameMax),
+            .max(getAdminLeadsResponseItemReservationsItemTwoNameMax),
           phone: zod
             .string()
-            .min(getAdminLeadsResponseReservationsItemTwoPhoneMin)
-            .max(getAdminLeadsResponseReservationsItemTwoPhoneMax),
+            .min(getAdminLeadsResponseItemReservationsItemTwoPhoneMin)
+            .max(getAdminLeadsResponseItemReservationsItemTwoPhoneMax),
           itemId: zod
             .string()
             .min(1)
-            .max(getAdminLeadsResponseReservationsItemTwoItemIdMax),
+            .max(getAdminLeadsResponseItemReservationsItemTwoItemIdMax),
           itemLabel: zod
             .string()
             .min(1)
-            .max(getAdminLeadsResponseReservationsItemTwoItemLabelMax),
+            .max(getAdminLeadsResponseItemReservationsItemTwoItemLabelMax),
           notes: zod
             .string()
-            .max(getAdminLeadsResponseReservationsItemTwoNotesMax)
+            .max(getAdminLeadsResponseItemReservationsItemTwoNotesMax)
             .optional(),
         }),
       ),
@@ -507,7 +513,7 @@ export const UpdateLeadStatusHeader = zod.object({
 });
 
 export const UpdateLeadStatusBody = zod.object({
-  status: zod.enum(["new", "contacted", "handled"]),
+  status: zod.enum(["new", "in_progress", "done", "archived"]),
 });
 
 export const UpdateLeadStatusResponse = zod.object({
