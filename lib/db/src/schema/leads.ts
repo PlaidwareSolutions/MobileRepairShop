@@ -32,6 +32,7 @@ export const repairQuotesTable = pgTable("repair_quotes", {
   preferredContact: text("preferred_contact").notNull().default("call"),
   urgency: text("urgency").notNull().default("flexible"),
   notes: text("notes"),
+  photoUrl: text("photo_url"),
 });
 
 export const sellPhoneSubmissionsTable = pgTable("sell_phone_submissions", {
@@ -47,6 +48,7 @@ export const sellPhoneSubmissionsTable = pgTable("sell_phone_submissions", {
   batteryHealth: integer("battery_health"),
   damageNotes: text("damage_notes"),
   expectedPrice: numeric("expected_price", { precision: 10, scale: 2 }),
+  photoUrl: text("photo_url"),
 });
 
 export const appointmentsTable = pgTable("appointments", {

@@ -18,6 +18,7 @@ type FormValues = {
   batteryHealth?: number;
   damageNotes?: string;
   expectedPrice?: string;
+  photoUrl?: string;
 };
 
 export function SellPhoneForm() {
@@ -111,6 +112,20 @@ export function SellPhoneForm() {
       <div className="space-y-2">
         <Label htmlFor="sp-damage" className="font-black uppercase text-xs tracking-widest text-zinc-300">Damage / notes <span className="text-zinc-500">(optional)</span></Label>
         <Textarea id="sp-damage" {...register("damageNotes", { maxLength: 2000 })} className="rounded-none bg-black border-2 border-zinc-700 focus:border-red-500" data-testid="input-damage" />
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="sp-photo" className="font-black uppercase text-xs tracking-widest text-zinc-300">
+          Photo of phone <span className="text-zinc-500">(optional — paste a link)</span>
+        </Label>
+        <Input
+          id="sp-photo"
+          type="url"
+          placeholder="https://… (Google Photos, iCloud, Imgur, etc.)"
+          {...register("photoUrl", { maxLength: 500 })}
+          className="rounded-none bg-black border-2 border-zinc-700 focus:border-red-500 h-12"
+          data-testid="input-photo-url"
+        />
+        <p className="text-xs font-bold text-zinc-500">Or text a photo to (346) 623-6898 on WhatsApp.</p>
       </div>
       {error && <div className="bg-red-500 text-white px-4 py-3 font-black uppercase text-sm">{error}</div>}
       <Button type="submit" disabled={isSubmitting} className="w-full rounded-none bg-yellow-400 hover:bg-white text-black font-black uppercase tracking-widest text-lg h-14 shadow-[6px_6px_0px_0px_rgba(239,68,68,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(239,68,68,1)]" data-testid="button-submit-sell">

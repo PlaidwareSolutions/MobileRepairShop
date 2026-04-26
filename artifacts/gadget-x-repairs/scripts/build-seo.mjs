@@ -1,16 +1,20 @@
 #!/usr/bin/env node
 /**
- * Post-build SEO generation:
- * 1. Reads dist/public/index.html (built SPA shell)
- * 2. For each route in routes-config, writes dist/public/<slug>/index.html
- *    with per-route <title>, <meta name="description"> and <link rel="canonical">.
- *    This gives crawlers route-specific SEO signals before any client-side
- *    JavaScript executes (the SPA still hydrates to the correct route).
- * 3. Generates dist/public/sitemap.xml and dist/public/robots.txt.
+ * Post-build static pre-rendering:
+ * 1. Reads dist/public/index.html (the built SPA shell with hashed asset URLs)
+ * 2. Imports dist/server/entry-server.mjs (a Node-loadable SSR build of the
+ *    React tree compiled by Vite)
+ * 3. For each route in routes-config, calls render(path) which returns
+ *    { html, head } via ReactDOMServer.renderToString. The body html is
+ *    injected into <div id="root">…</div>; the head string contains all
+ *    <title>, <meta>, <link>, and <script type="application/ld+json"> tags
+ *    emitted by react-helmet-async during render.
+ * 4. Writes dist/public/<slug>/index.html — fully rendered HTML the crawler
+ *    sees before any client JS runs.
+ * 5. Generates dist/public/sitemap.xml and dist/public/robots.txt.
  *
- * Note: This is meta-tag prerendering — the page body is still the SPA shell
- * which hydrates client-side. Route-specific titles, descriptions and
- * canonical URLs are guaranteed to be in the served HTML for crawlers.
+ * The SPA still mounts on top of the rendered DOM via createRoot (replacing
+ * server markup); this is "SSG without hydration" — correct for SEO.
  */
 import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
@@ -20,6 +24,7 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIR = path.resolve(__dirname, "..");
 const DIST_DIR = path.join(PROJECT_DIR, "dist", "public");
+const SERVER_BUNDLE = path.join(PROJECT_DIR, "dist", "server", "entry-server.mjs");
 
 const SITE_URL = process.env.VITE_SITE_URL || process.env.SITE_URL || "https://gadget-x-repairs.replit.app";
 
@@ -28,82 +33,80 @@ function escape(s) {
 }
 
 async function loadRoutes() {
-  // Use the runtime tsx loader (registered in package.json script) or fall back
-  // to a JIT-compiled import via ts-node-style approach. We import the TS module
-  // directly since this script is run via `tsx`.
   const routesUrl = pathToFileURL(path.join(PROJECT_DIR, "src", "routes-config.ts")).href;
   const mod = await import(routesUrl);
   return { all: mod.ALL_ROUTES, sitemap: mod.SITEMAP_ROUTES };
 }
 
-function injectSeo(html, route) {
+async function loadRender() {
+  if (!existsSync(SERVER_BUNDLE)) {
+    throw new Error(`SSR bundle not found at ${SERVER_BUNDLE}. Did the SSR build step fail?`);
+  }
+  const mod = await import(pathToFileURL(SERVER_BUNDLE).href);
+  if (typeof mod.render !== "function") {
+    throw new Error(`SSR bundle does not export render()`);
+  }
+  return mod.render;
+}
+
+function injectRendered(baseHtml, route, rendered) {
   const canonical = `${SITE_URL}${route.path}`;
-  const titleTag = `<title>${escape(route.metaTitle)}</title>`;
-  const descTag = `<meta name="description" content="${escape(route.metaDescription)}" />`;
-  const ogTitleTag = `<meta property="og:title" content="${escape(route.metaTitle)}" />`;
-  const ogDescTag = `<meta property="og:description" content="${escape(route.metaDescription)}" />`;
-  const ogUrlTag = `<meta property="og:url" content="${canonical}" />`;
-  const canonicalTag = `<link rel="canonical" href="${canonical}" />`;
-  const twTitleTag = `<meta name="twitter:title" content="${escape(route.metaTitle)}" />`;
-  const twDescTag = `<meta name="twitter:description" content="${escape(route.metaDescription)}" />`;
+  let out = baseHtml;
+  const headStr = rendered.head || "";
 
-  let out = html.replace(/<title>[\s\S]*?<\/title>/, titleTag);
+  // Strip placeholder/static head tags that Helmet now owns per route.
+  out = out.replace(/<title>[\s\S]*?<\/title>\s*/i, "");
+  out = out.replace(/<meta\s+name=["']description["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+property=["']og:title["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+property=["']og:description["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+property=["']og:url["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+name=["']twitter:title["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+name=["']twitter:description["'][^>]*>\s*/gi, "");
+  out = out.replace(/<link\s+rel=["']canonical["'][^>]*>\s*/gi, "");
 
-  // Replace existing description meta if present
-  if (/<meta\s+name=["']description["'][^>]*>/i.test(out)) {
-    out = out.replace(/<meta\s+name=["']description["'][^>]*>/i, descTag);
-  } else {
-    out = out.replace("</head>", `${descTag}\n</head>`);
-  }
+  // Inject rendered head (title, meta, link, script JSON-LD) just before </head>.
+  const headBlock = headStr ? `${headStr}\n` : "";
 
-  // Replace existing OG tags if present
-  if (/<meta\s+property=["']og:title["'][^>]*>/i.test(out)) {
-    out = out.replace(/<meta\s+property=["']og:title["'][^>]*>/i, ogTitleTag);
-  } else {
-    out = out.replace("</head>", `${ogTitleTag}\n</head>`);
+  // Safety nets if SEO component didn't emit a tag for some reason.
+  const safetyTags = [];
+  if (!/<link[^>]*rel=["']canonical["'][^>]*>/i.test(headStr)) {
+    safetyTags.push(`<link rel="canonical" href="${canonical}" />`);
   }
-  if (/<meta\s+property=["']og:description["'][^>]*>/i.test(out)) {
-    out = out.replace(/<meta\s+property=["']og:description["'][^>]*>/i, ogDescTag);
-  } else {
-    out = out.replace("</head>", `${ogDescTag}\n</head>`);
+  if (!/<meta[^>]*property=["']og:url["'][^>]*>/i.test(headStr)) {
+    safetyTags.push(`<meta property="og:url" content="${canonical}" />`);
   }
-  if (/<meta\s+property=["']og:url["'][^>]*>/i.test(out)) {
-    out = out.replace(/<meta\s+property=["']og:url["'][^>]*>/i, ogUrlTag);
-  } else {
-    out = out.replace("</head>", `${ogUrlTag}\n</head>`);
+  if (!/<meta[^>]*property=["']og:title["'][^>]*>/i.test(headStr)) {
+    safetyTags.push(`<meta property="og:title" content="${escape(route.metaTitle)}" />`);
   }
-  if (/<meta\s+name=["']twitter:title["'][^>]*>/i.test(out)) {
-    out = out.replace(/<meta\s+name=["']twitter:title["'][^>]*>/i, twTitleTag);
-  } else {
-    out = out.replace("</head>", `${twTitleTag}\n</head>`);
+  if (!/<meta[^>]*property=["']og:description["'][^>]*>/i.test(headStr)) {
+    safetyTags.push(`<meta property="og:description" content="${escape(route.metaDescription)}" />`);
   }
-  if (/<meta\s+name=["']twitter:description["'][^>]*>/i.test(out)) {
-    out = out.replace(/<meta\s+name=["']twitter:description["'][^>]*>/i, twDescTag);
-  } else {
-    out = out.replace("</head>", `${twDescTag}\n</head>`);
-  }
-
-  // Replace existing canonical or insert
-  if (/<link\s+rel=["']canonical["'][^>]*>/i.test(out)) {
-    out = out.replace(/<link\s+rel=["']canonical["'][^>]*>/i, canonicalTag);
-  } else {
-    out = out.replace("</head>", `${canonicalTag}\n</head>`);
-  }
-
-  // For non-indexed routes (admin) inject noindex
   if (route.path.startsWith("/admin")) {
-    if (/<meta\s+name=["']robots["'][^>]*>/i.test(out)) {
-      out = out.replace(/<meta\s+name=["']robots["'][^>]*>/i, `<meta name="robots" content="noindex, nofollow" />`);
-    } else {
-      out = out.replace("</head>", `<meta name="robots" content="noindex, nofollow" />\n</head>`);
-    }
+    out = out.replace(/<meta\s+name=["']robots["'][^>]*>\s*/gi, "");
+    safetyTags.push(`<meta name="robots" content="noindex, nofollow" />`);
+  }
+
+  out = out.replace("</head>", `${headBlock}${safetyTags.join("\n")}\n</head>`);
+
+  // Inject rendered body into <div id="root"></div>
+  if (/<div\s+id=["']root["']\s*>\s*<\/div>/i.test(out)) {
+    out = out.replace(/<div\s+id=["']root["']\s*>\s*<\/div>/i, `<div id="root">${rendered.html}</div>`);
+  } else {
+    out = out.replace(/(<div\s+id=["']root["'][^>]*>)([\s\S]*?)(<\/div>)/i, `$1${rendered.html}$3`);
   }
 
   return out;
 }
 
-async function writeRouteHtml(route, baseHtml) {
-  const html = injectSeo(baseHtml, route);
+async function writeRouteHtml(route, baseHtml, render) {
+  let rendered;
+  try {
+    rendered = render(route.path);
+  } catch (e) {
+    console.warn(`build-seo: render failed for ${route.path}:`, e.message);
+    rendered = { html: "", head: "" };
+  }
+  const html = injectRendered(baseHtml, route, rendered);
   if (route.path === "/") {
     await writeFile(path.join(DIST_DIR, "index.html"), html, "utf8");
     return;
@@ -160,14 +163,14 @@ async function main() {
     process.exit(1);
   }
   const baseHtml = await readFile(path.join(DIST_DIR, "index.html"), "utf8");
-  const { all, sitemap } = await loadRoutes();
-  console.log(`build-seo: writing per-route HTML for ${all.length} routes…`);
+  const [{ all, sitemap }, render] = await Promise.all([loadRoutes(), loadRender()]);
+  console.log(`build-seo: pre-rendering ${all.length} routes…`);
   for (const route of all) {
-    await writeRouteHtml(route, baseHtml);
+    await writeRouteHtml(route, baseHtml, render);
   }
   await writeFile(path.join(DIST_DIR, "sitemap.xml"), buildSitemap(sitemap), "utf8");
   await writeFile(path.join(DIST_DIR, "robots.txt"), buildRobots(), "utf8");
-  console.log(`build-seo: wrote ${sitemap.length} sitemap entries and robots.txt.`);
+  console.log(`build-seo: wrote ${all.length} HTML files, ${sitemap.length} sitemap entries, robots.txt.`);
 }
 
 main().catch((e) => {

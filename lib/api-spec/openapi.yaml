@@ -250,6 +250,7 @@ components:
           type: string
           enum: [asap, today, this_week, flexible]
         notes: { type: string, maxLength: 2000 }
+        photoUrl: { type: string, maxLength: 500 }
     SellPhoneInput:
       type: object
       required: [name, phone, brand, model]
@@ -269,6 +270,7 @@ components:
         batteryHealth: { type: integer, minimum: 0, maximum: 100 }
         damageNotes: { type: string, maxLength: 2000 }
         expectedPrice: { type: string, maxLength: 20 }
+        photoUrl: { type: string, maxLength: 500 }
     AppointmentInput:
       type: object
       required: [name, phone, serviceType, preferredDatetime]

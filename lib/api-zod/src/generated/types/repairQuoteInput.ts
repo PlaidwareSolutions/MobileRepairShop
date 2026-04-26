@@ -45,4 +45,6 @@ export interface RepairQuoteInput {
   urgency?: RepairQuoteInputUrgency;
   /** @maxLength 2000 */
   notes?: string;
+  /** @maxLength 500 */
+  photoUrl?: string;
 }

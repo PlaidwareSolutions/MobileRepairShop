@@ -35,6 +35,14 @@ export default function PrepaidPage() {
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
+      <section className="py-4 px-4 bg-black border-b border-zinc-900">
+        <div className="max-w-[1240px] mx-auto">
+          <p className="text-xs md:text-sm font-bold text-zinc-500 uppercase tracking-wide" data-testid="text-prepaid-disclaimer">
+            Disclaimer: Gadget X Repairs is an independent authorized retailer offering activations, SIM and bill-pay services. We are not an official corporate store of any carrier unless explicitly confirmed. All carrier names and logos are property of their respective owners.
+          </p>
+        </div>
+      </section>
+
       <section className="py-16 px-4 bg-zinc-950">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>

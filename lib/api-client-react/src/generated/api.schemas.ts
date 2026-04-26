@@ -78,6 +78,8 @@ export interface RepairQuoteInput {
   urgency?: RepairQuoteInputUrgency;
   /** @maxLength 2000 */
   notes?: string;
+  /** @maxLength 500 */
+  photoUrl?: string;
 }
 
 export type SellPhoneInputLockedStatus =
@@ -134,6 +136,8 @@ export interface SellPhoneInput {
   damageNotes?: string;
   /** @maxLength 20 */
   expectedPrice?: string;
+  /** @maxLength 500 */
+  photoUrl?: string;
 }
 
 export type AppointmentInputServiceType =

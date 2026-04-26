@@ -44,4 +44,6 @@ export interface SellPhoneInput {
   damageNotes?: string;
   /** @maxLength 20 */
   expectedPrice?: string;
+  /** @maxLength 500 */
+  photoUrl?: string;
 }

@@ -40,10 +40,10 @@ router.get("/leads", async (_req: Request, res: Response, next: NextFunction) =>
     ]);
     res.json({
       repairQuotes: repairQuotes.map(serializeDates),
-      sellPhone: sellPhone.map(serializeDates),
+      sellPhoneSubmissions: sellPhone.map(serializeDates),
       appointments: appointments.map(serializeDates),
-      contact: contact.map(serializeDates),
-      reservations: reservations.map(serializeDates),
+      contactMessages: contact.map(serializeDates),
+      itemReservations: reservations.map(serializeDates),
     });
   } catch (err) {
     next(err as Error);
@@ -55,7 +55,7 @@ router.patch("/leads/:leadType/:id/status", async (req: Request, res: Response, 
     const { leadType, id } = req.params;
     const numericId = Number(id);
     const status = (req.body as { status?: string }).status;
-    if (!Number.isFinite(numericId) || !status || !["new", "contacted", "handled"].includes(status)) {
+    if (!Number.isFinite(numericId) || !status || !["new", "in_progress", "done", "archived"].includes(status)) {
       res.status(400).json({ error: "Invalid id or status" });
       return;
     }

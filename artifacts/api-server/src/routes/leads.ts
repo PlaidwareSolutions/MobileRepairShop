@@ -46,6 +46,7 @@ router.post("/repair-quote", async (req: Request, res: Response, next: NextFunct
         preferredContact: body.preferredContact ?? "call",
         urgency: body.urgency ?? "flexible",
         notes: body.notes ?? null,
+        photoUrl: body.photoUrl ?? null,
       })
       .returning({ id: repairQuotesTable.id });
     req.log.info({ leadType: "repair-quote", id: row.id }, "lead.created");
@@ -72,6 +73,7 @@ router.post("/sell-phone", async (req: Request, res: Response, next: NextFunctio
         batteryHealth: body.batteryHealth ?? null,
         damageNotes: body.damageNotes ?? null,
         expectedPrice: body.expectedPrice ?? null,
+        photoUrl: body.photoUrl ?? null,
       })
       .returning({ id: sellPhoneSubmissionsTable.id });
     req.log.info({ leadType: "sell-phone", id: row.id }, "lead.created");

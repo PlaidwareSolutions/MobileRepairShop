@@ -34,6 +34,8 @@ export const submitRepairQuoteBodyProblemMax = 4000;
 
 export const submitRepairQuoteBodyNotesMax = 2000;
 
+export const submitRepairQuoteBodyPhotoUrlMax = 500;
+
 export const SubmitRepairQuoteBody = zod.object({
   name: zod.string().min(1).max(submitRepairQuoteBodyNameMax),
   phone: zod
@@ -48,6 +50,7 @@ export const SubmitRepairQuoteBody = zod.object({
   preferredContact: zod.enum(["call", "text", "whatsapp", "email"]).optional(),
   urgency: zod.enum(["asap", "today", "this_week", "flexible"]).optional(),
   notes: zod.string().max(submitRepairQuoteBodyNotesMax).optional(),
+  photoUrl: zod.string().max(submitRepairQuoteBodyPhotoUrlMax).optional(),
 });
 
 /**
@@ -73,6 +76,8 @@ export const submitSellPhoneBodyDamageNotesMax = 2000;
 
 export const submitSellPhoneBodyExpectedPriceMax = 20;
 
+export const submitSellPhoneBodyPhotoUrlMax = 500;
+
 export const SubmitSellPhoneBody = zod.object({
   name: zod.string().min(1).max(submitSellPhoneBodyNameMax),
   phone: zod
@@ -95,6 +100,7 @@ export const SubmitSellPhoneBody = zod.object({
     .string()
     .max(submitSellPhoneBodyExpectedPriceMax)
     .optional(),
+  photoUrl: zod.string().max(submitSellPhoneBodyPhotoUrlMax).optional(),
 });
 
 /**
@@ -221,6 +227,8 @@ export const getAdminLeadsResponseRepairQuotesItemTwoProblemMax = 4000;
 
 export const getAdminLeadsResponseRepairQuotesItemTwoNotesMax = 2000;
 
+export const getAdminLeadsResponseRepairQuotesItemTwoPhotoUrlMax = 500;
+
 export const getAdminLeadsResponseSellPhoneItemTwoNameMax = 120;
 
 export const getAdminLeadsResponseSellPhoneItemTwoPhoneMin = 7;
@@ -240,6 +248,8 @@ export const getAdminLeadsResponseSellPhoneItemTwoBatteryHealthMax = 100;
 export const getAdminLeadsResponseSellPhoneItemTwoDamageNotesMax = 2000;
 
 export const getAdminLeadsResponseSellPhoneItemTwoExpectedPriceMax = 20;
+
+export const getAdminLeadsResponseSellPhoneItemTwoPhotoUrlMax = 500;
 
 export const getAdminLeadsResponseAppointmentsItemTwoNameMax = 120;
 
@@ -317,6 +327,10 @@ export const GetAdminLeadsResponse = zod.object({
             .string()
             .max(getAdminLeadsResponseRepairQuotesItemTwoNotesMax)
             .optional(),
+          photoUrl: zod
+            .string()
+            .max(getAdminLeadsResponseRepairQuotesItemTwoPhotoUrlMax)
+            .optional(),
         }),
       ),
   ),
@@ -368,6 +382,10 @@ export const GetAdminLeadsResponse = zod.object({
           expectedPrice: zod
             .string()
             .max(getAdminLeadsResponseSellPhoneItemTwoExpectedPriceMax)
+            .optional(),
+          photoUrl: zod
+            .string()
+            .max(getAdminLeadsResponseSellPhoneItemTwoPhotoUrlMax)
             .optional(),
         }),
       ),

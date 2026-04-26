@@ -17,6 +17,7 @@ type FormValues = {
   preferredContact: "call" | "text" | "whatsapp" | "email";
   urgency: "asap" | "today" | "this_week" | "flexible";
   notes?: string;
+  photoUrl?: string;
 };
 
 export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDeviceType?: string; defaultBrand?: string }) {
@@ -107,6 +108,20 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
             <option value="flexible">Flexible</option>
           </select>
         </div>
+      </div>
+      <div className="space-y-2">
+        <Label htmlFor="rq-photo" className="font-black uppercase text-xs tracking-widest text-zinc-300">
+          Photo of damage <span className="text-zinc-500">(optional — paste a link)</span>
+        </Label>
+        <Input
+          id="rq-photo"
+          type="url"
+          placeholder="https://… (Google Photos, iCloud, Imgur, etc.)"
+          {...register("photoUrl", { maxLength: 500 })}
+          className="rounded-none bg-black border-2 border-zinc-700 focus:border-red-500 h-12"
+          data-testid="input-photo-url"
+        />
+        <p className="text-xs font-bold text-zinc-500">Or text a photo to (346) 623-6898 on WhatsApp.</p>
       </div>
       <div className="space-y-2">
         <Label htmlFor="rq-notes" className="font-black uppercase text-xs tracking-widest text-zinc-300">Anything else <span className="text-zinc-500">(optional)</span></Label>

@@ -1,6 +1,6 @@
 import { Link } from "wouter";
 import { Phone, MapPin, MessageCircle } from "lucide-react";
-import { BUSINESS, FOOTER_LINKS, COPYRIGHT } from "@/content";
+import { BUSINESS, COPYRIGHT } from "@/content";
 
 const REPAIR_LINKS = [
   { label: "iPhone Repair", to: "/iphone-repair-houston" },
@@ -36,7 +36,6 @@ const COMPANY_LINKS = [
 ];
 
 export function SiteFooter() {
-  void FOOTER_LINKS;
   return (
     <footer className="bg-black pt-16 pb-32 md:pb-16 border-t border-zinc-900">
       <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 text-zinc-400 font-bold">
