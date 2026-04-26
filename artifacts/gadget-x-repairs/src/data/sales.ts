@@ -834,6 +834,475 @@ export const SALES_DATA: SalesData[] = [
     ],
     related: ["phone-accessories-houston-tx", "wireless-chargers-houston-tx", "earbuds-houston-tx", "buy-iphone-houston-tx"],
   },
+  {
+    slug: "buy-revvl-phones-houston-tx",
+    title: "Buy Revvl Phones Houston",
+    metaTitle: "Buy Revvl Phones Houston | T-Mobile Revvl Lineup | Gadget X",
+    metaDescription:
+      "Buy T-Mobile Revvl phones in Houston — Revvl 6, Revvl 7, Revvl Pro and more. Affordable Android, prepaid-ready, with warranty.",
+    hero: {
+      eyebrow: "Buy Revvl Phones",
+      h1: "Buy Revvl Phones in Houston",
+      subhead: "T-Mobile Revvl phones — affordable Android with great cameras, all-day battery and prepaid plans starting at $30/mo.",
+    },
+    intro:
+      "Revvl is T-Mobile's house brand and one of the best values in prepaid Android. We carry current and prior Revvl models with full warranty and same-day prepaid activation.",
+    highlights: [
+      "Revvl 6, Revvl 7 and Revvl Pro in stock",
+      "Prepaid plans from $30/mo",
+      "Same-day activation on T-Mobile, Metro, Mint",
+      "30-day warranty on every phone",
+      "Trade-in your old phone for credit",
+    ],
+    category: "Phones",
+    faqs: [
+      { q: "Will Revvl work on Metro by T-Mobile?", a: "Yes — Revvl phones run great on T-Mobile, Metro by T-Mobile and Mint Mobile." },
+      { q: "Are Revvl phones unlocked?", a: "Most are factory unlocked. Each phone in our case is labelled with carrier compatibility." },
+    ],
+    related: ["phones-for-sale-houston-tx", "revvl-repair-houston-tx", "buy-samsung-phones-houston-tx", "buy-motorola-phones-houston-tx"],
+  },
+  {
+    slug: "iphone-cases-houston-tx",
+    title: "iPhone Cases Houston",
+    metaTitle: "iPhone Cases Houston | Clear, Rugged, MagSafe | Gadget X",
+    metaDescription:
+      "iPhone cases in Houston for every model from iPhone 11 to iPhone 16 Pro Max. Clear, rugged, MagSafe-compatible and OtterBox.",
+    hero: {
+      eyebrow: "iPhone Cases",
+      h1: "iPhone Cases in Houston",
+      subhead: "Clear, rugged, MagSafe-compatible and OtterBox cases for every current iPhone model. Walk-in and pick the perfect fit.",
+    },
+    intro:
+      "We carry iPhone cases for every model from iPhone 11 through iPhone 16 Pro Max — clear, slim, rugged, leather, MagSafe and authentic OtterBox. Stop in to see and feel them in person.",
+    highlights: [
+      "Every iPhone model from 11 to 16 Pro Max",
+      "Clear, slim, rugged, leather and silicone",
+      "MagSafe-compatible options",
+      "Authentic OtterBox in stock",
+      "Bundle with screen protector and save",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Will a clear case yellow over time?", a: "Cheap TPU yellows in months. The clear cases we stock use higher-grade TPU/PC blends that resist yellowing for 12+ months." },
+    ],
+    related: ["phone-cases-houston-tx", "otterbox-cases-houston-tx", "iphone-screen-protectors-houston-tx", "buy-iphone-houston-tx"],
+  },
+  {
+    slug: "iphone-screen-protectors-houston-tx",
+    title: "iPhone Screen Protectors Houston",
+    metaTitle: "iPhone Screen Protectors Houston | Tempered Glass, Privacy | Gadget X",
+    metaDescription:
+      "iPhone screen protectors in Houston — tempered glass, privacy and matte. Free professional install with every protector purchased.",
+    hero: {
+      eyebrow: "iPhone Screen Protectors",
+      h1: "iPhone Screen Protectors in Houston",
+      subhead: "Tempered glass, privacy and matte iPhone screen protectors with free professional install. Every model from iPhone 11 to 16 Pro Max.",
+    },
+    intro:
+      "A $20 screen protector beats a $300 screen repair. We stock tempered glass, privacy and matte protectors for every iPhone — and we install them for free, bubble-free.",
+    highlights: [
+      "Tempered glass for every iPhone 11–16 Pro Max",
+      "Privacy protectors that block side viewing",
+      "Matte / anti-glare options",
+      "Free professional install",
+      "Bundle with case and save",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Do you install for free?", a: "Yes — every screen protector we sell comes with free professional installation, bubble-free guaranteed." },
+    ],
+    related: ["screen-protectors-houston-tx", "iphone-cases-houston-tx", "iphone-screen-repair-houston-tx", "phone-accessories-houston-tx"],
+  },
+  {
+    slug: "iphone-chargers-houston-tx",
+    title: "iPhone Chargers Houston",
+    metaTitle: "iPhone Chargers Houston | USB-C, Lightning, MagSafe | Gadget X",
+    metaDescription:
+      "iPhone chargers in Houston — USB-C, Lightning, MagSafe and fast-charging bricks for every iPhone. Apple-compatible, warrantied.",
+    hero: {
+      eyebrow: "iPhone Chargers",
+      h1: "iPhone Chargers in Houston",
+      subhead: "USB-C and Lightning iPhone chargers, MagSafe pucks and 20W fast-charging bricks — for every model from iPhone 8 to iPhone 16 Pro Max.",
+    },
+    intro:
+      "We stock the right charger for every iPhone — Lightning for iPhone 8–14, USB-C for iPhone 15 and 16, MagSafe pucks, and the 20W bricks needed for fast charging.",
+    highlights: [
+      "Lightning cables and bricks (iPhone 8–14)",
+      "USB-C cables and bricks (iPhone 15, 16)",
+      "MagSafe-compatible chargers",
+      "20W and 30W fast-charge bricks",
+      "Car chargers and dual USB adapters",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Will a 20W brick fast-charge my iPhone?", a: "Yes — every iPhone from iPhone 8 onward supports 20W fast charging with a USB-C-to-Lightning or USB-C-to-USB-C cable and a 20W+ brick." },
+    ],
+    related: ["phone-chargers-houston-tx", "wireless-chargers-houston-tx", "phone-cables-houston-tx", "wall-adapters-houston-tx"],
+  },
+  {
+    slug: "phone-cables-houston-tx",
+    title: "Phone Cables Houston",
+    metaTitle: "Phone Cables Houston | USB-C, Lightning, Micro-USB | Gadget X",
+    metaDescription:
+      "Phone cables in Houston — USB-C, Lightning and Micro-USB in 3 ft, 6 ft and 10 ft. Braided, fast-charge rated and warrantied.",
+    hero: {
+      eyebrow: "Phone Cables",
+      h1: "Phone Cables in Houston",
+      subhead: "USB-C, Lightning and Micro-USB cables in every length — 3 ft, 6 ft and 10 ft. Braided, fast-charge rated, with warranty.",
+    },
+    intro:
+      "We carry phone cables in every connector and length you'd actually need: USB-C-to-USB-C, USB-C-to-Lightning, USB-A-to-Lightning, USB-A-to-USB-C and the occasional Micro-USB. Braided options last years.",
+    highlights: [
+      "USB-C, Lightning, Micro-USB",
+      "3 ft, 6 ft and 10 ft lengths",
+      "Braided cables that don't fray",
+      "100W USB-C PD cables for laptops",
+      "Buy 2, get one free on select cables",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Will any USB-C cable fast-charge my phone?", a: "No — fast charging requires a cable rated for higher amperage. The fast-charge cables we stock are clearly labelled." },
+    ],
+    related: ["charging-cables-houston-tx", "iphone-chargers-houston-tx", "phone-chargers-houston-tx", "hdmi-cables-houston-tx"],
+  },
+  {
+    slug: "hdmi-cables-houston-tx",
+    title: "HDMI Cables Houston",
+    metaTitle: "HDMI Cables Houston | 4K, 8K, High Speed | Gadget X",
+    metaDescription:
+      "HDMI cables in Houston — 4K, 8K, high-speed and ultra-high-speed in every length. For TVs, monitors, PS5, Xbox and laptops.",
+    hero: {
+      eyebrow: "HDMI Cables",
+      h1: "HDMI Cables in Houston",
+      subhead: "4K, 8K and ultra-high-speed HDMI cables in 3 ft, 6 ft, 10 ft and 25 ft. For TVs, gaming consoles, monitors and laptop docks.",
+    },
+    intro:
+      "We carry HDMI cables for every modern need — 4K @ 120Hz for PS5 and Xbox Series X, 8K-rated ultra-high-speed for the latest TVs, and standard 4K for everyday TV use.",
+    highlights: [
+      "4K @ 120Hz for PS5 / Xbox Series X",
+      "8K-rated ultra-high-speed",
+      "3 ft, 6 ft, 10 ft, 25 ft lengths",
+      "USB-C-to-HDMI for laptops",
+      "Mini and Micro HDMI adapters",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Do I need a special HDMI for PS5 4K @ 120Hz?", a: "Yes — you need an HDMI 2.1 (ultra high speed) cable. The PS5 ships with one, but ours are also rated for it." },
+    ],
+    related: ["phone-cables-houston-tx", "ps5-hdmi-repair-houston-tx", "hdmi-port-repair-houston-tx", "phone-accessories-houston-tx"],
+  },
+  {
+    slug: "car-phone-holders-houston-tx",
+    title: "Car Phone Holders Houston",
+    metaTitle: "Car Phone Holders Houston | MagSafe, Vent, Dash Mounts | Gadget X",
+    metaDescription:
+      "Car phone holders in Houston — MagSafe, vent, dash and windshield mounts. Charging and non-charging options for every phone.",
+    hero: {
+      eyebrow: "Car Phone Holders",
+      h1: "Car Phone Holders in Houston",
+      subhead: "MagSafe, vent, dash and windshield car mounts — charging and non-charging options that grip your phone and don't drop it.",
+    },
+    intro:
+      "Whether you want a simple vent clip or a MagSafe wireless-charging dash mount, we have a car holder that fits your vehicle and your phone.",
+    highlights: [
+      "MagSafe wireless-charging mounts",
+      "Vent, dash and windshield mounts",
+      "Universal grips that fit any phone",
+      "iPhone and Galaxy specific mounts",
+      "USB-C and Lightning car chargers in stock",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Will a MagSafe mount work without a MagSafe case?", a: "On iPhone 12 and newer, yes — they have built-in magnets. On older iPhones, you need a MagSafe-compatible case." },
+    ],
+    related: ["car-chargers-houston-tx", "wireless-chargers-houston-tx", "phone-accessories-houston-tx", "iphone-cases-houston-tx"],
+  },
+  {
+    slug: "wired-headphones-houston-tx",
+    title: "Wired Headphones Houston",
+    metaTitle: "Wired Headphones Houston | 3.5mm, USB-C, Lightning | Gadget X",
+    metaDescription:
+      "Wired headphones in Houston — 3.5mm, USB-C and Lightning in over-ear, on-ear and in-ear styles. Affordable to premium.",
+    hero: {
+      eyebrow: "Wired Headphones",
+      h1: "Wired Headphones in Houston",
+      subhead: "3.5mm, USB-C and Lightning wired headphones — over-ear, on-ear and in-ear, plus the dongle to make them work on any phone.",
+    },
+    intro:
+      "Wired headphones still beat Bluetooth on latency, sound-per-dollar and the never-needs-charging factor. We carry 3.5mm, USB-C and Lightning options plus all the dongles.",
+    highlights: [
+      "3.5mm classic headphones",
+      "USB-C wired headphones (Galaxy, iPhone 15+)",
+      "Lightning wired headphones (older iPhone)",
+      "Over-ear, on-ear and in-ear styles",
+      "USB-C and Lightning to 3.5mm dongles",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Do iPhones still have a 3.5mm jack?", a: "No — every iPhone since iPhone 7. You'll need a Lightning-to-3.5mm or USB-C-to-3.5mm dongle, both of which we stock." },
+    ],
+    related: ["headphones-houston-tx", "wireless-earbuds-houston-tx", "earbuds-houston-tx", "phone-accessories-houston-tx"],
+  },
+  {
+    slug: "wireless-earbuds-houston-tx",
+    title: "Wireless Earbuds Houston",
+    metaTitle: "Wireless Earbuds Houston | True Wireless, ANC | Gadget X",
+    metaDescription:
+      "Wireless earbuds in Houston — true wireless Bluetooth earbuds with ANC, transparency mode and 24-hour battery. AirPods alternatives from $29.",
+    hero: {
+      eyebrow: "Wireless Earbuds",
+      h1: "Wireless Earbuds in Houston",
+      subhead: "True wireless Bluetooth earbuds — AirPods alternatives from $29, ANC models from $59, with charging cases and 24-hour battery life.",
+    },
+    intro:
+      "From budget-friendly true wireless under $30 to ANC earbuds rivaling AirPods Pro, we carry wireless earbuds that pair instantly with any iPhone or Android.",
+    highlights: [
+      "AirPods alternatives from $29",
+      "ANC + transparency mode models",
+      "24-hour battery with charging case",
+      "Pairs with iPhone, Galaxy, every Bluetooth device",
+      "30-day warranty",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Will these connect to my iPhone like AirPods do?", a: "Standard Bluetooth pairing — fast on every iPhone. Some models support fast-pair on Android too." },
+    ],
+    related: ["earbuds-houston-tx", "airpods-houston-tx", "headphones-houston-tx", "bluetooth-speakers-houston-tx"],
+  },
+  {
+    slug: "airpods-houston-tx",
+    title: "AirPods Houston",
+    metaTitle: "AirPods Houston | AirPods, AirPods Pro, Max | Gadget X",
+    metaDescription:
+      "AirPods in Houston — AirPods 2, 3, 4, AirPods Pro and AirPods Max. New, refurbished and AirPods-style alternatives.",
+    hero: {
+      eyebrow: "AirPods",
+      h1: "AirPods in Houston",
+      subhead: "AirPods 2, 3, 4, AirPods Pro and AirPods Max — new, refurbished and quality AirPods-style alternatives at every price point.",
+    },
+    intro:
+      "Looking for AirPods? We stock current Apple AirPods plus tested refurbished pairs and quality AirPods-style alternatives that pair instantly with iPhone.",
+    highlights: [
+      "AirPods 2, 3, 4 and AirPods Pro",
+      "AirPods Max over-ear",
+      "Refurbished AirPods at a discount",
+      "AirPods-style alternatives from $29",
+      "Replacement cases and single buds in stock",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Do you sell single replacement AirPods?", a: "Often, yes — single left or right buds and replacement charging cases come in regularly. Call to check current stock." },
+    ],
+    related: ["wireless-earbuds-houston-tx", "earbuds-houston-tx", "apple-accessories-houston-tx", "headphones-houston-tx"],
+  },
+  {
+    slug: "apple-watch-houston-tx",
+    title: "Apple Watch Houston",
+    metaTitle: "Apple Watch Houston | Series 7, 8, 9, SE, Ultra | Gadget X",
+    metaDescription:
+      "Apple Watch in Houston — Series 7, 8, 9, SE and Ultra. New, refurbished and used. Bands, chargers and screen repair available.",
+    hero: {
+      eyebrow: "Apple Watch",
+      h1: "Apple Watch in Houston",
+      subhead: "Apple Watch Series 7, 8, 9, SE and Ultra — new, refurbished and used. Plus replacement bands, chargers and screen repair.",
+    },
+    intro:
+      "We sell Apple Watch in current and prior generations — new, refurbished and tested used — and we stock replacement bands, chargers, and offer screen repair if you've cracked yours.",
+    highlights: [
+      "Apple Watch Series 7, 8, 9, SE and Ultra",
+      "GPS and cellular variants",
+      "Refurbished options at discount",
+      "Replacement bands and chargers in stock",
+      "Cracked screen? We repair Apple Watch too",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Do you repair Apple Watch screens?", a: "Yes — most Apple Watch screens can be repaired. Call with your model and we'll quote you." },
+    ],
+    related: ["watch-bands-houston-tx", "smart-watch-bands-houston-tx", "apple-accessories-houston-tx", "buy-iphone-houston-tx"],
+  },
+  {
+    slug: "watch-bands-houston-tx",
+    title: "Watch Bands Houston",
+    metaTitle: "Watch Bands Houston | Apple Watch, Galaxy Watch, Fitbit | Gadget X",
+    metaDescription:
+      "Watch bands in Houston for Apple Watch, Galaxy Watch and Fitbit. Sport, leather, steel link and Milanese loop styles.",
+    hero: {
+      eyebrow: "Watch Bands",
+      h1: "Watch Bands in Houston",
+      subhead: "Replacement bands for Apple Watch, Samsung Galaxy Watch and Fitbit — sport, leather, steel link, Milanese loop and nylon.",
+    },
+    intro:
+      "Refresh your watch with a new band. We stock bands for Apple Watch (38–49 mm), Samsung Galaxy Watch (20 mm and 22 mm) and Fitbit in every popular style.",
+    highlights: [
+      "Apple Watch bands 38, 40, 41, 42, 44, 45, 49 mm",
+      "Galaxy Watch bands 20 mm and 22 mm",
+      "Sport, leather, steel link and Milanese loop",
+      "Fitbit Versa, Charge and Sense bands",
+      "Try on in-store before you buy",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Will a 42 mm Apple Watch band fit my 44 mm watch?", a: "Yes — Apple Watch bands are interchangeable across the 38/40/41 mm group and the 42/44/45/49 mm group." },
+    ],
+    related: ["smart-watch-bands-houston-tx", "apple-watch-houston-tx", "apple-accessories-houston-tx", "phone-accessories-houston-tx"],
+  },
+  {
+    slug: "ipad-accessories-houston-tx",
+    title: "iPad Accessories Houston",
+    metaTitle: "iPad Accessories Houston | Cases, Pencil, Keyboards | Gadget X",
+    metaDescription:
+      "iPad accessories in Houston — folio cases, Apple Pencil-compatible styluses, keyboards, screen protectors and chargers for every iPad.",
+    hero: {
+      eyebrow: "iPad Accessories",
+      h1: "iPad Accessories in Houston",
+      subhead: "Folio cases, stylus pens, Bluetooth keyboards, screen protectors and chargers for iPad, iPad Air, iPad mini and iPad Pro.",
+    },
+    intro:
+      "Outfit your iPad with everything that makes it more useful: folio cases, Apple Pencil-compatible styluses, Bluetooth keyboards, glass screen protectors and the right chargers.",
+    highlights: [
+      "Folio cases for iPad, Air, mini and Pro",
+      "Apple Pencil-compatible styluses",
+      "Bluetooth keyboards and trackpads",
+      "Tempered glass screen protectors",
+      "USB-C and Lightning chargers",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Do third-party styluses work like Apple Pencil?", a: "For writing and basic drawing, yes. For pressure-sensitive art, only Apple Pencil 1 or 2 (depending on model) works fully." },
+    ],
+    related: ["apple-accessories-houston-tx", "ipad-repair-houston-tx", "ipad-pro-repair-houston-tx", "phone-accessories-houston-tx"],
+  },
+  {
+    slug: "camera-lenses-houston-tx",
+    title: "Phone Camera Lenses Houston",
+    metaTitle: "Phone Camera Lenses Houston | Wide, Macro, Telephoto Clip-On | Gadget X",
+    metaDescription:
+      "Clip-on phone camera lenses in Houston — wide angle, macro, fisheye and telephoto for iPhone, Galaxy and any smartphone.",
+    hero: {
+      eyebrow: "Phone Camera Lenses",
+      h1: "Phone Camera Lenses in Houston",
+      subhead: "Clip-on wide-angle, macro, fisheye and telephoto lenses that turn any smartphone into a more capable camera.",
+    },
+    intro:
+      "Clip-on phone lenses give your iPhone or Galaxy capabilities the built-in cameras can't — extreme wide angle, real macro detail, telephoto reach and fisheye creative shots.",
+    highlights: [
+      "Wide angle, macro, fisheye, telephoto",
+      "Universal clip fits iPhone and Galaxy",
+      "Multi-lens kits in carrying case",
+      "Phone-specific brackets for the best fit",
+      "Tripod adapters available",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Will these work with my iPhone Pro's existing lenses?", a: "Yes — they clip over the main camera. Some kits include offset clips for multi-lens iPhones." },
+    ],
+    related: ["phone-accessories-houston-tx", "iphone-cases-houston-tx", "buy-iphone-houston-tx", "apple-accessories-houston-tx"],
+  },
+  {
+    slug: "samsung-accessories-houston-tx",
+    title: "Samsung Accessories Houston",
+    metaTitle: "Samsung Accessories Houston | Galaxy Cases, Chargers, Bands | Gadget X",
+    metaDescription:
+      "Samsung Galaxy accessories in Houston — cases, USB-C chargers, screen protectors, S Pen, Galaxy Watch bands and Galaxy Buds.",
+    hero: {
+      eyebrow: "Samsung Accessories",
+      h1: "Samsung Accessories in Houston",
+      subhead: "Galaxy cases, USB-C chargers, screen protectors, S Pen replacements, Galaxy Watch bands and Galaxy Buds — for every Samsung device.",
+    },
+    intro:
+      "Everything you need for your Samsung Galaxy phone, tablet or watch: cases, fast-charging USB-C bricks and cables, tempered glass, S Pen replacements, watch bands and earbuds.",
+    highlights: [
+      "Cases for Galaxy S22, S23, S24, S25, A-series and Note",
+      "25W and 45W USB-C super-fast chargers",
+      "Tempered glass screen protectors",
+      "Galaxy Watch bands (20 mm and 22 mm)",
+      "Galaxy Buds and S Pen replacements",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Do you carry 45W super-fast chargers?", a: "Yes — for Galaxy S22 Ultra and newer that support 45W. Standard 25W bricks and cables also in stock." },
+    ],
+    related: ["phone-accessories-houston-tx", "buy-samsung-phones-houston-tx", "samsung-repair-houston-tx", "watch-bands-houston-tx"],
+  },
+  {
+    slug: "ncc-accessories-houston-tx",
+    title: "NCC Accessories Houston",
+    metaTitle: "NCC Accessories Houston | Cases, Cables, Chargers | Gadget X",
+    metaDescription:
+      "NCC brand accessories in Houston — cases, charging cables, wall adapters and tempered glass at affordable prices.",
+    hero: {
+      eyebrow: "NCC Accessories",
+      h1: "NCC Accessories in Houston",
+      subhead: "NCC brand cases, charging cables, wall adapters and tempered glass — quality accessories at affordable prices.",
+    },
+    intro:
+      "NCC is one of our value accessory lines — cases, chargers and tempered glass that punch above their price. Great option when you need a reliable spare or are shopping on a budget.",
+    highlights: [
+      "Cases for current iPhone and Galaxy",
+      "USB-C and Lightning charging cables",
+      "Wall adapters with USB-A and USB-C",
+      "Tempered glass screen protectors",
+      "Budget-friendly prices",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Are NCC accessories any good?", a: "For the price, yes. We stock NCC because it consistently meets our standards on cables and cases." },
+    ],
+    related: ["phone-accessories-houston-tx", "esoulk-accessories-houston-tx", "third-party-accessories-houston-tx", "phone-cables-houston-tx"],
+  },
+  {
+    slug: "esoulk-accessories-houston-tx",
+    title: "Esoulk Accessories Houston",
+    metaTitle: "Esoulk Accessories Houston | Chargers, Cables, Power Banks | Gadget X",
+    metaDescription:
+      "Esoulk brand accessories in Houston — fast-charging USB-C bricks, braided cables and power banks at affordable prices.",
+    hero: {
+      eyebrow: "Esoulk Accessories",
+      h1: "Esoulk Accessories in Houston",
+      subhead: "Esoulk fast-charging USB-C bricks, braided Lightning and USB-C cables, and power banks — affordable, reliable, in stock.",
+    },
+    intro:
+      "Esoulk is a value brand we trust for charging — bricks, cables and power banks. Solid build, fast charging, and prices that won't make you wince.",
+    highlights: [
+      "20W and 25W USB-C fast chargers",
+      "Braided USB-C and Lightning cables",
+      "10,000 mAh and 20,000 mAh power banks",
+      "Car chargers with dual ports",
+      "Affordable pricing",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Will Esoulk's 20W brick fast-charge an iPhone?", a: "Yes — paired with a USB-C-to-Lightning or USB-C-to-USB-C cable, it fast-charges every iPhone 8 and newer." },
+    ],
+    related: ["phone-accessories-houston-tx", "ncc-accessories-houston-tx", "third-party-accessories-houston-tx", "power-banks-houston-tx"],
+  },
+  {
+    slug: "third-party-accessories-houston-tx",
+    title: "Third-Party Accessories Houston",
+    metaTitle: "Third-Party Phone Accessories Houston | Affordable Alternatives | Gadget X",
+    metaDescription:
+      "Third-party phone accessories in Houston — affordable alternatives to Apple and Samsung official accessories. Cases, chargers, cables and more.",
+    hero: {
+      eyebrow: "Third-Party Accessories",
+      h1: "Third-Party Accessories in Houston",
+      subhead: "Affordable third-party alternatives to official Apple and Samsung accessories — cases, chargers, cables, earbuds and more.",
+    },
+    intro:
+      "Don't want to pay Apple or Samsung prices for accessories? We carry tested third-party alternatives that work just as well at a fraction of the cost. Bring your phone in and we'll match it to the right gear.",
+    highlights: [
+      "Cables and chargers for every connector",
+      "Cases for current iPhone and Galaxy",
+      "Wireless and wired earbuds",
+      "Power banks and car chargers",
+      "Tested for quality before we stock it",
+    ],
+    category: "Accessories",
+    faqs: [
+      { q: "Are third-party accessories safe to use?", a: "The ones we stock, yes — we only carry brands we've personally vetted. Cheap no-name cables can damage devices, which is why we don't carry them." },
+    ],
+    related: ["phone-accessories-houston-tx", "ncc-accessories-houston-tx", "esoulk-accessories-houston-tx", "apple-accessories-houston-tx"],
+  },
 ];
 
 export const SALES_BY_SLUG = Object.fromEntries(SALES_DATA.map((s) => [s.slug, s])) as Record<string, SalesData>;

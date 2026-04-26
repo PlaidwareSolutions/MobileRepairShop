@@ -1578,6 +1578,126 @@ export const SERVICES_DATA: ServiceData[] = [
     serviceType: "phone-unlocking",
     related: ["phone-unlocking-houston-tx", "samsung-repair-houston-tx", "phone-repair-houston-tx"],
   },
+  {
+    slug: "iphone-15-pro-repair-houston-tx",
+    title: "iPhone 15 Pro Repair Houston",
+    metaTitle: "iPhone 15 Pro Repair Houston | Titanium, USB-C, OLED | Gadget X",
+    metaDescription:
+      "iPhone 15 Pro and 15 Pro Max repair in Houston. ProMotion OLED, titanium frame, USB-C port, battery and back glass. Same-day service, 90-day warranty.",
+    hero: {
+      eyebrow: "iPhone 15 Pro Repair",
+      h1: "iPhone 15 Pro Repair in Houston",
+      subhead:
+        "iPhone 15 Pro and 15 Pro Max — cracked ProMotion OLED, USB-C port wear, dead battery, back glass shatter. Quality parts, 90-day warranty.",
+    },
+    problems: [
+      "Cracked ProMotion OLED",
+      "USB-C port loose or not charging",
+      "Battery dies fast or shutdown at 30%",
+      "Titanium frame dented",
+      "Back glass shattered",
+      "Action button not responding",
+    ],
+    brands: ["iPhone 15 Pro", "iPhone 15 Pro Max"],
+    process: [
+      { step: "Free quote", detail: "Tell us the model and damage; we'll quote in minutes." },
+      { step: "Same-day where possible", detail: "Most 15 Pro screen and battery jobs done the same day." },
+      { step: "Quality ProMotion OLED", detail: "OEM-grade panels that preserve 120Hz." },
+      { step: "90-day warranty", detail: "All iPhone 15 Pro repairs warrantied for 90 days." },
+    ],
+    pricing: [
+      { label: "iPhone 15 Pro screen", price: "from $289" },
+      { label: "iPhone 15 Pro Max screen", price: "from $349" },
+      { label: "iPhone 15 Pro USB-C port", price: "from $89" },
+      { label: "iPhone 15 Pro battery", price: "from $89" },
+      { label: "iPhone 15 Pro back glass", price: "from $139" },
+    ],
+    faqs: [
+      { q: "Will ProMotion 120Hz still work after a screen repair?", a: "Yes — we use OEM-grade panels that maintain 120Hz refresh on the 15 Pro and 15 Pro Max." },
+      { q: "Do you fix bent titanium frames?", a: "Light frame straightening, yes. Severely bent frames require a full housing swap, which we can quote." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-15-repair-houston-tx", "iphone-16-pro-repair-houston-tx", "iphone-screen-repair-houston-tx"],
+  },
+  {
+    slug: "iphone-16-pro-max-repair-houston-tx",
+    title: "iPhone 16 Pro Max Repair Houston",
+    metaTitle: "iPhone 16 Pro Max Repair Houston | OLED, Battery, USB-C | Gadget X",
+    metaDescription:
+      "iPhone 16 Pro Max repair in Houston — ProMotion OLED, USB-C port, battery, titanium back glass and Camera Control button. Same-day service, 90-day warranty.",
+    hero: {
+      eyebrow: "iPhone 16 Pro Max Repair",
+      h1: "iPhone 16 Pro Max Repair in Houston",
+      subhead:
+        "iPhone 16 Pro Max — cracked 6.9\" ProMotion OLED, dead battery, USB-C wear, back glass shatter, Camera Control button broken. Quality parts, same-day where possible.",
+    },
+    problems: [
+      "Cracked 6.9\" ProMotion OLED",
+      "USB-C port not charging or loose",
+      "Battery degraded under 80%",
+      "Back glass shattered",
+      "Camera Control button broken",
+      "Titanium frame dented",
+    ],
+    brands: ["iPhone 16 Pro Max"],
+    process: [
+      { step: "Free quote", detail: "We quote 16 Pro Max repairs in minutes." },
+      { step: "Quality OLED", detail: "OEM-grade panels that preserve ProMotion 120Hz." },
+      { step: "Same-day where possible", detail: "Pro Max parts may take an extra day if not in stock." },
+      { step: "90-day warranty", detail: "All iPhone 16 Pro Max repairs warrantied." },
+    ],
+    pricing: [
+      { label: "iPhone 16 Pro Max screen", price: "from $399" },
+      { label: "iPhone 16 Pro Max battery", price: "from $109" },
+      { label: "iPhone 16 Pro Max USB-C port", price: "from $109" },
+      { label: "iPhone 16 Pro Max back glass", price: "from $169" },
+      { label: "Camera Control button", price: "from $79" },
+    ],
+    faqs: [
+      { q: "Is the 16 Pro Max screen interchangeable with the 16 Pro?", a: "No — they're different sizes (6.9\" vs 6.3\"). We always match by exact model." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-16-pro-repair-houston-tx", "iphone-16-repair-houston-tx", "iphone-screen-repair-houston-tx"],
+  },
+  {
+    slug: "ipad-air-repair-houston-tx",
+    title: "iPad Air Repair Houston",
+    metaTitle: "iPad Air Repair Houston | Screen, Battery, USB-C | Gadget X",
+    metaDescription:
+      "iPad Air repair in Houston — cracked Liquid Retina screen, dead battery, USB-C port, back camera. All Air generations. Same-day where possible.",
+    hero: {
+      eyebrow: "iPad Air Repair",
+      h1: "iPad Air Repair in Houston",
+      subhead:
+        "iPad Air (2, 3, 4, 5 and M2) — cracked Liquid Retina screen, dead battery, USB-C port damage, Touch ID failure. Quality parts, 90-day warranty.",
+    },
+    problems: [
+      "Cracked Liquid Retina screen",
+      "Battery health under 80%",
+      "USB-C port not charging",
+      "Touch ID button broken",
+      "Apple Pencil not pairing",
+      "Back camera cracked",
+    ],
+    brands: ["iPad Air 2", "iPad Air 3", "iPad Air 4", "iPad Air 5", "iPad Air M2"],
+    process: [
+      { step: "Free quote", detail: "We quote iPad Air repairs in minutes." },
+      { step: "Quality screens", detail: "OEM-grade Liquid Retina that preserves color and Apple Pencil response." },
+      { step: "Same-day where possible", detail: "Most Air repairs done same day; some glass-only jobs ship next day." },
+      { step: "90-day warranty", detail: "All iPad Air repairs warrantied for 90 days." },
+    ],
+    pricing: [
+      { label: "iPad Air 2 / 3 screen (digitizer)", price: "from $129" },
+      { label: "iPad Air 4 / 5 screen", price: "from $199" },
+      { label: "iPad Air battery", price: "from $99" },
+      { label: "iPad Air USB-C / Lightning port", price: "from $99" },
+    ],
+    faqs: [
+      { q: "Will Apple Pencil still work after a screen repair?", a: "Yes — we use OEM-grade panels that fully support Apple Pencil 1 or 2 depending on your Air model." },
+    ],
+    serviceType: "screen-repair",
+    related: ["ipad-repair-houston-tx", "ipad-pro-repair-houston-tx", "tablet-screen-repair-houston-tx", "tablet-battery-replacement-houston-tx"],
+  },
 ];
 
 export const SERVICES_BY_SLUG = Object.fromEntries(SERVICES_DATA.map((s) => [s.slug, s])) as Record<string, ServiceData>;
