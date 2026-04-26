@@ -365,3 +365,18 @@ export async function adminDeleteReplyTemplate(password: string, id: number) {
     { method: "DELETE" },
   );
 }
+
+export async function adminReorderReplyTemplates(
+  password: string,
+  ids: number[],
+) {
+  return await adminJson<{ ok: boolean; count: number }>(
+    password,
+    "/admin/reply-templates/reorder",
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ ids }),
+    },
+  );
+}

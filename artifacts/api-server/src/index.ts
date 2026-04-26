@@ -1,6 +1,7 @@
 import app from "./app";
 import { logger } from "./lib/logger";
 import { seedInventoryIfEmpty } from "./lib/seedInventory";
+import { seedReplyTemplatesIfEmpty } from "./lib/seedReplyTemplates";
 import { cleanupExpiredRateLimits } from "./lib/rate-limit";
 
 const rawPort = process.env["PORT"];
@@ -40,8 +41,30 @@ async function seedWithRetry(attempts = 3): Promise<void> {
   logger.error({ err: lastErr }, "inventory.seed_failed");
 }
 
+async function seedReplyTemplatesWithRetry(attempts = 3): Promise<void> {
+  // Reply templates are non-essential at boot — admins can always add them
+  // later via the UI — so a failure here logs and continues even in prod.
+  let lastErr: unknown;
+  for (let i = 1; i <= attempts; i++) {
+    try {
+      const { inserted } = await seedReplyTemplatesIfEmpty();
+      if (inserted > 0) logger.info({ inserted }, "reply_templates.seeded");
+      return;
+    } catch (err) {
+      lastErr = err;
+      logger.warn(
+        { err, attempt: i, attempts },
+        "reply_templates.seed_attempt_failed",
+      );
+      if (i < attempts) await new Promise((r) => setTimeout(r, 500 * i));
+    }
+  }
+  logger.error({ err: lastErr }, "reply_templates.seed_failed");
+}
+
 async function start() {
   await seedWithRetry();
+  await seedReplyTemplatesWithRetry();
   // Best-effort: drop any rate-limit rows whose windows expired more than the
   // grace period ago. We don't block startup on the result, so a transient DB
   // hiccup here can never prevent the server from accepting traffic.

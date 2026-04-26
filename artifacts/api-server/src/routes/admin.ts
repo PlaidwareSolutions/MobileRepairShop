@@ -842,4 +842,63 @@ router.delete(
   },
 );
 
+const ReplyTemplateReorderSchema = z
+  .object({
+    ids: z.array(z.number().int().positive()).min(1).max(1000),
+  })
+  .refine((v) => new Set(v.ids).size === v.ids.length, {
+    message: "ids must be unique",
+    path: ["ids"],
+  });
+
+router.post(
+  "/reply-templates/reorder",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const body = ReplyTemplateReorderSchema.parse(req.body);
+
+      // Verify every supplied id exists before touching anything so a typo
+      // on the client doesn't silently no-op part of the reorder.
+      const existing = await db
+        .select({ id: leadReplyTemplatesTable.id })
+        .from(leadReplyTemplatesTable);
+      const existingIds = new Set(existing.map((r) => r.id));
+      const missing = body.ids.filter((id) => !existingIds.has(id));
+      if (missing.length > 0) {
+        res
+          .status(400)
+          .json({ error: "Unknown template ids", details: { missing } });
+        return;
+      }
+
+      // Reassign sortOrder for the submitted ids first, then push every other
+      // row to the end with strictly larger values. This keeps sort orders
+      // globally unique even when the client sends only a partial set
+      // (e.g. one channel's worth of templates).
+      const submitted = new Set(body.ids);
+      const others = existing.map((r) => r.id).filter((id) => !submitted.has(id));
+      const now = new Date();
+      await db.transaction(async (tx) => {
+        for (let i = 0; i < body.ids.length; i++) {
+          await tx
+            .update(leadReplyTemplatesTable)
+            .set({ sortOrder: (i + 1) * 10, updatedAt: now })
+            .where(eq(leadReplyTemplatesTable.id, body.ids[i]));
+        }
+        const offset = body.ids.length;
+        for (let j = 0; j < others.length; j++) {
+          await tx
+            .update(leadReplyTemplatesTable)
+            .set({ sortOrder: (offset + j + 1) * 10 })
+            .where(eq(leadReplyTemplatesTable.id, others[j]));
+        }
+      });
+      res.json({ ok: true, count: body.ids.length });
+    } catch (err) {
+      if (handleZod(err, res)) return;
+      next(err as Error);
+    }
+  },
+);
+
 export default router;

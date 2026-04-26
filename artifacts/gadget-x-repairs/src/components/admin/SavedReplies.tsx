@@ -7,6 +7,7 @@ import {
   adminCreateReplyTemplate,
   adminDeleteReplyTemplate,
   adminListReplyTemplates,
+  adminReorderReplyTemplates,
   adminUpdateReplyTemplate,
   type ReplyTemplate,
 } from "@/lib/api";
@@ -82,16 +83,21 @@ export function SavedReplies({
   // Templates that match this composer (channel match; leadType null = applies to all)
   const matching = useMemo(() => {
     if (!items) return [];
-    return items.filter(
-      (t) =>
-        t.channel === channel && (t.leadType == null || t.leadType === leadType),
-    );
+    return items
+      .filter(
+        (t) =>
+          t.channel === channel &&
+          (t.leadType == null || t.leadType === leadType),
+      )
+      .sort((a, b) => a.sortOrder - b.sortOrder || a.id - b.id);
   }, [items, channel, leadType]);
 
   // For the manage tab, show all so admin can see/edit everything regardless of current scope.
   const allForChannel = useMemo(() => {
     if (!items) return [];
-    return items.filter((t) => t.channel === channel);
+    return items
+      .filter((t) => t.channel === channel)
+      .sort((a, b) => a.sortOrder - b.sortOrder || a.id - b.id);
   }, [items, channel]);
 
   function startNew() {
@@ -149,6 +155,40 @@ export function SavedReplies({
       await load();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Delete failed");
+    }
+  }
+
+  async function move(id: number, direction: -1 | 1) {
+    if (!items) return;
+    // Reorder within the current channel only — the server keeps cross-channel
+    // ordering stable by pushing unsubmitted ids to the end.
+    const channelItems = items
+      .filter((t) => t.channel === channel)
+      .sort((a, b) => a.sortOrder - b.sortOrder || a.id - b.id);
+    const idx = channelItems.findIndex((t) => t.id === id);
+    if (idx === -1) return;
+    const target = idx + direction;
+    if (target < 0 || target >= channelItems.length) return;
+    const reordered = channelItems.slice();
+    const [moved] = reordered.splice(idx, 1);
+    reordered.splice(target, 0, moved);
+
+    // Optimistic update so arrows feel snappy even on slow links.
+    const prev = items;
+    const reorderedIds = new Set(reordered.map((t) => t.id));
+    const optimistic = items.map((t) => {
+      if (!reorderedIds.has(t.id)) return t;
+      const newIdx = reordered.findIndex((r) => r.id === t.id);
+      return { ...t, sortOrder: (newIdx + 1) * 10 };
+    });
+    setItems(optimistic);
+    setError(null);
+    try {
+      await adminReorderReplyTemplates(password, reordered.map((t) => t.id));
+      await load();
+    } catch (e) {
+      setItems(prev);
+      setError(e instanceof Error ? e.message : "Reorder failed");
     }
   }
 
@@ -280,7 +320,7 @@ export function SavedReplies({
                   No saved {channel} replies yet.
                 </div>
               )}
-              {allForChannel.map((t) => (
+              {allForChannel.map((t, idx) => (
                 <div
                   key={t.id}
                   className="bg-black border-2 border-zinc-800 px-3 py-2"
@@ -294,6 +334,28 @@ export function SavedReplies({
                       {t.leadType ? LEAD_TYPE_LABEL[t.leadType] ?? t.leadType : "ANY"}
                     </span>
                     <div className="ml-auto flex gap-1">
+                      <button
+                        type="button"
+                        onClick={() => move(t.id, -1)}
+                        disabled={idx === 0}
+                        aria-label="Move up"
+                        title="Move up"
+                        className="px-2 py-1 font-black uppercase text-[10px] tracking-widest border-2 bg-zinc-900 border-zinc-700 text-zinc-300 hover:border-white disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-zinc-700"
+                        data-testid={`saved-replies-move-up-${t.id}`}
+                      >
+                        ↑
+                      </button>
+                      <button
+                        type="button"
+                        onClick={() => move(t.id, 1)}
+                        disabled={idx === allForChannel.length - 1}
+                        aria-label="Move down"
+                        title="Move down"
+                        className="px-2 py-1 font-black uppercase text-[10px] tracking-widest border-2 bg-zinc-900 border-zinc-700 text-zinc-300 hover:border-white disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-zinc-700"
+                        data-testid={`saved-replies-move-down-${t.id}`}
+                      >
+                        ↓
+                      </button>
                       <button
                         type="button"
                         onClick={() => startEdit(t)}
