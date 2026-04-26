@@ -396,15 +396,18 @@ export function HeritageWorkshop() {
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4">
-                <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="bg-[#ea580c] hover:bg-[#c2410c] text-white px-6 py-2.5 rounded-sm font-semibold transition-colors flex items-center gap-2">
-                  <Car className="w-4 h-4" /> Get Directions
-                </a>
-                <a href={BUSINESS.phoneTel} className="bg-[#24211f] hover:bg-[#292524] border border-[#3f3936] text-[#f5f5f4] px-6 py-2.5 rounded-sm font-semibold transition-colors flex items-center gap-2">
+              <div className="flex flex-wrap gap-3">
+                <a href={BUSINESS.phoneTel} className="bg-[#ea580c] hover:bg-[#c2410c] text-white px-5 py-2.5 rounded-sm font-semibold transition-colors flex items-center gap-2">
                   <Phone className="w-4 h-4" /> Call
                 </a>
-                <a href={BUSINESS.sms} className="bg-[#24211f] hover:bg-[#292524] border border-[#3f3936] text-[#f5f5f4] px-6 py-2.5 rounded-sm font-semibold transition-colors flex items-center gap-2">
+                <a href={BUSINESS.sms} className="bg-[#24211f] hover:bg-[#292524] border border-[#3f3936] text-[#f5f5f4] px-5 py-2.5 rounded-sm font-semibold transition-colors flex items-center gap-2">
                   <MessageCircle className="w-4 h-4" /> Text
+                </a>
+                <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="bg-[#16a34a] hover:bg-[#15803d] text-white px-5 py-2.5 rounded-sm font-semibold transition-colors flex items-center gap-2">
+                  <MessageCircle className="w-4 h-4" /> WhatsApp
+                </a>
+                <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="bg-[#24211f] hover:bg-[#292524] border border-[#3f3936] text-[#f5f5f4] px-5 py-2.5 rounded-sm font-semibold transition-colors flex items-center gap-2">
+                  <Car className="w-4 h-4" /> Directions
                 </a>
               </div>
 
@@ -521,8 +524,8 @@ export function HeritageWorkshop() {
         </div>
       </footer>
 
-      {/* 13. Sticky Mobile Bottom Bar */}
-      <div className="fixed bottom-0 left-0 w-full bg-[#11100f]/95 backdrop-blur border-t border-[#302b28] p-2 flex justify-around items-center z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+      {/* 13. Sticky Mobile-Only Bottom Bar */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-[#11100f]/95 backdrop-blur border-t border-[#302b28] p-2 flex justify-around items-center z-50 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
         <a href={BUSINESS.phoneTel} className="flex flex-col items-center justify-center p-2 text-[#a8a29e] hover:text-[#f5f5f4] w-1/3">
           <Phone className="w-5 h-5 mb-1" />
           <span className="text-[10px] uppercase font-semibold tracking-wider">Call</span>

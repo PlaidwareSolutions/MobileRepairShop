@@ -475,12 +475,18 @@ export function ElectricTech() {
                     </div>
                   </div>
 
-                  <div className="flex flex-wrap gap-4">
-                    <a href={BUSINESS.mapsLink} target="_blank" rel="noopener noreferrer" className="flex-1 bg-sky-500 hover:bg-sky-400 text-slate-950 px-6 py-3 rounded-md font-bold transition-all text-center">
-                      Get Directions
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    <a href={BUSINESS.phoneTel} className="bg-sky-500 hover:bg-sky-400 text-slate-950 px-4 py-3 rounded-md font-bold transition-all text-center text-sm">
+                      Call
                     </a>
-                    <a href={BUSINESS.phoneTel} className="flex-1 bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-6 py-3 rounded-md font-bold transition-all text-center">
-                      Call Us
+                    <a href={BUSINESS.sms} className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-4 py-3 rounded-md font-bold transition-all text-center text-sm">
+                      Text Us
+                    </a>
+                    <a href={BUSINESS.whatsapp} target="_blank" rel="noopener noreferrer" className="bg-emerald-600 hover:bg-emerald-500 text-white px-4 py-3 rounded-md font-bold transition-all text-center text-sm">
+                      WhatsApp
+                    </a>
+                    <a href={BUSINESS.mapsLink} target="_blank" rel="noopener noreferrer" className="bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 px-4 py-3 rounded-md font-bold transition-all text-center text-sm">
+                      Directions
                     </a>
                   </div>
 
@@ -597,8 +603,8 @@ export function ElectricTech() {
           </div>
         </footer>
 
-        {/* 13. Sticky mobile-style bottom bar */}
-        <div className="fixed bottom-0 left-0 right-0 bg-slate-950/90 backdrop-blur-xl border-t border-slate-800 p-2 z-[100] flex justify-around items-center">
+        {/* 13. Sticky mobile-only bottom bar */}
+        <div className="md:hidden fixed bottom-0 left-0 right-0 bg-slate-950/90 backdrop-blur-xl border-t border-slate-800 p-2 z-[100] flex justify-around items-center">
           <a href={BUSINESS.phoneTel} className="flex flex-col items-center justify-center w-full py-2 text-slate-400 hover:text-sky-400 transition-colors">
             <Phone className="w-5 h-5 mb-1" />
             <span className="text-[10px] font-medium uppercase tracking-wide">Call</span>

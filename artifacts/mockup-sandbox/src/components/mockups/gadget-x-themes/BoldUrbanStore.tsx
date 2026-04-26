@@ -288,18 +288,17 @@ export function BoldUrbanStore() {
             {WHY_CHOOSE.map((item, i) => {
               const Icon = getIcon(item.icon);
               const isDark = i % 2 === 0;
-              const offset = i >= 2 || i === 1 || i === 3 ? "mt-0 sm:mt-12" : "";
+              const stagger = i === 1 || i === 3 ? "mt-0 sm:mt-12" : "";
               return (
                 <div
                   key={i}
-                  className={`${isDark ? "bg-black text-white" : "bg-white text-black"} p-8 transform hover:-translate-y-2 transition-transform ${i === 1 || i === 3 ? "mt-0 sm:mt-12" : ""}`}
+                  className={`${isDark ? "bg-black text-white" : "bg-white text-black"} p-8 transform hover:-translate-y-2 transition-transform ${stagger}`}
                 >
                   <div className={`text-6xl font-black mb-4 ${isDark ? "text-yellow-400" : "text-red-500"}`}>
                     <Icon className="w-12 h-12" />
                   </div>
                   <h4 className="text-2xl font-black uppercase mb-2">{item.title}</h4>
                   <p className={`${isDark ? "text-zinc-400" : "text-zinc-600"} font-bold`}>{item.desc}</p>
-                  <span className="hidden">{offset}</span>
                 </div>
               );
             })}
@@ -527,8 +526,8 @@ export function BoldUrbanStore() {
         </div>
       </footer>
 
-      {/* 13. Sticky mobile-style bottom bar */}
-      <div className="fixed bottom-0 left-0 w-full bg-black border-t-4 border-red-500 z-50 p-2 md:p-4">
+      {/* 13. Sticky mobile-only bottom bar */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full bg-black border-t-4 border-red-500 z-50 p-2">
         <div className="max-w-[1240px] mx-auto grid grid-cols-3 gap-2">
           <Button asChild className="rounded-none bg-zinc-900 hover:bg-white text-white hover:text-black font-black uppercase text-xs md:text-sm h-12">
             <a href={BUSINESS.phoneTel}>

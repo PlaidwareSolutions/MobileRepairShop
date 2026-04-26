@@ -557,15 +557,25 @@ export function BrightFriendlyWalkIn() {
                   </div>
                 </div>
                 
-                <div className="flex flex-wrap gap-3">
-                  <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="flex-1 min-w-[200px]">
-                    <Button className="w-full h-12 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold">
-                      <Navigation className="w-4 h-4 mr-2" /> Get Directions
+                <div className="grid grid-cols-2 gap-3">
+                  <a href={BUSINESS.phoneTel}>
+                    <Button className="w-full h-12 rounded-xl bg-red-500 hover:bg-red-600 text-white font-bold">
+                      <Phone className="w-4 h-4 mr-2" /> Call
                     </Button>
                   </a>
-                  <a href={BUSINESS.phoneTel} className="flex-1 min-w-[120px]">
-                    <Button variant="outline" className="w-full h-12 rounded-xl font-bold border-2">
-                      <Phone className="w-4 h-4 mr-2" /> Call
+                  <a href={BUSINESS.sms}>
+                    <Button variant="outline" className="w-full h-12 rounded-xl font-bold border-2 border-slate-300 text-slate-700 hover:bg-slate-50">
+                      <MessageCircle className="w-4 h-4 mr-2" /> Text Us
+                    </Button>
+                  </a>
+                  <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">
+                    <Button className="w-full h-12 rounded-xl bg-green-500 hover:bg-green-600 text-white font-bold">
+                      <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
+                    </Button>
+                  </a>
+                  <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer">
+                    <Button variant="outline" className="w-full h-12 rounded-xl font-bold border-2 border-slate-900 text-slate-900 hover:bg-slate-50">
+                      <Navigation className="w-4 h-4 mr-2" /> Directions
                     </Button>
                   </a>
                 </div>
