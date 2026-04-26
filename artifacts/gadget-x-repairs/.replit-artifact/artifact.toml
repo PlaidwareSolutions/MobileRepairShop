@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "Gadget X Repairs"
+version = "1.0.0"
+id = "artifacts/gadget-x-repairs"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24982
+
+[services.development]
+run = "pnpm --filter @workspace/gadget-x-repairs run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/gadget-x-repairs", "run", "build" ]
+publicDir = "artifacts/gadget-x-repairs/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24982"
+BASE_PATH = "/"
