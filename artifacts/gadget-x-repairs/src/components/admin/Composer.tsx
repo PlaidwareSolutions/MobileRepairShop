@@ -1,11 +1,15 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { SavedReplies } from "./SavedReplies";
-import { findUnfilledPlaceholders, type PlaceholderValues } from "./placeholders";
+import {
+  findUnfilledPlaceholders,
+  placeholderKeysForScope,
+  type PlaceholderValues,
+} from "./placeholders";
 
 export type ComposerMode = "email" | "sms";
 
@@ -43,6 +47,9 @@ export function Composer({
   const [body, setBody] = useState(initial.body);
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const subjectRef = useRef<HTMLInputElement>(null);
+  const bodyRef = useRef<HTMLTextAreaElement>(null);
+  const [lastFocused, setLastFocused] = useState<"subject" | "body">("body");
 
   useEffect(() => {
     if (open) {
@@ -51,8 +58,46 @@ export function Composer({
       setBody(initial.body);
       setError(null);
       setSending(false);
+      setLastFocused(mode === "email" ? "subject" : "body");
     }
-  }, [open, initial.to, initial.subject, initial.body]);
+  }, [open, initial.to, initial.subject, initial.body, mode]);
+
+  const placeholderKeys = useMemo(
+    () => placeholderKeysForScope(leadType),
+    [leadType],
+  );
+
+  function insertPlaceholder(key: string) {
+    const token = `{{${key}}}`;
+    const target = mode === "email" && lastFocused === "subject" ? "subject" : "body";
+    if (target === "subject") {
+      const el = subjectRef.current;
+      const start = el?.selectionStart ?? subject.length;
+      const end = el?.selectionEnd ?? subject.length;
+      const next = subject.slice(0, start) + token + subject.slice(end);
+      setSubject(next);
+      requestAnimationFrame(() => {
+        const node = subjectRef.current;
+        if (!node) return;
+        node.focus();
+        const pos = start + token.length;
+        node.setSelectionRange(pos, pos);
+      });
+    } else {
+      const el = bodyRef.current;
+      const start = el?.selectionStart ?? body.length;
+      const end = el?.selectionEnd ?? body.length;
+      const next = body.slice(0, start) + token + body.slice(end);
+      setBody(next);
+      requestAnimationFrame(() => {
+        const node = bodyRef.current;
+        if (!node) return;
+        node.focus();
+        const pos = start + token.length;
+        node.setSelectionRange(pos, pos);
+      });
+    }
+  }
 
   const unfilledPlaceholders = useMemo(
     () =>
@@ -122,8 +167,10 @@ export function Composer({
               </Label>
               <Input
                 id="composer-subject"
+                ref={subjectRef}
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
+                onFocus={() => setLastFocused("subject")}
                 className="rounded-none bg-black border-2 border-zinc-700 focus:border-red-500 h-11 text-white"
                 data-testid="composer-subject"
               />
@@ -135,13 +182,41 @@ export function Composer({
             </Label>
             <Textarea
               id="composer-body"
+              ref={bodyRef}
               value={body}
               onChange={(e) => setBody(e.target.value)}
+              onFocus={() => setLastFocused("body")}
               rows={mode === "email" ? 10 : 5}
               maxLength={mode === "email" ? 20000 : 1600}
               className="rounded-none bg-black border-2 border-zinc-700 focus:border-red-500 text-white"
               data-testid="composer-body"
             />
+          </div>
+          <div
+            className="bg-black border-2 border-zinc-800 px-3 py-2"
+            data-testid="composer-placeholders"
+          >
+            <div className="font-black uppercase text-[10px] tracking-widest text-zinc-400 mb-1">
+              Insert placeholder
+              <span className="ml-2 text-zinc-600 font-normal normal-case tracking-normal">
+                into {mode === "email" && lastFocused === "subject" ? "Subject" : "Message"}
+              </span>
+            </div>
+            <div className="flex flex-wrap gap-1">
+              {placeholderKeys.map((k) => (
+                <button
+                  key={k}
+                  type="button"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => insertPlaceholder(k)}
+                  className="px-1.5 py-0.5 bg-zinc-900 border border-zinc-700 hover:border-red-500 text-[11px] text-zinc-200 font-mono"
+                  data-testid={`composer-placeholder-${k}`}
+                >{`{{${k}}}`}</button>
+              ))}
+            </div>
+            <div className="text-[10px] text-zinc-500 mt-1">
+              Click a token to insert it at the cursor of the focused field.
+            </div>
           </div>
           {hasUnfilledPlaceholders && (
             <div

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -69,6 +69,11 @@ export function SavedReplies({
   const [subject, setSubject] = useState("");
   const [body, setBody] = useState("");
   const [saving, setSaving] = useState(false);
+  const formSubjectRef = useRef<HTMLInputElement>(null);
+  const formBodyRef = useRef<HTMLTextAreaElement>(null);
+  const [formLastFocused, setFormLastFocused] = useState<"subject" | "body">(
+    "body",
+  );
 
   async function load() {
     setLoading(true);
@@ -115,6 +120,7 @@ export function SavedReplies({
     setSubject("");
     setBody("");
     setError(null);
+    setFormLastFocused(channel === "email" ? "subject" : "body");
   }
 
   function startEdit(t: ReplyTemplate) {
@@ -124,6 +130,40 @@ export function SavedReplies({
     setSubject(t.subject ?? "");
     setBody(t.body);
     setError(null);
+    setFormLastFocused(channel === "email" ? "subject" : "body");
+  }
+
+  function insertFormPlaceholder(key: string) {
+    const token = `{{${key}}}`;
+    const target =
+      channel === "email" && formLastFocused === "subject" ? "subject" : "body";
+    if (target === "subject") {
+      const el = formSubjectRef.current;
+      const start = el?.selectionStart ?? subject.length;
+      const end = el?.selectionEnd ?? subject.length;
+      const next = subject.slice(0, start) + token + subject.slice(end);
+      setSubject(next);
+      requestAnimationFrame(() => {
+        const node = formSubjectRef.current;
+        if (!node) return;
+        node.focus();
+        const pos = start + token.length;
+        node.setSelectionRange(pos, pos);
+      });
+    } else {
+      const el = formBodyRef.current;
+      const start = el?.selectionStart ?? body.length;
+      const end = el?.selectionEnd ?? body.length;
+      const next = body.slice(0, start) + token + body.slice(end);
+      setBody(next);
+      requestAnimationFrame(() => {
+        const node = formBodyRef.current;
+        if (!node) return;
+        node.focus();
+        const pos = start + token.length;
+        node.setSelectionRange(pos, pos);
+      });
+    }
   }
 
   async function saveForm() {
@@ -456,17 +496,28 @@ export function SavedReplies({
                 data-testid="saved-replies-form-placeholder-hint"
               >
                 <div className="font-black uppercase text-[10px] tracking-widest text-zinc-400 mb-1">
-                  Available placeholders
+                  Insert placeholder
+                  <span className="ml-2 text-zinc-600 font-normal normal-case tracking-normal">
+                    into{" "}
+                    {channel === "email" && formLastFocused === "subject"
+                      ? "Subject"
+                      : "Body"}
+                  </span>
                 </div>
                 <div className="flex flex-wrap gap-1">
                   {hintKeys.map((k) => (
-                    <code
+                    <button
                       key={k}
-                      className="px-1.5 py-0.5 bg-zinc-900 border border-zinc-700 text-[11px] text-zinc-200 font-mono"
-                    >{`{{${k}}}`}</code>
+                      type="button"
+                      onMouseDown={(e) => e.preventDefault()}
+                      onClick={() => insertFormPlaceholder(k)}
+                      className="px-1.5 py-0.5 bg-zinc-900 border border-zinc-700 hover:border-red-500 text-[11px] text-zinc-200 font-mono"
+                      data-testid={`saved-replies-form-placeholder-${k}`}
+                    >{`{{${k}}}`}</button>
                   ))}
                 </div>
                 <div className="text-[10px] text-zinc-500 mt-1">
+                  Click a token to insert it at the cursor of the focused field.
                   Filled in from the lead when you apply this reply.
                 </div>
               </div>
@@ -502,8 +553,10 @@ export function SavedReplies({
                   </Label>
                   <Input
                     id="tpl-subject"
+                    ref={formSubjectRef}
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
+                    onFocus={() => setFormLastFocused("subject")}
                     className="rounded-none bg-black border-2 border-zinc-700 focus:border-red-500 h-9 text-white"
                     data-testid="saved-replies-form-subject"
                   />
@@ -518,8 +571,10 @@ export function SavedReplies({
                 </Label>
                 <Textarea
                   id="tpl-body"
+                  ref={formBodyRef}
                   value={body}
                   onChange={(e) => setBody(e.target.value)}
+                  onFocus={() => setFormLastFocused("body")}
                   rows={5}
                   className="rounded-none bg-black border-2 border-zinc-700 focus:border-red-500 text-white"
                   data-testid="saved-replies-form-body"
