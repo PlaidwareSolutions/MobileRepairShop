@@ -1,0 +1,236 @@
+3. Recommended Website Structure
+Home Page
+
+Purpose: convert visitors fast.
+
+Sections:
+
+Hero Section:
+- “Fast Phone, Tablet, Laptop & Game Console Repair in Houston”
+- Call Now button
+- Get Repair Quote button
+- Directions button
+- Same-day repair message if true
+
+Service Highlights:
+- Phone Repair
+- iPad & Tablet Repair
+- Laptop & Computer Repair
+- PS5 / Xbox / Controller Repair
+- Motherboard Repair
+- Battery Replacement
+- Phone Unlocking
+- Buy / Sell / Trade Phones
+- Prepaid Activations & Bill Payments
+- Accessories
+
+Trust Section:
+- Years in business
+- Warranty offered
+- Same-day repairs
+- Walk-ins welcome
+- Certified/experienced technicians
+- Customer reviews
+
+Featured Offers:
+- iPhone screen repair
+- Battery replacement
+- HDMI port repair
+- Used/refurbished phones
+- Prepaid plan activations
+
+Location Section:
+- Address
+- Hours
+- Google Map embed
+- Call button
+- WhatsApp/text button if used
+4. Core Pages to Build
+Repair Service Pages
+
+Each major service should have its own SEO page. This is important because people search very specifically.
+
+Create these pages:
+
+/phone-repair-houston
+/iphone-repair-houston
+/samsung-phone-repair-houston
+/google-pixel-repair-houston
+/motorola-phone-repair-houston
+/ipad-tablet-repair-houston
+/laptop-repair-houston
+/computer-repair-houston
+/macbook-repair-houston
+/hp-laptop-repair-houston
+/dell-laptop-repair-houston
+/lenovo-laptop-repair-houston
+/gaming-console-repair-houston
+/ps5-repair-houston
+/xbox-repair-houston
+/controller-repair-houston
+/hdmi-port-repair-houston
+/motherboard-repair-houston
+/battery-replacement-houston
+/phone-unlocking-houston
+
+Each page should include:
+
+- Problem description
+- Devices supported
+- Common symptoms
+- Repair process
+- Estimated turnaround time
+- Warranty
+- Call-to-action
+- FAQs
+- Local Houston keywords
+
+Example page headline:
+
+PS5 HDMI Port Repair in Houston, TX
+
+This is better than just saying “Gaming Console Repair.” People search by device and problem.
+
+5. Sales Pages
+
+The shop sells phones, accessories, and laptops. Build separate pages for these.
+
+/phones-for-sale-houston
+/used-phones-houston
+/refurbished-phones-houston
+/new-phones-houston
+/buy-my-phone-houston
+/laptops-for-sale-houston
+/phone-accessories-houston
+/laptop-accessories-houston
+
+For product visibility, use product structured data and Google Merchant Center/free listings where possible. Google says product structured data and Merchant Center feeds help Google understand product pages and may improve eligibility for product-rich experiences.
+
+6. Prepaid Wireless and Bill Payment Pages
+
+This is a strong traffic and walk-in driver. Build pages like:
+
+/prepaid-phone-activations-houston
+/bill-payments-houston
+/boost-mobile-activation-houston
+/att-prepaid-activation-houston
+/gen-mobile-activation-houston
+/simple-mobile-activation-houston
+/xfinity-mobile-payment-houston
+/h2o-wireless-activation-houston
+/lyca-mobile-activation-houston
+/verizon-prepaid-activation-houston
+
+The page should say:
+
+Activate prepaid service, switch carriers, pay your phone bill, buy SIM cards, and get help choosing the right prepaid plan.
+
+Important: be careful with brand usage. Say you provide activation/payment help for these carriers, but do not imply you are the official corporate store unless you are authorized.
+
+7. Lead Capture Features
+
+The website should have strong conversion tools:
+
+Repair Quote Form
+
+Fields:
+
+Name
+Phone number
+Device type
+Brand
+Model
+Problem
+Upload photos
+Preferred contact method
+Urgency
+Sell Your Phone Form
+
+Fields:
+
+Device brand
+Model
+Storage
+Carrier
+Unlocked or locked
+Condition
+Battery health
+Any damage?
+Upload photos
+Expected price
+Appointment Booking
+
+Allow customers to book:
+
+Screen repair
+Battery replacement
+HDMI repair
+Laptop diagnostic
+Motherboard repair
+Phone unlocking
+Prepaid activation
+Sticky Mobile Buttons
+
+On mobile, always show:
+
+Call Now
+Get Quote
+Directions
+Text Us
+
+Most repair customers are urgent. Make the website easy to act on within 5 seconds.
+
+8. Inventory Features
+
+The site should have a simple inventory section for:
+
+Used iPhones
+Refurbished iPhones
+Samsung phones
+Google Pixel phones
+Motorola phones
+Revvl phones
+Laptops
+Apple Watches
+AirPods
+Accessories
+
+Each item should show:
+
+Brand
+Model
+Storage
+Color
+Condition
+Carrier/unlocked status
+Price
+Warranty
+Availability
+Call/Reserve button
+
+Best practical approach: do not build a full e-commerce store first. Start with “Reserve / Call to Buy / Check Availability” because phone inventory changes quickly.
+
+9. Local SEO Strategy for Houston
+
+The website should target Houston and nearby areas.
+
+Create location-focused content for:
+
+Phone repair in Houston
+iPhone repair in Houston
+Laptop repair in Houston
+PS5 repair in Houston
+Phone unlocking in Houston
+Used phones in Houston
+Prepaid activations in Houston
+
+Also add nearby neighborhood/service-area pages only where truthful, for example:
+
+/phone-repair-sugar-land
+/phone-repair-missouri-city
+/phone-repair-stafford
+/phone-repair-katy
+/phone-repair-alief
+/phone-repair-sharpstown
+
+Google allows businesses to define service areas, but the service areas should be accurate and not misleading. Google notes that businesses can set up to 20 service areas in Business Profile.
