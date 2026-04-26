@@ -1,4 +1,3 @@
-import React from "react";
 import {
   MapPin,
   Clock,
@@ -14,10 +13,67 @@ import {
   ShieldCheck,
   ArrowRight,
   MessageCircle,
+  CheckCircle2,
+  Battery,
+  Wifi,
+  Navigation,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import {
+  BUSINESS,
+  HERO,
+  TRUST_POINTS,
+  SERVICES,
+  WHY_CHOOSE,
+  FEATURED_OFFERS,
+  SELL_PRODUCTS,
+  PREPAID_CARRIERS,
+  SERVICE_AREAS,
+  FOOTER_LINKS,
+  COPYRIGHT,
+} from "./_content";
+
+type IconKey =
+  | "smartphone"
+  | "tablet"
+  | "laptop"
+  | "gamepad"
+  | "headphones"
+  | "wrench"
+  | "phone"
+  | "map"
+  | "star"
+  | "zap"
+  | "shield"
+  | "check"
+  | "battery"
+  | "wifi";
+
+const ICON_MAP: Record<IconKey, LucideIcon> = {
+  smartphone: Smartphone,
+  tablet: Tablet,
+  laptop: Laptop,
+  gamepad: Gamepad2,
+  headphones: Headphones,
+  wrench: Wrench,
+  phone: Phone,
+  map: Navigation,
+  star: Star,
+  zap: Zap,
+  shield: ShieldCheck,
+  check: CheckCircle2,
+  battery: Battery,
+  wifi: Wifi,
+};
+
+function getIcon(key: string): LucideIcon {
+  return ICON_MAP[key as IconKey] ?? Wrench;
+}
 
 export function BoldUrbanStore() {
+  const [ctaCall, ctaQuote, ctaDirections] = HERO.ctas;
+
   return (
     <div className="min-h-screen bg-black text-white font-sans selection:bg-red-500 selection:text-white pb-20">
       {/* 1. Top utility bar */}
@@ -25,23 +81,23 @@ export function BoldUrbanStore() {
         <div className="flex items-center gap-4">
           <span className="hidden sm:inline-flex items-center gap-1">
             <MapPin className="w-3 h-3 text-red-500" />
-            8389 Almeda Rd, Suite J-2, Houston, TX
+            {BUSINESS.addressFull}
           </span>
           <span className="hidden md:inline-flex items-center gap-1">
             <Clock className="w-3 h-3 text-red-500" />
-            Mon-Sat 10AM-7PM | Sun 12PM-5PM
+            {BUSINESS.hoursShort}
           </span>
         </div>
         <div className="flex items-center gap-4">
           <span className="bg-red-500 text-white px-2 py-0.5 uppercase font-bold text-[10px] tracking-wider transform -skew-x-12">
-            Same-Day Repair
+            {HERO.badgeSameDay}
           </span>
           <a
-            href="tel:+13466236898"
+            href={BUSINESS.phoneTel}
             className="hover:text-red-500 transition-colors flex items-center gap-1"
           >
             <Phone className="w-3 h-3" />
-            +1 (346) 623-6898
+            {BUSINESS.phoneDisplay}
           </a>
         </div>
       </div>
@@ -51,8 +107,8 @@ export function BoldUrbanStore() {
         <div className="max-w-[1240px] mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <img
-              src="/__mockup/images/gadget-x-logo.png"
-              alt="Gadget X Repairs"
+              src={BUSINESS.logo}
+              alt={BUSINESS.name}
               className="h-10 md:h-12 object-contain"
             />
           </div>
@@ -80,7 +136,7 @@ export function BoldUrbanStore() {
             asChild
             className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-sm px-6 h-12"
           >
-            <a href="tel:+13466236898">Call Now</a>
+            <a href={BUSINESS.phoneTel}>Call Now</a>
           </Button>
         </div>
       </header>
@@ -113,41 +169,39 @@ export function BoldUrbanStore() {
           <div className="space-y-8">
             <div className="flex flex-wrap gap-3">
               <span className="bg-yellow-400 text-black px-4 py-2 font-black uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(239,68,68,1)] inline-block transform -rotate-2">
-                15 Years & Counting
+                {HERO.badgeYears}
               </span>
               <span className="bg-red-500 text-white px-4 py-2 font-black uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(250,204,21,1)] inline-flex items-center gap-2 transform rotate-1">
-                <Zap className="w-4 h-4" /> Same-Day Repair
+                <Zap className="w-4 h-4" /> {HERO.badgeSameDay}
               </span>
             </div>
-            <h1 className="text-6xl md:text-8xl lg:text-[100px] leading-[0.85] font-black uppercase tracking-tighter text-white">
-              WE FIX <br />
-              <span className="text-red-500">YOUR SH*T.</span> <br />
-              FAST.
+            <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-black uppercase tracking-tighter text-white">
+              {HERO.h1}
             </h1>
             <p className="text-xl md:text-2xl font-bold text-zinc-400 max-w-lg">
-              Phone, Tablet, Laptop & Game Console Repair in Houston. Most repairs done the same day.
+              {HERO.subhead}
             </p>
             <div className="flex flex-wrap gap-4 pt-4">
               <Button
                 asChild
                 className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(250,204,21,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(250,204,21,1)]"
               >
-                <a href="tel:+13466236898">Call Now</a>
+                <a href={ctaCall.href}>{ctaCall.label}</a>
+              </Button>
+              <Button
+                asChild
+                className="rounded-none bg-yellow-400 hover:bg-white text-black font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(239,68,68,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(239,68,68,1)]"
+              >
+                <a href={ctaQuote.href}>{ctaQuote.label}</a>
               </Button>
               <Button
                 asChild
                 variant="outline"
                 className="rounded-none border-4 border-white bg-transparent hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-lg h-16 px-8"
               >
-                <a href="https://wa.me/13466236898" target="_blank" rel="noreferrer">
-                  WhatsApp Us
+                <a href={ctaDirections.href} target="_blank" rel="noreferrer">
+                  {ctaDirections.label}
                 </a>
-              </Button>
-              <Button
-                asChild
-                className="rounded-none bg-yellow-400 hover:bg-white text-black font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(239,68,68,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(239,68,68,1)]"
-              >
-                <a href="#quote">Get Free Quote</a>
               </Button>
             </div>
           </div>
@@ -172,11 +226,15 @@ export function BoldUrbanStore() {
 
       {/* 4. Trust Strip */}
       <div className="bg-white border-y-8 border-red-500 py-6">
-        <div className="max-w-[1240px] mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-16 font-black uppercase tracking-tighter text-black text-xl md:text-3xl text-center">
-          <div className="flex items-center gap-2"><Zap className="w-8 h-8 text-red-500" /> Same-Day Repair</div>
-          <div className="flex items-center gap-2"><ShieldCheck className="w-8 h-8 text-red-500" /> 90-Day Warranty</div>
-          <div className="flex items-center gap-2"><Star className="w-8 h-8 text-red-500 fill-red-500" /> 5-Star Reviews</div>
-          <div className="flex items-center gap-2"><Smartphone className="w-8 h-8 text-red-500" /> All Brands</div>
+        <div className="max-w-[1240px] mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-12 font-black uppercase tracking-tighter text-black text-lg md:text-2xl text-center">
+          {TRUST_POINTS.map((point, i) => {
+            const Icon = getIcon(point.icon);
+            return (
+              <div key={i} className="flex items-center gap-2">
+                <Icon className="w-7 h-7 text-red-500" /> {point.label}
+              </div>
+            );
+          })}
         </div>
       </div>
 
@@ -195,30 +253,22 @@ export function BoldUrbanStore() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {[
-              { icon: Smartphone, name: "iPhone Repair", desc: "Screens, batteries, charging ports." },
-              { icon: Smartphone, name: "Android Repair", desc: "Samsung, Google, Motorola & more." },
-              { icon: Tablet, name: "iPad Repair", desc: "Glass, LCD, battery replacement." },
-              { icon: Tablet, name: "Tablet Repair", desc: "All major tablet brands fixed." },
-              { icon: Laptop, name: "MacBook Repair", desc: "Screens, keyboards, logic boards." },
-              { icon: Laptop, name: "Laptop Repair", desc: "PC hardware & software issues." },
-              { icon: Gamepad2, name: "PlayStation", desc: "HDMI ports, drives, overheating." },
-              { icon: Gamepad2, name: "Xbox Repair", desc: "Power issues, disc drives, ports." },
-              { icon: Gamepad2, name: "Nintendo Switch", desc: "Screens, joy-cons, charging." },
-              { icon: Headphones, name: "Accessories", desc: "Cases, chargers, screen protectors." },
-            ].map((s, i) => (
-              <a href="#" key={i} className="group block relative bg-black border-4 border-zinc-800 p-6 hover:border-red-500 transition-colors">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
-                  <ArrowRight className="w-6 h-6 text-red-500" />
-                </div>
-                <s.icon className="w-12 h-12 mb-6 text-white group-hover:text-yellow-400 transition-colors" />
-                <h3 className="text-xl font-black uppercase tracking-tight mb-2">{s.name}</h3>
-                <p className="text-sm font-bold text-zinc-500 mb-6">{s.desc}</p>
-                <div className="text-red-500 font-black uppercase text-sm group-hover:underline">
-                  Learn more
-                </div>
-              </a>
-            ))}
+            {SERVICES.map((s, i) => {
+              const Icon = getIcon(s.icon);
+              return (
+                <a href="#" key={i} className="group block relative bg-black border-4 border-zinc-800 p-6 hover:border-red-500 transition-colors">
+                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
+                    <ArrowRight className="w-6 h-6 text-red-500" />
+                  </div>
+                  <Icon className="w-12 h-12 mb-6 text-white group-hover:text-yellow-400 transition-colors" />
+                  <h3 className="text-xl font-black uppercase tracking-tight mb-2">{s.name}</h3>
+                  <p className="text-sm font-bold text-zinc-500 mb-6">{s.desc}</p>
+                  <div className="text-red-500 font-black uppercase text-sm group-hover:underline">
+                    Learn more
+                  </div>
+                </a>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -235,26 +285,24 @@ export function BoldUrbanStore() {
             </div>
           </div>
           <div className="grid sm:grid-cols-2 gap-8">
-            <div className="bg-black text-white p-8 transform hover:-translate-y-2 transition-transform">
-              <div className="text-6xl font-black text-yellow-400 mb-4">15</div>
-              <h4 className="text-2xl font-black uppercase mb-2">Years Heritage</h4>
-              <p className="text-zinc-400 font-bold">Serving Houston with reliable repairs since day one.</p>
-            </div>
-            <div className="bg-white text-black p-8 transform hover:-translate-y-2 transition-transform mt-0 sm:mt-12">
-              <div className="text-6xl font-black text-red-500 mb-4"><Zap className="w-12 h-12" /></div>
-              <h4 className="text-2xl font-black uppercase mb-2">Same-Day</h4>
-              <p className="text-zinc-600 font-bold">Fast turnaround because you need your device now.</p>
-            </div>
-            <div className="bg-white text-black p-8 transform hover:-translate-y-2 transition-transform">
-              <div className="text-6xl font-black text-red-500 mb-4"><Wrench className="w-12 h-12" /></div>
-              <h4 className="text-2xl font-black uppercase mb-2">Certified</h4>
-              <p className="text-zinc-600 font-bold">Expert technicians who know what they're doing.</p>
-            </div>
-            <div className="bg-black text-white p-8 transform hover:-translate-y-2 transition-transform mt-0 sm:mt-12">
-              <div className="text-6xl font-black text-yellow-400 mb-4"><ShieldCheck className="w-12 h-12" /></div>
-              <h4 className="text-2xl font-black uppercase mb-2">Warranty</h4>
-              <p className="text-zinc-400 font-bold">90-day warranty on all repairs for peace of mind.</p>
-            </div>
+            {WHY_CHOOSE.map((item, i) => {
+              const Icon = getIcon(item.icon);
+              const isDark = i % 2 === 0;
+              const offset = i >= 2 || i === 1 || i === 3 ? "mt-0 sm:mt-12" : "";
+              return (
+                <div
+                  key={i}
+                  className={`${isDark ? "bg-black text-white" : "bg-white text-black"} p-8 transform hover:-translate-y-2 transition-transform ${i === 1 || i === 3 ? "mt-0 sm:mt-12" : ""}`}
+                >
+                  <div className={`text-6xl font-black mb-4 ${isDark ? "text-yellow-400" : "text-red-500"}`}>
+                    <Icon className="w-12 h-12" />
+                  </div>
+                  <h4 className="text-2xl font-black uppercase mb-2">{item.title}</h4>
+                  <p className={`${isDark ? "text-zinc-400" : "text-zinc-600"} font-bold`}>{item.desc}</p>
+                  <span className="hidden">{offset}</span>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -270,21 +318,24 @@ export function BoldUrbanStore() {
                 HOT <span className="text-red-500">DEALS</span>
               </h2>
               <div className="space-y-4">
-                {[
-                  { title: "Screen Replacement", price: "from $79" },
-                  { title: "Battery Replacement", price: "from $49" },
-                  { title: "Device Diagnostics", price: "FREE" },
-                ].map((offer, i) => (
-                  <div key={i} className="bg-black border-2 border-zinc-800 p-6 flex justify-between items-center group hover:border-white transition-colors">
-                    <div>
-                      <h4 className="text-xl md:text-2xl font-black uppercase">{offer.title}</h4>
-                      <div className="text-red-500 font-black text-lg">{offer.price}</div>
+                {FEATURED_OFFERS.map((offer, i) => {
+                  const Icon = getIcon(offer.icon);
+                  return (
+                    <div key={i} className="bg-black border-2 border-zinc-800 p-6 flex justify-between items-center group hover:border-white transition-colors">
+                      <div className="flex items-center gap-4">
+                        <Icon className="w-8 h-8 text-yellow-400 shrink-0" />
+                        <div>
+                          <h4 className="text-xl md:text-2xl font-black uppercase">{offer.title}</h4>
+                          <div className="text-red-500 font-black text-lg">{offer.price}</div>
+                          <div className="text-zinc-500 font-bold text-xs uppercase">{offer.note}</div>
+                        </div>
+                      </div>
+                      <Button variant="outline" className="rounded-none font-black uppercase text-xs sm:text-sm border-2">
+                        Claim
+                      </Button>
                     </div>
-                    <Button variant="outline" className="rounded-none font-black uppercase text-xs sm:text-sm border-2">
-                      Claim
-                    </Button>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
@@ -294,17 +345,20 @@ export function BoldUrbanStore() {
                 WE <span className="text-yellow-400">SELL</span> TOO
               </h2>
               <p className="text-lg font-bold text-zinc-400 mb-8 max-w-md">
-                Unlocked phones, iPads, MacBooks, laptops, gaming consoles, and premium accessories.
+                {BUSINESS.tagline}
               </p>
               <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="bg-zinc-800 aspect-square flex flex-col items-center justify-center border-4 border-transparent hover:border-red-500 transition-colors">
-                  <Smartphone className="w-16 h-16 text-zinc-600 mb-4" />
-                  <span className="font-black uppercase text-sm">Unlocked Phones</span>
-                </div>
-                <div className="bg-zinc-800 aspect-square flex flex-col items-center justify-center border-4 border-transparent hover:border-yellow-400 transition-colors">
-                  <Laptop className="w-16 h-16 text-zinc-600 mb-4" />
-                  <span className="font-black uppercase text-sm">MacBooks & PCs</span>
-                </div>
+                {SELL_PRODUCTS.map((product, i) => {
+                  const Icon = getIcon(product.icon);
+                  const accent = i % 2 === 0 ? "hover:border-red-500" : "hover:border-yellow-400";
+                  return (
+                    <div key={i} className={`bg-zinc-800 aspect-square flex flex-col items-center justify-center border-4 border-transparent ${accent} transition-colors p-4 text-center`}>
+                      <Icon className="w-12 h-12 text-zinc-500 mb-3" />
+                      <span className="font-black uppercase text-sm">{product.name}</span>
+                      <span className="font-bold text-zinc-500 text-xs mt-1">{product.desc}</span>
+                    </div>
+                  );
+                })}
               </div>
               <Button asChild className="w-full rounded-none bg-white text-black hover:bg-yellow-400 hover:text-black font-black uppercase tracking-widest text-lg h-14">
                 <a href="#">Browse Inventory</a>
@@ -321,7 +375,7 @@ export function BoldUrbanStore() {
           <div>
             <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">Prepaid Activations</h3>
             <div className="flex flex-wrap gap-2 items-center mb-6">
-              {["Cricket", "Metro by T-Mobile", "T-Mobile", "AT&T Prepaid"].map(carrier => (
+              {PREPAID_CARRIERS.map(carrier => (
                 <span key={carrier} className="bg-zinc-900 border border-zinc-800 px-4 py-2 font-black uppercase text-sm">
                   {carrier}
                 </span>
@@ -334,7 +388,7 @@ export function BoldUrbanStore() {
           <div>
             <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">Service Areas</h3>
             <div className="flex flex-wrap gap-2">
-              {["Houston", "Sugar Land", "Missouri City", "Stafford", "Katy", "Alief", "Sharpstown"].map(area => (
+              {SERVICE_AREAS.map(area => (
                 <span key={area} className="text-zinc-400 font-bold uppercase text-sm border-b-2 border-zinc-800 pb-1">
                   {area}
                 </span>
@@ -356,63 +410,62 @@ export function BoldUrbanStore() {
               <div>
                 <h4 className="text-zinc-500 font-bold uppercase tracking-widest text-sm mb-2">Location</h4>
                 <p className="text-2xl font-black uppercase text-white">
-                  8389 Almeda Rd, Suite J-2<br/>
-                  Houston, TX 77054
+                  {BUSINESS.addressLine1}<br/>
+                  {BUSINESS.addressLine2}
                 </p>
               </div>
               
               <div>
                 <h4 className="text-zinc-500 font-bold uppercase tracking-widest text-sm mb-2">Store Hours</h4>
                 <div className="space-y-2 max-w-xs font-bold text-lg">
-                  <div className="flex justify-between border-b border-zinc-800 pb-2">
-                    <span className="uppercase">Mon - Sat</span>
-                    <span className="text-yellow-400">10:00 AM - 7:00 PM</span>
-                  </div>
-                  <div className="flex justify-between pb-2">
-                    <span className="uppercase">Sunday</span>
-                    <span className="text-yellow-400">12:00 PM - 5:00 PM</span>
-                  </div>
+                  {BUSINESS.hours.map((h) => (
+                    <div key={h.day} className="flex justify-between border-b border-zinc-800 pb-2">
+                      <span className="uppercase">{h.day}</span>
+                      <span className="text-yellow-400">{h.time}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <h4 className="text-zinc-500 font-bold uppercase tracking-widest text-sm mb-2">Contact</h4>
+                <div className="space-y-2 font-bold text-lg">
+                  <a href={BUSINESS.phoneTel} className="flex items-center gap-2 text-white hover:text-red-500">
+                    <Phone className="w-5 h-5 text-red-500" /> {BUSINESS.phoneDisplay}
+                  </a>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-4">
               <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest h-14 px-8">
-                <a href="https://maps.app.goo.gl/ALRF73zPbrG9qndz8" target="_blank" rel="noreferrer">
+                <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer">
                   Get Directions
                 </a>
               </Button>
               <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-14 px-6">
-                <a href="tel:+13466236898">Call</a>
+                <a href={BUSINESS.phoneTel}>Call</a>
               </Button>
               <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-14 px-6">
-                <a href="sms:+13466236898">Text</a>
+                <a href={BUSINESS.sms}>Text</a>
               </Button>
               <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-14 px-6">
-                <a href="https://wa.me/13466236898" target="_blank" rel="noreferrer">
+                <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">
                   WhatsApp
                 </a>
               </Button>
             </div>
           </div>
 
-          <div className="relative h-[400px] lg:h-auto border-8 border-white bg-zinc-900 overflow-hidden flex items-center justify-center p-8 group">
-            {/* Map styling */}
-            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'repeating-linear-gradient(45deg, #444 25%, transparent 25%, transparent 75%, #444 75%, #444), repeating-linear-gradient(45deg, #444 25%, #222 25%, #222 75%, #444 75%, #444)', backgroundPosition: '0 0, 10px 10px', backgroundSize: '20px 20px' }}></div>
-            <div className="absolute top-1/2 left-1/2 w-64 h-16 bg-zinc-800 transform -translate-x-1/2 -translate-y-1/2 rotate-12"></div>
-            <div className="absolute top-1/2 left-1/2 w-16 h-64 bg-zinc-800 transform -translate-x-1/2 -translate-y-1/2 -rotate-12"></div>
-            
-            <div className="relative z-10 flex flex-col items-center">
-              <MapPin className="w-20 h-20 text-red-500 fill-red-500 mb-4 animate-bounce" />
-              <div className="bg-black text-white font-black uppercase text-xl px-6 py-3 border-4 border-yellow-400 text-center shadow-xl">
-                Gadget X Repairs
-              </div>
-              <Button asChild className="mt-8 rounded-none bg-white text-black hover:bg-yellow-400 font-black uppercase tracking-widest h-12 px-6 opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-4 group-hover:translate-y-0">
-                <a href="https://maps.app.goo.gl/ALRF73zPbrG9qndz8" target="_blank" rel="noreferrer">
-                  Open in Maps
-                </a>
-              </Button>
-            </div>
+          <div className="relative border-8 border-white bg-zinc-900 overflow-hidden shadow-[12px_12px_0px_0px_rgba(239,68,68,1)]">
+            <iframe
+              src={BUSINESS.mapsEmbed}
+              width="100%"
+              height={400}
+              loading="lazy"
+              title="Gadget X Repairs location map"
+              className="block w-full border-0"
+            />
           </div>
         </div>
       </section>
@@ -422,47 +475,55 @@ export function BoldUrbanStore() {
         <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 text-zinc-400 font-bold">
           <div>
             <img
-              src="/__mockup/images/gadget-x-logo.png"
-              alt="Gadget X Repairs"
+              src={BUSINESS.logo}
+              alt={BUSINESS.name}
               className="h-10 object-contain mb-6 grayscale opacity-50"
             />
             <p className="text-sm mb-6">
-              Cellphone, iPhone, iPad, MacBook, Laptop, Gaming Console & Accessories — We Sell and Repair.
+              {BUSINESS.tagline}
             </p>
             <div className="text-xl text-white font-black uppercase tracking-widest">
-              15 Years Strong.
+              {BUSINESS.yearsInBusiness} Years Strong.
             </div>
           </div>
           
           <div>
             <h4 className="text-white font-black uppercase tracking-widest mb-6">Contact</h4>
             <ul className="space-y-4 text-sm uppercase">
-              <li><a href="tel:+13466236898" className="hover:text-red-500 flex items-center gap-2"><Phone className="w-4 h-4"/> +1 (346) 623-6898</a></li>
-              <li><a href="https://wa.me/13466236898" target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-center gap-2"><MessageCircle className="w-4 h-4"/> WhatsApp Us</a></li>
-              <li><a href="https://maps.app.goo.gl/ALRF73zPbrG9qndz8" target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-center gap-2"><MapPin className="w-4 h-4"/> 8389 Almeda Rd, Suite J-2<br/>Houston, TX 77054</a></li>
+              <li><a href={BUSINESS.phoneTel} className="hover:text-red-500 flex items-center gap-2"><Phone className="w-4 h-4"/> {BUSINESS.phoneDisplay}</a></li>
+              <li><a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-center gap-2"><MessageCircle className="w-4 h-4"/> WhatsApp Us</a></li>
+              <li><a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-center gap-2"><MapPin className="w-4 h-4"/> {BUSINESS.addressLine1}<br/>{BUSINESS.addressLine2}</a></li>
             </ul>
           </div>
 
           <div>
             <h4 className="text-white font-black uppercase tracking-widest mb-6">Hours</h4>
             <ul className="space-y-2 text-sm uppercase">
-              <li className="flex justify-between"><span>Mon - Sat</span> <span>10AM - 7PM</span></li>
-              <li className="flex justify-between"><span>Sunday</span> <span>12PM - 5PM</span></li>
+              {BUSINESS.hours.map((h) => (
+                <li key={h.day} className="flex justify-between gap-4">
+                  <span>{h.day}</span> <span className="text-zinc-500">{h.time}</span>
+                </li>
+              ))}
             </ul>
           </div>
 
           <div>
-            <h4 className="text-white font-black uppercase tracking-widest mb-6">Quick Links</h4>
+            <h4 className="text-white font-black uppercase tracking-widest mb-6">Repair</h4>
             <ul className="space-y-2 text-sm uppercase">
-              <li><a href="#" className="hover:text-red-500">Repair Services</a></li>
-              <li><a href="#" className="hover:text-red-500">Sell Your Device</a></li>
-              <li><a href="#" className="hover:text-red-500">Shop Accessories</a></li>
-              <li><a href="#" className="hover:text-red-500">Prepaid Plans</a></li>
+              {FOOTER_LINKS.repair.map((link) => (
+                <li key={link}><a href="#" className="hover:text-red-500">{link}</a></li>
+              ))}
+            </ul>
+            <h4 className="text-white font-black uppercase tracking-widest mt-6 mb-6">Shop</h4>
+            <ul className="space-y-2 text-sm uppercase">
+              {FOOTER_LINKS.shop.map((link) => (
+                <li key={link}><a href="#" className="hover:text-red-500">{link}</a></li>
+              ))}
             </ul>
           </div>
         </div>
         <div className="max-w-[1240px] mx-auto px-4 mt-16 pt-8 border-t border-zinc-900 text-center text-sm font-bold text-zinc-600 uppercase">
-          © 2026 Gadget X Repairs. All Rights Reserved.
+          {COPYRIGHT}
         </div>
       </footer>
 
@@ -470,17 +531,17 @@ export function BoldUrbanStore() {
       <div className="fixed bottom-0 left-0 w-full bg-black border-t-4 border-red-500 z-50 p-2 md:p-4">
         <div className="max-w-[1240px] mx-auto grid grid-cols-3 gap-2">
           <Button asChild className="rounded-none bg-zinc-900 hover:bg-white text-white hover:text-black font-black uppercase text-xs md:text-sm h-12">
-            <a href="tel:+13466236898">
+            <a href={BUSINESS.phoneTel}>
               <Phone className="w-4 h-4 mr-2" /> Call
             </a>
           </Button>
           <Button asChild className="rounded-none bg-green-600 hover:bg-green-500 text-white font-black uppercase text-xs md:text-sm h-12">
-            <a href="https://wa.me/13466236898" target="_blank" rel="noreferrer">
+            <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">
               <MessageCircle className="w-4 h-4 mr-2" /> WhatsApp
             </a>
           </Button>
           <Button asChild className="rounded-none bg-blue-600 hover:bg-blue-500 text-white font-black uppercase text-xs md:text-sm h-12">
-            <a href="https://maps.app.goo.gl/ALRF73zPbrG9qndz8" target="_blank" rel="noreferrer">
+            <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer">
               <MapPin className="w-4 h-4 mr-2" /> Directions
             </a>
           </Button>
