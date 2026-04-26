@@ -12,12 +12,49 @@ import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { SERVICES_BY_SLUG } from "@/data/services";
 import NotFound from "@/pages/not-found";
 
+function getRepairParentHub(slug: string): { name: string; path: string } | null {
+  if (slug === "repair-services-houston-tx") return null;
+  if (slug === "phone-repair-houston-tx") return { name: "Repair Services", path: "/repair-services-houston-tx" };
+  if (slug.startsWith("iphone-") && slug !== "iphone-repair-houston-tx") {
+    return { name: "iPhone Repair", path: "/iphone-repair-houston-tx" };
+  }
+  if (slug.startsWith("samsung-galaxy-") || slug === "samsung-screen-repair-houston-tx" || slug === "samsung-battery-replacement-houston-tx") {
+    return { name: "Samsung Repair", path: "/samsung-repair-houston-tx" };
+  }
+  if (slug === "ipad-repair-houston-tx" || slug === "ipad-pro-repair-houston-tx" || slug === "ipad-air-repair-houston-tx" || slug === "samsung-tablet-repair-houston-tx" || slug.startsWith("tablet-")) {
+    if (slug === "tablet-repair-houston-tx") return { name: "Repair Services", path: "/repair-services-houston-tx" };
+    return { name: "Tablet Repair", path: "/tablet-repair-houston-tx" };
+  }
+  if (slug.startsWith("laptop-") && slug !== "laptop-repair-houston-tx") {
+    return { name: "Laptop Repair", path: "/laptop-repair-houston-tx" };
+  }
+  if (slug === "macbook-repair-houston-tx" || slug === "hp-laptop-repair-houston-tx" || slug === "dell-laptop-repair-houston-tx" || slug === "lenovo-laptop-repair-houston-tx") {
+    return { name: "Laptop Repair", path: "/laptop-repair-houston-tx" };
+  }
+  if (slug === "computer-repair-houston-tx") return { name: "Repair Services", path: "/repair-services-houston-tx" };
+  if (slug === "ps5-repair-houston-tx" || slug === "ps5-hdmi-repair-houston-tx" || slug === "xbox-repair-houston-tx" || slug === "controller-repair-houston-tx") {
+    return { name: "Gaming Console Repair", path: "/gaming-console-repair-houston-tx" };
+  }
+  if (slug === "google-lock-removal-houston-tx") {
+    return { name: "Phone Unlocking", path: "/phone-unlocking-houston-tx" };
+  }
+  return { name: "Repair Services", path: "/repair-services-houston-tx" };
+}
+
 export default function ServicePage() {
   const [, params] = useRoute<{ slug: string }>("/:slug");
   const slug = params?.slug ?? "";
   const data = SERVICES_BY_SLUG[slug];
   if (!data) return <NotFound />;
   const path = `/${data.slug}`;
+  const parent = getRepairParentHub(data.slug);
+
+  const breadcrumbItems = parent
+    ? [{ label: parent.name, to: parent.path }, { label: data.title }]
+    : [{ label: data.title }];
+  const jsonLdBreadcrumb = parent
+    ? [{ name: parent.name, path: parent.path }, { name: data.title, path }]
+    : [{ name: data.title, path }];
 
   return (
     <PageShell hideTicker>
@@ -29,10 +66,10 @@ export default function ServicePage() {
           localBusinessJsonLd(),
           serviceJsonLd(data.title, data.metaDescription, path),
           faqJsonLd(data.faqs),
-          breadcrumbJsonLd([{ name: "Repair", path: "/phone-repair-houston-tx" }, { name: data.title, path }]),
+          breadcrumbJsonLd(jsonLdBreadcrumb),
         ]}
       />
-      <Breadcrumbs items={[{ label: "Repair", to: "/phone-repair-houston-tx" }, { label: data.title }]} />
+      <Breadcrumbs items={breadcrumbItems} />
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 

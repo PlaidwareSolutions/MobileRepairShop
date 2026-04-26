@@ -8,10 +8,43 @@ import { RelatedLinks } from "@/components/RelatedLinks";
 import { LocationCard } from "@/components/LocationCard";
 import { SEO, localBusinessJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/components/SEO";
 import { SellPhoneForm } from "@/components/forms/SellPhoneForm";
+import { ReservationForm } from "@/components/forms/ReservationForm";
 import { Button } from "@/components/ui/button";
 import { SALES_BY_SLUG } from "@/data/sales";
 import { BUSINESS } from "@/content";
 import NotFound from "@/pages/not-found";
+
+type SalesPageType = "sell" | "shop-hub" | "shop-brand" | "accessories";
+
+function getSalesPageType(slug: string): SalesPageType {
+  if (slug.startsWith("sell-")) return "sell";
+  if (slug === "shop-houston-tx") return "shop-hub";
+  if (slug.startsWith("buy-") || slug === "phones-for-sale-houston-tx" || slug === "used-phones-houston-tx" || slug === "refurbished-phones-houston-tx" || slug === "new-phones-houston-tx" || slug === "laptops-for-sale-houston-tx") return "shop-brand";
+  return "accessories";
+}
+
+function getParentHub(slug: string, pageType: SalesPageType): { name: string; path: string } | null {
+  if (slug === "shop-houston-tx") return null;
+  if (pageType === "sell") {
+    if (slug === "sell-phone-houston-tx") return { name: "Shop", path: "/shop-houston-tx" };
+    return { name: "Sell Your Phone", path: "/sell-phone-houston-tx" };
+  }
+  if (pageType === "shop-brand") {
+    if (slug === "phones-for-sale-houston-tx" || slug === "laptops-for-sale-houston-tx") {
+      return { name: "Shop", path: "/shop-houston-tx" };
+    }
+    if (slug.includes("laptop") || slug === "buy-macbook-houston-tx") {
+      return { name: "Laptops for Sale", path: "/laptops-for-sale-houston-tx" };
+    }
+    if (slug === "used-phones-houston-tx" || slug === "refurbished-phones-houston-tx" || slug === "new-phones-houston-tx") {
+      return { name: "Phones for Sale", path: "/phones-for-sale-houston-tx" };
+    }
+    return { name: "Phones for Sale", path: "/phones-for-sale-houston-tx" };
+  }
+  // accessories
+  if (slug === "phone-accessories-houston-tx") return { name: "Shop", path: "/shop-houston-tx" };
+  return { name: "Phone Accessories", path: "/phone-accessories-houston-tx" };
+}
 
 export default function SalesPage() {
   const [, params] = useRoute<{ slug: string }>("/:slug");
@@ -19,7 +52,17 @@ export default function SalesPage() {
   const data = SALES_BY_SLUG[slug];
   if (!data) return <NotFound />;
   const path = `/${data.slug}`;
+  const pageType = getSalesPageType(data.slug);
+  const parent = getParentHub(data.slug, pageType);
   const isBuyback = data.slug === "sell-phone-houston-tx";
+  const isSellPage = pageType === "sell";
+
+  const breadcrumbItems = parent
+    ? [{ label: parent.name, to: parent.path }, { label: data.title }]
+    : [{ label: data.title }];
+  const jsonLdBreadcrumb = parent
+    ? [{ name: parent.name, path: parent.path }, { name: data.title, path }]
+    : [{ name: data.title, path }];
 
   return (
     <PageShell hideTicker>
@@ -30,7 +73,7 @@ export default function SalesPage() {
         jsonLd={[
           localBusinessJsonLd(),
           faqJsonLd(data.faqs),
-          breadcrumbJsonLd([{ name: "Shop", path: "/phones-for-sale-houston-tx" }, { name: data.title, path }]),
+          breadcrumbJsonLd(jsonLdBreadcrumb),
           {
             "@context": "https://schema.org",
             "@type": "Product",
@@ -50,7 +93,7 @@ export default function SalesPage() {
           },
         ]}
       />
-      <Breadcrumbs items={[{ label: "Shop", to: "/phones-for-sale-houston-tx" }, { label: data.title }]} />
+      <Breadcrumbs items={breadcrumbItems} />
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
@@ -79,13 +122,27 @@ export default function SalesPage() {
             </div>
           </div>
           <div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
-              {isBuyback ? <>GET YOUR <span className="text-red-500">CASH OFFER</span></> : <>SELL YOUR <span className="text-red-500">OLD PHONE</span></>}
-            </h2>
-            <p className="text-lg font-bold text-zinc-400 mb-6">
-              We pay cash for working iPhones, Samsungs, Pixels and Motorolas — including phones with cracked screens.
-            </p>
-            <SellPhoneForm />
+            {isSellPage ? (
+              <>
+                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
+                  {isBuyback ? <>GET YOUR <span className="text-red-500">CASH OFFER</span></> : <>SELL YOUR <span className="text-red-500">PHONE</span></>}
+                </h2>
+                <p className="text-lg font-bold text-zinc-400 mb-6">
+                  We pay cash for working iPhones, Samsungs, Pixels and Motorolas — including phones with cracked screens.
+                </p>
+                <SellPhoneForm />
+              </>
+            ) : (
+              <>
+                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
+                  RESERVE <span className="text-red-500">OR VISIT</span>
+                </h2>
+                <p className="text-lg font-bold text-zinc-400 mb-6">
+                  Reserve {data.title.toLowerCase()} for in-store pickup. Walk-ins always welcome — but reserving guarantees we have it ready when you arrive.
+                </p>
+                <ReservationForm itemId={data.slug} itemLabel={data.title} />
+              </>
+            )}
           </div>
         </div>
       </section>
