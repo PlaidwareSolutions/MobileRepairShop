@@ -64,22 +64,25 @@ function redirectHtml(toPath) {
 }
 
 async function writeLegacyRedirect(fromPath, toPath) {
-  // Defensive guard: a `fromPath` of "/" (or any path that strips to empty) would
-  // resolve to DIST_DIR itself and OVERWRITE the prerendered home page (dist/public/
-  // index.html) with a redirect stub. Combined with the deployed static host's SPA
-  // fallback to index.html for unknown routes, that turns the entire site into an
-  // infinite redirect loop. Refuse to do that — the home page must always be a real
-  // page, not a redirect to itself.
-  const stripped = fromPath.replace(/^\//, "");
-  if (stripped === "" || stripped === ".") {
+  // Defensive guard: a `fromPath` of "/" (or any path that resolves to DIST_DIR
+  // itself, e.g. "/", "", ".", "/./", "/foo/..") would OVERWRITE the prerendered
+  // home page (dist/public/index.html) with a redirect stub. Combined with the
+  // deployed static host's SPA fallback to index.html for unknown routes, that
+  // turns the entire site into an infinite redirect loop. We resolve the target
+  // directory and refuse if it equals DIST_DIR (or escapes it). The home page
+  // must always be a real page, never a redirect to itself.
+  const stripped = fromPath.replace(/^\/+/, "");
+  const targetDir = path.resolve(DIST_DIR, stripped);
+  const distRoot = path.resolve(DIST_DIR);
+  const insideDist = targetDir === distRoot || targetDir.startsWith(distRoot + path.sep);
+  if (targetDir === distRoot || !insideDist) {
     console.warn(
-      `build-seo: refusing to write legacy redirect for ${JSON.stringify(fromPath)} — would overwrite dist/public/index.html. Render a real page at "/" via routes-config instead.`,
+      `build-seo: refusing to write legacy redirect for ${JSON.stringify(fromPath)} — resolved target ${JSON.stringify(targetDir)} would overwrite dist/public/index.html or escape DIST_DIR. Render a real page at "/" via routes-config instead.`,
     );
     return;
   }
-  const dir = path.join(DIST_DIR, stripped);
-  await mkdir(dir, { recursive: true });
-  await writeFile(path.join(dir, "index.html"), redirectHtml(toPath), "utf8");
+  await mkdir(targetDir, { recursive: true });
+  await writeFile(path.join(targetDir, "index.html"), redirectHtml(toPath), "utf8");
 }
 
 async function loadRender() {
