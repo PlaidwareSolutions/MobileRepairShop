@@ -200,6 +200,8 @@ export const ListInventoryResponseItem = zod.object({
   price: zod.string(),
   warranty: zod.string().optional(),
   availability: zod.string().optional(),
+  imageUrl: zod.string().optional(),
+  description: zod.string().optional(),
 });
 export const ListInventoryResponse = zod.array(ListInventoryResponseItem);
 
@@ -222,6 +224,8 @@ export const GetInventoryItemResponse = zod.object({
   price: zod.string(),
   warranty: zod.string().optional(),
   availability: zod.string().optional(),
+  imageUrl: zod.string().optional(),
+  description: zod.string().optional(),
 });
 
 /**

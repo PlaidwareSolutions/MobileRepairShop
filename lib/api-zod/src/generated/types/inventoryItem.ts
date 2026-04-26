@@ -18,4 +18,6 @@ export interface InventoryItem {
   price: string;
   warranty?: string;
   availability?: string;
+  imageUrl?: string;
+  description?: string;
 }

@@ -59,7 +59,10 @@ export default function InventoryPage() {
   useEffect(() => {
     fetchInventory()
       .then((d) => {
-        if (Array.isArray(d) && d.length > 0) setItems(d as InventoryItem[]);
+        // A successful response is the source of truth — including an empty
+        // list (e.g. when every item is sold or hidden). Only API failures
+        // fall back to the static seed list (handled in catch).
+        if (Array.isArray(d)) setItems(d as InventoryItem[]);
       })
       .catch(() => {
         // keep fallback
@@ -113,6 +116,17 @@ export default function InventoryPage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visible.map((it) => (
               <article key={it.id} className="bg-black border-4 border-zinc-800 p-5 flex flex-col gap-3 hover:border-red-500 transition-colors" data-testid={`inventory-${it.id}`}>
+                {it.imageUrl && (
+                  <div className="-mx-5 -mt-5 mb-1 aspect-[4/3] bg-zinc-900 overflow-hidden border-b-2 border-zinc-800">
+                    <img
+                      src={it.imageUrl}
+                      alt={`${it.brand} ${it.model}`}
+                      loading="lazy"
+                      className="w-full h-full object-cover"
+                      data-testid={`inventory-image-${it.id}`}
+                    />
+                  </div>
+                )}
                 <div className="flex items-center justify-between gap-2">
                   <div className="text-zinc-500 font-bold uppercase text-xs tracking-widest">{it.category}</div>
                   {it.availability && (

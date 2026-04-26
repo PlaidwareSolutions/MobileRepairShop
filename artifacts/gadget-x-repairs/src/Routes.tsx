@@ -12,6 +12,7 @@ import ContactPage from "@/pages/ContactPage";
 import ReviewsPage from "@/pages/ReviewsPage";
 import InventoryPage from "@/pages/InventoryPage";
 import AdminLeadsPage from "@/pages/AdminLeadsPage";
+import AdminInventoryPage from "@/pages/AdminInventoryPage";
 
 import { SERVICES_DATA } from "@/data/services";
 import { SALES_DATA } from "@/data/sales";
@@ -49,6 +50,7 @@ export function Routes() {
       <Route path="/reviews-houston-tx" component={ReviewsPage} />
       <Route path="/inventory" component={InventoryPage} />
       <Route path="/admin/leads" component={AdminLeadsPage} />
+      <Route path="/admin/inventory" component={AdminInventoryPage} />
 
       <Route path="/articles/:slug" component={ArticlePage} />
 

@@ -4,6 +4,7 @@ import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { AdminNav } from "@/components/AdminNav";
 import { adminFetchLeads, adminUpdateStatus } from "@/lib/api";
 
 type Lead = Record<string, unknown> & { id: number; status?: string; createdAt?: string };
@@ -71,6 +72,8 @@ export default function AdminLeadsPage() {
           <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-white mb-6">
             ADMIN <span className="text-red-500">LEADS</span>
           </h1>
+
+          {authed && <AdminNav active="leads" />}
 
           {!authed ? (
             <form

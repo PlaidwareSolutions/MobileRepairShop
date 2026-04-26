@@ -10,6 +10,8 @@ export type InventoryItem = {
   price: string;
   warranty?: string;
   availability?: string;
+  imageUrl?: string;
+  description?: string;
 };
 
 export const INVENTORY_FALLBACK: InventoryItem[] = [
