@@ -23,7 +23,20 @@ export function Routes() {
   return (
     <Switch>
       {/*
-        Home page is canonical at /phone-repair-houston-tx; bare `/` redirects via LEGACY_REDIRECTS below.
+        Legacy URL redirects MUST come first. wouter's <Switch> picks the first match,
+        so listing these before the dynamic /articles/:slug route ensures legacy article
+        paths (e.g. /articles/iphone-screen-repair-cost-houston) redirect to their new
+        canonical URL instead of falling through to ArticlePage and 404'ing on the
+        missing slug. Same reasoning for legacy service/sales/prepaid/area paths and `/`.
+      */}
+      {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
+        <Route key={from} path={from}>
+          <Redirect to={to} replace />
+        </Route>
+      ))}
+
+      {/*
+        Home page is canonical at /phone-repair-houston-tx; bare `/` redirects via LEGACY_REDIRECTS above.
         Note: SERVICES_DATA still contains a "phone-repair-houston-tx" entry so that other services can
         reference it via their `related` arrays. We intentionally shadow that ServicePage route by
         registering HomePage at /phone-repair-houston-tx FIRST — wouter's <Switch> picks the first match,
@@ -53,13 +66,6 @@ export function Routes() {
 
       {AREAS_DATA.map((a) => (
         <Route key={a.slug} path={`/${a.slug}`} component={AreaPage} />
-      ))}
-
-      {/* 301-style client redirects from legacy URLs to current canonical URLs */}
-      {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
-        <Route key={from} path={from}>
-          <Redirect to={to} replace />
-        </Route>
       ))}
 
       <Route component={NotFound} />
