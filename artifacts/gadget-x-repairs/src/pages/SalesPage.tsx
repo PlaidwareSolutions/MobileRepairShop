@@ -31,6 +31,23 @@ export default function SalesPage() {
           localBusinessJsonLd(),
           faqJsonLd(data.faqs),
           breadcrumbJsonLd([{ name: "Shop", path: "/phones-for-sale-houston" }, { name: data.title, path }]),
+          {
+            "@context": "https://schema.org",
+            "@type": "Product",
+            name: data.title,
+            category: data.title,
+            description: data.intro,
+            brand: { "@type": "Brand", name: "Gadget X Repairs" },
+            offers: {
+              "@type": "AggregateOffer",
+              priceCurrency: "USD",
+              lowPrice: "49",
+              highPrice: "999",
+              offerCount: data.highlights.length,
+              availability: "https://schema.org/InStock",
+              seller: { "@type": "ElectronicsStore", name: "Gadget X Repairs" },
+            },
+          },
         ]}
       />
       <Breadcrumbs items={[{ label: "Shop", to: "/phones-for-sale-houston" }, { label: data.title }]} />

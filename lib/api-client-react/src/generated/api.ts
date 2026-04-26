@@ -640,6 +640,93 @@ export function useListInventory<
 }
 
 /**
+ * @summary Get a single inventory item by id
+ */
+export const getGetInventoryItemUrl = (id: string) => {
+  return `/api/inventory/${id}`;
+};
+
+export const getInventoryItem = async (
+  id: string,
+  options?: RequestInit,
+): Promise<InventoryItem> => {
+  return customFetch<InventoryItem>(getGetInventoryItemUrl(id), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetInventoryItemQueryKey = (id: string) => {
+  return [`/api/inventory/${id}`] as const;
+};
+
+export const getGetInventoryItemQueryOptions = <
+  TData = Awaited<ReturnType<typeof getInventoryItem>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  id: string,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getInventoryItem>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetInventoryItemQueryKey(id);
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getInventoryItem>>
+  > = ({ signal }) => getInventoryItem(id, { signal, ...requestOptions });
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: !!id,
+    ...queryOptions,
+  } as UseQueryOptions<
+    Awaited<ReturnType<typeof getInventoryItem>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetInventoryItemQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getInventoryItem>>
+>;
+export type GetInventoryItemQueryError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Get a single inventory item by id
+ */
+
+export function useGetInventoryItem<
+  TData = Awaited<ReturnType<typeof getInventoryItem>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  id: string,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getInventoryItem>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetInventoryItemQueryOptions(id, options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
  * @summary Get all leads grouped by type (password-gated)
  */
 export const getGetAdminLeadsUrl = () => {

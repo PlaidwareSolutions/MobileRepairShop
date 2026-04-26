@@ -18,12 +18,28 @@ export default function ReviewsPage() {
           breadcrumbJsonLd([{ name: "Reviews", path: "/reviews" }]),
           {
             "@context": "https://schema.org",
-            "@type": "AggregateRating",
-            itemReviewed: { "@type": "ElectronicsStore", name: "Gadget X Repairs" },
-            ratingValue: avg.toFixed(1),
-            reviewCount: REVIEWS_DATA.length,
-            bestRating: 5,
-            worstRating: 1,
+            "@type": "ElectronicsStore",
+            name: "Gadget X Repairs",
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: avg.toFixed(1),
+              reviewCount: REVIEWS_DATA.length,
+              bestRating: 5,
+              worstRating: 1,
+            },
+            review: REVIEWS_DATA.map((r) => ({
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: r.rating,
+                bestRating: 5,
+                worstRating: 1,
+              },
+              author: { "@type": "Person", name: r.author },
+              datePublished: r.date,
+              reviewBody: r.body,
+              ...(r.service ? { name: r.service } : {}),
+            })),
           },
         ]}
       />

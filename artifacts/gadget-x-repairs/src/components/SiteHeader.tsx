@@ -1,15 +1,31 @@
 import { Link } from "wouter";
-import { MapPin, Clock, Phone } from "lucide-react";
+import { MapPin, Clock, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { BUSINESS, HERO } from "@/content";
 
-const NAV = [
-  { label: "Repair", to: "/phone-repair-houston" },
+const REPAIR_DROPDOWN: { label: string; to: string }[] = [
+  { label: "All Repairs", to: "/phone-repair-houston" },
+  { label: "iPhone Repair", to: "/iphone-repair-houston" },
+  { label: "Samsung Repair", to: "/samsung-phone-repair-houston" },
+  { label: "iPad / Tablet", to: "/ipad-tablet-repair-houston" },
+  { label: "Laptop Repair", to: "/laptop-repair-houston" },
+  { label: "MacBook Repair", to: "/macbook-repair-houston" },
+  { label: "Game Consoles", to: "/gaming-console-repair-houston" },
+  { label: "PS5 Repair", to: "/ps5-repair-houston" },
+  { label: "Xbox Repair", to: "/xbox-repair-houston" },
+  { label: "Battery Replacement", to: "/battery-replacement-houston" },
+  { label: "HDMI Port Repair", to: "/hdmi-port-repair-houston" },
+  { label: "Phone Unlocking", to: "/phone-unlocking-houston" },
+];
+
+const NAV: { label: string; to: string }[] = [
   { label: "Sell", to: "/buy-my-phone-houston" },
   { label: "Phones", to: "/phones-for-sale-houston" },
+  { label: "Accessories", to: "/phone-accessories-houston" },
   { label: "Prepaid", to: "/prepaid-phone-activations-houston" },
   { label: "Inventory", to: "/inventory" },
   { label: "Reviews", to: "/reviews" },
+  { label: "About", to: "/about" },
   { label: "Contact", to: "/contact" },
 ];
 
@@ -47,8 +63,32 @@ export function SiteHeader() {
           <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 md:h-12 object-contain" width={120} height={48} />
         </Link>
         <nav className="hidden lg:flex items-center gap-6 font-black uppercase tracking-tighter text-sm" aria-label="Primary">
+          <div className="relative group" data-testid="nav-repair-services">
+            <button
+              type="button"
+              className="hover:text-red-500 transition-colors flex items-center gap-1"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Repair Services <ChevronDown className="w-4 h-4" />
+            </button>
+            <div className="absolute left-0 top-full pt-2 w-64 hidden group-hover:block group-focus-within:block z-50">
+              <div className="bg-black border-2 border-red-500 py-2 shadow-2xl">
+                {REPAIR_DROPDOWN.map((item) => (
+                  <Link
+                    key={item.to}
+                    href={item.to}
+                    className="block px-4 py-2 text-xs hover:bg-red-500 hover:text-white text-zinc-200 transition-colors"
+                    data-testid={`nav-repair-${item.to.replace(/\//g, "")}`}
+                  >
+                    {item.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
           {NAV.map((item) => (
-            <Link key={item.to} href={item.to} className="hover:text-red-500 transition-colors">
+            <Link key={item.to} href={item.to} className="hover:text-red-500 transition-colors" data-testid={`nav-${item.to.replace(/\//g, "")}`}>
               {item.label}
             </Link>
           ))}

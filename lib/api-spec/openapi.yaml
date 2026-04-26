@@ -151,6 +151,27 @@ paths:
               schema:
                 type: array
                 items: { $ref: "#/components/schemas/InventoryItem" }
+  /inventory/{id}:
+    get:
+      operationId: getInventoryItem
+      tags: [inventory]
+      summary: Get a single inventory item by id
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Inventory item
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/InventoryItem" }
+        "404":
+          description: Not found
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ErrorResponse" }
   /admin/leads:
     get:
       operationId: getAdminLeads

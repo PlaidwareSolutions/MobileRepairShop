@@ -12,4 +12,14 @@ router.get("/", (req: Request, res: Response) => {
   res.json(items);
 });
 
+router.get("/:id", (req: Request, res: Response) => {
+  const id = req.params.id;
+  const item = INVENTORY.find((it) => it.id === id);
+  if (!item) {
+    res.status(404).json({ error: "Inventory item not found" });
+    return;
+  }
+  res.json(item);
+});
+
 export default router;

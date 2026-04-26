@@ -204,6 +204,27 @@ export const ListInventoryResponseItem = zod.object({
 export const ListInventoryResponse = zod.array(ListInventoryResponseItem);
 
 /**
+ * @summary Get a single inventory item by id
+ */
+export const GetInventoryItemParams = zod.object({
+  id: zod.coerce.string(),
+});
+
+export const GetInventoryItemResponse = zod.object({
+  id: zod.string(),
+  category: zod.string(),
+  brand: zod.string(),
+  model: zod.string(),
+  storage: zod.string().optional(),
+  color: zod.string().optional(),
+  condition: zod.string().optional(),
+  carrier: zod.string().optional(),
+  price: zod.string(),
+  warranty: zod.string().optional(),
+  availability: zod.string().optional(),
+});
+
+/**
  * @summary Get all leads grouped by type (password-gated)
  */
 export const GetAdminLeadsHeader = zod.object({
