@@ -20,6 +20,10 @@
     "google-auth-library": "^10.6.2",
     "pino": "^9",
     "pino-http": "^10",
+    "resend": "^6.12.2",
+    "svix": "^1.92.2",
+    "telnyx": "^6.41.1",
+    "ws": "^8.20.0",
     "zod": "catalog:"
   },
   "devDependencies": {

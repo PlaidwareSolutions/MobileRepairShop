@@ -264,6 +264,111 @@ export interface LeadStatusUpdate {
   status: LeadStatusUpdateStatus;
 }
 
+export interface MessagingConfig {
+  emailEnabled: boolean;
+  smsEnabled: boolean;
+  mailFrom: string;
+  smsFrom: string;
+}
+
+export type LeadCommunicationLeadType =
+  (typeof LeadCommunicationLeadType)[keyof typeof LeadCommunicationLeadType];
+
+export const LeadCommunicationLeadType = {
+  "repair-quote": "repair-quote",
+  "sell-phone": "sell-phone",
+  appointment: "appointment",
+  contact: "contact",
+  reservation: "reservation",
+} as const;
+
+export type LeadCommunicationChannel =
+  (typeof LeadCommunicationChannel)[keyof typeof LeadCommunicationChannel];
+
+export const LeadCommunicationChannel = {
+  email: "email",
+  sms: "sms",
+} as const;
+
+export type LeadCommunicationDirection =
+  (typeof LeadCommunicationDirection)[keyof typeof LeadCommunicationDirection];
+
+export const LeadCommunicationDirection = {
+  outbound: "outbound",
+  inbound: "inbound",
+} as const;
+
+export interface LeadCommunication {
+  id: number;
+  leadType: LeadCommunicationLeadType;
+  leadId: string;
+  channel: LeadCommunicationChannel;
+  direction: LeadCommunicationDirection;
+  subject?: string | null;
+  body: string;
+  recipient: string;
+  providerMessageId?: string | null;
+  status: string;
+  error?: string | null;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface LeadActivityResponse {
+  items: LeadCommunication[];
+}
+
+export interface SendEmailInput {
+  /**
+   * @minLength 3
+   * @maxLength 200
+   */
+  to: string;
+  /**
+   * @minLength 1
+   * @maxLength 200
+   */
+  subject: string;
+  /** @maxLength 20000 */
+  html?: string;
+  /** @maxLength 20000 */
+  text?: string;
+}
+
+export interface SendSmsInput {
+  /**
+   * @minLength 7
+   * @maxLength 40
+   */
+  to: string;
+  /**
+   * @minLength 1
+   * @maxLength 1600
+   */
+  body: string;
+}
+
+export type SendResultStatus =
+  (typeof SendResultStatus)[keyof typeof SendResultStatus];
+
+export const SendResultStatus = {
+  queued: "queued",
+  sent: "sent",
+  failed: "failed",
+} as const;
+
+export interface SendResult {
+  ok: boolean;
+  id?: number;
+  providerMessageId?: string | null;
+  status: SendResultStatus;
+  error?: string | null;
+}
+
+export interface WebhookAck {
+  ok: boolean;
+}
+
 export interface AdminLeads {
   repairQuotes: RepairQuoteRecord[];
   sellPhoneSubmissions: SellPhoneRecord[];

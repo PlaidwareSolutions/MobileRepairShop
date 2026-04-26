@@ -1,6 +1,9 @@
 const BASE = "/api";
 
-async function postJson<TBody, TRes = { ok: boolean; id?: number }>(path: string, body: TBody): Promise<TRes> {
+async function postJson<TBody, TRes = { ok: boolean; id?: number }>(
+  path: string,
+  body: TBody,
+): Promise<TRes> {
   const res = await fetch(`${BASE}${path}`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -13,36 +16,154 @@ async function postJson<TBody, TRes = { ok: boolean; id?: number }>(path: string
   return (await res.json()) as TRes;
 }
 
-export const submitRepairQuote = (body: unknown) => postJson("/leads/repair-quote", body);
-export const submitSellPhone = (body: unknown) => postJson("/leads/sell-phone", body);
-export const submitAppointment = (body: unknown) => postJson("/leads/appointment", body);
+export const submitRepairQuote = (body: unknown) =>
+  postJson("/leads/repair-quote", body);
+export const submitSellPhone = (body: unknown) =>
+  postJson("/leads/sell-phone", body);
+export const submitAppointment = (body: unknown) =>
+  postJson("/leads/appointment", body);
 export const submitContact = (body: unknown) => postJson("/leads/contact", body);
-export const submitReservation = (body: unknown) => postJson("/leads/reservation", body);
+export const submitReservation = (body: unknown) =>
+  postJson("/leads/reservation", body);
 
 export async function fetchInventory(category?: string) {
-  const url = category ? `${BASE}/inventory?category=${encodeURIComponent(category)}` : `${BASE}/inventory`;
+  const url = category
+    ? `${BASE}/inventory?category=${encodeURIComponent(category)}`
+    : `${BASE}/inventory`;
   const res = await fetch(url);
   if (!res.ok) throw new Error(`Inventory fetch failed (${res.status})`);
   return (await res.json()) as Array<Record<string, string>>;
 }
 
-export async function adminFetchLeads(password: string) {
-  const res = await fetch(`${BASE}/admin/leads`, {
-    headers: { "X-Admin-Password": password },
-  });
-  if (res.status === 401) throw new Error("Wrong password");
-  if (!res.ok) throw new Error(`Failed (${res.status})`);
-  return await res.json();
+function adminHeaders(password: string, contentType?: boolean): HeadersInit {
+  return contentType
+    ? { "Content-Type": "application/json", "X-Admin-Password": password }
+    : { "X-Admin-Password": password };
 }
 
-export async function adminUpdateStatus(password: string, leadType: string, id: number, status: string) {
-  const res = await fetch(`${BASE}/admin/leads/${leadType}/${id}/status`, {
-    method: "PATCH",
-    headers: { "Content-Type": "application/json", "X-Admin-Password": password },
-    body: JSON.stringify({ status }),
-  });
-  if (!res.ok) throw new Error(`Update failed (${res.status})`);
-  return await res.json();
+async function adminJson<T>(
+  password: string,
+  path: string,
+  init?: RequestInit,
+): Promise<T> {
+  const headers: HeadersInit = {
+    ...(init?.headers ?? {}),
+    "X-Admin-Password": password,
+  };
+  const res = await fetch(`${BASE}${path}`, { ...init, headers });
+  if (res.status === 401) throw new Error("Wrong password");
+  if (res.status === 429) {
+    const t = await res.text();
+    throw new Error(t || "Rate limit reached for this lead");
+  }
+  if (!res.ok) {
+    const t = await res.text();
+    throw new Error(t || `Request failed (${res.status})`);
+  }
+  return (await res.json()) as T;
+}
+
+// ---------------- Admin Leads ----------------
+
+export async function adminFetchLeads(password: string) {
+  return await adminJson<unknown>(password, "/admin/leads");
+}
+
+export async function adminUpdateStatus(
+  password: string,
+  leadType: string,
+  id: number,
+  status: string,
+) {
+  return await adminJson<{ ok: boolean; id: number }>(
+    password,
+    `/admin/leads/${leadType}/${id}/status`,
+    {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status }),
+    },
+  );
+}
+
+export type MessagingConfig = {
+  emailEnabled: boolean;
+  smsEnabled: boolean;
+  mailFrom: string;
+  smsFrom: string;
+};
+
+export async function adminMessagingConfig(password: string) {
+  return await adminJson<MessagingConfig>(password, "/admin/messaging/config");
+}
+
+export type LeadCommunication = {
+  id: number;
+  leadType: string;
+  leadId: string;
+  channel: "email" | "sms";
+  direction: "outbound" | "inbound";
+  subject: string | null;
+  body: string;
+  recipient: string;
+  providerMessageId: string | null;
+  status: string;
+  error: string | null;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export async function adminLeadActivity(
+  password: string,
+  leadType: string,
+  id: number,
+) {
+  return await adminJson<{ items: LeadCommunication[] }>(
+    password,
+    `/admin/leads/${leadType}/${id}/activity`,
+  );
+}
+
+export type SendResult = {
+  ok: boolean;
+  id?: number;
+  providerMessageId: string | null;
+  status: "queued" | "sent" | "failed";
+  error: string | null;
+};
+
+export async function adminSendEmail(
+  password: string,
+  leadType: string,
+  id: number,
+  body: { to: string; subject: string; html?: string; text?: string },
+) {
+  return await adminJson<SendResult>(
+    password,
+    `/admin/leads/${leadType}/${id}/email`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    },
+  );
+}
+
+export async function adminSendSms(
+  password: string,
+  leadType: string,
+  id: number,
+  body: { to: string; body: string },
+) {
+  return await adminJson<SendResult>(
+    password,
+    `/admin/leads/${leadType}/${id}/sms`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    },
+  );
 }
 
 // ---------------- Admin Inventory ----------------
@@ -160,3 +281,5 @@ export async function adminUploadImage(password: string, file: File): Promise<st
   }
   return servingUrl;
 }
+
+void adminHeaders;

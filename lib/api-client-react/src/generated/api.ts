@@ -23,12 +23,18 @@ import type {
   ErrorResponse,
   HealthStatus,
   InventoryItem,
+  LeadActivityResponse,
   LeadStatusUpdate,
   ListInventoryParams,
+  MessagingConfig,
   RepairQuoteInput,
   ReservationInput,
   SellPhoneInput,
+  SendEmailInput,
+  SendResult,
+  SendSmsInput,
   SubmitResponse,
+  WebhookAck,
 } from "./api.schemas";
 
 import { customFetch } from "../custom-fetch";
@@ -945,4 +951,658 @@ export const useUpdateLeadStatus = <
   TContext
 > => {
   return useMutation(getUpdateLeadStatusMutationOptions(options));
+};
+
+/**
+ * @summary Get whether email and SMS sending are configured
+ */
+export const getGetMessagingConfigUrl = () => {
+  return `/api/admin/messaging/config`;
+};
+
+export const getMessagingConfig = async (
+  options?: RequestInit,
+): Promise<MessagingConfig> => {
+  return customFetch<MessagingConfig>(getGetMessagingConfigUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetMessagingConfigQueryKey = () => {
+  return [`/api/admin/messaging/config`] as const;
+};
+
+export const getGetMessagingConfigQueryOptions = <
+  TData = Awaited<ReturnType<typeof getMessagingConfig>>,
+  TError = ErrorType<ErrorResponse>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getMessagingConfig>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetMessagingConfigQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getMessagingConfig>>
+  > = ({ signal }) => getMessagingConfig({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getMessagingConfig>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetMessagingConfigQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getMessagingConfig>>
+>;
+export type GetMessagingConfigQueryError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Get whether email and SMS sending are configured
+ */
+
+export function useGetMessagingConfig<
+  TData = Awaited<ReturnType<typeof getMessagingConfig>>,
+  TError = ErrorType<ErrorResponse>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getMessagingConfig>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetMessagingConfigQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * @summary Get communication activity for a single lead
+ */
+export const getGetLeadActivityUrl = (
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+) => {
+  return `/api/admin/leads/${leadType}/${id}/activity`;
+};
+
+export const getLeadActivity = async (
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+  options?: RequestInit,
+): Promise<LeadActivityResponse> => {
+  return customFetch<LeadActivityResponse>(
+    getGetLeadActivityUrl(leadType, id),
+    {
+      ...options,
+      method: "GET",
+    },
+  );
+};
+
+export const getGetLeadActivityQueryKey = (
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+) => {
+  return [`/api/admin/leads/${leadType}/${id}/activity`] as const;
+};
+
+export const getGetLeadActivityQueryOptions = <
+  TData = Awaited<ReturnType<typeof getLeadActivity>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getLeadActivity>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey =
+    queryOptions?.queryKey ?? getGetLeadActivityQueryKey(leadType, id);
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof getLeadActivity>>> = ({
+    signal,
+  }) => getLeadActivity(leadType, id, { signal, ...requestOptions });
+
+  return {
+    queryKey,
+    queryFn,
+    enabled: !!(leadType && id),
+    ...queryOptions,
+  } as UseQueryOptions<
+    Awaited<ReturnType<typeof getLeadActivity>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetLeadActivityQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getLeadActivity>>
+>;
+export type GetLeadActivityQueryError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Get communication activity for a single lead
+ */
+
+export function useGetLeadActivity<
+  TData = Awaited<ReturnType<typeof getLeadActivity>>,
+  TError = ErrorType<ErrorResponse>,
+>(
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+  options?: {
+    query?: UseQueryOptions<
+      Awaited<ReturnType<typeof getLeadActivity>>,
+      TError,
+      TData
+    >;
+    request?: SecondParameter<typeof customFetch>;
+  },
+): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetLeadActivityQueryOptions(leadType, id, options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * @summary Send an email reply to a lead
+ */
+export const getSendLeadEmailUrl = (
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+) => {
+  return `/api/admin/leads/${leadType}/${id}/email`;
+};
+
+export const sendLeadEmail = async (
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+  sendEmailInput: SendEmailInput,
+  options?: RequestInit,
+): Promise<SendResult> => {
+  return customFetch<SendResult>(getSendLeadEmailUrl(leadType, id), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(sendEmailInput),
+  });
+};
+
+export const getSendLeadEmailMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof sendLeadEmail>>,
+    TError,
+    {
+      leadType:
+        | "repair-quote"
+        | "sell-phone"
+        | "appointment"
+        | "contact"
+        | "reservation";
+      id: number;
+      data: BodyType<SendEmailInput>;
+    },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof sendLeadEmail>>,
+  TError,
+  {
+    leadType:
+      | "repair-quote"
+      | "sell-phone"
+      | "appointment"
+      | "contact"
+      | "reservation";
+    id: number;
+    data: BodyType<SendEmailInput>;
+  },
+  TContext
+> => {
+  const mutationKey = ["sendLeadEmail"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof sendLeadEmail>>,
+    {
+      leadType:
+        | "repair-quote"
+        | "sell-phone"
+        | "appointment"
+        | "contact"
+        | "reservation";
+      id: number;
+      data: BodyType<SendEmailInput>;
+    }
+  > = (props) => {
+    const { leadType, id, data } = props ?? {};
+
+    return sendLeadEmail(leadType, id, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type SendLeadEmailMutationResult = NonNullable<
+  Awaited<ReturnType<typeof sendLeadEmail>>
+>;
+export type SendLeadEmailMutationBody = BodyType<SendEmailInput>;
+export type SendLeadEmailMutationError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Send an email reply to a lead
+ */
+export const useSendLeadEmail = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof sendLeadEmail>>,
+    TError,
+    {
+      leadType:
+        | "repair-quote"
+        | "sell-phone"
+        | "appointment"
+        | "contact"
+        | "reservation";
+      id: number;
+      data: BodyType<SendEmailInput>;
+    },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof sendLeadEmail>>,
+  TError,
+  {
+    leadType:
+      | "repair-quote"
+      | "sell-phone"
+      | "appointment"
+      | "contact"
+      | "reservation";
+    id: number;
+    data: BodyType<SendEmailInput>;
+  },
+  TContext
+> => {
+  return useMutation(getSendLeadEmailMutationOptions(options));
+};
+
+/**
+ * @summary Send an SMS reply to a lead
+ */
+export const getSendLeadSmsUrl = (
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+) => {
+  return `/api/admin/leads/${leadType}/${id}/sms`;
+};
+
+export const sendLeadSms = async (
+  leadType:
+    | "repair-quote"
+    | "sell-phone"
+    | "appointment"
+    | "contact"
+    | "reservation",
+  id: number,
+  sendSmsInput: SendSmsInput,
+  options?: RequestInit,
+): Promise<SendResult> => {
+  return customFetch<SendResult>(getSendLeadSmsUrl(leadType, id), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(sendSmsInput),
+  });
+};
+
+export const getSendLeadSmsMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof sendLeadSms>>,
+    TError,
+    {
+      leadType:
+        | "repair-quote"
+        | "sell-phone"
+        | "appointment"
+        | "contact"
+        | "reservation";
+      id: number;
+      data: BodyType<SendSmsInput>;
+    },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof sendLeadSms>>,
+  TError,
+  {
+    leadType:
+      | "repair-quote"
+      | "sell-phone"
+      | "appointment"
+      | "contact"
+      | "reservation";
+    id: number;
+    data: BodyType<SendSmsInput>;
+  },
+  TContext
+> => {
+  const mutationKey = ["sendLeadSms"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof sendLeadSms>>,
+    {
+      leadType:
+        | "repair-quote"
+        | "sell-phone"
+        | "appointment"
+        | "contact"
+        | "reservation";
+      id: number;
+      data: BodyType<SendSmsInput>;
+    }
+  > = (props) => {
+    const { leadType, id, data } = props ?? {};
+
+    return sendLeadSms(leadType, id, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type SendLeadSmsMutationResult = NonNullable<
+  Awaited<ReturnType<typeof sendLeadSms>>
+>;
+export type SendLeadSmsMutationBody = BodyType<SendSmsInput>;
+export type SendLeadSmsMutationError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Send an SMS reply to a lead
+ */
+export const useSendLeadSms = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof sendLeadSms>>,
+    TError,
+    {
+      leadType:
+        | "repair-quote"
+        | "sell-phone"
+        | "appointment"
+        | "contact"
+        | "reservation";
+      id: number;
+      data: BodyType<SendSmsInput>;
+    },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof sendLeadSms>>,
+  TError,
+  {
+    leadType:
+      | "repair-quote"
+      | "sell-phone"
+      | "appointment"
+      | "contact"
+      | "reservation";
+    id: number;
+    data: BodyType<SendSmsInput>;
+  },
+  TContext
+> => {
+  return useMutation(getSendLeadSmsMutationOptions(options));
+};
+
+/**
+ * @summary Resend delivery-status webhook (signature-verified)
+ */
+export const getResendWebhookUrl = () => {
+  return `/api/webhooks/resend`;
+};
+
+export const resendWebhook = async (
+  options?: RequestInit,
+): Promise<WebhookAck> => {
+  return customFetch<WebhookAck>(getResendWebhookUrl(), {
+    ...options,
+    method: "POST",
+  });
+};
+
+export const getResendWebhookMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof resendWebhook>>,
+    TError,
+    void,
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof resendWebhook>>,
+  TError,
+  void,
+  TContext
+> => {
+  const mutationKey = ["resendWebhook"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof resendWebhook>>,
+    void
+  > = () => {
+    return resendWebhook(requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type ResendWebhookMutationResult = NonNullable<
+  Awaited<ReturnType<typeof resendWebhook>>
+>;
+
+export type ResendWebhookMutationError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Resend delivery-status webhook (signature-verified)
+ */
+export const useResendWebhook = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof resendWebhook>>,
+    TError,
+    void,
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof resendWebhook>>,
+  TError,
+  void,
+  TContext
+> => {
+  return useMutation(getResendWebhookMutationOptions(options));
+};
+
+/**
+ * @summary Telnyx delivery-status webhook (signature-verified)
+ */
+export const getTelnyxWebhookUrl = () => {
+  return `/api/webhooks/telnyx`;
+};
+
+export const telnyxWebhook = async (
+  options?: RequestInit,
+): Promise<WebhookAck> => {
+  return customFetch<WebhookAck>(getTelnyxWebhookUrl(), {
+    ...options,
+    method: "POST",
+  });
+};
+
+export const getTelnyxWebhookMutationOptions = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof telnyxWebhook>>,
+    TError,
+    void,
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof telnyxWebhook>>,
+  TError,
+  void,
+  TContext
+> => {
+  const mutationKey = ["telnyxWebhook"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof telnyxWebhook>>,
+    void
+  > = () => {
+    return telnyxWebhook(requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type TelnyxWebhookMutationResult = NonNullable<
+  Awaited<ReturnType<typeof telnyxWebhook>>
+>;
+
+export type TelnyxWebhookMutationError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Telnyx delivery-status webhook (signature-verified)
+ */
+export const useTelnyxWebhook = <
+  TError = ErrorType<ErrorResponse>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof telnyxWebhook>>,
+    TError,
+    void,
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof telnyxWebhook>>,
+  TError,
+  void,
+  TContext
+> => {
+  return useMutation(getTelnyxWebhookMutationOptions(options));
 };

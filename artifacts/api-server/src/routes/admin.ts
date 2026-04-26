@@ -1,5 +1,11 @@
-import { Router, type IRouter, type Request, type Response, type NextFunction } from "express";
-import { asc, eq } from "drizzle-orm";
+import {
+  Router,
+  type IRouter,
+  type Request,
+  type Response,
+  type NextFunction,
+} from "express";
+import { asc, desc, eq } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@workspace/db";
 import {
@@ -10,9 +16,12 @@ import {
   itemReservationsTable,
   inventoryItemsTable,
   AVAILABILITY_VALUES,
+  leadCommunicationsTable,
 } from "@workspace/db";
 import { ObjectStorageService } from "../lib/objectStorage";
 import { serializeAdminInventoryItem } from "../lib/inventoryMapper";
+import { sendEmail, sendSms, messagingConfig } from "../lib/messaging";
+import { checkRateLimit } from "../lib/rate-limit";
 
 const ADMIN_PASSWORD_ENV = "GX_ADMIN_PASSWORD";
 
@@ -30,67 +39,324 @@ function requireAdmin(req: Request, res: Response, next: NextFunction) {
   next();
 }
 
+function noStore(_req: Request, res: Response, next: NextFunction) {
+  res.set("Cache-Control", "no-store");
+  next();
+}
+
+const tableMap = {
+  "repair-quote": repairQuotesTable,
+  "sell-phone": sellPhoneSubmissionsTable,
+  appointment: appointmentsTable,
+  contact: contactMessagesTable,
+  reservation: itemReservationsTable,
+} as const;
+
+type LeadType = keyof typeof tableMap;
+
+const STATUSES = ["new", "in_progress", "done", "archived"] as const;
+
+const RATE_LIMIT_MAX = 5;
+const RATE_LIMIT_WINDOW_MS = 60 * 60 * 1000;
+
 const router: IRouter = Router();
 const objectStorageService = new ObjectStorageService();
 
 router.use(requireAdmin);
+router.use(noStore);
 
-router.get("/leads", async (_req: Request, res: Response, next: NextFunction) => {
-  try {
-    const [repairQuotes, sellPhone, appointments, contact, reservations] = await Promise.all([
-      db.select().from(repairQuotesTable).orderBy(repairQuotesTable.createdAt),
-      db.select().from(sellPhoneSubmissionsTable).orderBy(sellPhoneSubmissionsTable.createdAt),
-      db.select().from(appointmentsTable).orderBy(appointmentsTable.createdAt),
-      db.select().from(contactMessagesTable).orderBy(contactMessagesTable.createdAt),
-      db.select().from(itemReservationsTable).orderBy(itemReservationsTable.createdAt),
-    ]);
+router.get(
+  "/leads",
+  async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+      const [repairQuotes, sellPhone, appointments, contact, reservations] =
+        await Promise.all([
+          db
+            .select()
+            .from(repairQuotesTable)
+            .orderBy(desc(repairQuotesTable.createdAt)),
+          db
+            .select()
+            .from(sellPhoneSubmissionsTable)
+            .orderBy(desc(sellPhoneSubmissionsTable.createdAt)),
+          db
+            .select()
+            .from(appointmentsTable)
+            .orderBy(desc(appointmentsTable.createdAt)),
+          db
+            .select()
+            .from(contactMessagesTable)
+            .orderBy(desc(contactMessagesTable.createdAt)),
+          db
+            .select()
+            .from(itemReservationsTable)
+            .orderBy(desc(itemReservationsTable.createdAt)),
+        ]);
+      res.json({
+        repairQuotes: repairQuotes.map(serializeDates),
+        sellPhoneSubmissions: sellPhone.map(serializeDates),
+        appointments: appointments.map(serializeDates),
+        contactMessages: contact.map(serializeDates),
+        itemReservations: reservations.map(serializeDates),
+      });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
+
+router.get(
+  "/messaging/config",
+  (_req: Request, res: Response) => {
     res.json({
-      repairQuotes: repairQuotes.map(serializeDates),
-      sellPhoneSubmissions: sellPhone.map(serializeDates),
-      appointments: appointments.map(serializeDates),
-      contactMessages: contact.map(serializeDates),
-      itemReservations: reservations.map(serializeDates),
+      emailEnabled: messagingConfig.emailEnabled,
+      smsEnabled: messagingConfig.smsEnabled,
+      mailFrom: messagingConfig.mailFrom,
+      smsFrom: messagingConfig.smsFrom,
     });
-  } catch (err) {
-    next(err as Error);
-  }
-});
+  },
+);
 
-router.patch("/leads/:leadType/:id/status", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    const { leadType, id } = req.params;
-    const numericId = Number(id);
-    const status = (req.body as { status?: string }).status;
-    if (!Number.isFinite(numericId) || !status || !["new", "in_progress", "done", "archived"].includes(status)) {
-      res.status(400).json({ error: "Invalid id or status" });
-      return;
+router.patch(
+  "/leads/:leadType/:id/status",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { leadType, id } = req.params;
+      const numericId = Number(id);
+      const status = (req.body as { status?: string }).status;
+      if (
+        !Number.isFinite(numericId) ||
+        !status ||
+        !STATUSES.includes(status as (typeof STATUSES)[number])
+      ) {
+        res.status(400).json({ error: "Invalid id or status" });
+        return;
+      }
+      const table = tableMap[leadType as LeadType];
+      if (!table) {
+        res.status(400).json({ error: "Unknown leadType" });
+        return;
+      }
+      const [row] = await db
+        .update(table)
+        .set({ status, updatedAt: new Date() })
+        .where(eq(table.id, numericId))
+        .returning({ id: table.id });
+      if (!row) {
+        res.status(404).json({ error: "Lead not found" });
+        return;
+      }
+      res.json({ ok: true, id: row.id });
+    } catch (err) {
+      next(err as Error);
     }
-    const tableMap = {
-      "repair-quote": repairQuotesTable,
-      "sell-phone": sellPhoneSubmissionsTable,
-      appointment: appointmentsTable,
-      contact: contactMessagesTable,
-      reservation: itemReservationsTable,
-    } as const;
-    const table = tableMap[leadType as keyof typeof tableMap];
-    if (!table) {
-      res.status(400).json({ error: "Unknown leadType" });
-      return;
+  },
+);
+
+router.get(
+  "/leads/:leadType/:id/activity",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { leadType, id } = req.params;
+      if (!isLeadType(leadType)) {
+        res.status(400).json({ error: "Unknown leadType" });
+        return;
+      }
+      const rows = await db
+        .select()
+        .from(leadCommunicationsTable)
+        .where(eq(leadCommunicationsTable.leadType, leadType))
+        .orderBy(desc(leadCommunicationsTable.createdAt));
+      const filtered = rows
+        .filter((r) => r.leadId === String(id))
+        .map((r) => ({
+          ...r,
+          createdAt: r.createdAt.toISOString(),
+          updatedAt: r.updatedAt.toISOString(),
+        }));
+      res.json({ items: filtered });
+    } catch (err) {
+      next(err as Error);
     }
-    const [row] = await db
+  },
+);
+
+router.post(
+  "/leads/:leadType/:id/email",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { leadType, id } = req.params;
+      const body = req.body as {
+        to?: string;
+        subject?: string;
+        html?: string;
+        text?: string;
+      };
+      if (!isLeadType(leadType)) {
+        res.status(400).json({ error: "Unknown leadType" });
+        return;
+      }
+      const numericId = Number(id);
+      if (!Number.isFinite(numericId)) {
+        res.status(400).json({ error: "Invalid id" });
+        return;
+      }
+      if (
+        !body.to ||
+        !body.subject ||
+        (!body.html && !body.text) ||
+        !isValidEmail(body.to)
+      ) {
+        res
+          .status(400)
+          .json({ error: "to (email), subject, and html or text are required" });
+        return;
+      }
+      const rateKey = `email:${leadType}:${id}`;
+      const limit = checkRateLimit(rateKey, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
+      if (!limit.allowed) {
+        res.set("Retry-After", String(limit.retryAfterSeconds));
+        res
+          .status(429)
+          .json({ error: "Email rate limit reached for this lead" });
+        return;
+      }
+      const sendResult = await sendEmail({
+        to: body.to,
+        subject: body.subject,
+        html: body.html,
+        text: body.text,
+      });
+      const [row] = await db
+        .insert(leadCommunicationsTable)
+        .values({
+          leadType,
+          leadId: String(numericId),
+          channel: "email",
+          direction: "outbound",
+          subject: body.subject,
+          body: body.html ?? body.text ?? "",
+          recipient: body.to,
+          providerMessageId: sendResult.providerMessageId,
+          status: sendResult.status,
+          error: sendResult.error ?? null,
+        })
+        .returning();
+
+      if (sendResult.status !== "failed") {
+        await maybeAutoAdvance(leadType, numericId);
+      }
+
+      const status = sendResult.status === "failed" ? 502 : 200;
+      res.status(status).json({
+        ok: sendResult.status !== "failed",
+        id: row.id,
+        providerMessageId: sendResult.providerMessageId,
+        status: sendResult.status,
+        error: sendResult.error ?? null,
+      });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
+
+router.post(
+  "/leads/:leadType/:id/sms",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { leadType, id } = req.params;
+      const body = req.body as { to?: string; body?: string };
+      if (!isLeadType(leadType)) {
+        res.status(400).json({ error: "Unknown leadType" });
+        return;
+      }
+      const numericId = Number(id);
+      if (!Number.isFinite(numericId)) {
+        res.status(400).json({ error: "Invalid id" });
+        return;
+      }
+      if (!body.to || !body.body) {
+        res.status(400).json({ error: "to (phone) and body are required" });
+        return;
+      }
+      const normalized = normalizeUsPhone(body.to);
+      if (!normalized) {
+        res
+          .status(400)
+          .json({ error: "Phone number must be a valid US (+1) number" });
+        return;
+      }
+      const rateKey = `sms:${leadType}:${id}`;
+      const limit = checkRateLimit(rateKey, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
+      if (!limit.allowed) {
+        res.set("Retry-After", String(limit.retryAfterSeconds));
+        res.status(429).json({ error: "SMS rate limit reached for this lead" });
+        return;
+      }
+      const sendResult = await sendSms({ to: normalized, body: body.body });
+      const [row] = await db
+        .insert(leadCommunicationsTable)
+        .values({
+          leadType,
+          leadId: String(numericId),
+          channel: "sms",
+          direction: "outbound",
+          subject: null,
+          body: body.body,
+          recipient: normalized,
+          providerMessageId: sendResult.providerMessageId,
+          status: sendResult.status,
+          error: sendResult.error ?? null,
+        })
+        .returning();
+
+      if (sendResult.status !== "failed") {
+        await maybeAutoAdvance(leadType, numericId);
+      }
+
+      const status = sendResult.status === "failed" ? 502 : 200;
+      res.status(status).json({
+        ok: sendResult.status !== "failed",
+        id: row.id,
+        providerMessageId: sendResult.providerMessageId,
+        status: sendResult.status,
+        error: sendResult.error ?? null,
+      });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
+
+async function maybeAutoAdvance(leadType: LeadType, id: number): Promise<void> {
+  const table = tableMap[leadType];
+  const [existing] = await db
+    .select({ status: table.status })
+    .from(table)
+    .where(eq(table.id, id));
+  if (existing && existing.status === "new") {
+    await db
       .update(table)
-      .set({ status, updatedAt: new Date() })
-      .where(eq(table.id, numericId))
-      .returning({ id: table.id });
-    if (!row) {
-      res.status(404).json({ error: "Lead not found" });
-      return;
-    }
-    res.json({ ok: true, id: row.id });
-  } catch (err) {
-    next(err as Error);
+      .set({ status: "in_progress", updatedAt: new Date() })
+      .where(eq(table.id, id));
   }
-});
+}
+
+function isLeadType(value: string | string[] | undefined): value is LeadType {
+  return typeof value === "string" && value in tableMap;
+}
+
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+function normalizeUsPhone(value: string): string | null {
+  const digits = value.replace(/\D/g, "");
+  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+  if (digits.length === 10) return `+1${digits}`;
+  return null;
+}
 
 // ---------------- Inventory CRUD ----------------
 

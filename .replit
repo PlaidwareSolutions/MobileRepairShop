@@ -37,3 +37,9 @@ externalPort = 3001
 
 [nix]
 channel = "stable-25_05"
+
+[userenv]
+
+[userenv.shared]
+MAIL_FROM_EMAIL = "hello@nawazcoded.me"
+SMS_FROM_NUMBER = "+13466236898"

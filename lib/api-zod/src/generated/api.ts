@@ -545,3 +545,153 @@ export const UpdateLeadStatusResponse = zod.object({
   ok: zod.boolean(),
   id: zod.number().optional(),
 });
+
+/**
+ * @summary Get whether email and SMS sending are configured
+ */
+export const GetMessagingConfigHeader = zod.object({
+  "X-Admin-Password": zod.string(),
+});
+
+export const GetMessagingConfigResponse = zod.object({
+  emailEnabled: zod.boolean(),
+  smsEnabled: zod.boolean(),
+  mailFrom: zod.string(),
+  smsFrom: zod.string(),
+});
+
+/**
+ * @summary Get communication activity for a single lead
+ */
+export const GetLeadActivityParams = zod.object({
+  leadType: zod.enum([
+    "repair-quote",
+    "sell-phone",
+    "appointment",
+    "contact",
+    "reservation",
+  ]),
+  id: zod.coerce.number(),
+});
+
+export const GetLeadActivityHeader = zod.object({
+  "X-Admin-Password": zod.string(),
+});
+
+export const GetLeadActivityResponse = zod.object({
+  items: zod.array(
+    zod.object({
+      id: zod.number(),
+      leadType: zod.enum([
+        "repair-quote",
+        "sell-phone",
+        "appointment",
+        "contact",
+        "reservation",
+      ]),
+      leadId: zod.string(),
+      channel: zod.enum(["email", "sms"]),
+      direction: zod.enum(["outbound", "inbound"]),
+      subject: zod.string().nullish(),
+      body: zod.string(),
+      recipient: zod.string(),
+      providerMessageId: zod.string().nullish(),
+      status: zod.string(),
+      error: zod.string().nullish(),
+      createdAt: zod.string(),
+      updatedAt: zod.string(),
+    }),
+  ),
+});
+
+/**
+ * @summary Send an email reply to a lead
+ */
+export const SendLeadEmailParams = zod.object({
+  leadType: zod.enum([
+    "repair-quote",
+    "sell-phone",
+    "appointment",
+    "contact",
+    "reservation",
+  ]),
+  id: zod.coerce.number(),
+});
+
+export const SendLeadEmailHeader = zod.object({
+  "X-Admin-Password": zod.string(),
+});
+
+export const sendLeadEmailBodyToMin = 3;
+export const sendLeadEmailBodyToMax = 200;
+
+export const sendLeadEmailBodySubjectMax = 200;
+
+export const sendLeadEmailBodyHtmlMax = 20000;
+
+export const sendLeadEmailBodyTextMax = 20000;
+
+export const SendLeadEmailBody = zod.object({
+  to: zod.string().min(sendLeadEmailBodyToMin).max(sendLeadEmailBodyToMax),
+  subject: zod.string().min(1).max(sendLeadEmailBodySubjectMax),
+  html: zod.string().max(sendLeadEmailBodyHtmlMax).optional(),
+  text: zod.string().max(sendLeadEmailBodyTextMax).optional(),
+});
+
+export const SendLeadEmailResponse = zod.object({
+  ok: zod.boolean(),
+  id: zod.number().optional(),
+  providerMessageId: zod.string().nullish(),
+  status: zod.enum(["queued", "sent", "failed"]),
+  error: zod.string().nullish(),
+});
+
+/**
+ * @summary Send an SMS reply to a lead
+ */
+export const SendLeadSmsParams = zod.object({
+  leadType: zod.enum([
+    "repair-quote",
+    "sell-phone",
+    "appointment",
+    "contact",
+    "reservation",
+  ]),
+  id: zod.coerce.number(),
+});
+
+export const SendLeadSmsHeader = zod.object({
+  "X-Admin-Password": zod.string(),
+});
+
+export const sendLeadSmsBodyToMin = 7;
+export const sendLeadSmsBodyToMax = 40;
+
+export const sendLeadSmsBodyBodyMax = 1600;
+
+export const SendLeadSmsBody = zod.object({
+  to: zod.string().min(sendLeadSmsBodyToMin).max(sendLeadSmsBodyToMax),
+  body: zod.string().min(1).max(sendLeadSmsBodyBodyMax),
+});
+
+export const SendLeadSmsResponse = zod.object({
+  ok: zod.boolean(),
+  id: zod.number().optional(),
+  providerMessageId: zod.string().nullish(),
+  status: zod.enum(["queued", "sent", "failed"]),
+  error: zod.string().nullish(),
+});
+
+/**
+ * @summary Resend delivery-status webhook (signature-verified)
+ */
+export const ResendWebhookResponse = zod.object({
+  ok: zod.boolean(),
+});
+
+/**
+ * @summary Telnyx delivery-status webhook (signature-verified)
+ */
+export const TelnyxWebhookResponse = zod.object({
+  ok: zod.boolean(),
+});
