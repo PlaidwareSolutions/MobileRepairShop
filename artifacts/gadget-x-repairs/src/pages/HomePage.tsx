@@ -71,7 +71,7 @@ const PREPAID_TILES = [
 ];
 
 const AREA_TILES = [
-  { label: "Houston", to: "/" },
+  { label: "Houston", to: "/phone-repair-houston-tx" },
   { label: "Sugar Land", to: "/phone-repair-sugar-land-tx" },
   { label: "Missouri City", to: "/phone-repair-missouri-city-tx" },
   { label: "Stafford", to: "/phone-repair-stafford-tx" },

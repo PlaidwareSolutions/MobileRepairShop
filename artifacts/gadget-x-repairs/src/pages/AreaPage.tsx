@@ -24,7 +24,7 @@ export default function AreaPage() {
         title={data.metaTitle}
         description={data.metaDescription}
         path={path}
-        jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "Areas", path: "/" }, { name: data.title, path }])]}
+        jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "Areas", path: "/phone-repair-houston-tx" }, { name: data.title, path }])]}
       />
       <Breadcrumbs items={[{ label: "Areas Served" }, { label: data.title }]} />
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />

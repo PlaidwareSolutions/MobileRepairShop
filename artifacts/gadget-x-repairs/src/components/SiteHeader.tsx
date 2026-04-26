@@ -59,7 +59,7 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b-4 border-red-500">
       <div className="max-w-[1240px] mx-auto px-4 py-4 flex justify-between items-center gap-4">
-        <Link href="/" className="flex items-center gap-2 shrink-0" aria-label={`${BUSINESS.name} home`}>
+        <Link href="/phone-repair-houston-tx" className="flex items-center gap-2 shrink-0" aria-label={`${BUSINESS.name} home`}>
           <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 md:h-12 object-contain" width={120} height={48} />
         </Link>
         <nav className="hidden lg:flex items-center gap-6 font-black uppercase tracking-tighter text-sm" aria-label="Primary">

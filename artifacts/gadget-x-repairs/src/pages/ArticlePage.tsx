@@ -27,7 +27,7 @@ export default function ArticlePage() {
         jsonLd={[
           localBusinessJsonLd(),
           articleJsonLd({ title: data.title, description: data.metaDescription, path, published: data.publishedDate, updated: data.updatedDate }),
-          breadcrumbJsonLd([{ name: "Articles", path: "/" }, { name: data.title, path }]),
+          breadcrumbJsonLd([{ name: "Articles", path: "/phone-repair-houston-tx" }, { name: data.title, path }]),
         ]}
       />
       <Breadcrumbs items={[{ label: "Articles" }, { label: data.title }]} />

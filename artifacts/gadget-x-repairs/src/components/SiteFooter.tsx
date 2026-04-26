@@ -40,7 +40,7 @@ export function SiteFooter() {
     <footer className="bg-black pt-16 pb-32 md:pb-16 border-t border-zinc-900">
       <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 text-zinc-400 font-bold">
         <div className="lg:col-span-2">
-          <Link href="/">
+          <Link href="/phone-repair-houston-tx">
             <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 object-contain mb-6 grayscale opacity-50" width={120} height={40} />
           </Link>
           <p className="text-sm mb-6 max-w-sm">{BUSINESS.tagline}</p>

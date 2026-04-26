@@ -31,7 +31,7 @@ export default function NotFound() {
             ))}
           </div>
           <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest h-12 px-8">
-            <Link href="/">Back Home</Link>
+            <Link href="/phone-repair-houston-tx">Back Home</Link>
           </Button>
         </div>
       </section>

@@ -61,7 +61,7 @@ export const ARTICLES_DATA: ArticleData[] = [
     updatedDate: UPD,
   },
   {
-    slug: "ps5-hdmi-port-repair-worth-it-tx",
+    slug: "ps5-hdmi-port-repair-worth-it-houston-tx",
     title: "Is PS5 HDMI Port Repair Worth It?",
     metaTitle: "Is PS5 HDMI Port Repair Worth It in 2026? | Gadget X Houston",
     metaDescription:
@@ -103,7 +103,7 @@ export const ARTICLES_DATA: ArticleData[] = [
     updatedDate: UPD,
   },
   {
-    slug: "repair-or-replace-laptop-tx",
+    slug: "repair-or-replace-laptop-houston-tx",
     title: "Repair or Replace Your Laptop?",
     metaTitle: "Should You Repair or Replace Your Laptop? | Gadget X Houston",
     metaDescription:
@@ -141,7 +141,7 @@ export const ARTICLES_DATA: ArticleData[] = [
     updatedDate: UPD,
   },
   {
-    slug: "phone-battery-needs-replacement-tx",
+    slug: "phone-battery-needs-replacement-houston-tx",
     title: "5 Signs Your Phone Battery Needs Replacement",
     metaTitle: "5 Signs Your Phone Battery Needs Replacement | Gadget X Houston",
     metaDescription:
@@ -177,7 +177,7 @@ export const ARTICLES_DATA: ArticleData[] = [
     updatedDate: UPD,
   },
   {
-    slug: "used-vs-refurbished-phones-tx",
+    slug: "used-vs-refurbished-phones-houston-tx",
     title: "Used vs Refurbished Phones — What's the Difference?",
     metaTitle: "Used vs Refurbished Phones | What's the Difference | Gadget X",
     metaDescription:
@@ -209,7 +209,7 @@ export const ARTICLES_DATA: ArticleData[] = [
     updatedDate: UPD,
   },
   {
-    slug: "can-locked-phone-be-unlocked-tx",
+    slug: "can-locked-phone-be-unlocked-houston-tx",
     title: "Can a Locked Phone Be Unlocked?",
     metaTitle: "Can a Locked Phone Be Unlocked? | Houston Carrier Unlock",
     metaDescription:
@@ -275,7 +275,7 @@ export const ARTICLES_DATA: ArticleData[] = [
     updatedDate: UPD,
   },
   {
-    slug: "check-before-buying-used-iphone-tx",
+    slug: "check-before-buying-used-iphone-houston-tx",
     title: "What to Check Before Buying a Used iPhone",
     metaTitle: "What to Check Before Buying a Used iPhone | Gadget X Houston",
     metaDescription:
@@ -311,7 +311,7 @@ export const ARTICLES_DATA: ArticleData[] = [
     updatedDate: UPD,
   },
   {
-    slug: "laptop-not-charging-tx",
+    slug: "laptop-not-charging-houston-tx",
     title: "Laptop Not Charging? Here's What to Do",
     metaTitle: "Laptop Not Charging — Diagnosing the Problem | Gadget X",
     metaDescription:
@@ -347,7 +347,7 @@ export const ARTICLES_DATA: ArticleData[] = [
     updatedDate: UPD,
   },
   {
-    slug: "xbox-hdmi-port-problems-tx",
+    slug: "xbox-hdmi-port-problems-houston-tx",
     title: "Xbox HDMI Port Problems — How We Fix Them",
     metaTitle: "Xbox HDMI Port Problems & Repair | Gadget X Houston",
     metaDescription:
