@@ -22,6 +22,7 @@ type CardShellProps = {
   meta?: ReactNode;
   body?: ReactNode;
   badges?: ReactNode;
+  unreadInboundCount?: number;
   actionBar: ReactNode;
 };
 
@@ -34,12 +35,21 @@ function CardShell({
   meta,
   body,
   badges,
+  unreadInboundCount = 0,
   actionBar,
 }: CardShellProps) {
+  const hasUnread = unreadInboundCount > 0;
   return (
     <article
-      className={`bg-black border-2 p-5 ${isNew ? "border-yellow-400" : "border-zinc-800"}`}
+      className={`bg-black border-2 p-5 ${
+        hasUnread
+          ? "border-yellow-400 ring-2 ring-yellow-400/40"
+          : isNew
+            ? "border-yellow-400"
+            : "border-zinc-800"
+      }`}
       data-testid={testId}
+      data-unread-inbound={unreadInboundCount}
     >
       <div className="flex flex-wrap justify-between items-start gap-3 mb-3">
         <div>
@@ -52,7 +62,17 @@ function CardShell({
           <div className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
             #{id} · {formatRelative(createdAt)}
           </div>
-          {badges && <div className="flex flex-wrap gap-1 justify-end">{badges}</div>}
+          <div className="flex flex-wrap gap-1 justify-end">
+            {hasUnread && (
+              <span
+                className="bg-yellow-400 text-black px-2 py-0.5 font-black uppercase text-[10px] tracking-widest"
+                data-testid={`badge-card-reply-${testId}`}
+              >
+                {unreadInboundCount} REPLY
+              </span>
+            )}
+            {badges}
+          </div>
         </div>
       </div>
       {body && <div className="text-sm text-zinc-200 whitespace-pre-wrap break-words">{body}</div>}
@@ -73,6 +93,7 @@ type CommonProps = {
   password: string;
   messaging: MessagingConfig | null;
   onChanged: () => void;
+  unreadInboundCount?: number;
 };
 
 export function RepairQuoteCard({
@@ -147,6 +168,7 @@ export function RepairQuoteCard({
           )}
         </div>
       }
+      unreadInboundCount={rest.unreadInboundCount ?? 0}
       actionBar={
         <ActionBar
           password={rest.password}
@@ -236,6 +258,7 @@ export function SellPhoneCard({
           )}
         </div>
       }
+      unreadInboundCount={rest.unreadInboundCount ?? 0}
       actionBar={
         <ActionBar
           password={rest.password}
@@ -281,6 +304,7 @@ export function AppointmentCard({
         </Badge>
       }
       body={lead.notes ? <div className="text-sm">{lead.notes}</div> : null}
+      unreadInboundCount={rest.unreadInboundCount ?? 0}
       actionBar={
         <ActionBar
           password={rest.password}
@@ -319,6 +343,7 @@ export function ContactCard({
       primary={lead.name}
       meta={lead.contact}
       body={<div>{lead.message}</div>}
+      unreadInboundCount={rest.unreadInboundCount ?? 0}
       actionBar={
         <ActionBar
           password={rest.password}
@@ -360,6 +385,7 @@ export function ReservationCard({
         </>
       }
       body={lead.notes ? <div className="text-sm">{lead.notes}</div> : null}
+      unreadInboundCount={rest.unreadInboundCount ?? 0}
       actionBar={
         <ActionBar
           password={rest.password}

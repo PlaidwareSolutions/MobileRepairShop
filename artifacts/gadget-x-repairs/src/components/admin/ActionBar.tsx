@@ -240,7 +240,13 @@ export function ActionBar({
       )}
 
       {showActivity && (
-        <Activity password={password} leadType={leadType} id={id} refreshKey={activityKey} />
+        <Activity
+          password={password}
+          leadType={leadType}
+          id={id}
+          refreshKey={activityKey}
+          onRead={onChanged}
+        />
       )}
 
       {composer === "email" && (

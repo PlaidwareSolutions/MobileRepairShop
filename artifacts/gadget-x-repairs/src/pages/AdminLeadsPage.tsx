@@ -29,13 +29,15 @@ import {
 
 type TabKey = keyof AllLeads;
 
-const TABS: { key: TabKey; label: string }[] = [
-  { key: "repairQuotes", label: "Repair Quotes" },
-  { key: "sellPhoneSubmissions", label: "Sell Phone" },
-  { key: "appointments", label: "Appointments" },
-  { key: "contactMessages", label: "Contact" },
-  { key: "itemReservations", label: "Reservations" },
+const TABS: { key: TabKey; label: string; leadType: string }[] = [
+  { key: "repairQuotes", label: "Repair Quotes", leadType: "repair-quote" },
+  { key: "sellPhoneSubmissions", label: "Sell Phone", leadType: "sell-phone" },
+  { key: "appointments", label: "Appointments", leadType: "appointment" },
+  { key: "contactMessages", label: "Contact", leadType: "contact" },
+  { key: "itemReservations", label: "Reservations", leadType: "reservation" },
 ];
+
+type UnreadInboundCounts = Record<string, Record<string, number>>;
 
 const STATUS_FILTER: { key: string; label: string }[] = [
   { key: "all", label: "All" },
@@ -65,6 +67,7 @@ export default function AdminLeadsPage() {
   );
   const [authed, setAuthed] = useState(false);
   const [data, setData] = useState<AllLeads | null>(null);
+  const [unreadCounts, setUnreadCounts] = useState<UnreadInboundCounts>({});
   const [messaging, setMessaging] = useState<MessagingConfig | null>(null);
   const [tab, setTab] = useState<TabKey>("repairQuotes");
   const [statusFilter, setStatusFilter] = useState<string>("active");
@@ -77,10 +80,14 @@ export default function AdminLeadsPage() {
     setLoading(true);
     try {
       const [leads, cfg] = await Promise.all([
-        adminFetchLeads(pw) as Promise<AllLeads>,
+        adminFetchLeads(pw) as Promise<
+          AllLeads & { unreadInboundCounts?: UnreadInboundCounts }
+        >,
         adminMessagingConfig(pw).catch(() => null),
       ]);
-      setData(leads);
+      const { unreadInboundCounts, ...leadsOnly } = leads;
+      setData(leadsOnly as AllLeads);
+      setUnreadCounts(unreadInboundCounts ?? {});
       setMessaging(cfg);
       setAuthed(true);
       if (typeof window !== "undefined") localStorage.setItem("gx_admin_pw", pw);
@@ -98,30 +105,44 @@ export default function AdminLeadsPage() {
   }, []);
 
   const tabCounts = useMemo(() => {
-    if (!data) return {} as Record<TabKey, { total: number; news: number }>;
+    if (!data)
+      return {} as Record<
+        TabKey,
+        { total: number; news: number; unread: number }
+      >;
+    function unreadFor(leadType: string): number {
+      const map = unreadCounts[leadType];
+      if (!map) return 0;
+      return Object.values(map).reduce((sum, n) => sum + (n || 0), 0);
+    }
     return {
       repairQuotes: {
         total: data.repairQuotes.length,
         news: newCount(data.repairQuotes),
+        unread: unreadFor("repair-quote"),
       },
       sellPhoneSubmissions: {
         total: data.sellPhoneSubmissions.length,
         news: newCount(data.sellPhoneSubmissions),
+        unread: unreadFor("sell-phone"),
       },
       appointments: {
         total: data.appointments.length,
         news: newCount(data.appointments),
+        unread: unreadFor("appointment"),
       },
       contactMessages: {
         total: data.contactMessages.length,
         news: newCount(data.contactMessages),
+        unread: unreadFor("contact"),
       },
       itemReservations: {
         total: data.itemReservations.length,
         news: newCount(data.itemReservations),
+        unread: unreadFor("reservation"),
       },
-    } as Record<TabKey, { total: number; news: number }>;
-  }, [data]);
+    } as Record<TabKey, { total: number; news: number; unread: number }>;
+  }, [data, unreadCounts]);
 
   const visibleLeads = useMemo(() => {
     if (!data) return [];
@@ -238,7 +259,8 @@ export default function AdminLeadsPage() {
             <>
               <div className="flex flex-wrap gap-2 mb-4">
                 {TABS.map((t) => {
-                  const c = tabCounts[t.key] ?? { total: 0, news: 0 };
+                  const c =
+                    tabCounts[t.key] ?? { total: 0, news: 0, unread: 0 };
                   const active = tab === t.key;
                   return (
                     <button
@@ -259,6 +281,14 @@ export default function AdminLeadsPage() {
                           data-testid={`badge-new-${t.key}`}
                         >
                           {c.news}
+                        </span>
+                      )}
+                      {c.unread > 0 && (
+                        <span
+                          className="absolute -top-2 -left-2 bg-red-500 text-white px-2 py-0.5 text-[10px] tracking-widest font-black animate-pulse"
+                          data-testid={`badge-unread-${t.key}`}
+                        >
+                          {c.unread} ←
                         </span>
                       )}
                     </button>
@@ -327,10 +357,15 @@ export default function AdminLeadsPage() {
                     </div>
                   )}
                   {visibleLeads.map((lead) => {
+                    const tabMeta = TABS.find((t) => t.key === tab);
+                    const leadTypeStr = tabMeta?.leadType ?? "";
+                    const unread =
+                      unreadCounts[leadTypeStr]?.[String(lead.id)] ?? 0;
                     const common = {
                       password,
                       messaging,
                       onChanged: handleChanged,
+                      unreadInboundCount: unread,
                     };
                     if (tab === "repairQuotes") {
                       return (

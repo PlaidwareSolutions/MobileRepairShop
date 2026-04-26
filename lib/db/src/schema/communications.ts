@@ -23,6 +23,7 @@ export const leadCommunicationsTable = pgTable(
     providerMessageId: text("provider_message_id"),
     status: text("status").notNull().default("queued"),
     error: text("error"),
+    readAt: timestamp("read_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -35,6 +36,10 @@ export const leadCommunicationsTable = pgTable(
     createdIdx: index("lead_comms_created_idx").on(table.createdAt),
     providerMsgIdx: index("lead_comms_provider_msg_idx").on(
       table.providerMessageId,
+    ),
+    inboundUnreadIdx: index("lead_comms_inbound_unread_idx").on(
+      table.direction,
+      table.readAt,
     ),
   }),
 );

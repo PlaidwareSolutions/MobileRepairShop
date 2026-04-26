@@ -8,9 +8,144 @@ import {
 import express from "express";
 import crypto from "crypto";
 import { Webhook } from "svix";
-import { eq } from "drizzle-orm";
-import { db, leadCommunicationsTable } from "@workspace/db";
+import { and, desc, eq, ilike } from "drizzle-orm";
+import {
+  db,
+  leadCommunicationsTable,
+  repairQuotesTable,
+  sellPhoneSubmissionsTable,
+  appointmentsTable,
+  contactMessagesTable,
+  itemReservationsTable,
+} from "@workspace/db";
 import { logger } from "../lib/logger";
+
+type LeadTypeKey =
+  | "repair-quote"
+  | "sell-phone"
+  | "appointment"
+  | "contact"
+  | "reservation";
+
+const LEAD_TABLE_BY_TYPE = {
+  "repair-quote": repairQuotesTable,
+  "sell-phone": sellPhoneSubmissionsTable,
+  appointment: appointmentsTable,
+  contact: contactMessagesTable,
+  reservation: itemReservationsTable,
+} as const;
+
+function isKnownLeadType(value: string): value is LeadTypeKey {
+  return value in LEAD_TABLE_BY_TYPE;
+}
+
+function normalizePhone(value: string): string {
+  const digits = value.replace(/\D/g, "");
+  if (digits.length === 11 && digits.startsWith("1")) return `+${digits}`;
+  if (digits.length === 10) return `+1${digits}`;
+  return value.startsWith("+") ? value : `+${digits || value}`;
+}
+
+async function findLeadForInbound(
+  channel: "email" | "sms",
+  from: string,
+): Promise<{ leadType: LeadTypeKey; leadId: string } | null> {
+  const recipientMatch =
+    channel === "sms" ? normalizePhone(from) : from.trim().toLowerCase();
+
+  const recentOutbound = await db
+    .select({
+      leadType: leadCommunicationsTable.leadType,
+      leadId: leadCommunicationsTable.leadId,
+    })
+    .from(leadCommunicationsTable)
+    .where(
+      and(
+        eq(leadCommunicationsTable.channel, channel),
+        eq(leadCommunicationsTable.direction, "outbound"),
+        channel === "sms"
+          ? eq(leadCommunicationsTable.recipient, recipientMatch)
+          : ilike(leadCommunicationsTable.recipient, recipientMatch),
+      ),
+    )
+    .orderBy(desc(leadCommunicationsTable.createdAt))
+    .limit(1);
+
+  if (recentOutbound.length === 0) return null;
+  const row = recentOutbound[0];
+  if (!isKnownLeadType(row.leadType)) return null;
+  return { leadType: row.leadType, leadId: row.leadId };
+}
+
+async function maybeReopenLead(
+  leadType: LeadTypeKey,
+  leadId: string,
+): Promise<void> {
+  const numericId = Number(leadId);
+  if (!Number.isFinite(numericId)) return;
+  const table = LEAD_TABLE_BY_TYPE[leadType];
+  const [existing] = await db
+    .select({ status: table.status })
+    .from(table)
+    .where(eq(table.id, numericId));
+  if (existing && existing.status === "done") {
+    await db
+      .update(table)
+      .set({ status: "new", updatedAt: new Date() })
+      .where(eq(table.id, numericId));
+    logger.info(
+      { leadType, leadId, status: "new" },
+      "webhooks.lead.reopened_on_inbound",
+    );
+  }
+}
+
+async function persistInbound(args: {
+  channel: "email" | "sms";
+  from: string;
+  to: string;
+  subject: string | null;
+  body: string;
+  providerMessageId: string | null;
+}): Promise<void> {
+  const lead = await findLeadForInbound(args.channel, args.from);
+  if (!lead) {
+    logger.info(
+      { channel: args.channel, from: args.from },
+      "webhooks.inbound.no_matching_lead",
+    );
+    return;
+  }
+  // For inbound rows, `recipient` stores the customer's address (the
+  // "other party" on the conversation), mirroring the meaning it has
+  // for outbound rows. The shop's own destination address (args.to) is
+  // discarded because it's always our configured mailbox/number.
+  const customerAddress =
+    args.channel === "sms" ? normalizePhone(args.from) : args.from.trim();
+  await db.insert(leadCommunicationsTable).values({
+    leadType: lead.leadType,
+    leadId: lead.leadId,
+    channel: args.channel,
+    direction: "inbound",
+    subject: args.subject,
+    body: args.body,
+    recipient: customerAddress,
+    providerMessageId: args.providerMessageId,
+    status: "received",
+    error: null,
+  });
+  await maybeReopenLead(lead.leadType, lead.leadId);
+  logger.info(
+    {
+      channel: args.channel,
+      leadType: lead.leadType,
+      leadId: lead.leadId,
+      from: customerAddress,
+      shopAddress: args.to,
+    },
+    "webhooks.inbound.persisted",
+  );
+}
 
 const router: IRouter = Router();
 
@@ -38,17 +173,59 @@ router.post(
       }
       const rawBody = req.body as Buffer;
       const payloadString = rawBody.toString("utf8");
-      let event: { type: string; data?: { email_id?: string; reason?: string } };
+      type ResendEvent = {
+        type: string;
+        data?: {
+          email_id?: string;
+          reason?: string;
+          from?: string | { email?: string };
+          to?: string | string[];
+          subject?: string;
+          text?: string;
+          html?: string;
+          headers?: Record<string, string> | Array<{ name: string; value: string }>;
+        };
+      };
+      let event: ResendEvent;
       try {
         const wh = new Webhook(RESEND_WEBHOOK_SECRET);
         event = wh.verify(payloadString, {
           "svix-id": req.header("svix-id") ?? "",
           "svix-timestamp": req.header("svix-timestamp") ?? "",
           "svix-signature": req.header("svix-signature") ?? "",
-        }) as typeof event;
+        }) as ResendEvent;
       } catch (err) {
         logger.warn({ err }, "webhooks.resend.signature_invalid");
         res.status(401).json({ error: "Invalid signature" });
+        return;
+      }
+
+      if (isResendInboundType(event.type)) {
+        const fromValue = event.data?.from;
+        const fromAddress =
+          typeof fromValue === "string"
+            ? extractEmailAddress(fromValue)
+            : fromValue?.email ?? null;
+        const toValue = event.data?.to;
+        const toAddress = Array.isArray(toValue)
+          ? toValue[0]
+          : typeof toValue === "string"
+            ? toValue
+            : null;
+        if (!fromAddress) {
+          logger.info({ type: event.type }, "webhooks.resend.inbound_no_from");
+          res.json({ ok: true });
+          return;
+        }
+        await persistInbound({
+          channel: "email",
+          from: fromAddress,
+          to: toAddress ?? "",
+          subject: event.data?.subject ?? null,
+          body: event.data?.text ?? event.data?.html ?? "",
+          providerMessageId: event.data?.email_id ?? null,
+        });
+        res.json({ ok: true });
         return;
       }
 
@@ -120,7 +297,9 @@ router.post(
           event_type?: string;
           payload?: {
             id?: string;
-            to?: Array<{ status?: string }>;
+            text?: string;
+            from?: { phone_number?: string };
+            to?: Array<{ phone_number?: string; status?: string }>;
             errors?: Array<{ title?: string; detail?: string }>;
           };
         };
@@ -132,6 +311,27 @@ router.post(
         payload.data?.payload?.errors?.[0]?.detail ??
         payload.data?.payload?.errors?.[0]?.title ??
         null;
+
+      if (eventType === "message.received") {
+        const fromNumber = payload.data?.payload?.from?.phone_number;
+        const toNumber = payload.data?.payload?.to?.[0]?.phone_number ?? "";
+        const text = payload.data?.payload?.text ?? "";
+        if (!fromNumber) {
+          logger.info({ eventType }, "webhooks.telnyx.inbound_no_from");
+          res.json({ ok: true });
+          return;
+        }
+        await persistInbound({
+          channel: "sms",
+          from: fromNumber,
+          to: toNumber,
+          subject: null,
+          body: text,
+          providerMessageId: messageId ?? null,
+        });
+        res.json({ ok: true });
+        return;
+      }
 
       const status = mapTelnyxStatus(eventType, recipientStatus);
       if (status && messageId) {
@@ -179,6 +379,22 @@ function verifyTelnyxSignature(
     logger.warn({ err }, "webhooks.telnyx.verify_error");
     return false;
   }
+}
+
+function isResendInboundType(type: string): boolean {
+  return (
+    type === "inbound.email.received" ||
+    type === "email.inbound.received" ||
+    type === "email.received" ||
+    type.startsWith("inbound.")
+  );
+}
+
+function extractEmailAddress(value: string): string | null {
+  const angle = value.match(/<([^>]+)>/);
+  if (angle) return angle[1].trim();
+  const bare = value.trim();
+  return bare.includes("@") ? bare : null;
 }
 
 function mapTelnyxStatus(

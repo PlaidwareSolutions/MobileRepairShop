@@ -109,6 +109,7 @@ export type LeadCommunication = {
   providerMessageId: string | null;
   status: string;
   error: string | null;
+  readAt: string | null;
   createdAt: string;
   updatedAt: string;
 };
@@ -121,6 +122,18 @@ export async function adminLeadActivity(
   return await adminJson<{ items: LeadCommunication[] }>(
     password,
     `/admin/leads/${leadType}/${id}/activity`,
+  );
+}
+
+export async function adminMarkActivityRead(
+  password: string,
+  leadType: string,
+  id: number,
+) {
+  return await adminJson<{ ok: boolean; marked: number }>(
+    password,
+    `/admin/leads/${leadType}/${id}/activity/read`,
+    { method: "POST" },
   );
 }
 

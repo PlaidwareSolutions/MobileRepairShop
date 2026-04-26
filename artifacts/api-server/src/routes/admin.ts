@@ -5,7 +5,7 @@ import {
   type Response,
   type NextFunction,
 } from "express";
-import { asc, desc, eq } from "drizzle-orm";
+import { and, asc, desc, eq, isNull, sql } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@workspace/db";
 import {
@@ -70,35 +70,66 @@ router.get(
   "/leads",
   async (_req: Request, res: Response, next: NextFunction) => {
     try {
-      const [repairQuotes, sellPhone, appointments, contact, reservations] =
-        await Promise.all([
-          db
-            .select()
-            .from(repairQuotesTable)
-            .orderBy(desc(repairQuotesTable.createdAt)),
-          db
-            .select()
-            .from(sellPhoneSubmissionsTable)
-            .orderBy(desc(sellPhoneSubmissionsTable.createdAt)),
-          db
-            .select()
-            .from(appointmentsTable)
-            .orderBy(desc(appointmentsTable.createdAt)),
-          db
-            .select()
-            .from(contactMessagesTable)
-            .orderBy(desc(contactMessagesTable.createdAt)),
-          db
-            .select()
-            .from(itemReservationsTable)
-            .orderBy(desc(itemReservationsTable.createdAt)),
-        ]);
+      const [
+        repairQuotes,
+        sellPhone,
+        appointments,
+        contact,
+        reservations,
+        unreadRows,
+      ] = await Promise.all([
+        db
+          .select()
+          .from(repairQuotesTable)
+          .orderBy(desc(repairQuotesTable.createdAt)),
+        db
+          .select()
+          .from(sellPhoneSubmissionsTable)
+          .orderBy(desc(sellPhoneSubmissionsTable.createdAt)),
+        db
+          .select()
+          .from(appointmentsTable)
+          .orderBy(desc(appointmentsTable.createdAt)),
+        db
+          .select()
+          .from(contactMessagesTable)
+          .orderBy(desc(contactMessagesTable.createdAt)),
+        db
+          .select()
+          .from(itemReservationsTable)
+          .orderBy(desc(itemReservationsTable.createdAt)),
+        db
+          .select({
+            leadType: leadCommunicationsTable.leadType,
+            leadId: leadCommunicationsTable.leadId,
+            count: sql<number>`count(*)::int`,
+          })
+          .from(leadCommunicationsTable)
+          .where(
+            and(
+              eq(leadCommunicationsTable.direction, "inbound"),
+              isNull(leadCommunicationsTable.readAt),
+            ),
+          )
+          .groupBy(
+            leadCommunicationsTable.leadType,
+            leadCommunicationsTable.leadId,
+          ),
+      ]);
+      const unreadInboundCounts: Record<string, Record<string, number>> = {};
+      for (const row of unreadRows) {
+        if (!unreadInboundCounts[row.leadType]) {
+          unreadInboundCounts[row.leadType] = {};
+        }
+        unreadInboundCounts[row.leadType][row.leadId] = Number(row.count);
+      }
       res.json({
         repairQuotes: repairQuotes.map(serializeDates),
         sellPhoneSubmissions: sellPhone.map(serializeDates),
         appointments: appointments.map(serializeDates),
         contactMessages: contact.map(serializeDates),
         itemReservations: reservations.map(serializeDates),
+        unreadInboundCounts,
       });
     } catch (err) {
       next(err as Error);
@@ -174,8 +205,37 @@ router.get(
           ...r,
           createdAt: r.createdAt.toISOString(),
           updatedAt: r.updatedAt.toISOString(),
+          readAt: r.readAt ? r.readAt.toISOString() : null,
         }));
       res.json({ items: filtered });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
+
+router.post(
+  "/leads/:leadType/:id/activity/read",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { leadType, id } = req.params;
+      if (!isLeadType(leadType)) {
+        res.status(400).json({ error: "Unknown leadType" });
+        return;
+      }
+      const result = await db
+        .update(leadCommunicationsTable)
+        .set({ readAt: new Date(), updatedAt: new Date() })
+        .where(
+          and(
+            eq(leadCommunicationsTable.leadType, leadType),
+            eq(leadCommunicationsTable.leadId, String(id)),
+            eq(leadCommunicationsTable.direction, "inbound"),
+            isNull(leadCommunicationsTable.readAt),
+          ),
+        )
+        .returning({ id: leadCommunicationsTable.id });
+      res.json({ ok: true, marked: result.length });
     } catch (err) {
       next(err as Error);
     }
