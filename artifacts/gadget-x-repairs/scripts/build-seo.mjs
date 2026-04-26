@@ -111,20 +111,40 @@ function injectRendered(baseHtml, route, rendered) {
   let out = baseHtml;
   const headStr = rendered.head || "";
 
-  // Strip placeholder/static head tags that Helmet now owns per route.
+  // Strip placeholder/static head tags that the <SEO> component now owns per
+  // route. entry-server.tsx hoists these out of the rendered body and returns
+  // them in `rendered.head`, so the static defaults in index.html would
+  // otherwise duplicate them in <head>. Tags we leave in the static template
+  // (charset, viewport, theme-color, geo.*, og:locale, icon links, font
+  // preconnect/load) are not emitted by <SEO> and must stay.
   out = out.replace(/<title>[\s\S]*?<\/title>\s*/i, "");
   out = out.replace(/<meta\s+name=["']description["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+name=["']robots["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+property=["']og:type["'][^>]*>\s*/gi, "");
   out = out.replace(/<meta\s+property=["']og:title["'][^>]*>\s*/gi, "");
   out = out.replace(/<meta\s+property=["']og:description["'][^>]*>\s*/gi, "");
   out = out.replace(/<meta\s+property=["']og:url["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+property=["']og:site_name["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+property=["']og:image["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+name=["']twitter:card["'][^>]*>\s*/gi, "");
   out = out.replace(/<meta\s+name=["']twitter:title["'][^>]*>\s*/gi, "");
   out = out.replace(/<meta\s+name=["']twitter:description["'][^>]*>\s*/gi, "");
+  out = out.replace(/<meta\s+name=["']twitter:image["'][^>]*>\s*/gi, "");
   out = out.replace(/<link\s+rel=["']canonical["'][^>]*>\s*/gi, "");
+  // Strip the static ElectronicsStore JSON-LD; SEO.localBusinessJsonLd() now
+  // emits its own (more complete) copy on every customer-facing page. Admin
+  // and 404 pages are noindex and don't need JSON-LD.
+  out = out.replace(/<script\s+type=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>\s*/gi, "");
 
   // Inject rendered head (title, meta, link, script JSON-LD) just before </head>.
   const headBlock = headStr ? `${headStr}\n` : "";
 
-  // Safety nets if SEO component didn't emit a tag for some reason.
+  // Safety nets if the SEO component didn't emit a tag for some reason. With
+  // entry-server.tsx now extracting Helmet's tags out of the rendered body and
+  // returning them in `rendered.head`, these conditions should never fire on a
+  // healthy build — but they remain as a true belt-and-braces fallback so a
+  // regression in the SSR or extraction path can't ship a page with no
+  // canonical / og tags at all.
   const safetyTags = [];
   if (!/<link[^>]*rel=["']canonical["'][^>]*>/i.test(headStr)) {
     safetyTags.push(`<link rel="canonical" href="${canonical}" />`);
@@ -138,8 +158,7 @@ function injectRendered(baseHtml, route, rendered) {
   if (!/<meta[^>]*property=["']og:description["'][^>]*>/i.test(headStr)) {
     safetyTags.push(`<meta property="og:description" content="${escape(route.metaDescription)}" />`);
   }
-  if (route.path.startsWith("/admin")) {
-    out = out.replace(/<meta\s+name=["']robots["'][^>]*>\s*/gi, "");
+  if (route.path.startsWith("/admin") && !/<meta[^>]*name=["']robots["'][^>]*>/i.test(headStr)) {
     safetyTags.push(`<meta name="robots" content="noindex, nofollow" />`);
   }
 
