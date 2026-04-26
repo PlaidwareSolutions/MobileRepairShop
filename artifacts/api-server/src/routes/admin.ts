@@ -213,7 +213,11 @@ router.post(
         return;
       }
       const rateKey = `email:${leadType}:${id}`;
-      const limit = checkRateLimit(rateKey, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
+      const limit = await checkRateLimit(
+        rateKey,
+        RATE_LIMIT_MAX,
+        RATE_LIMIT_WINDOW_MS,
+      );
       if (!limit.allowed) {
         res.set("Retry-After", String(limit.retryAfterSeconds));
         res
@@ -288,7 +292,11 @@ router.post(
         return;
       }
       const rateKey = `sms:${leadType}:${id}`;
-      const limit = checkRateLimit(rateKey, RATE_LIMIT_MAX, RATE_LIMIT_WINDOW_MS);
+      const limit = await checkRateLimit(
+        rateKey,
+        RATE_LIMIT_MAX,
+        RATE_LIMIT_WINDOW_MS,
+      );
       if (!limit.allowed) {
         res.set("Retry-After", String(limit.retryAfterSeconds));
         res.status(429).json({ error: "SMS rate limit reached for this lead" });
