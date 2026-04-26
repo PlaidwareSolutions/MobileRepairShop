@@ -3,36 +3,36 @@ import { Phone, MapPin, MessageCircle } from "lucide-react";
 import { BUSINESS, COPYRIGHT } from "@/content";
 
 const REPAIR_LINKS = [
-  { label: "iPhone Repair", to: "/iphone-repair-houston" },
-  { label: "Samsung Repair", to: "/samsung-phone-repair-houston" },
-  { label: "iPad / Tablet Repair", to: "/ipad-tablet-repair-houston" },
-  { label: "MacBook Repair", to: "/macbook-repair-houston" },
-  { label: "Laptop Repair", to: "/laptop-repair-houston" },
-  { label: "PS5 Repair", to: "/ps5-repair-houston" },
-  { label: "Xbox Repair", to: "/xbox-repair-houston" },
-  { label: "Battery Replacement", to: "/battery-replacement-houston" },
+  { label: "iPhone Repair", to: "/iphone-repair-houston-tx" },
+  { label: "Samsung Repair", to: "/samsung-repair-houston-tx" },
+  { label: "iPad / Tablet Repair", to: "/tablet-repair-houston-tx" },
+  { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
+  { label: "Laptop Repair", to: "/laptop-repair-houston-tx" },
+  { label: "PS5 Repair", to: "/ps5-repair-houston-tx" },
+  { label: "Xbox Repair", to: "/xbox-repair-houston-tx" },
+  { label: "Battery Replacement", to: "/battery-replacement-houston-tx" },
 ];
 
 const SHOP_LINKS = [
-  { label: "Phones for Sale", to: "/phones-for-sale-houston" },
-  { label: "Used Phones", to: "/used-phones-houston" },
-  { label: "Refurbished Phones", to: "/refurbished-phones-houston" },
-  { label: "Laptops for Sale", to: "/laptops-for-sale-houston" },
-  { label: "Sell Your Phone", to: "/buy-my-phone-houston" },
+  { label: "Phones for Sale", to: "/phones-for-sale-houston-tx" },
+  { label: "Used Phones", to: "/used-phones-houston-tx" },
+  { label: "Refurbished Phones", to: "/refurbished-phones-houston-tx" },
+  { label: "Laptops for Sale", to: "/laptops-for-sale-houston-tx" },
+  { label: "Sell Your Phone", to: "/sell-phone-houston-tx" },
   { label: "Inventory", to: "/inventory" },
 ];
 
 const PREPAID_LINKS = [
-  { label: "All Prepaid Carriers", to: "/prepaid-phone-activations-houston" },
-  { label: "Bill Payments", to: "/bill-payments-houston" },
-  { label: "Boost Mobile", to: "/boost-mobile-activation-houston" },
-  { label: "AT&T Prepaid", to: "/att-prepaid-activation-houston" },
+  { label: "All Prepaid Carriers", to: "/phone-activation-houston-tx" },
+  { label: "Bill Payments", to: "/bill-payments-houston-tx" },
+  { label: "Boost Mobile", to: "/boost-mobile-activation-houston-tx" },
+  { label: "AT&T Prepaid", to: "/att-activation-houston-tx" },
 ];
 
 const COMPANY_LINKS = [
   { label: "About", to: "/about" },
-  { label: "Reviews", to: "/reviews" },
-  { label: "Contact", to: "/contact" },
+  { label: "Reviews", to: "/reviews-houston-tx" },
+  { label: "Contact", to: "/contact-houston-tx" },
 ];
 
 export function SiteFooter() {

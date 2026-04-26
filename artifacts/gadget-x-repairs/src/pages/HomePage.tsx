@@ -23,16 +23,16 @@ import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import { BUSINESS, HERO } from "@/content";
 
 const SERVICE_TILES: { name: string; desc: string; icon: LucideIcon; to: string }[] = [
-  { name: "iPhone Repair", desc: "Screen, battery, charging port.", icon: Smartphone, to: "/iphone-repair-houston" },
-  { name: "Samsung Repair", desc: "Galaxy S, Note, A and Z series.", icon: Smartphone, to: "/samsung-phone-repair-houston" },
-  { name: "Pixel Repair", desc: "Google Pixel 3 through 9 Pro.", icon: Smartphone, to: "/google-pixel-repair-houston" },
-  { name: "iPad / Tablet", desc: "Glass, LCD, battery replacement.", icon: Tablet, to: "/ipad-tablet-repair-houston" },
-  { name: "MacBook Repair", desc: "Screen, battery, keyboard, board.", icon: Laptop, to: "/macbook-repair-houston" },
-  { name: "Laptop Repair", desc: "HP, Dell, Lenovo, ASUS, Acer.", icon: Laptop, to: "/laptop-repair-houston" },
-  { name: "PS5 Repair", desc: "HDMI port, disc drive, no power.", icon: Gamepad2, to: "/ps5-repair-houston" },
-  { name: "Xbox Repair", desc: "Power issues, HDMI, disc drive.", icon: Gamepad2, to: "/xbox-repair-houston" },
-  { name: "Battery Replace", desc: "Phones, tablets, laptops.", icon: Battery, to: "/battery-replacement-houston" },
-  { name: "Accessories", desc: "Cases, chargers, screen protectors.", icon: Headphones, to: "/phone-accessories-houston" },
+  { name: "iPhone Repair", desc: "Screen, battery, charging port.", icon: Smartphone, to: "/iphone-repair-houston-tx" },
+  { name: "Samsung Repair", desc: "Galaxy S, Note, A and Z series.", icon: Smartphone, to: "/samsung-repair-houston-tx" },
+  { name: "Pixel Repair", desc: "Google Pixel 3 through 9 Pro.", icon: Smartphone, to: "/google-pixel-repair-houston-tx" },
+  { name: "iPad / Tablet", desc: "Glass, LCD, battery replacement.", icon: Tablet, to: "/tablet-repair-houston-tx" },
+  { name: "MacBook Repair", desc: "Screen, battery, keyboard, board.", icon: Laptop, to: "/macbook-repair-houston-tx" },
+  { name: "Laptop Repair", desc: "HP, Dell, Lenovo, ASUS, Acer.", icon: Laptop, to: "/laptop-repair-houston-tx" },
+  { name: "PS5 Repair", desc: "HDMI port, disc drive, no power.", icon: Gamepad2, to: "/ps5-repair-houston-tx" },
+  { name: "Xbox Repair", desc: "Power issues, HDMI, disc drive.", icon: Gamepad2, to: "/xbox-repair-houston-tx" },
+  { name: "Battery Replace", desc: "Phones, tablets, laptops.", icon: Battery, to: "/battery-replacement-houston-tx" },
+  { name: "Accessories", desc: "Cases, chargers, screen protectors.", icon: Headphones, to: "/phone-accessories-houston-tx" },
 ];
 
 const WHY_TILES = [
@@ -43,41 +43,41 @@ const WHY_TILES = [
 ];
 
 const FEATURED_OFFERS = [
-  { title: "iPhone Screen", price: "from $79", note: "Most models in stock", icon: Smartphone, to: "/iphone-repair-houston" },
-  { title: "Battery Replacement", price: "from $49", note: "Phones, tablets, laptops", icon: Battery, to: "/battery-replacement-houston" },
-  { title: "HDMI Port Repair", price: "from $99", note: "PS5, Xbox, Switch", icon: Gamepad2, to: "/hdmi-port-repair-houston" },
-  { title: "Used Phones", price: "from $99", note: "Unlocked, tested, warrantied", icon: Smartphone, to: "/used-phones-houston" },
-  { title: "Prepaid Activation", price: "Walk in", note: "Cricket, Metro, T-Mobile, AT&T", icon: Wifi, to: "/prepaid-phone-activations-houston" },
+  { title: "iPhone Screen", price: "from $79", note: "Most models in stock", icon: Smartphone, to: "/iphone-repair-houston-tx" },
+  { title: "Battery Replacement", price: "from $49", note: "Phones, tablets, laptops", icon: Battery, to: "/battery-replacement-houston-tx" },
+  { title: "HDMI Port Repair", price: "from $99", note: "PS5, Xbox, Switch", icon: Gamepad2, to: "/hdmi-port-repair-houston-tx" },
+  { title: "Used Phones", price: "from $99", note: "Unlocked, tested, warrantied", icon: Smartphone, to: "/used-phones-houston-tx" },
+  { title: "Prepaid Activation", price: "Walk in", note: "Cricket, Metro, T-Mobile, AT&T", icon: Wifi, to: "/phone-activation-houston-tx" },
 ];
 
 const SELL_TILES = [
-  { name: "Unlocked Phones", desc: "Apple, Samsung, Pixel & more", icon: Smartphone, to: "/phones-for-sale-houston" },
-  { name: "iPads & Tablets", desc: "Cellular and Wi-Fi", icon: Tablet, to: "/ipad-tablet-repair-houston" },
-  { name: "MacBooks & Laptops", desc: "Refurbished and tested", icon: Laptop, to: "/laptops-for-sale-houston" },
-  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: "/gaming-console-repair-houston" },
+  { name: "Unlocked Phones", desc: "Apple, Samsung, Pixel & more", icon: Smartphone, to: "/phones-for-sale-houston-tx" },
+  { name: "iPads & Tablets", desc: "Cellular and Wi-Fi", icon: Tablet, to: "/tablet-repair-houston-tx" },
+  { name: "MacBooks & Laptops", desc: "Refurbished and tested", icon: Laptop, to: "/laptops-for-sale-houston-tx" },
+  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: "/gaming-console-repair-houston-tx" },
 ];
 
 const PREPAID_TILES = [
-  { label: "Cricket", to: "/prepaid-phone-activations-houston" },
-  { label: "Metro by T-Mobile", to: "/prepaid-phone-activations-houston" },
-  { label: "T-Mobile", to: "/prepaid-phone-activations-houston" },
-  { label: "AT&T Prepaid", to: "/att-prepaid-activation-houston" },
-  { label: "Boost Mobile", to: "/boost-mobile-activation-houston" },
-  { label: "Gen Mobile", to: "/gen-mobile-activation-houston" },
-  { label: "Simple Mobile", to: "/simple-mobile-activation-houston" },
-  { label: "H2O Wireless", to: "/h2o-wireless-activation-houston" },
-  { label: "Lyca Mobile", to: "/lyca-mobile-activation-houston" },
-  { label: "Verizon Prepaid", to: "/verizon-prepaid-activation-houston" },
+  { label: "Cricket", to: "/phone-activation-houston-tx" },
+  { label: "Metro by T-Mobile", to: "/phone-activation-houston-tx" },
+  { label: "T-Mobile", to: "/phone-activation-houston-tx" },
+  { label: "AT&T Prepaid", to: "/att-activation-houston-tx" },
+  { label: "Boost Mobile", to: "/boost-mobile-activation-houston-tx" },
+  { label: "Gen Mobile", to: "/gen-mobile-activation-houston-tx" },
+  { label: "Simple Mobile", to: "/simple-mobile-activation-houston-tx" },
+  { label: "H2O Wireless", to: "/h2o-wireless-activation-houston-tx" },
+  { label: "Lyca Mobile", to: "/lyca-mobile-activation-houston-tx" },
+  { label: "Verizon Prepaid", to: "/verizon-prepaid-activation-houston-tx" },
 ];
 
 const AREA_TILES = [
   { label: "Houston", to: "/" },
-  { label: "Sugar Land", to: "/phone-repair-sugar-land" },
-  { label: "Missouri City", to: "/phone-repair-missouri-city" },
-  { label: "Stafford", to: "/phone-repair-stafford" },
-  { label: "Katy", to: "/phone-repair-katy" },
-  { label: "Alief", to: "/phone-repair-alief" },
-  { label: "Sharpstown", to: "/phone-repair-sharpstown" },
+  { label: "Sugar Land", to: "/phone-repair-sugar-land-tx" },
+  { label: "Missouri City", to: "/phone-repair-missouri-city-tx" },
+  { label: "Stafford", to: "/phone-repair-stafford-tx" },
+  { label: "Katy", to: "/phone-repair-katy-tx" },
+  { label: "Alief", to: "/phone-repair-alief-tx" },
+  { label: "Sharpstown", to: "/phone-repair-sharpstown-tx" },
 ];
 
 export default function HomePage() {
@@ -88,7 +88,7 @@ export default function HomePage() {
       <SEO
         title="Gadget X Repairs — Same-Day Phone, Tablet, Laptop & Console Repair in Houston"
         description="15 years of trusted same-day phone, iPad, MacBook, laptop, PlayStation, Xbox & Nintendo repair in Houston, TX. Walk-ins welcome at 8389 Almeda Rd. Call (346) 623-6898."
-        path="/"
+        path="/phone-repair-houston-tx"
         jsonLd={localBusinessJsonLd()}
       />
 
@@ -295,7 +295,7 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
-            <Link href="/bill-payments-houston" className="text-red-500 font-black uppercase hover:underline inline-flex items-center gap-1">
+            <Link href="/bill-payments-houston-tx" className="text-red-500 font-black uppercase hover:underline inline-flex items-center gap-1">
               Pay your bill in cash <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

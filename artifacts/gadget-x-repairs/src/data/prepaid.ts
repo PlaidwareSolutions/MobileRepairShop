@@ -55,16 +55,16 @@ const make = (carrier: string, slug: string, isPayment = false): PrepaidData => 
 });
 
 export const PREPAID_DATA: PrepaidData[] = [
-  make("Prepaid", "prepaid-phone-activations-houston"),
-  make("All carriers", "bill-payments-houston", true),
-  make("Boost Mobile", "boost-mobile-activation-houston"),
-  make("AT&T Prepaid", "att-prepaid-activation-houston"),
-  make("Gen Mobile", "gen-mobile-activation-houston"),
-  make("Simple Mobile", "simple-mobile-activation-houston"),
-  make("Xfinity Mobile", "xfinity-mobile-payment-houston", true),
-  make("H2O Wireless", "h2o-wireless-activation-houston"),
-  make("Lyca Mobile", "lyca-mobile-activation-houston"),
-  make("Verizon Prepaid", "verizon-prepaid-activation-houston"),
+  make("Prepaid", "phone-activation-houston-tx"),
+  make("All carriers", "bill-payments-houston-tx", true),
+  make("Boost Mobile", "boost-mobile-activation-houston-tx"),
+  make("AT&T Prepaid", "att-activation-houston-tx"),
+  make("Gen Mobile", "gen-mobile-activation-houston-tx"),
+  make("Simple Mobile", "simple-mobile-activation-houston-tx"),
+  make("Xfinity Mobile", "xfinity-mobile-activation-houston-tx"),
+  make("H2O Wireless", "h2o-wireless-activation-houston-tx"),
+  make("Lyca Mobile", "lyca-mobile-activation-houston-tx"),
+  make("Verizon Prepaid", "verizon-prepaid-activation-houston-tx"),
 ];
 
 PREPAID_DATA[0].title = "Prepaid Phone Activations in Houston";
@@ -82,7 +82,7 @@ PREPAID_DATA[0].services = [
   "Boost Mobile",
   "Gen Mobile",
   "Simple Mobile",
-  "Xfinity Mobile (bill pay)",
+  "Xfinity Mobile",
   "H2O Wireless",
   "Lyca Mobile",
   "Verizon Prepaid",

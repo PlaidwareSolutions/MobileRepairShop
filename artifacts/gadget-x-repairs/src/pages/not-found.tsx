@@ -5,12 +5,12 @@ import { SEO } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 
 const QUICK_LINKS = [
-  { label: "Phone Repair", to: "/phone-repair-houston" },
-  { label: "iPhone Repair", to: "/iphone-repair-houston" },
-  { label: "PS5 Repair", to: "/ps5-repair-houston" },
-  { label: "Phones for Sale", to: "/phones-for-sale-houston" },
+  { label: "Phone Repair", to: "/phone-repair-houston-tx" },
+  { label: "iPhone Repair", to: "/iphone-repair-houston-tx" },
+  { label: "PS5 Repair", to: "/ps5-repair-houston-tx" },
+  { label: "Phones for Sale", to: "/phones-for-sale-houston-tx" },
   { label: "Inventory", to: "/inventory" },
-  { label: "Contact", to: "/contact" },
+  { label: "Contact", to: "/contact-houston-tx" },
 ];
 
 export default function NotFound() {

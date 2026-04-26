@@ -61,10 +61,10 @@ export default function AboutPage() {
               <a href={BUSINESS.phoneTel}>Call (346) 623-6898</a>
             </Button>
             <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-12 px-6">
-              <Link href="/reviews">Read Reviews</Link>
+              <Link href="/reviews-houston-tx">Read Reviews</Link>
             </Button>
             <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-12 px-6">
-              <Link href="/contact">Contact Us</Link>
+              <Link href="/contact-houston-tx">Contact Us</Link>
             </Button>
           </div>
         </div>

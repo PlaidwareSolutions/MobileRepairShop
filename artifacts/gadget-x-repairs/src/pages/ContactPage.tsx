@@ -35,8 +35,8 @@ export default function ContactPage() {
       <SEO
         title="Contact Gadget X Repairs | Houston, TX"
         description="Contact Gadget X Repairs in Houston: call (346) 623-6898, text on WhatsApp, or visit 8389 Almeda Rd Suite J-2. Submit a repair quote, sell-phone offer, appointment, or general message."
-        path="/contact"
-        jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "Contact", path: "/contact" }])]}
+        path="/contact-houston-tx"
+        jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "Contact", path: "/contact-houston-tx" }])]}
       />
       <Breadcrumbs items={[{ label: "Contact" }]} />
 

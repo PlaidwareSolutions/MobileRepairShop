@@ -12,25 +12,19 @@ export type RouteEntry = {
 
 export const STATIC_ROUTES: RouteEntry[] = [
   {
-    path: "/",
-    metaTitle: "Gadget X Repairs — Same-Day Phone, Tablet, Laptop & Console Repair in Houston",
-    metaDescription:
-      "15 years of trusted same-day phone, iPad, MacBook, laptop, PlayStation, Xbox & Nintendo repair in Houston, TX. Walk-ins welcome at 8389 Almeda Rd. Call (346) 623-6898.",
-  },
-  {
     path: "/about",
     metaTitle: "About Gadget X Repairs | 15 Years in Houston",
     metaDescription:
       "About Gadget X Repairs — 15 years of honest repair, sales and prepaid service from our Almeda Rd shop in Houston, TX.",
   },
   {
-    path: "/contact",
+    path: "/contact-houston-tx",
     metaTitle: "Contact Gadget X Repairs | Houston, TX",
     metaDescription:
       "Contact Gadget X Repairs in Houston: call (346) 623-6898, text on WhatsApp, or visit 8389 Almeda Rd Suite J-2.",
   },
   {
-    path: "/reviews",
+    path: "/reviews-houston-tx",
     metaTitle: "Customer Reviews | Gadget X Repairs Houston",
     metaDescription:
       "5-star customer reviews for Gadget X Repairs in Houston, TX — phone, tablet, laptop, PS5, Xbox repair and prepaid activation.",

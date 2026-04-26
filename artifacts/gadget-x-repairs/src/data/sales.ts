@@ -13,7 +13,7 @@ export type SalesData = {
 
 export const SALES_DATA: SalesData[] = [
   {
-    slug: "phones-for-sale-houston",
+    slug: "phones-for-sale-houston-tx",
     title: "Phones for Sale in Houston",
     metaTitle: "Phones for Sale Houston | Used, New, Refurbished | Gadget X",
     metaDescription:
@@ -37,10 +37,10 @@ export const SALES_DATA: SalesData[] = [
       { q: "Are your phones unlocked?", a: "Most are. Each phone is labelled with its carrier compatibility — most are fully unlocked." },
       { q: "Do your phones come with a warranty?", a: "Yes — every used phone comes with a 30-day warranty, and refurbished phones come with 90 days." },
     ],
-    related: ["used-phones-houston", "refurbished-phones-houston", "new-phones-houston", "phone-accessories-houston"],
+    related: ["used-phones-houston-tx", "refurbished-phones-houston-tx", "new-phones-houston-tx", "phone-accessories-houston-tx"],
   },
   {
-    slug: "used-phones-houston",
+    slug: "used-phones-houston-tx",
     title: "Used Phones Houston",
     metaTitle: "Used Phones Houston | Unlocked iPhone, Samsung, Pixel | Gadget X",
     metaDescription:
@@ -57,10 +57,10 @@ export const SALES_DATA: SalesData[] = [
     faqs: [
       { q: "What does 'good' condition mean?", a: "Good means light wear — minor scuffs but no significant cracks, dents, or screen damage. We grade honestly." },
     ],
-    related: ["refurbished-phones-houston", "phones-for-sale-houston", "buy-my-phone-houston"],
+    related: ["refurbished-phones-houston-tx", "phones-for-sale-houston-tx", "sell-phone-houston-tx"],
   },
   {
-    slug: "refurbished-phones-houston",
+    slug: "refurbished-phones-houston-tx",
     title: "Refurbished Phones Houston",
     metaTitle: "Refurbished Phones Houston | iPhone, Samsung | Gadget X",
     metaDescription:
@@ -77,10 +77,10 @@ export const SALES_DATA: SalesData[] = [
     faqs: [
       { q: "What's the difference between used and refurbished?", a: "Used is tested but original parts. Refurbished gets new wear parts (battery, sometimes screen) and looks like new." },
     ],
-    related: ["used-phones-houston", "phones-for-sale-houston", "new-phones-houston"],
+    related: ["used-phones-houston-tx", "phones-for-sale-houston-tx", "new-phones-houston-tx"],
   },
   {
-    slug: "new-phones-houston",
+    slug: "new-phones-houston-tx",
     title: "New Phones Houston",
     metaTitle: "New Phones Houston | Unlocked & Carrier Phones | Gadget X",
     metaDescription:
@@ -97,10 +97,10 @@ export const SALES_DATA: SalesData[] = [
     faqs: [
       { q: "Can I activate a prepaid plan when I buy a new phone?", a: "Yes — Cricket, Metro, T-Mobile, AT&T Prepaid, Boost, Gen Mobile, Simple Mobile and more." },
     ],
-    related: ["phones-for-sale-houston", "prepaid-phone-activations-houston", "refurbished-phones-houston"],
+    related: ["phones-for-sale-houston-tx", "phone-activation-houston-tx", "refurbished-phones-houston-tx"],
   },
   {
-    slug: "buy-my-phone-houston",
+    slug: "sell-phone-houston-tx",
     title: "We Buy Your Phone in Houston",
     metaTitle: "Sell My Phone Houston | Cash for iPhone, Samsung | Gadget X",
     metaDescription:
@@ -118,10 +118,10 @@ export const SALES_DATA: SalesData[] = [
       { q: "Do I need to bring the original box and accessories?", a: "Not required — but they may bump the price up." },
       { q: "Will you buy a phone that's still on a payment plan?", a: "We can only buy phones that are fully paid off and not reported lost or stolen." },
     ],
-    related: ["used-phones-houston", "refurbished-phones-houston", "phones-for-sale-houston"],
+    related: ["used-phones-houston-tx", "refurbished-phones-houston-tx", "phones-for-sale-houston-tx"],
   },
   {
-    slug: "laptops-for-sale-houston",
+    slug: "laptops-for-sale-houston-tx",
     title: "Laptops for Sale Houston",
     metaTitle: "Laptops for Sale Houston | Used, Refurbished | Gadget X",
     metaDescription:
@@ -138,10 +138,10 @@ export const SALES_DATA: SalesData[] = [
     faqs: [
       { q: "Will the laptop run my software?", a: "Tell us what you'll use it for — work, school, light gaming — and we'll point you at the right machine for your budget." },
     ],
-    related: ["phones-for-sale-houston", "laptop-accessories-houston"],
+    related: ["phones-for-sale-houston-tx", "laptop-accessories-houston-tx"],
   },
   {
-    slug: "phone-accessories-houston",
+    slug: "phone-accessories-houston-tx",
     title: "Phone Accessories Houston",
     metaTitle: "Phone Accessories Houston | Cases, Chargers, Cables | Gadget X",
     metaDescription:
@@ -158,10 +158,10 @@ export const SALES_DATA: SalesData[] = [
     faqs: [
       { q: "Do you install screen protectors?", a: "Yes — every screen protector we sell comes with free installation." },
     ],
-    related: ["phones-for-sale-houston", "laptop-accessories-houston"],
+    related: ["phones-for-sale-houston-tx", "laptop-accessories-houston-tx"],
   },
   {
-    slug: "laptop-accessories-houston",
+    slug: "laptop-accessories-houston-tx",
     title: "Laptop Accessories Houston",
     metaTitle: "Laptop Accessories Houston | Chargers, Cases, Adapters | Gadget X",
     metaDescription:
@@ -178,7 +178,7 @@ export const SALES_DATA: SalesData[] = [
     faqs: [
       { q: "Will a universal charger work for my laptop?", a: "Most laptops, yes. We confirm the wattage and tip required for your specific model before selling you one." },
     ],
-    related: ["laptops-for-sale-houston", "phone-accessories-houston"],
+    related: ["laptops-for-sale-houston-tx", "phone-accessories-houston-tx"],
   },
 ];
 

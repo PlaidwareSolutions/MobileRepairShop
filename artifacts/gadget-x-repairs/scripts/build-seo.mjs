@@ -38,6 +38,37 @@ async function loadRoutes() {
   return { all: mod.ALL_ROUTES, sitemap: mod.SITEMAP_ROUTES };
 }
 
+async function loadLegacyRedirects() {
+  const url = pathToFileURL(path.join(PROJECT_DIR, "src", "legacy-redirects.ts")).href;
+  const mod = await import(url);
+  return mod.LEGACY_REDIRECTS;
+}
+
+function redirectHtml(toPath) {
+  const dest = `${SITE_URL}${toPath}`;
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Page Moved | Gadget X Repairs</title>
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="${dest}">
+<meta http-equiv="refresh" content="0; url=${toPath}">
+<script>window.location.replace(${JSON.stringify(toPath)});</script>
+</head>
+<body>
+<p>This page has moved to <a href="${toPath}">${dest}</a>.</p>
+</body>
+</html>
+`;
+}
+
+async function writeLegacyRedirect(fromPath, toPath) {
+  const dir = path.join(DIST_DIR, fromPath.replace(/^\//, ""));
+  await mkdir(dir, { recursive: true });
+  await writeFile(path.join(dir, "index.html"), redirectHtml(toPath), "utf8");
+}
+
 async function loadRender() {
   if (!existsSync(SERVER_BUNDLE)) {
     throw new Error(`SSR bundle not found at ${SERVER_BUNDLE}. Did the SSR build step fail?`);
@@ -163,14 +194,24 @@ async function main() {
     process.exit(1);
   }
   const baseHtml = await readFile(path.join(DIST_DIR, "index.html"), "utf8");
-  const [{ all, sitemap }, render] = await Promise.all([loadRoutes(), loadRender()]);
+  const [{ all, sitemap }, render, legacy] = await Promise.all([
+    loadRoutes(),
+    loadRender(),
+    loadLegacyRedirects(),
+  ]);
   console.log(`build-seo: pre-rendering ${all.length} routes…`);
   for (const route of all) {
     await writeRouteHtml(route, baseHtml, render);
   }
+  const legacyEntries = Object.entries(legacy);
+  for (const [from, to] of legacyEntries) {
+    await writeLegacyRedirect(from, to);
+  }
   await writeFile(path.join(DIST_DIR, "sitemap.xml"), buildSitemap(sitemap), "utf8");
   await writeFile(path.join(DIST_DIR, "robots.txt"), buildRobots(), "utf8");
-  console.log(`build-seo: wrote ${all.length} HTML files, ${sitemap.length} sitemap entries, robots.txt.`);
+  console.log(
+    `build-seo: wrote ${all.length} HTML files, ${legacyEntries.length} legacy redirects, ${sitemap.length} sitemap entries, robots.txt.`,
+  );
 }
 
 main().catch((e) => {

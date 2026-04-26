@@ -4,29 +4,29 @@ import { Button } from "@/components/ui/button";
 import { BUSINESS, HERO } from "@/content";
 
 const REPAIR_DROPDOWN: { label: string; to: string }[] = [
-  { label: "All Repairs", to: "/phone-repair-houston" },
-  { label: "iPhone Repair", to: "/iphone-repair-houston" },
-  { label: "Samsung Repair", to: "/samsung-phone-repair-houston" },
-  { label: "iPad / Tablet", to: "/ipad-tablet-repair-houston" },
-  { label: "Laptop Repair", to: "/laptop-repair-houston" },
-  { label: "MacBook Repair", to: "/macbook-repair-houston" },
-  { label: "Game Consoles", to: "/gaming-console-repair-houston" },
-  { label: "PS5 Repair", to: "/ps5-repair-houston" },
-  { label: "Xbox Repair", to: "/xbox-repair-houston" },
-  { label: "Battery Replacement", to: "/battery-replacement-houston" },
-  { label: "HDMI Port Repair", to: "/hdmi-port-repair-houston" },
-  { label: "Phone Unlocking", to: "/phone-unlocking-houston" },
+  { label: "All Repairs", to: "/phone-repair-houston-tx" },
+  { label: "iPhone Repair", to: "/iphone-repair-houston-tx" },
+  { label: "Samsung Repair", to: "/samsung-repair-houston-tx" },
+  { label: "iPad / Tablet", to: "/tablet-repair-houston-tx" },
+  { label: "Laptop Repair", to: "/laptop-repair-houston-tx" },
+  { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
+  { label: "Game Consoles", to: "/gaming-console-repair-houston-tx" },
+  { label: "PS5 Repair", to: "/ps5-repair-houston-tx" },
+  { label: "Xbox Repair", to: "/xbox-repair-houston-tx" },
+  { label: "Battery Replacement", to: "/battery-replacement-houston-tx" },
+  { label: "HDMI Port Repair", to: "/hdmi-port-repair-houston-tx" },
+  { label: "Phone Unlocking", to: "/phone-unlocking-houston-tx" },
 ];
 
 const NAV: { label: string; to: string }[] = [
-  { label: "Sell", to: "/buy-my-phone-houston" },
-  { label: "Phones", to: "/phones-for-sale-houston" },
-  { label: "Accessories", to: "/phone-accessories-houston" },
-  { label: "Prepaid", to: "/prepaid-phone-activations-houston" },
+  { label: "Sell", to: "/sell-phone-houston-tx" },
+  { label: "Phones", to: "/phones-for-sale-houston-tx" },
+  { label: "Accessories", to: "/phone-accessories-houston-tx" },
+  { label: "Prepaid", to: "/phone-activation-houston-tx" },
   { label: "Inventory", to: "/inventory" },
-  { label: "Reviews", to: "/reviews" },
+  { label: "Reviews", to: "/reviews-houston-tx" },
   { label: "About", to: "/about" },
-  { label: "Contact", to: "/contact" },
+  { label: "Contact", to: "/contact-houston-tx" },
 ];
 
 export function TopUtilityBar() {

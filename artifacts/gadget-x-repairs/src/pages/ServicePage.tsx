@@ -29,10 +29,10 @@ export default function ServicePage() {
           localBusinessJsonLd(),
           serviceJsonLd(data.title, data.metaDescription, path),
           faqJsonLd(data.faqs),
-          breadcrumbJsonLd([{ name: "Repair", path: "/phone-repair-houston" }, { name: data.title, path }]),
+          breadcrumbJsonLd([{ name: "Repair", path: "/phone-repair-houston-tx" }, { name: data.title, path }]),
         ]}
       />
-      <Breadcrumbs items={[{ label: "Repair", to: "/phone-repair-houston" }, { label: data.title }]} />
+      <Breadcrumbs items={[{ label: "Repair", to: "/phone-repair-houston-tx" }, { label: data.title }]} />
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 

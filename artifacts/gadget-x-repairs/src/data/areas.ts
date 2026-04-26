@@ -20,7 +20,7 @@ const services = [
 
 export const AREAS_DATA: AreaData[] = [
   {
-    slug: "phone-repair-sugar-land",
+    slug: "phone-repair-sugar-land-tx",
     city: "Sugar Land",
     title: "Phone Repair Sugar Land",
     metaTitle: "Phone Repair Sugar Land | Gadget X Houston (15 min away)",
@@ -36,7 +36,7 @@ export const AREAS_DATA: AreaData[] = [
     whyUs: services,
   },
   {
-    slug: "phone-repair-missouri-city",
+    slug: "phone-repair-missouri-city-tx",
     city: "Missouri City",
     title: "Phone Repair Missouri City",
     metaTitle: "Phone Repair Missouri City | Gadget X Houston",
@@ -52,7 +52,7 @@ export const AREAS_DATA: AreaData[] = [
     whyUs: services,
   },
   {
-    slug: "phone-repair-stafford",
+    slug: "phone-repair-stafford-tx",
     city: "Stafford",
     title: "Phone Repair Stafford",
     metaTitle: "Phone Repair Stafford TX | Gadget X Houston",
@@ -68,7 +68,7 @@ export const AREAS_DATA: AreaData[] = [
     whyUs: services,
   },
   {
-    slug: "phone-repair-katy",
+    slug: "phone-repair-katy-tx",
     city: "Katy",
     title: "Phone Repair Katy",
     metaTitle: "Phone Repair Katy TX | Gadget X Houston",
@@ -84,7 +84,7 @@ export const AREAS_DATA: AreaData[] = [
     whyUs: services,
   },
   {
-    slug: "phone-repair-alief",
+    slug: "phone-repair-alief-tx",
     city: "Alief",
     title: "Phone Repair Alief",
     metaTitle: "Phone Repair Alief Houston | Gadget X",
@@ -100,7 +100,7 @@ export const AREAS_DATA: AreaData[] = [
     whyUs: services,
   },
   {
-    slug: "phone-repair-sharpstown",
+    slug: "phone-repair-sharpstown-tx",
     city: "Sharpstown",
     title: "Phone Repair Sharpstown",
     metaTitle: "Phone Repair Sharpstown Houston | Gadget X",

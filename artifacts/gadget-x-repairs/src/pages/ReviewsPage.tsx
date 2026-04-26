@@ -12,10 +12,10 @@ export default function ReviewsPage() {
       <SEO
         title="Customer Reviews | Gadget X Repairs Houston"
         description="5-star customer reviews for Gadget X Repairs in Houston, TX — phone, tablet, laptop, PS5, Xbox repair and prepaid activation."
-        path="/reviews"
+        path="/reviews-houston-tx"
         jsonLd={[
           localBusinessJsonLd(),
-          breadcrumbJsonLd([{ name: "Reviews", path: "/reviews" }]),
+          breadcrumbJsonLd([{ name: "Reviews", path: "/reviews-houston-tx" }]),
           {
             "@context": "https://schema.org",
             "@type": "ElectronicsStore",

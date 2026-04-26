@@ -17,7 +17,7 @@ const UPD = "2026-04-26";
 
 export const ARTICLES_DATA: ArticleData[] = [
   {
-    slug: "iphone-screen-repair-cost-houston",
+    slug: "iphone-screen-repair-cost-houston-tx",
     title: "How Much Does iPhone Screen Repair Cost in Houston?",
     metaTitle: "iPhone Screen Repair Cost Houston (2026 Pricing) | Gadget X",
     metaDescription:
@@ -56,12 +56,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "Get a real iPhone screen quote — call (346) 623-6898 or stop by Almeda Rd.",
-    related: ["iphone-repair-houston", "phone-accessories-houston", "battery-replacement-houston"],
+    related: ["iphone-repair-houston-tx", "phone-accessories-houston-tx", "battery-replacement-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "ps5-hdmi-port-repair-worth-it",
+    slug: "ps5-hdmi-port-repair-worth-it-tx",
     title: "Is PS5 HDMI Port Repair Worth It?",
     metaTitle: "Is PS5 HDMI Port Repair Worth It in 2026? | Gadget X Houston",
     metaDescription:
@@ -98,12 +98,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "Bring your PS5 in for a free quote on HDMI repair — most jobs done in 24–72 hours.",
-    related: ["ps5-repair-houston", "hdmi-port-repair-houston", "gaming-console-repair-houston"],
+    related: ["ps5-repair-houston-tx", "hdmi-port-repair-houston-tx", "gaming-console-repair-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "repair-or-replace-laptop",
+    slug: "repair-or-replace-laptop-tx",
     title: "Repair or Replace Your Laptop?",
     metaTitle: "Should You Repair or Replace Your Laptop? | Gadget X Houston",
     metaDescription:
@@ -136,12 +136,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "Free laptop diagnostic at our Houston shop — bring it in or call (346) 623-6898.",
-    related: ["laptop-repair-houston", "macbook-repair-houston", "computer-repair-houston"],
+    related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx", "computer-repair-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "phone-battery-needs-replacement",
+    slug: "phone-battery-needs-replacement-tx",
     title: "5 Signs Your Phone Battery Needs Replacement",
     metaTitle: "5 Signs Your Phone Battery Needs Replacement | Gadget X Houston",
     metaDescription:
@@ -172,12 +172,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "iPhone batteries from $49, Android from $59. Most done in under an hour.",
-    related: ["battery-replacement-houston", "iphone-repair-houston", "phone-repair-houston"],
+    related: ["battery-replacement-houston-tx", "iphone-repair-houston-tx", "phone-repair-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "used-vs-refurbished-phones",
+    slug: "used-vs-refurbished-phones-tx",
     title: "Used vs Refurbished Phones — What's the Difference?",
     metaTitle: "Used vs Refurbished Phones | What's the Difference | Gadget X",
     metaDescription:
@@ -204,12 +204,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "Browse our tested used and refurbished phones in store, with prices and condition labelled.",
-    related: ["used-phones-houston", "refurbished-phones-houston", "phones-for-sale-houston"],
+    related: ["used-phones-houston-tx", "refurbished-phones-houston-tx", "phones-for-sale-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "can-locked-phone-be-unlocked",
+    slug: "can-locked-phone-be-unlocked-tx",
     title: "Can a Locked Phone Be Unlocked?",
     metaTitle: "Can a Locked Phone Be Unlocked? | Houston Carrier Unlock",
     metaDescription:
@@ -238,12 +238,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "Free unlock eligibility check by IMEI — call or stop in.",
-    related: ["phone-unlocking-houston", "phone-repair-houston"],
+    related: ["phone-unlocking-houston-tx", "phone-repair-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "best-prepaid-plans-houston",
+    slug: "best-prepaid-plans-houston-tx",
     title: "Best Prepaid Plans in Houston for 2026",
     metaTitle: "Best Prepaid Plans Houston 2026 | Gadget X",
     metaDescription:
@@ -270,12 +270,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "We help pick plans honestly — no commission. Call or stop by.",
-    related: ["prepaid-phone-activations-houston", "boost-mobile-activation-houston", "att-prepaid-activation-houston"],
+    related: ["phone-activation-houston-tx", "boost-mobile-activation-houston-tx", "att-activation-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "check-before-buying-used-iphone",
+    slug: "check-before-buying-used-iphone-tx",
     title: "What to Check Before Buying a Used iPhone",
     metaTitle: "What to Check Before Buying a Used iPhone | Gadget X Houston",
     metaDescription:
@@ -306,12 +306,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "Buying from us? We've already checked all of these. Browse in store.",
-    related: ["used-phones-houston", "refurbished-phones-houston", "phone-unlocking-houston"],
+    related: ["used-phones-houston-tx", "refurbished-phones-houston-tx", "phone-unlocking-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "laptop-not-charging",
+    slug: "laptop-not-charging-tx",
     title: "Laptop Not Charging? Here's What to Do",
     metaTitle: "Laptop Not Charging — Diagnosing the Problem | Gadget X",
     metaDescription:
@@ -342,12 +342,12 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "Free laptop diagnostic in Houston — most no-charge fixes are same-day.",
-    related: ["laptop-repair-houston", "macbook-repair-houston", "battery-replacement-houston"],
+    related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx", "battery-replacement-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },
   {
-    slug: "xbox-hdmi-port-problems",
+    slug: "xbox-hdmi-port-problems-tx",
     title: "Xbox HDMI Port Problems — How We Fix Them",
     metaTitle: "Xbox HDMI Port Problems & Repair | Gadget X Houston",
     metaDescription:
@@ -374,7 +374,7 @@ export const ARTICLES_DATA: ArticleData[] = [
       },
     ],
     cta: "Bring your Xbox in for a free quote — most HDMI repairs done in 2–3 days.",
-    related: ["xbox-repair-houston", "hdmi-port-repair-houston", "gaming-console-repair-houston"],
+    related: ["xbox-repair-houston-tx", "hdmi-port-repair-houston-tx", "gaming-console-repair-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
   },

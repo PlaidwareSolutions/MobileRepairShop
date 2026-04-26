@@ -15,7 +15,7 @@ export type ServiceData = {
 
 export const SERVICES_DATA: ServiceData[] = [
   {
-    slug: "phone-repair-houston",
+    slug: "phone-repair-houston-tx",
     title: "Phone Repair Houston",
     metaTitle: "Phone Repair Houston, TX | Same-Day Cellphone Fix | Gadget X",
     metaDescription:
@@ -56,10 +56,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do I need an appointment?", a: "Walk-ins are always welcome. If you want a guaranteed slot, call ahead at (346) 623-6898." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston", "samsung-phone-repair-houston", "battery-replacement-houston"],
+    related: ["iphone-repair-houston-tx", "samsung-repair-houston-tx", "battery-replacement-houston-tx"],
   },
   {
-    slug: "iphone-repair-houston",
+    slug: "iphone-repair-houston-tx",
     title: "iPhone Repair Houston",
     metaTitle: "iPhone Repair Houston | Screen, Battery, Port — Same Day | Gadget X",
     metaDescription:
@@ -111,10 +111,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you fix a swollen iPhone battery?", a: "Yes — and you should not keep using a phone with a swollen battery. Power it off and bring it in." },
     ],
     serviceType: "screen-repair",
-    related: ["battery-replacement-houston", "phone-repair-houston", "ipad-tablet-repair-houston"],
+    related: ["battery-replacement-houston-tx", "phone-repair-houston-tx", "tablet-repair-houston-tx"],
   },
   {
-    slug: "samsung-phone-repair-houston",
+    slug: "samsung-repair-houston-tx",
     title: "Samsung Phone Repair Houston",
     metaTitle: "Samsung Galaxy Repair Houston | Screen, Battery, Port | Gadget X",
     metaDescription:
@@ -153,10 +153,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will the fingerprint sensor still work after a Samsung screen repair?", a: "On most models, yes. We calibrate the in-display sensor as part of the repair." },
     ],
     serviceType: "screen-repair",
-    related: ["phone-repair-houston", "battery-replacement-houston", "google-pixel-repair-houston"],
+    related: ["phone-repair-houston-tx", "battery-replacement-houston-tx", "google-pixel-repair-houston-tx"],
   },
   {
-    slug: "google-pixel-repair-houston",
+    slug: "google-pixel-repair-houston-tx",
     title: "Google Pixel Repair Houston",
     metaTitle: "Google Pixel Repair Houston | Screen, Battery, Port | Gadget X",
     metaDescription:
@@ -184,10 +184,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you repair a Pixel that won't turn on?", a: "Yes — bring it in for a free diagnostic. Most no-power issues come down to battery, charging port or board-level work, all of which we handle." },
     ],
     serviceType: "screen-repair",
-    related: ["phone-repair-houston", "samsung-phone-repair-houston", "battery-replacement-houston"],
+    related: ["phone-repair-houston-tx", "samsung-repair-houston-tx", "battery-replacement-houston-tx"],
   },
   {
-    slug: "motorola-phone-repair-houston",
+    slug: "motorola-repair-houston-tx",
     title: "Motorola Phone Repair Houston",
     metaTitle: "Motorola Phone Repair Houston | Moto G, Edge, Razr | Gadget X",
     metaDescription:
@@ -215,10 +215,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you fix Razr foldable screens?", a: "Yes. The inner foldable display is more expensive than a rigid Moto screen — we quote on the spot after diagnostic." },
     ],
     serviceType: "screen-repair",
-    related: ["phone-repair-houston", "battery-replacement-houston"],
+    related: ["phone-repair-houston-tx", "battery-replacement-houston-tx"],
   },
   {
-    slug: "ipad-tablet-repair-houston",
+    slug: "tablet-repair-houston-tx",
     title: "iPad & Tablet Repair Houston",
     metaTitle: "iPad & Tablet Repair Houston | Glass, LCD, Battery | Gadget X",
     metaDescription:
@@ -247,10 +247,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you do glass-only on an iPad?", a: "On most iPad models with separate glass and LCD, yes. On newer fused-display iPad Pros, the entire assembly must be replaced." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston", "battery-replacement-houston"],
+    related: ["iphone-repair-houston-tx", "battery-replacement-houston-tx"],
   },
   {
-    slug: "laptop-repair-houston",
+    slug: "laptop-repair-houston-tx",
     title: "Laptop Repair Houston",
     metaTitle: "Laptop Repair Houston | Screen, Battery, Keyboard | Gadget X",
     metaDescription:
@@ -290,10 +290,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you recover data from a dead laptop?", a: "In most cases yes. We can pull data from the drive even if the laptop won't boot." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["macbook-repair-houston", "computer-repair-houston", "battery-replacement-houston"],
+    related: ["macbook-repair-houston-tx", "computer-repair-houston-tx", "battery-replacement-houston-tx"],
   },
   {
-    slug: "computer-repair-houston",
+    slug: "computer-repair-houston-tx",
     title: "Computer Repair Houston",
     metaTitle: "Computer Repair Houston | Desktop, Laptop, PC Tune-Up | Gadget X",
     metaDescription:
@@ -322,10 +322,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you build a custom PC?", a: "We can spec, source and assemble a custom desktop. Pricing depends on the parts list — bring us your budget and target use." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston", "macbook-repair-houston"],
+    related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx"],
   },
   {
-    slug: "macbook-repair-houston",
+    slug: "macbook-repair-houston-tx",
     title: "MacBook Repair Houston",
     metaTitle: "MacBook Repair Houston | Screen, Battery, Logic Board | Gadget X",
     metaDescription:
@@ -354,10 +354,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you repair Apple Silicon MacBooks?", a: "Yes — M1, M2 and M3 MacBook Air and MacBook Pro screens, batteries and keyboards are all repairable in our shop." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston", "battery-replacement-houston"],
+    related: ["laptop-repair-houston-tx", "battery-replacement-houston-tx"],
   },
   {
-    slug: "hp-laptop-repair-houston",
+    slug: "hp-laptop-repair-houston-tx",
     title: "HP Laptop Repair Houston",
     metaTitle: "HP Laptop Repair Houston | Pavilion, Envy, Elitebook | Gadget X",
     metaDescription:
@@ -386,10 +386,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you fix an HP laptop that won't turn on?", a: "Yes — most no-power issues come down to charging jack, battery, or motherboard. We diagnose first, then quote." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston", "computer-repair-houston"],
+    related: ["laptop-repair-houston-tx", "computer-repair-houston-tx"],
   },
   {
-    slug: "dell-laptop-repair-houston",
+    slug: "dell-laptop-repair-houston-tx",
     title: "Dell Laptop Repair Houston",
     metaTitle: "Dell Laptop Repair Houston | Latitude, Inspiron, XPS | Gadget X",
     metaDescription:
@@ -417,10 +417,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you replace a Dell XPS touchscreen?", a: "Yes. XPS touch displays are higher-cost than non-touch — we'll quote based on your exact model." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston", "computer-repair-houston"],
+    related: ["laptop-repair-houston-tx", "computer-repair-houston-tx"],
   },
   {
-    slug: "lenovo-laptop-repair-houston",
+    slug: "lenovo-laptop-repair-houston-tx",
     title: "Lenovo Laptop Repair Houston",
     metaTitle: "Lenovo Laptop Repair Houston | ThinkPad, IdeaPad, Yoga | Gadget X",
     metaDescription:
@@ -448,10 +448,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you fix Lenovo Yoga 360 hinges?", a: "Yes. Hinge failures are common on 2-in-1 Yogas. We replace the hinge assembly and reinforce the surrounding plastics." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston", "computer-repair-houston"],
+    related: ["laptop-repair-houston-tx", "computer-repair-houston-tx"],
   },
   {
-    slug: "gaming-console-repair-houston",
+    slug: "gaming-console-repair-houston-tx",
     title: "Gaming Console Repair Houston",
     metaTitle: "Gaming Console Repair Houston | PS5, Xbox, Switch | Gadget X",
     metaDescription:
@@ -480,10 +480,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "How long does a PS5 HDMI repair take?", a: "Usually 24–72 hours from drop-off. We microsolder a new HDMI port — no replacing the whole console needed." },
     ],
     serviceType: "hdmi-repair",
-    related: ["ps5-repair-houston", "xbox-repair-houston", "controller-repair-houston", "hdmi-port-repair-houston"],
+    related: ["ps5-repair-houston-tx", "xbox-repair-houston-tx", "controller-repair-houston-tx", "hdmi-port-repair-houston-tx"],
   },
   {
-    slug: "ps5-repair-houston",
+    slug: "ps5-repair-houston-tx",
     title: "PS5 Repair Houston",
     metaTitle: "PS5 Repair Houston | HDMI, Disc Drive, No Power | Gadget X",
     metaDescription:
@@ -512,10 +512,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is it worth repairing my PS5 HDMI port?", a: "Almost always yes. A new PS5 is $400+; an HDMI repair is around $99 with a 90-day warranty." },
     ],
     serviceType: "hdmi-repair",
-    related: ["gaming-console-repair-houston", "xbox-repair-houston", "hdmi-port-repair-houston", "controller-repair-houston"],
+    related: ["gaming-console-repair-houston-tx", "xbox-repair-houston-tx", "hdmi-port-repair-houston-tx", "controller-repair-houston-tx"],
   },
   {
-    slug: "xbox-repair-houston",
+    slug: "xbox-repair-houston-tx",
     title: "Xbox Repair Houston",
     metaTitle: "Xbox Repair Houston | Series X, Series S, Xbox One | Gadget X",
     metaDescription:
@@ -544,10 +544,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Why does my Xbox keep overheating?", a: "Usually dust buildup and dried thermal paste. Our $59 deep clean fixes most overheating cases." },
     ],
     serviceType: "hdmi-repair",
-    related: ["gaming-console-repair-houston", "ps5-repair-houston", "hdmi-port-repair-houston", "controller-repair-houston"],
+    related: ["gaming-console-repair-houston-tx", "ps5-repair-houston-tx", "hdmi-port-repair-houston-tx", "controller-repair-houston-tx"],
   },
   {
-    slug: "controller-repair-houston",
+    slug: "controller-repair-houston-tx",
     title: "Controller Repair Houston",
     metaTitle: "Controller Repair Houston | Stick Drift, Triggers | Gadget X",
     metaDescription:
@@ -575,10 +575,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you fix joycon drift on the spot?", a: "In most cases, yes — bring both joycons in and we'll usually have them back to you the same day." },
     ],
     serviceType: "hdmi-repair",
-    related: ["ps5-repair-houston", "xbox-repair-houston", "gaming-console-repair-houston"],
+    related: ["ps5-repair-houston-tx", "xbox-repair-houston-tx", "gaming-console-repair-houston-tx"],
   },
   {
-    slug: "hdmi-port-repair-houston",
+    slug: "hdmi-port-repair-houston-tx",
     title: "HDMI Port Repair Houston",
     metaTitle: "HDMI Port Repair Houston | PS5, Xbox, TV, Laptop | Gadget X",
     metaDescription:
@@ -606,10 +606,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Why does HDMI break so easily?", a: "Most HDMI ports break from leverage on the plugged-in cable — pets, kids, kicking the cable. The repair is straightforward; the trick is microsoldering experience." },
     ],
     serviceType: "hdmi-repair",
-    related: ["ps5-repair-houston", "xbox-repair-houston", "gaming-console-repair-houston", "motherboard-repair-houston"],
+    related: ["ps5-repair-houston-tx", "xbox-repair-houston-tx", "gaming-console-repair-houston-tx", "motherboard-repair-houston-tx"],
   },
   {
-    slug: "motherboard-repair-houston",
+    slug: "motherboard-repair-houston-tx",
     title: "Motherboard Repair Houston",
     metaTitle: "Motherboard Repair Houston | Microsolder, Logic Board | Gadget X",
     metaDescription:
@@ -638,10 +638,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "When is board repair worth it vs. replacing the device?", a: "If the device is recent enough that replacement is over $300, board repair is almost always worth it. We give you a clear quote before any work begins." },
     ],
     serviceType: "motherboard-repair",
-    related: ["macbook-repair-houston", "iphone-repair-houston", "hdmi-port-repair-houston"],
+    related: ["macbook-repair-houston-tx", "iphone-repair-houston-tx", "hdmi-port-repair-houston-tx"],
   },
   {
-    slug: "battery-replacement-houston",
+    slug: "battery-replacement-houston-tx",
     title: "Battery Replacement Houston",
     metaTitle: "Battery Replacement Houston | Phone, Laptop, Tablet | Gadget X",
     metaDescription:
@@ -670,10 +670,10 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is a swollen battery dangerous?", a: "Yes. Power off the device immediately, do not charge it, and bring it in for replacement." },
     ],
     serviceType: "battery-replacement",
-    related: ["iphone-repair-houston", "macbook-repair-houston", "laptop-repair-houston"],
+    related: ["iphone-repair-houston-tx", "macbook-repair-houston-tx", "laptop-repair-houston-tx"],
   },
   {
-    slug: "phone-unlocking-houston",
+    slug: "phone-unlocking-houston-tx",
     title: "Phone Unlocking Houston",
     metaTitle: "Phone Unlocking Houston | Carrier Unlock | Gadget X",
     metaDescription:
@@ -700,7 +700,7 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is it legal to unlock my phone?", a: "Yes. In the U.S., once your contract or device payment is complete, you have the right to unlock your device." },
     ],
     serviceType: "phone-unlocking",
-    related: ["phone-repair-houston", "iphone-repair-houston"],
+    related: ["phone-repair-houston-tx", "iphone-repair-houston-tx"],
   },
 ];
 

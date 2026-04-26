@@ -28,10 +28,10 @@ export default function PrepaidPage() {
         jsonLd={[
           localBusinessJsonLd(),
           faqJsonLd(data.faqs),
-          breadcrumbJsonLd([{ name: "Prepaid", path: "/prepaid-phone-activations-houston" }, { name: data.title, path }]),
+          breadcrumbJsonLd([{ name: "Prepaid", path: "/phone-activation-houston-tx" }, { name: data.title, path }]),
         ]}
       />
-      <Breadcrumbs items={[{ label: "Prepaid", to: "/prepaid-phone-activations-houston" }, { label: data.title }]} />
+      <Breadcrumbs items={[{ label: "Prepaid", to: "/phone-activation-houston-tx" }, { label: data.title }]} />
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 

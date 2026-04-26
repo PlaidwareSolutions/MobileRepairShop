@@ -19,7 +19,7 @@ export default function SalesPage() {
   const data = SALES_BY_SLUG[slug];
   if (!data) return <NotFound />;
   const path = `/${data.slug}`;
-  const isBuyback = data.slug === "buy-my-phone-houston";
+  const isBuyback = data.slug === "sell-phone-houston-tx";
 
   return (
     <PageShell hideTicker>
@@ -30,7 +30,7 @@ export default function SalesPage() {
         jsonLd={[
           localBusinessJsonLd(),
           faqJsonLd(data.faqs),
-          breadcrumbJsonLd([{ name: "Shop", path: "/phones-for-sale-houston" }, { name: data.title, path }]),
+          breadcrumbJsonLd([{ name: "Shop", path: "/phones-for-sale-houston-tx" }, { name: data.title, path }]),
           {
             "@context": "https://schema.org",
             "@type": "Product",
@@ -50,7 +50,7 @@ export default function SalesPage() {
           },
         ]}
       />
-      <Breadcrumbs items={[{ label: "Shop", to: "/phones-for-sale-houston" }, { label: data.title }]} />
+      <Breadcrumbs items={[{ label: "Shop", to: "/phones-for-sale-houston-tx" }, { label: data.title }]} />
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 

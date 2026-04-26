@@ -1,4 +1,4 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, Redirect } from "wouter";
 
 import NotFound from "@/pages/not-found";
 import HomePage from "@/pages/HomePage";
@@ -17,15 +17,17 @@ import { SERVICES_DATA } from "@/data/services";
 import { SALES_DATA } from "@/data/sales";
 import { PREPAID_DATA } from "@/data/prepaid";
 import { AREAS_DATA } from "@/data/areas";
+import { LEGACY_REDIRECTS } from "@/legacy-redirects";
 
 export function Routes() {
   return (
     <Switch>
-      <Route path="/" component={HomePage} />
+      {/* Home page is canonical at /phone-repair-houston-tx; bare / redirects via LEGACY_REDIRECTS below */}
+      <Route path="/phone-repair-houston-tx" component={HomePage} />
 
       <Route path="/about" component={AboutPage} />
-      <Route path="/contact" component={ContactPage} />
-      <Route path="/reviews" component={ReviewsPage} />
+      <Route path="/contact-houston-tx" component={ContactPage} />
+      <Route path="/reviews-houston-tx" component={ReviewsPage} />
       <Route path="/inventory" component={InventoryPage} />
       <Route path="/admin/leads" component={AdminLeadsPage} />
 
@@ -45,6 +47,13 @@ export function Routes() {
 
       {AREAS_DATA.map((a) => (
         <Route key={a.slug} path={`/${a.slug}`} component={AreaPage} />
+      ))}
+
+      {/* 301-style client redirects from legacy URLs to current canonical URLs */}
+      {Object.entries(LEGACY_REDIRECTS).map(([from, to]) => (
+        <Route key={from} path={from}>
+          <Redirect to={to} replace />
+        </Route>
       ))}
 
       <Route component={NotFound} />

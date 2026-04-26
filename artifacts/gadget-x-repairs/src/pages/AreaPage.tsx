@@ -64,7 +64,7 @@ export default function AreaPage() {
                 <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer">Directions</a>
               </Button>
               <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-12 px-6">
-                <Link href="/phone-repair-houston">All Repairs</Link>
+                <Link href="/phone-repair-houston-tx">All Repairs</Link>
               </Button>
             </div>
           </div>
