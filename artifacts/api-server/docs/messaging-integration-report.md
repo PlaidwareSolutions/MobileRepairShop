@@ -1,14 +1,29 @@
 # Messaging Integration Report — gadgetxrepairs.com cutover
 
-**Date run:** 2026-04-27
+**Latest run:** 2026-04-27 (Task #48 re-verification, later same day after Task #51's first run)
 **Target environment:** Production — `https://gadgetxrepairs.com`
-**Test fixtures (carried over from the prior verify-messaging task):**
+**Test fixtures:**
 - Test inbox: `kfnawaz@gmail.com`
 - Test phone: `+1-281-745-1997` (E.164 `+12817451997`)
 
 ---
 
-## Final verdict: **NO-GO**
+## Final verdict: **NO-GO** (unchanged from Task #51's run)
+
+### Task #48 re-verification — what changed since Task #51 merged
+
+| Blocker | Status as of this re-run | Owner / unblocking task |
+|---|---|---|
+| **D1** prod serves stale `MAIL_FROM_EMAIL=hello@nawazcoded.me` | **Still active.** `GET https://gadgetxrepairs.com/api/admin/messaging/config` still returns `mailFrom:"hello@nawazcoded.me"`. Local dev (post-restart) correctly returns `mailFrom:"support@gadgetxrepairs.com"`. So the shared env is right; production has not yet been redeployed. | Task **#54** (in progress) |
+| **D2** prod serves stale `SMS_FROM_NUMBER=+13466236898` | **Still active.** Same prod config endpoint still returns `smsFrom:"+13466236898"`. Local dev returns `smsFrom:"+18443496782"`. Same root cause as D1 — pending prod redeploy. | Task **#54** (in progress, bundled with D1) |
+| **D3** Telnyx profile webhook URL | **Still fixed.** `GET https://api.telnyx.com/v2/messaging_profiles/40019dcb-dc53-4eb3-a25d-a02d2c922727` returns `webhook_url: "https://gadgetxrepairs.com/api/webhooks/telnyx"`, `webhook_api_version: "2"`, `enabled: true`. No regression. | n/a — fixed |
+| **D4** Resend domain `gadgetxrepairs.com` not verified | **Assumed still active.** The send-only `RESEND_API_KEY` returns `401 restricted_api_key` on `GET /v1/domains`, so the domain list cannot be inspected programmatically. No code path has changed that would make a previously-failing send succeed; the only way this clears is an operator publishing SPF/DKIM/DMARC DNS for `gadgetxrepairs.com` and clicking "Verify" in the Resend dashboard. **Did not re-attempt a live send** because (a) it would burn provider credit on a known-failing pipe, (b) Task #51 already captured the exact 403 response in evidence. | Task **#54** (operator action — same task that owns the redeploy, since redeploy without a verified domain still produces failing sends) |
+| **D5** Telnyx toll-free `+18443496782` not carrier-verified | **Still active.** `GET /v2/verified_numbers` returns `total_results: 0`. `GET /v2/verifications/by_phone_number/+18443496782` returns `total_results: 0`. The toll-free is `phone_number_type: toll_free, status: active, tags: []` on the GadgetXRepairs profile — but it has no verification submission, so Aerial / T-Mobile and the other US carriers will continue to return error 40329 on every send. | Task **#55** (in progress — picks a real number for outbound; whichever number is chosen, it still needs TFN/10DLC verification before traffic flows) |
+| **All four negative-signature / stale-timestamp probes** | **Still PASS** against `https://gadgetxrepairs.com`. Re-ran on 2026-04-27 during this task: Resend bad svix sig → `401 {"error":"Invalid signature"}`; Telnyx no headers → `401 {"error":"Missing signature headers"}`; Telnyx bad ed25519 sig with fresh timestamp → `401 {"error":"Invalid signature"}`; Telnyx ed25519 with timestamp `1000000000` (year 2001) → `401 {"error":"Stale timestamp"}`. Confirms `RESEND_WEBHOOK_SECRET` and `TELNYX_PUBLIC_KEY` are still present and verification logic in `webhooks.ts` is intact. | n/a — healthy |
+
+**Net change since Task #51:** none. No blocker has been cleared, no new blocker has appeared, no regression detected. Task #54 and Task #55 (both in progress) cover everything that needs to be done by an operator before the live happy-path scenarios (#13–#19 in the matrix below) can be re-run successfully. **No new code changes were applied during Task #48** (the report itself is the deliverable). **No new follow-up tasks proposed** — the work is fully covered by #54, #55, and #22 (the unknown-sender inbound matching gap, separately tracked).
+
+### Task #51 original run — full evidence below
 
 Live outbound delivery to the real fixtures **failed end-to-end on both channels**:
 
