@@ -8,17 +8,21 @@ import {
   Wrench,
   Zap,
   Star,
+  Shield,
   ShieldCheck,
   ArrowRight,
   CheckCircle2,
   Battery,
   Wifi,
+  Phone,
+  MapPin,
+  Clock,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/PageShell";
 import { LocationCard } from "@/components/LocationCard";
-import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
+import { RepairQuoteWizard } from "@/components/forms/RepairQuoteWizard";
 import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import { BUSINESS, HERO } from "@/content";
 
@@ -33,6 +37,13 @@ const SERVICE_TILES: { name: string; desc: string; icon: LucideIcon; to: string 
   { name: "Xbox Repair", desc: "Power issues, HDMI, disc drive.", icon: Gamepad2, to: "/xbox-repair-houston-tx" },
   { name: "Battery Replace", desc: "Phones, tablets, laptops.", icon: Battery, to: "/battery-replacement-houston-tx" },
   { name: "Accessories", desc: "Cases, chargers, screen protectors.", icon: Headphones, to: "/phone-accessories-houston-tx" },
+];
+
+const HERO_DIAGNOSTIC: { name: string; price: string; icon: LucideIcon; to: string }[] = [
+  { name: "iPhone Screen", price: "from $79", icon: Smartphone, to: "/iphone-screen-repair-houston-tx" },
+  { name: "Battery Swap", price: "from $49", icon: Battery, to: "/battery-replacement-houston-tx" },
+  { name: "PS5 HDMI", price: "from $99", icon: Gamepad2, to: "/ps5-hdmi-repair-houston-tx" },
+  { name: "MacBook Repair", price: "free quote", icon: Laptop, to: "/macbook-repair-houston-tx" },
 ];
 
 const WHY_TILES = [
@@ -92,87 +103,178 @@ export default function HomePage() {
         jsonLd={localBusinessJsonLd()}
       />
 
-      {/* Hero */}
-      <section className="relative overflow-hidden py-24 md:py-32 px-4 border-b border-zinc-200">
-        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(#ef4444 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
-        <div className="max-w-[1240px] mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
-          <div className="space-y-8">
+      {/* HERO ----------------------------------------------------------- */}
+      <section className="relative overflow-hidden py-16 md:py-24 px-4 bg-zinc-100">
+        <div
+          className="absolute inset-0 opacity-20"
+          style={{
+            backgroundImage: "radial-gradient(#ef4444 1px, transparent 1px)",
+            backgroundSize: "32px 32px",
+          }}
+          aria-hidden="true"
+        />
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start relative z-10">
+          {/* Left: headline + CTAs */}
+          <div className="lg:col-span-7 space-y-8">
             <div className="flex flex-wrap gap-3">
-              <span className="bg-red-500 text-black px-4 py-2 font-black uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(239,68,68,1)] inline-block transform -rotate-2">
+              <span className="bg-zinc-950 text-white px-4 py-2 font-black uppercase tracking-widest text-xs shadow-[4px_4px_0_0_#ef4444] inline-block">
                 {HERO.badgeYears}
               </span>
-              <span className="bg-red-500 text-zinc-900 px-4 py-2 font-black uppercase tracking-widest text-sm shadow-[4px_4px_0px_0px_rgba(239,68,68,1)] inline-flex items-center gap-2 transform rotate-1">
+              <span className="bg-red-600 text-white px-4 py-2 font-black uppercase tracking-widest text-xs shadow-[4px_4px_0_0_#09090b] inline-flex items-center gap-2">
                 <Zap className="w-4 h-4" /> {HERO.badgeSameDay}
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.9] font-black uppercase tracking-tighter text-zinc-900">
-              {HERO.h1}
+            <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.85] font-black uppercase tracking-tighter text-zinc-950">
+              Houston&apos;s <span className="text-red-600">Fix</span> for Phones, Tablets, Laptops &amp; Consoles.
             </h1>
-            <p className="text-xl md:text-2xl font-bold text-zinc-600 max-w-lg">{HERO.subhead}</p>
-            <div className="flex flex-wrap gap-4 pt-4">
-              <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(239,68,68,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(239,68,68,1)]">
-                <a href={ctaCall.href}>{ctaCall.label}</a>
+            <p className="text-lg md:text-xl font-bold text-zinc-600 max-w-xl uppercase tracking-tight">
+              {HERO.subhead}
+            </p>
+            <div className="flex flex-wrap gap-4 pt-2">
+              <Button
+                asChild
+                className="rounded-none bg-red-600 hover:bg-zinc-950 text-white font-black uppercase tracking-widest text-base h-14 px-7 shadow-[6px_6px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] transition-all hover:translate-x-[4px] hover:translate-y-[4px]"
+              >
+                <a href={ctaCall.href} data-testid="hero-cta-call">
+                  <Phone className="w-5 h-5 mr-2" /> {ctaCall.label}
+                </a>
               </Button>
-              <Button asChild className="rounded-none bg-red-500 hover:bg-white text-black font-black uppercase tracking-widest text-lg h-16 px-8 shadow-[8px_8px_0px_0px_rgba(239,68,68,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(239,68,68,1)]">
-                <a href={ctaQuote.href} target="_blank" rel="noreferrer">{ctaQuote.label}</a>
+              <Button
+                asChild
+                className="rounded-none bg-zinc-950 hover:bg-red-600 text-white font-black uppercase tracking-widest text-base h-14 px-7 shadow-[6px_6px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#ef4444] transition-all hover:translate-x-[4px] hover:translate-y-[4px]"
+              >
+                <a href={ctaQuote.href} data-testid="hero-cta-quote">
+                  <Wrench className="w-5 h-5 mr-2" /> {ctaQuote.label}
+                </a>
               </Button>
-              <Button asChild variant="outline" className="rounded-none border-4 border-white bg-transparent hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest text-lg h-16 px-8">
-                <a href={ctaDirections.href} target="_blank" rel="noreferrer">{ctaDirections.label}</a>
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-none border-4 border-zinc-950 bg-transparent hover:bg-zinc-950 hover:text-white text-zinc-950 font-black uppercase tracking-widest text-base h-14 px-7"
+              >
+                <a href={ctaDirections.href} target="_blank" rel="noreferrer" data-testid="hero-cta-directions">
+                  <MapPin className="w-5 h-5 mr-2" /> {ctaDirections.label}
+                </a>
               </Button>
+            </div>
+
+            {/* Quick stats strip */}
+            <div className="grid grid-cols-3 gap-4 pt-6 max-w-xl">
+              <div>
+                <div className="text-3xl md:text-4xl font-black text-zinc-950">15</div>
+                <div className="text-[11px] md:text-xs font-black uppercase tracking-widest text-zinc-500">Years in Houston</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-black text-zinc-950">90<span className="text-red-600">d</span></div>
+                <div className="text-[11px] md:text-xs font-black uppercase tracking-widest text-zinc-500">Repair Warranty</div>
+              </div>
+              <div>
+                <div className="text-3xl md:text-4xl font-black text-zinc-950">5<span className="text-red-600">★</span></div>
+                <div className="text-[11px] md:text-xs font-black uppercase tracking-widest text-zinc-500">Customer Rating</div>
+              </div>
             </div>
           </div>
 
-          <div className="relative h-[500px] w-full hidden md:block" aria-hidden="true">
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-64 h-96 border-8 border-red-500 absolute transform rotate-12 bg-white/50 backdrop-blur"></div>
-              <div className="w-72 h-80 border-8 border-red-500 absolute transform -rotate-6 bg-white/50 backdrop-blur z-10 flex items-center justify-center">
-                <Wrench className="w-32 h-32 text-zinc-900" />
+          {/* Right: Diagnostic Check panel */}
+          <div className="lg:col-span-5 w-full">
+            <div className="bg-zinc-950 text-white p-6 md:p-8 shadow-[12px_12px_0_0_#ef4444]">
+              <div className="flex items-center justify-between mb-6 border-b border-zinc-800 pb-4">
+                <h3 className="font-black uppercase tracking-tighter text-xl flex items-center gap-2 text-red-500">
+                  <Zap className="w-5 h-5" /> Diagnostic Check
+                </h3>
+                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Live Pricing</span>
               </div>
-              <div className="absolute top-10 right-10 bg-white text-black font-black uppercase p-4 transform rotate-12 text-3xl shadow-[8px_8px_0px_0px_rgba(239,68,68,1)] z-20">
-                CRACKED?
-              </div>
-              <div className="absolute bottom-10 left-10 bg-red-500 text-zinc-900 font-black uppercase p-4 transform -rotate-12 text-3xl shadow-[8px_8px_0px_0px_rgba(239,68,68,1)] z-20">
-                WE GOT IT.
+              <ul className="space-y-3 mb-6">
+                {HERO_DIAGNOSTIC.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <li key={item.to}>
+                      <Link
+                        href={item.to}
+                        className="flex items-center justify-between gap-3 px-4 py-3 bg-zinc-900 hover:bg-red-600 transition-colors group"
+                        data-testid={`hero-diagnostic-${item.to}`}
+                      >
+                        <span className="flex items-center gap-3">
+                          <Icon className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" />
+                          <span className="font-black uppercase text-sm tracking-wide">{item.name}</span>
+                        </span>
+                        <span className="font-black uppercase text-xs tracking-widest text-red-500 group-hover:text-white">
+                          {item.price}
+                        </span>
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+              <a
+                href="#quote"
+                className="block w-full bg-red-600 text-white font-black uppercase tracking-widest text-sm py-3 text-center shadow-[4px_4px_0_0_#fff] hover:shadow-[2px_2px_0_0_#fff] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                data-testid="hero-diagnostic-cta"
+              >
+                Get My Quote →
+              </a>
+              <div className="mt-6 pt-6 border-t border-zinc-800 grid gap-3 text-xs">
+                <div className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
+                  <div>
+                    <div className="font-black uppercase tracking-wide text-zinc-300">{BUSINESS.addressLine1}</div>
+                    <div className="font-bold text-zinc-500">{BUSINESS.addressLine2}</div>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
+                  <div className="font-black uppercase tracking-wide text-zinc-300">{BUSINESS.hoursShort}</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust Strip */}
-      <div className="bg-white border-y-8 border-red-500 py-6">
-        <div className="max-w-[1240px] mx-auto px-4 flex flex-wrap justify-center gap-8 md:gap-12 font-black uppercase tracking-tighter text-black text-lg md:text-2xl text-center">
-          <div className="flex items-center gap-2"><Star className="w-7 h-7 text-red-500" /> 15+ Years in Houston</div>
-          <div className="flex items-center gap-2"><Zap className="w-7 h-7 text-red-500" /> Same-Day Repair</div>
-          <div className="flex items-center gap-2"><ShieldCheck className="w-7 h-7 text-red-500" /> 90-Day Warranty</div>
-          <div className="flex items-center gap-2"><Star className="w-7 h-7 text-red-500" /> 5-Star Reviews</div>
-          <div className="flex items-center gap-2"><Smartphone className="w-7 h-7 text-red-500" /> All Brands Welcome</div>
+      {/* TRUST STRIP ---------------------------------------------------- */}
+      <div className="bg-red-600 text-white border-y-4 border-zinc-950 py-6">
+        <div className="max-w-[1240px] mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-12 font-black uppercase tracking-widest text-sm md:text-lg">
+          <div className="flex items-center gap-2"><Star className="w-5 h-5 text-red-200" /> 15+ Years in Houston</div>
+          <div className="flex items-center gap-2"><Zap className="w-5 h-5 text-red-200" /> Same-Day Repair</div>
+          <div className="flex items-center gap-2"><Shield className="w-5 h-5 text-red-200" /> 90-Day Warranty</div>
+          <div className="flex items-center gap-2"><Star className="w-5 h-5 text-red-200" /> 5-Star Reviews</div>
+          <div className="flex items-center gap-2"><Smartphone className="w-5 h-5 text-red-200" /> All Brands Welcome</div>
         </div>
       </div>
 
-      {/* Services Grid */}
-      <section className="py-24 px-4 bg-zinc-50">
+      {/* SERVICES GRID -------------------------------------------------- */}
+      <section className="py-20 md:py-24 px-4 bg-white">
         <div className="max-w-[1240px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-            <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter leading-none">
-              WHAT WE <br /><span className="text-red-500 text-stroke-black">REPAIR</span>
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-zinc-950">
+              What We <br />
+              <span className="text-red-600">Repair</span>
             </h2>
-            <div className="bg-red-500 p-4 transform rotate-2 max-w-sm">
-              <p className="font-bold text-zinc-900 uppercase text-sm leading-tight">No matter how badly you broke it, bring it in. We've seen worse.</p>
+            <div className="bg-zinc-950 text-white p-4 max-w-sm shadow-[6px_6px_0_0_#ef4444]">
+              <p className="font-black uppercase text-xs leading-snug tracking-wide">
+                No matter how badly you broke it, bring it in. We&apos;ve seen worse.
+              </p>
             </div>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {SERVICE_TILES.map((s) => {
               const Icon = s.icon;
               return (
-                <Link key={s.to} href={s.to} className="group block relative bg-white border-4 border-zinc-300 p-6 hover:border-red-500 transition-colors" data-testid={`tile-${s.to}`}>
-                  <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight className="w-6 h-6 text-red-500" />
+                <Link
+                  key={s.to}
+                  href={s.to}
+                  className="group block relative bg-zinc-50 border-4 border-zinc-950 p-6 shadow-[6px_6px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
+                  data-testid={`tile-${s.to}`}
+                >
+                  <div className="absolute top-3 right-3 opacity-20 group-hover:opacity-100 transition-opacity">
+                    <ArrowRight className="w-5 h-5 text-red-600" />
                   </div>
-                  <Icon className="w-12 h-12 mb-6 text-zinc-900 group-hover:text-red-500 transition-colors" />
-                  <h3 className="text-xl font-black uppercase tracking-tight mb-2">{s.name}</h3>
-                  <p className="text-sm font-bold text-zinc-500 mb-6">{s.desc}</p>
-                  <div className="text-red-500 font-black uppercase text-sm group-hover:underline">View details</div>
+                  <div className="bg-zinc-950 text-white w-12 h-12 flex items-center justify-center mb-5 group-hover:bg-red-600 transition-colors">
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-black uppercase tracking-tight mb-1">{s.name}</h3>
+                  <p className="text-xs font-bold text-zinc-500 mb-4 uppercase">{s.desc}</p>
+                  <div className="text-red-600 font-black uppercase text-xs tracking-widest">View details →</div>
                 </Link>
               );
             })}
@@ -180,130 +282,202 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Why Choose */}
-      <section className="py-24 px-4 bg-red-500 text-black">
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <h2 className="text-7xl md:text-[120px] font-black uppercase tracking-tighter leading-[0.8] mb-8">
-              WHY <br /><span className="text-zinc-900">GADGET X</span>
-            </h2>
-            <div className="text-2xl font-bold uppercase border-l-8 border-zinc-300 pl-6 py-2">
-              "We don't just fix devices. We bring them back from the dead."
+      {/* PRICE BOARD + WHY -------------------------------------------- */}
+      <section className="py-20 md:py-24 px-4 bg-zinc-100">
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-12 gap-12">
+          {/* Price board (charcoal) */}
+          <div className="lg:col-span-7 bg-zinc-950 text-white p-6 md:p-10 shadow-[12px_12px_0_0_#ef4444]">
+            <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-4">
+              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">
+                Hot <span className="text-red-500">Deals</span>
+              </h2>
+              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Walk-in Pricing</span>
             </div>
-          </div>
-          <div className="grid sm:grid-cols-2 gap-8">
-            {WHY_TILES.map((item, i) => {
-              const Icon = item.icon;
-              const isDark = i % 2 === 0;
-              const stagger = i === 1 || i === 3 ? "mt-0 sm:mt-12" : "";
-              return (
-                <div key={item.title} className={`${isDark ? "bg-white text-zinc-900" : "bg-white text-black"} p-8 transform hover:-translate-y-2 transition-transform ${stagger}`}>
-                  <div className={`text-6xl font-black mb-4 ${isDark ? "text-red-500" : "text-red-500"}`}>
-                    <Icon className="w-12 h-12" />
-                  </div>
-                  <h4 className="text-2xl font-black uppercase mb-2">{item.title}</h4>
-                  <p className={`${isDark ? "text-zinc-600" : "text-zinc-600"} font-bold`}>{item.desc}</p>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
-      {/* Hot Deals + Sell */}
-      <section className="py-24 px-4 bg-zinc-100 border-b-8 border-red-500">
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-16">
-          <div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
-              HOT <span className="text-red-500">DEALS</span>
-            </h2>
-            <div className="space-y-4">
+            <div className="space-y-3">
               {FEATURED_OFFERS.map((offer) => {
                 const Icon = offer.icon;
                 return (
-                  <Link key={offer.title} href={offer.to} className="block bg-white border-2 border-zinc-300 p-6 hover:border-white transition-colors" data-testid={`offer-${offer.to}`}>
-                    <div className="flex justify-between items-center gap-4">
-                      <div className="flex items-center gap-4">
-                        <Icon className="w-8 h-8 text-red-500 shrink-0" />
-                        <div>
-                          <h4 className="text-xl md:text-2xl font-black uppercase">{offer.title}</h4>
-                          <div className="text-red-500 font-black text-lg">{offer.price}</div>
-                          <div className="text-zinc-500 font-bold text-xs uppercase">{offer.note}</div>
+                  <Link
+                    key={offer.title}
+                    href={offer.to}
+                    className="flex items-center justify-between gap-4 px-4 md:px-5 py-4 bg-zinc-900 hover:bg-red-600 transition-colors group"
+                    data-testid={`offer-${offer.to}`}
+                  >
+                    <div className="flex items-center gap-4 min-w-0">
+                      <div className="bg-zinc-800 group-hover:bg-zinc-950 p-2 shrink-0 transition-colors">
+                        <Icon className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" />
+                      </div>
+                      <div className="min-w-0">
+                        <h4 className="text-base md:text-lg font-black uppercase tracking-tight truncate">{offer.title}</h4>
+                        <div className="text-[11px] font-black uppercase tracking-widest text-zinc-500 group-hover:text-red-200">
+                          {offer.note}
                         </div>
                       </div>
-                      <ArrowRight className="w-5 h-5 text-red-500 shrink-0" />
+                    </div>
+                    <div className="font-black uppercase text-sm md:text-base tracking-widest text-red-500 group-hover:text-white shrink-0">
+                      {offer.price}
                     </div>
                   </Link>
                 );
               })}
             </div>
           </div>
-          <div>
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
-              WE <span className="text-red-500">SELL</span> TOO
+
+          {/* Why Gadget X */}
+          <div className="lg:col-span-5">
+            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-zinc-950">
+              Why <span className="text-red-600">Gadget X?</span>
             </h2>
-            <p className="text-lg font-bold text-zinc-600 mb-8 max-w-md">{BUSINESS.tagline}</p>
-            <div className="grid grid-cols-2 gap-4 mb-8">
-              {SELL_TILES.map((product, i) => {
-                const Icon = product.icon;
-                const accent = i % 2 === 0 ? "hover:border-red-500" : "hover:border-red-500";
+            <div className="grid sm:grid-cols-2 gap-4">
+              {WHY_TILES.map((item) => {
+                const Icon = item.icon;
                 return (
-                  <Link key={product.to} href={product.to} className={`bg-zinc-200 aspect-square flex flex-col items-center justify-center border-4 border-transparent ${accent} transition-colors p-4 text-center`} data-testid={`sell-${product.to}`}>
-                    <Icon className="w-12 h-12 text-zinc-500 mb-3" />
-                    <span className="font-black uppercase text-sm">{product.name}</span>
-                    <span className="font-bold text-zinc-500 text-xs mt-1">{product.desc}</span>
-                  </Link>
+                  <div
+                    key={item.title}
+                    className="bg-white border-4 border-zinc-950 p-5 shadow-[6px_6px_0_0_#09090b] hover:-translate-y-1 transition-transform"
+                  >
+                    <div className="bg-zinc-950 text-white w-12 h-12 flex items-center justify-center mb-4">
+                      <Icon className="w-6 h-6 text-red-500" />
+                    </div>
+                    <h4 className="text-base font-black uppercase mb-1 leading-tight">{item.title}</h4>
+                    <p className="text-xs font-bold text-zinc-600 uppercase tracking-tight">{item.desc}</p>
+                  </div>
                 );
               })}
             </div>
-            <Button asChild className="w-full rounded-none bg-white text-black hover:bg-red-500 hover:text-black font-black uppercase tracking-widest text-lg h-14">
-              <Link href="/inventory">Browse Inventory</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* WE SELL TOO -------------------------------------------------- */}
+      <section className="py-20 md:py-24 px-4 bg-white border-y-4 border-zinc-950">
+        <div className="max-w-[1240px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-zinc-950">
+              We <span className="text-red-600">Sell</span> Too
+            </h2>
+            <p className="text-base font-bold text-zinc-600 uppercase tracking-tight max-w-md">
+              {BUSINESS.tagline}
+            </p>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+            {SELL_TILES.map((product) => {
+              const Icon = product.icon;
+              return (
+                <Link
+                  key={product.to}
+                  href={product.to}
+                  className="bg-zinc-50 border-4 border-zinc-950 aspect-square flex flex-col items-center justify-center p-4 text-center shadow-[6px_6px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] hover:translate-x-[4px] hover:translate-y-[4px] transition-all group"
+                  data-testid={`sell-${product.to}`}
+                >
+                  <div className="bg-zinc-950 text-white w-14 h-14 flex items-center justify-center mb-3 group-hover:bg-red-600 transition-colors">
+                    <Icon className="w-7 h-7" />
+                  </div>
+                  <span className="font-black uppercase text-sm tracking-tight">{product.name}</span>
+                  <span className="font-bold text-zinc-500 text-[11px] uppercase tracking-tight mt-1">{product.desc}</span>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="flex justify-center">
+            <Button
+              asChild
+              className="rounded-none bg-zinc-950 hover:bg-red-600 text-white font-black uppercase tracking-widest text-base h-14 px-8 shadow-[6px_6px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#ef4444] hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
+            >
+              <Link href="/inventory">Browse Full Inventory →</Link>
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Quote form */}
-      <section className="py-24 px-4 bg-white border-b border-zinc-200">
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12 items-start">
-          <div>
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
-              GET A <span className="text-red-500">QUOTE</span>
+      {/* QUOTE WIZARD -------------------------------------------------- */}
+      <section id="quote" className="py-20 md:py-24 px-4 bg-zinc-100 scroll-mt-24">
+        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-12 gap-12 items-start">
+          <div className="lg:col-span-5">
+            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-zinc-950 leading-[0.9]">
+              Get Your <br />
+              <span className="text-red-600">Repair Quote</span>
             </h2>
-            <p className="text-lg font-bold text-zinc-600 mb-6 max-w-md">
-              Tell us what's broken. We'll text or call you back today with a firm quote.
+            <p className="text-lg font-bold text-zinc-600 mb-8 max-w-md uppercase tracking-tight">
+              Tell us what&apos;s broken. We&apos;ll tell you how much to fix it. Fast.
             </p>
-            <ul className="space-y-2 text-base font-bold text-zinc-700 mb-8">
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-red-500" /> Free diagnostic</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-red-500" /> Same-day repair where possible</li>
-              <li className="flex items-center gap-2"><CheckCircle2 className="w-5 h-5 text-red-500" /> 90-day warranty on every fix</li>
+            <ul className="space-y-3 text-base font-bold text-zinc-700 mb-10">
+              <li className="flex items-center gap-3">
+                <div className="bg-red-600 text-white w-6 h-6 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-4 h-4" />
+                </div>
+                <span className="uppercase tracking-tight">Free diagnostic</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="bg-red-600 text-white w-6 h-6 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-4 h-4" />
+                </div>
+                <span className="uppercase tracking-tight">Same-day repair where possible</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="bg-red-600 text-white w-6 h-6 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-4 h-4" />
+                </div>
+                <span className="uppercase tracking-tight">90-day warranty on every fix</span>
+              </li>
+              <li className="flex items-center gap-3">
+                <div className="bg-red-600 text-white w-6 h-6 flex items-center justify-center shrink-0">
+                  <CheckCircle2 className="w-4 h-4" />
+                </div>
+                <span className="uppercase tracking-tight">A real technician answers — usually within 30 min</span>
+              </li>
             </ul>
+            <div className="hidden lg:block bg-zinc-950 text-white p-6 shadow-[8px_8px_0_0_#ef4444]">
+              <div className="font-black uppercase tracking-widest text-xs text-zinc-500 mb-2">Prefer to call?</div>
+              <a href={BUSINESS.phoneTel} className="font-black uppercase text-2xl tracking-tight hover:text-red-500 transition-colors block">
+                <Phone className="w-5 h-5 inline mr-2 text-red-500" />
+                {BUSINESS.phoneDisplay}
+              </a>
+              <div className="text-xs font-bold text-zinc-500 mt-2 uppercase tracking-wide">{BUSINESS.hoursShort}</div>
+            </div>
           </div>
-          <RepairQuoteForm />
+          <div className="lg:col-span-7">
+            <RepairQuoteWizard />
+          </div>
         </div>
       </section>
 
-      {/* Prepaid + Areas */}
-      <section className="py-12 bg-zinc-50 border-b border-zinc-200">
+      {/* PREPAID + AREAS ----------------------------------------------- */}
+      <section className="py-12 bg-white border-b border-zinc-200">
         <div className="max-w-[1240px] mx-auto px-4 grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">Prepaid Activations & Bill Pay</h3>
+            <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500 mb-4">
+              Prepaid Activations &amp; Bill Pay
+            </h3>
             <div className="flex flex-wrap gap-2 items-center mb-6">
               {PREPAID_TILES.map((carrier) => (
-                <Link key={carrier.label} href={carrier.to} className="bg-zinc-100 border border-zinc-300 px-4 py-2 font-black uppercase text-sm hover:border-red-500 transition-colors" data-testid={`prepaid-${carrier.label}`}>
+                <Link
+                  key={carrier.label}
+                  href={carrier.to}
+                  className="bg-zinc-100 border-2 border-zinc-200 hover:border-zinc-950 px-4 py-2 font-black uppercase text-xs tracking-wide transition-colors"
+                  data-testid={`prepaid-${carrier.label}`}
+                >
                   {carrier.label}
                 </Link>
               ))}
             </div>
-            <Link href="/bill-payments-houston-tx" className="text-red-500 font-black uppercase hover:underline inline-flex items-center gap-1">
+            <Link
+              href="/bill-payments-houston-tx"
+              className="text-red-600 font-black uppercase text-sm tracking-widest hover:underline inline-flex items-center gap-1"
+            >
               Pay your bill in cash <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div>
-            <h3 className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-4">Service Areas</h3>
+            <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500 mb-4">Service Areas</h3>
             <div className="flex flex-wrap gap-2">
               {AREA_TILES.map((area) => (
-                <Link key={area.label} href={area.to} className="text-zinc-600 font-bold uppercase text-sm border-b-2 border-zinc-300 pb-1 hover:text-red-500 hover:border-red-500 transition-colors px-2" data-testid={`area-${area.label}`}>
+                <Link
+                  key={area.label}
+                  href={area.to}
+                  className="text-zinc-700 font-black uppercase text-xs tracking-wide border-b-2 border-zinc-300 pb-1 hover:text-red-600 hover:border-red-600 transition-colors px-2"
+                  data-testid={`area-${area.label}`}
+                >
                   {area.label}
                 </Link>
               ))}

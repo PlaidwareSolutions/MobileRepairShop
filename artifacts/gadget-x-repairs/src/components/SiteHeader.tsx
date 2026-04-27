@@ -264,25 +264,33 @@ export function TopUtilityBar() {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-4 border-red-500">
-      <div className="max-w-[1240px] mx-auto px-4 py-4 flex justify-between items-center gap-4">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-4 border-red-600">
+      <div className="max-w-[1240px] mx-auto px-4 py-3 flex justify-between items-center gap-4">
         <Link href="/phone-repair-houston-tx" className="flex items-center gap-2 shrink-0" aria-label={`${BUSINESS.name} home`}>
-          <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 md:h-12 object-contain" width={120} height={48} />
+          <span className="bg-zinc-950 p-2 block shrink-0">
+            <img
+              src={BUSINESS.logo}
+              alt={BUSINESS.name}
+              className="h-9 md:h-11 w-auto object-contain block"
+              width={140}
+              height={44}
+            />
+          </span>
         </Link>
-        <nav className="hidden lg:flex items-center gap-6 font-black uppercase tracking-tighter text-sm" aria-label="Primary">
+        <nav className="hidden lg:flex items-center gap-6 font-black uppercase tracking-tighter text-sm text-zinc-900" aria-label="Primary">
           <MegaMenuTrigger label="Repair" testIdSuffix="repair" columns={REPAIR_MEGA} />
           <MegaMenuTrigger label="Shop" testIdSuffix="shop" columns={SHOP_MEGA} />
           <SimpleDropdown label="Sell" testIdSuffix="sell" items={SELL_DROPDOWN} />
           <SimpleDropdown label="Prepaid" testIdSuffix="prepaid" items={PREPAID_DROPDOWN} />
           {NAV.map((item) => (
-            <Link key={item.to} href={item.to} className="hover:text-red-500 transition-colors" data-testid={`nav-${item.to.replace(/\//g, "")}`}>
+            <Link key={item.to} href={item.to} className="hover:text-red-600 transition-colors" data-testid={`nav-${item.to.replace(/\//g, "")}`}>
               {item.label}
             </Link>
           ))}
         </nav>
         <Button
           asChild
-          className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest text-sm px-4 md:px-6 h-12"
+          className="rounded-none bg-red-600 hover:bg-zinc-950 hover:text-white text-white font-black uppercase tracking-widest text-sm px-5 md:px-6 h-12 shadow-[4px_4px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
         >
           <a href={BUSINESS.phoneTel}>Call Now</a>
         </Button>
@@ -293,22 +301,22 @@ export function SiteHeader() {
 
 export function TickerTape() {
   return (
-    <div className="w-full overflow-hidden bg-red-500 py-2 border-y-2 border-zinc-300 flex items-center" aria-hidden="true">
-      <div className="animate-[marquee_20s_linear_infinite] whitespace-nowrap font-black uppercase text-black text-xl tracking-tighter flex gap-8">
+    <div className="w-full overflow-hidden bg-red-600 py-3 border-y-4 border-zinc-950 flex items-center" aria-hidden="true">
+      <div className="animate-[marquee_20s_linear_infinite] whitespace-nowrap font-black uppercase text-white text-xl tracking-tighter flex gap-8">
         <span>SAME-DAY REPAIR</span>
-        <span>•</span>
+        <span className="text-zinc-950">•</span>
         <span>15 YEARS EXPERIENCE</span>
-        <span>•</span>
+        <span className="text-zinc-950">•</span>
         <span>HOUSTON'S BEST</span>
-        <span>•</span>
+        <span className="text-zinc-950">•</span>
         <span>CALL NOW</span>
-        <span>•</span>
+        <span className="text-zinc-950">•</span>
         <span>SAME-DAY REPAIR</span>
-        <span>•</span>
+        <span className="text-zinc-950">•</span>
         <span>15 YEARS EXPERIENCE</span>
-        <span>•</span>
+        <span className="text-zinc-950">•</span>
         <span>HOUSTON'S BEST</span>
-        <span>•</span>
+        <span className="text-zinc-950">•</span>
         <span>CALL NOW</span>
       </div>
     </div>

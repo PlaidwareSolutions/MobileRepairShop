@@ -43,28 +43,32 @@ const COMPANY_LINKS = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-white pt-16 pb-32 md:pb-16 border-t border-zinc-200">
-      <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 text-zinc-600 font-bold">
+    <footer className="bg-zinc-950 text-zinc-400 pt-20 pb-32 md:pb-16 border-t-8 border-red-600">
+      <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 font-bold">
         <div className="lg:col-span-2">
-          <Link href="/phone-repair-houston-tx">
-            <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 object-contain mb-6 grayscale opacity-50" width={120} height={40} />
+          <Link href="/phone-repair-houston-tx" className="inline-block mb-6">
+            <span className="bg-zinc-950 p-2 inline-block ring-1 ring-zinc-800">
+              <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 object-contain block" width={140} height={40} />
+            </span>
           </Link>
-          <p className="text-sm mb-6 max-w-sm">{BUSINESS.tagline}</p>
-          <div className="text-xl text-zinc-900 font-black uppercase tracking-widest mb-6">{BUSINESS.yearsInBusiness} Years Strong.</div>
+          <p className="text-sm mb-6 max-w-sm uppercase tracking-wide text-zinc-400">{BUSINESS.tagline}</p>
+          <div className="text-xl text-white font-black uppercase tracking-widest mb-6">
+            {BUSINESS.yearsInBusiness} Years Strong.
+          </div>
           <ul className="space-y-3 text-sm uppercase">
             <li>
-              <a href={BUSINESS.phoneTel} className="hover:text-red-500 flex items-center gap-2">
-                <Phone className="w-4 h-4" /> {BUSINESS.phoneDisplay}
+              <a href={BUSINESS.phoneTel} className="hover:text-red-500 flex items-center gap-2 text-zinc-200">
+                <Phone className="w-4 h-4 text-red-500" /> {BUSINESS.phoneDisplay}
               </a>
             </li>
             <li>
               <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-center gap-2">
-                <MessageCircle className="w-4 h-4" /> WhatsApp Us
+                <MessageCircle className="w-4 h-4 text-red-500" /> WhatsApp Us
               </a>
             </li>
             <li>
               <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-start gap-2">
-                <MapPin className="w-4 h-4 mt-0.5 shrink-0" />
+                <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-red-500" />
                 <span>
                   {BUSINESS.addressLine1}
                   <br />
@@ -84,7 +88,7 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="max-w-[1240px] mx-auto px-4 mt-16 pt-8 border-t border-zinc-200 text-zinc-500 text-xs uppercase tracking-widest font-bold">
+      <div className="max-w-[1240px] mx-auto px-4 mt-16 pt-8 border-t border-zinc-900 text-zinc-500 text-xs uppercase tracking-widest font-bold">
         {COPYRIGHT}
       </div>
     </footer>
@@ -94,11 +98,15 @@ export function SiteFooter() {
 function FooterColumn({ title, items }: { title: string; items: { label: string; to: string }[] }) {
   return (
     <div>
-      <h4 className="text-zinc-900 font-black uppercase tracking-widest mb-6">{title}</h4>
+      <h4 className="text-white font-black uppercase tracking-widest border-b-2 border-zinc-800 pb-3 mb-6">
+        {title}
+      </h4>
       <ul className="space-y-2 text-sm uppercase">
         {items.map((it) => (
           <li key={it.to}>
-            <Link href={it.to} className="hover:text-red-500">{it.label}</Link>
+            <Link href={it.to} className="text-zinc-400 hover:text-red-500 transition-colors">
+              {it.label}
+            </Link>
           </li>
         ))}
       </ul>

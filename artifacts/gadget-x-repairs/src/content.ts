@@ -23,7 +23,8 @@ export const BUSINESS = {
     { day: "Saturday", time: "10:00 AM – 7:00 PM" },
   ],
   yearsInBusiness: 15,
-  logo: "/images/gadget-x-logo.jpeg",
+  logo: "/images/gadget-x-logo-cropped.png",
+  logoOfficial: "/images/gadget-x-logo-cropped.png",
 };
 
 export const HERO = {
@@ -34,7 +35,7 @@ export const HERO = {
     "15 years of trusted repairs. Most fixes done the same day. All major brands welcome — walk-ins always welcome.",
   ctas: [
     { label: "Call Now", href: "tel:+13466236898", kind: "primary" as const, icon: "phone" as const },
-    { label: "Text For Quote", href: "https://wa.me/13466236898", kind: "secondary" as const, icon: "wrench" as const },
+    { label: "Get Repair Quote", href: "#quote", kind: "secondary" as const, icon: "wrench" as const },
     { label: "Directions", href: "https://maps.app.goo.gl/ALRF73zPbrG9qndz8", kind: "tertiary" as const, icon: "map" as const },
   ],
 };
