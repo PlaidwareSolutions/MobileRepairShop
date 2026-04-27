@@ -5,9 +5,11 @@ export const modules: ModuleMap = {
   "./components/mockups/gadget-x-themes/BrightFriendlyWalkIn.tsx": () => import("../components/mockups/gadget-x-themes/BrightFriendlyWalkIn.tsx"),
   "./components/mockups/gadget-x-themes/EditorialMagazine.tsx": () => import("../components/mockups/gadget-x-themes/EditorialMagazine.tsx"),
   "./components/mockups/gadget-x-themes/ElectricTech.tsx": () => import("../components/mockups/gadget-x-themes/ElectricTech.tsx"),
+  "./components/mockups/gadget-x-themes/GarageShowroom.tsx": () => import("../components/mockups/gadget-x-themes/GarageShowroom.tsx"),
   "./components/mockups/gadget-x-themes/HeritageAtelier.tsx": () => import("../components/mockups/gadget-x-themes/HeritageAtelier.tsx"),
   "./components/mockups/gadget-x-themes/HeritageEditorial.tsx": () => import("../components/mockups/gadget-x-themes/HeritageEditorial.tsx"),
   "./components/mockups/gadget-x-themes/HeritageWorkshop.tsx": () => import("../components/mockups/gadget-x-themes/HeritageWorkshop.tsx"),
   "./components/mockups/gadget-x-themes/PlayfulRetro.tsx": () => import("../components/mockups/gadget-x-themes/PlayfulRetro.tsx"),
+  "./components/mockups/gadget-x-themes/PosterStudio.tsx": () => import("../components/mockups/gadget-x-themes/PosterStudio.tsx"),
   "./components/mockups/gadget-x-themes/QuietConfident.tsx": () => import("../components/mockups/gadget-x-themes/QuietConfident.tsx")
 };
