@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BUSINESS, HERO, TRUST_POINTS, SERVICES, WHY_CHOOSE, FEATURED_OFFERS, SELL_PRODUCTS, PREPAID_CARRIERS, SERVICE_AREAS, FOOTER_LINKS, COPYRIGHT } from "./_content";
-import { ArrowRight, MapPin, Phone, Star, Wrench, Smartphone, Tablet, Laptop, Gamepad2, Headphones, Check, Zap, Shield, ArrowDown } from "lucide-react";
+import { ArrowRight, MapPin, Phone, Star, Wrench, Smartphone, Tablet, Laptop, Gamepad2, Headphones, Check, Zap, Shield, ArrowDown, Clock } from "lucide-react";
 
 export function ScrollStory() {
   const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
