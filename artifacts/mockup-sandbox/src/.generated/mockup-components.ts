@@ -9,7 +9,11 @@ export const modules: ModuleMap = {
   "./components/mockups/gadget-x-themes/HeritageAtelier.tsx": () => import("../components/mockups/gadget-x-themes/HeritageAtelier.tsx"),
   "./components/mockups/gadget-x-themes/HeritageEditorial.tsx": () => import("../components/mockups/gadget-x-themes/HeritageEditorial.tsx"),
   "./components/mockups/gadget-x-themes/HeritageWorkshop.tsx": () => import("../components/mockups/gadget-x-themes/HeritageWorkshop.tsx"),
+  "./components/mockups/gadget-x-themes/LocalStorefront.tsx": () => import("../components/mockups/gadget-x-themes/LocalStorefront.tsx"),
   "./components/mockups/gadget-x-themes/PlayfulRetro.tsx": () => import("../components/mockups/gadget-x-themes/PlayfulRetro.tsx"),
   "./components/mockups/gadget-x-themes/PosterStudio.tsx": () => import("../components/mockups/gadget-x-themes/PosterStudio.tsx"),
-  "./components/mockups/gadget-x-themes/QuietConfident.tsx": () => import("../components/mockups/gadget-x-themes/QuietConfident.tsx")
+  "./components/mockups/gadget-x-themes/QuietConfident.tsx": () => import("../components/mockups/gadget-x-themes/QuietConfident.tsx"),
+  "./components/mockups/gadget-x-themes/QuoteWizard.tsx": () => import("../components/mockups/gadget-x-themes/QuoteWizard.tsx"),
+  "./components/mockups/gadget-x-themes/ScrollStory.tsx": () => import("../components/mockups/gadget-x-themes/ScrollStory.tsx"),
+  "./components/mockups/gadget-x-themes/ServiceCatalog.tsx": () => import("../components/mockups/gadget-x-themes/ServiceCatalog.tsx")
 };

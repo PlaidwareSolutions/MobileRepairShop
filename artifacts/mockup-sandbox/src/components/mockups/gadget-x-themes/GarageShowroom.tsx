@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "wouter";
+// no router in mockups
 import {
   Smartphone,
   Tablet,
@@ -79,18 +79,18 @@ export function GarageShowroom() {
       <header className="bg-white border-b-2 border-zinc-200 sticky top-0 z-50 shadow-sm">
         <div className="max-w-[1400px] mx-auto flex items-center justify-between">
           <div className="flex items-center">
-            <Link href="/" className="block bg-zinc-950 p-4 shrink-0 transition-transform hover:scale-[1.02]">
+            <a href="/" className="block bg-zinc-950 p-4 shrink-0 transition-transform hover:scale-[1.02]">
               <img
                 src={BUSINESS.logoOfficial}
                 alt={BUSINESS.name}
                 className="h-12 w-auto object-contain block"
               />
-            </Link>
+            </a>
             <div className="hidden lg:flex items-center gap-6 ml-8">
-              <Link href="#services" className="font-bold uppercase text-sm tracking-wide text-zinc-600 hover:text-red-600 transition-colors">Services</Link>
-              <Link href="#shop" className="font-bold uppercase text-sm tracking-wide text-zinc-600 hover:text-red-600 transition-colors">Shop</Link>
-              <Link href="#why-us" className="font-bold uppercase text-sm tracking-wide text-zinc-600 hover:text-red-600 transition-colors">Why Us</Link>
-              <Link href="#contact" className="font-bold uppercase text-sm tracking-wide text-zinc-600 hover:text-red-600 transition-colors">Contact</Link>
+              <a href="#services" className="font-bold uppercase text-sm tracking-wide text-zinc-600 hover:text-red-600 transition-colors">Services</a>
+              <a href="#shop" className="font-bold uppercase text-sm tracking-wide text-zinc-600 hover:text-red-600 transition-colors">Shop</a>
+              <a href="#why-us" className="font-bold uppercase text-sm tracking-wide text-zinc-600 hover:text-red-600 transition-colors">Why Us</a>
+              <a href="#contact" className="font-bold uppercase text-sm tracking-wide text-zinc-600 hover:text-red-600 transition-colors">Contact</a>
             </div>
           </div>
 
@@ -121,10 +121,10 @@ export function GarageShowroom() {
         {mobileMenuOpen && (
           <div className="lg:hidden bg-zinc-900 text-white absolute top-full left-0 w-full border-t border-zinc-800 shadow-2xl">
             <nav className="flex flex-col p-6 gap-4">
-              <Link href="#services" onClick={() => setMobileMenuOpen(false)} className="font-black uppercase text-xl border-b border-zinc-800 pb-4">Services</Link>
-              <Link href="#shop" onClick={() => setMobileMenuOpen(false)} className="font-black uppercase text-xl border-b border-zinc-800 pb-4">Shop</Link>
-              <Link href="#why-us" onClick={() => setMobileMenuOpen(false)} className="font-black uppercase text-xl border-b border-zinc-800 pb-4">Why Us</Link>
-              <Link href="#contact" onClick={() => setMobileMenuOpen(false)} className="font-black uppercase text-xl">Contact</Link>
+              <a href="#services" onClick={() => setMobileMenuOpen(false)} className="font-black uppercase text-xl border-b border-zinc-800 pb-4">Services</a>
+              <a href="#shop" onClick={() => setMobileMenuOpen(false)} className="font-black uppercase text-xl border-b border-zinc-800 pb-4">Shop</a>
+              <a href="#why-us" onClick={() => setMobileMenuOpen(false)} className="font-black uppercase text-xl border-b border-zinc-800 pb-4">Why Us</a>
+              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="font-black uppercase text-xl">Contact</a>
             </nav>
             <div className="p-6 bg-zinc-950">
                {primaryCta && (
