@@ -7,7 +7,7 @@
  * For every customer-facing prerendered page (legacy redirect stubs that
  * contain <meta http-equiv="refresh" ...> are skipped):
  *   - <head> must contain exactly one of each:
- *       <title>, <link rel="canonical">,
+ *       <title>, <link rel="canonical">, <meta name="description">,
  *       og:title, og:description, og:url, og:type, og:image, og:site_name,
  *       twitter:card, twitter:title, twitter:description, twitter:image,
  *       and a <meta name="robots"> tag.
@@ -33,6 +33,10 @@
  *   - The <title> text, og:title content, and twitter:title content are equal
  *     (after HTML-entity decoding), so the headline a user sees in the browser
  *     tab matches what's shared to Facebook/X/LinkedIn previews.
+ *   - The <meta name="description">, og:description, and twitter:description
+ *     content are equal (after HTML-entity decoding), so the snippet Google
+ *     shows in search results matches the description Facebook/X/LinkedIn use
+ *     in share previews.
  *
  * Exits non-zero with a clear, file-by-file message when any assertion is
  * violated so the build fails before broken HTML reaches search engines.
@@ -49,6 +53,7 @@ const DIST_DIR = path.join(PROJECT_DIR, "dist", "public");
 const SINGLE_HEAD_TAGS = [
   { name: "<title>", pattern: /<title\b[^>]*>[\s\S]*?<\/title>/gi },
   { name: '<link rel="canonical">', pattern: /<link\b[^>]*\brel=["']canonical["'][^>]*>/gi },
+  { name: 'meta name="description"', pattern: /<meta\b[^>]*\bname=["']description["'][^>]*>/gi },
   { name: 'meta property="og:title"', pattern: /<meta\b[^>]*\bproperty=["']og:title["'][^>]*>/gi },
   { name: 'meta property="og:description"', pattern: /<meta\b[^>]*\bproperty=["']og:description["'][^>]*>/gi },
   { name: 'meta property="og:url"', pattern: /<meta\b[^>]*\bproperty=["']og:url["'][^>]*>/gi },
@@ -80,6 +85,9 @@ const OG_URL_META_PATTERN = /<meta\b[^>]*\bproperty=["']og:url["'][^>]*>/i;
 const OG_TITLE_META_PATTERN = /<meta\b[^>]*\bproperty=["']og:title["'][^>]*>/i;
 const TWITTER_TITLE_META_PATTERN = /<meta\b[^>]*\bname=["']twitter:title["'][^>]*>/i;
 const TITLE_TAG_PATTERN = /<title\b[^>]*>([\s\S]*?)<\/title>/i;
+const DESCRIPTION_META_PATTERN = /<meta\b[^>]*\bname=["']description["'][^>]*>/i;
+const OG_DESCRIPTION_META_PATTERN = /<meta\b[^>]*\bproperty=["']og:description["'][^>]*>/i;
+const TWITTER_DESCRIPTION_META_PATTERN = /<meta\b[^>]*\bname=["']twitter:description["'][^>]*>/i;
 
 // Decode the small set of HTML entities that <SEO>/Helmet and the build's
 // safety-net escape() function can emit in title / meta / link attributes:
@@ -305,6 +313,42 @@ function auditOne(html, relPath) {
     if (ogTitle !== twitterTitle) {
       errors.push(
         `og:title and twitter:title disagree — og:title="${ogTitle}", twitter:title="${twitterTitle}"`,
+      );
+    }
+  }
+
+  // <meta name="description"> / og:description / twitter:description must
+  // agree so the snippet Google shows in search results matches the
+  // description Facebook/X/LinkedIn surface in share previews. Same gating as
+  // the title block: only run when each tag appears exactly once, otherwise
+  // the earlier "expected exactly 1" error is the more useful diagnostic.
+  // We compare decoded text so HTML-entity escaping differences (e.g. `&#x27;`
+  // vs `&#39;` for the same apostrophe) don't trigger spurious mismatches.
+  const descriptionCount = countMatches(head, /<meta\b[^>]*\bname=["']description["'][^>]*>/gi);
+  const ogDescriptionCount = countMatches(head, /<meta\b[^>]*\bproperty=["']og:description["'][^>]*>/gi);
+  const twitterDescriptionCount = countMatches(head, /<meta\b[^>]*\bname=["']twitter:description["'][^>]*>/gi);
+
+  if (descriptionCount === 1 && ogDescriptionCount === 1 && twitterDescriptionCount === 1) {
+    const descriptionTag = head.match(DESCRIPTION_META_PATTERN);
+    const ogDescriptionTag = head.match(OG_DESCRIPTION_META_PATTERN);
+    const twitterDescriptionTag = head.match(TWITTER_DESCRIPTION_META_PATTERN);
+    const description = attrValueDecoded(descriptionTag[0], CONTENT_ATTR_PATTERN);
+    const ogDescription = attrValueDecoded(ogDescriptionTag[0], CONTENT_ATTR_PATTERN);
+    const twitterDescription = attrValueDecoded(twitterDescriptionTag[0], CONTENT_ATTR_PATTERN);
+
+    if (description !== ogDescription) {
+      errors.push(
+        `<meta name="description"> and og:description disagree — description="${description}", og:description="${ogDescription}"`,
+      );
+    }
+    if (description !== twitterDescription) {
+      errors.push(
+        `<meta name="description"> and twitter:description disagree — description="${description}", twitter:description="${twitterDescription}"`,
+      );
+    }
+    if (ogDescription !== twitterDescription) {
+      errors.push(
+        `og:description and twitter:description disagree — og:description="${ogDescription}", twitter:description="${twitterDescription}"`,
       );
     }
   }
