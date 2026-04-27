@@ -15,14 +15,14 @@ export type ActivityProps = {
 };
 
 const STATUS_BADGE: Record<string, string> = {
-  queued: "bg-zinc-700 text-zinc-200",
-  sent: "bg-blue-500 text-white",
-  delivered: "bg-green-500 text-white",
-  bounced: "bg-red-500 text-white",
-  failed: "bg-red-500 text-white",
-  complained: "bg-red-500 text-white",
-  delayed: "bg-yellow-400 text-black",
-  received: "bg-yellow-400 text-black",
+  queued: "bg-zinc-300 text-zinc-800",
+  sent: "bg-blue-500 text-zinc-900",
+  delivered: "bg-green-500 text-zinc-900",
+  bounced: "bg-red-500 text-zinc-900",
+  failed: "bg-red-500 text-zinc-900",
+  complained: "bg-red-500 text-zinc-900",
+  delayed: "bg-red-500 text-black",
+  received: "bg-red-500 text-black",
 };
 
 export function Activity({
@@ -78,8 +78,8 @@ export function Activity({
   }, [password, leadType, id, refreshKey, onRead]);
 
   return (
-    <div className="mt-4 border-t-2 border-zinc-800 pt-4" data-testid={`activity-${leadType}-${id}`}>
-      <div className="font-black uppercase text-xs tracking-widest text-zinc-400 mb-3">
+    <div className="mt-4 border-t-2 border-zinc-300 pt-4" data-testid={`activity-${leadType}-${id}`}>
+      <div className="font-black uppercase text-xs tracking-widest text-zinc-600 mb-3">
         Activity {items ? `(${items.length})` : ""}
       </div>
       {loading && <div className="text-xs text-zinc-500">Loading…</div>}
@@ -97,17 +97,17 @@ export function Activity({
                 key={c.id}
                 className={
                   isInbound
-                    ? `bg-yellow-950/30 border-l-4 border-yellow-400 border-y border-r border-zinc-800 p-3 text-xs text-zinc-200 space-y-1`
-                    : `bg-zinc-950 border border-zinc-800 p-3 text-xs text-zinc-300 space-y-1`
+                    ? `bg-red-50/30 border-l-4 border-red-500 border-y border-r border-zinc-300 p-3 text-xs text-zinc-800 space-y-1`
+                    : `bg-zinc-50 border border-zinc-300 p-3 text-xs text-zinc-700 space-y-1`
                 }
                 data-testid={`activity-item-${c.id}`}
                 data-direction={c.direction}
               >
                 <div className="flex justify-between gap-2 items-center">
-                  <span className="font-black uppercase tracking-widest text-zinc-400 flex items-center gap-2">
+                  <span className="font-black uppercase tracking-widest text-zinc-600 flex items-center gap-2">
                     {isInbound ? (
                       <span
-                        className="bg-yellow-400 text-black px-1.5 py-0.5 text-[10px] tracking-widest"
+                        className="bg-red-500 text-black px-1.5 py-0.5 text-[10px] tracking-widest"
                         data-testid={`badge-inbound-${c.id}`}
                       >
                         ← REPLY
@@ -118,13 +118,13 @@ export function Activity({
                     <span>
                       {c.channel.toUpperCase()}{" "}
                       {isInbound ? "from" : "to"}{" "}
-                      <span className="text-zinc-200">
+                      <span className="text-zinc-800">
                         {isInbound ? c.recipient || "customer" : c.recipient}
                       </span>
                     </span>
                     {wasUnread && (
                       <span
-                        className="bg-red-500 text-white px-1.5 py-0.5 text-[10px] tracking-widest animate-pulse"
+                        className="bg-red-500 text-zinc-900 px-1.5 py-0.5 text-[10px] tracking-widest animate-pulse"
                         data-testid={`badge-unread-${c.id}`}
                       >
                         NEW
@@ -133,16 +133,16 @@ export function Activity({
                   </span>
                   <span
                     className={`px-2 py-0.5 font-black uppercase text-[10px] tracking-widest ${
-                      STATUS_BADGE[c.status] ?? "bg-zinc-700 text-zinc-200"
+                      STATUS_BADGE[c.status] ?? "bg-zinc-300 text-zinc-800"
                     }`}
                   >
                     {c.status}
                   </span>
                 </div>
                 {c.subject && (
-                  <div className="text-zinc-200 font-bold">{c.subject}</div>
+                  <div className="text-zinc-800 font-bold">{c.subject}</div>
                 )}
-                <div className="text-zinc-300 whitespace-pre-wrap break-words line-clamp-6">
+                <div className="text-zinc-700 whitespace-pre-wrap break-words line-clamp-6">
                   {stripHtml(c.body)}
                 </div>
                 <div className="text-[10px] text-zinc-600 uppercase tracking-widest">

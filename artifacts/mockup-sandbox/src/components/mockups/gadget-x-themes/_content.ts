@@ -24,6 +24,7 @@ export const BUSINESS = {
   ],
   yearsInBusiness: 15,
   logo: "/__mockup/images/gadget-x-logo.png",
+  logoOfficial: "/__mockup/images/gadget-x-logo-2026.jpeg",
 };
 
 export const HERO = {

@@ -43,14 +43,14 @@ const COMPANY_LINKS = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-black pt-16 pb-32 md:pb-16 border-t border-zinc-900">
-      <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 text-zinc-400 font-bold">
+    <footer className="bg-white pt-16 pb-32 md:pb-16 border-t border-zinc-200">
+      <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 text-zinc-600 font-bold">
         <div className="lg:col-span-2">
           <Link href="/phone-repair-houston-tx">
             <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 object-contain mb-6 grayscale opacity-50" width={120} height={40} />
           </Link>
           <p className="text-sm mb-6 max-w-sm">{BUSINESS.tagline}</p>
-          <div className="text-xl text-white font-black uppercase tracking-widest mb-6">{BUSINESS.yearsInBusiness} Years Strong.</div>
+          <div className="text-xl text-zinc-900 font-black uppercase tracking-widest mb-6">{BUSINESS.yearsInBusiness} Years Strong.</div>
           <ul className="space-y-3 text-sm uppercase">
             <li>
               <a href={BUSINESS.phoneTel} className="hover:text-red-500 flex items-center gap-2">
@@ -84,7 +84,7 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="max-w-[1240px] mx-auto px-4 mt-16 pt-8 border-t border-zinc-900 text-zinc-500 text-xs uppercase tracking-widest font-bold">
+      <div className="max-w-[1240px] mx-auto px-4 mt-16 pt-8 border-t border-zinc-200 text-zinc-500 text-xs uppercase tracking-widest font-bold">
         {COPYRIGHT}
       </div>
     </footer>
@@ -94,7 +94,7 @@ export function SiteFooter() {
 function FooterColumn({ title, items }: { title: string; items: { label: string; to: string }[] }) {
   return (
     <div>
-      <h4 className="text-white font-black uppercase tracking-widest mb-6">{title}</h4>
+      <h4 className="text-zinc-900 font-black uppercase tracking-widest mb-6">{title}</h4>
       <ul className="space-y-2 text-sm uppercase">
         {items.map((it) => (
           <li key={it.to}>

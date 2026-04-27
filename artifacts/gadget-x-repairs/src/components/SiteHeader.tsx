@@ -172,12 +172,12 @@ function SimpleDropdown({
         {label} <ChevronDown className="w-4 h-4" />
       </button>
       <div className="absolute left-0 top-full pt-2 w-64 hidden group-hover:block group-focus-within:block z-50">
-        <div className="bg-black border-2 border-red-500 py-2 shadow-2xl">
+        <div className="bg-white border-2 border-red-500 py-2 shadow-2xl">
           {items.map((item) => (
             <Link
               key={item.to}
               href={item.to}
-              className="block px-4 py-2 text-xs hover:bg-red-500 hover:text-white text-zinc-200 transition-colors"
+              className="block px-4 py-2 text-xs hover:bg-red-500 hover:text-zinc-900 text-zinc-800 transition-colors"
               data-testid={`nav-${testIdSuffix}-${item.to.replace(/\//g, "")}`}
             >
               {item.label}
@@ -209,10 +209,10 @@ function MegaMenuTrigger({
         {label} <ChevronDown className="w-4 h-4" />
       </button>
       <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-50">
-        <div className="bg-black border-2 border-red-500 shadow-2xl p-6 grid grid-cols-4 gap-6 w-[860px]">
+        <div className="bg-white border-2 border-red-500 shadow-2xl p-6 grid grid-cols-4 gap-6 w-[860px]">
           {columns.map((col) => (
             <div key={col.heading}>
-              <h4 className="text-red-500 text-[11px] font-black uppercase tracking-wider mb-2 border-b border-zinc-800 pb-1">
+              <h4 className="text-red-500 text-[11px] font-black uppercase tracking-wider mb-2 border-b border-zinc-300 pb-1">
                 {col.heading}
               </h4>
               <ul className="space-y-1">
@@ -220,7 +220,7 @@ function MegaMenuTrigger({
                   <li key={item.to}>
                     <Link
                       href={item.to}
-                      className="block text-xs text-zinc-200 hover:text-yellow-400 transition-colors"
+                      className="block text-xs text-zinc-800 hover:text-red-500 transition-colors"
                       data-testid={`nav-${testIdSuffix}-${item.to.replace(/\//g, "")}`}
                     >
                       {item.label}
@@ -238,7 +238,7 @@ function MegaMenuTrigger({
 
 export function TopUtilityBar() {
   return (
-    <div className="bg-zinc-900 border-b border-zinc-800 text-xs font-mono py-2 px-4 flex justify-between items-center tracking-tight text-zinc-400">
+    <div className="bg-zinc-100 border-b border-zinc-300 text-xs font-mono py-2 px-4 flex justify-between items-center tracking-tight text-zinc-600">
       <div className="flex items-center gap-4">
         <span className="hidden sm:inline-flex items-center gap-1">
           <MapPin className="w-3 h-3 text-red-500" />
@@ -250,7 +250,7 @@ export function TopUtilityBar() {
         </span>
       </div>
       <div className="flex items-center gap-4">
-        <span className="bg-red-500 text-white px-2 py-0.5 uppercase font-bold text-[10px] tracking-wider transform -skew-x-12">
+        <span className="bg-red-500 text-zinc-900 px-2 py-0.5 uppercase font-bold text-[10px] tracking-wider transform -skew-x-12">
           {HERO.badgeSameDay}
         </span>
         <a href={BUSINESS.phoneTel} className="hover:text-red-500 transition-colors flex items-center gap-1">
@@ -264,7 +264,7 @@ export function TopUtilityBar() {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 bg-black/90 backdrop-blur-md border-b-4 border-red-500">
+    <header className="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b-4 border-red-500">
       <div className="max-w-[1240px] mx-auto px-4 py-4 flex justify-between items-center gap-4">
         <Link href="/phone-repair-houston-tx" className="flex items-center gap-2 shrink-0" aria-label={`${BUSINESS.name} home`}>
           <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 md:h-12 object-contain" width={120} height={48} />
@@ -282,7 +282,7 @@ export function SiteHeader() {
         </nav>
         <Button
           asChild
-          className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest text-sm px-4 md:px-6 h-12"
+          className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest text-sm px-4 md:px-6 h-12"
         >
           <a href={BUSINESS.phoneTel}>Call Now</a>
         </Button>
@@ -293,7 +293,7 @@ export function SiteHeader() {
 
 export function TickerTape() {
   return (
-    <div className="w-full overflow-hidden bg-yellow-400 py-2 border-y-2 border-black flex items-center" aria-hidden="true">
+    <div className="w-full overflow-hidden bg-red-500 py-2 border-y-2 border-zinc-300 flex items-center" aria-hidden="true">
       <div className="animate-[marquee_20s_linear_infinite] whitespace-nowrap font-black uppercase text-black text-xl tracking-tighter flex gap-8">
         <span>SAME-DAY REPAIR</span>
         <span>•</span>

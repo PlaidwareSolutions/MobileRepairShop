@@ -136,23 +136,23 @@ export default function SalesPage() {
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
-      <section className="py-16 px-4 bg-zinc-950">
+      <section className="py-16 px-4 bg-zinc-50">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
-              WHY <span className="text-yellow-400 text-stroke-black">US</span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
+              WHY <span className="text-red-500 text-stroke-black">US</span>
             </h2>
-            <p className="text-lg font-bold text-zinc-400 mb-6">{data.intro}</p>
+            <p className="text-lg font-bold text-zinc-600 mb-6">{data.intro}</p>
             <ul className="space-y-3">
               {data.highlights.map((h) => (
-                <li key={h} className="flex items-start gap-3 text-base md:text-lg font-bold text-zinc-300">
+                <li key={h} className="flex items-start gap-3 text-base md:text-lg font-bold text-zinc-700">
                   <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0 mt-1" />
                   <span>{h}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest h-12 px-6">
+              <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest h-12 px-6">
                 <a href={BUSINESS.phoneTel}>Call to Browse</a>
               </Button>
               <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-12 px-6">
@@ -163,30 +163,30 @@ export default function SalesPage() {
           <div>
             {isSellPage ? (
               <>
-                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
+                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
                   {isBuyback ? <>GET YOUR <span className="text-red-500">CASH OFFER</span></> : <>SELL YOUR <span className="text-red-500">PHONE</span></>}
                 </h2>
-                <p className="text-lg font-bold text-zinc-400 mb-6">
+                <p className="text-lg font-bold text-zinc-600 mb-6">
                   We pay cash for working iPhones, Samsungs, Pixels and Motorolas — including phones with cracked screens.
                 </p>
                 <SellPhoneForm />
               </>
             ) : isHub ? (
               <>
-                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
+                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
                   ASK ABOUT <span className="text-red-500">STOCK</span>
                 </h2>
-                <p className="text-lg font-bold text-zinc-400 mb-6">
+                <p className="text-lg font-bold text-zinc-600 mb-6">
                   Looking for something specific? Send us a quick message and we'll text or call you back today with what we have in stock and the price.
                 </p>
                 <ContactForm />
               </>
             ) : (
               <>
-                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
+                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
                   RESERVE <span className="text-red-500">OR VISIT</span>
                 </h2>
-                <p className="text-lg font-bold text-zinc-400 mb-6">
+                <p className="text-lg font-bold text-zinc-600 mb-6">
                   Reserve {data.title.toLowerCase()} for in-store pickup. Walk-ins always welcome — but reserving guarantees we have it ready when you arrive.
                 </p>
                 <ReservationForm itemId={data.slug} itemLabel={data.title} />
@@ -197,20 +197,20 @@ export default function SalesPage() {
       </section>
 
       {isHub && childPages.length > 0 && (
-        <section className="py-16 px-4 bg-black border-t border-zinc-900">
+        <section className="py-16 px-4 bg-white border-t border-zinc-200">
           <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-white">
-              BROWSE <span className="text-yellow-400 text-stroke-black">{data.hero.eyebrow.toUpperCase()}</span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
+              BROWSE <span className="text-red-500 text-stroke-black">{data.hero.eyebrow.toUpperCase()}</span>
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="hub-children">
               {childPages.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${c.slug}`}
-                  className="bg-zinc-950 border-2 border-zinc-800 hover:border-red-500 p-5 transition-colors group"
+                  className="bg-zinc-50 border-2 border-zinc-300 hover:border-red-500 p-5 transition-colors group"
                   data-testid={`hub-child-${c.slug}`}
                 >
-                  <div className="font-black uppercase text-base text-white group-hover:text-red-500 transition-colors leading-tight">
+                  <div className="font-black uppercase text-base text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
                     {c.title}
                   </div>
                 </Link>

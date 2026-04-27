@@ -112,7 +112,7 @@ export function ActionBar({
 
   return (
     <>
-      <div className="flex flex-wrap gap-2 items-center pt-3 mt-3 border-t border-zinc-800">
+      <div className="flex flex-wrap gap-2 items-center pt-3 mt-3 border-t border-zinc-300">
         {STATUSES.map((s) => (
           <span
             key={`b-${s}`}
@@ -121,7 +121,7 @@ export function ActionBar({
         ))}
         <span
           className={`px-2 py-1 font-black uppercase text-[10px] tracking-widest ${
-            STATUS_BADGE_CLASS[status] ?? "bg-zinc-700 text-zinc-300"
+            STATUS_BADGE_CLASS[status] ?? "bg-zinc-300 text-zinc-700"
           }`}
           data-testid={`badge-status-${leadType}-${id}`}
         >
@@ -133,8 +133,8 @@ export function ActionBar({
           aria-disabled={!canCall}
           className={`inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 ${
             canCall
-              ? "bg-zinc-900 border-zinc-700 text-white hover:border-red-500"
-              : "bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed"
+              ? "bg-zinc-100 border-zinc-300 text-zinc-900 hover:border-red-500"
+              : "bg-zinc-50 border-zinc-200 text-zinc-700 cursor-not-allowed"
           }`}
           data-testid={`action-call-${leadType}-${id}`}
           onClick={(e) => {
@@ -151,8 +151,8 @@ export function ActionBar({
           aria-disabled={!canWhatsapp}
           className={`inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 ${
             canWhatsapp
-              ? "bg-zinc-900 border-zinc-700 text-white hover:border-green-500"
-              : "bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed"
+              ? "bg-zinc-100 border-zinc-300 text-zinc-900 hover:border-green-500"
+              : "bg-zinc-50 border-zinc-200 text-zinc-700 cursor-not-allowed"
           }`}
           data-testid={`action-whatsapp-${leadType}-${id}`}
           onClick={(e) => {
@@ -168,8 +168,8 @@ export function ActionBar({
           onClick={() => setComposer("email")}
           className={`inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 ${
             canEmail
-              ? "bg-zinc-900 border-zinc-700 text-white hover:border-yellow-400"
-              : "bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed"
+              ? "bg-zinc-100 border-zinc-300 text-zinc-900 hover:border-red-500"
+              : "bg-zinc-50 border-zinc-200 text-zinc-700 cursor-not-allowed"
           }`}
           data-testid={`action-email-${leadType}-${id}`}
         >
@@ -182,8 +182,8 @@ export function ActionBar({
           onClick={() => setComposer("sms")}
           className={`inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 ${
             canSms
-              ? "bg-zinc-900 border-zinc-700 text-white hover:border-blue-400"
-              : "bg-zinc-950 border-zinc-900 text-zinc-700 cursor-not-allowed"
+              ? "bg-zinc-100 border-zinc-300 text-zinc-900 hover:border-blue-400"
+              : "bg-zinc-50 border-zinc-200 text-zinc-700 cursor-not-allowed"
           }`}
           data-testid={`action-sms-${leadType}-${id}`}
         >
@@ -195,7 +195,7 @@ export function ActionBar({
             <button
               type="button"
               onClick={() => handleStatus("in_progress")}
-              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-900 border-zinc-700 text-blue-300 hover:border-blue-400"
+              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-300 text-blue-300 hover:border-blue-400"
               data-testid={`action-in-progress-${leadType}-${id}`}
             >
               <PlayCircle className="w-3 h-3" /> In Progress
@@ -205,7 +205,7 @@ export function ActionBar({
             <button
               type="button"
               onClick={() => handleStatus("done")}
-              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-900 border-zinc-700 text-green-300 hover:border-green-400"
+              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-300 text-green-300 hover:border-green-400"
               data-testid={`action-done-${leadType}-${id}`}
             >
               <CheckCircle2 className="w-3 h-3" /> Done
@@ -215,7 +215,7 @@ export function ActionBar({
             <button
               type="button"
               onClick={() => handleStatus("archived")}
-              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-900 border-zinc-700 text-zinc-400 hover:border-zinc-500"
+              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-zinc-500"
               data-testid={`action-archive-${leadType}-${id}`}
             >
               <Archive className="w-3 h-3" /> Archive
@@ -227,7 +227,7 @@ export function ActionBar({
               setShowActivity((v) => !v);
               if (!showActivity) setActivityKey((k) => k + 1);
             }}
-            className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-900 border-zinc-700 text-zinc-300 hover:border-white"
+            className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-300 text-zinc-700 hover:border-white"
             data-testid={`action-activity-${leadType}-${id}`}
           >
             <ActivityIcon className="w-3 h-3" /> {showActivity ? "Hide" : "Activity"}
@@ -236,10 +236,10 @@ export function ActionBar({
       </div>
 
       {error && (
-        <div className="mt-3 bg-red-500 text-white px-3 py-2 font-black uppercase text-xs">{error}</div>
+        <div className="mt-3 bg-red-500 text-zinc-900 px-3 py-2 font-black uppercase text-xs">{error}</div>
       )}
       {success && (
-        <div className="mt-3 bg-green-500 text-white px-3 py-2 font-black uppercase text-xs">{success}</div>
+        <div className="mt-3 bg-green-500 text-zinc-900 px-3 py-2 font-black uppercase text-xs">{success}</div>
       )}
 
       {showActivity && (

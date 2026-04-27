@@ -59,7 +59,7 @@ export default function PrepaidPage() {
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
-      <section className="py-4 px-4 bg-black border-b border-zinc-900">
+      <section className="py-4 px-4 bg-white border-b border-zinc-200">
         <div className="max-w-[1240px] mx-auto">
           <p className="text-xs md:text-sm font-bold text-zinc-500 uppercase tracking-wide" data-testid="text-prepaid-disclaimer">
             Disclaimer: Gadget X Repairs is an independent authorized retailer offering activations, SIM and bill-pay services. We are not an official corporate store of any carrier unless explicitly confirmed. All carrier names and logos are property of their respective owners.
@@ -67,31 +67,31 @@ export default function PrepaidPage() {
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-zinc-950">
+      <section className="py-16 px-4 bg-zinc-50">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
-              WHAT WE <span className="text-yellow-400 text-stroke-black">DO</span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
+              WHAT WE <span className="text-red-500 text-stroke-black">DO</span>
             </h2>
             <ul className="space-y-3">
               {data.services.map((s) => (
-                <li key={s} className="flex items-start gap-3 text-base md:text-lg font-bold text-zinc-300">
+                <li key={s} className="flex items-start gap-3 text-base md:text-lg font-bold text-zinc-700">
                   <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0 mt-1" />
                   <span>{s}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest h-12 px-6">
+              <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest h-12 px-6">
                 <a href={BUSINESS.phoneTel}>Call (346) 623-6898</a>
               </Button>
-              <Button asChild className="rounded-none bg-yellow-400 hover:bg-white text-black font-black uppercase tracking-widest h-12 px-6">
+              <Button asChild className="rounded-none bg-red-500 hover:bg-white text-black font-black uppercase tracking-widest h-12 px-6">
                 <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
               </Button>
             </div>
           </div>
           <div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-white">
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
               QUESTIONS? <span className="text-red-500">WE'RE HERE.</span>
             </h2>
             <ContactForm />
@@ -100,20 +100,20 @@ export default function PrepaidPage() {
       </section>
 
       {isHub && hubChildren.length > 0 && (
-        <section className="py-16 px-4 bg-zinc-950 border-t border-zinc-900">
+        <section className="py-16 px-4 bg-zinc-50 border-t border-zinc-200">
           <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-white">
-              EVERY <span className="text-yellow-400 text-stroke-black">CARRIER</span> WE ACTIVATE
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
+              EVERY <span className="text-red-500 text-stroke-black">CARRIER</span> WE ACTIVATE
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="prepaid-hub-children">
               {hubChildren.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${c.slug}`}
-                  className="bg-black border-2 border-zinc-800 hover:border-red-500 p-5 transition-colors group"
+                  className="bg-white border-2 border-zinc-300 hover:border-red-500 p-5 transition-colors group"
                   data-testid={`prepaid-hub-child-${c.slug}`}
                 >
-                  <div className="font-black uppercase text-base text-white group-hover:text-red-500 transition-colors leading-tight">
+                  <div className="font-black uppercase text-base text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
                     {c.title}
                   </div>
                 </Link>

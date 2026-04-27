@@ -66,79 +66,79 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* LIGHT MODE — Gadget X Repairs (Bold Urban Store theme: black canvas, red accent) */
+/* LIGHT MODE — Gadget X Repairs (logo-aligned: silver/chrome canvas, red accent, black ink) */
 :root {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
+  --button-outline: rgba(0,0,0, .08);
+  --badge-outline: rgba(0,0,0, .05);
 
   /* Automatic computation of border around primary / danger buttons */
-  --opaque-button-border-intensity: 9;
+  --opaque-button-border-intensity: -9;
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
+  --elevate-1: rgba(0,0,0, .04);
+  --elevate-2: rgba(0,0,0, .08);
 
-  --background: 0 0% 0%;
+  --background: 240 5% 96%;
 
-  --foreground: 0 0% 100%;
+  --foreground: 240 10% 4%;
 
-  --border: 240 4% 16%;
+  --border: 240 5% 84%;
 
-  --card: 240 6% 10%;
+  --card: 0 0% 100%;
 
-  --card-foreground: 0 0% 100%;
+  --card-foreground: 240 10% 4%;
 
-  --card-border: 240 4% 16%;
+  --card-border: 240 5% 84%;
 
-  --sidebar: 240 6% 10%;
+  --sidebar: 0 0% 100%;
 
-  --sidebar-foreground: 0 0% 100%;
+  --sidebar-foreground: 240 10% 4%;
 
-  --sidebar-border: 240 4% 16%;
+  --sidebar-border: 240 5% 84%;
 
   --sidebar-primary: 0 84% 60%;
 
   --sidebar-primary-foreground: 0 0% 100%;
 
-  --sidebar-accent: 240 4% 16%;
+  --sidebar-accent: 240 5% 90%;
 
-  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-accent-foreground: 240 10% 4%;
 
   --sidebar-ring: 0 84% 60%;
 
-  --popover: 240 6% 10%;
+  --popover: 0 0% 100%;
 
-  --popover-foreground: 0 0% 100%;
+  --popover-foreground: 240 10% 4%;
 
-  --popover-border: 240 4% 16%;
+  --popover-border: 240 5% 84%;
 
   --primary: 0 84% 60%;
 
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 240 4% 16%;
+  --secondary: 240 5% 90%;
 
-  --secondary-foreground: 0 0% 100%;
+  --secondary-foreground: 240 10% 4%;
 
-  --muted: 240 4% 16%;
+  --muted: 240 5% 90%;
 
-  --muted-foreground: 240 5% 65%;
+  --muted-foreground: 240 4% 40%;
 
-  --accent: 48 96% 53%;
+  --accent: 0 84% 60%;
 
-  --accent-foreground: 0 0% 0%;
+  --accent-foreground: 0 0% 100%;
 
   --destructive: 0 84% 60%;
 
   --destructive-foreground: 0 0% 100%;
 
-  --input: 240 4% 16%;
+  --input: 0 0% 100%;
   --ring: 0 84% 60%;
   --chart-1: 0 84% 60%;
-  --chart-2: 48 96% 53%;
-  --chart-3: 240 5% 65%;
-  --chart-4: 0 0% 100%;
-  --chart-5: 240 4% 16%;
+  --chart-2: 240 10% 4%;
+  --chart-3: 240 4% 40%;
+  --chart-4: 240 5% 65%;
+  --chart-5: 240 5% 84%;
 
   --app-font-sans: 'Inter', sans-serif;
   --app-font-serif: Georgia, serif;
@@ -187,48 +187,48 @@
 }
 
 .dark {
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
+  --button-outline: rgba(0,0,0, .08);
+  --badge-outline: rgba(0,0,0, .05);
 
-  --opaque-button-border-intensity: 9;
+  --opaque-button-border-intensity: -9;
 
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
+  --elevate-1: rgba(0,0,0, .04);
+  --elevate-2: rgba(0,0,0, .08);
 
-  --background: 0 0% 0%;
-  --foreground: 0 0% 100%;
-  --border: 240 4% 16%;
-  --card: 240 6% 10%;
-  --card-foreground: 0 0% 100%;
-  --card-border: 240 4% 16%;
-  --sidebar: 240 6% 10%;
-  --sidebar-foreground: 0 0% 100%;
-  --sidebar-border: 240 4% 16%;
+  --background: 240 5% 96%;
+  --foreground: 240 10% 4%;
+  --border: 240 5% 84%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 4%;
+  --card-border: 240 5% 84%;
+  --sidebar: 0 0% 100%;
+  --sidebar-foreground: 240 10% 4%;
+  --sidebar-border: 240 5% 84%;
   --sidebar-primary: 0 84% 60%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 240 4% 16%;
-  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-accent: 240 5% 90%;
+  --sidebar-accent-foreground: 240 10% 4%;
   --sidebar-ring: 0 84% 60%;
-  --popover: 240 6% 10%;
-  --popover-foreground: 0 0% 100%;
-  --popover-border: 240 4% 16%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 240 10% 4%;
+  --popover-border: 240 5% 84%;
   --primary: 0 84% 60%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 240 4% 16%;
-  --secondary-foreground: 0 0% 100%;
-  --muted: 240 4% 16%;
-  --muted-foreground: 240 5% 65%;
-  --accent: 48 96% 53%;
-  --accent-foreground: 0 0% 0%;
+  --secondary: 240 5% 90%;
+  --secondary-foreground: 240 10% 4%;
+  --muted: 240 5% 90%;
+  --muted-foreground: 240 4% 40%;
+  --accent: 0 84% 60%;
+  --accent-foreground: 0 0% 100%;
   --destructive: 0 84% 60%;
   --destructive-foreground: 0 0% 100%;
-  --input: 240 4% 16%;
+  --input: 0 0% 100%;
   --ring: 0 84% 60%;
   --chart-1: 0 84% 60%;
-  --chart-2: 48 96% 53%;
-  --chart-3: 240 5% 65%;
-  --chart-4: 0 0% 100%;
-  --chart-5: 240 4% 16%;
+  --chart-2: 240 10% 4%;
+  --chart-3: 240 4% 40%;
+  --chart-4: 240 5% 65%;
+  --chart-5: 240 5% 84%;
 
   --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
   --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
@@ -260,7 +260,7 @@
 /* Sign-painter accent: solid fill (from text color utility) with black outline.
    Previously used `color: transparent`, which made the accent invisible against
    dark sections. Keeping the stroke preserves the bold display look while the
-   element's own text color (e.g. text-yellow-400) provides the readable fill. */
+   element's own text color (e.g. text-red-500) provides the readable fill. */
 .text-stroke-black {
   -webkit-text-stroke: 2px black;
   paint-order: stroke fill;

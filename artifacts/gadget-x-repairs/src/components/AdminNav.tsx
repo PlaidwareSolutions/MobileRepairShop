@@ -17,8 +17,8 @@ export function AdminNav({ active }: { active: "leads" | "inventory" }) {
             data-testid={t.testId}
             className={`px-4 py-2 font-black uppercase text-sm tracking-widest border-2 transition-colors ${
               isActive
-                ? "bg-red-500 border-red-500 text-white"
-                : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-red-500"
+                ? "bg-red-500 border-red-500 text-zinc-900"
+                : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-red-500"
             }`}
           >
             {t.label}

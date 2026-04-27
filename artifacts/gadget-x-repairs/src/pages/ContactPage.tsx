@@ -40,43 +40,43 @@ export default function ContactPage() {
       />
       <Breadcrumbs items={[{ label: "Contact" }]} />
 
-      <section className="py-12 md:py-16 px-4 bg-zinc-950 border-b border-zinc-900">
+      <section className="py-12 md:py-16 px-4 bg-zinc-50 border-b border-zinc-200">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-8 leading-[0.95]">
+            <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-zinc-900 mb-8 leading-[0.95]">
               GET IN <span className="text-red-500">TOUCH</span>
             </h1>
-            <p className="text-xl font-bold text-zinc-400 mb-8 max-w-md">
+            <p className="text-xl font-bold text-zinc-600 mb-8 max-w-md">
               Fastest answer? Call or WhatsApp. Walk in any day during business hours — no appointment needed.
             </p>
 
             <div className="space-y-6 max-w-md">
-              <a href={BUSINESS.phoneTel} className="flex items-start gap-4 bg-black border-4 border-zinc-800 p-5 hover:border-red-500 transition-colors" data-testid="link-call">
+              <a href={BUSINESS.phoneTel} className="flex items-start gap-4 bg-white border-4 border-zinc-300 p-5 hover:border-red-500 transition-colors" data-testid="link-call">
                 <Phone className="w-7 h-7 text-red-500 shrink-0 mt-1" />
                 <div>
-                  <div className="font-black uppercase text-lg text-white">{BUSINESS.phoneDisplay}</div>
+                  <div className="font-black uppercase text-lg text-zinc-900">{BUSINESS.phoneDisplay}</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase">Tap to call</div>
                 </div>
               </a>
-              <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-black border-4 border-zinc-800 p-5 hover:border-yellow-400 transition-colors" data-testid="link-whatsapp">
-                <MessageCircle className="w-7 h-7 text-yellow-400 shrink-0 mt-1" />
+              <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border-4 border-zinc-300 p-5 hover:border-red-500 transition-colors" data-testid="link-whatsapp">
+                <MessageCircle className="w-7 h-7 text-red-500 shrink-0 mt-1" />
                 <div>
-                  <div className="font-black uppercase text-lg text-white">WhatsApp / Text</div>
+                  <div className="font-black uppercase text-lg text-zinc-900">WhatsApp / Text</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase">Send us a message</div>
                 </div>
               </a>
-              <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-black border-4 border-zinc-800 p-5 hover:border-red-500 transition-colors" data-testid="link-maps">
+              <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border-4 border-zinc-300 p-5 hover:border-red-500 transition-colors" data-testid="link-maps">
                 <MapPin className="w-7 h-7 text-red-500 shrink-0 mt-1" />
                 <div>
-                  <div className="font-black uppercase text-lg text-white">{BUSINESS.addressLine1}</div>
-                  <div className="text-zinc-400 font-bold uppercase text-sm">{BUSINESS.addressLine2}</div>
+                  <div className="font-black uppercase text-lg text-zinc-900">{BUSINESS.addressLine1}</div>
+                  <div className="text-zinc-600 font-bold uppercase text-sm">{BUSINESS.addressLine2}</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase mt-1">Get directions</div>
                 </div>
               </a>
-              <div className="flex items-start gap-4 bg-black border-4 border-zinc-800 p-5">
+              <div className="flex items-start gap-4 bg-white border-4 border-zinc-300 p-5">
                 <Clock className="w-7 h-7 text-red-500 shrink-0 mt-1" />
                 <div>
-                  <div className="font-black uppercase text-lg text-white">{BUSINESS.hoursShort}</div>
+                  <div className="font-black uppercase text-lg text-zinc-900">{BUSINESS.hoursShort}</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase">Walk-ins welcome</div>
                 </div>
               </div>
@@ -95,8 +95,8 @@ export default function ContactPage() {
                   data-testid={`tab-contact-${t.key}`}
                   className={`px-3 py-2 font-black uppercase text-xs tracking-widest border-2 transition-colors ${
                     tab === t.key
-                      ? "bg-red-500 border-red-500 text-white"
-                      : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-red-500"
+                      ? "bg-red-500 border-red-500 text-zinc-900"
+                      : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-red-500"
                   }`}
                 >
                   {t.label}
@@ -104,8 +104,8 @@ export default function ContactPage() {
               ))}
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-white mb-6">
-              {heading.title} <span className="text-yellow-400 text-stroke-black">{heading.accent}</span>
+            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-zinc-900 mb-6">
+              {heading.title} <span className="text-red-500 text-stroke-black">{heading.accent}</span>
             </h2>
 
             {tab === "message" && <ContactForm />}

@@ -14,7 +14,7 @@ export function PageShell({ children, hideTicker }: { children: ReactNode; hideT
   }, [location]);
 
   return (
-    <div data-theme="bold-urban-store" className="min-h-screen bg-black text-white font-sans selection:bg-red-500 selection:text-white pb-20 md:pb-0">
+    <div data-theme="bold-urban-store" className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-red-500 selection:text-zinc-900 pb-20 md:pb-0">
       <TopUtilityBar />
       <SiteHeader />
       {!hideTicker && <TickerTape />}

@@ -91,12 +91,12 @@ export default function InventoryPage() {
       />
       <Breadcrumbs items={[{ label: "Inventory" }]} />
 
-      <section className="py-12 px-4 bg-zinc-950 border-b border-zinc-900">
+      <section className="py-12 px-4 bg-zinc-50 border-b border-zinc-200">
         <div className="max-w-[1240px] mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-white mb-6 leading-[0.95]">
+          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-zinc-900 mb-6 leading-[0.95]">
             CURRENT <span className="text-red-500">INVENTORY</span>
           </h1>
-          <p className="text-lg font-bold text-zinc-400 mb-8 max-w-2xl">
+          <p className="text-lg font-bold text-zinc-600 mb-8 max-w-2xl">
             Stock changes daily. Call to confirm availability or reserve an item — we'll hold it for 24 hours.
           </p>
 
@@ -105,7 +105,7 @@ export default function InventoryPage() {
               <button
                 key={c}
                 onClick={() => setFilter(c)}
-                className={`px-4 py-2 font-black uppercase text-sm tracking-widest border-2 transition-colors ${filter === c ? "bg-red-500 border-red-500 text-white" : "bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-red-500"}`}
+                className={`px-4 py-2 font-black uppercase text-sm tracking-widest border-2 transition-colors ${filter === c ? "bg-red-500 border-red-500 text-zinc-900" : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-red-500"}`}
                 data-testid={`filter-${c}`}
               >
                 {c}
@@ -115,9 +115,9 @@ export default function InventoryPage() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visible.map((it) => (
-              <article key={it.id} className="bg-black border-4 border-zinc-800 p-5 flex flex-col gap-3 hover:border-red-500 transition-colors" data-testid={`inventory-${it.id}`}>
+              <article key={it.id} className="bg-white border-4 border-zinc-300 p-5 flex flex-col gap-3 hover:border-red-500 transition-colors" data-testid={`inventory-${it.id}`}>
                 {it.imageUrl && (
-                  <div className="-mx-5 -mt-5 mb-1 aspect-[4/3] bg-zinc-900 overflow-hidden border-b-2 border-zinc-800">
+                  <div className="-mx-5 -mt-5 mb-1 aspect-[4/3] bg-zinc-100 overflow-hidden border-b-2 border-zinc-300">
                     <img
                       src={it.imageUrl}
                       alt={`${it.brand} ${it.model}`}
@@ -134,31 +134,31 @@ export default function InventoryPage() {
                       data-testid={`availability-${it.id}`}
                       className={`px-2 py-0.5 text-[10px] font-black uppercase tracking-widest border-2 ${
                         it.availability.toLowerCase().includes("out")
-                          ? "border-zinc-600 text-zinc-400"
-                          : "border-yellow-400 text-yellow-400"
+                          ? "border-zinc-600 text-zinc-600"
+                          : "border-red-500 text-red-500"
                       }`}
                     >
                       {it.availability}
                     </span>
                   )}
                 </div>
-                <h3 className="font-black uppercase text-xl text-white">{it.brand} {it.model}</h3>
-                <ul className="space-y-1 text-sm font-bold text-zinc-400">
-                  {it.storage && <li>Storage: <span className="text-white">{it.storage}</span></li>}
-                  {it.color && <li>Color: <span className="text-white">{it.color}</span></li>}
-                  {it.condition && <li>Condition: <span className="text-white">{it.condition}</span></li>}
-                  {it.carrier && <li>Carrier: <span className="text-white">{it.carrier}</span></li>}
-                  {it.warranty && <li>Warranty: <span className="text-white">{it.warranty}</span></li>}
+                <h3 className="font-black uppercase text-xl text-zinc-900">{it.brand} {it.model}</h3>
+                <ul className="space-y-1 text-sm font-bold text-zinc-600">
+                  {it.storage && <li>Storage: <span className="text-zinc-900">{it.storage}</span></li>}
+                  {it.color && <li>Color: <span className="text-zinc-900">{it.color}</span></li>}
+                  {it.condition && <li>Condition: <span className="text-zinc-900">{it.condition}</span></li>}
+                  {it.carrier && <li>Carrier: <span className="text-zinc-900">{it.carrier}</span></li>}
+                  {it.warranty && <li>Warranty: <span className="text-zinc-900">{it.warranty}</span></li>}
                 </ul>
-                <div className="mt-auto pt-3 border-t border-zinc-800 flex flex-col gap-3">
-                  <div className="font-black uppercase text-2xl text-yellow-400">{it.price}</div>
+                <div className="mt-auto pt-3 border-t border-zinc-300 flex flex-col gap-3">
+                  <div className="font-black uppercase text-2xl text-red-500">{it.price}</div>
                   <div className="grid grid-cols-2 gap-2">
-                    <Button asChild className="rounded-none bg-black border-2 border-white hover:bg-white hover:text-black text-white font-black uppercase tracking-widest h-10 px-2 text-xs" data-testid={`button-call-${it.id}`}>
+                    <Button asChild className="rounded-none bg-white border-2 border-white hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest h-10 px-2 text-xs" data-testid={`button-call-${it.id}`}>
                       <a href={BUSINESS.phoneTel} aria-label={`Call about ${it.brand} ${it.model}`}>
                         <Phone className="w-3.5 h-3.5 mr-1" /> Call
                       </a>
                     </Button>
-                    <Button onClick={() => setReserving(it)} className="rounded-none bg-red-500 hover:bg-white hover:text-black text-white font-black uppercase tracking-widest h-10 px-2 text-xs" data-testid={`button-reserve-${it.id}`}>
+                    <Button onClick={() => setReserving(it)} className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest h-10 px-2 text-xs" data-testid={`button-reserve-${it.id}`}>
                       Reserve
                     </Button>
                   </div>
@@ -170,7 +170,7 @@ export default function InventoryPage() {
       </section>
 
       {reserving && (
-        <div className="fixed inset-0 bg-black/80 z-[60] flex items-center justify-center p-4" onClick={() => setReserving(null)}>
+        <div className="fixed inset-0 bg-white/80 z-[60] flex items-center justify-center p-4" onClick={() => setReserving(null)}>
           <div className="max-w-md w-full" onClick={(e) => e.stopPropagation()}>
             <ReservationForm itemId={reserving.id} itemLabel={`${reserving.brand} ${reserving.model} — ${reserving.price}`} onClose={() => setReserving(null)} />
           </div>
