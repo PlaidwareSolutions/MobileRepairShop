@@ -49,5 +49,6 @@ channel = "stable-25_05"
 [userenv]
 
 [userenv.shared]
-MAIL_FROM_EMAIL = "hello@nawazcoded.me"
+MAIL_FROM_EMAIL = "support@gadgetxrepairs.com"
 SMS_FROM_NUMBER = "+13466236898"
+VITE_SITE_URL = "https://gadgetxrepairs.com"

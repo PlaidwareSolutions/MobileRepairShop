@@ -7,7 +7,7 @@
  */
 
 export const SITE_URL =
-  process.env.VITE_SITE_URL || process.env.SITE_URL || "https://gadget-x-repairs.replit.app";
+  process.env.VITE_SITE_URL || process.env.SITE_URL || "https://gadgetxrepairs.com";
 
 // Routes that share the same canonical URL as another route (i.e. they render the
 // same component but live at multiple paths). The home page is rendered at both `/`

@@ -10,9 +10,9 @@ type Props = {
   noindex?: boolean;
 };
 
-const SITE_URL =
+export const SITE_URL =
   (typeof import.meta !== "undefined" && (import.meta.env?.VITE_SITE_URL as string | undefined)) ||
-  "https://gadget-x-repairs.replit.app";
+  "https://gadgetxrepairs.com";
 
 export function SEO({ title, description, path, type = "website", jsonLd, noindex }: Props) {
   const url = `${SITE_URL}${path}`;

@@ -5,7 +5,7 @@ import { logger } from "./logger";
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const TELNYX_API_KEY = process.env.TELNYX_API_KEY;
 const TELNYX_MESSAGING_PROFILE_ID = process.env.TELNYX_MESSAGING_PROFILE_ID;
-const MAIL_FROM_EMAIL = process.env.MAIL_FROM_EMAIL ?? "hello@nawazcoded.me";
+const MAIL_FROM_EMAIL = process.env.MAIL_FROM_EMAIL ?? "support@gadgetxrepairs.com";
 const SMS_FROM_NUMBER = process.env.SMS_FROM_NUMBER ?? "+13466236898";
 
 type TelnyxClient = InstanceType<typeof Telnyx>;

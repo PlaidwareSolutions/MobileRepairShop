@@ -3,7 +3,7 @@ import { Phone } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
-import { SEO, localBusinessJsonLd, breadcrumbJsonLd } from "@/components/SEO";
+import { SEO, SITE_URL, localBusinessJsonLd, breadcrumbJsonLd } from "@/components/SEO";
 import { ReservationForm } from "@/components/forms/ReservationForm";
 import { Button } from "@/components/ui/button";
 import { fetchInventory } from "@/lib/api";
@@ -24,7 +24,7 @@ function inventoryProductJsonLd(items: InventoryItem[]) {
       position: i + 1,
       item: {
         "@type": "Product",
-        "@id": `https://gadget-x-repairs.replit.app/inventory#${it.id}`,
+        "@id": `${SITE_URL}/inventory#${it.id}`,
         name: `${it.brand} ${it.model}`,
         sku: it.id,
         category: it.category,

@@ -6,7 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Faq } from "@/components/Faq";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { LocationCard } from "@/components/LocationCard";
-import { SEO, localBusinessJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/components/SEO";
+import { SEO, SITE_URL, localBusinessJsonLd, faqJsonLd, breadcrumbJsonLd } from "@/components/SEO";
 import { SellPhoneForm } from "@/components/forms/SellPhoneForm";
 import { ReservationForm } from "@/components/forms/ReservationForm";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -114,7 +114,7 @@ export default function SalesPage() {
     itemListElement: childPages.map((c, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `https://gadget-x-repairs.replit.app/${c.slug}`,
+      url: `${SITE_URL}/${c.slug}`,
       name: c.title,
     })),
   };

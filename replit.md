@@ -1,5 +1,9 @@
 # Workspace
 
+## Cutover note (2026-04-27)
+
+Gadget X Repairs primary domain switched from `nawazcoded.me` (legacy) to `https://gadgetxrepairs.com`. `nawazcoded.me` was fully retired — no 301 redirects kept, custom-domain mapping removed from the deployment. Sender email moved to `support@gadgetxrepairs.com`. Code defaults in `messaging.ts`, `seo-config.mjs`, and `SEO.tsx` were updated to match, and the two hardcoded JSON-LD URLs in `InventoryPage.tsx` / `SalesPage.tsx` now use the exported `SITE_URL` from `SEO.tsx`. Build-time env `VITE_SITE_URL=https://gadgetxrepairs.com` is set as defence-in-depth. Google Search Console resubmission for the new domain is filed as a follow-up task.
+
 ## Overview
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
