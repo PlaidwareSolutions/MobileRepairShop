@@ -20,13 +20,12 @@ import { readFile, writeFile, mkdir } from "node:fs/promises";
 import { existsSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
+import { SITE_URL, CANONICAL_OVERRIDES } from "./seo-config.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PROJECT_DIR = path.resolve(__dirname, "..");
 const DIST_DIR = path.join(PROJECT_DIR, "dist", "public");
 const SERVER_BUNDLE = path.join(PROJECT_DIR, "dist", "server", "entry-server.mjs");
-
-const SITE_URL = process.env.VITE_SITE_URL || process.env.SITE_URL || "https://gadget-x-repairs.replit.app";
 
 function escape(s) {
   return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
@@ -95,15 +94,6 @@ async function loadRender() {
   }
   return mod.render;
 }
-
-// Routes that share the same canonical URL as another route (i.e. they render the
-// same component but live at multiple paths). The home page is rendered at both `/`
-// and `/phone-repair-houston-tx`; the latter is the canonical SEO URL, so when we
-// prerender `/` the safety-net <link rel="canonical"> must still point at
-// /phone-repair-houston-tx — otherwise crawlers would see two competing canonicals.
-const CANONICAL_OVERRIDES = {
-  "/": "/phone-repair-houston-tx",
-};
 
 function injectRendered(baseHtml, route, rendered) {
   const canonicalPath = CANONICAL_OVERRIDES[route.path] || route.path;
