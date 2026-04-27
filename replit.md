@@ -4,6 +4,12 @@
 
 Gadget X Repairs primary domain switched from `nawazcoded.me` (legacy) to `https://gadgetxrepairs.com`. `nawazcoded.me` was fully retired — no 301 redirects kept, custom-domain mapping removed from the deployment. Sender email moved to `support@gadgetxrepairs.com`. Code defaults in `messaging.ts`, `seo-config.mjs`, and `SEO.tsx` were updated to match, and the two hardcoded JSON-LD URLs in `InventoryPage.tsx` / `SalesPage.tsx` now use the exported `SITE_URL` from `SEO.tsx`. Build-time env `VITE_SITE_URL=https://gadgetxrepairs.com` is set as defence-in-depth. Google Search Console resubmission for the new domain is filed as a follow-up task.
 
+## SMS sender vs. public phone (2026-04-27)
+
+The marketing site advertises the Houston local number `+1 (346) 623-6898` (`tel:`, `sms:`, `wa.me` links across `artifacts/gadget-x-repairs/src/content.ts` and `RepairQuoteForm.tsx`), but **outbound SMS from the admin Composer is sent from the toll-free `+1 (844) 349-6782`** — that is the only number this Telnyx organization owns and the only number attached to messaging profile `40019dcb-dc53-4eb3-a25d-a02d2c922727` ("GadgetXRepairs.com"). `+13466236898` is **not present** in this Telnyx account at all, so any attempt to send from it is rejected by the API.
+
+This discrepancy is intentional for now: the local Houston number is kept as the customer-facing display because it preserves local-business presence on the site, in NAP citations, and in Google Business Profile. The toll-free is used as the sender because it is the number we actually own on Telnyx. As a result, customers will see replies arrive from a different number than the one printed on the website. The shared env var `SMS_FROM_NUMBER=+18443496782` and the code default in `artifacts/api-server/src/lib/messaging.ts` both reflect this. To collapse the discrepancy in the future, port `+13466236898` into Telnyx, attach it to the GadgetXRepairs.com messaging profile, then update both the env var and the marketing-site links to that single number. Until then, end-to-end handset delivery is also gated on toll-free carrier verification (Telnyx Mission Control → Verified Numbers form for `+18443496782`); see `artifacts/api-server/docs/messaging-integration-report.md` defect D5.
+
 ## Overview
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
