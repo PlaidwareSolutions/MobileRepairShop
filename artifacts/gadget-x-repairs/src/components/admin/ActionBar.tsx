@@ -195,7 +195,7 @@ export function ActionBar({
             <button
               type="button"
               onClick={() => handleStatus("in_progress")}
-              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-300 text-blue-300 hover:border-blue-400"
+              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-blue-500 border-blue-700 text-zinc-900 hover:bg-blue-400"
               data-testid={`action-in-progress-${leadType}-${id}`}
             >
               <PlayCircle className="w-3 h-3" /> In Progress
@@ -205,7 +205,7 @@ export function ActionBar({
             <button
               type="button"
               onClick={() => handleStatus("done")}
-              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-300 text-green-300 hover:border-green-400"
+              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-green-500 border-green-700 text-zinc-900 hover:bg-green-400"
               data-testid={`action-done-${leadType}-${id}`}
             >
               <CheckCircle2 className="w-3 h-3" /> Done
@@ -215,7 +215,7 @@ export function ActionBar({
             <button
               type="button"
               onClick={() => handleStatus("archived")}
-              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-zinc-500"
+              className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-400 text-zinc-900 hover:border-zinc-700"
               data-testid={`action-archive-${leadType}-${id}`}
             >
               <Archive className="w-3 h-3" /> Archive
@@ -227,7 +227,7 @@ export function ActionBar({
               setShowActivity((v) => !v);
               if (!showActivity) setActivityKey((k) => k + 1);
             }}
-            className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-300 text-zinc-700 hover:border-white"
+            className="inline-flex items-center gap-1 px-3 py-1.5 font-black uppercase text-xs tracking-widest border-2 bg-zinc-100 border-zinc-400 text-zinc-900 hover:border-zinc-700"
             data-testid={`action-activity-${leadType}-${id}`}
           >
             <ActivityIcon className="w-3 h-3" /> {showActivity ? "Hide" : "Activity"}
