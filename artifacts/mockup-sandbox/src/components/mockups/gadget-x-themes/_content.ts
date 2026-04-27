@@ -23,8 +23,8 @@ export const BUSINESS = {
     { day: "Saturday", time: "10:00 AM – 7:00 PM" },
   ],
   yearsInBusiness: 15,
-  logo: "/__mockup/images/gadget-x-logo-cropped.png",
-  logoOfficial: "/__mockup/images/gadget-x-logo-cropped.png",
+  logo: "/__mockup/images/gadget-x-logo-transparent.png",
+  logoOfficial: "/__mockup/images/gadget-x-logo-transparent.png",
 };
 
 export const HERO = {
