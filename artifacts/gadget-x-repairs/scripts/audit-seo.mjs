@@ -16,6 +16,12 @@
  *     these belong in <head>. (This is the regression Task #30 fixed.)
  *   - /admin/* pages must declare robots="noindex, nofollow"; everything
  *     else must declare robots="index, follow".
+ *   - Every <script type="application/ld+json"> in <head> must contain valid
+ *     JSON and a non-empty "@context" + "@type". The LocalBusiness /
+ *     ElectronicsStore block (the one that powers Google rich results) must
+ *     additionally include "name", "address", and "telephone", and at least
+ *     one such block must be present. Admin pages (noindex) are exempt from
+ *     the JSON-LD checks.
  *
  * Exits non-zero with a clear, file-by-file message when any assertion is
  * violated so the build fails before broken HTML reaches search engines.
@@ -56,6 +62,31 @@ const FORBIDDEN_BODY_TAGS = [
 
 const ROBOTS_META_PATTERN = /<meta\b[^>]*\bname=["']robots["'][^>]*>/i;
 const CONTENT_ATTR_PATTERN = /\bcontent=["']([^"']*)["']/i;
+
+const LD_JSON_SCRIPT_PATTERN =
+  /<script\b[^>]*\btype=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+const LOCAL_BUSINESS_TYPES = new Set([
+  "LocalBusiness",
+  "ElectronicsStore",
+]);
+const REQUIRED_LOCAL_BUSINESS_FIELDS = ["name", "address", "telephone"];
+
+function isLocalBusinessType(typeValue) {
+  if (!typeValue) return false;
+  if (typeof typeValue === "string") return LOCAL_BUSINESS_TYPES.has(typeValue);
+  if (Array.isArray(typeValue)) {
+    return typeValue.some((t) => typeof t === "string" && LOCAL_BUSINESS_TYPES.has(t));
+  }
+  return false;
+}
+
+function hasNonEmpty(value) {
+  if (value === undefined || value === null) return false;
+  if (typeof value === "string") return value.trim().length > 0;
+  if (Array.isArray(value)) return value.length > 0;
+  if (typeof value === "object") return Object.keys(value).length > 0;
+  return true;
+}
 
 async function* walkIndexHtml(dir) {
   const entries = await readdir(dir, { withFileTypes: true });
@@ -141,7 +172,64 @@ function auditOne(html, relPath) {
     }
   }
 
+  if (!isAdmin) {
+    auditJsonLd(head, errors);
+  }
+
   return { errors };
+}
+
+function auditJsonLd(head, errors) {
+  const blocks = [];
+  let m;
+  LD_JSON_SCRIPT_PATTERN.lastIndex = 0;
+  while ((m = LD_JSON_SCRIPT_PATTERN.exec(head)) !== null) {
+    blocks.push(m[1]);
+  }
+
+  let localBusinessFound = false;
+
+  for (let i = 0; i < blocks.length; i++) {
+    const label = `<script type="application/ld+json"> #${i + 1} in <head>`;
+    const raw = blocks[i].trim();
+    if (raw.length === 0) {
+      errors.push(`${label} is empty`);
+      continue;
+    }
+    let obj;
+    try {
+      obj = JSON.parse(raw);
+    } catch (e) {
+      errors.push(`${label} failed to parse as JSON: ${e.message}`);
+      continue;
+    }
+    if (!obj || typeof obj !== "object" || Array.isArray(obj)) {
+      errors.push(`${label} is not a JSON object`);
+      continue;
+    }
+    if (!hasNonEmpty(obj["@context"])) {
+      errors.push(`${label} is missing required field "@context"`);
+    }
+    if (!hasNonEmpty(obj["@type"])) {
+      errors.push(`${label} is missing required field "@type"`);
+    }
+    if (isLocalBusinessType(obj["@type"])) {
+      localBusinessFound = true;
+      for (const field of REQUIRED_LOCAL_BUSINESS_FIELDS) {
+        if (!hasNonEmpty(obj[field])) {
+          errors.push(
+            `${label} (LocalBusiness/${obj["@type"]}) is missing required field "${field}"`,
+          );
+        }
+      }
+    }
+  }
+
+  if (!localBusinessFound) {
+    errors.push(
+      'no LocalBusiness/ElectronicsStore <script type="application/ld+json"> block found in <head>',
+    );
+  }
 }
 
 async function main() {

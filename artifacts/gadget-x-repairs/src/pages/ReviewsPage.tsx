@@ -17,9 +17,7 @@ export default function ReviewsPage() {
           localBusinessJsonLd(),
           breadcrumbJsonLd([{ name: "Reviews", path: "/reviews-houston-tx" }]),
           {
-            "@context": "https://schema.org",
-            "@type": "ElectronicsStore",
-            name: "Gadget X Repairs",
+            ...localBusinessJsonLd(),
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: avg.toFixed(1),
