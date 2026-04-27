@@ -50,5 +50,5 @@ channel = "stable-25_05"
 
 [userenv.shared]
 MAIL_FROM_EMAIL = "support@gadgetxrepairs.com"
-SMS_FROM_NUMBER = "+13466236898"
+SMS_FROM_NUMBER = "+18443496782"
 VITE_SITE_URL = "https://gadgetxrepairs.com"
