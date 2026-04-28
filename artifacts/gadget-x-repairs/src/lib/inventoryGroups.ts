@@ -58,3 +58,19 @@ export function inventoryGroupBySlug(
   if (slug === OTHER_GROUP.slug) return OTHER_GROUP;
   return INVENTORY_GROUPS.find((g) => g.slug === slug) ?? null;
 }
+
+/**
+ * Resolve which inventory group a free-form category string will land in.
+ *
+ * Mirrors the same keyword-based matching the shopper-facing inventory page
+ * uses, so admin staff can preview the bucket their item will appear under
+ * before saving. Falls back to {@link OTHER_GROUP} when no group matches —
+ * that means the item won't be reachable from the "We Sell Too" tile filters.
+ */
+export function inventoryGroupForCategory(
+  category: string | null | undefined,
+): InventoryGroup {
+  const c = (category ?? "").trim();
+  if (!c) return OTHER_GROUP;
+  return INVENTORY_GROUPS.find((g) => g.matches(c)) ?? OTHER_GROUP;
+}

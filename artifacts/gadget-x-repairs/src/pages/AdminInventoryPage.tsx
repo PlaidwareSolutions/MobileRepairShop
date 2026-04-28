@@ -16,6 +16,7 @@ import {
   type AdminInventoryItem,
   type InventoryWriteInput,
 } from "@/lib/api";
+import { OTHER_GROUP, inventoryGroupForCategory } from "@/lib/inventoryGroups";
 
 const AVAILABILITY_OPTIONS: { value: AdminInventoryItem["availability"]; label: string }[] = [
   { value: "in_stock", label: "In stock" },
@@ -336,6 +337,7 @@ export default function AdminInventoryPage() {
                       <th className="text-left px-3 py-3">Image</th>
                       <th className="text-left px-3 py-3">Item</th>
                       <th className="text-left px-3 py-3">Category</th>
+                      <th className="text-left px-3 py-3">Group</th>
                       <th className="text-left px-3 py-3">Price</th>
                       <th className="text-left px-3 py-3">Availability</th>
                       <th className="text-right px-3 py-3">Actions</th>
@@ -343,7 +345,7 @@ export default function AdminInventoryPage() {
                   </thead>
                   <tbody>
                     {items.length === 0 && (
-                      <tr><td colSpan={7} className="px-4 py-12 text-center font-semibold text-zinc-500 uppercase tracking-wide">No items yet</td></tr>
+                      <tr><td colSpan={8} className="px-4 py-12 text-center font-semibold text-zinc-500 uppercase tracking-wide">No items yet</td></tr>
                     )}
                     {items.map((it, i) => (
                       <tr key={it.id} className="border-t border-zinc-100 hover:bg-zinc-50/60" data-testid={`admin-inventory-row-${it.id}`}>
@@ -380,6 +382,9 @@ export default function AdminInventoryPage() {
                           </div>
                         </td>
                         <td className="px-3 py-2 text-zinc-600 text-xs uppercase tracking-wide font-semibold">{it.category}</td>
+                        <td className="px-3 py-2">
+                          <GroupBadge category={it.category} testId={`admin-inventory-group-${it.id}`} />
+                        </td>
                         <td className="px-3 py-2 font-semibold text-red-600">{it.priceDisplay}</td>
                         <td className="px-3 py-2">
                           <select
@@ -470,6 +475,7 @@ function InventoryFormCard({
         <datalist id="cats">
           {categories.map((c) => <option key={c} value={c} />)}
         </datalist>
+        <CategoryGroupHint category={form.category} />
       </Field>
       <Field label="Brand" required>
         <Input value={form.brand} onChange={(e) => set("brand", e.target.value)} required className={inputCls} data-testid="input-brand" />
@@ -610,5 +616,61 @@ function Field({ label, required, children }: { label: string; required?: boolea
       </Label>
       {children}
     </div>
+  );
+}
+
+function CategoryGroupHint({ category }: { category: string }) {
+  const trimmed = category.trim();
+  if (!trimmed) {
+    return (
+      <p
+        className="text-[11px] font-semibold uppercase tracking-wide text-zinc-500"
+        data-testid="hint-category-group"
+      >
+        Will appear under: —
+      </p>
+    );
+  }
+  const group = inventoryGroupForCategory(trimmed);
+  const isOther = group.slug === OTHER_GROUP.slug;
+  return (
+    <p
+      className={`text-[11px] font-semibold uppercase tracking-wide ${
+        isOther ? "text-amber-700" : "text-emerald-700"
+      }`}
+      data-testid="hint-category-group"
+      data-group-slug={group.slug}
+    >
+      Will appear under: <span className="font-extrabold">{group.label}</span>
+      {isOther && (
+        <span className="block mt-1 normal-case tracking-normal font-medium text-amber-700">
+          ⚠ This won't show up under any "We Sell Too" tile filter. Try keywords
+          like Phones, Tablets, Laptops, or Consoles so shoppers can find it.
+        </span>
+      )}
+    </p>
+  );
+}
+
+function GroupBadge({ category, testId }: { category: string; testId?: string }) {
+  const group = inventoryGroupForCategory(category);
+  const isOther = group.slug === OTHER_GROUP.slug;
+  const cls = isOther
+    ? "border-amber-200 text-amber-700 bg-amber-50"
+    : "border-emerald-200 text-emerald-700 bg-emerald-50";
+  return (
+    <span
+      className={`inline-flex items-center rounded-full border px-2 py-0.5 font-semibold uppercase text-[10px] tracking-wide ${cls}`}
+      data-testid={testId}
+      data-group-slug={group.slug}
+      title={
+        isOther
+          ? "Won't show up under any 'We Sell Too' tile filter."
+          : `Shows up under the ${group.label} tile filter.`
+      }
+    >
+      {isOther && <span aria-hidden="true" className="mr-1">⚠</span>}
+      {group.label}
+    </span>
   );
 }
