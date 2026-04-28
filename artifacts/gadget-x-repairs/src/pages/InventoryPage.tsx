@@ -4,7 +4,7 @@ import { useLocation, useRoute, useSearch } from "wouter";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
-import { SEO, SITE_URL, localBusinessJsonLd, breadcrumbJsonLd } from "@/components/SEO";
+import { SEO, SITE_URL, localBusinessJsonLd, breadcrumbJsonLd, faqJsonLd } from "@/components/SEO";
 import { ReservationForm } from "@/components/forms/ReservationForm";
 import { Button } from "@/components/ui/button";
 import { fetchInventory } from "@/lib/api";
@@ -200,20 +200,36 @@ export default function InventoryPage() {
       ]
     : [{ name: "Inventory", path: "/inventory" }];
 
+  // Per-category long-form copy and FAQs. Both are only present on a known
+  // category page (the unfiltered /inventory view stays lean). The FAQ list
+  // doubles as the source for `FAQPage` JSON-LD so the same questions/answers
+  // visible on the page are exactly what crawlers see — keeping them in sync
+  // is a Google requirement for FAQ rich results.
+  const bodyCopy = pathGroup?.bodyCopy ?? null;
+  const faqs = pathGroup?.faqs ?? null;
+
+  // Build the JSON-LD payload: shared blocks plus FAQPage on category pages
+  // that have FAQs defined. Done as an array build (vs. inline conditional)
+  // so the ordering stays predictable and easy to scan.
+  const jsonLdPayload: object[] = [
+    localBusinessJsonLd(),
+    breadcrumbJsonLd(breadcrumbJsonLdItems),
+    // ItemList reflects only the items shown on this page so per-category
+    // pages emit category-scoped structured data instead of the full
+    // catalogue (which would dilute relevance signals to crawlers).
+    inventoryProductJsonLd(visible),
+  ];
+  if (faqs && faqs.length > 0) {
+    jsonLdPayload.push(faqJsonLd(faqs));
+  }
+
   return (
     <PageShell hideTicker>
       <SEO
         title={seoTitle}
         description={seoDescription}
         path={seoPath}
-        jsonLd={[
-          localBusinessJsonLd(),
-          breadcrumbJsonLd(breadcrumbJsonLdItems),
-          // ItemList reflects only the items shown on this page so per-category
-          // pages emit category-scoped structured data instead of the full
-          // catalogue (which would dilute relevance signals to crawlers).
-          inventoryProductJsonLd(visible),
-        ]}
+        jsonLd={jsonLdPayload}
       />
       <Breadcrumbs items={breadcrumbItems} />
 
@@ -298,6 +314,59 @@ export default function InventoryPage() {
           </div>
         </div>
       </section>
+
+      {bodyCopy && pathGroup && (
+        <section
+          className="py-12 px-4 bg-white border-b border-zinc-200"
+          data-testid={`category-bodycopy-${pathGroup.slug}`}
+        >
+          <div className="max-w-[1240px] mx-auto grid lg:grid-cols-3 gap-10">
+            <div className="lg:col-span-2 space-y-5">
+              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 uppercase">
+                About our {pathGroup.label.toLowerCase()}
+              </h2>
+              {bodyCopy.paragraphs.map((p, i) => (
+                <p key={i} className="text-base text-zinc-700 leading-relaxed">
+                  {p}
+                </p>
+              ))}
+            </div>
+            <aside className="bg-zinc-50 border border-zinc-200 p-6">
+              <h3 className="text-lg font-extrabold uppercase tracking-wide text-zinc-900 mb-3">
+                What's included
+              </h3>
+              <ul className="space-y-2 text-sm font-medium text-zinc-700 list-disc pl-5">
+                {bodyCopy.included.map((line, i) => (
+                  <li key={i}>{line}</li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+        </section>
+      )}
+
+      {faqs && faqs.length > 0 && pathGroup && (
+        <section
+          className="py-12 px-4 bg-zinc-50 border-b border-zinc-200"
+          data-testid={`category-faqs-${pathGroup.slug}`}
+        >
+          <div className="max-w-[1240px] mx-auto">
+            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 uppercase mb-6">
+              {pathGroup.label} FAQ
+            </h2>
+            <dl className="divide-y divide-zinc-200 border-t border-b border-zinc-200">
+              {faqs.map((f, i) => (
+                <div key={i} className="py-5">
+                  <dt className="text-base font-bold text-zinc-900">{f.q}</dt>
+                  <dd className="mt-2 text-base text-zinc-700 leading-relaxed">
+                    {f.a}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+      )}
 
       {reserving && (
         <div className="fixed inset-0 bg-white/80 z-[60] flex items-center justify-center p-4" onClick={() => setReserving(null)}>
