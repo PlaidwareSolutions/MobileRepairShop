@@ -332,8 +332,8 @@ export default function HomePage() {
               What We <br />
               <span className="text-red-600">Repair</span>
             </h2>
-            <div className="bg-zinc-900 text-white p-4 max-w-sm shadow-md">
-              <p className="font-bold uppercase text-xs leading-snug tracking-wide">
+            <div className="max-w-sm">
+              <p className="text-lg md:text-xl font-medium text-zinc-600 tracking-normal">
                 No matter how badly you broke it, bring it in. We&apos;ve seen worse.
               </p>
             </div>
