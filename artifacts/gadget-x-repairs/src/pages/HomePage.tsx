@@ -257,34 +257,37 @@ export default function HomePage() {
           {/* Right: Diagnostic Check panel */}
           <div className="lg:col-span-5 w-full">
             <div className="bg-zinc-900 text-white p-6 md:p-8 shadow-md">
-              <div className="flex items-center justify-between mb-6 border-b border-zinc-800 pb-4">
-                <h3 className="font-extrabold tracking-tight text-xl flex items-center gap-2 text-red-500">
-                  <Zap className="w-5 h-5" /> Diagnostic Check
+              <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-4">
+                <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                  Diagnostic <span className="text-red-500">Check</span>
                 </h3>
                 <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-500">Live Pricing</span>
               </div>
-              <ul className="space-y-3 mb-6">
+              <div className="space-y-3 mb-8">
                 {HERO_DIAGNOSTIC.map((item) => {
                   const Icon = item.icon;
                   return (
-                    <li key={item.to}>
-                      <Link
-                        href={item.to}
-                        className="flex items-center justify-between gap-3 px-4 py-3 bg-zinc-900 hover:bg-red-600 transition-colors group"
-                        data-testid={`hero-diagnostic-${item.to}`}
-                      >
-                        <span className="flex items-center gap-3">
-                          <Icon className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" />
-                          <span className="font-bold uppercase text-sm tracking-wide">{item.name}</span>
-                        </span>
-                        <span className="font-bold uppercase text-xs tracking-wide text-red-500 group-hover:text-white">
-                          {item.price}
-                        </span>
-                      </Link>
-                    </li>
+                    <Link
+                      key={item.to}
+                      href={item.to}
+                      className="flex items-center justify-between gap-4 px-4 md:px-5 py-4 bg-zinc-900 hover:bg-red-600 transition-colors group"
+                      data-testid={`hero-diagnostic-${item.to}`}
+                    >
+                      <div className="flex items-center gap-4 min-w-0">
+                        <div className="bg-zinc-800 group-hover:bg-zinc-900 p-2 shrink-0 transition-colors">
+                          <Icon className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" />
+                        </div>
+                        <div className="min-w-0">
+                          <h4 className="text-base md:text-lg font-extrabold tracking-tight truncate">{item.name}</h4>
+                        </div>
+                      </div>
+                      <div className="font-bold uppercase text-sm md:text-base tracking-wide text-red-500 group-hover:text-white shrink-0">
+                        {item.price}
+                      </div>
+                    </Link>
                   );
                 })}
-              </ul>
+              </div>
               <a
                 href="#quote"
                 className="block w-full bg-red-600 text-white font-semibold uppercase tracking-wide text-sm py-3 text-center shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
@@ -292,7 +295,7 @@ export default function HomePage() {
               >
                 Get My Quote →
               </a>
-              <div className="mt-6 pt-6 border-t border-zinc-800 grid gap-3 text-xs">
+              <div className="mt-8 pt-6 border-t border-zinc-800 grid gap-3 text-xs">
                 <div className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
                   <div>
