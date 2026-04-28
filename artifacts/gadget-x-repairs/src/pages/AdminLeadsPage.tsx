@@ -182,18 +182,18 @@ export default function AdminLeadsPage() {
       <section className="py-12 px-4 bg-zinc-50 border-b border-zinc-200 min-h-[80vh]">
         <div className="max-w-[1240px] mx-auto">
           <div className="flex flex-wrap justify-between items-end gap-4 mb-6">
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-zinc-900">
-              ADMIN <span className="text-red-500">INBOX</span>
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 leading-tight">
+              Admin <span className="text-red-500">Inbox</span>
             </h1>
             {authed && messaging && (
-              <div className="text-xs uppercase tracking-widest text-zinc-500 space-y-1 text-right">
+              <div className="text-xs uppercase tracking-wide text-zinc-500 space-y-1 text-right">
                 <div>
                   email{" "}
                   <span
                     className={
                       messaging.emailEnabled
-                        ? "text-green-400"
-                        : "text-zinc-600"
+                        ? "text-emerald-600 font-semibold"
+                        : "text-zinc-500"
                     }
                   >
                     {messaging.emailEnabled ? "enabled" : "off"}
@@ -205,7 +205,9 @@ export default function AdminLeadsPage() {
                   sms{" "}
                   <span
                     className={
-                      messaging.smsEnabled ? "text-green-400" : "text-zinc-600"
+                      messaging.smsEnabled
+                        ? "text-emerald-600 font-semibold"
+                        : "text-zinc-500"
                     }
                   >
                     {messaging.smsEnabled ? "enabled" : "off"}
@@ -224,12 +226,12 @@ export default function AdminLeadsPage() {
                 e.preventDefault();
                 load(password);
               }}
-              className="bg-zinc-100 border-4 border-zinc-300 p-6 max-w-md space-y-4"
+              className="bg-white border border-zinc-200 rounded-xl shadow-md p-6 max-w-md space-y-4"
               data-testid="form-admin-login"
             >
               <Label
                 htmlFor="ad-pw"
-                className="font-black uppercase text-xs tracking-widest text-zinc-700"
+                className="font-semibold uppercase text-xs tracking-wide text-zinc-700"
               >
                 Admin password
               </Label>
@@ -238,18 +240,18 @@ export default function AdminLeadsPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12"
+                className="bg-white border border-zinc-200 focus:border-red-500 h-12"
                 data-testid="input-password"
               />
               {error && (
-                <div className="bg-red-500 text-zinc-900 px-4 py-3 font-black uppercase text-sm">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm">
                   {error}
                 </div>
               )}
               <Button
                 type="submit"
                 disabled={loading || !password}
-                className="w-full rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest h-12"
+                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-12 shadow-sm"
                 data-testid="button-login"
               >
                 {loading ? "..." : "Sign In"}
@@ -266,10 +268,10 @@ export default function AdminLeadsPage() {
                     <button
                       key={t.key}
                       onClick={() => setTab(t.key)}
-                      className={`relative px-4 py-2 font-black uppercase text-sm tracking-widest border-2 transition-colors ${
+                      className={`relative px-4 py-2 font-semibold uppercase text-sm tracking-wide border rounded-lg transition-colors ${
                         active
-                          ? "bg-red-500 border-red-500 text-zinc-900"
-                          : "bg-zinc-100 border-zinc-300 text-zinc-700 hover:border-red-500"
+                          ? "bg-red-500 border-red-500 text-white shadow-sm"
+                          : "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
                       }`}
                       data-testid={`tab-${t.key}`}
                     >
@@ -277,7 +279,7 @@ export default function AdminLeadsPage() {
                       <span className="text-xs ml-2 opacity-70">{c.total}</span>
                       {c.news > 0 && (
                         <span
-                          className="absolute -top-2 -right-2 bg-red-500 text-black px-2 py-0.5 text-[10px] tracking-widest font-black"
+                          className="absolute -top-2 -right-2 bg-red-500 text-white px-2 py-0.5 text-[10px] tracking-wide font-semibold rounded-full shadow-sm"
                           data-testid={`badge-new-${t.key}`}
                         >
                           {c.news}
@@ -285,7 +287,7 @@ export default function AdminLeadsPage() {
                       )}
                       {c.unread > 0 && (
                         <span
-                          className="absolute -top-2 -left-2 bg-red-500 text-zinc-900 px-2 py-0.5 text-[10px] tracking-widest font-black animate-pulse"
+                          className="absolute -top-2 -left-2 bg-red-500 text-white px-2 py-0.5 text-[10px] tracking-wide font-semibold rounded-full shadow-sm animate-pulse"
                           data-testid={`badge-unread-${t.key}`}
                         >
                           {c.unread} ←
@@ -296,7 +298,7 @@ export default function AdminLeadsPage() {
                 })}
                 <button
                   onClick={() => load(password)}
-                  className="ml-auto px-4 py-2 font-black uppercase text-sm tracking-widest border-2 bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-red-500"
+                  className="ml-auto px-4 py-2 font-semibold uppercase text-sm tracking-wide border rounded-lg bg-white border-zinc-200 text-zinc-600 hover:border-red-500 hover:text-red-600"
                   data-testid="button-refresh"
                 >
                   {loading ? "Refreshing…" : "Refresh"}
@@ -307,10 +309,10 @@ export default function AdminLeadsPage() {
                 <div className="flex flex-wrap gap-1">
                   <button
                     onClick={() => setStatusFilter("active")}
-                    className={`px-3 py-1.5 font-black uppercase text-[11px] tracking-widest border-2 ${
+                    className={`px-3 py-1.5 font-semibold uppercase text-[11px] tracking-wide border rounded-lg ${
                       statusFilter === "active"
-                        ? "bg-white text-black border-white"
-                        : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-white"
+                        ? "bg-zinc-900 text-white border-zinc-900"
+                        : "bg-white border-zinc-200 text-zinc-600 hover:border-zinc-900"
                     }`}
                     data-testid="filter-active"
                   >
@@ -320,10 +322,10 @@ export default function AdminLeadsPage() {
                     <button
                       key={f.key}
                       onClick={() => setStatusFilter(f.key)}
-                      className={`px-3 py-1.5 font-black uppercase text-[11px] tracking-widest border-2 ${
+                      className={`px-3 py-1.5 font-semibold uppercase text-[11px] tracking-wide border rounded-lg ${
                         statusFilter === f.key
-                          ? "bg-white text-black border-white"
-                          : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-white"
+                          ? "bg-zinc-900 text-white border-zinc-900"
+                          : "bg-white border-zinc-200 text-zinc-600 hover:border-zinc-900"
                       }`}
                       data-testid={`filter-${f.key}`}
                     >
@@ -337,14 +339,14 @@ export default function AdminLeadsPage() {
                     placeholder="Search name, phone, model…"
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-10 text-zinc-900"
+                    className="bg-white border border-zinc-200 focus:border-red-500 h-10 text-zinc-900"
                     data-testid="input-search"
                   />
                 </div>
               </div>
 
               {error && (
-                <div className="bg-red-500 text-zinc-900 px-4 py-3 font-black uppercase text-sm mb-4">
+                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm mb-4">
                   {error}
                 </div>
               )}
@@ -352,7 +354,7 @@ export default function AdminLeadsPage() {
               {data && (
                 <div className="space-y-4">
                   {visibleLeads.length === 0 && (
-                    <div className="bg-zinc-100 border-2 border-zinc-300 p-8 text-center font-bold text-zinc-500 uppercase">
+                    <div className="bg-white border border-zinc-200 rounded-xl shadow-sm p-8 text-center font-semibold text-zinc-500 uppercase tracking-wide">
                       No entries match
                     </div>
                   )}

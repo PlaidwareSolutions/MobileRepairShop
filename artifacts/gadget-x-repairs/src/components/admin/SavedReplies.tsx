@@ -271,7 +271,7 @@ export function SavedReplies({
   }, [hintKeys, subject, body, channel]);
 
   return (
-    <div className="border-2 border-zinc-300 bg-zinc-100" data-testid="saved-replies">
+    <div className="border border-zinc-200 bg-white rounded-lg" data-testid="saved-replies">
       <button
         type="button"
         onClick={() => {
@@ -279,7 +279,7 @@ export function SavedReplies({
           setView("pick");
           setEdit({ mode: "list" });
         }}
-        className="w-full flex items-center justify-between px-3 py-2 font-black uppercase text-xs tracking-widest text-zinc-800 hover:bg-zinc-200"
+        className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-semibold uppercase text-xs tracking-wide text-zinc-800 hover:bg-zinc-50"
         data-testid="saved-replies-toggle"
       >
         <span>
@@ -292,15 +292,15 @@ export function SavedReplies({
       </button>
 
       {open && (
-        <div className="border-t-2 border-zinc-300 p-3 space-y-3">
+        <div className="border-t border-zinc-200 p-3 space-y-3">
           <div className="flex gap-2">
             <button
               type="button"
               onClick={() => setView("pick")}
-              className={`px-2 py-1 font-black uppercase text-[10px] tracking-widest border-2 ${
+              className={`px-2.5 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border ${
                 view === "pick"
-                  ? "bg-white text-black border-white"
-                  : "bg-zinc-100 border-zinc-300 text-zinc-700 hover:border-white"
+                  ? "bg-red-500 text-white border-red-500 shadow-sm"
+                  : "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
               }`}
               data-testid="saved-replies-tab-pick"
             >
@@ -312,10 +312,10 @@ export function SavedReplies({
                 setView("manage");
                 setEdit({ mode: "list" });
               }}
-              className={`px-2 py-1 font-black uppercase text-[10px] tracking-widest border-2 ${
+              className={`px-2.5 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border ${
                 view === "manage"
-                  ? "bg-white text-black border-white"
-                  : "bg-zinc-100 border-zinc-300 text-zinc-700 hover:border-white"
+                  ? "bg-red-500 text-white border-red-500 shadow-sm"
+                  : "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
               }`}
               data-testid="saved-replies-tab-manage"
             >
@@ -325,7 +325,7 @@ export function SavedReplies({
               <Button
                 type="button"
                 onClick={startNew}
-                className="ml-auto rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest text-[10px] h-7 px-2"
+                className="ml-auto bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-[10px] h-7 px-2 shadow-sm"
                 data-testid="saved-replies-new"
               >
                 + New
@@ -335,7 +335,7 @@ export function SavedReplies({
 
           {error && (
             <div
-              className="bg-red-500 text-zinc-900 px-3 py-2 font-black uppercase text-xs"
+              className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg font-semibold text-xs"
               data-testid="saved-replies-error"
             >
               {error}
@@ -343,7 +343,7 @@ export function SavedReplies({
           )}
 
           {loading && (
-            <div className="text-xs uppercase tracking-widest text-zinc-500">
+            <div className="text-xs uppercase tracking-wide text-zinc-500">
               Loading…
             </div>
           )}
@@ -351,7 +351,7 @@ export function SavedReplies({
           {view === "pick" && !loading && (
             <div className="space-y-2 max-h-56 overflow-auto" data-testid="saved-replies-pick-list">
               {matching.length === 0 && (
-                <div className="text-xs uppercase tracking-widest text-zinc-500">
+                <div className="text-xs uppercase tracking-wide text-zinc-500">
                   No saved {channel} replies
                   {leadType ? ` for ${LEAD_TYPE_LABEL[leadType] ?? leadType}` : ""}.
                   Switch to Manage to add one.
@@ -362,14 +362,14 @@ export function SavedReplies({
                   key={t.id}
                   type="button"
                   onClick={() => applyTemplate(t)}
-                  className="w-full text-left bg-white border-2 border-zinc-300 hover:border-red-500 px-3 py-2"
+                  className="w-full text-left bg-white border border-zinc-200 rounded-lg hover:border-red-500 hover:shadow-sm px-3 py-2 transition-all"
                   data-testid={`saved-replies-apply-${t.id}`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-black uppercase text-xs tracking-widest text-zinc-900">
+                    <span className="font-semibold uppercase text-xs tracking-wide text-zinc-900">
                       {t.name}
                     </span>
-                    <span className="px-1.5 py-0.5 font-black uppercase text-[9px] tracking-widest bg-zinc-200 text-zinc-700">
+                    <span className="px-1.5 py-0.5 font-semibold uppercase text-[9px] tracking-wide bg-zinc-100 text-zinc-700 border border-zinc-200">
                       {t.leadType ? LEAD_TYPE_LABEL[t.leadType] ?? t.leadType : "ANY"}
                     </span>
                   </div>
@@ -389,21 +389,21 @@ export function SavedReplies({
           {view === "manage" && !loading && edit.mode === "list" && (
             <div className="space-y-2 max-h-56 overflow-auto" data-testid="saved-replies-manage-list">
               {allForChannel.length === 0 && (
-                <div className="text-xs uppercase tracking-widest text-zinc-500">
+                <div className="text-xs uppercase tracking-wide text-zinc-500">
                   No saved {channel} replies yet.
                 </div>
               )}
               {allForChannel.map((t, idx) => (
                 <div
                   key={t.id}
-                  className="bg-white border-2 border-zinc-300 px-3 py-2"
+                  className="bg-white border border-zinc-200 rounded-lg px-3 py-2"
                   data-testid={`saved-replies-row-${t.id}`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-black uppercase text-xs tracking-widest text-zinc-900">
+                    <span className="font-semibold uppercase text-xs tracking-wide text-zinc-900">
                       {t.name}
                     </span>
-                    <span className="px-1.5 py-0.5 font-black uppercase text-[9px] tracking-widest bg-zinc-200 text-zinc-700">
+                    <span className="px-1.5 py-0.5 font-semibold uppercase text-[9px] tracking-wide bg-zinc-100 text-zinc-700 border border-zinc-200">
                       {t.leadType ? LEAD_TYPE_LABEL[t.leadType] ?? t.leadType : "ANY"}
                     </span>
                     <div className="ml-auto flex gap-1">
@@ -413,7 +413,7 @@ export function SavedReplies({
                         disabled={idx === 0}
                         aria-label="Move up"
                         title="Move up"
-                        className="px-2 py-1 font-black uppercase text-[10px] tracking-widest border-2 bg-zinc-100 border-zinc-300 text-zinc-700 hover:border-white disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-zinc-300"
+                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-zinc-200 disabled:hover:text-zinc-700"
                         data-testid={`saved-replies-move-up-${t.id}`}
                       >
                         ↑
@@ -424,7 +424,7 @@ export function SavedReplies({
                         disabled={idx === allForChannel.length - 1}
                         aria-label="Move down"
                         title="Move down"
-                        className="px-2 py-1 font-black uppercase text-[10px] tracking-widest border-2 bg-zinc-100 border-zinc-300 text-zinc-700 hover:border-white disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-zinc-300"
+                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-zinc-200 disabled:hover:text-zinc-700"
                         data-testid={`saved-replies-move-down-${t.id}`}
                       >
                         ↓
@@ -432,7 +432,7 @@ export function SavedReplies({
                       <button
                         type="button"
                         onClick={() => startEdit(t)}
-                        className="px-2 py-1 font-black uppercase text-[10px] tracking-widest border-2 bg-zinc-100 border-zinc-300 text-red-500 hover:border-red-500"
+                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-red-50 border-red-200 text-red-600 hover:bg-red-100 hover:border-red-300"
                         data-testid={`saved-replies-edit-${t.id}`}
                       >
                         Edit
@@ -440,7 +440,7 @@ export function SavedReplies({
                       <button
                         type="button"
                         onClick={() => remove(t.id)}
-                        className="px-2 py-1 font-black uppercase text-[10px] tracking-widest border-2 bg-zinc-100 border-zinc-300 text-red-400 hover:border-red-400"
+                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-zinc-200 text-zinc-500 hover:bg-red-50 hover:border-red-200 hover:text-red-600"
                         data-testid={`saved-replies-delete-${t.id}`}
                       >
                         Delete
@@ -457,7 +457,7 @@ export function SavedReplies({
               <div>
                 <Label
                   htmlFor="tpl-name"
-                  className="font-black uppercase text-[10px] tracking-widest text-zinc-700"
+                  className="font-semibold uppercase text-[10px] tracking-wide text-zinc-700"
                 >
                   Name
                 </Label>
@@ -466,14 +466,14 @@ export function SavedReplies({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Quote ready"
-                  className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-9 text-zinc-900"
+                  className="bg-white border border-zinc-200 focus:border-red-500 h-9 text-zinc-900"
                   data-testid="saved-replies-form-name"
                 />
               </div>
               <div>
                 <Label
                   htmlFor="tpl-scope"
-                  className="font-black uppercase text-[10px] tracking-widest text-zinc-700"
+                  className="font-semibold uppercase text-[10px] tracking-wide text-zinc-700"
                 >
                   Scope (lead type)
                 </Label>
@@ -481,7 +481,7 @@ export function SavedReplies({
                   id="tpl-scope"
                   value={scope}
                   onChange={(e) => setScope(e.target.value)}
-                  className="w-full rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-9 text-zinc-900 px-2"
+                  className="w-full bg-white border border-zinc-200 focus:border-red-500 h-9 text-zinc-900 px-2"
                   data-testid="saved-replies-form-scope"
                 >
                   {LEAD_TYPE_OPTIONS.map((o) => (
@@ -492,10 +492,10 @@ export function SavedReplies({
                 </select>
               </div>
               <div
-                className="bg-white border-2 border-zinc-300 px-3 py-2"
+                className="bg-white border border-zinc-200 rounded-lg px-3 py-2"
                 data-testid="saved-replies-form-placeholder-hint"
               >
-                <div className="font-black uppercase text-[10px] tracking-widest text-zinc-600 mb-1">
+                <div className="font-semibold uppercase text-[10px] tracking-wide text-zinc-600 mb-1">
                   Insert placeholder
                   <span className="ml-2 text-zinc-600 font-normal normal-case tracking-normal">
                     into{" "}
@@ -511,7 +511,7 @@ export function SavedReplies({
                       type="button"
                       onMouseDown={(e) => e.preventDefault()}
                       onClick={() => insertFormPlaceholder(k)}
-                      className="px-1.5 py-0.5 bg-zinc-100 border border-zinc-300 hover:border-red-500 text-[11px] text-zinc-800 font-mono"
+                      className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded-md hover:border-red-500 hover:text-red-600 text-[11px] text-zinc-700 font-mono"
                       data-testid={`saved-replies-form-placeholder-${k}`}
                     >{`{{${k}}}`}</button>
                   ))}
@@ -523,17 +523,17 @@ export function SavedReplies({
               </div>
               {unknownKeys.length > 0 && (
                 <div
-                  className="bg-red-500 text-black px-3 py-2 border-2 border-red-500"
+                  className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg"
                   data-testid="saved-replies-form-unknown-placeholders"
                 >
-                  <div className="font-black uppercase text-[10px] tracking-widest mb-1">
+                  <div className="font-semibold uppercase text-[10px] tracking-wide mb-1">
                     Unknown placeholders
                   </div>
                   <div className="flex flex-wrap gap-1 mb-1">
                     {unknownKeys.map((k) => (
                       <code
                         key={k}
-                        className="px-1.5 py-0.5 bg-white text-red-500 text-[11px] font-mono"
+                        className="px-1.5 py-0.5 bg-white border border-red-200 rounded-md text-red-600 text-[11px] font-mono"
                         data-testid={`saved-replies-form-unknown-${k}`}
                       >{`{{${k}}}`}</code>
                     ))}
@@ -547,7 +547,7 @@ export function SavedReplies({
                 <div>
                   <Label
                     htmlFor="tpl-subject"
-                    className="font-black uppercase text-[10px] tracking-widest text-zinc-700"
+                    className="font-semibold uppercase text-[10px] tracking-wide text-zinc-700"
                   >
                     Subject (optional)
                   </Label>
@@ -557,7 +557,7 @@ export function SavedReplies({
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     onFocus={() => setFormLastFocused("subject")}
-                    className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-9 text-zinc-900"
+                    className="bg-white border border-zinc-200 focus:border-red-500 h-9 text-zinc-900"
                     data-testid="saved-replies-form-subject"
                   />
                 </div>
@@ -565,7 +565,7 @@ export function SavedReplies({
               <div>
                 <Label
                   htmlFor="tpl-body"
-                  className="font-black uppercase text-[10px] tracking-widest text-zinc-700"
+                  className="font-semibold uppercase text-[10px] tracking-wide text-zinc-700"
                 >
                   Body
                 </Label>
@@ -576,7 +576,7 @@ export function SavedReplies({
                   onChange={(e) => setBody(e.target.value)}
                   onFocus={() => setFormLastFocused("body")}
                   rows={5}
-                  className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 text-zinc-900"
+                  className="bg-white border border-zinc-200 focus:border-red-500 text-zinc-900"
                   data-testid="saved-replies-form-body"
                 />
               </div>
@@ -585,7 +585,7 @@ export function SavedReplies({
                   type="button"
                   variant="outline"
                   onClick={() => setEdit({ mode: "list" })}
-                  className="rounded-none border-2 border-zinc-300 bg-transparent text-zinc-700 hover:bg-zinc-100 font-black uppercase tracking-widest text-[10px] h-8 px-3"
+                  className="border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 font-semibold uppercase tracking-wide text-[10px] h-8 px-3"
                   data-testid="saved-replies-form-cancel"
                 >
                   Cancel
@@ -594,7 +594,7 @@ export function SavedReplies({
                   type="button"
                   onClick={saveForm}
                   disabled={saving || !name || !body}
-                  className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest text-[10px] h-8 px-3"
+                  className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-[10px] h-8 px-3 shadow-sm"
                   data-testid="saved-replies-form-save"
                 >
                   {saving ? "Saving…" : edit.mode === "new" ? "Create" : "Save"}

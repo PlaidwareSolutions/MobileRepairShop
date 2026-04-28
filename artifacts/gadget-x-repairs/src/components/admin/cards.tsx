@@ -42,31 +42,31 @@ function CardShell({
   const hasUnread = unreadInboundCount > 0;
   return (
     <article
-      className={`bg-white border-2 p-5 ${
+      className={`bg-white border rounded-xl shadow-sm p-5 ${
         hasUnread
-          ? "border-red-500 ring-2 ring-red-500/40"
+          ? "border-red-300 ring-2 ring-red-200"
           : isNew
-            ? "border-red-500"
-            : "border-zinc-300"
+            ? "border-red-200"
+            : "border-zinc-200"
       }`}
       data-testid={testId}
       data-unread-inbound={unreadInboundCount}
     >
       <div className="flex flex-wrap justify-between items-start gap-3 mb-3">
         <div>
-          <div className="text-2xl md:text-3xl font-black uppercase tracking-tight text-zinc-900 leading-tight">
+          <div className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 leading-tight">
             {primary}
           </div>
           {meta && <div className="text-xs text-zinc-600 mt-1">{meta}</div>}
         </div>
         <div className="flex flex-col items-end gap-1">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+          <div className="font-mono text-[10px] uppercase tracking-wide text-zinc-500">
             #{id} · {formatRelative(createdAt)}
           </div>
           <div className="flex flex-wrap gap-1 justify-end">
             {hasUnread && (
               <span
-                className="bg-red-500 text-black px-2 py-0.5 font-black uppercase text-[10px] tracking-widest"
+                className="bg-red-500 text-white px-2 py-0.5 rounded-full font-semibold uppercase text-[10px] tracking-wide shadow-sm"
                 data-testid={`badge-card-reply-${testId}`}
               >
                 {unreadInboundCount} REPLY
@@ -82,9 +82,9 @@ function CardShell({
   );
 }
 
-function Badge({ children, className = "bg-zinc-200 text-zinc-800" }: { children: ReactNode; className?: string }) {
+function Badge({ children, className = "bg-zinc-100 text-zinc-700 border-zinc-200" }: { children: ReactNode; className?: string }) {
   return (
-    <span className={`px-2 py-0.5 font-black uppercase text-[10px] tracking-widest ${className}`}>
+    <span className={`px-2 py-0.5 rounded-full border font-semibold uppercase text-[10px] tracking-wide ${className}`}>
       {children}
     </span>
   );
@@ -115,14 +115,14 @@ export function RepairQuoteCard({
       primary={
         <>
           {lead.brand} {lead.model}
-          <span className="block text-sm font-bold uppercase tracking-widest text-red-400 mt-1">
+          <span className="block text-sm font-semibold uppercase tracking-wide text-red-600 mt-1">
             {lead.deviceType}
           </span>
         </>
       }
       meta={
         <>
-          <span className="text-zinc-900 font-black">{lead.name}</span> ·{" "}
+          <span className="text-zinc-900 font-semibold">{lead.name}</span> ·{" "}
           {lead.phone}
           {email ? ` · ${email}` : ""}
         </>
@@ -133,10 +133,10 @@ export function RepairQuoteCard({
             <Badge
               className={
                 lead.urgency === "asap"
-                  ? "bg-red-500 text-zinc-900"
+                  ? "bg-red-50 text-red-600 border-red-200"
                   : lead.urgency === "today"
-                    ? "bg-orange-500 text-zinc-900"
-                    : "bg-zinc-200 text-zinc-800"
+                    ? "bg-orange-50 text-orange-600 border-orange-200"
+                    : "bg-zinc-100 text-zinc-700 border-zinc-200"
               }
             >
               {lead.urgency.replaceAll("_", " ")}
@@ -163,7 +163,7 @@ export function RepairQuoteCard({
               <img
                 src={lead.photoUrl}
                 alt="Customer attachment"
-                className="max-h-32 border-2 border-zinc-300"
+                className="max-h-32 rounded-md border border-zinc-200"
               />
             </a>
           )}
@@ -208,7 +208,7 @@ export function SellPhoneCard({
         <>
           {lead.brand} {lead.model}
           {lead.expectedPrice && (
-            <span className="block text-sm font-bold uppercase tracking-widest text-green-400 mt-1">
+            <span className="block text-sm font-semibold uppercase tracking-wide text-emerald-600 mt-1">
               wants ${lead.expectedPrice}
             </span>
           )}
@@ -216,7 +216,7 @@ export function SellPhoneCard({
       }
       meta={
         <>
-          <span className="text-zinc-900 font-black">{lead.name}</span> · {lead.phone}
+          <span className="text-zinc-900 font-semibold">{lead.name}</span> · {lead.phone}
         </>
       }
       badges={
@@ -225,10 +225,10 @@ export function SellPhoneCard({
             <Badge
               className={
                 lead.condition === "mint"
-                  ? "bg-green-500 text-zinc-900"
+                  ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                   : lead.condition === "broken"
-                    ? "bg-red-500 text-zinc-900"
-                    : "bg-zinc-200 text-zinc-800"
+                    ? "bg-red-50 text-red-600 border-red-200"
+                    : "bg-zinc-100 text-zinc-700 border-zinc-200"
               }
             >
               {lead.condition}
@@ -254,7 +254,7 @@ export function SellPhoneCard({
               <img
                 src={lead.photoUrl}
                 alt="Phone photo"
-                className="max-h-32 border-2 border-zinc-300"
+                className="max-h-32 rounded-md border border-zinc-200"
               />
             </a>
           )}
@@ -298,11 +298,11 @@ export function AppointmentCard({
       primary={lead.preferredDatetime}
       meta={
         <>
-          <span className="text-zinc-900 font-black">{lead.name}</span> · {lead.phone}
+          <span className="text-zinc-900 font-semibold">{lead.name}</span> · {lead.phone}
         </>
       }
       badges={
-        <Badge className="bg-blue-500 text-zinc-900">
+        <Badge className="bg-blue-50 text-blue-700 border-blue-200">
           {lead.serviceType.replaceAll("-", " ")}
         </Badge>
       }
@@ -385,7 +385,7 @@ export function ReservationCard({
       primary={lead.itemLabel}
       meta={
         <>
-          <span className="text-zinc-900 font-black">{lead.name}</span> · {lead.phone} · item id{" "}
+          <span className="text-zinc-900 font-semibold">{lead.name}</span> · {lead.phone} · item id{" "}
           <span className="font-mono">{lead.itemId}</span>
         </>
       }

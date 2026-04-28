@@ -95,8 +95,8 @@ export const STATUS_LABEL: Record<string, string> = {
 };
 
 export const STATUS_BADGE_CLASS: Record<string, string> = {
-  new: "bg-red-500 text-black",
-  in_progress: "bg-blue-500 text-zinc-900",
-  done: "bg-green-500 text-zinc-900",
-  archived: "bg-zinc-300 text-zinc-700",
+  new: "bg-red-50 text-red-600 border border-red-200",
+  in_progress: "bg-blue-50 text-blue-700 border border-blue-200",
+  done: "bg-emerald-50 text-emerald-700 border border-emerald-200",
+  archived: "bg-zinc-100 text-zinc-600 border border-zinc-200",
 };
