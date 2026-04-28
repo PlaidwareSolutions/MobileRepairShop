@@ -267,15 +267,13 @@ export function SiteHeader() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-4 border-red-600">
       <div className="max-w-[1240px] mx-auto px-4 py-3 flex justify-between items-center gap-4">
         <Link href="/phone-repair-houston-tx" className="flex items-center gap-2 shrink-0" aria-label={`${BUSINESS.name} home`}>
-          <span className="bg-zinc-950 p-2 block shrink-0">
-            <img
-              src={BUSINESS.logo}
-              alt={BUSINESS.name}
-              className="h-9 md:h-11 w-auto object-contain block"
-              width={140}
-              height={44}
-            />
-          </span>
+          <img
+            src={BUSINESS.logo}
+            alt={BUSINESS.name}
+            className="h-10 md:h-12 w-auto object-contain block"
+            width={140}
+            height={48}
+          />
         </Link>
         <nav className="hidden lg:flex items-center gap-6 font-black uppercase tracking-tighter text-sm text-zinc-900" aria-label="Primary">
           <MegaMenuTrigger label="Repair" testIdSuffix="repair" columns={REPAIR_MEGA} />
