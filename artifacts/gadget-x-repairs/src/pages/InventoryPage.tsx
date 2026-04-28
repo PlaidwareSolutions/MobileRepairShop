@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { Phone } from "lucide-react";
-import { useLocation, useRoute, useSearch } from "wouter";
+import { Phone, Wrench, ArrowRight } from "lucide-react";
+import { Link, useLocation, useRoute, useSearch } from "wouter";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
@@ -14,6 +14,7 @@ import {
   INVENTORY_GROUPS,
   OTHER_GROUP,
   inventoryGroupBySlug,
+  inventoryServiceHubForGroupSlug,
   type InventoryGroup,
 } from "@/lib/inventoryGroups";
 import { BUSINESS } from "@/content";
@@ -208,6 +209,12 @@ export default function InventoryPage() {
   const bodyCopy = pathGroup?.bodyCopy ?? null;
   const faqs = pathGroup?.faqs ?? null;
 
+  // Reverse cross-link back to the matching repair service hub. Hidden when
+  // the current view has no matching hub (the unfiltered /inventory index, the
+  // catch-all "other" bucket, or any future group without a service hub) so
+  // we never render a dead callout.
+  const serviceHub = inventoryServiceHubForGroupSlug(pathGroup?.slug);
+
   // Build the JSON-LD payload: shared blocks plus FAQPage on category pages
   // that have FAQs defined. Done as an array build (vs. inline conditional)
   // so the ordering stays predictable and easy to scan.
@@ -253,6 +260,30 @@ export default function InventoryPage() {
               </button>
             ))}
           </div>
+
+          {serviceHub && pathGroup && (
+            <div
+              className="mb-8 bg-white border border-zinc-200 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+              data-testid={`service-hub-callout-${pathGroup.slug}`}
+            >
+              <div className="flex items-start gap-3">
+                <Wrench className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
+                <p className="text-sm font-bold text-zinc-700">
+                  Need yours fixed instead of replaced? See our{" "}
+                  <span className="text-zinc-900">{serviceHub.label}</span>{" "}
+                  service in Houston.
+                </p>
+              </div>
+              <Link
+                href={serviceHub.path}
+                className="inline-flex items-center gap-1 self-start sm:self-auto px-4 py-2 font-bold uppercase text-xs tracking-wide border border-zinc-300 text-zinc-900 bg-zinc-100 hover:bg-red-500 hover:border-red-500 transition-colors"
+                data-testid={`service-hub-link-${pathGroup.slug}`}
+              >
+                {serviceHub.label}
+                <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            </div>
+          )}
 
           {visible.length === 0 && (
             <div

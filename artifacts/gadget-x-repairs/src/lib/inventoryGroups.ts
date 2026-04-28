@@ -340,3 +340,34 @@ export function inventoryGroupSlugForPageSlug(
   if (/\b(iphone|samsung|pixel|motorola|revvl|phone)s?\b/.test(s)) return "phones";
   return null;
 }
+
+/**
+ * Reverse of {@link inventoryGroupSlugForPageSlug}: given an inventory group
+ * slug, return the matching repair service hub (path + display label) so the
+ * `/inventory/<group>` page can link back to the corresponding service hub.
+ *
+ * Centralising the slug pairs here means the inventory page and the service
+ * page reference the same source of truth — rename a hub and only this map
+ * needs to change.
+ *
+ * Returns `null` for groups with no matching hub (e.g. the catch-all "other"
+ * bucket); callers should hide the callout in that case.
+ */
+export type InventoryServiceHub = { path: string; label: string };
+
+const SERVICE_HUB_BY_GROUP_SLUG: Record<string, InventoryServiceHub> = {
+  phones: { path: "/phone-repair-houston-tx", label: "Phone Repair" },
+  tablets: { path: "/tablet-repair-houston-tx", label: "Tablet Repair" },
+  laptops: { path: "/laptop-repair-houston-tx", label: "Laptop Repair" },
+  consoles: {
+    path: "/gaming-console-repair-houston-tx",
+    label: "Gaming Console Repair",
+  },
+};
+
+export function inventoryServiceHubForGroupSlug(
+  slug: string | null | undefined,
+): InventoryServiceHub | null {
+  if (!slug) return null;
+  return SERVICE_HUB_BY_GROUP_SLUG[slug] ?? null;
+}
