@@ -47,9 +47,7 @@ export function SiteFooter() {
       <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 font-bold">
         <div className="lg:col-span-2">
           <Link href="/phone-repair-houston-tx" className="inline-block mb-6">
-            <span className="bg-zinc-950 p-2 inline-block ring-1 ring-zinc-800">
-              <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-10 object-contain block" width={140} height={40} />
-            </span>
+            <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-14 md:h-20 w-auto object-contain block" width={220} height={80} />
           </Link>
           <p className="text-sm mb-6 max-w-sm uppercase tracking-wide text-zinc-400">{BUSINESS.tagline}</p>
           <div className="text-xl text-white font-black uppercase tracking-widest mb-6">
