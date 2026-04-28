@@ -24,6 +24,10 @@ type Props = {
   className?: string;
 };
 
+function swapExt(src: string, ext: string): string {
+  return src.replace(/\.jpe?g$/i, `.${ext}`);
+}
+
 export function PhotoFrame({
   photo,
   aspect,
@@ -34,23 +38,39 @@ export function PhotoFrame({
   className,
 }: Props) {
   const dims = ASPECT_DIMENSIONS[aspect];
+  const avif640 = swapExt(photo.src640, "avif");
+  const avif1024 = swapExt(photo.src1024, "avif");
+  const webp640 = swapExt(photo.src640, "webp");
+  const webp1024 = swapExt(photo.src1024, "webp");
   return (
     <div className={cn("relative overflow-hidden bg-zinc-200", dims.aspectClass, className)}>
-      <img
-        src={photo.src1024}
-        srcSet={`${photo.src640} 640w, ${photo.src1024} 1024w`}
-        sizes={sizes}
-        alt={photo.alt}
-        width={dims.w}
-        height={dims.h}
-        loading={loading}
-        decoding="async"
-        fetchPriority={fetchPriority}
-        className={cn(
-          "block w-full h-full object-cover",
-          hover && "transition-transform duration-300 group-hover:scale-105",
-        )}
-      />
+      <picture>
+        <source
+          type="image/avif"
+          srcSet={`${avif640} 640w, ${avif1024} 1024w`}
+          sizes={sizes}
+        />
+        <source
+          type="image/webp"
+          srcSet={`${webp640} 640w, ${webp1024} 1024w`}
+          sizes={sizes}
+        />
+        <img
+          src={photo.src1024}
+          srcSet={`${photo.src640} 640w, ${photo.src1024} 1024w`}
+          sizes={sizes}
+          alt={photo.alt}
+          width={dims.w}
+          height={dims.h}
+          loading={loading}
+          decoding="async"
+          fetchPriority={fetchPriority}
+          className={cn(
+            "block w-full h-full object-cover",
+            hover && "transition-transform duration-300 group-hover:scale-105",
+          )}
+        />
+      </picture>
       {hover && (
         <div
           aria-hidden="true"
