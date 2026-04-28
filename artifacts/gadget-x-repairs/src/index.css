@@ -66,92 +66,93 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-/* LIGHT MODE — Gadget X Repairs (logo-aligned: silver/chrome canvas, red accent, black ink) */
+/* LIGHT MODE — Gadget X Repairs (softer, warmer take on the brand: warm off-white canvas, muted red accent, near-black ink) */
 :root {
-  --button-outline: rgba(0,0,0, .08);
-  --badge-outline: rgba(0,0,0, .05);
+  --button-outline: rgba(20, 14, 12, .08);
+  --badge-outline: rgba(20, 14, 12, .05);
 
   /* Automatic computation of border around primary / danger buttons */
   --opaque-button-border-intensity: -9;
 
   /* Backgrounds applied on top of other backgrounds when hovered/active */
-  --elevate-1: rgba(0,0,0, .04);
-  --elevate-2: rgba(0,0,0, .08);
+  --elevate-1: rgba(20, 14, 12, .04);
+  --elevate-2: rgba(20, 14, 12, .08);
 
-  --background: 240 5% 96%;
+  --background: 30 22% 97%;
 
-  --foreground: 240 10% 4%;
+  --foreground: 24 10% 14%;
 
-  --border: 240 5% 84%;
+  --border: 30 10% 88%;
 
   --card: 0 0% 100%;
 
-  --card-foreground: 240 10% 4%;
+  --card-foreground: 24 10% 14%;
 
-  --card-border: 240 5% 84%;
+  --card-border: 30 10% 88%;
 
   --sidebar: 0 0% 100%;
 
-  --sidebar-foreground: 240 10% 4%;
+  --sidebar-foreground: 24 10% 14%;
 
-  --sidebar-border: 240 5% 84%;
+  --sidebar-border: 30 10% 88%;
 
-  --sidebar-primary: 0 84% 60%;
+  --sidebar-primary: 4 70% 54%;
 
   --sidebar-primary-foreground: 0 0% 100%;
 
-  --sidebar-accent: 240 5% 90%;
+  --sidebar-accent: 30 12% 92%;
 
-  --sidebar-accent-foreground: 240 10% 4%;
+  --sidebar-accent-foreground: 24 10% 14%;
 
-  --sidebar-ring: 0 84% 60%;
+  --sidebar-ring: 4 70% 54%;
 
   --popover: 0 0% 100%;
 
-  --popover-foreground: 240 10% 4%;
+  --popover-foreground: 24 10% 14%;
 
-  --popover-border: 240 5% 84%;
+  --popover-border: 30 10% 88%;
 
-  --primary: 0 84% 60%;
+  --primary: 4 70% 54%;
 
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 240 5% 90%;
+  --secondary: 30 12% 92%;
 
-  --secondary-foreground: 240 10% 4%;
+  --secondary-foreground: 24 10% 14%;
 
-  --muted: 240 5% 90%;
+  --muted: 30 12% 92%;
 
-  --muted-foreground: 240 4% 40%;
+  --muted-foreground: 24 6% 42%;
 
-  --accent: 0 84% 60%;
+  --accent: 4 70% 54%;
 
   --accent-foreground: 0 0% 100%;
 
-  --destructive: 0 84% 60%;
+  --destructive: 4 70% 54%;
 
   --destructive-foreground: 0 0% 100%;
 
   --input: 0 0% 100%;
-  --ring: 0 84% 60%;
-  --chart-1: 0 84% 60%;
-  --chart-2: 240 10% 4%;
-  --chart-3: 240 4% 40%;
-  --chart-4: 240 5% 65%;
-  --chart-5: 240 5% 84%;
+  --ring: 4 70% 54%;
+  --chart-1: 4 70% 54%;
+  --chart-2: 24 10% 14%;
+  --chart-3: 24 6% 42%;
+  --chart-4: 30 8% 65%;
+  --chart-5: 30 10% 88%;
 
   --app-font-sans: 'Inter', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
-  --radius: .5rem; /* 8px */
-  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00); /*replace with H S L */
-  --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00); /*replace with H S L */
-  --shadow-sm: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-md: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 2px 4px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-lg: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 4px 6px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
+  --radius: .875rem; /* 14px — softer corners across cards, buttons, inputs */
+  --shadow-color: 24 10% 14%;
+  --shadow-2xs: 0 1px 2px 0 hsl(var(--shadow-color) / 0.04);
+  --shadow-xs: 0 1px 2px 0 hsl(var(--shadow-color) / 0.05);
+  --shadow-sm: 0 1px 2px 0 hsl(var(--shadow-color) / 0.05), 0 1px 3px 0 hsl(var(--shadow-color) / 0.06);
+  --shadow: 0 1px 3px 0 hsl(var(--shadow-color) / 0.06), 0 1px 2px -1px hsl(var(--shadow-color) / 0.06);
+  --shadow-md: 0 4px 8px -2px hsl(var(--shadow-color) / 0.08), 0 2px 4px -2px hsl(var(--shadow-color) / 0.06);
+  --shadow-lg: 0 10px 20px -4px hsl(var(--shadow-color) / 0.10), 0 4px 8px -4px hsl(var(--shadow-color) / 0.06);
+  --shadow-xl: 0 18px 32px -8px hsl(var(--shadow-color) / 0.14), 0 6px 12px -6px hsl(var(--shadow-color) / 0.08);
+  --shadow-2xl: 0 28px 60px -12px hsl(var(--shadow-color) / 0.20);
   --tracking-normal: 0em;
   --spacing: 0.25rem;
 
@@ -187,58 +188,58 @@
 }
 
 .dark {
-  --button-outline: rgba(0,0,0, .08);
-  --badge-outline: rgba(0,0,0, .05);
+  --button-outline: rgba(20, 14, 12, .08);
+  --badge-outline: rgba(20, 14, 12, .05);
 
   --opaque-button-border-intensity: -9;
 
-  --elevate-1: rgba(0,0,0, .04);
-  --elevate-2: rgba(0,0,0, .08);
+  --elevate-1: rgba(20, 14, 12, .04);
+  --elevate-2: rgba(20, 14, 12, .08);
 
-  --background: 240 5% 96%;
-  --foreground: 240 10% 4%;
-  --border: 240 5% 84%;
+  --background: 30 22% 97%;
+  --foreground: 24 10% 14%;
+  --border: 30 10% 88%;
   --card: 0 0% 100%;
-  --card-foreground: 240 10% 4%;
-  --card-border: 240 5% 84%;
+  --card-foreground: 24 10% 14%;
+  --card-border: 30 10% 88%;
   --sidebar: 0 0% 100%;
-  --sidebar-foreground: 240 10% 4%;
-  --sidebar-border: 240 5% 84%;
-  --sidebar-primary: 0 84% 60%;
+  --sidebar-foreground: 24 10% 14%;
+  --sidebar-border: 30 10% 88%;
+  --sidebar-primary: 4 70% 54%;
   --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 240 5% 90%;
-  --sidebar-accent-foreground: 240 10% 4%;
-  --sidebar-ring: 0 84% 60%;
+  --sidebar-accent: 30 12% 92%;
+  --sidebar-accent-foreground: 24 10% 14%;
+  --sidebar-ring: 4 70% 54%;
   --popover: 0 0% 100%;
-  --popover-foreground: 240 10% 4%;
-  --popover-border: 240 5% 84%;
-  --primary: 0 84% 60%;
+  --popover-foreground: 24 10% 14%;
+  --popover-border: 30 10% 88%;
+  --primary: 4 70% 54%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 240 5% 90%;
-  --secondary-foreground: 240 10% 4%;
-  --muted: 240 5% 90%;
-  --muted-foreground: 240 4% 40%;
-  --accent: 0 84% 60%;
+  --secondary: 30 12% 92%;
+  --secondary-foreground: 24 10% 14%;
+  --muted: 30 12% 92%;
+  --muted-foreground: 24 6% 42%;
+  --accent: 4 70% 54%;
   --accent-foreground: 0 0% 100%;
-  --destructive: 0 84% 60%;
+  --destructive: 4 70% 54%;
   --destructive-foreground: 0 0% 100%;
   --input: 0 0% 100%;
-  --ring: 0 84% 60%;
-  --chart-1: 0 84% 60%;
-  --chart-2: 240 10% 4%;
-  --chart-3: 240 4% 40%;
-  --chart-4: 240 5% 65%;
-  --chart-5: 240 5% 84%;
+  --ring: 4 70% 54%;
+  --chart-1: 4 70% 54%;
+  --chart-2: 24 10% 14%;
+  --chart-3: 24 6% 42%;
+  --chart-4: 30 8% 65%;
+  --chart-5: 30 10% 88%;
 
-  --shadow-2xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-xs: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-sm: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 1px 2px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-md: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 2px 4px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-lg: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 4px 6px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00), 0px 8px 10px -1px hsl(202.8169 89.1213% 53.1373% / 0.00);
-  --shadow-2xl: 0px 2px 0px 0px hsl(202.8169 89.1213% 53.1373% / 0.00);
-
+  --shadow-color: 24 10% 14%;
+  --shadow-2xs: 0 1px 2px 0 hsl(var(--shadow-color) / 0.04);
+  --shadow-xs: 0 1px 2px 0 hsl(var(--shadow-color) / 0.05);
+  --shadow-sm: 0 1px 2px 0 hsl(var(--shadow-color) / 0.05), 0 1px 3px 0 hsl(var(--shadow-color) / 0.06);
+  --shadow: 0 1px 3px 0 hsl(var(--shadow-color) / 0.06), 0 1px 2px -1px hsl(var(--shadow-color) / 0.06);
+  --shadow-md: 0 4px 8px -2px hsl(var(--shadow-color) / 0.08), 0 2px 4px -2px hsl(var(--shadow-color) / 0.06);
+  --shadow-lg: 0 10px 20px -4px hsl(var(--shadow-color) / 0.10), 0 4px 8px -4px hsl(var(--shadow-color) / 0.06);
+  --shadow-xl: 0 18px 32px -8px hsl(var(--shadow-color) / 0.14), 0 6px 12px -6px hsl(var(--shadow-color) / 0.08);
+  --shadow-2xl: 0 28px 60px -12px hsl(var(--shadow-color) / 0.20);
 }
 
 @layer base {
@@ -257,13 +258,11 @@
   100% { transform: translateX(-100%); }
 }
 
-/* Sign-painter accent: solid fill (from text color utility) with black outline.
-   Previously used `color: transparent`, which made the accent invisible against
-   dark sections. Keeping the stroke preserves the bold display look while the
-   element's own text color (e.g. text-red-500) provides the readable fill. */
+/* Sign-painter accent: kept as a no-op so legacy markup still renders cleanly,
+   but the heavy black text-stroke that fought the softer palette has been
+   removed. The element's own text color now provides the accent. */
 .text-stroke-black {
-  -webkit-text-stroke: 2px black;
-  paint-order: stroke fill;
+  -webkit-text-stroke: 0;
 }
 
 /**

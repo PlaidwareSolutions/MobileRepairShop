@@ -196,23 +196,23 @@ export default function HomePage() {
           {/* Left: headline + CTAs */}
           <div className="lg:col-span-7 space-y-8">
             <div className="flex flex-wrap gap-3">
-              <span className="bg-zinc-950 text-white px-4 py-2 font-black uppercase tracking-widest text-xs shadow-[4px_4px_0_0_#ef4444] inline-block">
+              <span className="bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-full px-3 py-1 font-semibold uppercase tracking-wide text-xs inline-block">
                 {HERO.badgeYears}
               </span>
-              <span className="bg-red-600 text-white px-4 py-2 font-black uppercase tracking-widest text-xs shadow-[4px_4px_0_0_#09090b] inline-flex items-center gap-2">
-                <Zap className="w-4 h-4" /> {HERO.badgeSameDay}
+              <span className="bg-red-50 text-red-600 border border-red-200 rounded-full px-3 py-1 font-semibold uppercase tracking-wide text-xs inline-flex items-center gap-2">
+                <Zap className="w-3.5 h-3.5" /> {HERO.badgeSameDay}
               </span>
             </div>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl leading-[0.85] font-black uppercase tracking-tighter text-zinc-950">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight font-extrabold tracking-tight text-zinc-900">
               Houston&apos;s <span className="text-red-600">Fix</span> for Phones, Tablets, Laptops &amp; Consoles.
             </h1>
-            <p className="text-lg md:text-xl font-bold text-zinc-600 max-w-xl uppercase tracking-tight">
+            <p className="text-lg md:text-xl font-medium text-zinc-600 max-w-xl tracking-normal">
               {HERO.subhead}
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <Button
                 asChild
-                className="rounded-none bg-red-600 hover:bg-zinc-950 text-white font-black uppercase tracking-widest text-base h-14 px-7 shadow-[6px_6px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] transition-all hover:translate-x-[4px] hover:translate-y-[4px]"
+                className="bg-red-600 hover:bg-zinc-900 text-white font-semibold uppercase tracking-wide text-base h-14 px-7 shadow-md hover:shadow-md transition-all hover:-translate-y-0.5"
               >
                 <a href={ctaCall.href} data-testid="hero-cta-call">
                   <Phone className="w-5 h-5 mr-2" /> {ctaCall.label}
@@ -220,7 +220,7 @@ export default function HomePage() {
               </Button>
               <Button
                 asChild
-                className="rounded-none bg-zinc-950 hover:bg-red-600 text-white font-black uppercase tracking-widest text-base h-14 px-7 shadow-[6px_6px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#ef4444] transition-all hover:translate-x-[4px] hover:translate-y-[4px]"
+                className="bg-zinc-900 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-base h-14 px-7 shadow-md hover:shadow-md transition-all hover:-translate-y-0.5"
               >
                 <a href={ctaQuote.href} data-testid="hero-cta-quote">
                   <Wrench className="w-5 h-5 mr-2" /> {ctaQuote.label}
@@ -229,7 +229,7 @@ export default function HomePage() {
               <Button
                 asChild
                 variant="outline"
-                className="rounded-none border-4 border-zinc-950 bg-transparent hover:bg-zinc-950 hover:text-white text-zinc-950 font-black uppercase tracking-widest text-base h-14 px-7"
+                className="border border-zinc-200 bg-transparent hover:bg-zinc-900 hover:text-white text-zinc-900 font-semibold uppercase tracking-wide text-base h-14 px-7"
               >
                 <a href={ctaDirections.href} target="_blank" rel="noreferrer" data-testid="hero-cta-directions">
                   <MapPin className="w-5 h-5 mr-2" /> {ctaDirections.label}
@@ -240,28 +240,28 @@ export default function HomePage() {
             {/* Quick stats strip */}
             <div className="grid grid-cols-3 gap-4 pt-6 max-w-xl">
               <div>
-                <div className="text-3xl md:text-4xl font-black text-zinc-950">15</div>
-                <div className="text-[11px] md:text-xs font-black uppercase tracking-widest text-zinc-500">Years in Houston</div>
+                <div className="text-3xl md:text-4xl font-extrabold text-zinc-900">15</div>
+                <div className="text-[11px] md:text-xs font-semibold uppercase tracking-wide text-zinc-500">Years in Houston</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-black text-zinc-950">90<span className="text-red-600">d</span></div>
-                <div className="text-[11px] md:text-xs font-black uppercase tracking-widest text-zinc-500">Repair Warranty</div>
+                <div className="text-3xl md:text-4xl font-extrabold text-zinc-900">90<span className="text-red-600">d</span></div>
+                <div className="text-[11px] md:text-xs font-semibold uppercase tracking-wide text-zinc-500">Repair Warranty</div>
               </div>
               <div>
-                <div className="text-3xl md:text-4xl font-black text-zinc-950">5<span className="text-red-600">★</span></div>
-                <div className="text-[11px] md:text-xs font-black uppercase tracking-widest text-zinc-500">Customer Rating</div>
+                <div className="text-3xl md:text-4xl font-extrabold text-zinc-900">5<span className="text-red-600">★</span></div>
+                <div className="text-[11px] md:text-xs font-semibold uppercase tracking-wide text-zinc-500">Customer Rating</div>
               </div>
             </div>
           </div>
 
           {/* Right: Diagnostic Check panel */}
           <div className="lg:col-span-5 w-full">
-            <div className="bg-zinc-950 text-white p-6 md:p-8 shadow-[12px_12px_0_0_#ef4444]">
+            <div className="bg-zinc-900 text-white p-6 md:p-8 shadow-md">
               <div className="flex items-center justify-between mb-6 border-b border-zinc-800 pb-4">
-                <h3 className="font-black uppercase tracking-tighter text-xl flex items-center gap-2 text-red-500">
+                <h3 className="font-extrabold tracking-tight text-xl flex items-center gap-2 text-red-500">
                   <Zap className="w-5 h-5" /> Diagnostic Check
                 </h3>
-                <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Live Pricing</span>
+                <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-500">Live Pricing</span>
               </div>
               <ul className="space-y-3 mb-6">
                 {HERO_DIAGNOSTIC.map((item) => {
@@ -275,9 +275,9 @@ export default function HomePage() {
                       >
                         <span className="flex items-center gap-3">
                           <Icon className="w-5 h-5 text-zinc-500 group-hover:text-white transition-colors" />
-                          <span className="font-black uppercase text-sm tracking-wide">{item.name}</span>
+                          <span className="font-bold uppercase text-sm tracking-wide">{item.name}</span>
                         </span>
-                        <span className="font-black uppercase text-xs tracking-widest text-red-500 group-hover:text-white">
+                        <span className="font-bold uppercase text-xs tracking-wide text-red-500 group-hover:text-white">
                           {item.price}
                         </span>
                       </Link>
@@ -287,7 +287,7 @@ export default function HomePage() {
               </ul>
               <a
                 href="#quote"
-                className="block w-full bg-red-600 text-white font-black uppercase tracking-widest text-sm py-3 text-center shadow-[4px_4px_0_0_#fff] hover:shadow-[2px_2px_0_0_#fff] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+                className="block w-full bg-red-600 text-white font-semibold uppercase tracking-wide text-sm py-3 text-center shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
                 data-testid="hero-diagnostic-cta"
               >
                 Get My Quote →
@@ -296,13 +296,13 @@ export default function HomePage() {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
                   <div>
-                    <div className="font-black uppercase tracking-wide text-zinc-300">{BUSINESS.addressLine1}</div>
+                    <div className="font-semibold uppercase tracking-wide text-zinc-300">{BUSINESS.addressLine1}</div>
                     <div className="font-bold text-zinc-500">{BUSINESS.addressLine2}</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
-                  <div className="font-black uppercase tracking-wide text-zinc-300">{BUSINESS.hoursShort}</div>
+                  <div className="font-semibold uppercase tracking-wide text-zinc-300">{BUSINESS.hoursShort}</div>
                 </div>
               </div>
             </div>
@@ -311,13 +311,13 @@ export default function HomePage() {
       </section>
 
       {/* TRUST STRIP ---------------------------------------------------- */}
-      <div className="bg-red-600 text-white border-y-4 border-zinc-950 py-6">
-        <div className="max-w-[1240px] mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-12 font-black uppercase tracking-widest text-sm md:text-lg">
-          <div className="flex items-center gap-2"><Star className="w-5 h-5 text-red-200" /> 15+ Years in Houston</div>
-          <div className="flex items-center gap-2"><Zap className="w-5 h-5 text-red-200" /> Same-Day Repair</div>
-          <div className="flex items-center gap-2"><Shield className="w-5 h-5 text-red-200" /> 90-Day Warranty</div>
-          <div className="flex items-center gap-2"><Star className="w-5 h-5 text-red-200" /> 5-Star Reviews</div>
-          <div className="flex items-center gap-2"><Smartphone className="w-5 h-5 text-red-200" /> All Brands Welcome</div>
+      <div className="bg-zinc-50 text-zinc-700 border-y border-zinc-200 py-5">
+        <div className="max-w-[1240px] mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-10 font-semibold uppercase tracking-wide text-xs md:text-sm">
+          <div className="flex items-center gap-2"><Star className="w-4 h-4 text-red-500" /> 15+ Years in Houston</div>
+          <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-red-500" /> Same-Day Repair</div>
+          <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-red-500" /> 90-Day Warranty</div>
+          <div className="flex items-center gap-2"><Star className="w-4 h-4 text-red-500" /> 5-Star Reviews</div>
+          <div className="flex items-center gap-2"><Smartphone className="w-4 h-4 text-red-500" /> All Brands Welcome</div>
         </div>
       </div>
 
@@ -325,12 +325,12 @@ export default function HomePage() {
       <section className="py-20 md:py-24 px-4 bg-white">
         <div className="max-w-[1240px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-zinc-950">
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-zinc-900">
               What We <br />
               <span className="text-red-600">Repair</span>
             </h2>
-            <div className="bg-zinc-950 text-white p-4 max-w-sm shadow-[6px_6px_0_0_#ef4444]">
-              <p className="font-black uppercase text-xs leading-snug tracking-wide">
+            <div className="bg-zinc-900 text-white p-4 max-w-sm shadow-md">
+              <p className="font-bold uppercase text-xs leading-snug tracking-wide">
                 No matter how badly you broke it, bring it in. We&apos;ve seen worse.
               </p>
             </div>
@@ -342,7 +342,7 @@ export default function HomePage() {
                 <Link
                   key={s.to}
                   href={s.to}
-                  className="group block relative bg-zinc-50 border-4 border-zinc-950 shadow-[6px_6px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] hover:translate-x-[4px] hover:translate-y-[4px] transition-all overflow-hidden"
+                  className="group block relative bg-zinc-50 border border-zinc-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all overflow-hidden"
                   data-testid={`tile-${s.to}`}
                 >
                   {s.image ? (
@@ -357,13 +357,13 @@ export default function HomePage() {
                       <ArrowRight className="w-5 h-5 text-red-600" />
                     </div>
                     {s.image ? null : (
-                      <div className="bg-zinc-950 text-white w-12 h-12 flex items-center justify-center mb-5 group-hover:bg-red-600 transition-colors">
+                      <div className="bg-zinc-900 text-white w-12 h-12 flex items-center justify-center mb-5 group-hover:bg-red-600 transition-colors">
                         <Icon className="w-6 h-6" />
                       </div>
                     )}
-                    <h3 className="text-lg font-black uppercase tracking-tight mb-1">{s.name}</h3>
+                    <h3 className="text-lg font-extrabold tracking-tight mb-1">{s.name}</h3>
                     <p className="text-xs font-bold text-zinc-500 mb-4 uppercase">{s.desc}</p>
-                    <div className="text-red-600 font-black uppercase text-xs tracking-widest">View details →</div>
+                    <div className="text-red-600 font-bold uppercase text-xs tracking-wide">View details →</div>
                   </div>
                 </Link>
               );
@@ -376,12 +376,12 @@ export default function HomePage() {
       <section className="py-20 md:py-24 px-4 bg-zinc-100">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-12 gap-12">
           {/* Price board (charcoal) */}
-          <div className="lg:col-span-7 bg-zinc-950 text-white p-6 md:p-10 shadow-[12px_12px_0_0_#ef4444]">
+          <div className="lg:col-span-7 bg-zinc-900 text-white p-6 md:p-10 shadow-md">
             <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-4">
-              <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tighter">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
                 Hot <span className="text-red-500">Deals</span>
               </h2>
-              <span className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Walk-in Pricing</span>
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-500">Walk-in Pricing</span>
             </div>
             <div className="space-y-3">
               {FEATURED_OFFERS.map((offer) => {
@@ -394,17 +394,17 @@ export default function HomePage() {
                     data-testid={`offer-${offer.to}`}
                   >
                     <div className="flex items-center gap-4 min-w-0">
-                      <div className="bg-zinc-800 group-hover:bg-zinc-950 p-2 shrink-0 transition-colors">
+                      <div className="bg-zinc-800 group-hover:bg-zinc-900 p-2 shrink-0 transition-colors">
                         <Icon className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" />
                       </div>
                       <div className="min-w-0">
-                        <h4 className="text-base md:text-lg font-black uppercase tracking-tight truncate">{offer.title}</h4>
-                        <div className="text-[11px] font-black uppercase tracking-widest text-zinc-500 group-hover:text-red-200">
+                        <h4 className="text-base md:text-lg font-extrabold tracking-tight truncate">{offer.title}</h4>
+                        <div className="text-[11px] font-semibold uppercase tracking-wide text-zinc-500 group-hover:text-red-200">
                           {offer.note}
                         </div>
                       </div>
                     </div>
-                    <div className="font-black uppercase text-sm md:text-base tracking-widest text-red-500 group-hover:text-white shrink-0">
+                    <div className="font-bold uppercase text-sm md:text-base tracking-wide text-red-500 group-hover:text-white shrink-0">
                       {offer.price}
                     </div>
                   </Link>
@@ -415,7 +415,7 @@ export default function HomePage() {
 
           {/* Why Gadget X */}
           <div className="lg:col-span-5">
-            <h2 className="text-4xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-zinc-950">
+            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
               Why <span className="text-red-600">Gadget X?</span>
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -424,7 +424,7 @@ export default function HomePage() {
                 return (
                   <div
                     key={item.title}
-                    className="group bg-white border-4 border-zinc-950 shadow-[6px_6px_0_0_#09090b] hover:-translate-y-1 transition-transform overflow-hidden"
+                    className="group bg-white border border-zinc-200 shadow-md hover:-translate-y-1 transition-transform overflow-hidden"
                   >
                     {item.image ? (
                       <PhotoFrame
@@ -435,15 +435,15 @@ export default function HomePage() {
                     ) : null}
                     <div className="p-5 relative">
                       {item.image ? (
-                        <div className="absolute -top-7 left-5 bg-zinc-950 text-white w-12 h-12 flex items-center justify-center shadow-[4px_4px_0_0_#ef4444]">
+                        <div className="absolute -top-7 left-5 bg-zinc-900 text-white w-12 h-12 flex items-center justify-center shadow-md">
                           <Icon className="w-6 h-6 text-red-500" />
                         </div>
                       ) : (
-                        <div className="bg-zinc-950 text-white w-12 h-12 flex items-center justify-center mb-4">
+                        <div className="bg-zinc-900 text-white w-12 h-12 flex items-center justify-center mb-4">
                           <Icon className="w-6 h-6 text-red-500" />
                         </div>
                       )}
-                      <h4 className={`text-base font-black uppercase mb-1 leading-tight ${item.image ? "mt-8" : ""}`}>
+                      <h4 className={`text-base font-bold uppercase mb-1 leading-tight ${item.image ? "mt-8" : ""}`}>
                         {item.title}
                       </h4>
                       <p className="text-xs font-bold text-zinc-600 uppercase tracking-tight">{item.desc}</p>
@@ -483,10 +483,10 @@ export default function HomePage() {
       </section>
 
       {/* WE SELL TOO -------------------------------------------------- */}
-      <section className="py-20 md:py-24 px-4 bg-white border-y-4 border-zinc-950">
+      <section className="py-20 md:py-24 px-4 bg-white border-y border-zinc-200">
         <div className="max-w-[1240px] mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-zinc-950">
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-zinc-900">
               We <span className="text-red-600">Sell</span> Too
             </h2>
             <p className="text-base font-bold text-zinc-600 uppercase tracking-tight max-w-md">
@@ -500,13 +500,13 @@ export default function HomePage() {
                 <Link
                   key={product.to}
                   href={product.to}
-                  className="bg-zinc-50 border-4 border-zinc-950 aspect-square flex flex-col items-center justify-center p-4 text-center shadow-[6px_6px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] hover:translate-x-[4px] hover:translate-y-[4px] transition-all group"
+                  className="bg-zinc-50 border border-zinc-200 aspect-square flex flex-col items-center justify-center p-4 text-center shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all group"
                   data-testid={`sell-${product.to}`}
                 >
-                  <div className="bg-zinc-950 text-white w-14 h-14 flex items-center justify-center mb-3 group-hover:bg-red-600 transition-colors">
+                  <div className="bg-zinc-900 text-white w-14 h-14 flex items-center justify-center mb-3 group-hover:bg-red-600 transition-colors">
                     <Icon className="w-7 h-7" />
                   </div>
-                  <span className="font-black uppercase text-sm tracking-tight">{product.name}</span>
+                  <span className="font-bold uppercase text-sm tracking-tight">{product.name}</span>
                   <span className="font-bold text-zinc-500 text-[11px] uppercase tracking-tight mt-1">{product.desc}</span>
                 </Link>
               );
@@ -515,7 +515,7 @@ export default function HomePage() {
           <div className="flex justify-center">
             <Button
               asChild
-              className="rounded-none bg-zinc-950 hover:bg-red-600 text-white font-black uppercase tracking-widest text-base h-14 px-8 shadow-[6px_6px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#ef4444] hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
+              className="bg-zinc-900 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-base h-14 px-8 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
             >
               <Link href="/inventory">Browse Full Inventory →</Link>
             </Button>
@@ -527,7 +527,7 @@ export default function HomePage() {
       <section id="quote" className="py-20 md:py-24 px-4 bg-zinc-100 scroll-mt-24">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-12 gap-12 items-start">
           <div className="lg:col-span-5">
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter mb-6 text-zinc-950 leading-[0.9]">
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-zinc-900 leading-tight">
               Get Your <br />
               <span className="text-red-600">Repair Quote</span>
             </h2>
@@ -560,9 +560,9 @@ export default function HomePage() {
                 <span className="uppercase tracking-tight">A real technician answers — usually within 30 min</span>
               </li>
             </ul>
-            <div className="hidden lg:block bg-zinc-950 text-white p-6 shadow-[8px_8px_0_0_#ef4444]">
-              <div className="font-black uppercase tracking-widest text-xs text-zinc-500 mb-2">Prefer to call?</div>
-              <a href={BUSINESS.phoneTel} className="font-black uppercase text-2xl tracking-tight hover:text-red-500 transition-colors block">
+            <div className="hidden lg:block bg-zinc-900 text-white p-6 shadow-md">
+              <div className="font-semibold uppercase tracking-wide text-xs text-zinc-500 mb-2">Prefer to call?</div>
+              <a href={BUSINESS.phoneTel} className="font-bold uppercase text-2xl tracking-tight hover:text-red-500 transition-colors block">
                 <Phone className="w-5 h-5 inline mr-2 text-red-500" />
                 {BUSINESS.phoneDisplay}
               </a>
@@ -579,7 +579,7 @@ export default function HomePage() {
       <section className="py-12 bg-white border-b border-zinc-200">
         <div className="max-w-[1240px] mx-auto px-4 grid md:grid-cols-2 gap-12">
           <div>
-            <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500 mb-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 mb-4">
               Prepaid Activations &amp; Bill Pay
             </h3>
             <div className="flex flex-wrap gap-2 items-center mb-6">
@@ -587,7 +587,7 @@ export default function HomePage() {
                 <Link
                   key={carrier.label}
                   href={carrier.to}
-                  className="bg-zinc-100 border-2 border-zinc-200 hover:border-zinc-950 px-4 py-2 font-black uppercase text-xs tracking-wide transition-colors"
+                  className="bg-zinc-100 border border-zinc-200 hover:border-zinc-800 px-4 py-2 font-bold uppercase text-xs tracking-wide transition-colors"
                   data-testid={`prepaid-${carrier.label}`}
                 >
                   {carrier.label}
@@ -596,19 +596,19 @@ export default function HomePage() {
             </div>
             <Link
               href="/bill-payments-houston-tx"
-              className="text-red-600 font-black uppercase text-sm tracking-widest hover:underline inline-flex items-center gap-1"
+              className="text-red-600 font-bold uppercase text-sm tracking-wide hover:underline inline-flex items-center gap-1"
             >
               Pay your bill in cash <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
           <div>
-            <h3 className="text-sm font-black uppercase tracking-widest text-zinc-500 mb-4">Service Areas</h3>
+            <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 mb-4">Service Areas</h3>
             <div className="flex flex-wrap gap-2">
               {AREA_TILES.map((area) => (
                 <Link
                   key={area.label}
                   href={area.to}
-                  className="text-zinc-700 font-black uppercase text-xs tracking-wide border-b-2 border-zinc-300 pb-1 hover:text-red-600 hover:border-red-600 transition-colors px-2"
+                  className="text-zinc-700 font-bold uppercase text-xs tracking-wide border-b border-zinc-200 pb-1 hover:text-red-600 hover:border-red-600 transition-colors px-2"
                   data-testid={`area-${area.label}`}
                 >
                   {area.label}

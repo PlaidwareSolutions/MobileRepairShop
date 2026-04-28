@@ -139,8 +139,8 @@ export default function SalesPage() {
       <section className="py-16 px-4 bg-zinc-50">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
-              WHY <span className="text-red-500 text-stroke-black">US</span>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
+              WHY <span className="text-red-500">US</span>
             </h2>
             <p className="text-lg font-bold text-zinc-600 mb-6">{data.intro}</p>
             <ul className="space-y-3">
@@ -152,10 +152,10 @@ export default function SalesPage() {
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest h-12 px-6">
+              <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
                 <a href={BUSINESS.phoneTel}>Call to Browse</a>
               </Button>
-              <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-12 px-6">
+              <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
                 <Link href="/inventory">View Inventory</Link>
               </Button>
             </div>
@@ -163,7 +163,7 @@ export default function SalesPage() {
           <div>
             {isSellPage ? (
               <>
-                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
+                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
                   {isBuyback ? <>GET YOUR <span className="text-red-500">CASH OFFER</span></> : <>SELL YOUR <span className="text-red-500">PHONE</span></>}
                 </h2>
                 <p className="text-lg font-bold text-zinc-600 mb-6">
@@ -173,7 +173,7 @@ export default function SalesPage() {
               </>
             ) : isHub ? (
               <>
-                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
+                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
                   ASK ABOUT <span className="text-red-500">STOCK</span>
                 </h2>
                 <p className="text-lg font-bold text-zinc-600 mb-6">
@@ -183,7 +183,7 @@ export default function SalesPage() {
               </>
             ) : (
               <>
-                <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
+                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
                   RESERVE <span className="text-red-500">OR VISIT</span>
                 </h2>
                 <p className="text-lg font-bold text-zinc-600 mb-6">
@@ -199,18 +199,18 @@ export default function SalesPage() {
       {isHub && childPages.length > 0 && (
         <section className="py-16 px-4 bg-white border-t border-zinc-200">
           <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
-              BROWSE <span className="text-red-500 text-stroke-black">{data.hero.eyebrow.toUpperCase()}</span>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
+              BROWSE <span className="text-red-500">{data.hero.eyebrow.toUpperCase()}</span>
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="hub-children">
               {childPages.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${c.slug}`}
-                  className="bg-zinc-50 border-2 border-zinc-300 hover:border-red-500 p-5 transition-colors group"
+                  className="bg-zinc-50 border border-zinc-200 hover:border-red-500 p-5 transition-colors group"
                   data-testid={`hub-child-${c.slug}`}
                 >
-                  <div className="font-black uppercase text-base text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
+                  <div className="font-bold uppercase text-base text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
                     {c.title}
                   </div>
                 </Link>

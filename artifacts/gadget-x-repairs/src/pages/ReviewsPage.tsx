@@ -45,8 +45,8 @@ export default function ReviewsPage() {
 
       <section className="py-12 md:py-16 px-4 bg-zinc-50 border-b border-zinc-200">
         <div className="max-w-[1240px] mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-zinc-900 mb-6 leading-[0.95]">
-            REAL <span className="text-red-500 text-stroke-black">REVIEWS</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight">
+            REAL <span className="text-red-500">REVIEWS</span>
           </h1>
           <div className="flex items-center gap-3 mb-12">
             <div className="flex">
@@ -54,12 +54,12 @@ export default function ReviewsPage() {
                 <Star key={i} className="w-6 h-6 fill-red-500 text-red-500" />
               ))}
             </div>
-            <span className="font-black uppercase text-lg text-zinc-900">{avg.toFixed(1)} / 5 from {REVIEWS_DATA.length} customers</span>
+            <span className="font-bold uppercase text-lg text-zinc-900">{avg.toFixed(1)} / 5 from {REVIEWS_DATA.length} customers</span>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {REVIEWS_DATA.map((r, i) => (
-              <article key={i} className="bg-white border-4 border-zinc-300 p-6 hover:border-red-500 transition-colors">
+              <article key={i} className="bg-white border border-zinc-200 p-6 hover:border-red-500 transition-colors">
                 <div className="flex items-center gap-2 mb-3">
                   {Array.from({ length: r.rating }).map((_, j) => (
                     <Star key={j} className="w-4 h-4 fill-red-500 text-red-500" />
@@ -68,7 +68,7 @@ export default function ReviewsPage() {
                 <p className="font-bold text-zinc-700 text-base md:text-lg leading-relaxed mb-4">"{r.body}"</p>
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-black uppercase text-sm text-zinc-900">{r.author}</div>
+                    <div className="font-bold uppercase text-sm text-zinc-900">{r.author}</div>
                     {r.service && <div className="text-zinc-500 font-bold uppercase text-xs">{r.service}</div>}
                   </div>
                   <div className="text-zinc-500 font-bold text-xs">{r.date}</div>

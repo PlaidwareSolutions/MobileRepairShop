@@ -2,13 +2,13 @@ export function Faq({ items, title = "Frequently Asked Questions" }: { items: { 
   return (
     <section className="py-16 px-4 bg-white border-t border-zinc-200">
       <div className="max-w-3xl mx-auto">
-        <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-zinc-900">{title}</h2>
+        <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">{title}</h2>
         <div className="space-y-4">
           {items.map((it, i) => (
-            <details key={i} className="bg-zinc-100 border-2 border-zinc-300 hover:border-red-500 transition-colors group">
-              <summary className="cursor-pointer p-5 font-black uppercase text-base md:text-lg text-zinc-900 flex justify-between items-center">
+            <details key={i} className="bg-zinc-100 border border-zinc-200 hover:border-red-500 transition-colors group">
+              <summary className="cursor-pointer p-5 font-bold uppercase text-base md:text-lg text-zinc-900 flex justify-between items-center">
                 <span>{it.q}</span>
-                <span className="text-red-500 group-open:rotate-45 transition-transform text-2xl leading-none">+</span>
+                <span className="text-red-500 group-open:rotate-45 transition-transform text-2xl leading-tight">+</span>
               </summary>
               <div className="px-5 pb-5 font-bold text-zinc-600 leading-relaxed">{it.a}</div>
             </details>

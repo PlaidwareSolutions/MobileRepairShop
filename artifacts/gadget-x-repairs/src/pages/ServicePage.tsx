@@ -118,8 +118,8 @@ export default function ServicePage() {
       <section className="py-16 px-4 bg-zinc-50">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
-              WHAT WE <span className="text-red-500 text-stroke-black">FIX</span>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
+              WHAT WE <span className="text-red-500">FIX</span>
             </h2>
             <ul className="space-y-3">
               {data.problems.map((p) => (
@@ -132,12 +132,12 @@ export default function ServicePage() {
           </div>
           {data.brands && data.brands.length > 0 && (
             <div>
-              <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
+              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
                 BRANDS &amp; <span className="text-red-500">MODELS</span>
               </h2>
               <div className="flex flex-wrap gap-2">
                 {data.brands.map((b) => (
-                  <span key={b} className="bg-zinc-100 border-2 border-zinc-300 px-4 py-2 font-black uppercase text-sm">
+                  <span key={b} className="bg-zinc-100 border border-zinc-200 px-4 py-2 font-bold uppercase text-sm">
                     {b}
                   </span>
                 ))}
@@ -150,7 +150,7 @@ export default function ServicePage() {
       {/* Process */}
       <section className="py-16 px-4 bg-red-500 text-black">
         <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-10">
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-10">
             HOW IT <span className="text-zinc-900">WORKS</span>
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -166,8 +166,8 @@ export default function ServicePage() {
                     />
                   ) : null}
                   <div className="p-6">
-                    <div className="text-red-500 font-black text-5xl mb-2">0{i + 1}</div>
-                    <h3 className="text-xl font-black uppercase mb-2">{step.step}</h3>
+                    <div className="text-red-500 font-extrabold text-5xl mb-2">0{i + 1}</div>
+                    <h3 className="text-xl font-bold uppercase mb-2">{step.step}</h3>
                     <p className="text-zinc-600 font-bold text-sm">{step.detail}</p>
                   </div>
                 </div>
@@ -192,17 +192,17 @@ export default function ServicePage() {
       {/* Pricing */}
       <section className="py-16 px-4 bg-zinc-50">
         <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
-            HONEST <span className="text-red-500 text-stroke-black">PRICING</span>
+          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 text-zinc-900">
+            HONEST <span className="text-red-500">PRICING</span>
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {data.pricing.map((p) => (
-              <div key={p.label} className="bg-white border-2 border-zinc-300 p-5 flex justify-between items-center hover:border-red-500 transition-colors">
+              <div key={p.label} className="bg-white border border-zinc-200 p-5 flex justify-between items-center hover:border-red-500 transition-colors">
                 <div>
-                  <div className="font-black uppercase text-base md:text-lg">{p.label}</div>
+                  <div className="font-bold uppercase text-base md:text-lg">{p.label}</div>
                   {p.note && <div className="text-zinc-500 font-bold text-xs uppercase mt-1">{p.note}</div>}
                 </div>
-                <div className="text-red-500 font-black text-xl whitespace-nowrap">{p.price}</div>
+                <div className="text-red-500 font-bold text-xl whitespace-nowrap">{p.price}</div>
               </div>
             ))}
           </div>
@@ -216,7 +216,7 @@ export default function ServicePage() {
       {REPAIR_HUB_SLUGS.has(data.slug) ? (
         <section className="py-16 px-4 bg-white border-t border-zinc-200">
           <div className="max-w-[900px] mx-auto">
-            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-4 text-zinc-900 text-center">
+            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-zinc-900 text-center">
               NOT SURE WHAT YOU NEED? <span className="text-red-500">ASK US.</span>
             </h2>
             <p className="text-lg font-bold text-zinc-600 mb-8 max-w-2xl mx-auto text-center">
@@ -229,7 +229,7 @@ export default function ServicePage() {
         <section className="py-16 px-4 bg-white border-t border-zinc-200">
           <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
             <div>
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
+              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-zinc-900">
                 GET A <span className="text-red-500">QUOTE</span>
               </h2>
               <p className="text-lg font-bold text-zinc-600 mb-6 max-w-md">
@@ -238,8 +238,8 @@ export default function ServicePage() {
               <RepairQuoteForm defaultDeviceType={data.hero.eyebrow} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-6 text-zinc-900">
-                OR <span className="text-red-500 text-stroke-black">BOOK A SLOT</span>
+              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-zinc-900">
+                OR <span className="text-red-500">BOOK A SLOT</span>
               </h2>
               <p className="text-lg font-bold text-zinc-600 mb-6 max-w-md">
                 Walk-ins always welcome — but if you want a guaranteed slot, book here.
@@ -253,18 +253,18 @@ export default function ServicePage() {
       {isHub && hubChildren.length > 0 && (
         <section className="py-16 px-4 bg-zinc-50 border-t border-zinc-200">
           <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter mb-8 text-zinc-900">
-              EVERY <span className="text-red-500 text-stroke-black">REPAIR</span> WE DO
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
+              EVERY <span className="text-red-500">REPAIR</span> WE DO
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="repair-hub-children">
               {hubChildren.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${c.slug}`}
-                  className="bg-white border-2 border-zinc-300 hover:border-red-500 p-5 transition-colors group"
+                  className="bg-white border border-zinc-200 hover:border-red-500 p-5 transition-colors group"
                   data-testid={`repair-hub-child-${c.slug}`}
                 >
-                  <div className="font-black uppercase text-base text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
+                  <div className="font-bold uppercase text-base text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
                     {c.title}
                   </div>
                 </Link>

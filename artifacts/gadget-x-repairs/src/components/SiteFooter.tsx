@@ -43,14 +43,14 @@ const COMPANY_LINKS = [
 
 export function SiteFooter() {
   return (
-    <footer className="bg-zinc-950 text-zinc-400 pt-20 pb-32 md:pb-16 border-t-8 border-red-600">
+    <footer className="bg-zinc-900 text-zinc-400 pt-20 pb-32 md:pb-16 border-t border-zinc-800">
       <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 font-bold">
         <div className="lg:col-span-2">
           <Link href="/phone-repair-houston-tx" className="inline-block mb-6">
             <img src={BUSINESS.logo} alt={BUSINESS.name} className="h-14 md:h-20 w-auto object-contain block" width={220} height={80} />
           </Link>
           <p className="text-sm mb-6 max-w-sm uppercase tracking-wide text-zinc-400">{BUSINESS.tagline}</p>
-          <div className="text-xl text-white font-black uppercase tracking-widest mb-6">
+          <div className="text-xl text-white font-semibold uppercase tracking-wide mb-6">
             {BUSINESS.yearsInBusiness} Years Strong.
           </div>
           <ul className="space-y-3 text-sm uppercase">
@@ -86,7 +86,7 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="max-w-[1240px] mx-auto px-4 mt-16 pt-8 border-t border-zinc-900 text-zinc-500 text-xs uppercase tracking-widest font-bold">
+      <div className="max-w-[1240px] mx-auto px-4 mt-16 pt-8 border-t border-zinc-900 text-zinc-500 text-xs uppercase tracking-wide font-bold">
         {COPYRIGHT}
       </div>
     </footer>
@@ -96,7 +96,7 @@ export function SiteFooter() {
 function FooterColumn({ title, items }: { title: string; items: { label: string; to: string }[] }) {
   return (
     <div>
-      <h4 className="text-white font-black uppercase tracking-widest border-b-2 border-zinc-800 pb-3 mb-6">
+      <h4 className="text-white font-semibold uppercase tracking-wide border-b border-zinc-800/60 pb-3 mb-6">
         {title}
       </h4>
       <ul className="space-y-2 text-sm uppercase">

@@ -172,7 +172,7 @@ function SimpleDropdown({
         {label} <ChevronDown className="w-4 h-4" />
       </button>
       <div className="absolute left-0 top-full pt-2 w-64 hidden group-hover:block group-focus-within:block z-50">
-        <div className="bg-white border-2 border-red-500 py-2 shadow-2xl">
+        <div className="bg-white border border-red-300 py-2 shadow-2xl">
           {items.map((item) => (
             <Link
               key={item.to}
@@ -209,10 +209,10 @@ function MegaMenuTrigger({
         {label} <ChevronDown className="w-4 h-4" />
       </button>
       <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-50">
-        <div className="bg-white border-2 border-red-500 shadow-2xl p-6 grid grid-cols-4 gap-6 w-[860px]">
+        <div className="bg-white border border-red-300 shadow-2xl p-6 grid grid-cols-4 gap-6 w-[860px]">
           {columns.map((col) => (
             <div key={col.heading}>
-              <h4 className="text-red-500 text-[11px] font-black uppercase tracking-wider mb-2 border-b border-zinc-300 pb-1">
+              <h4 className="text-red-500 text-[11px] font-semibold uppercase tracking-wide mb-2 border-b border-zinc-300 pb-1">
                 {col.heading}
               </h4>
               <ul className="space-y-1">
@@ -250,7 +250,7 @@ export function TopUtilityBar() {
         </span>
       </div>
       <div className="flex items-center gap-4">
-        <span className="bg-red-500 text-zinc-900 px-2 py-0.5 uppercase font-bold text-[10px] tracking-wider transform -skew-x-12">
+        <span className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide">
           {HERO.badgeSameDay}
         </span>
         <a href={BUSINESS.phoneTel} className="hover:text-red-500 transition-colors flex items-center gap-1">
@@ -264,7 +264,7 @@ export function TopUtilityBar() {
 
 export function SiteHeader() {
   return (
-    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-4 border-red-600">
+    <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-zinc-200">
       <div className="max-w-[1240px] mx-auto px-4 py-3 flex justify-between items-center gap-4">
         <Link href="/phone-repair-houston-tx" className="flex items-center gap-2 shrink-0" aria-label={`${BUSINESS.name} home`}>
           <img
@@ -275,7 +275,7 @@ export function SiteHeader() {
             height={80}
           />
         </Link>
-        <nav className="hidden lg:flex items-center gap-6 font-black uppercase tracking-tighter text-sm text-zinc-900" aria-label="Primary">
+        <nav className="hidden lg:flex items-center gap-6 font-extrabold tracking-tight text-sm text-zinc-900" aria-label="Primary">
           <MegaMenuTrigger label="Repair" testIdSuffix="repair" columns={REPAIR_MEGA} />
           <MegaMenuTrigger label="Shop" testIdSuffix="shop" columns={SHOP_MEGA} />
           <SimpleDropdown label="Sell" testIdSuffix="sell" items={SELL_DROPDOWN} />
@@ -288,7 +288,7 @@ export function SiteHeader() {
         </nav>
         <Button
           asChild
-          className="rounded-none bg-red-600 hover:bg-zinc-950 hover:text-white text-white font-black uppercase tracking-widest text-sm px-5 md:px-6 h-12 shadow-[4px_4px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] hover:translate-x-[2px] hover:translate-y-[2px] transition-all"
+          className="bg-red-600 hover:bg-zinc-900 hover:text-white text-white font-semibold uppercase tracking-wide text-sm px-5 md:px-6 h-12 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
         >
           <a href={BUSINESS.phoneTel}>Call Now</a>
         </Button>
@@ -299,23 +299,23 @@ export function SiteHeader() {
 
 export function TickerTape() {
   return (
-    <div className="w-full overflow-hidden bg-red-600 py-3 border-y-4 border-zinc-950 flex items-center" aria-hidden="true">
-      <div className="animate-[marquee_20s_linear_infinite] whitespace-nowrap font-black uppercase text-white text-xl tracking-tighter flex gap-8">
-        <span>SAME-DAY REPAIR</span>
-        <span className="text-zinc-950">•</span>
-        <span>15 YEARS EXPERIENCE</span>
-        <span className="text-zinc-950">•</span>
-        <span>HOUSTON'S BEST</span>
-        <span className="text-zinc-950">•</span>
-        <span>CALL NOW</span>
-        <span className="text-zinc-950">•</span>
-        <span>SAME-DAY REPAIR</span>
-        <span className="text-zinc-950">•</span>
-        <span>15 YEARS EXPERIENCE</span>
-        <span className="text-zinc-950">•</span>
-        <span>HOUSTON'S BEST</span>
-        <span className="text-zinc-950">•</span>
-        <span>CALL NOW</span>
+    <div className="w-full overflow-hidden bg-zinc-50 py-2 border-b border-zinc-200 flex items-center" aria-hidden="true">
+      <div className="animate-[marquee_20s_linear_infinite] whitespace-nowrap font-semibold uppercase text-zinc-700 text-sm tracking-wide flex gap-8">
+        <span>Same-Day Repair</span>
+        <span className="text-red-400">•</span>
+        <span>15 Years Experience</span>
+        <span className="text-red-400">•</span>
+        <span>Houston's Best</span>
+        <span className="text-red-400">•</span>
+        <span>Call Now</span>
+        <span className="text-red-400">•</span>
+        <span>Same-Day Repair</span>
+        <span className="text-red-400">•</span>
+        <span>15 Years Experience</span>
+        <span className="text-red-400">•</span>
+        <span>Houston's Best</span>
+        <span className="text-red-400">•</span>
+        <span>Call Now</span>
       </div>
     </div>
   );

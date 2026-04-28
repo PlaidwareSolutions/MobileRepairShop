@@ -28,7 +28,7 @@ export default function AboutPage() {
 
       <section className="py-16 md:py-24 px-4 bg-zinc-50 border-b border-zinc-200">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black uppercase tracking-tighter text-zinc-900 mb-8 leading-[0.95]">
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-8 leading-tight">
             15 YEARS REPAIRING <span className="text-red-500">HOUSTON'S DEVICES</span>
           </h1>
           <p className="text-xl font-bold text-zinc-700 mb-6">
@@ -44,8 +44,8 @@ export default function AboutPage() {
             phones; activate every prepaid carrier; and accept bill payments. The promise hasn't changed.
           </p>
 
-          <h2 className="text-3xl md:text-5xl font-black uppercase tracking-tighter text-zinc-900 mb-6">
-            WHAT WE <span className="text-red-500 text-stroke-black">STAND FOR</span>
+          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-6">
+            WHAT WE <span className="text-red-500">STAND FOR</span>
           </h2>
           <ul className="space-y-3 mb-10">
             {VALUES.map((v) => (
@@ -57,13 +57,13 @@ export default function AboutPage() {
           </ul>
 
           <div className="flex flex-wrap gap-3">
-            <Button asChild className="rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest h-12 px-6">
+            <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
               <a href={BUSINESS.phoneTel}>Call (346) 623-6898</a>
             </Button>
-            <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-12 px-6">
+            <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
               <Link href="/reviews-houston-tx">Read Reviews</Link>
             </Button>
-            <Button asChild variant="outline" className="rounded-none border-2 border-white hover:bg-white hover:text-black font-black uppercase tracking-widest h-12 px-6">
+            <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
               <Link href="/contact-houston-tx">Contact Us</Link>
             </Button>
           </div>

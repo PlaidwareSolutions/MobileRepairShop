@@ -21,12 +21,12 @@ export function RelatedLinks({ slugs }: { slugs: string[] }) {
   return (
     <section className="py-16 px-4 bg-zinc-50 border-t border-zinc-200">
       <div className="max-w-[1240px] mx-auto">
-        <h3 className="text-2xl md:text-3xl font-black uppercase tracking-tighter mb-8 text-zinc-900">Related</h3>
+        <h3 className="text-2xl md:text-3xl font-extrabold tracking-tight mb-8 text-zinc-900">Related</h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {items.map((it) => (
-            <Link key={it.to} href={it.to} className="group block bg-white border-2 border-zinc-300 p-5 hover:border-red-500 transition-colors">
+            <Link key={it.to} href={it.to} className="group block bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors">
               <div className="flex justify-between items-center gap-2">
-                <span className="font-black uppercase text-sm md:text-base text-zinc-900 group-hover:text-red-500 transition-colors">{it.title}</span>
+                <span className="font-bold uppercase text-sm md:text-base text-zinc-900 group-hover:text-red-500 transition-colors">{it.title}</span>
                 <ArrowRight className="w-4 h-4 text-red-500 shrink-0" />
               </div>
             </Link>

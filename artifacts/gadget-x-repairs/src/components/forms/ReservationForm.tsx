@@ -25,31 +25,31 @@ export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string
 
   if (done) {
     return (
-      <div className="bg-red-500 text-black p-6 border-4 border-zinc-300">
-        <div className="font-black uppercase text-xl mb-2">Reserved.</div>
+      <div className="bg-red-500 text-black p-6 border border-zinc-200">
+        <div className="font-bold uppercase text-xl mb-2">Reserved.</div>
         <p className="font-bold text-sm">We&apos;ll hold {itemLabel} for 24 hours and call to confirm.</p>
-        {onClose && <button onClick={onClose} className="mt-4 underline font-black uppercase text-sm">Close</button>}
+        {onClose && <button onClick={onClose} className="mt-4 underline font-bold uppercase text-sm">Close</button>}
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border-4 border-zinc-300 p-6 space-y-4" data-testid="form-reservation">
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border border-zinc-200 p-6 space-y-4" data-testid="form-reservation">
       <p className="font-bold text-sm text-zinc-600">Reserving: <span className="text-zinc-900">{itemLabel}</span></p>
       <div className="space-y-2">
-        <Label htmlFor="rs-name" className="font-black uppercase text-xs tracking-widest text-zinc-700">Your name</Label>
-        <Input id="rs-name" {...register("name", { required: true })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12" data-testid="input-name" />
+        <Label htmlFor="rs-name" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Your name</Label>
+        <Input id="rs-name" {...register("name", { required: true })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-name" />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="rs-phone" className="font-black uppercase text-xs tracking-widest text-zinc-700">Phone</Label>
-        <Input id="rs-phone" type="tel" {...register("phone", { required: true })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12" data-testid="input-phone" />
+        <Label htmlFor="rs-phone" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Phone</Label>
+        <Input id="rs-phone" type="tel" {...register("phone", { required: true })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-phone" />
       </div>
       <div className="space-y-2">
-        <Label htmlFor="rs-notes" className="font-black uppercase text-xs tracking-widest text-zinc-700">Notes</Label>
-        <Textarea id="rs-notes" {...register("notes")} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500" data-testid="input-notes" />
+        <Label htmlFor="rs-notes" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Notes</Label>
+        <Textarea id="rs-notes" {...register("notes")} className="bg-white border border-zinc-200 focus:border-red-500" data-testid="input-notes" />
       </div>
-      {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-black uppercase text-sm">{error}</div>}
-      <Button type="submit" disabled={isSubmitting} className="w-full rounded-none bg-red-500 hover:bg-white text-black font-black uppercase tracking-widest h-12" data-testid="button-submit-reservation">
+      {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
+      <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white text-black font-semibold uppercase tracking-wide h-12" data-testid="button-submit-reservation">
         {isSubmitting ? "Sending..." : "Reserve"}
       </Button>
     </form>

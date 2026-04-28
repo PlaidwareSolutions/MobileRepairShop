@@ -45,54 +45,54 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
 
   if (done) {
     return (
-      <div className="bg-red-500 text-black p-6 border-4 border-zinc-300 shadow-[8px_8px_0px_0px_rgba(239,68,68,1)]">
-        <div className="font-black uppercase text-2xl mb-2">Got it.</div>
+      <div className="bg-red-500 text-black p-6 border border-zinc-200 shadow-md">
+        <div className="font-bold uppercase text-2xl mb-2">Got it.</div>
         <p className="font-bold">We&apos;ll call or text you back today with your quote. For fastest response, call <a className="underline" href="tel:+13466236898">(346) 623-6898</a>.</p>
-        <button onClick={() => setDone(false)} className="mt-4 underline font-black uppercase text-sm">Submit another</button>
+        <button onClick={() => setDone(false)} className="mt-4 underline font-bold uppercase text-sm">Submit another</button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border-4 border-zinc-300 p-6 md:p-8 space-y-5" data-testid="form-repair-quote">
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border border-zinc-200 p-6 md:p-8 space-y-5" data-testid="form-repair-quote">
       <div className="space-y-2">
-        <Label htmlFor="rq-name" className="font-black uppercase text-xs tracking-widest text-zinc-700">Your name</Label>
-        <Input id="rq-name" {...register("name", { required: true, maxLength: 120 })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12" data-testid="input-name" />
+        <Label htmlFor="rq-name" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Your name</Label>
+        <Input id="rq-name" {...register("name", { required: true, maxLength: 120 })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-name" />
         {errors.name && <p className="text-red-500 text-xs font-bold uppercase">Name is required</p>}
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="rq-phone" className="font-black uppercase text-xs tracking-widest text-zinc-700">Phone</Label>
-          <Input id="rq-phone" type="tel" {...register("phone", { required: true, minLength: 7, maxLength: 40 })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12" data-testid="input-phone" />
+          <Label htmlFor="rq-phone" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Phone</Label>
+          <Input id="rq-phone" type="tel" {...register("phone", { required: true, minLength: 7, maxLength: 40 })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-phone" />
           {errors.phone && <p className="text-red-500 text-xs font-bold uppercase">Phone is required</p>}
         </div>
         <div className="space-y-2">
-          <Label htmlFor="rq-email" className="font-black uppercase text-xs tracking-widest text-zinc-700">Email <span className="text-zinc-500">(optional)</span></Label>
-          <Input id="rq-email" type="email" {...register("email", { maxLength: 200 })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12" data-testid="input-email" />
+          <Label htmlFor="rq-email" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Email <span className="text-zinc-500">(optional)</span></Label>
+          <Input id="rq-email" type="email" {...register("email", { maxLength: 200 })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-email" />
         </div>
       </div>
       <div className="grid sm:grid-cols-3 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="rq-device" className="font-black uppercase text-xs tracking-widest text-zinc-700">Device type</Label>
-          <Input id="rq-device" placeholder="Phone, Tablet, Laptop, Console" {...register("deviceType", { required: true, maxLength: 80 })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12" data-testid="input-device-type" />
+          <Label htmlFor="rq-device" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Device type</Label>
+          <Input id="rq-device" placeholder="Phone, Tablet, Laptop, Console" {...register("deviceType", { required: true, maxLength: 80 })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-device-type" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="rq-brand" className="font-black uppercase text-xs tracking-widest text-zinc-700">Brand</Label>
-          <Input id="rq-brand" placeholder="Apple, Samsung..." {...register("brand", { required: true, maxLength: 80 })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12" data-testid="input-brand" />
+          <Label htmlFor="rq-brand" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Brand</Label>
+          <Input id="rq-brand" placeholder="Apple, Samsung..." {...register("brand", { required: true, maxLength: 80 })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-brand" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="rq-model" className="font-black uppercase text-xs tracking-widest text-zinc-700">Model</Label>
-          <Input id="rq-model" placeholder="iPhone 13, Galaxy S22..." {...register("model", { required: true, maxLength: 120 })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12" data-testid="input-model" />
+          <Label htmlFor="rq-model" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Model</Label>
+          <Input id="rq-model" placeholder="iPhone 13, Galaxy S22..." {...register("model", { required: true, maxLength: 120 })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-model" />
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="rq-problem" className="font-black uppercase text-xs tracking-widest text-zinc-700">What&apos;s wrong?</Label>
-        <Textarea id="rq-problem" {...register("problem", { required: true, maxLength: 4000 })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 min-h-[100px]" data-testid="input-problem" />
+        <Label htmlFor="rq-problem" className="font-bold uppercase text-xs tracking-wide text-zinc-700">What&apos;s wrong?</Label>
+        <Textarea id="rq-problem" {...register("problem", { required: true, maxLength: 4000 })} className="bg-white border border-zinc-200 focus:border-red-500 min-h-[100px]" data-testid="input-problem" />
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="rq-contact" className="font-black uppercase text-xs tracking-widest text-zinc-700">Preferred contact</Label>
-          <select id="rq-contact" {...register("preferredContact")} className="w-full h-12 rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 px-3 font-bold uppercase text-sm" data-testid="select-preferred-contact">
+          <Label htmlFor="rq-contact" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Preferred contact</Label>
+          <select id="rq-contact" {...register("preferredContact")} className="w-full h-12 bg-white border border-zinc-200 focus:border-red-500 px-3 font-bold uppercase text-sm" data-testid="select-preferred-contact">
             <option value="call">Phone call</option>
             <option value="text">Text (SMS)</option>
             <option value="whatsapp">WhatsApp</option>
@@ -100,8 +100,8 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
           </select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="rq-urgency" className="font-black uppercase text-xs tracking-widest text-zinc-700">Urgency</Label>
-          <select id="rq-urgency" {...register("urgency")} className="w-full h-12 rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 px-3 font-bold uppercase text-sm" data-testid="select-urgency">
+          <Label htmlFor="rq-urgency" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Urgency</Label>
+          <select id="rq-urgency" {...register("urgency")} className="w-full h-12 bg-white border border-zinc-200 focus:border-red-500 px-3 font-bold uppercase text-sm" data-testid="select-urgency">
             <option value="asap">ASAP</option>
             <option value="today">Today</option>
             <option value="this_week">This week</option>
@@ -110,7 +110,7 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="rq-photo" className="font-black uppercase text-xs tracking-widest text-zinc-700">
+        <Label htmlFor="rq-photo" className="font-bold uppercase text-xs tracking-wide text-zinc-700">
           Photo of damage <span className="text-zinc-500">(optional — paste a link)</span>
         </Label>
         <Input
@@ -118,17 +118,17 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
           type="url"
           placeholder="https://… (Google Photos, iCloud, Imgur, etc.)"
           {...register("photoUrl", { maxLength: 500 })}
-          className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500 h-12"
+          className="bg-white border border-zinc-200 focus:border-red-500 h-12"
           data-testid="input-photo-url"
         />
         <p className="text-xs font-bold text-zinc-500">Or text a photo to (346) 623-6898 on WhatsApp.</p>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="rq-notes" className="font-black uppercase text-xs tracking-widest text-zinc-700">Anything else <span className="text-zinc-500">(optional)</span></Label>
-        <Textarea id="rq-notes" {...register("notes", { maxLength: 2000 })} className="rounded-none bg-white border-2 border-zinc-300 focus:border-red-500" data-testid="input-notes" />
+        <Label htmlFor="rq-notes" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Anything else <span className="text-zinc-500">(optional)</span></Label>
+        <Textarea id="rq-notes" {...register("notes", { maxLength: 2000 })} className="bg-white border border-zinc-200 focus:border-red-500" data-testid="input-notes" />
       </div>
-      {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-black uppercase text-sm">{error}</div>}
-      <Button type="submit" disabled={isSubmitting} className="w-full rounded-none bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-black uppercase tracking-widest text-lg h-14 shadow-[6px_6px_0px_0px_rgba(239,68,68,1)] transition-all hover:translate-x-1 hover:translate-y-1 hover:shadow-[2px_2px_0px_0px_rgba(239,68,68,1)]" data-testid="button-submit-quote">
+      {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
+      <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide text-lg h-14 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-quote">
         {isSubmitting ? "Sending..." : "Get My Quote"}
       </Button>
     </form>
