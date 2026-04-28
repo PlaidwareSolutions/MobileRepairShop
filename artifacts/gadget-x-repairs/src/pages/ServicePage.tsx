@@ -1,5 +1,5 @@
 import { useRoute, Link } from "wouter";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Wrench } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -190,21 +190,41 @@ export default function ServicePage() {
       </section>
 
       {/* Pricing */}
-      <section className="py-16 px-4 bg-zinc-50">
+      <section className="py-16 px-4 bg-zinc-100">
         <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-8 text-zinc-900">
-            HONEST <span className="text-red-500">PRICING</span>
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {data.pricing.map((p) => (
-              <div key={p.label} className="bg-white border border-zinc-200 p-5 flex justify-between items-center hover:border-red-500 transition-colors">
-                <div>
-                  <div className="font-bold uppercase text-base md:text-lg">{p.label}</div>
-                  {p.note && <div className="text-zinc-500 font-bold text-xs uppercase mt-1">{p.note}</div>}
+          <div className="bg-zinc-900 text-white p-6 md:p-10 shadow-md">
+            <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-4">
+              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+                Honest <span className="text-red-500">Pricing</span>
+              </h2>
+              <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-500">Walk-in Pricing</span>
+            </div>
+            <div className="space-y-3">
+              {data.pricing.map((p) => (
+                <div
+                  key={p.label}
+                  className="flex items-center justify-between gap-4 px-4 md:px-5 py-4 bg-zinc-900 hover:bg-red-600 transition-colors group"
+                  data-testid={`pricing-${p.label}`}
+                >
+                  <div className="flex items-center gap-4 min-w-0">
+                    <div className="bg-zinc-800 group-hover:bg-zinc-900 p-2 shrink-0 transition-colors">
+                      <Wrench className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="text-base md:text-lg font-extrabold tracking-tight truncate">{p.label}</h4>
+                      {p.note && (
+                        <div className="text-[11px] font-semibold uppercase tracking-wide text-zinc-500 group-hover:text-red-200">
+                          {p.note}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                  <div className="font-bold uppercase text-sm md:text-base tracking-wide text-red-500 group-hover:text-white shrink-0">
+                    {p.price}
+                  </div>
                 </div>
-                <div className="text-red-500 font-bold text-xl whitespace-nowrap">{p.price}</div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
           <p className="text-sm text-zinc-500 font-bold uppercase mt-4">
             Quotes shown are starting prices. Final price confirmed after free diagnostic.
