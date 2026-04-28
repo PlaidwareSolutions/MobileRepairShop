@@ -270,9 +270,9 @@ export function SiteHeader() {
           <img
             src={BUSINESS.logo}
             alt={BUSINESS.name}
-            className="h-10 md:h-12 w-auto object-contain block"
-            width={140}
-            height={48}
+            className="h-12 md:h-16 w-auto object-contain block"
+            width={180}
+            height={64}
           />
         </Link>
         <nav className="hidden lg:flex items-center gap-6 font-black uppercase tracking-tighter text-sm text-zinc-900" aria-label="Primary">
