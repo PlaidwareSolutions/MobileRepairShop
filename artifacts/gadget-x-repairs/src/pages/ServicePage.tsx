@@ -174,6 +174,18 @@ export default function ServicePage() {
               );
             })}
           </div>
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-zinc-950 text-white p-5 shadow-[6px_6px_0_0_#09090b]">
+            <p className="font-black uppercase tracking-tight text-sm md:text-base">
+              See the before-and-after for the kinds of repairs we do every day.
+            </p>
+            <Link
+              href="/#our-work"
+              className="bg-white text-zinc-950 hover:bg-red-600 hover:text-white font-black uppercase tracking-widest text-xs px-5 py-3 shadow-[4px_4px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#fff] transition-all whitespace-nowrap"
+              data-testid="link-our-work"
+            >
+              View Our Work →
+            </Link>
+          </div>
         </div>
       </section>
 

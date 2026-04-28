@@ -25,6 +25,7 @@ import { LocationCard } from "@/components/LocationCard";
 import { RepairQuoteWizard } from "@/components/forms/RepairQuoteWizard";
 import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
+import { BeforeAfter, type BeforeAfterPair } from "@/components/BeforeAfter";
 import { BUSINESS, HERO } from "@/content";
 
 const photo = (slug: string, alt: string): Photo => ({
@@ -60,6 +61,52 @@ const SERVICE_TILES: {
     image: photo("battery-replace", "Open phone with battery exposed and repair tools laid out") },
   { name: "Accessories", desc: "Cases, chargers, screen protectors.", icon: Headphones, to: "/phone-accessories-houston-tx",
     image: photo("accessories", "Smartphone displayed alongside cases and accessories on a counter") },
+];
+
+const beforeAfterPair = (slug: string, label: string, beforeAlt: string, afterAlt: string): BeforeAfterPair => ({
+  slug,
+  label,
+  before: photo(`before-${slug}`, beforeAlt),
+  after: photo(`after-${slug}`, afterAlt),
+});
+
+const BEFORE_AFTER_PAIRS: BeforeAfterPair[] = [
+  beforeAfterPair(
+    "iphone-screen",
+    "iPhone Screen Replacement",
+    "iPhone with shattered front display glass spider-webbed across the screen",
+    "Same iPhone with a brand-new pristine display showing a clean blue lock screen",
+  ),
+  beforeAfterPair(
+    "samsung-back",
+    "Samsung Back Glass",
+    "Samsung Galaxy with the rear glass panel completely shattered",
+    "Same Samsung Galaxy with a flawless mirror-clean replacement back glass",
+  ),
+  beforeAfterPair(
+    "logic-board",
+    "Water-Damaged Board",
+    "Smartphone logic board with white-blue corrosion crusted over the chips",
+    "Same logic board after micro-soldering and ultrasonic cleaning, components shiny again",
+  ),
+  beforeAfterPair(
+    "ipad-frame",
+    "Tablet Battery Swap",
+    "Tablet with a swollen lithium battery lifting the screen away from a bent aluminum frame",
+    "Same tablet with a fresh battery installed and the frame realigned flush",
+  ),
+  beforeAfterPair(
+    "hdmi-port",
+    "Console HDMI Repair",
+    "Gaming console HDMI port with bent and crushed gold connector pins",
+    "Same HDMI port rebuilt with all pins straight and aligned again",
+  ),
+  beforeAfterPair(
+    "macbook-keys",
+    "Keyboard Repair",
+    "Laptop keyboard with three keys missing and the scissor mechanisms exposed",
+    "Same laptop keyboard fully restored with every key seated and aligned",
+  ),
 ];
 
 const HERO_DIAGNOSTIC: { name: string; price: string; icon: LucideIcon; to: string }[] = [
@@ -406,6 +453,32 @@ export default function HomePage() {
               })}
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* OUR WORK (BEFORE / AFTER) ------------------------------------ */}
+      <section id="our-work" className="py-20 md:py-24 px-4 bg-white scroll-mt-24">
+        <div className="max-w-[1240px] mx-auto">
+          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-zinc-950">
+              Our <span className="text-red-600">Work</span>
+            </h2>
+            <p className="text-base font-bold text-zinc-600 uppercase tracking-tight max-w-md">
+              Cracked screens, corroded boards, swollen batteries — the kind of damage we fix every day.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {BEFORE_AFTER_PAIRS.map((pair) => (
+              <BeforeAfter
+                key={pair.slug}
+                pair={pair}
+                sizes="(min-width: 1024px) 200px, (min-width: 768px) 33vw, 50vw"
+              />
+            ))}
+          </div>
+          <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mt-8 text-center">
+            Most repairs done same-day. 90-day warranty on every fix. Photos are illustrative; your finished device is yours alone.
+          </p>
         </div>
       </section>
 

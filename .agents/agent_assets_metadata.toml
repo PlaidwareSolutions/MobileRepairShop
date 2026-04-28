@@ -1,0 +1,74 @@
+uploads = []
+outputs = []
+
+[[generated]]
+id = "MGFtD8U2cIqkFJdluLM7F"
+uri = "file://attached_assets/generated_images/before-iphone-screen.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "4EJCyu8GGskEwMPUQXtxJ"
+uri = "file://attached_assets/generated_images/after-iphone-screen.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "7euS0LN8gyqp6plKjNydb"
+uri = "file://attached_assets/generated_images/before-samsung-back.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "Y3oVsOqg31jdvvld1brXo"
+uri = "file://attached_assets/generated_images/after-samsung-back.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "lNof9Po3gQAlVslQYhArP"
+uri = "file://attached_assets/generated_images/before-logic-board.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "idCamsO5oInjQSKMHTAj5"
+uri = "file://attached_assets/generated_images/after-logic-board.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "uRKLRHU1z-viPn02n1w8G"
+uri = "file://attached_assets/generated_images/before-ipad-frame.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "Mu2p0q3RANxCTgkmy0MfT"
+uri = "file://attached_assets/generated_images/after-ipad-frame.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "270ECKd522YsNL3jnpUPo"
+uri = "file://attached_assets/generated_images/before-hdmi-port.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "ztv1a3XTDISAvMJdFhfxW"
+uri = "file://attached_assets/generated_images/after-hdmi-port.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "9aU0YDQoO_EOpMnyUdFqE"
+uri = "file://attached_assets/generated_images/before-macbook-keys.png"
+type = "image"
+title = "generated_image"
+
+[[generated]]
+id = "i6EYGbdMuEdgNmgd95cis"
+uri = "file://attached_assets/generated_images/after-macbook-keys.png"
+type = "image"
+title = "generated_image"

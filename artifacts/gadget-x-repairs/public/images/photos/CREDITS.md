@@ -28,6 +28,34 @@ and `-1024.jpg` for desktop / retina) at JPEG quality 82.
 | `process-quality` | Process step · 03 Quality check | 16:9 (640×360, 1024×576) | thomas vanhaecht | [Pexels #215367](https://www.pexels.com/photo/215367/) |
 | `process-pickup` | Process step · 04 Pickup | 16:9 (640×360, 1024×576) | Vitaly Gariev | [Pexels #36730432](https://www.pexels.com/photo/36730432/) |
 
+### Before / after gallery (homepage `Our Work` section)
+
+The `before-*` / `after-*` pairs below are AI-generated illustrations
+(Replit media-generation skill, generated 2026-04-28). They depict
+representative repair outcomes — shattered glass, corroded boards,
+swollen batteries, bent connector pins, missing keys — and the same
+device after the fix. No real customer device is shown. Use them under
+the same Replit content terms as other generated assets in this project.
+
+| Slug | Surface | Aspect | Source |
+|---|---|---|---|
+| `before-iphone-screen` / `after-iphone-screen` | Our Work · iPhone Screen Replacement | 4:3 (640×480, 1024×768) | AI-generated (Replit media-generation) |
+| `before-samsung-back` / `after-samsung-back` | Our Work · Samsung Back Glass | 4:3 (640×480, 1024×768) | AI-generated (Replit media-generation) |
+| `before-logic-board` / `after-logic-board` | Our Work · Water-Damaged Board | 4:3 (640×480, 1024×768) | AI-generated (Replit media-generation) |
+| `before-ipad-frame` / `after-ipad-frame` | Our Work · Tablet Battery Swap | 4:3 (640×480, 1024×768) | AI-generated (Replit media-generation) |
+| `before-hdmi-port` / `after-hdmi-port` | Our Work · Console HDMI Repair | 4:3 (640×480, 1024×768) | AI-generated (Replit media-generation) |
+| `before-macbook-keys` / `after-macbook-keys` | Our Work · Keyboard Repair | 4:3 (640×480, 1024×768) | AI-generated (Replit media-generation) |
+
+Each pair is shipped at the same two widths (640w, 1024w) and three
+formats (`.jpg` baseline, `.webp`, `.avif`) as the rest of the gallery,
+so `PhotoFrame`'s `<picture>` source set picks the smallest format the
+browser supports.
+
+When real shop before/after photos become available, swap them in using
+the same `before-<slug>` / `after-<slug>` filenames at the same two
+widths and three formats, and update the source column to credit the
+photographer.
+
 ## Re-sourcing or replacing a photo
 
 1. Pick a new photo from Pexels / Unsplash / Pixabay (commercial-free, no
