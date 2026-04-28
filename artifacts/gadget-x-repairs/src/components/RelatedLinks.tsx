@@ -5,6 +5,7 @@ import { SALES_BY_SLUG } from "@/data/sales";
 import { PREPAID_BY_SLUG } from "@/data/prepaid";
 import { AREAS_BY_SLUG } from "@/data/areas";
 import { ARTICLES_BY_SLUG } from "@/data/articles";
+import { inventoryGroupBySlug } from "@/lib/inventoryGroups";
 
 function lookup(slug: string): { title: string; to: string } | null {
   if (SERVICES_BY_SLUG[slug]) return { title: SERVICES_BY_SLUG[slug].title, to: `/${slug}` };
@@ -15,8 +16,24 @@ function lookup(slug: string): { title: string; to: string } | null {
   return null;
 }
 
-export function RelatedLinks({ slugs }: { slugs: string[] }) {
+export function RelatedLinks({
+  slugs,
+  inventoryGroupSlug,
+}: {
+  slugs: string[];
+  inventoryGroupSlug?: string | null;
+}) {
   const items = slugs.map(lookup).filter((x): x is { title: string; to: string } => x !== null);
+  const inventoryGroup = inventoryGroupBySlug(inventoryGroupSlug);
+  if (inventoryGroup) {
+    const to = `/inventory/${inventoryGroup.slug}`;
+    if (!items.some((it) => it.to === to)) {
+      items.push({
+        title: `${inventoryGroup.heading.prefix} ${inventoryGroup.heading.highlight}`,
+        to,
+      });
+    }
+  }
   if (items.length === 0) return null;
   return (
     <section className="py-16 px-4 bg-zinc-50 border-t border-zinc-200">

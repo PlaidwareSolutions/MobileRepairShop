@@ -326,7 +326,7 @@ export default function ServicePage() {
 
       <Faq items={data.faqs} />
       <LocationCard />
-      <RelatedLinks slugs={data.related} />
+      <RelatedLinks slugs={data.related} inventoryGroupSlug={inventoryGroup?.slug} />
     </PageShell>
   );
 }
