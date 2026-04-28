@@ -3,6 +3,7 @@ import { SALES_DATA } from "./data/sales";
 import { PREPAID_DATA } from "./data/prepaid";
 import { AREAS_DATA } from "./data/areas";
 import { ARTICLES_DATA } from "./data/articles";
+import { INVENTORY_GROUPS } from "./lib/inventoryGroups";
 
 export type RouteEntry = {
   path: string;
@@ -56,8 +57,22 @@ export const STATIC_ROUTES: RouteEntry[] = [
   },
 ];
 
+// Per-category inventory pages (e.g. /inventory/phones). Each known group
+// gets its own canonical URL so search engines can rank category-specific
+// queries ("used phones Houston", "refurbished MacBooks Houston", ...). The
+// catch-all OTHER_GROUP is intentionally excluded — it has no stable user
+// intent worth ranking for.
+const INVENTORY_GROUP_ROUTES: RouteEntry[] = INVENTORY_GROUPS.map(
+  (g): RouteEntry => ({
+    path: `/inventory/${g.slug}`,
+    metaTitle: g.seo.metaTitle,
+    metaDescription: g.seo.metaDescription,
+  }),
+);
+
 export const ALL_ROUTES: RouteEntry[] = [
   ...STATIC_ROUTES,
+  ...INVENTORY_GROUP_ROUTES,
   ...SERVICES_DATA.map((s): RouteEntry => ({ path: `/${s.slug}`, metaTitle: s.metaTitle, metaDescription: s.metaDescription })),
   ...SALES_DATA.map((s): RouteEntry => ({ path: `/${s.slug}`, metaTitle: s.metaTitle, metaDescription: s.metaDescription })),
   ...PREPAID_DATA.map((p): RouteEntry => ({ path: `/${p.slug}`, metaTitle: p.metaTitle, metaDescription: p.metaDescription })),

@@ -29,7 +29,10 @@ import { BeforeAfter, type BeforeAfterPair } from "@/components/BeforeAfter";
 import { BUSINESS, HERO } from "@/content";
 import { INVENTORY_GROUPS } from "@/lib/inventoryGroups";
 
-const inventoryHref = (slug: string) => `/inventory?category=${encodeURIComponent(slug)}`;
+// Each known inventory group has its own canonical path (`/inventory/<slug>`)
+// so the homepage tile deep-links into a real, indexable page instead of a
+// query-string-filtered view that Google mostly ignores.
+const inventoryHref = (slug: string) => `/inventory/${encodeURIComponent(slug)}`;
 
 const groupSlug = (slug: string): string => {
   const found = INVENTORY_GROUPS.find((g) => g.slug === slug);

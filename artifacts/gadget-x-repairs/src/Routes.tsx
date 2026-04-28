@@ -60,6 +60,17 @@ export function Routes() {
       <Route path="/contact-houston-tx" component={ContactPage} />
       <Route path="/reviews-houston-tx" component={ReviewsPage} />
       <Route path="/inventory" component={InventoryPage} />
+      {/*
+        Per-category canonical routes (e.g. /inventory/phones). Each known
+        inventory group gets its own URL so search engines can rank the page
+        for queries like "used phones Houston" — query strings on /inventory
+        are mostly ignored as canonical URLs by Google. The wouter param
+        :group is read inside InventoryPage; unknown slugs fall back to the
+        unfiltered view (with a soft redirect to /inventory). Listed before
+        the SERVICES map below so a hypothetical service slug "inventory" or
+        "inventory/phones" can never shadow it.
+      */}
+      <Route path="/inventory/:group" component={InventoryPage} />
       <Route path="/admin/leads" component={AdminLeadsPage} />
       <Route path="/admin/inventory" component={AdminInventoryPage} />
 

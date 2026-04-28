@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Phone } from "lucide-react";
-import { useLocation, useSearch } from "wouter";
+import { useLocation, useRoute, useSearch } from "wouter";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
@@ -17,6 +17,15 @@ import {
   type InventoryGroup,
 } from "@/lib/inventoryGroups";
 import { BUSINESS } from "@/content";
+
+const DEFAULT_META = {
+  title: "Inventory | Used & Refurbished Phones, Laptops in Houston",
+  description:
+    "Browse our current inventory of unlocked iPhones, Samsungs, Pixels, MacBooks and laptops at our Houston shop.",
+  heading: { prefix: "Current", highlight: "Inventory" },
+  intro:
+    "Stock changes daily. Call to confirm availability or reserve an item — we'll hold it for 24 hours.",
+};
 
 function priceToNumber(price: string): string {
   const m = price.replace(/[^0-9.]/g, "");
@@ -72,14 +81,56 @@ export default function InventoryPage() {
   const [, setLocation] = useLocation();
   const search = useSearch();
 
-  // Initialise to "all" so that SSR (which has no query string) and the first
-  // client render match. A useEffect below syncs the chip from the real URL
-  // once we're mounted in the browser.
-  const [filterSlug, setFilterSlug] = useState<string>(ALL_FILTER_SLUG);
+  // Path-based group is the canonical source of truth: e.g. /inventory/phones
+  // resolves to the "phones" group below. /inventory (no param) falls back to
+  // the legacy ?category= query string, which is then soft-redirected to the
+  // canonical path so old links keep working but search engines see one URL.
+  const [matchPath, params] = useRoute<{ group: string }>("/inventory/:group");
+  const pathSlug = matchPath ? params?.group ?? null : null;
 
+  // Resolve path slug -> group. An unknown slug (e.g. /inventory/foobar) is
+  // treated as no match and we redirect to the unfiltered /inventory below
+  // rather than rendering a stale "All" view at a junk URL that could leak
+  // into search results.
+  const pathGroup = pathSlug ? inventoryGroupBySlug(pathSlug) : null;
+
+  // Active filter slug used by the chip UI and the visible-items computation.
+  // Initialised from the route param so SSR (no client JS) renders the right
+  // chip/filter immediately. The query-string fallback is applied in a
+  // useEffect below — running it during render would double-call setLocation.
+  const initialSlug = pathGroup ? pathGroup.slug : ALL_FILTER_SLUG;
+  const [filterSlug, setFilterSlug] = useState<string>(initialSlug);
+
+  // Sync the chip when the URL changes (back/forward, programmatic nav, or a
+  // chip click that updates the route).
   useEffect(() => {
-    setFilterSlug(readSlugFromSearch(search));
-  }, [search]);
+    setFilterSlug(pathGroup ? pathGroup.slug : ALL_FILTER_SLUG);
+  }, [pathGroup]);
+
+  // Legacy ?category=<slug> support: soft-redirect to the canonical
+  // /inventory/<slug> path so external links from before this change keep
+  // working AND search engines see one canonical URL per category. Only
+  // fires when we're actually at /inventory (no path param) and the query
+  // string names a known group.
+  useEffect(() => {
+    if (matchPath) return;
+    const slug = readSlugFromSearch(search);
+    if (slug !== ALL_FILTER_SLUG) {
+      const group = inventoryGroupBySlug(slug);
+      if (group) {
+        setLocation(`/inventory/${group.slug}`, { replace: true });
+      }
+    }
+  }, [matchPath, search, setLocation]);
+
+  // Path slug present but unrecognised — bounce to the unfiltered page.
+  // Replace the history entry so the back button doesn't trap users in a
+  // redirect loop.
+  useEffect(() => {
+    if (matchPath && pathSlug && !pathGroup) {
+      setLocation("/inventory", { replace: true });
+    }
+  }, [matchPath, pathSlug, pathGroup, setLocation]);
 
   useEffect(() => {
     fetchInventory()
@@ -112,15 +163,14 @@ export default function InventoryPage() {
   }, [items, filterSlug]);
 
   function selectFilter(slug: string) {
+    // Optimistic UI update so the chip doesn't appear to lag behind the click
+    // while the route transitions.
     setFilterSlug(slug);
-    const params = new URLSearchParams(search);
     if (slug === ALL_FILTER_SLUG) {
-      params.delete("category");
+      setLocation("/inventory");
     } else {
-      params.set("category", slug);
+      setLocation(`/inventory/${slug}`);
     }
-    const qs = params.toString();
-    setLocation(qs ? `/inventory?${qs}` : "/inventory");
   }
 
   const chips: { slug: string; label: string }[] = [
@@ -128,28 +178,51 @@ export default function InventoryPage() {
     ...availableGroups.map((g) => ({ slug: g.slug, label: g.label })),
   ];
 
+  // Per-page metadata: a known category page uses its group's SEO copy and
+  // breadcrumb label; the unfiltered /inventory page falls back to the shared
+  // defaults. The /inventory/<slug> SEO must match the entry in
+  // routes-config.ts since the prerender pipeline reads metadata from this
+  // component's <SEO> tag and audits it against routes-config.
+  const seoTitle = pathGroup ? pathGroup.seo.metaTitle : DEFAULT_META.title;
+  const seoDescription = pathGroup ? pathGroup.seo.metaDescription : DEFAULT_META.description;
+  const seoPath = pathGroup ? `/inventory/${pathGroup.slug}` : "/inventory";
+  const heading = pathGroup ? pathGroup.heading : DEFAULT_META.heading;
+  const intro = pathGroup ? pathGroup.intro : DEFAULT_META.intro;
+
+  const breadcrumbItems = pathGroup
+    ? [{ label: "Inventory", to: "/inventory" }, { label: pathGroup.label }]
+    : [{ label: "Inventory" }];
+
+  const breadcrumbJsonLdItems = pathGroup
+    ? [
+        { name: "Inventory", path: "/inventory" },
+        { name: pathGroup.label, path: `/inventory/${pathGroup.slug}` },
+      ]
+    : [{ name: "Inventory", path: "/inventory" }];
+
   return (
     <PageShell hideTicker>
       <SEO
-        title="Inventory | Used & Refurbished Phones, Laptops in Houston"
-        description="Browse our current inventory of unlocked iPhones, Samsungs, Pixels, MacBooks and laptops at our Houston shop."
-        path="/inventory"
+        title={seoTitle}
+        description={seoDescription}
+        path={seoPath}
         jsonLd={[
           localBusinessJsonLd(),
-          breadcrumbJsonLd([{ name: "Inventory", path: "/inventory" }]),
-          inventoryProductJsonLd(items),
+          breadcrumbJsonLd(breadcrumbJsonLdItems),
+          // ItemList reflects only the items shown on this page so per-category
+          // pages emit category-scoped structured data instead of the full
+          // catalogue (which would dilute relevance signals to crawlers).
+          inventoryProductJsonLd(visible),
         ]}
       />
-      <Breadcrumbs items={[{ label: "Inventory" }]} />
+      <Breadcrumbs items={breadcrumbItems} />
 
       <section className="py-12 px-4 bg-zinc-50 border-b border-zinc-200">
         <div className="max-w-[1240px] mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight">
-            CURRENT <span className="text-red-500">INVENTORY</span>
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight uppercase">
+            {heading.prefix} <span className="text-red-500">{heading.highlight}</span>
           </h1>
-          <p className="text-lg font-bold text-zinc-600 mb-8 max-w-2xl">
-            Stock changes daily. Call to confirm availability or reserve an item — we'll hold it for 24 hours.
-          </p>
+          <p className="text-lg font-bold text-zinc-600 mb-8 max-w-2xl">{intro}</p>
 
           <div className="flex flex-wrap gap-2 mb-8">
             {chips.map((c) => (
