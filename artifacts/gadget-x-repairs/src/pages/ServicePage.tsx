@@ -10,8 +10,32 @@ import { SEO, localBusinessJsonLd, serviceJsonLd, faqJsonLd, breadcrumbJsonLd, i
 import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { SERVICES_BY_SLUG, SERVICES_DATA } from "@/data/services";
 import NotFound from "@/pages/not-found";
+
+const PROCESS_PHOTOS: Photo[] = [
+  {
+    src640: "/images/photos/process-diagnostic-640.jpg",
+    src1024: "/images/photos/process-diagnostic-1024.jpg",
+    alt: "Customer setting their phone down on the counter for a free diagnostic",
+  },
+  {
+    src640: "/images/photos/process-bench-640.jpg",
+    src1024: "/images/photos/process-bench-1024.jpg",
+    alt: "Technician working on a device at the repair bench",
+  },
+  {
+    src640: "/images/photos/process-quality-640.jpg",
+    src1024: "/images/photos/process-quality-1024.jpg",
+    alt: "Hand testing a smartphone screen after the repair",
+  },
+  {
+    src640: "/images/photos/process-pickup-640.jpg",
+    src1024: "/images/photos/process-pickup-1024.jpg",
+    alt: "Customer picking up their finished device at the counter",
+  },
+];
 
 const REPAIR_HUB_SLUGS = new Set([
   "repair-services-houston-tx",
@@ -130,13 +154,25 @@ export default function ServicePage() {
             HOW IT <span className="text-zinc-900">WORKS</span>
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {data.process.map((step, i) => (
-              <div key={step.step} className="bg-white text-zinc-900 p-6 transform hover:-translate-y-1 transition-transform">
-                <div className="text-red-500 font-black text-5xl mb-2">0{i + 1}</div>
-                <h3 className="text-xl font-black uppercase mb-2">{step.step}</h3>
-                <p className="text-zinc-600 font-bold text-sm">{step.detail}</p>
-              </div>
-            ))}
+            {data.process.map((step, i) => {
+              const stepPhoto = PROCESS_PHOTOS[i];
+              return (
+                <div key={step.step} className="group bg-white text-zinc-900 transform hover:-translate-y-1 transition-transform overflow-hidden">
+                  {stepPhoto ? (
+                    <PhotoFrame
+                      photo={stepPhoto}
+                      aspect="16:9"
+                      sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw"
+                    />
+                  ) : null}
+                  <div className="p-6">
+                    <div className="text-red-500 font-black text-5xl mb-2">0{i + 1}</div>
+                    <h3 className="text-xl font-black uppercase mb-2">{step.step}</h3>
+                    <p className="text-zinc-600 font-bold text-sm">{step.detail}</p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>

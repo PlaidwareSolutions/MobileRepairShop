@@ -24,19 +24,42 @@ import { PageShell } from "@/components/PageShell";
 import { LocationCard } from "@/components/LocationCard";
 import { RepairQuoteWizard } from "@/components/forms/RepairQuoteWizard";
 import { SEO, localBusinessJsonLd } from "@/components/SEO";
+import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { BUSINESS, HERO } from "@/content";
 
-const SERVICE_TILES: { name: string; desc: string; icon: LucideIcon; to: string }[] = [
-  { name: "iPhone Repair", desc: "Screen, battery, charging port.", icon: Smartphone, to: "/iphone-repair-houston-tx" },
-  { name: "Samsung Repair", desc: "Galaxy S, Note, A and Z series.", icon: Smartphone, to: "/samsung-repair-houston-tx" },
-  { name: "Pixel Repair", desc: "Google Pixel 3 through 9 Pro.", icon: Smartphone, to: "/google-pixel-repair-houston-tx" },
-  { name: "iPad / Tablet", desc: "Glass, LCD, battery replacement.", icon: Tablet, to: "/tablet-repair-houston-tx" },
-  { name: "MacBook Repair", desc: "Screen, battery, keyboard, board.", icon: Laptop, to: "/macbook-repair-houston-tx" },
-  { name: "Laptop Repair", desc: "HP, Dell, Lenovo, ASUS, Acer.", icon: Laptop, to: "/laptop-repair-houston-tx" },
-  { name: "PS5 Repair", desc: "HDMI port, disc drive, no power.", icon: Gamepad2, to: "/ps5-repair-houston-tx" },
-  { name: "Xbox Repair", desc: "Power issues, HDMI, disc drive.", icon: Gamepad2, to: "/xbox-repair-houston-tx" },
-  { name: "Battery Replace", desc: "Phones, tablets, laptops.", icon: Battery, to: "/battery-replacement-houston-tx" },
-  { name: "Accessories", desc: "Cases, chargers, screen protectors.", icon: Headphones, to: "/phone-accessories-houston-tx" },
+const photo = (slug: string, alt: string): Photo => ({
+  src640: `/images/photos/${slug}-640.jpg`,
+  src1024: `/images/photos/${slug}-1024.jpg`,
+  alt,
+});
+
+const SERVICE_TILES: {
+  name: string;
+  desc: string;
+  icon: LucideIcon;
+  to: string;
+  image?: Photo;
+}[] = [
+  { name: "iPhone Repair", desc: "Screen, battery, charging port.", icon: Smartphone, to: "/iphone-repair-houston-tx",
+    image: photo("iphone-repair", "Technician using a precision screwdriver on an opened iPhone") },
+  { name: "Samsung Repair", desc: "Galaxy S, Note, A and Z series.", icon: Smartphone, to: "/samsung-repair-houston-tx",
+    image: photo("samsung-repair", "Disassembled Samsung smartphone with the back glass removed on a repair workbench") },
+  { name: "Pixel Repair", desc: "Google Pixel 3 through 9 Pro.", icon: Smartphone, to: "/google-pixel-repair-houston-tx",
+    image: photo("pixel-repair", "Pixel-style smartphone laid out with repair tools on a workbench") },
+  { name: "iPad / Tablet", desc: "Glass, LCD, battery replacement.", icon: Tablet, to: "/tablet-repair-houston-tx",
+    image: photo("tablet-repair", "Hands holding a digital tablet up close") },
+  { name: "MacBook Repair", desc: "Screen, battery, keyboard, board.", icon: Laptop, to: "/macbook-repair-houston-tx",
+    image: photo("macbook-repair", "Technician soldering a laptop logic board at the workbench") },
+  { name: "Laptop Repair", desc: "HP, Dell, Lenovo, ASUS, Acer.", icon: Laptop, to: "/laptop-repair-houston-tx",
+    image: photo("laptop-repair", "A hand fixing the internal parts of a laptop") },
+  { name: "PS5 Repair", desc: "HDMI port, disc drive, no power.", icon: Gamepad2, to: "/ps5-repair-houston-tx",
+    image: photo("ps5-repair", "Close-up of a PlayStation 5 DualSense controller") },
+  { name: "Xbox Repair", desc: "Power issues, HDMI, disc drive.", icon: Gamepad2, to: "/xbox-repair-houston-tx",
+    image: photo("xbox-repair", "Xbox controller and console set up on a workbench") },
+  { name: "Battery Replace", desc: "Phones, tablets, laptops.", icon: Battery, to: "/battery-replacement-houston-tx",
+    image: photo("battery-replace", "Open phone with battery exposed and repair tools laid out") },
+  { name: "Accessories", desc: "Cases, chargers, screen protectors.", icon: Headphones, to: "/phone-accessories-houston-tx",
+    image: photo("accessories", "Smartphone displayed alongside cases and accessories on a counter") },
 ];
 
 const HERO_DIAGNOSTIC: { name: string; price: string; icon: LucideIcon; to: string }[] = [
@@ -46,11 +69,20 @@ const HERO_DIAGNOSTIC: { name: string; price: string; icon: LucideIcon; to: stri
   { name: "MacBook Repair", price: "free quote", icon: Laptop, to: "/macbook-repair-houston-tx" },
 ];
 
-const WHY_TILES = [
-  { title: "15 Years Heritage", desc: "Houston's trusted repair shop since 2010.", icon: Star },
-  { title: "Same-Day Turnaround", desc: "Most repairs done in 1–2 hours while you wait.", icon: Zap },
-  { title: "Certified Technicians", desc: "Skilled techs who know every device, inside and out.", icon: ShieldCheck },
-  { title: "90-Day Warranty", desc: "Every repair backed by our 90-day warranty.", icon: CheckCircle2 },
+const WHY_TILES: {
+  title: string;
+  desc: string;
+  icon: LucideIcon;
+  image?: Photo;
+}[] = [
+  { title: "15 Years Heritage", desc: "Houston's trusted repair shop since 2010.", icon: Star,
+    image: photo("trust-heritage", "Portrait of a senior shop owner looking at the camera") },
+  { title: "Same-Day Turnaround", desc: "Most repairs done in 1–2 hours while you wait.", icon: Zap,
+    image: photo("trust-sameday", "Customer being handed their phone back at the counter") },
+  { title: "Certified Technicians", desc: "Skilled techs who know every device, inside and out.", icon: ShieldCheck,
+    image: photo("trust-certified", "Technician inspecting a circuit board through a microscope") },
+  { title: "90-Day Warranty", desc: "Every repair backed by our 90-day warranty.", icon: CheckCircle2,
+    image: photo("trust-warranty", "Smiling man in a black suit shaking hands with a customer") },
 ];
 
 const FEATURED_OFFERS = [
@@ -263,18 +295,29 @@ export default function HomePage() {
                 <Link
                   key={s.to}
                   href={s.to}
-                  className="group block relative bg-zinc-50 border-4 border-zinc-950 p-6 shadow-[6px_6px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] hover:translate-x-[4px] hover:translate-y-[4px] transition-all"
+                  className="group block relative bg-zinc-50 border-4 border-zinc-950 shadow-[6px_6px_0_0_#09090b] hover:shadow-[2px_2px_0_0_#09090b] hover:translate-x-[4px] hover:translate-y-[4px] transition-all overflow-hidden"
                   data-testid={`tile-${s.to}`}
                 >
-                  <div className="absolute top-3 right-3 opacity-20 group-hover:opacity-100 transition-opacity">
-                    <ArrowRight className="w-5 h-5 text-red-600" />
+                  {s.image ? (
+                    <PhotoFrame
+                      photo={s.image}
+                      aspect="4:3"
+                      sizes="(min-width: 1024px) 220px, (min-width: 640px) 50vw, 100vw"
+                    />
+                  ) : null}
+                  <div className="p-5 relative">
+                    <div className="absolute top-3 right-3 opacity-20 group-hover:opacity-100 transition-opacity">
+                      <ArrowRight className="w-5 h-5 text-red-600" />
+                    </div>
+                    {s.image ? null : (
+                      <div className="bg-zinc-950 text-white w-12 h-12 flex items-center justify-center mb-5 group-hover:bg-red-600 transition-colors">
+                        <Icon className="w-6 h-6" />
+                      </div>
+                    )}
+                    <h3 className="text-lg font-black uppercase tracking-tight mb-1">{s.name}</h3>
+                    <p className="text-xs font-bold text-zinc-500 mb-4 uppercase">{s.desc}</p>
+                    <div className="text-red-600 font-black uppercase text-xs tracking-widest">View details →</div>
                   </div>
-                  <div className="bg-zinc-950 text-white w-12 h-12 flex items-center justify-center mb-5 group-hover:bg-red-600 transition-colors">
-                    <Icon className="w-6 h-6" />
-                  </div>
-                  <h3 className="text-lg font-black uppercase tracking-tight mb-1">{s.name}</h3>
-                  <p className="text-xs font-bold text-zinc-500 mb-4 uppercase">{s.desc}</p>
-                  <div className="text-red-600 font-black uppercase text-xs tracking-widest">View details →</div>
                 </Link>
               );
             })}
@@ -334,13 +377,30 @@ export default function HomePage() {
                 return (
                   <div
                     key={item.title}
-                    className="bg-white border-4 border-zinc-950 p-5 shadow-[6px_6px_0_0_#09090b] hover:-translate-y-1 transition-transform"
+                    className="group bg-white border-4 border-zinc-950 shadow-[6px_6px_0_0_#09090b] hover:-translate-y-1 transition-transform overflow-hidden"
                   >
-                    <div className="bg-zinc-950 text-white w-12 h-12 flex items-center justify-center mb-4">
-                      <Icon className="w-6 h-6 text-red-500" />
+                    {item.image ? (
+                      <PhotoFrame
+                        photo={item.image}
+                        aspect="1:1"
+                        sizes="(min-width: 1024px) 200px, 50vw"
+                      />
+                    ) : null}
+                    <div className="p-5 relative">
+                      {item.image ? (
+                        <div className="absolute -top-7 left-5 bg-zinc-950 text-white w-12 h-12 flex items-center justify-center shadow-[4px_4px_0_0_#ef4444]">
+                          <Icon className="w-6 h-6 text-red-500" />
+                        </div>
+                      ) : (
+                        <div className="bg-zinc-950 text-white w-12 h-12 flex items-center justify-center mb-4">
+                          <Icon className="w-6 h-6 text-red-500" />
+                        </div>
+                      )}
+                      <h4 className={`text-base font-black uppercase mb-1 leading-tight ${item.image ? "mt-8" : ""}`}>
+                        {item.title}
+                      </h4>
+                      <p className="text-xs font-bold text-zinc-600 uppercase tracking-tight">{item.desc}</p>
                     </div>
-                    <h4 className="text-base font-black uppercase mb-1 leading-tight">{item.title}</h4>
-                    <p className="text-xs font-bold text-zinc-600 uppercase tracking-tight">{item.desc}</p>
                   </div>
                 );
               })}
