@@ -27,6 +27,19 @@ import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { BeforeAfter, type BeforeAfterPair } from "@/components/BeforeAfter";
 import { BUSINESS, HERO } from "@/content";
+import { INVENTORY_GROUPS } from "@/lib/inventoryGroups";
+
+const inventoryHref = (slug: string) => `/inventory?category=${encodeURIComponent(slug)}`;
+
+const groupSlug = (slug: string): string => {
+  const found = INVENTORY_GROUPS.find((g) => g.slug === slug);
+  if (!found) {
+    // Fail loud at module load so a typo here can't silently send shoppers to
+    // an unfiltered inventory page.
+    throw new Error(`Unknown inventory group slug: ${slug}`);
+  }
+  return found.slug;
+};
 
 const photo = (slug: string, alt: string): Photo => ({
   src640: `/images/photos/${slug}-640.jpg`,
@@ -148,13 +161,13 @@ const SELL_TILES: {
   slug: string;
   image?: Photo;
 }[] = [
-  { name: "Unlocked Phones", desc: "Apple, Samsung, Pixel & more", icon: Smartphone, to: "/inventory", slug: "phones",
+  { name: "Unlocked Phones", desc: "Apple, Samsung, Pixel & more", icon: Smartphone, to: inventoryHref(groupSlug("phones")), slug: groupSlug("phones"),
     image: photo("sell-phones", "Row of unlocked smartphones on display stands at the shop counter") },
-  { name: "iPads & Tablets", desc: "Cellular and Wi-Fi", icon: Tablet, to: "/inventory", slug: "tablets",
+  { name: "iPads & Tablets", desc: "Cellular and Wi-Fi", icon: Tablet, to: inventoryHref(groupSlug("tablets")), slug: groupSlug("tablets"),
     image: photo("sell-tablets", "Refurbished tablets on display stands at the shop counter") },
-  { name: "MacBooks & Laptops", desc: "Refurbished and tested", icon: Laptop, to: "/inventory", slug: "laptops",
+  { name: "MacBooks & Laptops", desc: "Refurbished and tested", icon: Laptop, to: inventoryHref(groupSlug("laptops")), slug: groupSlug("laptops"),
     image: photo("sell-laptops", "Two refurbished laptops open on the shop counter") },
-  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: "/inventory", slug: "consoles",
+  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: inventoryHref(groupSlug("consoles")), slug: groupSlug("consoles"),
     image: photo("sell-consoles", "Refurbished gaming consoles and controllers on the shop counter") },
 ];
 

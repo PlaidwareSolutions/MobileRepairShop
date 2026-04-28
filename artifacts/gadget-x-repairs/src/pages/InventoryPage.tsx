@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Phone } from "lucide-react";
+import { useLocation, useSearch } from "wouter";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
@@ -8,6 +9,13 @@ import { ReservationForm } from "@/components/forms/ReservationForm";
 import { Button } from "@/components/ui/button";
 import { fetchInventory } from "@/lib/api";
 import { INVENTORY_FALLBACK, type InventoryItem } from "@/data/inventory";
+import {
+  ALL_FILTER_SLUG,
+  INVENTORY_GROUPS,
+  OTHER_GROUP,
+  inventoryGroupBySlug,
+  type InventoryGroup,
+} from "@/lib/inventoryGroups";
 import { BUSINESS } from "@/content";
 
 function priceToNumber(price: string): string {
@@ -51,10 +59,27 @@ function inventoryProductJsonLd(items: InventoryItem[]) {
   };
 }
 
+function readSlugFromSearch(search: string): string {
+  const params = new URLSearchParams(search);
+  const slug = params.get("category");
+  if (slug && inventoryGroupBySlug(slug)) return slug;
+  return ALL_FILTER_SLUG;
+}
+
 export default function InventoryPage() {
   const [items, setItems] = useState<InventoryItem[]>(INVENTORY_FALLBACK);
   const [reserving, setReserving] = useState<InventoryItem | null>(null);
-  const [filter, setFilter] = useState<string>("All");
+  const [, setLocation] = useLocation();
+  const search = useSearch();
+
+  // Initialise to "all" so that SSR (which has no query string) and the first
+  // client render match. A useEffect below syncs the chip from the real URL
+  // once we're mounted in the browser.
+  const [filterSlug, setFilterSlug] = useState<string>(ALL_FILTER_SLUG);
+
+  useEffect(() => {
+    setFilterSlug(readSlugFromSearch(search));
+  }, [search]);
 
   useEffect(() => {
     fetchInventory()
@@ -69,13 +94,39 @@ export default function InventoryPage() {
       });
   }, []);
 
-  const categories = useMemo(() => {
-    const set = new Set<string>();
-    items.forEach((it) => set.add(it.category));
-    return ["All", ...Array.from(set)];
+  // Always show every well-known group chip (so a visitor who deep-links
+  // from a "We Sell Too" tile always sees their selection reflected, even
+  // when that category is currently out of stock). Only the catch-all
+  // "Other" chip is conditional on actually having uncategorised items.
+  const availableGroups = useMemo<InventoryGroup[]>(() => {
+    const result: InventoryGroup[] = [...INVENTORY_GROUPS];
+    if (items.some((it) => OTHER_GROUP.matches(it.category))) result.push(OTHER_GROUP);
+    return result;
   }, [items]);
 
-  const visible = filter === "All" ? items : items.filter((it) => it.category === filter);
+  const visible = useMemo(() => {
+    if (filterSlug === ALL_FILTER_SLUG) return items;
+    const group = inventoryGroupBySlug(filterSlug);
+    if (!group) return items;
+    return items.filter((it) => group.matches(it.category));
+  }, [items, filterSlug]);
+
+  function selectFilter(slug: string) {
+    setFilterSlug(slug);
+    const params = new URLSearchParams(search);
+    if (slug === ALL_FILTER_SLUG) {
+      params.delete("category");
+    } else {
+      params.set("category", slug);
+    }
+    const qs = params.toString();
+    setLocation(qs ? `/inventory?${qs}` : "/inventory");
+  }
+
+  const chips: { slug: string; label: string }[] = [
+    { slug: ALL_FILTER_SLUG, label: "All" },
+    ...availableGroups.map((g) => ({ slug: g.slug, label: g.label })),
+  ];
 
   return (
     <PageShell hideTicker>
@@ -101,17 +152,27 @@ export default function InventoryPage() {
           </p>
 
           <div className="flex flex-wrap gap-2 mb-8">
-            {categories.map((c) => (
+            {chips.map((c) => (
               <button
-                key={c}
-                onClick={() => setFilter(c)}
-                className={`px-4 py-2 font-bold uppercase text-sm tracking-wide border transition-colors ${filter === c ? "bg-red-500 border-red-500 text-zinc-900" : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-red-500"}`}
-                data-testid={`filter-${c}`}
+                key={c.slug}
+                onClick={() => selectFilter(c.slug)}
+                aria-pressed={filterSlug === c.slug}
+                className={`px-4 py-2 font-bold uppercase text-sm tracking-wide border transition-colors ${filterSlug === c.slug ? "bg-red-500 border-red-500 text-zinc-900" : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-red-500"}`}
+                data-testid={`filter-${c.slug}`}
               >
-                {c}
+                {c.label}
               </button>
             ))}
           </div>
+
+          {visible.length === 0 && (
+            <div
+              className="bg-white border border-zinc-200 p-6 text-center text-zinc-600 font-bold uppercase tracking-wide text-sm"
+              data-testid="inventory-empty"
+            >
+              Nothing in this category right now — call us at {BUSINESS.phoneDisplay} and we'll let you know when it's back in stock.
+            </div>
+          )}
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {visible.map((it) => (
