@@ -72,3 +72,27 @@ id = "i6EYGbdMuEdgNmgd95cis"
 uri = "file://attached_assets/generated_images/after-macbook-keys.png"
 type = "image"
 title = "generated_image"
+
+[[generated]]
+id = "CoyrgQDZTnWOeLh4TcHcU"
+uri = "file://artifacts/gadget-x-repairs/public/images/photos/_tmp/sell-phones.png"
+type = "image"
+title = "sell phones display"
+
+[[generated]]
+id = "PGRe3H7MjbXo849b7pLkq"
+uri = "file://artifacts/gadget-x-repairs/public/images/photos/_tmp/sell-tablets.png"
+type = "image"
+title = "sell tablets display"
+
+[[generated]]
+id = "vLYy5vXqgNzACSjpcfPiV"
+uri = "file://artifacts/gadget-x-repairs/public/images/photos/_tmp/sell-laptops.png"
+type = "image"
+title = "sell laptops display"
+
+[[generated]]
+id = "fQctvpmO83AhGCNU-kN31"
+uri = "file://artifacts/gadget-x-repairs/public/images/photos/_tmp/sell-consoles.png"
+type = "image"
+title = "sell gaming consoles"

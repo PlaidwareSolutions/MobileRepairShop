@@ -140,11 +140,22 @@ const FEATURED_OFFERS = [
   { title: "Prepaid Activation", price: "Walk in", note: "Cricket, Metro, T-Mobile, AT&T", icon: Wifi, to: "/phone-activation-houston-tx" },
 ];
 
-const SELL_TILES = [
-  { name: "Unlocked Phones", desc: "Apple, Samsung, Pixel & more", icon: Smartphone, to: "/phones-for-sale-houston-tx" },
-  { name: "iPads & Tablets", desc: "Cellular and Wi-Fi", icon: Tablet, to: "/tablet-repair-houston-tx" },
-  { name: "MacBooks & Laptops", desc: "Refurbished and tested", icon: Laptop, to: "/laptops-for-sale-houston-tx" },
-  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: "/gaming-console-repair-houston-tx" },
+const SELL_TILES: {
+  name: string;
+  desc: string;
+  icon: LucideIcon;
+  to: string;
+  slug: string;
+  image?: Photo;
+}[] = [
+  { name: "Unlocked Phones", desc: "Apple, Samsung, Pixel & more", icon: Smartphone, to: "/inventory", slug: "phones",
+    image: photo("sell-phones", "Row of unlocked smartphones on display stands at the shop counter") },
+  { name: "iPads & Tablets", desc: "Cellular and Wi-Fi", icon: Tablet, to: "/inventory", slug: "tablets",
+    image: photo("sell-tablets", "Refurbished tablets on display stands at the shop counter") },
+  { name: "MacBooks & Laptops", desc: "Refurbished and tested", icon: Laptop, to: "/inventory", slug: "laptops",
+    image: photo("sell-laptops", "Two refurbished laptops open on the shop counter") },
+  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: "/inventory", slug: "consoles",
+    image: photo("sell-consoles", "Refurbished gaming consoles and controllers on the shop counter") },
 ];
 
 const PREPAID_TILES = [
@@ -501,16 +512,26 @@ export default function HomePage() {
               const Icon = product.icon;
               return (
                 <Link
-                  key={product.to}
+                  key={product.slug}
                   href={product.to}
-                  className="bg-zinc-50 border border-zinc-200 aspect-square flex flex-col items-center justify-center p-4 text-center shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all group"
-                  data-testid={`sell-${product.to}`}
+                  className="group block relative bg-zinc-50 border border-zinc-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all overflow-hidden"
+                  data-testid={`sell-${product.slug}`}
                 >
-                  <div className="bg-zinc-900 text-white w-14 h-14 flex items-center justify-center mb-3 group-hover:bg-red-600 transition-colors">
-                    <Icon className="w-7 h-7" />
+                  {product.image ? (
+                    <PhotoFrame
+                      photo={product.image}
+                      aspect="4:3"
+                      sizes="(min-width: 1024px) 280px, 50vw"
+                    />
+                  ) : null}
+                  <div className="p-5 relative">
+                    <div className="absolute top-3 right-3 bg-zinc-900 text-white w-9 h-9 flex items-center justify-center group-hover:bg-red-600 transition-colors">
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <h3 className="text-lg font-extrabold tracking-tight mb-1 pr-12">{product.name}</h3>
+                    <p className="text-xs font-bold text-zinc-500 mb-4 uppercase">{product.desc}</p>
+                    <div className="text-red-600 font-bold uppercase text-xs tracking-wide">View details →</div>
                   </div>
-                  <span className="font-bold uppercase text-sm tracking-tight">{product.name}</span>
-                  <span className="font-bold text-zinc-500 text-[11px] uppercase tracking-tight mt-1">{product.desc}</span>
                 </Link>
               );
             })}
