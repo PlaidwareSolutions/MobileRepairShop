@@ -12,6 +12,7 @@ import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { SERVICES_BY_SLUG, SERVICES_DATA } from "@/data/services";
+import { inventoryGroupBySlug, inventoryGroupSlugForPageSlug } from "@/lib/inventoryGroups";
 import NotFound from "@/pages/not-found";
 
 const PROCESS_PHOTOS: Photo[] = [
@@ -94,6 +95,8 @@ export default function ServicePage() {
           (data.related.includes(s.slug) || getRepairParentHub(s.slug)?.path === path),
       ).slice(0, 12)
     : [];
+
+  const inventoryGroup = inventoryGroupBySlug(inventoryGroupSlugForPageSlug(data.slug));
 
   return (
     <PageShell hideTicker>
@@ -231,6 +234,33 @@ export default function ServicePage() {
           </p>
         </div>
       </section>
+
+      {inventoryGroup && (
+        <section className="py-10 px-4 bg-white border-t border-zinc-200">
+          <div className="max-w-[1240px] mx-auto">
+            <div
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-zinc-50 border border-zinc-200 p-5 md:p-6"
+              data-testid="service-inventory-callout"
+            >
+              <div className="min-w-0">
+                <div className="text-[10px] font-extrabold uppercase tracking-widest text-red-500 mb-1">
+                  Looking to buy instead?
+                </div>
+                <p className="font-bold text-zinc-900 text-base md:text-lg">
+                  We also sell tested, warrantied {inventoryGroup.label.toLowerCase()} at our Houston shop.
+                </p>
+              </div>
+              <Link
+                href={`/inventory/${inventoryGroup.slug}`}
+                className="bg-zinc-900 text-white hover:bg-red-500 font-black uppercase tracking-widest text-xs px-5 py-3 shadow-[4px_4px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#09090b] transition-all whitespace-nowrap"
+                data-testid={`link-inventory-${inventoryGroup.slug}`}
+              >
+                Browse {inventoryGroup.label} →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Lead-capture form: Contact on hubs, Quote+Appointment on detail pages */}
       {REPAIR_HUB_SLUGS.has(data.slug) ? (

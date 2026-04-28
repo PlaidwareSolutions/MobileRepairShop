@@ -312,3 +312,31 @@ export function inventoryGroupForCategory(
   if (!c) return OTHER_GROUP;
   return INVENTORY_GROUPS.find((g) => g.matches(c)) ?? OTHER_GROUP;
 }
+
+/**
+ * Resolve which inventory group a service or sales page slug should cross-link
+ * to. Used by service detail pages ("Looking to buy instead?" callout) and
+ * sales pages ("View Inventory" button) so they deep-link to the relevant
+ * `/inventory/<group>` page instead of the generic `/inventory` index.
+ *
+ * Returns `null` when the slug has no clear device class (e.g. generic
+ * "battery-replacement-houston-tx" or accessory pages) — callers should fall
+ * back to the generic inventory link in that case.
+ *
+ * Order matters: tablet/laptop/console keywords are checked before "phone"
+ * because some slugs (e.g. "phone-accessories-houston-tx") would otherwise
+ * incorrectly resolve to the phones group.
+ */
+export function inventoryGroupSlugForPageSlug(
+  slug: string | null | undefined,
+): InventoryGroup["slug"] | null {
+  const s = (slug ?? "").toLowerCase();
+  if (!s) return null;
+  if (/\b(ipad|tablet)s?\b/.test(s)) return "tablets";
+  if (/\b(macbook|laptop|chromebook|notebook)s?\b/.test(s)) return "laptops";
+  if (/\b(ps[2-9]|xbox|console|controller|nintendo|switch|playstation)s?\b/.test(s)) {
+    return "consoles";
+  }
+  if (/\b(iphone|samsung|pixel|motorola|revvl|phone)s?\b/.test(s)) return "phones";
+  return null;
+}

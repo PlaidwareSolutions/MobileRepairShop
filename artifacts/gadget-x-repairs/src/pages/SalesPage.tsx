@@ -12,6 +12,7 @@ import { ReservationForm } from "@/components/forms/ReservationForm";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
 import { SALES_BY_SLUG, SALES_DATA } from "@/data/sales";
+import { inventoryGroupBySlug, inventoryGroupSlugForPageSlug } from "@/lib/inventoryGroups";
 import { BUSINESS } from "@/content";
 import NotFound from "@/pages/not-found";
 
@@ -72,6 +73,15 @@ export default function SalesPage() {
   const isBuyback = data.slug === "sell-phone-houston-tx";
   const isSellPage = pageType === "sell";
   const isHub = isHubPage(data.slug, pageType);
+  // Accessories pages aren't really tied to a device-class inventory bucket, so
+  // keep the generic /inventory link for them. For shop / sell / brand pages
+  // we deep-link to the matching /inventory/<group> when one clearly applies.
+  const inventoryGroup =
+    pageType === "accessories" || pageType === "accessories-hub"
+      ? null
+      : inventoryGroupBySlug(inventoryGroupSlugForPageSlug(data.slug));
+  const inventoryHref = inventoryGroup ? `/inventory/${inventoryGroup.slug}` : "/inventory";
+  const inventoryLabel = inventoryGroup ? `View ${inventoryGroup.label}` : "View Inventory";
 
   const breadcrumbItems = parent
     ? [{ label: parent.name, to: parent.path }, { label: data.title }]
@@ -156,7 +166,7 @@ export default function SalesPage() {
                 <a href={BUSINESS.phoneTel}>Call to Browse</a>
               </Button>
               <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
-                <Link href="/inventory">View Inventory</Link>
+                <Link href={inventoryHref} data-testid="link-view-inventory">{inventoryLabel}</Link>
               </Button>
             </div>
           </div>
