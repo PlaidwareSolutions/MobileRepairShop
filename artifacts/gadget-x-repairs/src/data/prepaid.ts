@@ -1,14 +1,58 @@
+import type { Photo } from "@/components/PhotoFrame";
+
 export type PrepaidData = {
   slug: string;
   title: string;
   metaTitle: string;
   metaDescription: string;
   carrier: string;
+  logoSrc?: string;
+  heroPhoto?: Photo;
   hero: { eyebrow: string; h1: string; subhead: string };
   services: string[];
   notes?: string[];
   faqs: { q: string; a: string }[];
 };
+
+const SIM_PHOTO: Photo = {
+  src640: "/images/photos/sim-activation-640.jpg",
+  src1024: "/images/photos/sim-activation-1024.jpg",
+  alt: "Close-up of a hand holding a SIM card next to a smartphone tray, ready for activation.",
+};
+
+const CASH_PHOTO: Photo = {
+  src640: "/images/photos/cash-payment-640.jpg",
+  src1024: "/images/photos/cash-payment-1024.jpg",
+  alt: "Close-up of a hand holding cash, ready to pay a phone bill in person.",
+};
+
+const CARRIER_LOGOS: Record<string, string> = {
+  "Boost Mobile": "/images/carriers/boost-mobile.png",
+  "AT&T Prepaid": "/images/carriers/att-prepaid.png",
+  "Gen Mobile": "/images/carriers/gen-mobile.png",
+  "Simple Mobile": "/images/carriers/simple-mobile.png",
+  "Xfinity Mobile": "/images/carriers/xfinity-mobile.png",
+  "H2O Wireless": "/images/carriers/h2o-wireless.png",
+  "Lyca Mobile": "/images/carriers/lyca-mobile.png",
+  "Verizon Prepaid": "/images/carriers/verizon.png",
+  "Cricket Wireless": "/images/carriers/cricket.png",
+  "Metro by T-Mobile": "/images/carriers/metro-by-tmobile.png",
+  "T-Mobile": "/images/carriers/t-mobile.png",
+};
+
+export const ALL_CARRIERS: { name: string; logoSrc: string; slug?: string }[] = [
+  { name: "Cricket Wireless", logoSrc: CARRIER_LOGOS["Cricket Wireless"] },
+  { name: "Metro by T-Mobile", logoSrc: CARRIER_LOGOS["Metro by T-Mobile"] },
+  { name: "T-Mobile", logoSrc: CARRIER_LOGOS["T-Mobile"] },
+  { name: "AT&T Prepaid", logoSrc: CARRIER_LOGOS["AT&T Prepaid"], slug: "att-activation-houston-tx" },
+  { name: "Boost Mobile", logoSrc: CARRIER_LOGOS["Boost Mobile"], slug: "boost-mobile-activation-houston-tx" },
+  { name: "Verizon Prepaid", logoSrc: CARRIER_LOGOS["Verizon Prepaid"], slug: "verizon-prepaid-activation-houston-tx" },
+  { name: "Xfinity Mobile", logoSrc: CARRIER_LOGOS["Xfinity Mobile"], slug: "xfinity-mobile-activation-houston-tx" },
+  { name: "Gen Mobile", logoSrc: CARRIER_LOGOS["Gen Mobile"], slug: "gen-mobile-activation-houston-tx" },
+  { name: "Simple Mobile", logoSrc: CARRIER_LOGOS["Simple Mobile"], slug: "simple-mobile-activation-houston-tx" },
+  { name: "H2O Wireless", logoSrc: CARRIER_LOGOS["H2O Wireless"], slug: "h2o-wireless-activation-houston-tx" },
+  { name: "Lyca Mobile", logoSrc: CARRIER_LOGOS["Lyca Mobile"], slug: "lyca-mobile-activation-houston-tx" },
+];
 
 const make = (carrier: string, slug: string, isPayment = false): PrepaidData => ({
   slug,
@@ -22,6 +66,8 @@ const make = (carrier: string, slug: string, isPayment = false): PrepaidData => 
   metaDescription: isPayment
     ? `Pay your ${carrier} bill in cash at our Houston shop. Walk in, pay, and you're done. Open Sun 12–5, Mon–Sat 10–7.`
     : `New ${carrier} activation, port-ins and SIM swaps in Houston. Bring your phone or buy one in-store. Walk in any day.`,
+  logoSrc: CARRIER_LOGOS[carrier],
+  heroPhoto: isPayment ? CASH_PHOTO : SIM_PHOTO,
   hero: {
     eyebrow: isPayment ? `${carrier} Bill Pay` : `${carrier} Prepaid`,
     h1: isPayment ? `${carrier} Bill Payment in Houston` : `${carrier} Activation in Houston`,
@@ -74,6 +120,8 @@ PREPAID_DATA[0].metaDescription =
 PREPAID_DATA[0].hero.eyebrow = "Prepaid";
 PREPAID_DATA[0].hero.h1 = "Prepaid Phone Activations in Houston";
 PREPAID_DATA[0].hero.subhead = "We activate every major prepaid carrier — bring your phone or buy one from us.";
+PREPAID_DATA[0].logoSrc = undefined;
+PREPAID_DATA[0].heroPhoto = SIM_PHOTO;
 PREPAID_DATA[0].services = [
   "Cricket Wireless activations & ports",
   "Metro by T-Mobile activations & ports",
@@ -100,6 +148,8 @@ PREPAID_DATA[1].hero.eyebrow = "Bill Payments";
 PREPAID_DATA[1].hero.h1 = "Cell Phone Bill Payments in Houston";
 PREPAID_DATA[1].hero.subhead =
   "Skip the app — bring cash. We accept payments for every major prepaid carrier and most resellers.";
+PREPAID_DATA[1].logoSrc = undefined;
+PREPAID_DATA[1].heroPhoto = CASH_PHOTO;
 PREPAID_DATA[1].services = [
   "Cash payments for all major prepaid carriers",
   "Same-day reactivation",

@@ -27,6 +27,8 @@ and `-1024.jpg` for desktop / retina) at JPEG quality 82.
 | `process-bench` | Process step · 02 Same-day repair | 16:9 (640×360, 1024×576) | IT services EU | [Pexels #7639370](https://www.pexels.com/photo/7639370/) |
 | `process-quality` | Process step · 03 Quality check | 16:9 (640×360, 1024×576) | thomas vanhaecht | [Pexels #215367](https://www.pexels.com/photo/215367/) |
 | `process-pickup` | Process step · 04 Pickup | 16:9 (640×360, 1024×576) | Vitaly Gariev | [Pexels #36730432](https://www.pexels.com/photo/36730432/) |
+| `sim-activation` | Prepaid hero · all activation pages | 4:3 (640×480, 1024×768) | Markus Winkler | [Pexels #14434414](https://www.pexels.com/photo/14434414/) |
+| `cash-payment` | Prepaid hero · bill-payments page | 4:3 (640×480, 1024×768) | Karolina Grabowska | [Pexels #5909816](https://www.pexels.com/photo/5909816/) |
 
 ### Before / after gallery (homepage `Our Work` section)
 
