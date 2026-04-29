@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,19 +6,27 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitContact } from "@/lib/api";
 
-type FormValues = { name: string; contact: string; message: string };
+type FormValues = { name: string; contact: string; message: string; website?: string };
 
 export function ContactForm() {
   const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormValues>();
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const renderedAtRef = useRef<number>(Date.now());
 
   async function onSubmit(values: FormValues) {
     setError(null);
     try {
-      await submitContact(values);
+      await submitContact({
+        name: values.name,
+        contact: values.contact,
+        message: values.message,
+        website: values.website ?? "",
+        renderedAt: renderedAtRef.current,
+      });
       setDone(true);
       reset();
+      renderedAtRef.current = Date.now();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     }
@@ -36,6 +44,24 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border border-zinc-200 p-6 md:p-8 space-y-5" data-testid="form-contact">
+      {/*
+        Honeypot: real users never see or interact with this field.
+        Hidden off-screen rather than display:none so headless browsers that
+        skip non-rendered fields still fill it in. Bots that auto-fill every
+        input by name/label will populate "website" and get silently dropped
+        on the server.
+      */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }}>
+        <label htmlFor="ct-website">Website</label>
+        <input
+          id="ct-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("website")}
+        />
+      </div>
+
       <div className="space-y-2">
         <Label htmlFor="ct-name" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Your name</Label>
         <Input id="ct-name" {...register("name", { required: true })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-name" />
