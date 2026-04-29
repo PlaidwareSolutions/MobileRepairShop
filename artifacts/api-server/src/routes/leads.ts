@@ -151,9 +151,10 @@ router.post(
           },
           "lead.bot_blocked",
         );
-        // Mimic the success shape so the bot can't tell it was filtered and
-        // doesn't learn to bypass the trap. id is optional in the response
-        // schema, so we omit it rather than fabricate one.
+        // Return the exact same payload as the success path below so a bot
+        // can't distinguish blocked from accepted by inspecting the response.
+        // The contact form doesn't read the id, so omitting it everywhere is
+        // safe and lets us keep the two paths byte-identical.
         res.status(201).json({ ok: true });
         return;
       }
@@ -168,7 +169,7 @@ router.post(
         })
         .returning({ id: contactMessagesTable.id });
       req.log.info({ leadType: "contact", id: row.id }, "lead.created");
-      res.status(201).json({ ok: true, id: row.id });
+      res.status(201).json({ ok: true });
     } catch (err) {
       handleValidation(err, res, next);
     }
