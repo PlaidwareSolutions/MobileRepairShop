@@ -16,7 +16,7 @@ export type RouteEntry = {
 // to /phone-repair-houston-tx so existing search-engine signals are preserved.
 const HOME_META = {
   metaTitle:
-    "Phone Repair Houston, TX | iPhone, Samsung, Pixel, Laptop, PS5 — Gadget X Repairs",
+    "Phone, Laptop & PS5 Repair Houston TX | Gadget X Repairs",
   metaDescription:
     "Same-day phone, tablet, laptop and game console repair in Houston, TX. iPhone, Samsung, Pixel, MacBook, PS5, Xbox — fix, sell, prepaid activation. (346) 623-6898.",
 };
