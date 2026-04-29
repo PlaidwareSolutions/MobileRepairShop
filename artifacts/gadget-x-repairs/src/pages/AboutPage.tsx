@@ -19,8 +19,8 @@ export default function AboutPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="About Gadget X Repairs | 15 Years in Houston"
-        description="About Gadget X Repairs — 15 years of honest repair, sales and prepaid service from our Almeda Rd shop in Houston, TX."
+        title="About GadgetX Repairs | 15 Years in Houston TX"
+        description="About GadgetX Repairs in Houston TX — 15 years of honest repair, sales and prepaid service from our Almeda Rd shop. Walk-ins welcome!"
         path="/about"
         jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "About", path: "/about" }])]}
       />

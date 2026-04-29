@@ -62,9 +62,9 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     label: "Phones",
     matches: (c) => /phone|iphone|galaxy|pixel/i.test(c),
     seo: {
-      metaTitle: "Used & Refurbished Phones in Houston | Gadget X Repairs",
+      metaTitle: "Used & Refurbished Phones Houston TX | GadgetX Repairs",
       metaDescription:
-        "Browse unlocked iPhones, Samsung Galaxy and Google Pixel phones at our Houston shop. Tested, warrantied refurbished and used phones from $99.",
+        "Shop unlocked iPhones, Samsung Galaxy & Pixel phones at GadgetX Repairs in Houston TX. Tested, warrantied refurbished & used from $99.",
     },
     heading: { prefix: "Used", highlight: "Phones" },
     intro:
@@ -114,9 +114,9 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     label: "Tablets",
     matches: (c) => /tablet|ipad/i.test(c),
     seo: {
-      metaTitle: "Used & Refurbished Tablets in Houston | Gadget X Repairs",
+      metaTitle: "Used & Refurbished Tablets Houston TX | GadgetX Repairs",
       metaDescription:
-        "Refurbished iPads and Android tablets at our Houston shop — Wi-Fi and cellular models, tested and backed by our 90-day warranty.",
+        "Refurbished iPads & Android tablets at GadgetX Repairs in Houston TX — Wi-Fi & cellular models, tested with our 90-day warranty.",
     },
     heading: { prefix: "Used", highlight: "Tablets" },
     intro:
@@ -166,9 +166,9 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     label: "Laptops",
     matches: (c) => /laptop|macbook|chromebook|notebook/i.test(c),
     seo: {
-      metaTitle: "Refurbished MacBooks & Laptops in Houston | Gadget X Repairs",
+      metaTitle: "Refurbished MacBooks & Laptops Houston | GadgetX Repairs",
       metaDescription:
-        "Refurbished MacBooks and Windows laptops in Houston, TX — HP, Dell, Lenovo, ASUS, Acer and Chromebooks. Tested with our 90-day warranty.",
+        "Refurbished MacBooks & Windows laptops at GadgetX Repairs in Houston TX — HP, Dell, Lenovo, ASUS, Acer & Chromebooks. 90-day warranty.",
     },
     heading: { prefix: "Refurbished", highlight: "Laptops" },
     intro:
@@ -220,9 +220,9 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
       /console|playstation|\bps[2-9]\b|xbox|nintendo|\bswitch\b/i.test(c),
     seo: {
       metaTitle:
-        "Refurbished PlayStation, Xbox & Nintendo Switch in Houston | Gadget X Repairs",
+        "PlayStation, Xbox & Switch Houston | GadgetX Repairs",
       metaDescription:
-        "Used and refurbished PS4, PS5, Xbox One, Series X|S and Nintendo Switch consoles at our Houston shop. Tested, cleaned, backed by our 90-day warranty.",
+        "Used & refurbished PS4, PS5, Xbox One, Series X|S & Nintendo Switch at GadgetX Repairs in Houston TX. Tested with our 90-day warranty.",
     },
     heading: { prefix: "Refurbished", highlight: "Consoles" },
     intro:
@@ -279,9 +279,9 @@ export const OTHER_GROUP: InventoryGroup = {
   label: "Other",
   matches: (c) => !INVENTORY_GROUPS.some((g) => g.matches(c)),
   seo: {
-    metaTitle: "Other Inventory | Gadget X Repairs Houston",
+    metaTitle: "Other Inventory | GadgetX Repairs Houston TX",
     metaDescription:
-      "Other tested, warrantied gadgets in stock at our Houston shop.",
+      "Other tested, warrantied gadgets in stock at GadgetX Repairs in Houston TX.",
   },
   heading: { prefix: "Other", highlight: "Inventory" },
   intro: "Other tested gadgets currently in stock at our Houston shop.",

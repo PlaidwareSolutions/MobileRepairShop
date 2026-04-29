@@ -19,9 +19,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "iphone-screen-repair-cost-houston-tx",
     title: "How Much Does iPhone Screen Repair Cost in Houston?",
-    metaTitle: "iPhone Screen Repair Cost Houston (2026 Pricing) | Gadget X",
+    metaTitle: "iPhone Screen Repair Cost Houston 2026 | GadgetX Repairs",
     metaDescription:
-      "Up-to-date 2026 pricing for iPhone screen repair in Houston by model — from iPhone 6 to iPhone 16 Pro Max. What you'll pay and how to save.",
+      "Up-to-date 2026 iPhone screen repair pricing in Houston by model — iPhone 6 to 16 Pro Max — from GadgetX Repairs. Honest quotes!",
     excerpt: "Honest 2026 pricing by model for iPhone screen repair in Houston, plus the gotchas to watch out for.",
     intro:
       "iPhone screen repair pricing depends mostly on the model and the panel type. Here's the real-world range you'll see in Houston in 2026, including at our Almeda Rd shop.",
@@ -63,9 +63,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "ps5-hdmi-port-repair-worth-it-houston-tx",
     title: "Is PS5 HDMI Port Repair Worth It?",
-    metaTitle: "Is PS5 HDMI Port Repair Worth It in 2026? | Gadget X Houston",
+    metaTitle: "PS5 HDMI Port Repair Worth It 2026? | GadgetX Repairs",
     metaDescription:
-      "PS5 HDMI port repair in Houston is around $99 vs $400+ for a new PS5. Here's exactly when it's worth fixing and what to expect.",
+      "PS5 HDMI port repair at GadgetX Repairs in Houston runs about $99 vs $400+ for a new PS5. When it's worth fixing & what to expect.",
     excerpt: "PS5 HDMI port repair in Houston is around $99 vs. $400+ for a new console. Here's when it's worth doing.",
     intro:
       "Cable got knocked once too many times and now your PS5 has no signal. Should you fix the HDMI port, or buy a new console? Almost always: fix it.",
@@ -105,9 +105,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "repair-or-replace-laptop-houston-tx",
     title: "Repair or Replace Your Laptop?",
-    metaTitle: "Should You Repair or Replace Your Laptop? | Gadget X Houston",
+    metaTitle: "Repair or Replace Your Laptop? | GadgetX Repairs Houston",
     metaDescription:
-      "When laptop repair makes sense and when replacement is the smarter call. A practical Houston guide for 2026.",
+      "When laptop repair makes sense & when replacement is smarter — a practical 2026 guide from GadgetX Repairs in Houston TX.",
     excerpt: "A practical guide to deciding whether to repair your laptop or buy something new.",
     intro:
       "It's a question we get a few times a day. Here's how we'd think about it if it were our own laptop.",
@@ -143,9 +143,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "phone-battery-needs-replacement-houston-tx",
     title: "5 Signs Your Phone Battery Needs Replacement",
-    metaTitle: "5 Signs Your Phone Battery Needs Replacement | Gadget X Houston",
+    metaTitle: "5 Signs Phone Battery Needs Replacing | GadgetX Repairs",
     metaDescription:
-      "How to know when your iPhone or Android battery needs replacing — and what it costs in Houston.",
+      "How to know when your iPhone or Android battery needs replacing — and what it costs at GadgetX Repairs in Houston TX.",
     excerpt: "Quick guide to knowing when it's time to swap your battery — before it leaves you stranded.",
     intro:
       "Phone batteries wear out — every single one. Here's how to spot a worn battery early.",
@@ -179,9 +179,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "used-vs-refurbished-phones-houston-tx",
     title: "Used vs Refurbished Phones — What's the Difference?",
-    metaTitle: "Used vs Refurbished Phones | What's the Difference | Gadget X",
+    metaTitle: "Used vs Refurbished Phones | GadgetX Repairs Houston",
     metaDescription:
-      "Used vs refurbished phones explained. Which gives you better value and warranty? A Houston buyer's guide.",
+      "Used vs refurbished phones explained — which gives better value & warranty? A Houston buyer's guide from GadgetX Repairs.",
     excerpt: "Two terms that get used loosely. Here's what they mean — and which one to buy.",
     intro:
       "If you're shopping for a phone in Houston, you'll see both 'used' and 'refurbished' labels. They mean different things.",
@@ -211,9 +211,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "can-locked-phone-be-unlocked-houston-tx",
     title: "Can a Locked Phone Be Unlocked?",
-    metaTitle: "Can a Locked Phone Be Unlocked? | Houston Carrier Unlock",
+    metaTitle: "Can a Locked Phone Be Unlocked? | GadgetX Repairs",
     metaDescription:
-      "When and how a carrier-locked phone can be unlocked, and what we can do at our Houston shop.",
+      "When & how a carrier-locked phone can be unlocked — what GadgetX Repairs in Houston TX can do. Free IMEI eligibility check!",
     excerpt: "Most carrier-locked phones can be unlocked legally — here's what's possible and what isn't.",
     intro:
       "Locked phones come from prepaid carriers (Cricket, Metro, Boost, AT&T Prepaid) and from postpaid devices still on a payment plan.",
@@ -245,9 +245,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "best-prepaid-plans-houston-tx",
     title: "Best Prepaid Plans in Houston for 2026",
-    metaTitle: "Best Prepaid Plans Houston 2026 | Gadget X",
+    metaTitle: "Best Prepaid Plans Houston 2026 | GadgetX Repairs",
     metaDescription:
-      "Honest 2026 picks for the best prepaid plans in Houston — Cricket, Metro, T-Mobile, AT&T, Boost, Gen Mobile and more.",
+      "Honest 2026 picks for the best prepaid plans in Houston — Cricket, Metro, T-Mobile, AT&T, Boost & Gen Mobile — from GadgetX Repairs.",
     excerpt: "We see what plans actually work for our Houston customers — here's how we'd pick.",
     intro:
       "There's no single 'best' prepaid plan. The best plan is the one that gives you the coverage and data you actually use, for the lowest price. Here's how we'd choose in 2026.",
@@ -277,9 +277,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "check-before-buying-used-iphone-houston-tx",
     title: "What to Check Before Buying a Used iPhone",
-    metaTitle: "What to Check Before Buying a Used iPhone | Gadget X Houston",
+    metaTitle: "What to Check Buying a Used iPhone | GadgetX Repairs",
     metaDescription:
-      "A quick checklist for buying a used iPhone in Houston — from battery health to iCloud lock.",
+      "A quick checklist for buying a used iPhone in Houston — battery health, iCloud lock & more — from GadgetX Repairs. Walk-ins welcome!",
     excerpt: "Don't buy a used iPhone without checking these. We see the regrets every week.",
     intro:
       "We love a good used iPhone deal, but only if you know what to check. This is the same list we run through on every phone we sell.",
@@ -313,9 +313,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "laptop-not-charging-houston-tx",
     title: "Laptop Not Charging? Here's What to Do",
-    metaTitle: "Laptop Not Charging — Diagnosing the Problem | Gadget X",
+    metaTitle: "Laptop Not Charging — Diagnose & Fix | GadgetX Repairs",
     metaDescription:
-      "Laptop won't charge? Common causes and what we can fix in Houston, from dead chargers to broken jacks.",
+      "Laptop won't charge? Common causes & what GadgetX Repairs in Houston TX can fix — dead chargers to broken jacks. Free diagnostic!",
     excerpt: "Most no-charge problems boil down to four things. Here's how to diagnose yours.",
     intro:
       "Plug in your laptop and nothing happens. Before you buy a new charger or a new laptop, run through this list.",
@@ -349,9 +349,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "xbox-hdmi-port-problems-houston-tx",
     title: "Xbox HDMI Port Problems — How We Fix Them",
-    metaTitle: "Xbox HDMI Port Problems & Repair | Gadget X Houston",
+    metaTitle: "Xbox HDMI Port Problems & Repair | GadgetX Repairs",
     metaDescription:
-      "Xbox HDMI port loose, broken, or no signal? Here's how we diagnose and microsolder a new port at our Houston shop.",
+      "Xbox HDMI port loose or broken? GadgetX Repairs in Houston TX microsolders a new port — about $99, 24–72 hrs. Free quote!",
     excerpt: "Loose Xbox HDMI port? Broken HDMI socket? It's a microsolder fix — and almost always worth it.",
     intro:
       "Xbox HDMI port problems are one of the most common console issues we see. Here's the playbook.",

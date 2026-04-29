@@ -20,9 +20,9 @@ import {
 import { BUSINESS } from "@/content";
 
 const DEFAULT_META = {
-  title: "Inventory | Used & Refurbished Phones, Laptops in Houston",
+  title: "Phones & Laptops Inventory Houston | GadgetX Repairs",
   description:
-    "Browse our current inventory of unlocked iPhones, Samsungs, Pixels, MacBooks and laptops at our Houston shop.",
+    "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at GadgetX Repairs in Houston TX. Walk-ins welcome!",
   heading: { prefix: "Current", highlight: "Inventory" },
   intro:
     "Stock changes daily. Call to confirm availability or reserve an item — we'll hold it for 24 hours.",

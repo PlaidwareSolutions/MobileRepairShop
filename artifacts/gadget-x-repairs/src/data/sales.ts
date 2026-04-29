@@ -163,9 +163,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "laptop-accessories-houston-tx",
     title: "Laptop Accessories Houston",
-    metaTitle: "Laptop Accessories Houston | Chargers, Cases, Adapters | Gadget X",
+    metaTitle: "Laptop Accessories Houston TX | GadgetX Repairs",
     metaDescription:
-      "Laptop accessories in Houston — chargers, cases, sleeves, USB-C and HDMI adapters, mice and keyboards.",
+      "Laptop accessories at GadgetX Repairs in Houston TX — chargers, cases, sleeves, USB-C & HDMI adapters, mice & keyboards. Walk in!",
     hero: {
       eyebrow: "Laptop Accessories",
       h1: "Laptop Accessories in Houston",
@@ -472,9 +472,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phone-cases-houston-tx",
     title: "Phone Cases Houston",
-    metaTitle: "Phone Cases Houston | iPhone, Samsung, Pixel | Gadget X",
+    metaTitle: "Phone Cases Houston TX | GadgetX Repairs",
     metaDescription:
-      "Phone cases in Houston for current iPhone, Samsung Galaxy, Google Pixel and Motorola. Slim, rugged, OtterBox-style and clear.",
+      "Phone cases at GadgetX Repairs in Houston TX for current iPhone, Galaxy, Pixel & Motorola — slim, rugged, OtterBox-style & clear.",
     hero: {
       eyebrow: "Phone Cases",
       h1: "Phone Cases in Houston",
@@ -498,9 +498,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "screen-protectors-houston-tx",
     title: "Screen Protectors Houston",
-    metaTitle: "Screen Protectors Houston | Tempered Glass | Free Install | Gadget X",
+    metaTitle: "Screen Protectors Houston TX | GadgetX Repairs",
     metaDescription:
-      "Tempered glass screen protectors in Houston for iPhone, Samsung Galaxy, Pixel and Motorola. Free professional installation included.",
+      "Tempered glass screen protectors at GadgetX Repairs in Houston TX for iPhone, Galaxy, Pixel & Motorola — free pro install included!",
     hero: {
       eyebrow: "Screen Protectors",
       h1: "Screen Protectors in Houston",
@@ -525,9 +525,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phone-chargers-houston-tx",
     title: "Phone Chargers Houston",
-    metaTitle: "Phone Chargers Houston | USB-C, Lightning, MagSafe | Gadget X",
+    metaTitle: "Phone Chargers Houston TX | GadgetX Repairs",
     metaDescription:
-      "Phone chargers in Houston — USB-C, Lightning, MagSafe and wireless wall chargers. 20W, 30W and 65W options.",
+      "Phone chargers at GadgetX Repairs in Houston TX — USB-C, Lightning, MagSafe & wireless wall chargers. 20W, 30W & 65W options.",
     hero: {
       eyebrow: "Phone Chargers",
       h1: "Phone Chargers in Houston",
@@ -551,9 +551,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "charging-cables-houston-tx",
     title: "Charging Cables Houston",
-    metaTitle: "Charging Cables Houston | USB-C, Lightning, Micro-USB | Gadget X",
+    metaTitle: "Charging Cables Houston TX | GadgetX Repairs",
     metaDescription:
-      "Charging cables in Houston — USB-C, Lightning and micro-USB. Braided, 6ft and reinforced cables for every phone.",
+      "Charging cables at GadgetX Repairs in Houston TX — USB-C, Lightning & micro-USB. Braided, 6ft & reinforced for every phone!",
     hero: {
       eyebrow: "Charging Cables",
       h1: "Charging Cables in Houston",
@@ -577,9 +577,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "wall-adapters-houston-tx",
     title: "Wall Adapters Houston",
-    metaTitle: "USB-C Wall Adapters Houston | 20W, 30W, 65W | Gadget X",
+    metaTitle: "USB-C Wall Adapters Houston TX | GadgetX Repairs",
     metaDescription:
-      "USB-C wall adapters in Houston — 20W, 30W, 45W and 65W fast chargers for iPhone, Samsung, Pixel and laptops.",
+      "USB-C wall adapters at GadgetX Repairs in Houston TX — 20W, 30W, 45W & 65W fast chargers for iPhone, Samsung, Pixel & laptops.",
     hero: {
       eyebrow: "Wall Adapters",
       h1: "Wall Adapters in Houston",
@@ -655,9 +655,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "earbuds-houston-tx",
     title: "Earbuds Houston",
-    metaTitle: "Earbuds Houston | True Wireless, Galaxy Buds, AirPods Style | Gadget X",
+    metaTitle: "Earbuds Houston TX | GadgetX Repairs",
     metaDescription:
-      "True wireless earbuds in Houston — AirPods-style, Galaxy Buds and budget options. Bluetooth, charging case included.",
+      "True wireless earbuds at GadgetX Repairs in Houston TX — AirPods-style, Galaxy Buds & budget options from $19. Charging case included!",
     hero: {
       eyebrow: "Earbuds",
       h1: "Earbuds in Houston",
@@ -759,9 +759,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "smart-watch-bands-houston-tx",
     title: "Smart Watch Bands Houston",
-    metaTitle: "Apple Watch & Galaxy Watch Bands Houston | Gadget X",
+    metaTitle: "Apple Watch & Galaxy Watch Bands | GadgetX Repairs",
     metaDescription:
-      "Apple Watch and Galaxy Watch bands in Houston — sport, leather, metal and Milanese loops. Every Apple Watch size and Galaxy Watch model.",
+      "Apple Watch & Galaxy Watch bands at GadgetX Repairs in Houston TX — sport, leather, metal & Milanese loops. Every size in stock!",
     hero: {
       eyebrow: "Smart Watch Bands",
       h1: "Apple Watch & Galaxy Watch Bands in Houston",
@@ -785,9 +785,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "otterbox-cases-houston-tx",
     title: "OtterBox Cases Houston",
-    metaTitle: "OtterBox Cases Houston | Defender, Symmetry, Commuter | Gadget X",
+    metaTitle: "OtterBox Cases Houston TX | GadgetX Repairs",
     metaDescription:
-      "OtterBox cases in Houston — Defender, Symmetry and Commuter for iPhone and Samsung Galaxy. Heavy-duty drop protection.",
+      "OtterBox cases at GadgetX Repairs in Houston TX — Defender, Symmetry & Commuter for iPhone & Galaxy. Heavy-duty drop protection!",
     hero: {
       eyebrow: "OtterBox Cases",
       h1: "OtterBox Cases in Houston",

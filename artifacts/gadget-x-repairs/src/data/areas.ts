@@ -23,9 +23,9 @@ export const AREAS_DATA: AreaData[] = [
     slug: "phone-repair-sugar-land-tx",
     city: "Sugar Land",
     title: "Phone Repair Sugar Land",
-    metaTitle: "Phone Repair Sugar Land | Gadget X Houston (15 min away)",
+    metaTitle: "Phone Repair Sugar Land TX | GadgetX Repairs (15 min away)",
     metaDescription:
-      "Phone, tablet, laptop and console repair for Sugar Land. Just 15 minutes from Sugar Land at our Almeda Rd Houston shop. Same day, walk in.",
+      "Phone, tablet, laptop & console repair for Sugar Land at GadgetX Repairs in Houston — just 15 minutes via US-59. Same-day, walk-in!",
     hero: {
       eyebrow: "Sugar Land",
       h1: "Phone & Device Repair for Sugar Land",
@@ -39,9 +39,9 @@ export const AREAS_DATA: AreaData[] = [
     slug: "phone-repair-missouri-city-tx",
     city: "Missouri City",
     title: "Phone Repair Missouri City",
-    metaTitle: "Phone Repair Missouri City | Gadget X Houston",
+    metaTitle: "Phone Repair Missouri City TX | GadgetX Repairs Houston",
     metaDescription:
-      "Phone, tablet, laptop and console repair for Missouri City. Quick drive to our Almeda Rd Houston shop. Same-day repair, walk-ins welcome.",
+      "Phone, tablet, laptop & console repair for Missouri City TX at GadgetX Repairs in Houston. Same-day repair, walk-ins welcome!",
     hero: {
       eyebrow: "Missouri City",
       h1: "Phone & Device Repair for Missouri City",
@@ -55,9 +55,9 @@ export const AREAS_DATA: AreaData[] = [
     slug: "phone-repair-stafford-tx",
     city: "Stafford",
     title: "Phone Repair Stafford",
-    metaTitle: "Phone Repair Stafford TX | Gadget X Houston",
+    metaTitle: "Phone Repair Stafford TX | GadgetX Repairs Houston",
     metaDescription:
-      "Phone, tablet, laptop and console repair for Stafford TX. Easy 15–20 minute drive to our Almeda Rd Houston shop. Same day, walk-ins welcome.",
+      "Phone, tablet, laptop & console repair for Stafford TX at GadgetX Repairs in Houston — easy 15–20 min drive. Walk-ins welcome!",
     hero: {
       eyebrow: "Stafford",
       h1: "Phone & Device Repair for Stafford",
@@ -71,9 +71,9 @@ export const AREAS_DATA: AreaData[] = [
     slug: "phone-repair-katy-tx",
     city: "Katy",
     title: "Phone Repair Katy",
-    metaTitle: "Phone Repair Katy TX | Gadget X Houston",
+    metaTitle: "Phone Repair Katy TX | GadgetX Repairs Houston",
     metaDescription:
-      "Phone, tablet, laptop and console repair for Katy TX. Drop your device off at our Almeda Rd Houston shop. Same-day repair, walk-ins welcome.",
+      "Phone, tablet, laptop & console repair for Katy TX at GadgetX Repairs in Houston — drop off any day. Same-day, walk-ins welcome!",
     hero: {
       eyebrow: "Katy",
       h1: "Phone & Device Repair for Katy",
@@ -87,9 +87,9 @@ export const AREAS_DATA: AreaData[] = [
     slug: "phone-repair-alief-tx",
     city: "Alief",
     title: "Phone Repair Alief",
-    metaTitle: "Phone Repair Alief Houston | Gadget X",
+    metaTitle: "Phone Repair Alief Houston | GadgetX Repairs",
     metaDescription:
-      "Same-day phone, tablet, laptop and console repair for Alief residents. Just minutes from Alief to our Almeda Rd Houston shop.",
+      "Same-day phone, tablet, laptop & console repair for Alief at GadgetX Repairs in Houston — just minutes from Alief. Walk-ins welcome!",
     hero: {
       eyebrow: "Alief",
       h1: "Phone & Device Repair for Alief",
@@ -103,9 +103,9 @@ export const AREAS_DATA: AreaData[] = [
     slug: "phone-repair-sharpstown-tx",
     city: "Sharpstown",
     title: "Phone Repair Sharpstown",
-    metaTitle: "Phone Repair Sharpstown Houston | Gadget X",
+    metaTitle: "Phone Repair Sharpstown Houston | GadgetX Repairs",
     metaDescription:
-      "Same-day phone, tablet, laptop and console repair for Sharpstown residents. Quick drive south to our Almeda Rd Houston shop.",
+      "Same-day phone, tablet, laptop & console repair for Sharpstown at GadgetX Repairs in Houston — 10–15 min via US-59. Walk-ins welcome!",
     hero: {
       eyebrow: "Sharpstown",
       h1: "Phone & Device Repair for Sharpstown",

@@ -28,9 +28,9 @@ export const STATIC_ROUTES: RouteEntry[] = [
   },
   {
     path: "/about",
-    metaTitle: "About Gadget X Repairs | 15 Years in Houston",
+    metaTitle: "About GadgetX Repairs | 15 Years in Houston TX",
     metaDescription:
-      "About Gadget X Repairs — 15 years of honest repair, sales and prepaid service from our Almeda Rd shop in Houston, TX.",
+      "About GadgetX Repairs in Houston TX — 15 years of honest repair, sales and prepaid service from our Almeda Rd shop. Walk-ins welcome!",
   },
   {
     path: "/contact-houston-tx",
@@ -46,9 +46,9 @@ export const STATIC_ROUTES: RouteEntry[] = [
   },
   {
     path: "/inventory",
-    metaTitle: "Inventory | Used & Refurbished Phones, Laptops in Houston",
+    metaTitle: "Phones & Laptops Inventory Houston | GadgetX Repairs",
     metaDescription:
-      "Browse our current inventory of unlocked iPhones, Samsungs, Pixels, MacBooks and laptops at our Houston shop.",
+      "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at GadgetX Repairs in Houston TX. Walk-ins welcome!",
   },
   {
     path: "/admin/leads",
