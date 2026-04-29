@@ -15,9 +15,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phones-for-sale-houston-tx",
     title: "Phones for Sale in Houston",
-    metaTitle: "Phones for Sale Houston | Used, New, Refurbished | Gadget X",
+    metaTitle: "Phones for Sale Houston TX | GadgetX Repairs",
     metaDescription:
-      "Phones for sale in Houston: unlocked iPhone, Samsung Galaxy, Google Pixel, Motorola. New, used and refurbished. Tested, warrantied, with prepaid activation.",
+      "Buy new, used & refurbished phones in Houston TX. iPhone, Samsung, Motorola & more. Great prices at GadgetX Repairs. Visit us in store today!",
     hero: {
       eyebrow: "Phones for Sale",
       h1: "Phones for Sale in Houston",
@@ -42,9 +42,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "used-phones-houston-tx",
     title: "Used Phones Houston",
-    metaTitle: "Used Phones Houston | Unlocked iPhone, Samsung, Pixel | Gadget X",
+    metaTitle: "Used Phones for Sale Houston TX | GadgetX Repairs",
     metaDescription:
-      "Used phones in Houston, all tested and unlocked. iPhone, Samsung, Google Pixel, Motorola and more from $99 with 30-day warranty.",
+      "Buy quality used phones in Houston TX. iPhone, Samsung & more tested & ready to use. Affordable pricing at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Used Phones",
       h1: "Used Phones in Houston",
@@ -62,9 +62,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "refurbished-phones-houston-tx",
     title: "Refurbished Phones Houston",
-    metaTitle: "Refurbished Phones Houston | iPhone, Samsung | Gadget X",
+    metaTitle: "Refurbished Phones Houston TX | GadgetX Repairs",
     metaDescription:
-      "Refurbished phones in Houston with 90-day warranty. iPhone, Samsung Galaxy and Google Pixel restored to like-new condition.",
+      "Shop certified refurbished phones in Houston TX. iPhone, Samsung & more at great prices. Quality-tested devices at GadgetX Repairs. Shop now!",
     hero: {
       eyebrow: "Refurbished Phones",
       h1: "Refurbished Phones in Houston",
@@ -82,9 +82,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "new-phones-houston-tx",
     title: "New Phones Houston",
-    metaTitle: "New Phones Houston | Unlocked & Carrier Phones | Gadget X",
+    metaTitle: "New Phones for Sale Houston TX | GadgetX Repairs",
     metaDescription:
-      "New unlocked phones in Houston for cash or carrier-financed. iPhone, Samsung, Motorola, prepaid lines included.",
+      "Shop brand-new phones in Houston TX. iPhone, Samsung, Motorola & more. Best prices on the latest models at GadgetX Repairs. Visit us today!",
     hero: {
       eyebrow: "New Phones",
       h1: "New Phones in Houston",
@@ -102,9 +102,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "sell-phone-houston-tx",
     title: "We Buy Your Phone in Houston",
-    metaTitle: "Sell My Phone Houston | Cash for iPhone, Samsung | Gadget X",
+    metaTitle: "Sell Your Phone Houston TX | GadgetX Repairs",
     metaDescription:
-      "Sell your phone for cash in Houston. We buy iPhone, Samsung, Google Pixel, Motorola — even with cracked screens. Free quote in minutes.",
+      "Get cash for your old phone in Houston TX. We buy iPhones, Samsung & more. Fast & easy process at GadgetX Repairs. Walk-in for a free quote!",
     hero: {
       eyebrow: "Sell Your Phone",
       h1: "Sell Your Phone in Houston",
@@ -123,9 +123,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "laptops-for-sale-houston-tx",
     title: "Laptops for Sale Houston",
-    metaTitle: "Laptops for Sale Houston | Used, Refurbished | Gadget X",
+    metaTitle: "Laptops for Sale Houston TX | GadgetX Repairs",
     metaDescription:
-      "Used and refurbished laptops in Houston. MacBook, HP, Dell, Lenovo. Tested, warrantied, ready to work or game.",
+      "Buy new & used laptops in Houston TX. HP, Dell, Lenovo & MacBook available. Great prices at GadgetX Repairs. Walk-ins welcome. Shop today!",
     hero: {
       eyebrow: "Laptops for Sale",
       h1: "Laptops for Sale in Houston",
@@ -143,9 +143,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phone-accessories-houston-tx",
     title: "Phone Accessories Houston",
-    metaTitle: "Phone Accessories Houston | Cases, Chargers, Cables | Gadget X",
+    metaTitle: "Phone Accessories Houston TX | GadgetX Repairs",
     metaDescription:
-      "Phone accessories in Houston — cases, screen protectors, chargers, USB-C and Lightning cables, wall adapters and more.",
+      "Shop phone accessories in Houston TX. Cases, chargers, cables, screen protectors & more. Top brands at GadgetX Repairs. Walk-ins welcome today!",
     hero: {
       eyebrow: "Accessories",
       h1: "Phone Accessories in Houston",
@@ -183,9 +183,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "shop-houston-tx",
     title: "Shop Gadget X Houston",
-    metaTitle: "Shop Houston | Phones, Laptops, Accessories | Gadget X",
+    metaTitle: "Shop Phones & Accessories Houston TX | GadgetX",
     metaDescription:
-      "Shop unlocked phones, refurbished laptops, accessories, prepaid SIMs and more at Gadget X in Houston. 8389 Almeda Rd, 15 years in business.",
+      "Shop phones, laptops & accessories at GadgetX Repairs in Houston TX. New, used & refurbished devices. Great prices & quality products in store!",
     hero: {
       eyebrow: "Shop Gadget X",
       h1: "Shop Gadget X Houston",
@@ -210,9 +210,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-iphone-houston-tx",
     title: "Buy iPhone in Houston",
-    metaTitle: "Buy iPhone Houston | Unlocked Used & Refurbished | Gadget X",
+    metaTitle: "Buy iPhone Houston TX | GadgetX Repairs",
     metaDescription:
-      "Buy unlocked iPhone in Houston — used and refurbished iPhone 8 through iPhone 15 Pro Max from $99. Tested, warrantied, ready to activate.",
+      "Buy new, used & refurbished iPhones in Houston TX. Latest models available. Competitive prices at GadgetX Repairs. Visit us in store today!",
     hero: {
       eyebrow: "Buy iPhone",
       h1: "Buy iPhone in Houston",
@@ -237,9 +237,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-phones-houston-tx",
     title: "Buy Samsung Phones in Houston",
-    metaTitle: "Buy Samsung Phones Houston | Unlocked Galaxy | Gadget X",
+    metaTitle: "Buy Samsung Phones Houston TX | GadgetX Repairs",
     metaDescription:
-      "Buy unlocked Samsung Galaxy phones in Houston — Galaxy A, S and Note series, used and refurbished. Tested, warrantied, ready to activate.",
+      "Shop Samsung Galaxy phones in Houston TX. New, used & refurbished models at great prices. Visit GadgetX Repairs for the best Samsung deals!",
     hero: {
       eyebrow: "Buy Samsung",
       h1: "Buy Samsung Phones in Houston",
@@ -263,9 +263,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-motorola-phones-houston-tx",
     title: "Buy Motorola Phones in Houston",
-    metaTitle: "Buy Motorola Phones Houston | Moto G, Edge, Razr | Gadget X",
+    metaTitle: "Buy Motorola Phones Houston TX | GadgetX Repairs",
     metaDescription:
-      "Buy unlocked Motorola phones in Houston — Moto G, Moto E, Edge and Razr. Tested, warrantied, ready to activate on any prepaid carrier.",
+      "Shop Motorola phones in Houston TX. New & used models at affordable prices. Quality devices at GadgetX Repairs. Walk-ins welcome. Visit us today!",
     hero: {
       eyebrow: "Buy Motorola",
       h1: "Buy Motorola Phones in Houston",
@@ -289,9 +289,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-google-pixel-phones-houston-tx",
     title: "Buy Google Pixel Phones in Houston",
-    metaTitle: "Buy Google Pixel Houston | Unlocked Pixel 6, 7, 8 | Gadget X",
+    metaTitle: "Buy Google Pixel Phones Houston TX | GadgetX",
     metaDescription:
-      "Buy unlocked Google Pixel phones in Houston — Pixel 5, 6, 7, 8 series. Tested, warrantied, ready to activate on any carrier.",
+      "Shop Google Pixel phones in Houston TX. New & refurbished models at competitive prices. Find your next phone at GadgetX Repairs today!",
     hero: {
       eyebrow: "Buy Pixel",
       h1: "Buy Google Pixel Phones in Houston",
@@ -315,9 +315,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-hp-laptops-houston-tx",
     title: "Buy HP Laptops in Houston",
-    metaTitle: "Buy HP Laptops Houston | Pavilion, Envy, Elitebook | Gadget X",
+    metaTitle: "Buy HP Laptops Houston TX | GadgetX Repairs",
     metaDescription:
-      "Buy refurbished HP laptops in Houston — Pavilion, Envy, Elitebook, Probook. Tested, fresh OS, 30-day warranty.",
+      "Shop HP laptops in Houston TX. New & refurbished models at affordable prices. Find the perfect HP laptop at GadgetX Repairs. Visit us today!",
     hero: {
       eyebrow: "Buy HP Laptop",
       h1: "Buy HP Laptops in Houston",
@@ -341,9 +341,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-dell-laptops-houston-tx",
     title: "Buy Dell Laptops in Houston",
-    metaTitle: "Buy Dell Laptops Houston | Latitude, Inspiron, XPS | Gadget X",
+    metaTitle: "Buy Dell Laptops Houston TX | GadgetX Repairs",
     metaDescription:
-      "Buy refurbished Dell laptops in Houston — Latitude, Inspiron, XPS. Tested, fresh OS, 30-day warranty. From $349.",
+      "Shop Dell laptops in Houston TX. New & used models at great prices. Quality devices for work & school at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Buy Dell Laptop",
       h1: "Buy Dell Laptops in Houston",
@@ -367,9 +367,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-lenovo-laptops-houston-tx",
     title: "Buy Lenovo Laptops in Houston",
-    metaTitle: "Buy Lenovo Laptops Houston | ThinkPad, IdeaPad, Yoga | Gadget X",
+    metaTitle: "Buy Lenovo Laptops Houston TX | GadgetX Repairs",
     metaDescription:
-      "Buy refurbished Lenovo laptops in Houston — ThinkPad, IdeaPad, Yoga. Tested, fresh OS, 30-day warranty. From $299.",
+      "Shop Lenovo laptops in Houston TX. New & refurbished models at competitive prices. Great value at GadgetX Repairs. Walk-ins welcome. Shop today!",
     hero: {
       eyebrow: "Buy Lenovo Laptop",
       h1: "Buy Lenovo Laptops in Houston",
@@ -393,9 +393,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-macbook-houston-tx",
     title: "Buy MacBook in Houston",
-    metaTitle: "Buy MacBook Houston | Refurbished Air, Pro, M-series | Gadget X",
+    metaTitle: "Buy MacBook Houston TX | GadgetX Repairs",
     metaDescription:
-      "Buy refurbished MacBook in Houston — MacBook Air M1/M2, MacBook Pro Intel and Apple Silicon. Tested, 30-day warranty.",
+      "Shop new & refurbished MacBooks in Houston TX. MacBook Air & Pro available at great prices. Quality Apple laptops at GadgetX Repairs. Shop now!",
     hero: {
       eyebrow: "Buy MacBook",
       h1: "Buy MacBook in Houston",
@@ -419,9 +419,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "sell-iphone-houston-tx",
     title: "Sell My iPhone in Houston",
-    metaTitle: "Sell My iPhone Houston | Cash for Used iPhone | Gadget X",
+    metaTitle: "Sell Your iPhone Houston TX | GadgetX Repairs",
     metaDescription:
-      "Sell your iPhone for cash in Houston. We buy iPhone 8 through iPhone 16 Pro Max — even with cracked screens. Free quote in minutes.",
+      "Sell your old iPhone in Houston TX for top dollar. All models accepted. Fast & easy process at GadgetX Repairs. Walk-in for a free quote today!",
     hero: {
       eyebrow: "Sell iPhone",
       h1: "Sell Your iPhone in Houston",
@@ -446,9 +446,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "sell-samsung-phone-houston-tx",
     title: "Sell My Samsung Phone in Houston",
-    metaTitle: "Sell My Samsung Phone Houston | Cash for Galaxy | Gadget X",
+    metaTitle: "Sell Samsung Phone Houston TX | GadgetX Repairs",
     metaDescription:
-      "Sell your Samsung Galaxy for cash in Houston. We buy Galaxy A, S, Note and Z series — even cracked. Free quote in minutes.",
+      "Sell your Samsung Galaxy phone in Houston TX for cash. All models accepted. Fast, easy & fair at GadgetX Repairs. Walk-in for a free quote!",
     hero: {
       eyebrow: "Sell Samsung",
       h1: "Sell Your Samsung Galaxy in Houston",
@@ -603,9 +603,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "wireless-chargers-houston-tx",
     title: "Wireless Chargers Houston",
-    metaTitle: "Wireless Chargers Houston | Qi, MagSafe Compatible | Gadget X",
+    metaTitle: "Wireless Chargers Houston TX | GadgetX Repairs",
     metaDescription:
-      "Wireless chargers in Houston — Qi pads, MagSafe-compatible pucks and 3-in-1 stands for iPhone, Samsung Galaxy and AirPods.",
+      "Shop wireless chargers in Houston TX. Fast wireless charging pads & stands for iPhone & Samsung. Great prices at GadgetX Repairs. Shop now!",
     hero: {
       eyebrow: "Wireless Chargers",
       h1: "Wireless Chargers in Houston",
@@ -629,9 +629,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "power-banks-houston-tx",
     title: "Power Banks Houston",
-    metaTitle: "Power Banks Houston | 10K, 20K mAh, USB-C PD | Gadget X",
+    metaTitle: "Power Banks Houston TX | GadgetX Repairs",
     metaDescription:
-      "Power banks in Houston — 10,000 / 20,000 mAh portable chargers with USB-C PD fast charging for iPhone, Samsung and laptops.",
+      "Shop portable power banks in Houston TX. High-capacity chargers to keep your devices powered. Great prices at GadgetX Repairs. Shop today!",
     hero: {
       eyebrow: "Power Banks",
       h1: "Power Banks in Houston",
@@ -681,9 +681,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "headphones-houston-tx",
     title: "Headphones Houston",
-    metaTitle: "Headphones Houston | Wireless, Wired, Over-Ear | Gadget X",
+    metaTitle: "Headphones Houston TX | GadgetX Repairs",
     metaDescription:
-      "Wireless and wired headphones in Houston — over-ear and on-ear, Bluetooth and 3.5mm. From budget picks to premium ANC.",
+      "Shop headphones in Houston TX. Wired, wireless & Bluetooth options. Top brands & great sound quality at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Headphones",
       h1: "Headphones in Houston",
@@ -707,9 +707,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "bluetooth-speakers-houston-tx",
     title: "Bluetooth Speakers Houston",
-    metaTitle: "Bluetooth Speakers Houston | Portable, Waterproof | Gadget X",
+    metaTitle: "Bluetooth Speakers Houston TX | GadgetX Repairs",
     metaDescription:
-      "Portable Bluetooth speakers in Houston — waterproof, party-size and travel options for iPhone and Android.",
+      "Shop Bluetooth speakers in Houston TX. Portable & powerful sound for any occasion. Top brands at GadgetX Repairs. Walk-ins welcome. Shop today!",
     hero: {
       eyebrow: "Bluetooth Speakers",
       h1: "Bluetooth Speakers in Houston",
@@ -733,9 +733,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "car-chargers-houston-tx",
     title: "Car Chargers Houston",
-    metaTitle: "Car Chargers Houston | USB-C, Cigarette Lighter | Gadget X",
+    metaTitle: "Car Chargers Houston TX | GadgetX Repairs",
     metaDescription:
-      "Car chargers in Houston — USB-C PD, dual-port, cigarette lighter adapters and wireless car mounts for iPhone and Samsung.",
+      "Shop car chargers in Houston TX. Fast USB & wireless car chargers for all phones. Affordable pricing at GadgetX Repairs. Walk-in or shop today!",
     hero: {
       eyebrow: "Car Chargers",
       h1: "Car Chargers in Houston",
@@ -811,9 +811,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "apple-accessories-houston-tx",
     title: "Apple Accessories Houston",
-    metaTitle: "Apple Accessories Houston | MagSafe, AirPods, Cables | Gadget X",
+    metaTitle: "Apple Accessories Houston TX | GadgetX Repairs",
     metaDescription:
-      "Apple accessories in Houston — MagSafe-compatible chargers, USB-C cables, AirPods-style earbuds, Lightning adapters.",
+      "Shop genuine & compatible Apple accessories in Houston TX. Chargers, cases, AirPods & more. Great prices at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Apple Accessories",
       h1: "Apple Accessories in Houston",
@@ -837,9 +837,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-revvl-phones-houston-tx",
     title: "Buy Revvl Phones Houston",
-    metaTitle: "Buy Revvl Phones Houston | T-Mobile Revvl Lineup | Gadget X",
+    metaTitle: "Buy Revvl Phones Houston TX | GadgetX Repairs",
     metaDescription:
-      "Buy T-Mobile Revvl phones in Houston — Revvl 6, Revvl 7, Revvl Pro and more. Affordable Android, prepaid-ready, with warranty.",
+      "Shop Revvl phones in Houston TX. New & used models at affordable prices. Great T-Mobile network compatibility. Visit GadgetX Repairs today!",
     hero: {
       eyebrow: "Buy Revvl Phones",
       h1: "Buy Revvl Phones in Houston",
@@ -864,9 +864,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "iphone-cases-houston-tx",
     title: "iPhone Cases Houston",
-    metaTitle: "iPhone Cases Houston | Clear, Rugged, MagSafe | Gadget X",
+    metaTitle: "iPhone Cases Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPhone cases in Houston for every model from iPhone 11 to iPhone 16 Pro Max. Clear, rugged, MagSafe-compatible and OtterBox.",
+      "Shop iPhone cases in Houston TX. Wide selection of protective & stylish cases for all iPhone models. Affordable prices at GadgetX Repairs!",
     hero: {
       eyebrow: "iPhone Cases",
       h1: "iPhone Cases in Houston",
@@ -890,9 +890,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "iphone-screen-protectors-houston-tx",
     title: "iPhone Screen Protectors Houston",
-    metaTitle: "iPhone Screen Protectors Houston | Tempered Glass, Privacy | Gadget X",
+    metaTitle: "iPhone Screen Protectors Houston TX | GadgetX",
     metaDescription:
-      "iPhone screen protectors in Houston — tempered glass, privacy and matte. Free professional install with every protector purchased.",
+      "Shop iPhone screen protectors in Houston TX. Tempered glass & film protectors for all models. Affordable prices at GadgetX Repairs. Shop now!",
     hero: {
       eyebrow: "iPhone Screen Protectors",
       h1: "iPhone Screen Protectors in Houston",
@@ -916,9 +916,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "iphone-chargers-houston-tx",
     title: "iPhone Chargers Houston",
-    metaTitle: "iPhone Chargers Houston | USB-C, Lightning, MagSafe | Gadget X",
+    metaTitle: "iPhone Chargers Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPhone chargers in Houston — USB-C, Lightning, MagSafe and fast-charging bricks for every iPhone. Apple-compatible, warrantied.",
+      "Shop iPhone chargers in Houston TX. Fast chargers, cables & adapters for all iPhone models. Affordable prices at GadgetX Repairs. Walk-in today!",
     hero: {
       eyebrow: "iPhone Chargers",
       h1: "iPhone Chargers in Houston",
@@ -942,9 +942,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phone-cables-houston-tx",
     title: "Phone Cables Houston",
-    metaTitle: "Phone Cables Houston | USB-C, Lightning, Micro-USB | Gadget X",
+    metaTitle: "Phone Cables Houston TX | GadgetX Repairs",
     metaDescription:
-      "Phone cables in Houston — USB-C, Lightning and Micro-USB in 3 ft, 6 ft and 10 ft. Braided, fast-charge rated and warrantied.",
+      "Shop phone charging cables in Houston TX. USB-C, Lightning & Micro USB. Durable cables for all devices at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Phone Cables",
       h1: "Phone Cables in Houston",
@@ -968,9 +968,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "hdmi-cables-houston-tx",
     title: "HDMI Cables Houston",
-    metaTitle: "HDMI Cables Houston | 4K, 8K, High Speed | Gadget X",
+    metaTitle: "HDMI Cables Houston TX | GadgetX Repairs",
     metaDescription:
-      "HDMI cables in Houston — 4K, 8K, high-speed and ultra-high-speed in every length. For TVs, monitors, PS5, Xbox and laptops.",
+      "Shop HDMI cables in Houston TX. High-quality cables for TVs, monitors & gaming consoles. Great prices at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "HDMI Cables",
       h1: "HDMI Cables in Houston",
@@ -994,9 +994,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "car-phone-holders-houston-tx",
     title: "Car Phone Holders Houston",
-    metaTitle: "Car Phone Holders Houston | MagSafe, Vent, Dash Mounts | Gadget X",
+    metaTitle: "Car Phone Holders Houston TX | GadgetX Repairs",
     metaDescription:
-      "Car phone holders in Houston — MagSafe, vent, dash and windshield mounts. Charging and non-charging options for every phone.",
+      "Shop car phone holders in Houston TX. Secure mounts for all phone sizes. Magnetic, vent & windshield options at GadgetX Repairs. Shop today!",
     hero: {
       eyebrow: "Car Phone Holders",
       h1: "Car Phone Holders in Houston",
@@ -1020,9 +1020,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "wired-headphones-houston-tx",
     title: "Wired Headphones Houston",
-    metaTitle: "Wired Headphones Houston | 3.5mm, USB-C, Lightning | Gadget X",
+    metaTitle: "Wired Headphones Houston TX | GadgetX Repairs",
     metaDescription:
-      "Wired headphones in Houston — 3.5mm, USB-C and Lightning in over-ear, on-ear and in-ear styles. Affordable to premium.",
+      "Shop wired headphones in Houston TX. Great sound quality for all devices. Wide range of styles & brands at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Wired Headphones",
       h1: "Wired Headphones in Houston",
@@ -1046,9 +1046,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "wireless-earbuds-houston-tx",
     title: "Wireless Earbuds Houston",
-    metaTitle: "Wireless Earbuds Houston | True Wireless, ANC | Gadget X",
+    metaTitle: "Wireless Earbuds Houston TX | GadgetX Repairs",
     metaDescription:
-      "Wireless earbuds in Houston — true wireless Bluetooth earbuds with ANC, transparency mode and 24-hour battery. AirPods alternatives from $29.",
+      "Shop wireless earbuds in Houston TX. Bluetooth earbuds for calls, music & more. Top brands & great prices at GadgetX Repairs. Shop today!",
     hero: {
       eyebrow: "Wireless Earbuds",
       h1: "Wireless Earbuds in Houston",
@@ -1072,9 +1072,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "airpods-houston-tx",
     title: "AirPods Houston",
-    metaTitle: "AirPods Houston | AirPods, AirPods Pro, Max | Gadget X",
+    metaTitle: "AirPods Houston TX | GadgetX Repairs",
     metaDescription:
-      "AirPods in Houston — AirPods 2, 3, 4, AirPods Pro and AirPods Max. New, refurbished and AirPods-style alternatives.",
+      "Shop Apple AirPods in Houston TX. AirPods, AirPods Pro & AirPods Max available. Competitive prices at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "AirPods",
       h1: "AirPods in Houston",
@@ -1098,9 +1098,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "apple-watch-houston-tx",
     title: "Apple Watch Houston",
-    metaTitle: "Apple Watch Houston | Series 7, 8, 9, SE, Ultra | Gadget X",
+    metaTitle: "Apple Watch Houston TX | GadgetX Repairs",
     metaDescription:
-      "Apple Watch in Houston — Series 7, 8, 9, SE and Ultra. New, refurbished and used. Bands, chargers and screen repair available.",
+      "Shop Apple Watch in Houston TX. Latest Apple Watch models available. Competitive prices & bands at GadgetX Repairs. Walk-ins welcome. Shop today!",
     hero: {
       eyebrow: "Apple Watch",
       h1: "Apple Watch in Houston",
@@ -1124,9 +1124,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "watch-bands-houston-tx",
     title: "Watch Bands Houston",
-    metaTitle: "Watch Bands Houston | Apple Watch, Galaxy Watch, Fitbit | Gadget X",
+    metaTitle: "Watch Bands Houston TX | GadgetX Repairs",
     metaDescription:
-      "Watch bands in Houston for Apple Watch, Galaxy Watch and Fitbit. Sport, leather, steel link and Milanese loop styles.",
+      "Shop watch bands in Houston TX. Compatible bands for Apple Watch & more. Wide variety of styles & colors at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Watch Bands",
       h1: "Watch Bands in Houston",
@@ -1150,9 +1150,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "ipad-accessories-houston-tx",
     title: "iPad Accessories Houston",
-    metaTitle: "iPad Accessories Houston | Cases, Pencil, Keyboards | Gadget X",
+    metaTitle: "iPad Accessories Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPad accessories in Houston — folio cases, Apple Pencil-compatible styluses, keyboards, screen protectors and chargers for every iPad.",
+      "Shop iPad accessories in Houston TX. Cases, screen protectors, cables & more for all iPad models. Great prices at GadgetX Repairs. Shop today!",
     hero: {
       eyebrow: "iPad Accessories",
       h1: "iPad Accessories in Houston",
@@ -1176,9 +1176,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "camera-lenses-houston-tx",
     title: "Phone Camera Lenses Houston",
-    metaTitle: "Phone Camera Lenses Houston | Wide, Macro, Telephoto Clip-On | Gadget X",
+    metaTitle: "Camera Lenses Houston TX | GadgetX Repairs",
     metaDescription:
-      "Clip-on phone camera lenses in Houston — wide angle, macro, fisheye and telephoto for iPhone, Galaxy and any smartphone.",
+      "Shop phone camera lenses in Houston TX. Clip-on wide-angle, macro & telephoto lenses for all phones. Great prices at GadgetX Repairs. Shop now!",
     hero: {
       eyebrow: "Phone Camera Lenses",
       h1: "Phone Camera Lenses in Houston",
@@ -1202,9 +1202,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "samsung-accessories-houston-tx",
     title: "Samsung Accessories Houston",
-    metaTitle: "Samsung Accessories Houston | Galaxy Cases, Chargers, Bands | Gadget X",
+    metaTitle: "Samsung Accessories Houston TX | GadgetX Repairs",
     metaDescription:
-      "Samsung Galaxy accessories in Houston — cases, USB-C chargers, screen protectors, S Pen, Galaxy Watch bands and Galaxy Buds.",
+      "Shop Samsung accessories in Houston TX. Cases, chargers, cables & more for Galaxy phones & tablets. Affordable prices at GadgetX Repairs!",
     hero: {
       eyebrow: "Samsung Accessories",
       h1: "Samsung Accessories in Houston",
@@ -1228,9 +1228,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "ncc-accessories-houston-tx",
     title: "NCC Accessories Houston",
-    metaTitle: "NCC Accessories Houston | Cases, Cables, Chargers | Gadget X",
+    metaTitle: "NCC Accessories Houston TX | GadgetX Repairs",
     metaDescription:
-      "NCC brand accessories in Houston — cases, charging cables, wall adapters and tempered glass at affordable prices.",
+      "Shop NCC accessories in Houston TX. Quality phone accessories including cases, chargers & cables. Affordable prices at GadgetX Repairs. Shop now!",
     hero: {
       eyebrow: "NCC Accessories",
       h1: "NCC Accessories in Houston",
@@ -1254,9 +1254,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "esoulk-accessories-houston-tx",
     title: "Esoulk Accessories Houston",
-    metaTitle: "Esoulk Accessories Houston | Chargers, Cables, Power Banks | Gadget X",
+    metaTitle: "Esoulk Accessories Houston TX | GadgetX Repairs",
     metaDescription:
-      "Esoulk brand accessories in Houston — fast-charging USB-C bricks, braided cables and power banks at affordable prices.",
+      "Shop Esoulk accessories in Houston TX. Reliable phone chargers, cables & more at great prices. Available at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Esoulk Accessories",
       h1: "Esoulk Accessories in Houston",
@@ -1280,9 +1280,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "third-party-accessories-houston-tx",
     title: "Third-Party Accessories Houston",
-    metaTitle: "Third-Party Phone Accessories Houston | Affordable Alternatives | Gadget X",
+    metaTitle: "Third-Party Accessories Houston TX | GadgetX",
     metaDescription:
-      "Third-party phone accessories in Houston — affordable alternatives to Apple and Samsung official accessories. Cases, chargers, cables and more.",
+      "Shop affordable third-party phone accessories in Houston TX. Cases, chargers, cables & more. Great value at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Third-Party Accessories",
       h1: "Third-Party Accessories in Houston",

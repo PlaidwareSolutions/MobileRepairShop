@@ -114,9 +114,9 @@ export const PREPAID_DATA: PrepaidData[] = [
 ];
 
 PREPAID_DATA[0].title = "Prepaid Phone Activations in Houston";
-PREPAID_DATA[0].metaTitle = "Prepaid Phone Activations Houston | All Carriers | Gadget X";
+PREPAID_DATA[0].metaTitle = "Phone Activation Houston TX | GadgetX Repairs";
 PREPAID_DATA[0].metaDescription =
-  "Prepaid phone activations in Houston for Cricket, Metro by T-Mobile, T-Mobile, AT&T Prepaid, Boost, Gen Mobile, Simple Mobile, H2O, Lyca, Verizon Prepaid and more.";
+  "Quick phone & carrier activation in Houston TX. Boost Mobile, AT&T, Verizon & more. Fast setup at GadgetX Repairs. Walk-ins welcome today!";
 PREPAID_DATA[0].hero.eyebrow = "Prepaid";
 PREPAID_DATA[0].hero.h1 = "Prepaid Phone Activations in Houston";
 PREPAID_DATA[0].hero.subhead = "We activate every major prepaid carrier — bring your phone or buy one from us.";
@@ -141,9 +141,9 @@ PREPAID_DATA[0].faqs = [
 ];
 
 PREPAID_DATA[1].title = "Bill Payments in Houston";
-PREPAID_DATA[1].metaTitle = "Cell Phone Bill Payments Houston | Cash | Gadget X";
+PREPAID_DATA[1].metaTitle = "Bill Payments Houston TX | GadgetX Repairs";
 PREPAID_DATA[1].metaDescription =
-  "Pay your prepaid cell phone bill in cash at our Houston shop. Cricket, Metro, T-Mobile, AT&T Prepaid, Boost, Xfinity Mobile, Lyca and more.";
+  "Pay your phone bill conveniently at GadgetX Repairs in Houston TX. Multiple carriers accepted. Fast, hassle-free bill payment. Walk-ins welcome!";
 PREPAID_DATA[1].hero.eyebrow = "Bill Payments";
 PREPAID_DATA[1].hero.h1 = "Cell Phone Bill Payments in Houston";
 PREPAID_DATA[1].hero.subhead =
@@ -156,5 +156,56 @@ PREPAID_DATA[1].services = [
   "Account lookup by phone number",
   "Receipt provided",
 ];
+
+const META_OVERRIDES: Record<string, { metaTitle: string; metaDescription: string }> = {
+  "boost-mobile-activation-houston-tx": {
+    metaTitle: "Boost Mobile Activation Houston TX | GadgetX",
+    metaDescription:
+      "Activate your Boost Mobile plan in Houston TX. Fast, hassle-free setup at GadgetX Repairs. New activations & plan upgrades. Walk-ins welcome!",
+  },
+  "att-activation-houston-tx": {
+    metaTitle: "AT&T Activation Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Get your AT&T plan activated fast in Houston TX. New lines, upgrades & prepaid plans available. Quick setup at GadgetX Repairs. Walk-ins welcome!",
+  },
+  "gen-mobile-activation-houston-tx": {
+    metaTitle: "Gen Mobile Activation Houston TX | GadgetX",
+    metaDescription:
+      "Activate your Gen Mobile plan in Houston TX. Fast & easy setup at GadgetX Repairs. New activations & plan changes. Walk-ins welcome today!",
+  },
+  "simple-mobile-activation-houston-tx": {
+    metaTitle: "Simple Mobile Activation Houston TX | GadgetX",
+    metaDescription:
+      "Simple Mobile activation in Houston TX. Get your plan set up fast at GadgetX Repairs. New lines & upgrades. Walk-ins welcome anytime!",
+  },
+  "xfinity-mobile-activation-houston-tx": {
+    metaTitle: "Xfinity Mobile Activation Houston TX | GadgetX",
+    metaDescription:
+      "Activate your Xfinity Mobile plan in Houston TX. Fast & easy setup at GadgetX Repairs. New activations & plan upgrades. Walk-ins welcome!",
+  },
+  "h2o-wireless-activation-houston-tx": {
+    metaTitle: "H2O Wireless Activation Houston TX | GadgetX",
+    metaDescription:
+      "Activate your H2O Wireless plan in Houston TX. Quick & easy setup at GadgetX Repairs. New activations & plan changes. Walk-ins welcome!",
+  },
+  "lyca-mobile-activation-houston-tx": {
+    metaTitle: "Lyca Mobile Activation Houston TX | GadgetX",
+    metaDescription:
+      "Lyca Mobile activation in Houston TX. Fast, hassle-free plan setup at GadgetX Repairs. New lines & upgrades available. Walk-ins welcome!",
+  },
+  "verizon-prepaid-activation-houston-tx": {
+    metaTitle: "Verizon Prepaid Activation Houston TX | GadgetX",
+    metaDescription:
+      "Activate your Verizon Prepaid plan in Houston TX. Quick & easy setup at GadgetX Repairs. New activations & upgrades. Walk-ins welcome today!",
+  },
+};
+
+for (const entry of PREPAID_DATA) {
+  const ov = META_OVERRIDES[entry.slug];
+  if (ov) {
+    entry.metaTitle = ov.metaTitle;
+    entry.metaDescription = ov.metaDescription;
+  }
+}
 
 export const PREPAID_BY_SLUG = Object.fromEntries(PREPAID_DATA.map((p) => [p.slug, p])) as Record<string, PrepaidData>;

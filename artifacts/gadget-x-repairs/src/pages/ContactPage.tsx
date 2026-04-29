@@ -33,8 +33,8 @@ export default function ContactPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Contact Gadget X Repairs | Houston, TX"
-        description="Contact Gadget X Repairs in Houston: call (346) 623-6898, text on WhatsApp, or visit 8389 Almeda Rd Suite J-2. Submit a repair quote, sell-phone offer, appointment, or general message."
+        title="Contact GadgetX Repairs Houston TX"
+        description="Get in touch with GadgetX Repairs in Houston TX. Find our address, phone number & hours. Contact us for repairs, activations & more. Call today!"
         path="/contact-houston-tx"
         jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "Contact", path: "/contact-houston-tx" }])]}
       />

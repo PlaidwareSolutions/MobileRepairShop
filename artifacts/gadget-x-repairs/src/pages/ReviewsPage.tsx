@@ -10,8 +10,8 @@ export default function ReviewsPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Customer Reviews | Gadget X Repairs Houston"
-        description="5-star customer reviews for Gadget X Repairs in Houston, TX — phone, tablet, laptop, PS5, Xbox repair and prepaid activation."
+        title="Customer Reviews Houston TX | GadgetX Repairs"
+        description="See what customers say about GadgetX Repairs in Houston TX. Real reviews from satisfied clients. Trusted phone & device repair specialists!"
         path="/reviews-houston-tx"
         jsonLd={[
           localBusinessJsonLd(),

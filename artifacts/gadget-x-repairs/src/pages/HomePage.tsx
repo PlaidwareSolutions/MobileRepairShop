@@ -203,8 +203,8 @@ export default function HomePage() {
   return (
     <PageShell>
       <SEO
-        title="Gadget X Repairs — Same-Day Phone, Tablet, Laptop & Console Repair in Houston"
-        description="15 years of trusted same-day phone, iPad, MacBook, laptop, PlayStation, Xbox & Nintendo repair in Houston, TX. Walk-ins welcome at 8389 Almeda Rd. Call (346) 623-6898."
+        title="Best Phone Repair Houston TX | GadgetX Repairs"
+        description="Top-rated phone repair in Houston TX. Fast fixes for screens, batteries & charging ports. Walk-ins welcome. Free quote at GadgetX Repairs today!"
         path="/phone-repair-houston-tx"
         jsonLd={localBusinessJsonLd()}
       />

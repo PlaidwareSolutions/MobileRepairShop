@@ -61,9 +61,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-repair-houston-tx",
     title: "iPhone Repair Houston",
-    metaTitle: "iPhone Repair Houston | Screen, Battery, Port — Same Day | Gadget X",
+    metaTitle: "iPhone Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Same-day iPhone repair in Houston for every model from iPhone 6 through iPhone 16 Pro Max. Screen, battery, charging port, camera, back glass. 90-day warranty.",
+      "Expert iPhone repair in Houston TX. Screen, battery, back glass & more. All models serviced. Fast turnaround & warranty. Visit GadgetX Repairs!",
     hero: {
       eyebrow: "Apple iPhone Repair",
       h1: "iPhone Repair in Houston, TX",
@@ -116,9 +116,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-repair-houston-tx",
     title: "Samsung Phone Repair Houston",
-    metaTitle: "Samsung Galaxy Repair Houston | Screen, Battery, Port | Gadget X",
+    metaTitle: "Samsung Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Same-day Samsung Galaxy repair in Houston. Galaxy S, Note, A and Z series. Cracked screen, battery, charging port, back glass. 90-day warranty. Call (346) 623-6898.",
+      "Trusted Samsung repair in Houston TX. Screen, battery & more for all Galaxy models. Fast turnaround, warranty included. Visit GadgetX Repairs!",
     hero: {
       eyebrow: "Samsung Galaxy Repair",
       h1: "Samsung Galaxy Repair in Houston",
@@ -158,9 +158,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "google-pixel-repair-houston-tx",
     title: "Google Pixel Repair Houston",
-    metaTitle: "Google Pixel Repair Houston | Screen, Battery, Port | Gadget X",
+    metaTitle: "Google Pixel Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Same-day Google Pixel repair in Houston. Pixel 3 through Pixel 9 Pro. Screen, battery, charging port, back glass. 90-day warranty.",
+      "Trusted Google Pixel repair in Houston TX. Screen, battery & more fixed by expert techs. Fast service, warranty included. Visit GadgetX Repairs!",
     hero: {
       eyebrow: "Google Pixel Repair",
       h1: "Google Pixel Repair in Houston",
@@ -189,9 +189,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "motorola-repair-houston-tx",
     title: "Motorola Phone Repair Houston",
-    metaTitle: "Motorola Phone Repair Houston | Moto G, Edge, Razr | Gadget X",
+    metaTitle: "Motorola Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Same-day Motorola repair in Houston. Moto G, Moto E, Edge and Razr. Screen, battery, charging port repair. 90-day warranty.",
+      "Affordable Motorola phone repair in Houston TX. Screen, battery & charging port fixes. Fast service with warranty. Walk-in at GadgetX Repairs!",
     hero: {
       eyebrow: "Motorola Repair",
       h1: "Motorola Phone Repair in Houston",
@@ -220,9 +220,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "tablet-repair-houston-tx",
     title: "iPad & Tablet Repair Houston",
-    metaTitle: "iPad & Tablet Repair Houston | Glass, LCD, Battery | Gadget X",
+    metaTitle: "Tablet Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPad, Galaxy Tab, Amazon Fire and Lenovo tablet repair in Houston. Glass, LCD, charging port and battery replacement. 90-day warranty.",
+      "Professional tablet repair in Houston TX. iPad, Samsung & more. Screen, battery & charging fixes. Fast turnaround at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Tablet Repair",
       h1: "iPad & Tablet Repair in Houston",
@@ -252,9 +252,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-repair-houston-tx",
     title: "Laptop Repair Houston",
-    metaTitle: "Laptop Repair Houston | Screen, Battery, Keyboard | Gadget X",
+    metaTitle: "Laptop Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Houston laptop repair for HP, Dell, Lenovo, ASUS, Acer and more. Screen, keyboard, battery, charging port and motherboard repair.",
+      "Professional laptop repair in Houston TX. MacBook, HP, Dell & Lenovo. Screen, battery, keyboard & more. Fast service at GadgetX Repairs!",
     hero: {
       eyebrow: "Laptop Repair",
       h1: "Laptop Repair in Houston",
@@ -295,9 +295,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "computer-repair-houston-tx",
     title: "Computer Repair Houston",
-    metaTitle: "Computer Repair Houston | Desktop, Laptop, PC Tune-Up | Gadget X",
+    metaTitle: "Computer Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Computer repair in Houston for desktops, laptops and all-in-ones. Slow PC, virus removal, hardware upgrades, no-boot diagnostics. Walk in any day.",
+      "Professional computer repair in Houston TX. Desktops & laptops. Hardware, software & virus removal. Fast, affordable service at GadgetX Repairs!",
     hero: {
       eyebrow: "Computer Repair",
       h1: "Computer Repair in Houston",
@@ -327,9 +327,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "macbook-repair-houston-tx",
     title: "MacBook Repair Houston",
-    metaTitle: "MacBook Repair Houston | Screen, Battery, Logic Board | Gadget X",
+    metaTitle: "MacBook Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "MacBook repair in Houston for MacBook Air, MacBook Pro and MacBook. Screen, keyboard, battery, logic board and liquid damage. 90-day warranty.",
+      "Expert MacBook repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Fast diagnostics & warranty. Visit GadgetX Repairs today!",
     hero: {
       eyebrow: "Apple Laptop Repair",
       h1: "MacBook Repair in Houston",
@@ -359,9 +359,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "hp-laptop-repair-houston-tx",
     title: "HP Laptop Repair Houston",
-    metaTitle: "HP Laptop Repair Houston | Pavilion, Envy, Elitebook | Gadget X",
+    metaTitle: "HP Laptop Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "HP laptop repair in Houston for Pavilion, Envy, Elitebook, Spectre, Probook and HP Stream. Screen, battery, keyboard, charging port.",
+      "Trusted HP laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixed by experts. Fast turnaround. Visit GadgetX Repairs today!",
     hero: {
       eyebrow: "HP Laptop Repair",
       h1: "HP Laptop Repair in Houston",
@@ -391,9 +391,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "dell-laptop-repair-houston-tx",
     title: "Dell Laptop Repair Houston",
-    metaTitle: "Dell Laptop Repair Houston | Latitude, Inspiron, XPS | Gadget X",
+    metaTitle: "Dell Laptop Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Dell laptop repair in Houston for Latitude, Inspiron, XPS, Precision and Vostro. Screen, battery, keyboard, motherboard.",
+      "Reliable Dell laptop repair in Houston TX. Screen, battery, keyboard & more. Certified technicians & warranty. Walk-in at GadgetX Repairs!",
     hero: {
       eyebrow: "Dell Laptop Repair",
       h1: "Dell Laptop Repair in Houston",
@@ -422,9 +422,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "lenovo-laptop-repair-houston-tx",
     title: "Lenovo Laptop Repair Houston",
-    metaTitle: "Lenovo Laptop Repair Houston | ThinkPad, IdeaPad, Yoga | Gadget X",
+    metaTitle: "Lenovo Laptop Repair Houston TX | GadgetX",
     metaDescription:
-      "Lenovo laptop repair in Houston. ThinkPad, IdeaPad, Yoga, Legion and Chromebooks. Screen, battery, keyboard, charging port.",
+      "Expert Lenovo laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Quick turnaround & warranty. Visit GadgetX Repairs!",
     hero: {
       eyebrow: "Lenovo Repair",
       h1: "Lenovo Laptop Repair in Houston",
@@ -453,9 +453,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "gaming-console-repair-houston-tx",
     title: "Gaming Console Repair Houston",
-    metaTitle: "Gaming Console Repair Houston | PS5, Xbox, Switch | Gadget X",
+    metaTitle: "Gaming Console Repair Houston TX | GadgetX",
     metaDescription:
-      "Gaming console repair in Houston for PS5, PS4, Xbox Series X/S, Xbox One, Nintendo Switch and Switch OLED. HDMI port, disc drive, no power, controllers.",
+      "Expert gaming console repair in Houston TX. PS5, Xbox & controllers. Fast diagnostics & affordable fixes. Walk-in at GadgetX Repairs today!",
     hero: {
       eyebrow: "Console Repair",
       h1: "Gaming Console Repair in Houston",
@@ -485,9 +485,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ps5-repair-houston-tx",
     title: "PS5 Repair Houston",
-    metaTitle: "PS5 Repair Houston | HDMI, Disc Drive, No Power | Gadget X",
+    metaTitle: "PS5 Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Sony PS5 repair in Houston. HDMI port replacement, disc drive, no power, overheating, controller drift. Same-day diagnostic.",
+      "PS5 not working? Get expert PS5 repair in Houston TX. HDMI, disc drive & more fixed fast. Affordable pricing & warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "PlayStation 5 Repair",
       h1: "PS5 Repair in Houston",
@@ -517,9 +517,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "xbox-repair-houston-tx",
     title: "Xbox Repair Houston",
-    metaTitle: "Xbox Repair Houston | Series X, Series S, Xbox One | Gadget X",
+    metaTitle: "Xbox Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Xbox repair in Houston for Series X, Series S, Xbox One X/S. HDMI port, disc drive, won't power on, overheating, controller fix.",
+      "Xbox not working? Get expert Xbox repair in Houston TX. Power, disc drive & controller issues fixed fast. Affordable & warrantied at GadgetX!",
     hero: {
       eyebrow: "Xbox Repair",
       h1: "Xbox Repair in Houston",
@@ -549,9 +549,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "controller-repair-houston-tx",
     title: "Controller Repair Houston",
-    metaTitle: "Controller Repair Houston | Stick Drift, Triggers | Gadget X",
+    metaTitle: "Controller Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Game controller repair in Houston for PS5 DualSense, Xbox, Switch joycons and Pro controller. Stick drift, broken triggers, button failure.",
+      "Broken game controller? Get it repaired fast in Houston TX. PS5 & Xbox controllers fixed. Affordable pricing & warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "Controller Repair",
       h1: "Controller Repair in Houston",
@@ -611,9 +611,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "motherboard-repair-houston-tx",
     title: "Motherboard Repair Houston",
-    metaTitle: "Motherboard Repair Houston | Microsolder, Logic Board | Gadget X",
+    metaTitle: "Motherboard Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "Phone, laptop and console motherboard repair in Houston. Microsolder, BGA reflow, charging IC, audio IC, no-power and water-damage board work.",
+      "Expert motherboard repair in Houston TX. Phones, laptops & consoles. Complex board-level fixes by certified technicians. Visit GadgetX Repairs!",
     hero: {
       eyebrow: "Board-level Repair",
       h1: "Motherboard / Logic-Board Repair in Houston",
@@ -643,9 +643,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "battery-replacement-houston-tx",
     title: "Battery Replacement Houston",
-    metaTitle: "Battery Replacement Houston | Phone, Laptop, Tablet | Gadget X",
+    metaTitle: "Battery Replacement Houston TX | GadgetX Repairs",
     metaDescription:
-      "Same-day battery replacement in Houston for iPhone, Android, iPad, MacBook and laptops. From $49. 90-day warranty.",
+      "Phone, tablet & laptop battery replacement in Houston TX. All brands & models covered. Fast, affordable service with warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "Battery Replacement",
       h1: "Battery Replacement in Houston",
@@ -675,9 +675,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "phone-unlocking-houston-tx",
     title: "Phone Unlocking Houston",
-    metaTitle: "Phone Unlocking Houston | Carrier Unlock | Gadget X",
+    metaTitle: "Phone Unlocking Houston TX | GadgetX Repairs",
     metaDescription:
-      "Phone unlocking in Houston. AT&T, T-Mobile, Cricket, Verizon, Boost and prepaid carrier unlocks. Use any SIM, anywhere in the world.",
+      "Unlock your phone in Houston TX. All carriers & brands supported. Fast & reliable unlocking service at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Phone Unlocking",
       h1: "Phone Unlocking in Houston",
@@ -705,9 +705,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "repair-services-houston-tx",
     title: "Repair Services Houston",
-    metaTitle: "Repair Services Houston | Phone, Tablet, Laptop, Console | Gadget X",
+    metaTitle: "Repair Services Houston TX | GadgetX Repairs",
     metaDescription:
-      "Every repair we offer in Houston — phone, iPad, laptop, MacBook, PS5, Xbox, Switch, HDMI, motherboard, battery, unlocking. 15 years on Almeda Rd.",
+      "Professional repair services for phones, tablets, laptops & consoles in Houston TX. Same-day service available. Visit GadgetX Repairs today!",
     hero: {
       eyebrow: "All Repair Services",
       h1: "Repair Services in Houston",
@@ -750,9 +750,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-14-repair-houston-tx",
     title: "iPhone 14 Repair Houston",
-    metaTitle: "iPhone 14 Repair Houston | Screen, Battery, Port | Gadget X",
+    metaTitle: "iPhone 14 Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPhone 14, 14 Plus, 14 Pro and 14 Pro Max repair in Houston. Screen, battery, charging port, back glass and camera. Same day, 90-day warranty.",
+      "Affordable iPhone 14 repair in Houston TX. Screen, battery, back glass & charging port. Experienced techs & warranty. Visit GadgetX Repairs!",
     hero: {
       eyebrow: "iPhone 14 Repair",
       h1: "iPhone 14 Repair in Houston",
@@ -783,9 +783,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-15-repair-houston-tx",
     title: "iPhone 15 Repair Houston",
-    metaTitle: "iPhone 15 Repair Houston | Screen, Battery, USB-C | Gadget X",
+    metaTitle: "iPhone 15 Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPhone 15, 15 Plus, 15 Pro and 15 Pro Max repair in Houston. OLED screen, USB-C port, battery, back glass, camera. Same day, 90-day warranty.",
+      "Quick & affordable iPhone 15 repair in Houston TX. Screen replacement, battery & more. Walk-ins welcome at GadgetX Repairs. Get a free quote!",
     hero: {
       eyebrow: "iPhone 15 Repair",
       h1: "iPhone 15 Repair in Houston",
@@ -816,9 +816,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-16-repair-houston-tx",
     title: "iPhone 16 Repair Houston",
-    metaTitle: "iPhone 16 Repair Houston | Screen, Battery, USB-C | Gadget X",
+    metaTitle: "iPhone 16 Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPhone 16 and 16 Plus repair in Houston. OLED screen, USB-C, battery, back glass, camera and Camera Control button. 90-day warranty.",
+      "Affordable iPhone 16 repair in Houston TX. Cracked screen, battery & charging issues fixed fast. Certified technicians. Get your free quote today!",
     hero: {
       eyebrow: "iPhone 16 Repair",
       h1: "iPhone 16 Repair in Houston",
@@ -848,9 +848,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-16-pro-repair-houston-tx",
     title: "iPhone 16 Pro Repair Houston",
-    metaTitle: "iPhone 16 Pro Repair Houston | OLED, USB-C, Battery | Gadget X",
+    metaTitle: "iPhone 16 Pro Repair Houston TX | GadgetX",
     metaDescription:
-      "iPhone 16 Pro and 16 Pro Max repair in Houston. ProMotion OLED, titanium frame, USB-C, battery, back glass and Camera Control.",
+      "Expert iPhone 16 Pro repair in Houston TX. Screen replacement, battery & more. Quick turnaround with a warranty. Visit GadgetX Repairs today!",
     hero: {
       eyebrow: "iPhone 16 Pro Repair",
       h1: "iPhone 16 Pro Repair in Houston",
@@ -881,9 +881,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-screen-repair-houston-tx",
     title: "iPhone Screen Repair Houston",
-    metaTitle: "iPhone Screen Repair Houston | Same-Day OLED, LCD | Gadget X",
+    metaTitle: "iPhone Screen Repair Houston TX | GadgetX",
     metaDescription:
-      "iPhone screen replacement in Houston for every model from iPhone 6 to iPhone 16 Pro Max. OLED and LCD, same-day, 90-day warranty.",
+      "Fast iPhone screen repair in Houston TX. Cracked or broken display fixed same day. All models. Affordable pricing & warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "iPhone Screen Repair",
       h1: "iPhone Screen Repair in Houston",
@@ -915,9 +915,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-battery-replacement-houston-tx",
     title: "iPhone Battery Replacement Houston",
-    metaTitle: "iPhone Battery Replacement Houston | $49 & Up | Gadget X",
+    metaTitle: "iPhone Battery Replacement Houston TX | GadgetX",
     metaDescription:
-      "iPhone battery replacement in Houston from $49 — every model from iPhone 6 through iPhone 16 Pro Max. Same day, 90-day warranty.",
+      "iPhone battery draining fast? Get a quick replacement in Houston TX. All models covered. Affordable pricing & warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "iPhone Battery Replacement",
       h1: "iPhone Battery Replacement in Houston",
@@ -948,9 +948,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-back-glass-repair-houston-tx",
     title: "iPhone Back Glass Repair Houston",
-    metaTitle: "iPhone Back Glass Repair Houston | Laser Removal | Gadget X",
+    metaTitle: "iPhone Back Glass Repair Houston TX | GadgetX",
     metaDescription:
-      "iPhone back glass replacement in Houston — laser-removed and replaced from $89. Every model from iPhone 8 to iPhone 16 Pro Max.",
+      "Cracked iPhone back glass? Get it repaired fast in Houston TX. Affordable pricing, all models covered, warranty included at GadgetX Repairs!",
     hero: {
       eyebrow: "iPhone Back Glass",
       h1: "iPhone Back Glass Repair in Houston",
@@ -980,9 +980,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-charging-port-repair-houston-tx",
     title: "iPhone Charging Port Repair Houston",
-    metaTitle: "iPhone Charging Port Repair Houston | Lightning, USB-C | Gadget X",
+    metaTitle: "iPhone Charging Port Repair Houston TX | GadgetX",
     metaDescription:
-      "iPhone charging port repair in Houston for Lightning and USB-C models. Loose port, won't charge, slow charge — fixed from $69.",
+      "iPhone not charging? Get your charging port repaired in Houston TX. Fast, affordable fix for all iPhone models at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "iPhone Charging Port",
       h1: "iPhone Charging Port Repair in Houston",
@@ -1011,9 +1011,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-water-damage-repair-houston-tx",
     title: "iPhone Water Damage Repair Houston",
-    metaTitle: "iPhone Water Damage Repair Houston | Diagnostic & Cleanup | Gadget X",
+    metaTitle: "iPhone Water Damage Repair Houston TX | GadgetX",
     metaDescription:
-      "iPhone water damage repair in Houston. Ultrasonic board cleaning, corrosion repair and component-level fixes. $25 diagnostic, waived if repaired.",
+      "Dropped your iPhone in water? Expert water damage repair in Houston TX. Fast diagnosis & recovery service at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "iPhone Water Damage",
       h1: "iPhone Water Damage Repair in Houston",
@@ -1043,9 +1043,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-s24-repair-houston-tx",
     title: "Samsung Galaxy S24 Repair Houston",
-    metaTitle: "Samsung Galaxy S24 Repair Houston | Screen, Battery | Gadget X",
+    metaTitle: "Samsung Galaxy S24 Repair Houston TX | GadgetX",
     metaDescription:
-      "Samsung Galaxy S24, S24+, S24 Ultra repair in Houston. AMOLED screen, battery, USB-C port, back glass, S Pen replacement. 90-day warranty.",
+      "Expert Samsung Galaxy S24 repair in Houston TX. Cracked screen, battery & more fixed fast. Warranty included at GadgetX Repairs. Walk-ins welcome!",
     hero: {
       eyebrow: "Galaxy S24 Repair",
       h1: "Samsung Galaxy S24 Repair in Houston",
@@ -1076,9 +1076,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-s23-repair-houston-tx",
     title: "Samsung Galaxy S23 Repair Houston",
-    metaTitle: "Samsung Galaxy S23 Repair Houston | Screen, Battery | Gadget X",
+    metaTitle: "Samsung Galaxy S23 Repair Houston TX | GadgetX",
     metaDescription:
-      "Samsung Galaxy S23, S23+, S23 Ultra repair in Houston. AMOLED screen, battery, USB-C port, back glass, S Pen replacement. 90-day warranty.",
+      "Reliable Samsung Galaxy S23 repair in Houston TX. Screen, battery & charging issues fixed fast. Certified techs & warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "Galaxy S23 Repair",
       h1: "Samsung Galaxy S23 Repair in Houston",
@@ -1109,9 +1109,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-screen-repair-houston-tx",
     title: "Samsung Screen Repair Houston",
-    metaTitle: "Samsung Galaxy Screen Repair Houston | AMOLED | Gadget X",
+    metaTitle: "Samsung Screen Repair Houston TX | GadgetX",
     metaDescription:
-      "Samsung Galaxy screen replacement in Houston. S, Note, A, Z Fold/Flip series. Cracked AMOLED, dead pixels, no touch. 90-day warranty.",
+      "Cracked Samsung screen? Get it repaired fast in Houston TX. All Galaxy models covered, affordable pricing & warranty. Visit GadgetX Repairs today!",
     hero: {
       eyebrow: "Samsung Screen Repair",
       h1: "Samsung Screen Repair in Houston",
@@ -1141,9 +1141,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-battery-replacement-houston-tx",
     title: "Samsung Battery Replacement Houston",
-    metaTitle: "Samsung Battery Replacement Houston | $59 & Up | Gadget X",
+    metaTitle: "Samsung Battery Replacement Houston TX | GadgetX",
     metaDescription:
-      "Samsung Galaxy battery replacement in Houston from $59 — every model from Galaxy A series through S24 Ultra. Same day, 90-day warranty.",
+      "Samsung battery not lasting? Get a fast replacement in Houston TX. All Galaxy models serviced. Affordable pricing & warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "Samsung Battery",
       h1: "Samsung Galaxy Battery Replacement in Houston",
@@ -1172,9 +1172,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "revvl-repair-houston-tx",
     title: "T-Mobile Revvl Repair Houston",
-    metaTitle: "T-Mobile Revvl Repair Houston | Screen, Battery, Port | Gadget X",
+    metaTitle: "Revvl Phone Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "T-Mobile Revvl phone repair in Houston. Revvl, Revvl Plus, Revvl 6, 7 series. Screen, battery, charging port. Same-day where possible.",
+      "Expert Revvl phone repair in Houston TX. Screen replacement, battery & more fixed fast. Affordable pricing & warranty. Visit GadgetX Repairs!",
     hero: {
       eyebrow: "Revvl Repair",
       h1: "T-Mobile Revvl Repair in Houston",
@@ -1203,9 +1203,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ipad-repair-houston-tx",
     title: "iPad Repair Houston",
-    metaTitle: "iPad Repair Houston | Screen, Battery, Port | Gadget X",
+    metaTitle: "iPad Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPad repair in Houston. Standard iPad, iPad mini and older models. Glass, LCD, charging port and battery. 90-day warranty.",
+      "Fast & affordable iPad repair in Houston TX. Screen, battery & charging port for all iPad models. Warranty included. Visit GadgetX Repairs today!",
     hero: {
       eyebrow: "iPad Repair",
       h1: "iPad Repair in Houston",
@@ -1235,9 +1235,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ipad-pro-repair-houston-tx",
     title: "iPad Pro Repair Houston",
-    metaTitle: "iPad Pro Repair Houston | Screen, Battery, Port | Gadget X",
+    metaTitle: "iPad Pro Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPad Pro repair in Houston. 11-inch and 12.9-inch / 13-inch iPad Pro. Fused display, battery, USB-C / Thunderbolt port. 90-day warranty.",
+      "Expert iPad Pro repair in Houston TX. Cracked screen, battery & more fixed fast. All sizes covered with warranty. Walk-in at GadgetX Repairs!",
     hero: {
       eyebrow: "iPad Pro Repair",
       h1: "iPad Pro Repair in Houston",
@@ -1267,9 +1267,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-tablet-repair-houston-tx",
     title: "Samsung Tablet Repair Houston",
-    metaTitle: "Samsung Galaxy Tab Repair Houston | Screen, Battery | Gadget X",
+    metaTitle: "Samsung Tablet Repair Houston TX | GadgetX",
     metaDescription:
-      "Samsung Galaxy Tab repair in Houston. Tab S, Tab A, Tab Active series. Screen, battery, USB-C port, S Pen replacement.",
+      "Expert Samsung tablet repair in Houston TX. Screen, battery & charging port fixed fast. All Galaxy Tab models. Warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "Samsung Tablet Repair",
       h1: "Samsung Galaxy Tab Repair in Houston",
@@ -1299,9 +1299,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "tablet-screen-repair-houston-tx",
     title: "Tablet Screen Repair Houston",
-    metaTitle: "Tablet Screen Repair Houston | iPad, Galaxy Tab, Fire | Gadget X",
+    metaTitle: "Tablet Screen Repair Houston TX | GadgetX",
     metaDescription:
-      "Tablet screen replacement in Houston for iPad, Galaxy Tab, Amazon Fire and Lenovo Tab. Glass, LCD, fused displays. 90-day warranty.",
+      "Cracked tablet screen? Get it fixed fast in Houston TX. iPad & Samsung tablet screen repairs, affordable pricing. Walk-in at GadgetX Repairs!",
     hero: {
       eyebrow: "Tablet Screen",
       h1: "Tablet Screen Repair in Houston",
@@ -1331,9 +1331,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "tablet-battery-replacement-houston-tx",
     title: "Tablet Battery Replacement Houston",
-    metaTitle: "Tablet Battery Replacement Houston | iPad, Galaxy Tab | Gadget X",
+    metaTitle: "Tablet Battery Replacement Houston TX | GadgetX",
     metaDescription:
-      "Tablet battery replacement in Houston for iPad, iPad Pro, Galaxy Tab, Fire HD and Lenovo Tab. From $89, 90-day warranty.",
+      "Tablet battery draining fast? Get a quick replacement in Houston TX. iPad & Samsung tablets covered. Warranty included at GadgetX Repairs!",
     hero: {
       eyebrow: "Tablet Battery",
       h1: "Tablet Battery Replacement in Houston",
@@ -1363,9 +1363,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "tablet-charging-port-repair-houston-tx",
     title: "Tablet Charging Port Repair Houston",
-    metaTitle: "Tablet Charging Port Repair Houston | Lightning, USB-C | Gadget X",
+    metaTitle: "Tablet Charging Port Repair Houston TX | GadgetX",
     metaDescription:
-      "Tablet charging port repair in Houston for iPad, Galaxy Tab, Fire HD and Lenovo Tab. Lightning and USB-C ports replaced from $79.",
+      "Tablet not charging? Get your charging port repaired in Houston TX. iPad & Samsung tablets fixed fast. Walk-in at GadgetX Repairs today!",
     hero: {
       eyebrow: "Tablet Charging Port",
       h1: "Tablet Charging Port Repair in Houston",
@@ -1394,9 +1394,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-screen-repair-houston-tx",
     title: "Laptop Screen Repair Houston",
-    metaTitle: "Laptop Screen Replacement Houston | HP, Dell, Lenovo | Gadget X",
+    metaTitle: "Laptop Screen Repair Houston TX | GadgetX",
     metaDescription:
-      "Laptop screen replacement in Houston for HP, Dell, Lenovo, ASUS, Acer, MSI and MacBook. From $99, same-day where possible.",
+      "Cracked or broken laptop screen? Get it repaired fast in Houston TX. All brands covered. Affordable pricing & warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "Laptop Screen",
       h1: "Laptop Screen Repair in Houston",
@@ -1425,9 +1425,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-battery-replacement-houston-tx",
     title: "Laptop Battery Replacement Houston",
-    metaTitle: "Laptop Battery Replacement Houston | HP, Dell, MacBook | Gadget X",
+    metaTitle: "Laptop Battery Replacement Houston TX | GadgetX",
     metaDescription:
-      "Laptop battery replacement in Houston for HP, Dell, Lenovo, ASUS, Acer and MacBook. From $69, 90-day warranty.",
+      "Laptop battery not holding charge? Get a fast replacement in Houston TX. All brands covered. Affordable pricing & warranty at GadgetX Repairs!",
     hero: {
       eyebrow: "Laptop Battery",
       h1: "Laptop Battery Replacement in Houston",
@@ -1456,9 +1456,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-motherboard-repair-houston-tx",
     title: "Laptop Motherboard Repair Houston",
-    metaTitle: "Laptop Motherboard Repair Houston | Microsolder | Gadget X",
+    metaTitle: "Laptop Motherboard Repair Houston TX | GadgetX",
     metaDescription:
-      "Laptop motherboard repair in Houston. Microsolder, no-power, liquid damage and charging IC repair for HP, Dell, Lenovo, ASUS and MacBook.",
+      "Expert laptop motherboard repair in Houston TX. Experienced techs diagnose & fix complex issues fast. Warranty included at GadgetX Repairs!",
     hero: {
       eyebrow: "Laptop Motherboard",
       h1: "Laptop Motherboard Repair in Houston",
@@ -1488,9 +1488,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-keyboard-repair-houston-tx",
     title: "Laptop Keyboard Repair Houston",
-    metaTitle: "Laptop Keyboard Replacement Houston | HP, Dell, Lenovo | Gadget X",
+    metaTitle: "Laptop Keyboard Repair Houston TX | GadgetX",
     metaDescription:
-      "Laptop keyboard replacement in Houston for HP, Dell, Lenovo, ASUS, MSI and MacBook. From $89, same-day where possible.",
+      "Broken or unresponsive laptop keyboard? Get it fixed fast in Houston TX. All brands, affordable pricing. Walk-in at GadgetX Repairs today!",
     hero: {
       eyebrow: "Laptop Keyboard",
       h1: "Laptop Keyboard Repair in Houston",
@@ -1519,9 +1519,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ps5-hdmi-repair-houston-tx",
     title: "PS5 HDMI Repair Houston",
-    metaTitle: "PS5 HDMI Port Repair Houston | $99 Microsolder | Gadget X",
+    metaTitle: "PS5 HDMI Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "PS5 HDMI port repair in Houston from $99. Microsolder of new HDMI socket, 24–72 hour turnaround, 90-day warranty.",
+      "PS5 with no HDMI signal? Get your PS5 HDMI port repaired in Houston TX. Fast, professional fix. Affordable pricing at GadgetX Repairs today!",
     hero: {
       eyebrow: "PS5 HDMI Repair",
       h1: "PS5 HDMI Port Repair in Houston",
@@ -1550,9 +1550,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "google-lock-removal-houston-tx",
     title: "Google Account Lock Removal Houston",
-    metaTitle: "Google Account Lock Removal Houston | FRP Bypass | Gadget X",
+    metaTitle: "Google Lock Removal Houston TX | GadgetX",
     metaDescription:
-      "Google account lock (FRP) removal in Houston for Android phones and tablets. Legal, ID-required service for devices you own.",
+      "Get your Google account lock removed in Houston TX. Fast FRP bypass service at GadgetX Repairs. All Android devices supported. Walk-ins welcome!",
     hero: {
       eyebrow: "Google Lock Removal",
       h1: "Google Account / FRP Lock Removal in Houston",
@@ -1581,9 +1581,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-15-pro-repair-houston-tx",
     title: "iPhone 15 Pro Repair Houston",
-    metaTitle: "iPhone 15 Pro Repair Houston | Titanium, USB-C, OLED | Gadget X",
+    metaTitle: "iPhone 15 Pro Repair Houston TX | GadgetX",
     metaDescription:
-      "iPhone 15 Pro and 15 Pro Max repair in Houston. ProMotion OLED, titanium frame, USB-C port, battery and back glass. Same-day service, 90-day warranty.",
+      "Reliable iPhone 15 Pro repair in Houston TX. Cracked screen, battery & more fixed by certified technicians. Walk-in or call GadgetX Repairs!",
     hero: {
       eyebrow: "iPhone 15 Pro Repair",
       h1: "iPhone 15 Pro Repair in Houston",
@@ -1622,9 +1622,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-16-pro-max-repair-houston-tx",
     title: "iPhone 16 Pro Max Repair Houston",
-    metaTitle: "iPhone 16 Pro Max Repair Houston | OLED, Battery, USB-C | Gadget X",
+    metaTitle: "iPhone 16 Pro Max Repair Houston TX | GadgetX",
     metaDescription:
-      "iPhone 16 Pro Max repair in Houston — ProMotion OLED, USB-C port, battery, titanium back glass and Camera Control button. Same-day service, 90-day warranty.",
+      "Fast iPhone 16 Pro Max repair in Houston TX. Screen, battery & charging port fixes. Trusted techs, warranty included. Get a free quote today!",
     hero: {
       eyebrow: "iPhone 16 Pro Max Repair",
       h1: "iPhone 16 Pro Max Repair in Houston",
@@ -1662,9 +1662,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ipad-air-repair-houston-tx",
     title: "iPad Air Repair Houston",
-    metaTitle: "iPad Air Repair Houston | Screen, Battery, USB-C | Gadget X",
+    metaTitle: "iPad Air Repair Houston TX | GadgetX Repairs",
     metaDescription:
-      "iPad Air repair in Houston — cracked Liquid Retina screen, dead battery, USB-C port, back camera. All Air generations. Same-day where possible.",
+      "Reliable iPad Air repair in Houston TX. Screen replacement, battery & charging port fixes. All models, fast turnaround. Visit GadgetX Repairs!",
     hero: {
       eyebrow: "iPad Air Repair",
       h1: "iPad Air Repair in Houston",
