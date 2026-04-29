@@ -18,7 +18,7 @@ const HOME_META = {
   metaTitle:
     "Phone, Laptop & PS5 Repair Houston TX | Gadget X Repairs",
   metaDescription:
-    "Same-day phone, tablet, laptop and game console repair in Houston, TX. iPhone, Samsung, Pixel, MacBook, PS5, Xbox — fix, sell, prepaid activation. (346) 623-6898.",
+    "Same-day phone, tablet, laptop and console repair in Houston, TX. iPhone, Samsung, Pixel, MacBook, PS5, Xbox. Call (346) 623-6898.",
 };
 
 export const STATIC_ROUTES: RouteEntry[] = [

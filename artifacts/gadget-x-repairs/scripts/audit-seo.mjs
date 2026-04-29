@@ -37,6 +37,14 @@
  *     content are equal (after HTML-entity decoding), so the snippet Google
  *     shows in search results matches the description Facebook/X/LinkedIn use
  *     in share previews.
+ *   - The <title> text is at most TITLE_MAX_LENGTH characters (decoded) and
+ *     the <meta name="description"> content is at most DESCRIPTION_MAX_LENGTH
+ *     characters (decoded). Anything longer is truncated by Google in search
+ *     results — flagging it at build time means truncation regressions never
+ *     ship silently. Lengths are measured on the decoded text and counted by
+ *     Unicode code point (so a `—` em dash counts as 1 char, matching what
+ *     SERPs render), then enforced against the rendered <title> tag and the
+ *     `<meta name="description">` content attribute.
  *
  * Exits non-zero with a clear, file-by-file message when any assertion is
  * violated so the build fails before broken HTML reaches search engines.
@@ -76,6 +84,15 @@ const FORBIDDEN_BODY_TAGS = [
     pattern: /<script\b[^>]*\btype=["']application\/ld\+json["'][^>]*>[\s\S]*?<\/script>/gi,
   },
 ];
+
+// Length limits matched to what Google's SERP layout typically truncates at.
+// Titles longer than ~60 chars are clipped with an ellipsis in desktop search
+// results; descriptions longer than ~160 chars are likewise cut off (Google
+// will sometimes show more on wide viewports, but 160 is the safe ceiling
+// every SEO audit guide settles on). Enforcing both at build time keeps a
+// future copy edit from silently shipping a truncated headline or snippet.
+const TITLE_MAX_LENGTH = 60;
+const DESCRIPTION_MAX_LENGTH = 160;
 
 const ROBOTS_META_PATTERN = /<meta\b[^>]*\bname=["']robots["'][^>]*>/i;
 const CONTENT_ATTR_PATTERN = /\bcontent=["']([^"']*)["']/i;
@@ -315,6 +332,19 @@ function auditOne(html, relPath) {
         `og:title and twitter:title disagree — og:title="${ogTitle}", twitter:title="${twitterTitle}"`,
       );
     }
+
+    // Title length check. We measure on the decoded text and count by Unicode
+    // code point ([...str].length) so an em dash or other non-ASCII glyph
+    // counts as a single character — that's what Google's SERP layout
+    // measures against. Anything past TITLE_MAX_LENGTH gets truncated with an
+    // ellipsis in search results, which is exactly the silent regression this
+    // check is here to surface at build time.
+    const titleLength = [...titleText].length;
+    if (titleLength > TITLE_MAX_LENGTH) {
+      errors.push(
+        `<title> is ${titleLength} characters, exceeds ${TITLE_MAX_LENGTH}-char limit (Google truncates beyond this) — title="${titleText}"`,
+      );
+    }
   }
 
   // <meta name="description"> / og:description / twitter:description must
@@ -349,6 +379,19 @@ function auditOne(html, relPath) {
     if (ogDescription !== twitterDescription) {
       errors.push(
         `og:description and twitter:description disagree — og:description="${ogDescription}", twitter:description="${twitterDescription}"`,
+      );
+    }
+
+    // Description length check. Same code-point counting reasoning as the
+    // title check above — `—` and other non-ASCII glyphs count as one
+    // character to match what Google's SERP snippet layout measures. Beyond
+    // DESCRIPTION_MAX_LENGTH the snippet gets cut off mid-sentence in search
+    // results, so flagging it at build time stops a copy edit from silently
+    // shipping a truncated description.
+    const descriptionLength = [...(description ?? "")].length;
+    if (descriptionLength > DESCRIPTION_MAX_LENGTH) {
+      errors.push(
+        `<meta name="description"> is ${descriptionLength} characters, exceeds ${DESCRIPTION_MAX_LENGTH}-char limit (Google truncates beyond this) — description="${description}"`,
       );
     }
   }

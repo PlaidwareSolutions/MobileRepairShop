@@ -19,7 +19,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "Phone Repair Houston",
     metaTitle: "Phone Repair Houston, TX | Same-Day Cellphone Fix | Gadget X",
     metaDescription:
-      "Same-day phone repair in Houston for iPhone, Samsung, Google Pixel, Motorola and more. Screen, battery, charging port, water damage. 90-day warranty. Walk in or call (346) 623-6898.",
+      "Same-day phone repair in Houston for iPhone, Samsung, Pixel and Motorola. Screen, battery, charging port, water damage. 90-day warranty. (346) 623-6898.",
     hero: {
       eyebrow: "Cellphone Repair",
       h1: "Phone Repair in Houston",
