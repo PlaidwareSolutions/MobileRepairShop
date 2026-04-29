@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -6,17 +6,24 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitReservation } from "@/lib/api";
 
-type FormValues = { name: string; phone: string; notes?: string };
+type FormValues = { name: string; phone: string; notes?: string; website?: string };
 
 export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string; itemLabel: string; onClose?: () => void }) {
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<FormValues>();
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const renderedAtRef = useRef<number>(Date.now());
 
   async function onSubmit(values: FormValues) {
     setError(null);
     try {
-      await submitReservation({ ...values, itemId, itemLabel });
+      await submitReservation({
+        ...values,
+        itemId,
+        itemLabel,
+        website: values.website ?? "",
+        renderedAt: renderedAtRef.current,
+      });
       setDone(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
@@ -35,6 +42,24 @@ export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border border-zinc-200 p-6 space-y-4" data-testid="form-reservation">
+      {/*
+        Honeypot: real users never see or interact with this field.
+        Hidden off-screen rather than display:none so headless browsers that
+        skip non-rendered fields still fill it in. Bots that auto-fill every
+        input by name/label will populate "website" and get silently dropped
+        on the server.
+      */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }}>
+        <label htmlFor="rs-website">Website</label>
+        <input
+          id="rs-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("website")}
+        />
+      </div>
+
       <p className="font-bold text-sm text-zinc-600">Reserving: <span className="text-zinc-900">{itemLabel}</span></p>
       <div className="space-y-2">
         <Label htmlFor="rs-name" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Your name</Label>

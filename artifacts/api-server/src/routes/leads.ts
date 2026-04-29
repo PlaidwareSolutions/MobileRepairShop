@@ -19,10 +19,10 @@ import { leadRateLimit } from "../middleware/leadRateLimit";
 
 const router: IRouter = Router();
 
-// Minimum time, in milliseconds, between when the contact form mounts in the
-// browser and when it's submitted. Real users take several seconds to read the
-// fields and type a message; scripted bots POST in well under a second.
-const MIN_CONTACT_FILL_MS = 2000;
+// Minimum time, in milliseconds, between when a lead form mounts in the
+// browser and when it's submitted. Real users take several seconds to read
+// the fields and type their info; scripted bots POST in well under a second.
+const MIN_FORM_FILL_MS = 2000;
 
 function handleValidation(err: unknown, res: Response, next: NextFunction): boolean {
   if (err instanceof ZodError) {
@@ -36,11 +36,64 @@ function handleValidation(err: unknown, res: Response, next: NextFunction): bool
   return true;
 }
 
+/**
+ * Inspect req.body for the two anti-bot signals we attach client-side:
+ *   - `website`: an invisible honeypot input. Real users never see or fill it.
+ *   - `renderedAt`: a Date.now() captured when the form mounted. If the form
+ *     was submitted unrealistically fast we treat it as a bot.
+ *
+ * These fields are intentionally NOT part of the OpenAPI / zod schema so they
+ * stay an internal mechanism and don't leak into the public API contract.
+ * The caller is responsible for returning the same success-shaped response a
+ * real submission would produce, so a bot can't distinguish the two paths.
+ */
+function detectBot(req: Request): { isBot: boolean; honeypotFilled: boolean; elapsedMs: number | null } {
+  const raw = (req.body ?? {}) as { website?: unknown; renderedAt?: unknown };
+  const honeypot = typeof raw.website === "string" ? raw.website.trim() : "";
+  const renderedAt =
+    typeof raw.renderedAt === "number" && Number.isFinite(raw.renderedAt)
+      ? raw.renderedAt
+      : null;
+  const elapsedMs = renderedAt !== null ? Date.now() - renderedAt : null;
+  const honeypotFilled = honeypot.length > 0;
+  const tooFast =
+    elapsedMs !== null && elapsedMs >= 0 && elapsedMs < MIN_FORM_FILL_MS;
+  return { isBot: honeypotFilled || tooFast, honeypotFilled, elapsedMs };
+}
+
+/**
+ * Generates a plausible-looking positive integer id for the bot-blocked
+ * response so its shape and value range match what the real insert path
+ * returns. None of the lead form clients read this id, so a random value is
+ * safe — the only goal is to stop a bot from fingerprinting blocked vs
+ * accepted by inspecting `id`.
+ */
+function fakeLeadId(): number {
+  return Math.floor(Math.random() * 1_000_000) + 1;
+}
+
 router.post(
   "/repair-quote",
   leadRateLimit("repair-quote"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      const bot = detectBot(req);
+      if (bot.isBot) {
+        req.log.warn(
+          {
+            leadType: "repair-quote",
+            ip: req.ip,
+            honeypotFilled: bot.honeypotFilled,
+            elapsedMs: bot.elapsedMs,
+          },
+          "lead.bot_blocked",
+        );
+        // Mirror the real success shape ({ ok, id }) so a bot can't
+        // fingerprint blocked vs accepted by inspecting the response.
+        res.status(201).json({ ok: true, id: fakeLeadId() });
+        return;
+      }
+
       const body = SubmitRepairQuoteBody.parse(req.body);
       const [row] = await db
         .insert(repairQuotesTable)
@@ -71,6 +124,23 @@ router.post(
   leadRateLimit("sell-phone"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      const bot = detectBot(req);
+      if (bot.isBot) {
+        req.log.warn(
+          {
+            leadType: "sell-phone",
+            ip: req.ip,
+            honeypotFilled: bot.honeypotFilled,
+            elapsedMs: bot.elapsedMs,
+          },
+          "lead.bot_blocked",
+        );
+        // Mirror the real success shape ({ ok, id }) so a bot can't
+        // fingerprint blocked vs accepted by inspecting the response.
+        res.status(201).json({ ok: true, id: fakeLeadId() });
+        return;
+      }
+
       const body = SubmitSellPhoneBody.parse(req.body);
       const [row] = await db
         .insert(sellPhoneSubmissionsTable)
@@ -102,6 +172,23 @@ router.post(
   leadRateLimit("appointment"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      const bot = detectBot(req);
+      if (bot.isBot) {
+        req.log.warn(
+          {
+            leadType: "appointment",
+            ip: req.ip,
+            honeypotFilled: bot.honeypotFilled,
+            elapsedMs: bot.elapsedMs,
+          },
+          "lead.bot_blocked",
+        );
+        // Mirror the real success shape ({ ok, id }) so a bot can't
+        // fingerprint blocked vs accepted by inspecting the response.
+        res.status(201).json({ ok: true, id: fakeLeadId() });
+        return;
+      }
+
       const body = SubmitAppointmentBody.parse(req.body);
       const [row] = await db
         .insert(appointmentsTable)
@@ -126,28 +213,14 @@ router.post(
   leadRateLimit("contact"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
-      // Anti-bot fields are intentionally NOT part of the OpenAPI/zod schema
-      // so they don't show up in the public API contract. We pull them off
-      // req.body directly before the strict parse strips them.
-      const raw = (req.body ?? {}) as { website?: unknown; renderedAt?: unknown };
-      const honeypot =
-        typeof raw.website === "string" ? raw.website.trim() : "";
-      const renderedAt =
-        typeof raw.renderedAt === "number" && Number.isFinite(raw.renderedAt)
-          ? raw.renderedAt
-          : null;
-      const elapsedMs = renderedAt !== null ? Date.now() - renderedAt : null;
-      const isBot =
-        honeypot.length > 0 ||
-        (elapsedMs !== null && elapsedMs >= 0 && elapsedMs < MIN_CONTACT_FILL_MS);
-
-      if (isBot) {
+      const bot = detectBot(req);
+      if (bot.isBot) {
         req.log.warn(
           {
             leadType: "contact",
             ip: req.ip,
-            honeypotFilled: honeypot.length > 0,
-            elapsedMs,
+            honeypotFilled: bot.honeypotFilled,
+            elapsedMs: bot.elapsedMs,
           },
           "lead.bot_blocked",
         );
@@ -181,6 +254,23 @@ router.post(
   leadRateLimit("reservation"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
+      const bot = detectBot(req);
+      if (bot.isBot) {
+        req.log.warn(
+          {
+            leadType: "reservation",
+            ip: req.ip,
+            honeypotFilled: bot.honeypotFilled,
+            elapsedMs: bot.elapsedMs,
+          },
+          "lead.bot_blocked",
+        );
+        // Mirror the real success shape ({ ok, id }) so a bot can't
+        // fingerprint blocked vs accepted by inspecting the response.
+        res.status(201).json({ ok: true, id: fakeLeadId() });
+        return;
+      }
+
       const body = SubmitReservationBody.parse(req.body);
       const [row] = await db
         .insert(itemReservationsTable)

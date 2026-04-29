@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,7 @@ type FormValues = {
   serviceType: string;
   preferredDatetime: string;
   notes?: string;
+  website?: string;
 };
 
 export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defaultServiceType?: string }) {
@@ -20,13 +21,19 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
   });
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const renderedAtRef = useRef<number>(Date.now());
 
   async function onSubmit(values: FormValues) {
     setError(null);
     try {
-      await submitAppointment(values);
+      await submitAppointment({
+        ...values,
+        website: values.website ?? "",
+        renderedAt: renderedAtRef.current,
+      });
       setDone(true);
       reset();
+      renderedAtRef.current = Date.now();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     }
@@ -44,6 +51,24 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border border-zinc-200 p-6 md:p-8 space-y-5" data-testid="form-appointment">
+      {/*
+        Honeypot: real users never see or interact with this field.
+        Hidden off-screen rather than display:none so headless browsers that
+        skip non-rendered fields still fill it in. Bots that auto-fill every
+        input by name/label will populate "website" and get silently dropped
+        on the server.
+      */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }}>
+        <label htmlFor="ap-website">Website</label>
+        <input
+          id="ap-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("website")}
+        />
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="ap-name" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Your name</Label>

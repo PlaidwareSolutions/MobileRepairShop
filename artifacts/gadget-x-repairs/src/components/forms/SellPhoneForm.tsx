@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,6 +19,7 @@ type FormValues = {
   damageNotes?: string;
   expectedPrice?: string;
   photoUrl?: string;
+  website?: string;
 };
 
 export function SellPhoneForm() {
@@ -27,14 +28,21 @@ export function SellPhoneForm() {
   });
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const renderedAtRef = useRef<number>(Date.now());
 
   async function onSubmit(values: FormValues) {
     setError(null);
     try {
-      const payload = { ...values, batteryHealth: values.batteryHealth ? Number(values.batteryHealth) : undefined };
+      const payload = {
+        ...values,
+        batteryHealth: values.batteryHealth ? Number(values.batteryHealth) : undefined,
+        website: values.website ?? "",
+        renderedAt: renderedAtRef.current,
+      };
       await submitSellPhone(payload);
       setDone(true);
       reset();
+      renderedAtRef.current = Date.now();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
     }
@@ -52,6 +60,24 @@ export function SellPhoneForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border border-zinc-200 p-6 md:p-8 space-y-5" data-testid="form-sell-phone">
+      {/*
+        Honeypot: real users never see or interact with this field.
+        Hidden off-screen rather than display:none so headless browsers that
+        skip non-rendered fields still fill it in. Bots that auto-fill every
+        input by name/label will populate "website" and get silently dropped
+        on the server.
+      */}
+      <div aria-hidden="true" style={{ position: "absolute", left: "-10000px", top: "auto", width: "1px", height: "1px", overflow: "hidden" }}>
+        <label htmlFor="sp-website">Website</label>
+        <input
+          id="sp-website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          {...register("website")}
+        />
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
           <Label htmlFor="sp-name" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Your name</Label>
