@@ -1,5 +1,17 @@
 # Workspace
 
+## Anti-spam on lead forms (2026-04-29)
+
+All five Gadget X Repairs lead forms (Repair Quote + the wizard, Sell Phone, Appointment, Contact, Reservation) now have a defense-in-depth stack against junk leads, applied in this order on every POST to `/api/leads/*`:
+
+1. **Per-IP rate limit** (`leadRateLimit` middleware, Postgres-backed sliding window: 5 / 10min and 20 / day).
+2. **Honeypot + time-trap** (Contact form only, inline in handler — silent 201 to avoid tipping off bots).
+3. **Cloudflare Turnstile** invisible CAPTCHA (`requireTurnstile` middleware on the four simple endpoints; inline check after honeypot for `/contact` so we don't burn siteverify calls on obvious bots).
+
+Turnstile is wired with `appearance: 'interaction-only'` — silent for normal customers, only renders a small managed challenge when CF's risk signals say the session looks suspicious. It is **opt-in via secrets**: if `TURNSTILE_SECRET_KEY` (server) and `VITE_TURNSTILE_SITE_KEY` (build-time, exposed to browser) are not set, both client hook and server middleware become no-ops and the existing honeypot + rate-limit defenses still apply on their own. To enable, add both secrets and rebuild the web app. The shop owner does not need their own Cloudflare account — the keys come from Replit's secrets flow.
+
+Files: `artifacts/api-server/src/lib/turnstile.ts` (siteverify helper), `artifacts/api-server/src/middleware/turnstile.ts` (`requireTurnstile`), `artifacts/gadget-x-repairs/src/components/forms/Turnstile.tsx` (`useTurnstile` hook + invisible widget). The token field on the wire is `cfTurnstileToken`; like `website` and `renderedAt`, it's intentionally NOT in the OpenAPI/zod schema so it doesn't show up in the public API contract (Zod silently strips it).
+
 ## Cutover note (2026-04-27)
 
 Gadget X Repairs primary domain switched from `nawazcoded.me` (legacy) to `https://gadgetxrepairs.com`. `nawazcoded.me` was fully retired — no 301 redirects kept, custom-domain mapping removed from the deployment. Sender email moved to `support@gadgetxrepairs.com`. Code defaults in `messaging.ts`, `seo-config.mjs`, and `SEO.tsx` were updated to match, and the two hardcoded JSON-LD URLs in `InventoryPage.tsx` / `SalesPage.tsx` now use the exported `SITE_URL` from `SEO.tsx`. Build-time env `VITE_SITE_URL=https://gadgetxrepairs.com` is set as defence-in-depth. Google Search Console resubmission for the new domain is filed as a follow-up task.

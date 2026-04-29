@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitReservation } from "@/lib/api";
+import { useTurnstile, TURNSTILE_CLIENT_ERROR } from "./Turnstile";
 
 type FormValues = { name: string; phone: string; notes?: string; website?: string };
 
@@ -13,20 +14,35 @@ export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
+  const {
+    widget: turnstileWidget,
+    ensureToken: ensureTurnstileToken,
+    reset: resetTurnstile,
+    enabled: turnstileEnabled,
+  } = useTurnstile();
 
   async function onSubmit(values: FormValues) {
     setError(null);
     try {
+      const cfTurnstileToken = await ensureTurnstileToken();
+      if (turnstileEnabled && !cfTurnstileToken) {
+        setError(TURNSTILE_CLIENT_ERROR);
+        return;
+      }
       await submitReservation({
         ...values,
         itemId,
         itemLabel,
         website: values.website ?? "",
         renderedAt: renderedAtRef.current,
+        cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
       setDone(true);
+      renderedAtRef.current = Date.now();
+      resetTurnstile();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
+      resetTurnstile();
     }
   }
 
@@ -73,6 +89,7 @@ export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string
         <Label htmlFor="rs-notes" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Notes</Label>
         <Textarea id="rs-notes" {...register("notes")} className="bg-white border border-zinc-200 focus:border-red-500" data-testid="input-notes" />
       </div>
+      {turnstileWidget}
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
       <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white text-black font-semibold uppercase tracking-wide h-12" data-testid="button-submit-reservation">
         {isSubmitting ? "Sending..." : "Reserve"}

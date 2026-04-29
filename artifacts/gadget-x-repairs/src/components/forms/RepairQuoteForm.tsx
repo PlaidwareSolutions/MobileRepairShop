@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitRepairQuote } from "@/lib/api";
+import { useTurnstile, TURNSTILE_CLIENT_ERROR } from "./Turnstile";
 
 type FormValues = {
   name: string;
@@ -33,20 +34,34 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
+  const {
+    widget: turnstileWidget,
+    ensureToken: ensureTurnstileToken,
+    reset: resetTurnstile,
+    enabled: turnstileEnabled,
+  } = useTurnstile();
 
   async function onSubmit(values: FormValues) {
     setError(null);
     try {
+      const cfTurnstileToken = await ensureTurnstileToken();
+      if (turnstileEnabled && !cfTurnstileToken) {
+        setError(TURNSTILE_CLIENT_ERROR);
+        return;
+      }
       await submitRepairQuote({
         ...values,
         website: values.website ?? "",
         renderedAt: renderedAtRef.current,
+        cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
       setDone(true);
       reset();
       renderedAtRef.current = Date.now();
+      resetTurnstile();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
+      resetTurnstile();
     }
   }
 
@@ -152,6 +167,7 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
         <Label htmlFor="rq-notes" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Anything else <span className="text-zinc-500">(optional)</span></Label>
         <Textarea id="rq-notes" {...register("notes", { maxLength: 2000 })} className="bg-white border border-zinc-200 focus:border-red-500" data-testid="input-notes" />
       </div>
+      {turnstileWidget}
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
       <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide text-lg h-14 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-quote">
         {isSubmitting ? "Sending..." : "Get My Quote"}

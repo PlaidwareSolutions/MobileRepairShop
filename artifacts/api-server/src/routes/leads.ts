@@ -16,6 +16,8 @@ import {
 } from "@workspace/api-zod";
 import { ZodError } from "zod";
 import { leadRateLimit } from "../middleware/leadRateLimit";
+import { requireTurnstile } from "../middleware/turnstile";
+import { turnstileEnabled, verifyTurnstileToken } from "../lib/turnstile";
 
 const router: IRouter = Router();
 
@@ -75,6 +77,7 @@ function fakeLeadId(): number {
 router.post(
   "/repair-quote",
   leadRateLimit("repair-quote"),
+  requireTurnstile("repair-quote"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const bot = detectBot(req);
@@ -122,6 +125,7 @@ router.post(
 router.post(
   "/sell-phone",
   leadRateLimit("sell-phone"),
+  requireTurnstile("sell-phone"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const bot = detectBot(req);
@@ -170,6 +174,7 @@ router.post(
 router.post(
   "/appointment",
   leadRateLimit("appointment"),
+  requireTurnstile("appointment"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const bot = detectBot(req);
@@ -232,6 +237,36 @@ router.post(
         return;
       }
 
+      // Cloudflare Turnstile is the second line of defense for the contact
+      // form (the most-targeted endpoint). It runs AFTER the honeypot so we
+      // don't burn siteverify calls on obvious bots, and only when Turnstile
+      // is actually configured. Failures return a friendly 400 because a real
+      // customer who happened to fail a managed challenge needs to know how
+      // to retry — unlike the honeypot which silently 201s.
+      if (turnstileEnabled) {
+        const tokenRaw = (req.body ?? {}) as { cfTurnstileToken?: unknown };
+        const token =
+          typeof tokenRaw.cfTurnstileToken === "string"
+            ? tokenRaw.cfTurnstileToken
+            : null;
+        const verify = await verifyTurnstileToken(token, req.ip ?? null);
+        if (!verify.success) {
+          req.log.warn(
+            {
+              leadType: "contact",
+              ip: req.ip,
+              errorCodes: "errorCodes" in verify ? verify.errorCodes : [],
+            },
+            "lead.turnstile_failed",
+          );
+          res.status(400).json({
+            error:
+              "We couldn't verify that submission. Please refresh the page and try again, or call us directly at (346) 623-6898.",
+          });
+          return;
+        }
+      }
+
       const body = SubmitContactBody.parse(req.body);
       const [row] = await db
         .insert(contactMessagesTable)
@@ -252,6 +287,7 @@ router.post(
 router.post(
   "/reservation",
   leadRateLimit("reservation"),
+  requireTurnstile("reservation"),
   async (req: Request, res: Response, next: NextFunction) => {
     try {
       const bot = detectBot(req);

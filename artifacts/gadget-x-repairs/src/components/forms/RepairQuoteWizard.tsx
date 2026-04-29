@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { submitRepairQuote } from "@/lib/api";
 import { BUSINESS } from "@/content";
+import { useTurnstile, TURNSTILE_CLIENT_ERROR } from "./Turnstile";
 
 type WizardStep = 1 | 2 | 3 | 4;
 
@@ -57,6 +58,12 @@ export function RepairQuoteWizard() {
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const {
+    widget: turnstileWidget,
+    ensureToken: ensureTurnstileToken,
+    reset: resetTurnstile,
+    enabled: turnstileEnabled,
+  } = useTurnstile();
 
   const handleNext = () => setStep((s) => Math.min(s + 1, 4) as WizardStep);
   const handlePrev = () => setStep((s) => Math.max(s - 1, 1) as WizardStep);
@@ -79,6 +86,11 @@ export function RepairQuoteWizard() {
     setSubmitting(true);
     const meta = DEVICE_OPTIONS.find((d) => d.name === device);
     try {
+      const cfTurnstileToken = await ensureTurnstileToken();
+      if (turnstileEnabled && !cfTurnstileToken) {
+        setError(TURNSTILE_CLIENT_ERROR);
+        return;
+      }
       await submitRepairQuote({
         name,
         phone,
@@ -89,10 +101,13 @@ export function RepairQuoteWizard() {
         preferredContact: "call" as const,
         urgency: "today" as const,
         notes: `Submitted via quote wizard. Device: ${device}. Model: ${model}. Issue: ${issue}.`,
+        cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
       setDone(true);
+      resetTurnstile();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.");
+      resetTurnstile();
     } finally {
       setSubmitting(false);
     }
@@ -303,6 +318,7 @@ export function RepairQuoteWizard() {
               />
             </div>
 
+            {turnstileWidget}
             {error && (
               <div className="bg-red-600 text-white px-4 py-3 font-bold uppercase text-sm" data-testid="wizard-error">
                 {error}

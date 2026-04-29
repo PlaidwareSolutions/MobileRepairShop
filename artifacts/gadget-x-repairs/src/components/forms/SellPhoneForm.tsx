@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitSellPhone } from "@/lib/api";
+import { useTurnstile, TURNSTILE_CLIENT_ERROR } from "./Turnstile";
 
 type FormValues = {
   name: string;
@@ -29,22 +30,36 @@ export function SellPhoneForm() {
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
+  const {
+    widget: turnstileWidget,
+    ensureToken: ensureTurnstileToken,
+    reset: resetTurnstile,
+    enabled: turnstileEnabled,
+  } = useTurnstile();
 
   async function onSubmit(values: FormValues) {
     setError(null);
     try {
+      const cfTurnstileToken = await ensureTurnstileToken();
+      if (turnstileEnabled && !cfTurnstileToken) {
+        setError(TURNSTILE_CLIENT_ERROR);
+        return;
+      }
       const payload = {
         ...values,
         batteryHealth: values.batteryHealth ? Number(values.batteryHealth) : undefined,
         website: values.website ?? "",
         renderedAt: renderedAtRef.current,
+        cfTurnstileToken: cfTurnstileToken ?? undefined,
       };
       await submitSellPhone(payload);
       setDone(true);
       reset();
       renderedAtRef.current = Date.now();
+      resetTurnstile();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
+      resetTurnstile();
     }
   }
 
@@ -153,6 +168,7 @@ export function SellPhoneForm() {
         />
         <p className="text-xs font-bold text-zinc-500">Or text a photo to (346) 623-6898 on WhatsApp.</p>
       </div>
+      {turnstileWidget}
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
       <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white text-black font-semibold uppercase tracking-wide text-lg h-14 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-sell">
         {isSubmitting ? "Sending..." : "Get Cash Offer"}

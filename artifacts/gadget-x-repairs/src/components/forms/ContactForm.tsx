@@ -5,6 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { submitContact } from "@/lib/api";
+import { useTurnstile, TURNSTILE_CLIENT_ERROR } from "./Turnstile";
 
 type FormValues = { name: string; contact: string; message: string; website?: string };
 
@@ -13,22 +14,36 @@ export function ContactForm() {
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
+  const {
+    widget: turnstileWidget,
+    ensureToken: ensureTurnstileToken,
+    reset: resetTurnstile,
+    enabled: turnstileEnabled,
+  } = useTurnstile();
 
   async function onSubmit(values: FormValues) {
     setError(null);
     try {
+      const cfTurnstileToken = await ensureTurnstileToken();
+      if (turnstileEnabled && !cfTurnstileToken) {
+        setError(TURNSTILE_CLIENT_ERROR);
+        return;
+      }
       await submitContact({
         name: values.name,
         contact: values.contact,
         message: values.message,
         website: values.website ?? "",
         renderedAt: renderedAtRef.current,
+        cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
       setDone(true);
       reset();
       renderedAtRef.current = Date.now();
+      resetTurnstile();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
+      resetTurnstile();
     }
   }
 
@@ -74,6 +89,7 @@ export function ContactForm() {
         <Label htmlFor="ct-message" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Message</Label>
         <Textarea id="ct-message" {...register("message", { required: true })} className="bg-white border border-zinc-200 focus:border-red-500 min-h-[120px]" data-testid="input-message" />
       </div>
+      {turnstileWidget}
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
       <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide text-lg h-14" data-testid="button-submit-contact">
         {isSubmitting ? "Sending..." : "Send Message"}
