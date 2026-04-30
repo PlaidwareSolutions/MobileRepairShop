@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { MapPin, Clock, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BUSINESS, HERO } from "@/content";
+import { BUSINESS, HERO, PROMO_BANNER } from "@/content";
 
 type MegaMenuColumn = { heading: string; items: { label: string; to: string }[] };
 
@@ -236,6 +236,19 @@ function MegaMenuTrigger({
   );
 }
 
+export function PromoBanner() {
+  return (
+    <div
+      className="bg-red-600 text-white text-center text-xs md:text-sm font-bold uppercase tracking-wide px-4 py-2"
+      role="region"
+      aria-label="Promotional offer"
+      data-testid="promo-banner"
+    >
+      {PROMO_BANNER.text}
+    </div>
+  );
+}
+
 export function TopUtilityBar() {
   return (
     <div className="bg-zinc-100 border-b border-zinc-300 text-xs font-mono py-2 px-4 flex justify-between items-center tracking-tight text-zinc-600">
@@ -251,7 +264,7 @@ export function TopUtilityBar() {
       </div>
       <div className="flex items-center gap-4">
         <span className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide">
-          {HERO.badgeSameDay}
+          {HERO.badgeRepairTime}
         </span>
         <a href={BUSINESS.phoneTel} className="hover:text-red-500 transition-colors flex items-center gap-1">
           <Phone className="w-3 h-3" />
@@ -301,21 +314,23 @@ export function TickerTape() {
   return (
     <div className="w-full overflow-hidden bg-zinc-50 py-2 border-b border-zinc-200 flex items-center" aria-hidden="true">
       <div className="animate-[marquee_20s_linear_infinite] whitespace-nowrap font-semibold uppercase text-zinc-700 text-sm tracking-wide flex gap-8">
-        <span>Same-Day Repair</span>
+        <span>Most Repairs in 15-20 Min</span>
         <span className="text-red-400">•</span>
-        <span>15 Years Experience</span>
+        <span>We Match &amp; Beat Any Price</span>
         <span className="text-red-400">•</span>
-        <span>Houston's Best</span>
+        <span>Mail-In Repairs Welcome</span>
         <span className="text-red-400">•</span>
-        <span>Call Now</span>
+        <span>Phones from $10 Down</span>
         <span className="text-red-400">•</span>
-        <span>Same-Day Repair</span>
+        <span>15 Years in Houston</span>
         <span className="text-red-400">•</span>
-        <span>15 Years Experience</span>
+        <span>Most Repairs in 15-20 Min</span>
         <span className="text-red-400">•</span>
-        <span>Houston's Best</span>
+        <span>We Match &amp; Beat Any Price</span>
         <span className="text-red-400">•</span>
-        <span>Call Now</span>
+        <span>Mail-In Repairs Welcome</span>
+        <span className="text-red-400">•</span>
+        <span>Phones from $10 Down</span>
       </div>
     </div>
   );

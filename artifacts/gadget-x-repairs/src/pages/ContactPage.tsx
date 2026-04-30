@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Phone, MessageCircle, MapPin, Clock } from "lucide-react";
+import { Phone, MessageCircle, MapPin, Clock, Truck } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
@@ -8,7 +8,7 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { SellPhoneForm } from "@/components/forms/SellPhoneForm";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
-import { BUSINESS } from "@/content";
+import { BUSINESS, SHIPPING } from "@/content";
 
 type FormTab = "message" | "repair" | "sell" | "appointment";
 
@@ -78,6 +78,16 @@ export default function ContactPage() {
                 <div>
                   <div className="font-bold uppercase text-lg text-zinc-900">{BUSINESS.hoursShort}</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase">Walk-ins welcome</div>
+                </div>
+              </div>
+              <div
+                className="flex items-start gap-4 bg-red-50 border border-red-200 p-5"
+                data-testid="contact-mail-in-callout"
+              >
+                <Truck className="w-7 h-7 text-red-600 shrink-0 mt-1" />
+                <div>
+                  <div className="font-bold uppercase text-lg text-zinc-900">{SHIPPING.mailInTitle}</div>
+                  <div className="text-zinc-700 font-medium text-sm mt-1">{SHIPPING.desc}</div>
                 </div>
               </div>
             </div>

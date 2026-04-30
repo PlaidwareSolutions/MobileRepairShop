@@ -17,6 +17,8 @@ import {
   Phone,
   MapPin,
   Clock,
+  Truck,
+  CreditCard,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -26,7 +28,7 @@ import { RepairQuoteWizard } from "@/components/forms/RepairQuoteWizard";
 import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { BeforeAfter, type BeforeAfterPair } from "@/components/BeforeAfter";
-import { BUSINESS, HERO } from "@/content";
+import { BUSINESS, HERO, SHIPPING, FINANCING } from "@/content";
 import { INVENTORY_GROUPS } from "@/lib/inventoryGroups";
 
 // Each known inventory group has its own canonical path (`/inventory/<slug>`)
@@ -146,6 +148,8 @@ const WHY_TILES: {
     image: photo("trust-certified", "Technician inspecting a circuit board through a microscope") },
   { title: "90-Day Warranty", desc: "Every repair backed by our 90-day warranty.", icon: CheckCircle2,
     image: photo("trust-warranty", "Smiling man in a black suit shaking hands with a customer") },
+  { title: SHIPPING.shortLabel, desc: SHIPPING.desc, icon: Truck },
+  { title: FINANCING.shortLabel, desc: FINANCING.desc, icon: CreditCard },
 ];
 
 const FEATURED_OFFERS = [
@@ -227,7 +231,7 @@ export default function HomePage() {
                 {HERO.badgeYears}
               </span>
               <span className="bg-red-50 text-red-600 border border-red-200 rounded-full px-3 py-1 font-semibold uppercase tracking-wide text-xs inline-flex items-center gap-2">
-                <Zap className="w-3.5 h-3.5" /> {HERO.badgeSameDay}
+                <Zap className="w-3.5 h-3.5" /> {HERO.badgeRepairTime}
               </span>
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight font-extrabold tracking-tight text-zinc-900">

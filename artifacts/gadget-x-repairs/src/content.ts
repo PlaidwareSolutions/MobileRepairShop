@@ -28,7 +28,7 @@ export const BUSINESS = {
 };
 
 export const HERO = {
-  badgeSameDay: "Same-Day Repair Available",
+  badgeRepairTime: "Most repairs in 15-20 min",
   badgeYears: "15 Years in Houston",
   h1: "Fast Phone, Tablet, Laptop & Game Console Repair in Houston",
   subhead:
@@ -38,6 +38,22 @@ export const HERO = {
     { label: "Get Repair Quote", href: "#quote", kind: "secondary" as const, icon: "wrench" as const },
     { label: "Directions", href: "https://maps.app.goo.gl/ALRF73zPbrG9qndz8", kind: "tertiary" as const, icon: "map" as const },
   ],
+};
+
+export const PROMO_BANNER = {
+  text: "We match & beat any price — show us a competitor's quote and we'll beat it.",
+};
+
+export const SHIPPING = {
+  shortLabel: "We Ship",
+  desc: "Mail in your device for repair, or buy a phone and we'll ship it to you.",
+  mailInTitle: "Mail-in repairs welcome",
+};
+
+export const FINANCING = {
+  shortLabel: "Easy Financing",
+  desc: "Phones from $10–$80 down. Walk out with your phone today.",
+  pillLabel: "Financing from $10 down",
 };
 
 export const TRUST_POINTS = [

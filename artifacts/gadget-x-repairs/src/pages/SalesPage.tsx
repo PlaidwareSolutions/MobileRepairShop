@@ -13,7 +13,7 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
 import { SALES_BY_SLUG, SALES_DATA } from "@/data/sales";
 import { inventoryGroupBySlug, inventoryGroupSlugForPageSlug } from "@/lib/inventoryGroups";
-import { BUSINESS } from "@/content";
+import { BUSINESS, FINANCING } from "@/content";
 import NotFound from "@/pages/not-found";
 
 type SalesPageType = "sell" | "shop-hub" | "shop-brand" | "accessories-hub" | "accessories";
@@ -161,13 +161,21 @@ export default function SalesPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-8 flex flex-wrap gap-3">
+            <div className="mt-8 flex flex-wrap gap-3 items-center">
               <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
                 <a href={BUSINESS.phoneTel}>Call to Browse</a>
               </Button>
               <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
                 <Link href={inventoryHref} data-testid="link-view-inventory">{inventoryLabel}</Link>
               </Button>
+              {inventoryGroup?.slug === "phones" && (
+                <span
+                  className="bg-red-50 text-red-600 border border-red-200 rounded-full px-3 py-1 uppercase font-semibold text-[11px] tracking-wide"
+                  data-testid="financing-pill"
+                >
+                  {FINANCING.pillLabel}
+                </span>
+              )}
             </div>
           </div>
           <div>

@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useEffect } from "react";
 import { useLocation } from "wouter";
-import { SiteHeader, TopUtilityBar, TickerTape } from "@/components/SiteHeader";
+import { PromoBanner, SiteHeader, TopUtilityBar, TickerTape } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { StickyMobileBar } from "@/components/StickyMobileBar";
 
@@ -15,6 +15,7 @@ export function PageShell({ children, hideTicker }: { children: ReactNode; hideT
 
   return (
     <div data-theme="bold-urban-store" className="min-h-screen bg-white text-zinc-900 font-sans selection:bg-red-500 selection:text-zinc-900 pb-20 md:pb-0">
+      <PromoBanner />
       <TopUtilityBar />
       <SiteHeader />
       {!hideTicker && <TickerTape />}

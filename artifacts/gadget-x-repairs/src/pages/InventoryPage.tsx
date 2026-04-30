@@ -17,7 +17,9 @@ import {
   inventoryServiceHubForGroupSlug,
   type InventoryGroup,
 } from "@/lib/inventoryGroups";
-import { BUSINESS } from "@/content";
+import { BUSINESS, FINANCING } from "@/content";
+
+const PHONES_GROUP = inventoryGroupBySlug("phones");
 
 const DEFAULT_META = {
   title: "Phones & Laptops Inventory Houston | GadgetX Repairs",
@@ -328,7 +330,17 @@ export default function InventoryPage() {
                   {it.warranty && <li>Warranty: <span className="text-zinc-900">{it.warranty}</span></li>}
                 </ul>
                 <div className="mt-auto pt-3 border-t border-zinc-300 flex flex-col gap-3">
-                  <div className="font-bold uppercase text-2xl text-red-500">{it.price}</div>
+                  <div className="flex items-center gap-2 flex-wrap">
+                    <div className="font-bold uppercase text-2xl text-red-500">{it.price}</div>
+                    {PHONES_GROUP?.matches(it.category) && (
+                      <span
+                        className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide"
+                        data-testid={`financing-pill-${it.id}`}
+                      >
+                        {FINANCING.pillLabel}
+                      </span>
+                    )}
+                  </div>
                   <div className="grid grid-cols-2 gap-2">
                     <Button asChild className="bg-white border border-zinc-300 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-10 px-2 text-xs" data-testid={`button-call-${it.id}`}>
                       <a href={BUSINESS.phoneTel} aria-label={`Call about ${it.brand} ${it.model}`}>
