@@ -5,6 +5,7 @@
  * Gadget X Repairs API — lead capture, inventory browse, admin leads view.
  * OpenAPI spec version: 0.1.0
  */
+import type { ContactInputSource } from "./contactInputSource";
 
 export interface ContactInput {
   /**
@@ -22,4 +23,5 @@ export interface ContactInput {
    * @maxLength 4000
    */
   message: string;
+  source?: ContactInputSource;
 }

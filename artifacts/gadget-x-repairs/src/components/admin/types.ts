@@ -62,6 +62,13 @@ export type ContactLead = BaseLead & {
   name: string;
   contact: string;
   message: string;
+  // Where the contact lead came from — "contact" (generic Contact Us form)
+  // or "financing" (phone-financing pre-qualification). Optional in the
+  // type because the API treats it as optional on input, but every row
+  // returned from the admin endpoint will have a value (DB column has a
+  // "contact" default). Strings other than the two known values are
+  // accepted defensively so a future source doesn't break the UI.
+  source?: "contact" | "financing" | string | null;
 };
 
 export type ReservationLead = BaseLead & {

@@ -24,18 +24,15 @@ const BUDGET_OPTIONS = [
   "Not sure yet",
 ];
 
-// Pre-qualification leads land in the existing contact-message inbox with a
-// recognisable tag at the top of `message` so the team can spot them at a
-// glance. The task explicitly allows "reuses the existing contact lead with a
-// `source: \"financing\"` tag" — going through the contact endpoint avoids a
-// brand-new lead type, db migration, openapi/zod codegen and admin-page
-// wiring just for a free-form intake form. The structured fields (desired
-// phone, monthly budget) are formatted into the message body so nothing the
-// shopper enters is lost.
+// Pre-qualification leads land in the existing contact-message inbox, but
+// they're tagged with a structured `source: "financing"` field on the API
+// (see /leads/contact in api-server) so the admin badge and "Financing only"
+// filter don't have to sniff the message body. The structured intake fields
+// (desired phone, monthly budget, optional notes) are still formatted into
+// the message body — the team needs that context to reply, and the contact
+// endpoint only stores a single free-form `message`.
 function buildContactMessage(values: FormValues): string {
   const lines = [
-    "[FINANCING PRE-QUALIFICATION — source: financing]",
-    "",
     `Desired phone: ${values.desiredPhone || "—"}`,
     `Monthly budget: ${values.monthlyBudget || "—"}`,
   ];
@@ -74,6 +71,10 @@ export function FinancingForm() {
         name: values.name,
         contact: values.phone,
         message: buildContactMessage(values),
+        // Mark this as a financing pre-qualification on the structured
+        // `source` field so the admin inbox can label and filter it without
+        // having to parse the message body.
+        source: "financing",
         website: values.website ?? "",
         renderedAt: renderedAtRef.current,
         cfTurnstileToken: cfTurnstileToken ?? undefined,

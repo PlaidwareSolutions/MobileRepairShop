@@ -185,6 +185,14 @@ export interface AppointmentInput {
   notes?: string;
 }
 
+export type ContactInputSource =
+  (typeof ContactInputSource)[keyof typeof ContactInputSource];
+
+export const ContactInputSource = {
+  contact: "contact",
+  financing: "financing",
+} as const;
+
 export interface ContactInput {
   /**
    * @minLength 1
@@ -201,6 +209,7 @@ export interface ContactInput {
    * @maxLength 4000
    */
   message: string;
+  source?: ContactInputSource;
 }
 
 export interface ReservationInput {

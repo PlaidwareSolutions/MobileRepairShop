@@ -2,7 +2,7 @@ import { type ReactNode } from "react";
 import { ActionBar } from "./ActionBar";
 import {
   formatRelative,
-  isFinancingContactMessage,
+  isFinancingContactLead,
   looksLikeEmail,
   pickEmail,
 } from "./utils";
@@ -357,7 +357,7 @@ export function ContactCard({
   const sms = smsTemplate("contact", lead);
   const email = looksLikeEmail(lead.contact) ? lead.contact : null;
   const phone = email ? null : lead.contact;
-  const isFinancing = isFinancingContactMessage(lead.message);
+  const isFinancing = isFinancingContactLead(lead);
   return (
     <CardShell
       testId={`lead-contactMessages-${lead.id}`}

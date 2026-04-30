@@ -29,7 +29,7 @@ import {
   type ReservationLead,
   type SellPhoneLead,
 } from "@/components/admin/types";
-import { isFinancingContactMessage } from "@/components/admin/utils";
+import { isFinancingContactLead } from "@/components/admin/utils";
 
 type TabKey = keyof AllLeads;
 
@@ -164,9 +164,8 @@ export default function AdminLeadsPage() {
 
   const financingCount = useMemo(() => {
     if (!data) return 0;
-    return data.contactMessages.filter((l) =>
-      isFinancingContactMessage(l.message),
-    ).length;
+    return data.contactMessages.filter((l) => isFinancingContactLead(l))
+      .length;
   }, [data]);
 
   const visibleLeads = useMemo(() => {
@@ -186,8 +185,7 @@ export default function AdminLeadsPage() {
         // contact-messages list. On other tabs the toggle is hidden, so this
         // guard just keeps the filter inert there.
         if (!financingOnly || tab !== "contactMessages") return true;
-        const msg = (l as ContactLead).message;
-        return isFinancingContactMessage(msg);
+        return isFinancingContactLead(l as ContactLead);
       })
       .filter((l) => {
         if (!q) return true;

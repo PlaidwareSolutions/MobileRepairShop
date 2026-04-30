@@ -533,6 +533,15 @@ components:
         name: { type: string, minLength: 1, maxLength: 120 }
         contact: { type: string, minLength: 3, maxLength: 200 }
         message: { type: string, minLength: 1, maxLength: 4000 }
+        # Where the lead came from. "contact" is the generic contact form;
+        # "financing" is the phone-financing pre-qualification form. Optional
+        # on input — the server defaults a missing field to "contact" so
+        # legacy callers and the plain ContactForm keep working without
+        # sending the field. Values outside the enum are rejected by the
+        # request validator (400) before the default ever applies.
+        source:
+          type: string
+          enum: [contact, financing]
     ReservationInput:
       type: object
       required: [name, phone, itemId, itemLabel]

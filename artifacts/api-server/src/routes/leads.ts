@@ -301,6 +301,14 @@ router.post(
           name: body.name,
           contact: body.contact,
           message: body.message,
+          // Persist the structured source so the admin inbox doesn't have
+          // to sniff the message body. Default to "contact" when the field
+          // is omitted (legacy ContactForm callers don't send it). Any
+          // string outside the enum is rejected by SubmitContactBody above
+          // before this line runs, so the default only applies to genuinely
+          // missing values. The DB column also defaults to "contact" as
+          // belt-and-braces.
+          source: body.source ?? "contact",
         })
         .returning({ id: contactMessagesTable.id });
       req.log.info({ leadType: "contact", id: row.id }, "lead.created");

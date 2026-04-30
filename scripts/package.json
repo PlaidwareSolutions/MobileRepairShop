@@ -6,7 +6,12 @@
   "scripts": {
     "hello": "tsx ./src/hello.ts",
     "smoke:inventory": "tsx ./src/smoke-inventory.ts",
+    "backfill:contact-source": "tsx ./src/backfill-contact-source.ts",
     "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@workspace/db": "workspace:*",
+    "drizzle-orm": "catalog:"
   },
   "devDependencies": {
     "@types/node": "catalog:",

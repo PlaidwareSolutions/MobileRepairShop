@@ -13,6 +13,7 @@ export * from "./appointmentInput";
 export * from "./appointmentInputServiceType";
 export * from "./appointmentRecord";
 export * from "./contactInput";
+export * from "./contactInputSource";
 export * from "./contactRecord";
 export * from "./errorResponse";
 export * from "./errorResponseDetails";

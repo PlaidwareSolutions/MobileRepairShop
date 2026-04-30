@@ -161,6 +161,7 @@ export const SubmitContactBody = zod.object({
     .min(submitContactBodyContactMin)
     .max(submitContactBodyContactMax),
   message: zod.string().min(1).max(submitContactBodyMessageMax),
+  source: zod.enum(["contact", "financing"]).optional(),
 });
 
 /**
@@ -495,6 +496,7 @@ export const GetAdminLeadsResponse = zod.object({
             .string()
             .min(1)
             .max(getAdminLeadsResponseContactMessagesItemTwoMessageMax),
+          source: zod.enum(["contact", "financing"]).optional(),
         }),
       ),
   ),
