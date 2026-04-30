@@ -27,6 +27,7 @@ const REPAIR_MEGA: MegaMenuColumn[] = [
       { label: "iPhone X / XS / XR", to: "/iphone-x-repair-houston-tx" },
       { label: "iPhone SE", to: "/iphone-se-repair-houston-tx" },
       { label: "iPhone 8 / 8 Plus", to: "/iphone-8-repair-houston-tx" },
+      { label: "iPhone 7 / 6s / 6", to: "/iphone-7-repair-houston-tx" },
     ],
   },
   {

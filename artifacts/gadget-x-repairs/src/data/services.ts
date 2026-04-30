@@ -1893,7 +1893,47 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is iPhone 8 still worth repairing?", a: "For a $79 screen or $49 battery, almost always yes — iPhone 8 still works fine for calls, texts and most apps. Heavier repairs we'll quote honestly." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-se-repair-houston-tx"],
+    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-se-repair-houston-tx", "iphone-7-repair-houston-tx"],
+  },
+  {
+    slug: "iphone-7-repair-houston-tx",
+    title: "iPhone 7 / 6s / 6 Repair Houston",
+    metaTitle: "iPhone 7 / 6s / 6 Repair Houston TX | GadgetX",
+    metaDescription:
+      "Affordable iPhone 7, 6s and 6 repair in Houston TX. Cracked screen, weak battery and loose Lightning port fixed same day from $59. 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "iPhone 7 / 6s / 6 Repair",
+      h1: "iPhone 7, 6s & 6 Repair in Houston",
+      subhead:
+        "Still rocking an iPhone 7, 6s or 6? We fix cracked LCDs, weak batteries and loose Lightning ports on these legacy models for $59–$79 at our Houston shop — no upsells, no pressure to upgrade.",
+    },
+    problems: [
+      "Cracked LCD or black display",
+      "Battery health below 80% or swollen",
+      "Lightning port loose or won't charge",
+      "Home button / Touch ID stopped working",
+      "Earpiece or speaker weak after a drop",
+      "Won't turn on at all",
+    ],
+    brands: ["iPhone 7", "iPhone 7 Plus", "iPhone 6s", "iPhone 6s Plus", "iPhone 6", "iPhone 6 Plus"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for iPhone 7, 6s or 6." },
+      { step: "Same-day fix", detail: "Most legacy iPhone screens and batteries done in 30–45 minutes." },
+      { step: "Quality LCD", detail: "OEM-grade LCD panels for these older models." },
+      { step: "90-day warranty", detail: "All iPhone 7 / 6s / 6 repairs warrantied." },
+    ],
+    pricing: [
+      { label: "iPhone 7 / 6s / 6 screen", price: "from $59" },
+      { label: "iPhone 7 Plus / 6s Plus / 6 Plus screen", price: "from $69" },
+      { label: "iPhone 7 / 6s / 6 battery", price: "from $49" },
+      { label: "iPhone 7 / 6s / 6 charging port", price: "from $59" },
+    ],
+    faqs: [
+      { q: "Is it still worth repairing an iPhone 7 or 6s in 2026?", a: "If you only need a $59 screen or $49 battery and the rest of the phone works, yes — these models still handle calls, texts and most apps fine. Heavier repairs (logic board, multiple parts) we'll tell you straight up if it's not worth it." },
+      { q: "Do you still stock parts for iPhone 6 and 6s?", a: "Yes — we keep LCDs and batteries for iPhone 6, 6s, 7 and their Plus variants in stock. Walk-in or call ahead." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-8-repair-houston-tx"],
   },
   {
     slug: "samsung-galaxy-a54-repair-houston-tx",
