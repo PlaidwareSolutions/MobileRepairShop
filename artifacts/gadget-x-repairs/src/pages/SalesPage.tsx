@@ -12,7 +12,11 @@ import { ReservationForm } from "@/components/forms/ReservationForm";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
 import { SALES_BY_SLUG, SALES_DATA } from "@/data/sales";
-import { inventoryGroupBySlug, inventoryGroupSlugForPageSlug } from "@/lib/inventoryGroups";
+import {
+  inventoryGroupBySlug,
+  inventoryGroupSlugForPageSlug,
+  isPhonePageSlug,
+} from "@/lib/inventoryGroups";
 import { BUSINESS, FINANCING } from "@/content";
 import NotFound from "@/pages/not-found";
 
@@ -174,7 +178,7 @@ export default function SalesPage() {
               <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
                 <Link href={inventoryHref} data-testid="link-view-inventory">{inventoryLabel}</Link>
               </Button>
-              {inventoryGroup?.slug === "phones" && (
+              {isPhonePageSlug(data.slug) && (
                 <Link
                   href={FINANCING.pagePath}
                   className="bg-red-50 text-red-600 border border-red-200 rounded-full px-3 py-1 uppercase font-semibold text-[11px] tracking-wide hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors"

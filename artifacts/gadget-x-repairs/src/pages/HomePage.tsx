@@ -175,12 +175,12 @@ const SELL_TILES: {
   slug: string;
   image?: Photo;
 }[] = [
-  { name: "Unlocked Phones", desc: "Apple, Samsung, Pixel & more", icon: Smartphone, to: inventoryHref(groupSlug("phones")), slug: groupSlug("phones"),
-    image: photo("sell-phones", "Row of unlocked smartphones on display stands at the shop counter") },
-  { name: "iPads & Tablets", desc: "Cellular and Wi-Fi", icon: Tablet, to: inventoryHref(groupSlug("tablets")), slug: groupSlug("tablets"),
-    image: photo("sell-tablets", "Refurbished tablets on display stands at the shop counter") },
-  { name: "MacBooks & Laptops", desc: "Refurbished and tested", icon: Laptop, to: inventoryHref(groupSlug("laptops")), slug: groupSlug("laptops"),
-    image: photo("sell-laptops", "Two refurbished laptops open on the shop counter") },
+  { name: "Apple", desc: "iPhones, iPads, MacBooks, Watches, AirPods", icon: Smartphone, to: inventoryHref(groupSlug("apple")), slug: groupSlug("apple"),
+    image: photo("sell-phones", "Row of unlocked Apple iPhones on display stands at the shop counter") },
+  { name: "Samsung", desc: "Galaxy S, Note, A and Z series", icon: Smartphone, to: inventoryHref(groupSlug("samsung")), slug: groupSlug("samsung"),
+    image: photo("sell-tablets", "Refurbished Samsung Galaxy phones on display stands at the shop counter") },
+  { name: "Google", desc: "Pixel 3 through 9 Pro", icon: Smartphone, to: inventoryHref(groupSlug("google")), slug: groupSlug("google"),
+    image: photo("sell-laptops", "Google Pixel phones lined up on the shop counter") },
   { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: inventoryHref(groupSlug("consoles")), slug: groupSlug("consoles"),
     image: photo("sell-consoles", "Refurbished gaming consoles and controllers on the shop counter") },
 ];

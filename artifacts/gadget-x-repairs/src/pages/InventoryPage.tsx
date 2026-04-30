@@ -15,11 +15,10 @@ import {
   OTHER_GROUP,
   inventoryGroupBySlug,
   inventoryServiceHubForGroupSlug,
+  isPhoneCategory,
   type InventoryGroup,
 } from "@/lib/inventoryGroups";
 import { BUSINESS, FINANCING } from "@/content";
-
-const PHONES_GROUP = inventoryGroupBySlug("phones");
 
 const DEFAULT_META = {
   title: "Phones & Laptops Inventory Houston | GadgetX Repairs",
@@ -84,8 +83,8 @@ export default function InventoryPage() {
   const [, setLocation] = useLocation();
   const search = useSearch();
 
-  // Path-based group is the canonical source of truth: e.g. /inventory/phones
-  // resolves to the "phones" group below. /inventory (no param) falls back to
+  // Path-based group is the canonical source of truth: e.g. /inventory/apple
+  // resolves to the "apple" group below. /inventory (no param) falls back to
   // the legacy ?category= query string, which is then soft-redirected to the
   // canonical path so old links keep working but search engines see one URL.
   const [matchPath, params] = useRoute<{ group: string }>("/inventory/:group");
@@ -154,7 +153,8 @@ export default function InventoryPage() {
   // "Other" chip is conditional on actually having uncategorised items.
   const availableGroups = useMemo<InventoryGroup[]>(() => {
     const result: InventoryGroup[] = [...INVENTORY_GROUPS];
-    if (items.some((it) => OTHER_GROUP.matches(it.category))) result.push(OTHER_GROUP);
+    if (items.some((it) => OTHER_GROUP.matches({ category: it.category, brand: it.brand })))
+      result.push(OTHER_GROUP);
     return result;
   }, [items]);
 
@@ -162,7 +162,7 @@ export default function InventoryPage() {
     if (filterSlug === ALL_FILTER_SLUG) return items;
     const group = inventoryGroupBySlug(filterSlug);
     if (!group) return items;
-    return items.filter((it) => group.matches(it.category));
+    return items.filter((it) => group.matches({ category: it.category, brand: it.brand }));
   }, [items, filterSlug]);
 
   function selectFilter(slug: string) {
@@ -332,7 +332,7 @@ export default function InventoryPage() {
                 <div className="mt-auto pt-3 border-t border-zinc-300 flex flex-col gap-3">
                   <div className="flex items-center gap-2 flex-wrap">
                     <div className="font-bold uppercase text-2xl text-red-500">{it.price}</div>
-                    {PHONES_GROUP?.matches(it.category) && (
+                    {isPhoneCategory(it.category) && (
                       <Link
                         href={FINANCING.pagePath}
                         className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors"

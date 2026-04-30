@@ -2,6 +2,15 @@ export const LEGACY_REDIRECTS: Record<string, string> = {
   "/contact": "/contact-houston-tx",
   "/reviews": "/reviews-houston-tx",
 
+  // The /inventory/<group> routes used to be device-class buckets
+  // (phones / tablets / laptops). They were replaced with brand-led
+  // buckets (apple / samsung / google) which do not 1:1 map — so the
+  // safest landing target is the unfiltered /inventory index, where
+  // the new chips are visible and shoppers can pick the right brand.
+  "/inventory/phones": "/inventory",
+  "/inventory/tablets": "/inventory",
+  "/inventory/laptops": "/inventory",
+
   "/samsung-phone-repair-houston": "/samsung-repair-houston-tx",
   "/motorola-phone-repair-houston": "/motorola-repair-houston-tx",
   "/ipad-tablet-repair-houston": "/tablet-repair-houston-tx",

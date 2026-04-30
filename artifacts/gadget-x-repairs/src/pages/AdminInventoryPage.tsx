@@ -383,7 +383,7 @@ export default function AdminInventoryPage() {
                         </td>
                         <td className="px-3 py-2 text-zinc-600 text-xs uppercase tracking-wide font-semibold">{it.category}</td>
                         <td className="px-3 py-2">
-                          <GroupBadge category={it.category} testId={`admin-inventory-group-${it.id}`} />
+                          <GroupBadge category={it.category} brand={it.brand} testId={`admin-inventory-group-${it.id}`} />
                         </td>
                         <td className="px-3 py-2 font-semibold text-red-600">{it.priceDisplay}</td>
                         <td className="px-3 py-2">
@@ -475,7 +475,7 @@ function InventoryFormCard({
         <datalist id="cats">
           {categories.map((c) => <option key={c} value={c} />)}
         </datalist>
-        <CategoryGroupHint category={form.category} />
+        <CategoryGroupHint category={form.category} brand={form.brand} />
       </Field>
       <Field label="Brand" required>
         <Input value={form.brand} onChange={(e) => set("brand", e.target.value)} required className={inputCls} data-testid="input-brand" />
@@ -619,9 +619,10 @@ function Field({ label, required, children }: { label: string; required?: boolea
   );
 }
 
-function CategoryGroupHint({ category }: { category: string }) {
+function CategoryGroupHint({ category, brand }: { category: string; brand?: string }) {
   const trimmed = category.trim();
-  if (!trimmed) {
+  const trimmedBrand = (brand ?? "").trim();
+  if (!trimmed && !trimmedBrand) {
     return (
       <p
         className="text-[11px] font-semibold uppercase tracking-wide text-zinc-500"
@@ -631,7 +632,7 @@ function CategoryGroupHint({ category }: { category: string }) {
       </p>
     );
   }
-  const group = inventoryGroupForCategory(trimmed);
+  const group = inventoryGroupForCategory(trimmed, trimmedBrand);
   const isOther = group.slug === OTHER_GROUP.slug;
   return (
     <p
@@ -644,16 +645,18 @@ function CategoryGroupHint({ category }: { category: string }) {
       Will appear under: <span className="font-extrabold">{group.label}</span>
       {isOther && (
         <span className="block mt-1 normal-case tracking-normal font-medium text-amber-700">
-          ⚠ This won't show up under any "We Sell Too" tile filter. Try keywords
-          like Phones, Tablets, Laptops, or Consoles so shoppers can find it.
+          ⚠ This won't show up under any "We Sell Too" tile filter. Set Brand to
+          Apple, Samsung or Google, or use category keywords like iPhone, iPad,
+          MacBook, Galaxy, Pixel, PlayStation, Xbox or Switch so shoppers can
+          find it.
         </span>
       )}
     </p>
   );
 }
 
-function GroupBadge({ category, testId }: { category: string; testId?: string }) {
-  const group = inventoryGroupForCategory(category);
+function GroupBadge({ category, brand, testId }: { category: string; brand?: string; testId?: string }) {
+  const group = inventoryGroupForCategory(category, brand);
   const isOther = group.slug === OTHER_GROUP.slug;
   const cls = isOther
     ? "border-amber-200 text-amber-700 bg-amber-50"
