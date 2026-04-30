@@ -1698,6 +1698,431 @@ export const SERVICES_DATA: ServiceData[] = [
     serviceType: "screen-repair",
     related: ["ipad-repair-houston-tx", "ipad-pro-repair-houston-tx", "tablet-screen-repair-houston-tx", "tablet-battery-replacement-houston-tx"],
   },
+  {
+    slug: "iphone-13-repair-houston-tx",
+    title: "iPhone 13 Repair Houston",
+    metaTitle: "iPhone 13 Repair Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Affordable iPhone 13 repair in Houston TX. Cracked OLED, battery, Lightning port & back glass fixed same day. 90-day warranty at GadgetX Repairs.",
+    hero: {
+      eyebrow: "iPhone 13 Repair",
+      h1: "iPhone 13 Repair in Houston",
+      subhead:
+        "iPhone 13, 13 mini, 13 Pro, 13 Pro Max — cracked Super Retina OLED, weak battery, Lightning port damage, back glass. Same-day on most repairs.",
+    },
+    problems: ["Cracked Super Retina OLED", "Battery health under 80%", "Lightning port not charging", "Back glass cracked", "Camera lens cracked", "Won't power on after a fall"],
+    brands: ["iPhone 13 mini", "iPhone 13", "iPhone 13 Pro", "iPhone 13 Pro Max"],
+    process: [
+      { step: "Free quote", detail: "Tell us your iPhone 13 model and symptom for a firm price up front." },
+      { step: "Same-day fix", detail: "Most iPhone 13 screens and batteries done in 60 minutes." },
+      { step: "Quality OLED", detail: "OEM-grade OLED that preserves True Tone where possible." },
+      { step: "90-day warranty", detail: "Every iPhone 13 repair backed by us." },
+    ],
+    pricing: [
+      { label: "iPhone 13 mini / 13 screen", price: "from $159" },
+      { label: "iPhone 13 Pro / Pro Max screen", price: "from $239" },
+      { label: "iPhone 13 battery", price: "from $69" },
+      { label: "iPhone 13 charging port", price: "from $79" },
+      { label: "iPhone 13 back glass", price: "from $99" },
+    ],
+    faqs: [
+      { q: "Will Face ID still work after iPhone 13 screen repair?", a: "On most iPhone 13 repairs we preserve Face ID. We tell you up front if your specific repair needs a component transfer." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-14-repair-houston-tx"],
+  },
+  {
+    slug: "iphone-12-repair-houston-tx",
+    title: "iPhone 12 Repair Houston",
+    metaTitle: "iPhone 12 Repair Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Fast iPhone 12 repair in Houston TX. Cracked OLED, battery replacement, Lightning port & back glass — most fixes done same day at GadgetX Repairs.",
+    hero: {
+      eyebrow: "iPhone 12 Repair",
+      h1: "iPhone 12 Repair in Houston",
+      subhead:
+        "iPhone 12 mini, 12, 12 Pro, 12 Pro Max — cracked OLED, battery shutdowns, Lightning port damage, MagSafe / back glass. Same day on most repairs.",
+    },
+    problems: ["Cracked OLED display", "Battery shutting off at 30%", "Lightning port not charging", "Back glass cracked (MagSafe area)", "MagSafe magnets weak", "Camera lens cracked"],
+    brands: ["iPhone 12 mini", "iPhone 12", "iPhone 12 Pro", "iPhone 12 Pro Max"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for any iPhone 12 model." },
+      { step: "Same-day fix", detail: "Most iPhone 12 screens and batteries done in 60 minutes." },
+      { step: "Quality OLED", detail: "OEM-grade OLED that preserves True Tone where possible." },
+      { step: "90-day warranty", detail: "Every iPhone 12 repair backed by us." },
+    ],
+    pricing: [
+      { label: "iPhone 12 mini / 12 screen", price: "from $149" },
+      { label: "iPhone 12 Pro / Pro Max screen", price: "from $219" },
+      { label: "iPhone 12 battery", price: "from $59" },
+      { label: "iPhone 12 charging port", price: "from $69" },
+      { label: "iPhone 12 back glass", price: "from $99" },
+    ],
+    faqs: [
+      { q: "Why does my iPhone 12 shut off at 30%?", a: "That's almost always battery health below 80%. A battery swap from $59 fixes it and restores full runtime." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-13-repair-houston-tx"],
+  },
+  {
+    slug: "iphone-11-repair-houston-tx",
+    title: "iPhone 11 Repair Houston",
+    metaTitle: "iPhone 11 Repair Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Affordable iPhone 11 repair in Houston TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at GadgetX Repairs.",
+    hero: {
+      eyebrow: "iPhone 11 Repair",
+      h1: "iPhone 11 Repair in Houston",
+      subhead:
+        "iPhone 11, 11 Pro, 11 Pro Max — cracked Liquid Retina, dying battery, loose Lightning port, back glass shatter. Most repairs done same day.",
+    },
+    problems: ["Cracked Liquid Retina display", "Battery health below 80%", "Lightning port loose", "Back glass cracked", "Rear camera lens cracked", "Won't turn on after a fall"],
+    brands: ["iPhone 11", "iPhone 11 Pro", "iPhone 11 Pro Max"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for any iPhone 11 model." },
+      { step: "Same-day fix", detail: "Most iPhone 11 screens and batteries done in 45–60 minutes." },
+      { step: "Quality screens", detail: "OEM-grade LCD (11) and OLED (11 Pro / Pro Max)." },
+      { step: "90-day warranty", detail: "Every iPhone 11 repair backed by us." },
+    ],
+    pricing: [
+      { label: "iPhone 11 screen (LCD)", price: "from $119" },
+      { label: "iPhone 11 Pro / Pro Max screen (OLED)", price: "from $189" },
+      { label: "iPhone 11 battery", price: "from $59" },
+      { label: "iPhone 11 charging port", price: "from $69" },
+      { label: "iPhone 11 back glass", price: "from $89" },
+    ],
+    faqs: [
+      { q: "Is the iPhone 11 still worth repairing in 2026?", a: "Yes — iPhone 11 still gets iOS updates and remains a strong daily driver. A $119 screen swap is far cheaper than upgrading." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-12-repair-houston-tx"],
+  },
+  {
+    slug: "iphone-x-repair-houston-tx",
+    title: "iPhone X / XS / XR Repair Houston",
+    metaTitle: "iPhone X / XS / XR Repair Houston TX | GadgetX",
+    metaDescription:
+      "iPhone X, XS, XS Max and XR repair in Houston TX. Cracked OLED, battery, charging port and back glass fixed same day. 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "iPhone X / XS / XR Repair",
+      h1: "iPhone X, XS & XR Repair in Houston",
+      subhead:
+        "iPhone X, XS, XS Max, XR — cracked OLED or LCD, weak battery, loose Lightning port, shattered back glass. Most repairs done same day.",
+    },
+    problems: ["Cracked display (OLED or LCD)", "Battery health below 80%", "Lightning port loose", "Back glass shattered", "Face ID failing intermittently", "Won't power on after a fall"],
+    brands: ["iPhone X", "iPhone XS", "iPhone XS Max", "iPhone XR"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for any iPhone X / XS / XR model." },
+      { step: "Same-day fix", detail: "Most X-series screens and batteries done in 45–60 minutes." },
+      { step: "Quality screens", detail: "OEM-grade OLED for X / XS / XS Max, LCD for XR." },
+      { step: "90-day warranty", detail: "All iPhone X / XS / XR repairs warrantied." },
+    ],
+    pricing: [
+      { label: "iPhone X / XS screen (OLED)", price: "from $149" },
+      { label: "iPhone XS Max screen (OLED)", price: "from $189" },
+      { label: "iPhone XR screen (LCD)", price: "from $109" },
+      { label: "iPhone X / XS / XR battery", price: "from $59" },
+      { label: "iPhone X / XS / XR back glass", price: "from $89" },
+    ],
+    faqs: [
+      { q: "Will Face ID still work after iPhone X / XS / XR screen repair?", a: "Usually yes. A few specific repairs need a component transfer — we tell you up front if yours does." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-11-repair-houston-tx"],
+  },
+  {
+    slug: "iphone-se-repair-houston-tx",
+    title: "iPhone SE Repair Houston",
+    metaTitle: "iPhone SE Repair Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Affordable iPhone SE repair in Houston TX (2016, 2020, 2022). Cracked screen, battery and charging port fixed same day. 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "iPhone SE Repair",
+      h1: "iPhone SE Repair in Houston",
+      subhead:
+        "iPhone SE 1st gen (2016), 2nd gen (2020), 3rd gen (2022) — cracked screen, weak battery, loose Lightning port. Same-day on most repairs.",
+    },
+    problems: ["Cracked LCD display", "Battery health below 80%", "Lightning port loose or not charging", "Home button / Touch ID not working", "Won't power on", "Speaker or mic dead"],
+    brands: ["iPhone SE (2016, 1st gen)", "iPhone SE (2020, 2nd gen)", "iPhone SE (2022, 3rd gen)"],
+    process: [
+      { step: "Free quote", detail: "Tell us which SE generation — pricing varies a bit by year." },
+      { step: "Same-day fix", detail: "Most iPhone SE screens and batteries done in 30–45 minutes." },
+      { step: "Quality screens", detail: "OEM-grade LCD panels for every SE generation." },
+      { step: "90-day warranty", detail: "All iPhone SE repairs warrantied." },
+    ],
+    pricing: [
+      { label: "iPhone SE (2016) screen", price: "from $79" },
+      { label: "iPhone SE (2020 / 2022) screen", price: "from $89" },
+      { label: "iPhone SE battery", price: "from $49" },
+      { label: "iPhone SE charging port", price: "from $59" },
+    ],
+    faqs: [
+      { q: "Will Touch ID still work after iPhone SE screen repair?", a: "Yes — we transfer your original Home button so Touch ID keeps working after the screen swap." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-8-repair-houston-tx"],
+  },
+  {
+    slug: "iphone-8-repair-houston-tx",
+    title: "iPhone 8 / 8 Plus Repair Houston",
+    metaTitle: "iPhone 8 / 8 Plus Repair Houston TX | GadgetX",
+    metaDescription:
+      "Affordable iPhone 8 and 8 Plus repair in Houston TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "iPhone 8 / 8 Plus Repair",
+      h1: "iPhone 8 & 8 Plus Repair in Houston",
+      subhead:
+        "iPhone 8 and 8 Plus — cracked LCD, weak battery, loose Lightning port, shattered back glass. Affordable, same-day repairs at our Houston shop.",
+    },
+    problems: ["Cracked LCD display", "Battery health below 80%", "Lightning port loose", "Back glass cracked", "Home button / Touch ID not working", "Won't turn on"],
+    brands: ["iPhone 8", "iPhone 8 Plus"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for iPhone 8 or 8 Plus." },
+      { step: "Same-day fix", detail: "Most iPhone 8 screens and batteries done in 30–45 minutes." },
+      { step: "Quality LCD", detail: "OEM-grade LCD panels for iPhone 8 and 8 Plus." },
+      { step: "90-day warranty", detail: "All iPhone 8 / 8 Plus repairs warrantied." },
+    ],
+    pricing: [
+      { label: "iPhone 8 screen", price: "from $79" },
+      { label: "iPhone 8 Plus screen", price: "from $89" },
+      { label: "iPhone 8 / 8 Plus battery", price: "from $49" },
+      { label: "iPhone 8 / 8 Plus charging port", price: "from $59" },
+      { label: "iPhone 8 / 8 Plus back glass", price: "from $79" },
+    ],
+    faqs: [
+      { q: "Is iPhone 8 still worth repairing?", a: "For a $79 screen or $49 battery, almost always yes — iPhone 8 still works fine for calls, texts and most apps. Heavier repairs we'll quote honestly." },
+    ],
+    serviceType: "screen-repair",
+    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-se-repair-houston-tx"],
+  },
+  {
+    slug: "samsung-galaxy-a54-repair-houston-tx",
+    title: "Samsung Galaxy A54 Repair Houston",
+    metaTitle: "Samsung Galaxy A54 Repair Houston TX | GadgetX",
+    metaDescription:
+      "Galaxy A54 repair in Houston TX. Cracked AMOLED, battery, USB-C port and back glass fixed same day. Affordable pricing & 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "Galaxy A54 Repair",
+      h1: "Samsung Galaxy A54 Repair in Houston",
+      subhead:
+        "Galaxy A54 5G — cracked Super AMOLED, swollen battery, loose USB-C port, back glass shatter. Same-day where possible at our Houston shop.",
+    },
+    problems: ["Cracked Super AMOLED display", "Battery degraded", "USB-C port not charging", "Back glass cracked", "Front or rear camera cracked", "Won't power on after a fall"],
+    brands: ["Galaxy A54", "Galaxy A54 5G"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for the Galaxy A54." },
+      { step: "Same-day fix", detail: "Most A54 screens and batteries done in a day." },
+      { step: "Quality AMOLED", detail: "OEM-grade Super AMOLED panels." },
+      { step: "90-day warranty", detail: "All Galaxy A54 repairs warrantied." },
+    ],
+    pricing: [
+      { label: "Galaxy A54 screen", price: "from $149" },
+      { label: "Galaxy A54 battery", price: "from $69" },
+      { label: "Galaxy A54 charging port", price: "from $79" },
+      { label: "Galaxy A54 back glass", price: "from $89" },
+    ],
+    faqs: [
+      { q: "Are A-series screens cheaper to repair than S-series?", a: "Yes — A-series AMOLED panels are less expensive than S-series, so most A54 screen repairs come in well under a flagship S repair." },
+    ],
+    serviceType: "screen-repair",
+    related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a35-repair-houston-tx"],
+  },
+  {
+    slug: "samsung-galaxy-a35-repair-houston-tx",
+    title: "Samsung Galaxy A35 Repair Houston",
+    metaTitle: "Samsung Galaxy A35 Repair Houston TX | GadgetX",
+    metaDescription:
+      "Galaxy A35 repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. Affordable pricing & 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "Galaxy A35 Repair",
+      h1: "Samsung Galaxy A35 Repair in Houston",
+      subhead:
+        "Galaxy A35 5G — cracked Super AMOLED, weak battery, loose USB-C port, back glass shatter. Affordable repairs at our Houston shop.",
+    },
+    problems: ["Cracked Super AMOLED display", "Battery degraded", "USB-C port not charging", "Back glass cracked", "Camera lens cracked", "Won't power on after a fall"],
+    brands: ["Galaxy A35", "Galaxy A35 5G"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for the Galaxy A35." },
+      { step: "Same-day fix", detail: "Most A35 screens and batteries done in a day." },
+      { step: "Quality AMOLED", detail: "OEM-grade Super AMOLED panels." },
+      { step: "90-day warranty", detail: "All Galaxy A35 repairs warrantied." },
+    ],
+    pricing: [
+      { label: "Galaxy A35 screen", price: "from $139" },
+      { label: "Galaxy A35 battery", price: "from $69" },
+      { label: "Galaxy A35 charging port", price: "from $79" },
+      { label: "Galaxy A35 back glass", price: "from $79" },
+    ],
+    faqs: [
+      { q: "How long does a Galaxy A35 screen repair take?", a: "Most A35 screen jobs are done same day — usually within 2–3 hours of drop-off." },
+    ],
+    serviceType: "screen-repair",
+    related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a54-repair-houston-tx"],
+  },
+  {
+    slug: "samsung-galaxy-a15-repair-houston-tx",
+    title: "Samsung Galaxy A15 Repair Houston",
+    metaTitle: "Samsung Galaxy A15 Repair Houston TX | GadgetX",
+    metaDescription:
+      "Galaxy A15 repair in Houston TX. Cracked screen, battery, USB-C port & back fixed affordably with a 90-day warranty at GadgetX Repairs.",
+    hero: {
+      eyebrow: "Galaxy A15 Repair",
+      h1: "Samsung Galaxy A15 Repair in Houston",
+      subhead:
+        "Galaxy A15 and A15 5G — cracked AMOLED, weak battery, loose USB-C port. Affordable repairs at our Houston shop, same day where possible.",
+    },
+    problems: ["Cracked AMOLED display", "Battery drains fast", "USB-C port loose", "Back panel cracked", "Speaker or mic dead", "Won't power on"],
+    brands: ["Galaxy A15", "Galaxy A15 5G"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for the Galaxy A15." },
+      { step: "Same-day fix", detail: "Most A15 screens and batteries done in a day." },
+      { step: "Quality AMOLED", detail: "OEM-grade AMOLED panels." },
+      { step: "90-day warranty", detail: "All Galaxy A15 repairs warrantied." },
+    ],
+    pricing: [
+      { label: "Galaxy A15 screen", price: "from $119" },
+      { label: "Galaxy A15 battery", price: "from $59" },
+      { label: "Galaxy A15 charging port", price: "from $69" },
+      { label: "Galaxy A15 back panel", price: "from $69" },
+    ],
+    faqs: [
+      { q: "Is the Galaxy A15 worth repairing?", a: "For an entry-level Galaxy, yes — a $119 screen or $59 battery typically costs much less than replacing the phone outright." },
+    ],
+    serviceType: "screen-repair",
+    related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a35-repair-houston-tx"],
+  },
+  {
+    slug: "samsung-galaxy-s22-repair-houston-tx",
+    title: "Samsung Galaxy S22 Repair Houston",
+    metaTitle: "Samsung Galaxy S22 Repair Houston TX | GadgetX",
+    metaDescription:
+      "Galaxy S22 / S22+ / S22 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "Galaxy S22 Repair",
+      h1: "Samsung Galaxy S22 Repair in Houston",
+      subhead:
+        "Galaxy S22, S22+, S22 Ultra — cracked AMOLED, weak battery, loose USB-C, shattered back glass, S Pen issues (Ultra). Same day where possible.",
+    },
+    problems: ["Cracked AMOLED display", "Battery health degraded", "USB-C charging port loose", "Back glass cracked", "S Pen broken (Ultra)", "Won't power on"],
+    brands: ["Galaxy S22", "Galaxy S22+", "Galaxy S22 Ultra"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for any S22 model." },
+      { step: "Same-day where possible", detail: "Most S22 screens and batteries done in a day." },
+      { step: "Quality AMOLED", detail: "OEM-grade AMOLED panels." },
+      { step: "90-day warranty", detail: "All Galaxy S22 repairs warrantied." },
+    ],
+    pricing: [
+      { label: "Galaxy S22 screen", price: "from $189" },
+      { label: "Galaxy S22+ screen", price: "from $219" },
+      { label: "Galaxy S22 Ultra screen", price: "from $279" },
+      { label: "Galaxy S22 battery", price: "from $69" },
+      { label: "Galaxy S22 charging port", price: "from $79" },
+    ],
+    faqs: [
+      { q: "Will the in-display fingerprint sensor work after S22 screen repair?", a: "Yes — we calibrate the in-display sensor as part of the screen replacement." },
+    ],
+    serviceType: "screen-repair",
+    related: ["samsung-repair-houston-tx", "samsung-galaxy-s23-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+  },
+  {
+    slug: "samsung-galaxy-s21-repair-houston-tx",
+    title: "Samsung Galaxy S21 Repair Houston",
+    metaTitle: "Samsung Galaxy S21 Repair Houston TX | GadgetX",
+    metaDescription:
+      "Galaxy S21 / S21+ / S21 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "Galaxy S21 Repair",
+      h1: "Samsung Galaxy S21 Repair in Houston",
+      subhead:
+        "Galaxy S21, S21+, S21 Ultra and S21 FE — cracked AMOLED, weak battery, loose USB-C, shattered back. Same day where possible at our Houston shop.",
+    },
+    problems: ["Cracked AMOLED display", "Battery health degraded", "USB-C charging port loose", "Back glass cracked", "Camera glass cracked", "Won't power on"],
+    brands: ["Galaxy S21", "Galaxy S21+", "Galaxy S21 Ultra", "Galaxy S21 FE"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for any S21 model." },
+      { step: "Same-day where possible", detail: "Most S21 screens and batteries done in a day." },
+      { step: "Quality AMOLED", detail: "OEM-grade AMOLED panels." },
+      { step: "90-day warranty", detail: "All Galaxy S21 repairs warrantied." },
+    ],
+    pricing: [
+      { label: "Galaxy S21 / FE screen", price: "from $169" },
+      { label: "Galaxy S21+ screen", price: "from $199" },
+      { label: "Galaxy S21 Ultra screen", price: "from $259" },
+      { label: "Galaxy S21 battery", price: "from $69" },
+      { label: "Galaxy S21 charging port", price: "from $79" },
+    ],
+    faqs: [
+      { q: "Is the Galaxy S21 still supported by Samsung?", a: "Yes — the S21 still gets security updates. A screen or battery repair is a fraction of replacement cost and keeps it running for years." },
+    ],
+    serviceType: "screen-repair",
+    related: ["samsung-repair-houston-tx", "samsung-galaxy-s22-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+  },
+  {
+    slug: "samsung-galaxy-note-20-repair-houston-tx",
+    title: "Samsung Galaxy Note 20 Repair Houston",
+    metaTitle: "Samsung Galaxy Note 20 Repair Houston TX | GadgetX",
+    metaDescription:
+      "Galaxy Note 20 / Note 20 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "Galaxy Note 20 Repair",
+      h1: "Samsung Galaxy Note 20 Repair in Houston",
+      subhead:
+        "Galaxy Note 20 and Note 20 Ultra — cracked AMOLED, weak battery, loose USB-C, broken S Pen, back glass shatter. Same day where possible.",
+    },
+    problems: ["Cracked AMOLED display", "Battery health degraded", "USB-C charging port loose", "S Pen broken or lost", "Back glass shattered", "Won't power on"],
+    brands: ["Galaxy Note 20", "Galaxy Note 20 Ultra", "Galaxy Note 20 5G"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for either Note 20 model." },
+      { step: "Same-day where possible", detail: "Most Note 20 screens and batteries done in a day." },
+      { step: "Quality AMOLED", detail: "OEM-grade AMOLED panels with S Pen calibration." },
+      { step: "90-day warranty", detail: "All Galaxy Note 20 repairs warrantied." },
+    ],
+    pricing: [
+      { label: "Galaxy Note 20 screen", price: "from $189" },
+      { label: "Galaxy Note 20 Ultra screen", price: "from $269" },
+      { label: "Galaxy Note 20 battery", price: "from $69" },
+      { label: "Galaxy Note 20 charging port", price: "from $79" },
+      { label: "Replacement S Pen", price: "from $39" },
+    ],
+    faqs: [
+      { q: "Will the S Pen still work after Note 20 screen repair?", a: "Yes — we calibrate the digitizer as part of the screen replacement, so S Pen pressure and tilt keep working." },
+    ],
+    serviceType: "screen-repair",
+    related: ["samsung-repair-houston-tx", "samsung-galaxy-note-10-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+  },
+  {
+    slug: "samsung-galaxy-note-10-repair-houston-tx",
+    title: "Samsung Galaxy Note 10 Repair Houston",
+    metaTitle: "Samsung Galaxy Note 10 Repair Houston TX | GadgetX",
+    metaDescription:
+      "Galaxy Note 10 / Note 10+ repair in Houston TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at GadgetX.",
+    hero: {
+      eyebrow: "Galaxy Note 10 Repair",
+      h1: "Samsung Galaxy Note 10 Repair in Houston",
+      subhead:
+        "Galaxy Note 10 and Note 10+ — cracked AMOLED, weak battery, loose USB-C, broken S Pen, back glass shatter. Same day where possible.",
+    },
+    problems: ["Cracked AMOLED display", "Battery health degraded", "USB-C charging port loose", "S Pen broken or lost", "Back glass shattered", "Won't power on"],
+    brands: ["Galaxy Note 10", "Galaxy Note 10+", "Galaxy Note 10 5G"],
+    process: [
+      { step: "Free quote", detail: "Quick check, firm price for either Note 10 model." },
+      { step: "Same-day where possible", detail: "Most Note 10 screens and batteries done in a day." },
+      { step: "Quality AMOLED", detail: "OEM-grade AMOLED panels with S Pen calibration." },
+      { step: "90-day warranty", detail: "All Galaxy Note 10 repairs warrantied." },
+    ],
+    pricing: [
+      { label: "Galaxy Note 10 screen", price: "from $179" },
+      { label: "Galaxy Note 10+ screen", price: "from $239" },
+      { label: "Galaxy Note 10 battery", price: "from $69" },
+      { label: "Galaxy Note 10 charging port", price: "from $79" },
+      { label: "Replacement S Pen", price: "from $39" },
+    ],
+    faqs: [
+      { q: "Are Note 10 parts still available in 2026?", a: "Yes — we stock OEM-grade Note 10 screens and batteries, and most repairs are completed same day." },
+    ],
+    serviceType: "screen-repair",
+    related: ["samsung-repair-houston-tx", "samsung-galaxy-note-20-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+  },
 ];
 
 export const SERVICES_BY_SLUG = Object.fromEntries(SERVICES_DATA.map((s) => [s.slug, s])) as Record<string, ServiceData>;

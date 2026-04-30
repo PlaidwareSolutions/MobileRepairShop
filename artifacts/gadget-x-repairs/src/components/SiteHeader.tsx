@@ -7,14 +7,9 @@ type MegaMenuColumn = { heading: string; items: { label: string; to: string }[] 
 
 const REPAIR_MEGA: MegaMenuColumn[] = [
   {
-    heading: "iPhone",
+    heading: "iPhone — Current",
     items: [
       { label: "All iPhone Repair", to: "/iphone-repair-houston-tx" },
-      { label: "iPhone Screen", to: "/iphone-screen-repair-houston-tx" },
-      { label: "iPhone Battery", to: "/iphone-battery-replacement-houston-tx" },
-      { label: "iPhone Back Glass", to: "/iphone-back-glass-repair-houston-tx" },
-      { label: "iPhone Charging Port", to: "/iphone-charging-port-repair-houston-tx" },
-      { label: "iPhone Water Damage", to: "/iphone-water-damage-repair-houston-tx" },
       { label: "iPhone 16 Pro Max", to: "/iphone-16-pro-max-repair-houston-tx" },
       { label: "iPhone 16 Pro", to: "/iphone-16-pro-repair-houston-tx" },
       { label: "iPhone 16", to: "/iphone-16-repair-houston-tx" },
@@ -24,11 +19,39 @@ const REPAIR_MEGA: MegaMenuColumn[] = [
     ],
   },
   {
+    heading: "iPhone — Older",
+    items: [
+      { label: "iPhone 13", to: "/iphone-13-repair-houston-tx" },
+      { label: "iPhone 12", to: "/iphone-12-repair-houston-tx" },
+      { label: "iPhone 11", to: "/iphone-11-repair-houston-tx" },
+      { label: "iPhone X / XS / XR", to: "/iphone-x-repair-houston-tx" },
+      { label: "iPhone SE", to: "/iphone-se-repair-houston-tx" },
+      { label: "iPhone 8 / 8 Plus", to: "/iphone-8-repair-houston-tx" },
+    ],
+  },
+  {
+    heading: "iPhone Services",
+    items: [
+      { label: "iPhone Screen", to: "/iphone-screen-repair-houston-tx" },
+      { label: "iPhone Battery", to: "/iphone-battery-replacement-houston-tx" },
+      { label: "iPhone Back Glass", to: "/iphone-back-glass-repair-houston-tx" },
+      { label: "iPhone Charging Port", to: "/iphone-charging-port-repair-houston-tx" },
+      { label: "iPhone Water Damage", to: "/iphone-water-damage-repair-houston-tx" },
+    ],
+  },
+  {
     heading: "Samsung & Android",
     items: [
-      { label: "Samsung Galaxy", to: "/samsung-repair-houston-tx" },
+      { label: "All Samsung Galaxy", to: "/samsung-repair-houston-tx" },
       { label: "Galaxy S24", to: "/samsung-galaxy-s24-repair-houston-tx" },
       { label: "Galaxy S23", to: "/samsung-galaxy-s23-repair-houston-tx" },
+      { label: "Galaxy S22", to: "/samsung-galaxy-s22-repair-houston-tx" },
+      { label: "Galaxy S21", to: "/samsung-galaxy-s21-repair-houston-tx" },
+      { label: "Galaxy A54", to: "/samsung-galaxy-a54-repair-houston-tx" },
+      { label: "Galaxy A35", to: "/samsung-galaxy-a35-repair-houston-tx" },
+      { label: "Galaxy A15", to: "/samsung-galaxy-a15-repair-houston-tx" },
+      { label: "Galaxy Note 20", to: "/samsung-galaxy-note-20-repair-houston-tx" },
+      { label: "Galaxy Note 10", to: "/samsung-galaxy-note-10-repair-houston-tx" },
       { label: "Samsung Screen", to: "/samsung-screen-repair-houston-tx" },
       { label: "Samsung Battery", to: "/samsung-battery-replacement-houston-tx" },
       { label: "Google Pixel", to: "/google-pixel-repair-houston-tx" },
@@ -37,8 +60,9 @@ const REPAIR_MEGA: MegaMenuColumn[] = [
     ],
   },
   {
-    heading: "Tablet & Laptop",
+    heading: "Tablet / Laptop / Console",
     items: [
+      { label: "All Repair Services", to: "/repair-services-houston-tx" },
       { label: "iPad / Tablet", to: "/tablet-repair-houston-tx" },
       { label: "iPad", to: "/ipad-repair-houston-tx" },
       { label: "iPad Pro", to: "/ipad-pro-repair-houston-tx" },
@@ -49,12 +73,6 @@ const REPAIR_MEGA: MegaMenuColumn[] = [
       { label: "Laptop Screen", to: "/laptop-screen-repair-houston-tx" },
       { label: "Laptop Battery", to: "/laptop-battery-replacement-houston-tx" },
       { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
-    ],
-  },
-  {
-    heading: "Console & Other",
-    items: [
-      { label: "All Repair Services", to: "/repair-services-houston-tx" },
       { label: "Gaming Consoles", to: "/gaming-console-repair-houston-tx" },
       { label: "PS5 Repair", to: "/ps5-repair-houston-tx" },
       { label: "PS5 HDMI Repair", to: "/ps5-hdmi-repair-houston-tx" },
@@ -209,7 +227,11 @@ function MegaMenuTrigger({
         {label} <ChevronDown className="w-4 h-4" />
       </button>
       <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-50">
-        <div className="bg-white border border-red-300 shadow-2xl p-6 grid grid-cols-4 gap-6 w-[860px]">
+        <div
+          className={`bg-white border border-red-300 shadow-2xl p-6 grid gap-5 ${
+            columns.length >= 5 ? "grid-cols-5 w-[1100px]" : "grid-cols-4 w-[860px]"
+          }`}
+        >
           {columns.map((col) => (
             <div key={col.heading}>
               <h4 className="text-red-500 text-[11px] font-semibold uppercase tracking-wide mb-2 border-b border-zinc-300 pb-1">
