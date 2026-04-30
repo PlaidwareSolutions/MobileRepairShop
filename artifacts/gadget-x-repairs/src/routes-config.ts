@@ -51,6 +51,12 @@ export const STATIC_ROUTES: RouteEntry[] = [
       "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at GadgetX Repairs in Houston TX. Walk-ins welcome!",
   },
   {
+    path: "/financing-houston-tx",
+    metaTitle: "Phone Financing Houston TX | $10 Down | GadgetX Repairs",
+    metaDescription:
+      "Phone financing in Houston TX from $10 down. Walk out the same day with an unlocked iPhone, Samsung or Pixel. Pre-qualify in 60 seconds — no credit pull.",
+  },
+  {
     path: "/admin/leads",
     metaTitle: "Admin · Leads | Gadget X",
     metaDescription: "Admin lead inbox for Gadget X Repairs.",

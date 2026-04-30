@@ -15,6 +15,7 @@ import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
 import ReviewsPage from "@/pages/ReviewsPage";
 import InventoryPage from "@/pages/InventoryPage";
+import FinancingPage from "@/pages/FinancingPage";
 import AdminLeadsPage from "@/pages/AdminLeadsPage";
 import AdminInventoryPage from "@/pages/AdminInventoryPage";
 
@@ -71,6 +72,7 @@ export function Routes() {
         "inventory/phones" can never shadow it.
       */}
       <Route path="/inventory/:group" component={InventoryPage} />
+      <Route path="/financing-houston-tx" component={FinancingPage} />
       <Route path="/admin/leads" component={AdminLeadsPage} />
       <Route path="/admin/inventory" component={AdminInventoryPage} />
 

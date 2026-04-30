@@ -333,12 +333,14 @@ export default function InventoryPage() {
                   <div className="flex items-center gap-2 flex-wrap">
                     <div className="font-bold uppercase text-2xl text-red-500">{it.price}</div>
                     {PHONES_GROUP?.matches(it.category) && (
-                      <span
-                        className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide"
+                      <Link
+                        href={FINANCING.pagePath}
+                        className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors"
                         data-testid={`financing-pill-${it.id}`}
+                        aria-label={`${FINANCING.pillLabel} — learn more`}
                       >
                         {FINANCING.pillLabel}
-                      </span>
+                      </Link>
                     )}
                   </div>
                   <div className="grid grid-cols-2 gap-2">

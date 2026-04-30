@@ -169,12 +169,14 @@ export default function SalesPage() {
                 <Link href={inventoryHref} data-testid="link-view-inventory">{inventoryLabel}</Link>
               </Button>
               {inventoryGroup?.slug === "phones" && (
-                <span
-                  className="bg-red-50 text-red-600 border border-red-200 rounded-full px-3 py-1 uppercase font-semibold text-[11px] tracking-wide"
+                <Link
+                  href={FINANCING.pagePath}
+                  className="bg-red-50 text-red-600 border border-red-200 rounded-full px-3 py-1 uppercase font-semibold text-[11px] tracking-wide hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors"
                   data-testid="financing-pill"
+                  aria-label={`${FINANCING.pillLabel} — learn more`}
                 >
                   {FINANCING.pillLabel}
-                </span>
+                </Link>
               )}
             </div>
           </div>

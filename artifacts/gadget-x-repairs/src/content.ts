@@ -54,6 +54,79 @@ export const FINANCING = {
   shortLabel: "Easy Financing",
   desc: "Phones from $10–$80 down. Walk out with your phone today.",
   pillLabel: "Financing from $10 down",
+  pageSlug: "financing-houston-tx",
+  pagePath: "/financing-houston-tx",
+};
+
+export const FINANCING_PAGE = {
+  hero: {
+    eyebrow: "Phone Financing",
+    h1: "Phone Financing in Houston — From $10 Down",
+    subhead:
+      "Walk out the same day with an unlocked iPhone, Samsung or Pixel. Our lease-to-own partner runs a soft check that won't touch your credit score, and most shoppers are approved in minutes.",
+  },
+  // No specific lender brand named on purpose — the task is explicit that real
+  // lender API integration is out of scope and that APR/rate disclosure should
+  // not appear unless the owner provides exact terms. We describe the program
+  // generically and let the customer ask in store.
+  partnerLabel: "Through our lease-to-own financing partner",
+  downRange: "$10 – $80",
+  programHighlights: [
+    "Down payments from $10 to $80, depending on the phone and approval tier",
+    "Soft pre-qualification — no impact on your credit score",
+    "Walk out with the phone the same day, set up and ready to use",
+    "All unlocked phones in our shop are eligible — iPhone, Samsung, Pixel and more",
+    "90-day repair warranty on every phone, just like a cash purchase",
+  ],
+  eligibility: [
+    "You're 18 or older",
+    "Valid government-issued photo ID (driver's license, state ID, passport)",
+    "Proof of income — recent pay stub, bank statement or benefits letter",
+    "Active checking account (debit card or routing/account number)",
+    "Working phone number and email for account setup",
+  ],
+  steps: [
+    {
+      title: "Pre-qualify online",
+      desc: "Tell us your name, callback number, the phone you want and a budget. Takes about 60 seconds.",
+    },
+    {
+      title: "We text you back",
+      desc: "We'll confirm the phone is in stock, share the down payment range, and book a walk-in time if you want one.",
+    },
+    {
+      title: "Finish in store",
+      desc: "Bring your ID, proof of income and debit card. The lender's soft check happens in-store and takes a few minutes.",
+    },
+    {
+      title: "Walk out with your phone",
+      desc: "We activate your line, transfer your data, and you leave with the phone the same day.",
+    },
+  ],
+  eligibleDevicesNote:
+    "Phones only — iPhone, Samsung Galaxy, Google Pixel, Motorola and OnePlus models in our inventory all qualify. Tablets, laptops and consoles aren't part of the financing program today.",
+  faqs: [
+    {
+      q: "Is this a credit card or a loan?",
+      a: "Neither — it's a lease-to-own agreement. You make scheduled payments and own the phone outright at the end of the term, or you can pay it off early with no penalty.",
+    },
+    {
+      q: "Will pre-qualifying hurt my credit score?",
+      a: "No. Pre-qualification uses a soft check that doesn't affect your credit score. You'll see whether you're likely approved before any hard inquiry.",
+    },
+    {
+      q: "How much will my payments be?",
+      a: "It depends on the phone, your down payment and your approval tier. We'll show you the exact schedule in store before you sign anything — no surprises.",
+    },
+    {
+      q: "Which phones can I finance?",
+      a: "Any unlocked phone in our shop — iPhone, Samsung Galaxy, Google Pixel, Motorola and more. Tablets, laptops and gaming consoles aren't part of the program right now.",
+    },
+    {
+      q: "What if I'm denied?",
+      a: "You can still walk out with the phone for cash, debit or zero-interest layaway. Call us at +1 (346) 623-6898 and we'll help you find an option that works.",
+    },
+  ],
 };
 
 export const TICKER = {

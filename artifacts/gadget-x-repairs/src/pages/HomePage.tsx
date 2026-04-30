@@ -139,6 +139,7 @@ const WHY_TILES: {
   desc: string;
   icon: LucideIcon;
   image?: Photo;
+  to?: string;
 }[] = [
   { title: "15 Years Heritage", desc: "Houston's trusted repair shop since 2010.", icon: Star,
     image: photo("trust-heritage", "Portrait of a senior shop owner looking at the camera") },
@@ -149,7 +150,7 @@ const WHY_TILES: {
   { title: "90-Day Warranty", desc: "Every repair backed by our 90-day warranty.", icon: CheckCircle2,
     image: photo("trust-warranty", "Smiling man in a black suit shaking hands with a customer") },
   { title: SHIPPING.shortLabel, desc: SHIPPING.desc, icon: Truck },
-  { title: FINANCING.shortLabel, desc: FINANCING.desc, icon: CreditCard },
+  { title: FINANCING.shortLabel, desc: FINANCING.desc, icon: CreditCard, to: FINANCING.pagePath },
 ];
 
 const FEATURED_OFFERS = [
@@ -455,11 +456,8 @@ export default function HomePage() {
             <div className="grid sm:grid-cols-2 gap-4">
               {WHY_TILES.map((item) => {
                 const Icon = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className="group bg-white border border-zinc-200 shadow-md hover:-translate-y-1 transition-transform overflow-hidden"
-                  >
+                const inner = (
+                  <>
                     {item.image ? (
                       <PhotoFrame
                         photo={item.image}
@@ -482,6 +480,25 @@ export default function HomePage() {
                       </h4>
                       <p className="text-xs font-bold text-zinc-600 uppercase tracking-tight">{item.desc}</p>
                     </div>
+                  </>
+                );
+                const className =
+                  "group bg-white border border-zinc-200 shadow-md hover:-translate-y-1 transition-transform overflow-hidden block";
+                if (item.to) {
+                  return (
+                    <Link
+                      key={item.title}
+                      href={item.to}
+                      className={`${className} hover:border-red-500`}
+                      data-testid={`why-tile-link-${item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`}
+                    >
+                      {inner}
+                    </Link>
+                  );
+                }
+                return (
+                  <div key={item.title} className={className}>
+                    {inner}
                   </div>
                 );
               })}
