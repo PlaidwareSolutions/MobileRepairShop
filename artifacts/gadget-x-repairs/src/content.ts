@@ -56,6 +56,16 @@ export const FINANCING = {
   pillLabel: "Financing from $10 down",
 };
 
+export const TICKER = {
+  items: [
+    "Most Repairs in 15-20 Min",
+    "We Match & Beat Any Price",
+    "Mail-In Repairs Welcome",
+    "Phones from $10 Down",
+    "15 Years in Houston",
+  ],
+};
+
 export const TRUST_POINTS = [
   { label: "15+ Years in Houston", icon: "star" as const },
   { label: "Same-Day Repair", icon: "zap" as const },

@@ -1,7 +1,7 @@
 import { Link } from "wouter";
 import { MapPin, Clock, Phone, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BUSINESS, HERO, PROMO_BANNER } from "@/content";
+import { BUSINESS, HERO, PROMO_BANNER, TICKER } from "@/content";
 
 type MegaMenuColumn = { heading: string; items: { label: string; to: string }[] };
 
@@ -311,26 +311,16 @@ export function SiteHeader() {
 }
 
 export function TickerTape() {
+  const loop = [...TICKER.items, ...TICKER.items];
   return (
     <div className="w-full overflow-hidden bg-zinc-50 py-2 border-b border-zinc-200 flex items-center" aria-hidden="true">
       <div className="animate-[marquee_20s_linear_infinite] whitespace-nowrap font-semibold uppercase text-zinc-700 text-sm tracking-wide flex gap-8">
-        <span>Most Repairs in 15-20 Min</span>
-        <span className="text-red-400">•</span>
-        <span>We Match &amp; Beat Any Price</span>
-        <span className="text-red-400">•</span>
-        <span>Mail-In Repairs Welcome</span>
-        <span className="text-red-400">•</span>
-        <span>Phones from $10 Down</span>
-        <span className="text-red-400">•</span>
-        <span>15 Years in Houston</span>
-        <span className="text-red-400">•</span>
-        <span>Most Repairs in 15-20 Min</span>
-        <span className="text-red-400">•</span>
-        <span>We Match &amp; Beat Any Price</span>
-        <span className="text-red-400">•</span>
-        <span>Mail-In Repairs Welcome</span>
-        <span className="text-red-400">•</span>
-        <span>Phones from $10 Down</span>
+        {loop.map((item, i) => (
+          <span key={`ticker-${i}`} className="flex items-center gap-8">
+            <span>{item}</span>
+            <span className="text-red-400">•</span>
+          </span>
+        ))}
       </div>
     </div>
   );
