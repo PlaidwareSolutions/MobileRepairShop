@@ -377,6 +377,19 @@ export interface AdminLeads {
   itemReservations: ReservationRecord[];
 }
 
+export interface AntiSpamWindow {
+  key: string;
+  days: number;
+  acceptedLeads: number;
+  turnstileFailures: number;
+  honeypotTrips: number;
+  rateLimitBlocks: number;
+}
+
+export interface AntiSpamStats {
+  windows: AntiSpamWindow[];
+}
+
 export type ListInventoryParams = {
   category?: string;
 };

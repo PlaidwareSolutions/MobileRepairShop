@@ -234,6 +234,27 @@ paths:
           content:
             application/json:
               schema: { $ref: "#/components/schemas/ErrorResponse" }
+  /admin/anti-spam/stats:
+    get:
+      operationId: getAntiSpamStats
+      tags: [admin]
+      summary: Get accepted-vs-blocked lead counts for the anti-spam tile
+      parameters:
+        - in: header
+          name: X-Admin-Password
+          required: true
+          schema: { type: string }
+      responses:
+        "200":
+          description: Anti-spam stats
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/AntiSpamStats" }
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/ErrorResponse" }
   /admin/messaging/config:
     get:
       operationId: getMessagingConfig
@@ -678,3 +699,28 @@ components:
         itemReservations:
           type: array
           items: { $ref: "#/components/schemas/ReservationRecord" }
+    AntiSpamWindow:
+      type: object
+      required:
+        [
+          key,
+          days,
+          acceptedLeads,
+          turnstileFailures,
+          honeypotTrips,
+          rateLimitBlocks,
+        ]
+      properties:
+        key: { type: string }
+        days: { type: integer }
+        acceptedLeads: { type: integer }
+        turnstileFailures: { type: integer }
+        honeypotTrips: { type: integer }
+        rateLimitBlocks: { type: integer }
+    AntiSpamStats:
+      type: object
+      required: [windows]
+      properties:
+        windows:
+          type: array
+          items: { $ref: "#/components/schemas/AntiSpamWindow" }

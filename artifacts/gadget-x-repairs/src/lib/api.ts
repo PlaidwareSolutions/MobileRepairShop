@@ -97,6 +97,21 @@ export async function adminMessagingConfig(password: string) {
   return await adminJson<MessagingConfig>(password, "/admin/messaging/config");
 }
 
+export type AntiSpamWindow = {
+  key: string;
+  days: number;
+  acceptedLeads: number;
+  turnstileFailures: number;
+  honeypotTrips: number;
+  rateLimitBlocks: number;
+};
+
+export type AntiSpamStats = { windows: AntiSpamWindow[] };
+
+export async function adminAntiSpamStats(password: string) {
+  return await adminJson<AntiSpamStats>(password, "/admin/anti-spam/stats");
+}
+
 export type LeadCommunication = {
   id: number;
   leadType: string;

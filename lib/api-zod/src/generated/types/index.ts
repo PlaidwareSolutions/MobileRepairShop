@@ -7,6 +7,8 @@
  */
 
 export * from "./adminLeads";
+export * from "./antiSpamStats";
+export * from "./antiSpamWindow";
 export * from "./appointmentInput";
 export * from "./appointmentInputServiceType";
 export * from "./appointmentRecord";

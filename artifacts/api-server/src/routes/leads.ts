@@ -18,6 +18,7 @@ import { ZodError } from "zod";
 import { leadRateLimit } from "../middleware/leadRateLimit";
 import { requireTurnstile } from "../middleware/turnstile";
 import { turnstileEnabled, verifyTurnstileToken } from "../lib/turnstile";
+import { recordBlockEvent } from "../lib/blockEvents";
 
 const router: IRouter = Router();
 
@@ -91,6 +92,7 @@ router.post(
           },
           "lead.bot_blocked",
         );
+        recordBlockEvent("honeypot", "repair-quote", req.log);
         // Mirror the real success shape ({ ok, id }) so a bot can't
         // fingerprint blocked vs accepted by inspecting the response.
         res.status(201).json({ ok: true, id: fakeLeadId() });
@@ -139,6 +141,7 @@ router.post(
           },
           "lead.bot_blocked",
         );
+        recordBlockEvent("honeypot", "sell-phone", req.log);
         // Mirror the real success shape ({ ok, id }) so a bot can't
         // fingerprint blocked vs accepted by inspecting the response.
         res.status(201).json({ ok: true, id: fakeLeadId() });
@@ -188,6 +191,7 @@ router.post(
           },
           "lead.bot_blocked",
         );
+        recordBlockEvent("honeypot", "appointment", req.log);
         // Mirror the real success shape ({ ok, id }) so a bot can't
         // fingerprint blocked vs accepted by inspecting the response.
         res.status(201).json({ ok: true, id: fakeLeadId() });
@@ -229,6 +233,7 @@ router.post(
           },
           "lead.bot_blocked",
         );
+        recordBlockEvent("honeypot", "contact", req.log);
         // Return the exact same payload as the success path below so a bot
         // can't distinguish blocked from accepted by inspecting the response.
         // The contact form doesn't read the id, so omitting it everywhere is
@@ -259,6 +264,7 @@ router.post(
             },
             "lead.turnstile_failed",
           );
+          recordBlockEvent("turnstile_failed", "contact", req.log);
           res.status(400).json({
             error:
               "We couldn't verify that submission. Please refresh the page and try again, or call us directly at (346) 623-6898.",
@@ -301,6 +307,7 @@ router.post(
           },
           "lead.bot_blocked",
         );
+        recordBlockEvent("honeypot", "reservation", req.log);
         // Mirror the real success shape ({ ok, id }) so a bot can't
         // fingerprint blocked vs accepted by inspecting the response.
         res.status(201).json({ ok: true, id: fakeLeadId() });

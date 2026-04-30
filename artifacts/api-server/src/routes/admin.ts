@@ -5,7 +5,7 @@ import {
   type Response,
   type NextFunction,
 } from "express";
-import { and, asc, desc, eq, isNull, sql } from "drizzle-orm";
+import { and, asc, desc, eq, gte, isNull, sql } from "drizzle-orm";
 import { z } from "zod";
 import { db } from "@workspace/db";
 import {
@@ -18,6 +18,7 @@ import {
   AVAILABILITY_VALUES,
   leadCommunicationsTable,
   leadReplyTemplatesTable,
+  leadBlockEventsTable,
 } from "@workspace/db";
 import { ObjectStorageService } from "../lib/objectStorage";
 import { serializeAdminInventoryItem } from "../lib/inventoryMapper";
@@ -131,6 +132,79 @@ router.get(
         itemReservations: reservations.map(serializeDates),
         unreadInboundCounts,
       });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
+
+router.get(
+  "/anti-spam/stats",
+  async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+      // Each window we report. Keeping it to two avoids overloading the
+      // tile and matches the task spec ("last 7d / 30d").
+      const WINDOWS = [
+        { key: "7d", days: 7 },
+        { key: "30d", days: 30 },
+      ] as const;
+
+      const now = Date.now();
+
+      const windowResults = await Promise.all(
+        WINDOWS.map(async ({ key, days }) => {
+          const since = new Date(now - days * 24 * 60 * 60 * 1000);
+
+          // Block events: count per event_type in one round-trip so
+          // missing types still report as 0 in the response below.
+          const blockRows = await db
+            .select({
+              eventType: leadBlockEventsTable.eventType,
+              count: sql<number>`count(*)::int`,
+            })
+            .from(leadBlockEventsTable)
+            .where(gte(leadBlockEventsTable.createdAt, since))
+            .groupBy(leadBlockEventsTable.eventType);
+
+          const blocks: Record<string, number> = {};
+          for (const row of blockRows) {
+            blocks[row.eventType] = Number(row.count);
+          }
+
+          // Accepted leads: anything that actually landed in one of the
+          // five lead tables in the window. We deliberately query the
+          // source tables (not a derived "accepted" event) so the count
+          // can't drift from reality if an event insert ever fails.
+          const acceptedTables = [
+            repairQuotesTable,
+            sellPhoneSubmissionsTable,
+            appointmentsTable,
+            contactMessagesTable,
+            itemReservationsTable,
+          ] as const;
+          const acceptedCounts = await Promise.all(
+            acceptedTables.map(async (table) => {
+              const [row] = await db
+                .select({ count: sql<number>`count(*)::int` })
+                .from(table)
+                .where(gte(table.createdAt, since));
+              return Number(row?.count ?? 0);
+            }),
+          );
+          const acceptedLeads = acceptedCounts.reduce((a, b) => a + b, 0);
+
+          return {
+            key,
+            days,
+            acceptedLeads,
+            turnstileFailures: blocks["turnstile_failed"] ?? 0,
+            honeypotTrips: blocks["honeypot"] ?? 0,
+            rateLimitBlocks: blocks["rate_limited"] ?? 0,
+          };
+        }),
+      );
+
+      res.json({ windows: windowResults });
     } catch (err) {
       next(err as Error);
     }

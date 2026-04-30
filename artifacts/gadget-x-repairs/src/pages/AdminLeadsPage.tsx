@@ -6,10 +6,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { AdminNav } from "@/components/AdminNav";
 import {
+  adminAntiSpamStats,
   adminFetchLeads,
   adminMessagingConfig,
+  type AntiSpamStats,
   type MessagingConfig,
 } from "@/lib/api";
+import { AntiSpamTile } from "@/components/admin/AntiSpamTile";
 import {
   AppointmentCard,
   ContactCard,
@@ -69,6 +72,8 @@ export default function AdminLeadsPage() {
   const [data, setData] = useState<AllLeads | null>(null);
   const [unreadCounts, setUnreadCounts] = useState<UnreadInboundCounts>({});
   const [messaging, setMessaging] = useState<MessagingConfig | null>(null);
+  const [antiSpam, setAntiSpam] = useState<AntiSpamStats | null>(null);
+  const [antiSpamError, setAntiSpamError] = useState<string | null>(null);
   const [tab, setTab] = useState<TabKey>("repairQuotes");
   const [statusFilter, setStatusFilter] = useState<string>("active");
   const [search, setSearch] = useState("");
@@ -77,18 +82,29 @@ export default function AdminLeadsPage() {
 
   async function load(pw: string) {
     setError(null);
+    setAntiSpamError(null);
     setLoading(true);
     try {
-      const [leads, cfg] = await Promise.all([
+      // The anti-spam stats are nice-to-have on this page; a transient
+      // failure there must not knock the operator out of the inbox, so we
+      // surface its error in the tile itself rather than the page banner.
+      const [leads, cfg, spam] = await Promise.all([
         adminFetchLeads(pw) as Promise<
           AllLeads & { unreadInboundCounts?: UnreadInboundCounts }
         >,
         adminMessagingConfig(pw).catch(() => null),
+        adminAntiSpamStats(pw).catch((e: unknown) => {
+          setAntiSpamError(
+            e instanceof Error ? e.message : "Failed to load anti-spam stats",
+          );
+          return null;
+        }),
       ]);
       const { unreadInboundCounts, ...leadsOnly } = leads;
       setData(leadsOnly as AllLeads);
       setUnreadCounts(unreadInboundCounts ?? {});
       setMessaging(cfg);
+      setAntiSpam(spam);
       setAuthed(true);
       if (typeof window !== "undefined") localStorage.setItem("gx_admin_pw", pw);
     } catch (e) {
@@ -219,6 +235,14 @@ export default function AdminLeadsPage() {
           </div>
 
           {authed && <AdminNav active="leads" />}
+
+          {authed && (
+            <AntiSpamTile
+              stats={antiSpam}
+              loading={loading}
+              error={antiSpamError}
+            />
+          )}
 
           {!authed ? (
             <form

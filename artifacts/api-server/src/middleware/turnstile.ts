@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { turnstileEnabled, verifyTurnstileToken } from "../lib/turnstile";
+import { recordBlockEvent } from "../lib/blockEvents";
 
 // Generic, friendly error shown to a real customer who happened to fail the
 // managed challenge (rare with `appearance: 'interaction-only'`). Worded so they
@@ -42,6 +43,7 @@ export function requireTurnstile(leadType: string) {
         },
         "lead.turnstile_failed",
       );
+      recordBlockEvent("turnstile_failed", leadType, req.log);
       res.status(400).json({ error: FAILED_MESSAGE });
       return;
     }

@@ -1,5 +1,6 @@
 import type { Request, Response, NextFunction } from "express";
 import { checkRateLimit } from "../lib/rate-limit";
+import { recordBlockEvent } from "../lib/blockEvents";
 
 const SHORT_WINDOW_MS = 10 * 60 * 1000;
 const SHORT_MAX = 5;
@@ -24,6 +25,7 @@ export function leadRateLimit(leadType: string) {
           { leadType, ip: ipKey, retryAfterSeconds: shortCheck.retryAfterSeconds },
           "lead.rate_limited",
         );
+        recordBlockEvent("rate_limited", leadType, req.log);
         res.set("Retry-After", String(shortCheck.retryAfterSeconds));
         res
           .status(429)
@@ -37,6 +39,7 @@ export function leadRateLimit(leadType: string) {
           { leadType, ip: ipKey, retryAfterSeconds: longCheck.retryAfterSeconds },
           "lead.rate_limited_daily",
         );
+        recordBlockEvent("rate_limited", leadType, req.log);
         res.set("Retry-After", String(longCheck.retryAfterSeconds));
         res
           .status(429)

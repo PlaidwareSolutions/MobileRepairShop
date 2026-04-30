@@ -547,6 +547,26 @@ export const UpdateLeadStatusResponse = zod.object({
 });
 
 /**
+ * @summary Get accepted-vs-blocked lead counts for the anti-spam tile
+ */
+export const GetAntiSpamStatsHeader = zod.object({
+  "X-Admin-Password": zod.string(),
+});
+
+export const GetAntiSpamStatsResponse = zod.object({
+  windows: zod.array(
+    zod.object({
+      key: zod.string(),
+      days: zod.number(),
+      acceptedLeads: zod.number(),
+      turnstileFailures: zod.number(),
+      honeypotTrips: zod.number(),
+      rateLimitBlocks: zod.number(),
+    }),
+  ),
+});
+
+/**
  * @summary Get whether email and SMS sending are configured
  */
 export const GetMessagingConfigHeader = zod.object({

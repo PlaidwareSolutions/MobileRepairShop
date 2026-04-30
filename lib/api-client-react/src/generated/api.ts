@@ -18,6 +18,7 @@ import type {
 
 import type {
   AdminLeads,
+  AntiSpamStats,
   AppointmentInput,
   ContactInput,
   ErrorResponse,
@@ -952,6 +953,81 @@ export const useUpdateLeadStatus = <
 > => {
   return useMutation(getUpdateLeadStatusMutationOptions(options));
 };
+
+/**
+ * @summary Get accepted-vs-blocked lead counts for the anti-spam tile
+ */
+export const getGetAntiSpamStatsUrl = () => {
+  return `/api/admin/anti-spam/stats`;
+};
+
+export const getAntiSpamStats = async (
+  options?: RequestInit,
+): Promise<AntiSpamStats> => {
+  return customFetch<AntiSpamStats>(getGetAntiSpamStatsUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getGetAntiSpamStatsQueryKey = () => {
+  return [`/api/admin/anti-spam/stats`] as const;
+};
+
+export const getGetAntiSpamStatsQueryOptions = <
+  TData = Awaited<ReturnType<typeof getAntiSpamStats>>,
+  TError = ErrorType<ErrorResponse>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getAntiSpamStats>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getGetAntiSpamStatsQueryKey();
+
+  const queryFn: QueryFunction<
+    Awaited<ReturnType<typeof getAntiSpamStats>>
+  > = ({ signal }) => getAntiSpamStats({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof getAntiSpamStats>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type GetAntiSpamStatsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof getAntiSpamStats>>
+>;
+export type GetAntiSpamStatsQueryError = ErrorType<ErrorResponse>;
+
+/**
+ * @summary Get accepted-vs-blocked lead counts for the anti-spam tile
+ */
+
+export function useGetAntiSpamStats<
+  TData = Awaited<ReturnType<typeof getAntiSpamStats>>,
+  TError = ErrorType<ErrorResponse>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof getAntiSpamStats>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getGetAntiSpamStatsQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
 
 /**
  * @summary Get whether email and SMS sending are configured
