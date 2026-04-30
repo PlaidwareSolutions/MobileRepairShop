@@ -288,7 +288,7 @@ export function SiteHeader() {
             height={80}
           />
         </Link>
-        <nav className="hidden lg:flex items-center gap-6 font-extrabold tracking-tight text-sm text-zinc-900" aria-label="Primary">
+        <nav className="hidden lg:flex items-center gap-7 font-extrabold tracking-tight text-base text-zinc-900" aria-label="Primary">
           <MegaMenuTrigger label="Repair" testIdSuffix="repair" columns={REPAIR_MEGA} />
           <MegaMenuTrigger label="Shop" testIdSuffix="shop" columns={SHOP_MEGA} />
           <SimpleDropdown label="Sell" testIdSuffix="sell" items={SELL_DROPDOWN} />
