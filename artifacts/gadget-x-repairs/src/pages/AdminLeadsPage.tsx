@@ -29,6 +29,7 @@ import {
   type ReservationLead,
   type SellPhoneLead,
 } from "@/components/admin/types";
+import { isFinancingContactMessage } from "@/components/admin/utils";
 
 type TabKey = keyof AllLeads;
 
@@ -76,6 +77,7 @@ export default function AdminLeadsPage() {
   const [antiSpamError, setAntiSpamError] = useState<string | null>(null);
   const [tab, setTab] = useState<TabKey>("repairQuotes");
   const [statusFilter, setStatusFilter] = useState<string>("active");
+  const [financingOnly, setFinancingOnly] = useState(false);
   const [search, setSearch] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -160,6 +162,13 @@ export default function AdminLeadsPage() {
     } as Record<TabKey, { total: number; news: number; unread: number }>;
   }, [data, unreadCounts]);
 
+  const financingCount = useMemo(() => {
+    if (!data) return 0;
+    return data.contactMessages.filter((l) =>
+      isFinancingContactMessage(l.message),
+    ).length;
+  }, [data]);
+
   const visibleLeads = useMemo(() => {
     if (!data) return [];
     const list = data[tab] ?? [];
@@ -172,6 +181,15 @@ export default function AdminLeadsPage() {
         return status === statusFilter;
       })
       .filter((l) => {
+        // The financing filter only applies on the contact tab — financing
+        // pre-quals are submitted through `/leads/contact` and live in the
+        // contact-messages list. On other tabs the toggle is hidden, so this
+        // guard just keeps the filter inert there.
+        if (!financingOnly || tab !== "contactMessages") return true;
+        const msg = (l as ContactLead).message;
+        return isFinancingContactMessage(msg);
+      })
+      .filter((l) => {
         if (!q) return true;
         return searchableText(l as Record<string, unknown>).includes(q);
       })
@@ -181,7 +199,7 @@ export default function AdminLeadsPage() {
         const bd = new Date(b.createdAt ?? 0).getTime();
         return bd - ad;
       });
-  }, [data, tab, statusFilter, search]);
+  }, [data, tab, statusFilter, financingOnly, search]);
 
   function handleChanged() {
     if (password) load(password);
@@ -357,6 +375,21 @@ export default function AdminLeadsPage() {
                     </button>
                   ))}
                 </div>
+                {tab === "contactMessages" && (
+                  <button
+                    onClick={() => setFinancingOnly((v) => !v)}
+                    className={`px-3 py-1.5 font-semibold uppercase text-[11px] tracking-wide border rounded-lg ${
+                      financingOnly
+                        ? "bg-emerald-600 text-white border-emerald-600"
+                        : "bg-white border-emerald-300 text-emerald-700 hover:border-emerald-600"
+                    }`}
+                    data-testid="filter-financing-only"
+                    aria-pressed={financingOnly}
+                  >
+                    Financing only
+                    <span className="ml-2 opacity-80">{financingCount}</span>
+                  </button>
+                )}
                 <div className="ml-auto w-full md:w-72">
                   <Input
                     type="search"

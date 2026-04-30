@@ -45,3 +45,14 @@ export function telLink(phone: string): string {
   const norm = normalizeUsPhone(phone) ?? phone;
   return `tel:${norm}`;
 }
+
+// Financing pre-qualification submissions reuse the contact-message endpoint;
+// the FinancingForm prefixes the message body with this exact tag so the admin
+// inbox can label and filter them without a dedicated lead type. Match the
+// prefix loosely (trim + case-insensitive) to survive incidental whitespace.
+const FINANCING_TAG = "[FINANCING PRE-QUALIFICATION";
+
+export function isFinancingContactMessage(message?: string | null): boolean {
+  if (!message) return false;
+  return message.trimStart().toUpperCase().startsWith(FINANCING_TAG);
+}

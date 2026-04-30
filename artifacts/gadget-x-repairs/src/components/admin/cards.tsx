@@ -1,6 +1,11 @@
 import { type ReactNode } from "react";
 import { ActionBar } from "./ActionBar";
-import { formatRelative, looksLikeEmail, pickEmail } from "./utils";
+import {
+  formatRelative,
+  isFinancingContactMessage,
+  looksLikeEmail,
+  pickEmail,
+} from "./utils";
 import {
   STATUS_BADGE_CLASS,
   type AppointmentLead,
@@ -352,6 +357,7 @@ export function ContactCard({
   const sms = smsTemplate("contact", lead);
   const email = looksLikeEmail(lead.contact) ? lead.contact : null;
   const phone = email ? null : lead.contact;
+  const isFinancing = isFinancingContactMessage(lead.message);
   return (
     <CardShell
       testId={`lead-contactMessages-${lead.id}`}
@@ -359,8 +365,26 @@ export function ContactCard({
       status={lead.status}
       id={lead.id}
       createdAt={lead.createdAt}
-      primary={lead.name}
+      primary={
+        <>
+          {lead.name}
+          {isFinancing && (
+            <span className="block text-sm font-semibold uppercase tracking-wide text-emerald-600 mt-1">
+              Financing pre-qualification
+            </span>
+          )}
+        </>
+      }
       meta={lead.contact}
+      badges={
+        isFinancing ? (
+          <Badge
+            className="bg-emerald-50 text-emerald-700 border-emerald-200"
+          >
+            <span data-testid={`badge-financing-${lead.id}`}>Financing</span>
+          </Badge>
+        ) : undefined
+      }
       body={<div>{lead.message}</div>}
       unreadInboundCount={rest.unreadInboundCount ?? 0}
       actionBar={
