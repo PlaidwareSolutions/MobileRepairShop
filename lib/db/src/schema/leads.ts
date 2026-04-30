@@ -74,11 +74,10 @@ export const contactMessagesTable = pgTable("contact_messages", {
   message: text("message").notNull(),
   // Where this contact lead came from. "contact" is the generic Contact Us
   // form; "financing" is the phone-financing pre-qualification form. Stored
-  // explicitly (rather than inferred from a magic prefix in `message`) so
-  // the admin badge, "Financing only" filter, and any future routing/
-  // reporting stays accurate even if form copy is tweaked. Defaults to
-  // "contact" so existing rows + the plain ContactForm keep working without
-  // sending the field.
+  // explicitly so the admin badge, "Financing only" filter, and any future
+  // routing/reporting stays accurate even if form copy is tweaked. Defaults
+  // to "contact" so existing rows + the plain ContactForm keep working
+  // without sending the field.
   source: text("source").notNull().default("contact"),
 });
 

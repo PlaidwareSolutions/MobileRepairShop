@@ -48,20 +48,8 @@ export function telLink(phone: string): string {
 
 // Financing pre-qualification submissions reuse the contact-message endpoint
 // but are tagged with a structured `source: "financing"` field on the lead.
-// We check that field first (the source of truth), and only fall back to the
-// legacy `[FINANCING PRE-QUALIFICATION ...]` body prefix for any historical
-// row that pre-dates the column / backfill — that way no in-flight financing
-// lead gets silently re-classified as a generic contact message.
-const LEGACY_FINANCING_TAG = "[FINANCING PRE-QUALIFICATION";
-
 export function isFinancingContactLead(lead: {
   source?: string | null;
-  message?: string | null;
 }): boolean {
-  if (lead.source === "financing") return true;
-  // Defensive fallback for legacy rows: the column was added later, and any
-  // unmigrated financing lead would otherwise lose its badge & filter slot.
-  const msg = lead.message;
-  if (!msg) return false;
-  return msg.trimStart().toUpperCase().startsWith(LEGACY_FINANCING_TAG);
+  return lead.source === "financing";
 }
