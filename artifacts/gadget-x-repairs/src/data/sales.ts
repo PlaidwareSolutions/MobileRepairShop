@@ -258,7 +258,204 @@ export const SALES_DATA: SalesData[] = [
     faqs: [
       { q: "Do you have the latest Galaxy S series?", a: "We carry recent Galaxy S models when supply allows. Call (346) 623-6898 for current inventory." },
     ],
-    related: ["buy-iphone-houston-tx", "used-phones-houston-tx", "refurbished-phones-houston-tx", "samsung-repair-houston-tx"],
+    related: [
+      "buy-samsung-galaxy-s22-houston-tx",
+      "buy-samsung-galaxy-s21-houston-tx",
+      "buy-samsung-galaxy-a54-houston-tx",
+      "buy-samsung-galaxy-a35-houston-tx",
+      "buy-samsung-galaxy-a15-houston-tx",
+      "buy-samsung-galaxy-note-20-houston-tx",
+      "buy-samsung-galaxy-note-10-houston-tx",
+      "buy-iphone-houston-tx",
+      "used-phones-houston-tx",
+      "refurbished-phones-houston-tx",
+      "samsung-repair-houston-tx",
+    ],
+  },
+  {
+    slug: "buy-samsung-galaxy-a54-houston-tx",
+    title: "Buy Samsung Galaxy A54 in Houston",
+    metaTitle: "Buy Samsung Galaxy A54 Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Shop unlocked Samsung Galaxy A54 5G in Houston TX. Used & refurbished A54 from $199 with 90-day warranty at GadgetX Repairs. Walk-ins welcome!",
+    hero: {
+      eyebrow: "Buy Galaxy A54",
+      h1: "Buy Samsung Galaxy A54 in Houston",
+      subhead:
+        "Unlocked Galaxy A54 5G — tested, factory reset, ready for any carrier. Used and refurbished tiers, every A54 backed by our warranty.",
+    },
+    intro:
+      "The Galaxy A54 is one of Samsung's best-selling mid-range Androids — Super AMOLED display, great battery life, and clean unlocked carrier compatibility. Every A54 we sell is battery-checked, screen-tested and factory reset.",
+    highlights: [
+      "Used Galaxy A54 5G from $199",
+      "Refurbished A54 with new battery, 90-day warranty",
+      "Unlocked for AT&T, T-Mobile, Verizon and prepaid",
+      "Tested Super AMOLED, cameras, fingerprint sensor",
+      "Free prepaid activation with phone purchase",
+    ],
+    faqs: [
+      { q: "Is the Galaxy A54 unlocked?", a: "Yes — every A54 we sell is unlocked unless clearly marked otherwise, and works on AT&T, T-Mobile, Verizon and prepaid carriers." },
+      { q: "What's the price difference between used and refurbished?", a: "Used A54s start around $199 with original parts. Refurbished A54s come with a new battery (and new screen if needed) and a 90-day warranty, usually $50–$80 more." },
+    ],
+    related: ["buy-samsung-phones-houston-tx", "buy-samsung-galaxy-a35-houston-tx", "buy-samsung-galaxy-s22-houston-tx", "samsung-galaxy-a54-repair-houston-tx"],
+  },
+  {
+    slug: "buy-samsung-galaxy-a35-houston-tx",
+    title: "Buy Samsung Galaxy A35 in Houston",
+    metaTitle: "Buy Samsung Galaxy A35 Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Shop unlocked Samsung Galaxy A35 5G in Houston TX. Used & refurbished A35 from $179 with 90-day warranty at GadgetX Repairs. Walk-ins welcome!",
+    hero: {
+      eyebrow: "Buy Galaxy A35",
+      h1: "Buy Samsung Galaxy A35 in Houston",
+      subhead:
+        "Unlocked Galaxy A35 5G — tested, factory reset, ready for any carrier. Used and refurbished tiers, every A35 backed by our warranty.",
+    },
+    intro:
+      "The Galaxy A35 5G is Samsung's value-tier Android with a Super AMOLED screen and solid all-day battery — a strong upgrade pick for anyone coming from an older Galaxy A or budget Android.",
+    highlights: [
+      "Used Galaxy A35 5G from $179",
+      "Refurbished A35 with new battery, 90-day warranty",
+      "Unlocked for AT&T, T-Mobile, Verizon and prepaid",
+      "Tested Super AMOLED, cameras, fingerprint sensor",
+      "Free prepaid activation with phone purchase",
+    ],
+    faqs: [
+      { q: "Is the A35 a good upgrade from an older A series?", a: "Yes — versus an A12 / A13 / A23, you get a real Super AMOLED, 5G and noticeably faster day-to-day performance." },
+    ],
+    related: ["buy-samsung-phones-houston-tx", "buy-samsung-galaxy-a54-houston-tx", "buy-samsung-galaxy-a15-houston-tx", "samsung-galaxy-a35-repair-houston-tx"],
+  },
+  {
+    slug: "buy-samsung-galaxy-a15-houston-tx",
+    title: "Buy Samsung Galaxy A15 in Houston",
+    metaTitle: "Buy Samsung Galaxy A15 Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Shop unlocked Samsung Galaxy A15 in Houston TX. Used & new A15 from $129 with warranty at GadgetX Repairs. Free prepaid activation. Walk-ins welcome!",
+    hero: {
+      eyebrow: "Buy Galaxy A15",
+      h1: "Buy Samsung Galaxy A15 in Houston",
+      subhead:
+        "Unlocked Galaxy A15 and A15 5G — affordable Galaxy entry point, tested and ready for any prepaid or postpaid carrier.",
+    },
+    intro:
+      "The Galaxy A15 is Samsung's budget Android pick in Houston — perfect for a prepaid line, a kid's first phone, or a backup. Every A15 is tested, factory reset and ready to activate.",
+    highlights: [
+      "Used Galaxy A15 from $129, new from $179",
+      "A15 and A15 5G in stock",
+      "Unlocked for any prepaid carrier",
+      "Free prepaid activation with phone purchase",
+      "30-day used / 90-day refurbished warranty",
+    ],
+    faqs: [
+      { q: "What's the difference between A15 and A15 5G?", a: "Same body and screen, but the 5G version supports 5G networks and has a slightly faster chipset. We label which version each unit is on the listing." },
+    ],
+    related: ["buy-samsung-phones-houston-tx", "buy-samsung-galaxy-a35-houston-tx", "buy-motorola-phones-houston-tx", "samsung-galaxy-a15-repair-houston-tx"],
+  },
+  {
+    slug: "buy-samsung-galaxy-s22-houston-tx",
+    title: "Buy Samsung Galaxy S22 in Houston",
+    metaTitle: "Buy Samsung Galaxy S22 Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Shop unlocked Samsung Galaxy S22, S22+ and S22 Ultra in Houston TX. Used & refurbished from $279 with warranty at GadgetX Repairs. Walk-ins welcome!",
+    hero: {
+      eyebrow: "Buy Galaxy S22",
+      h1: "Buy Samsung Galaxy S22 in Houston",
+      subhead:
+        "Unlocked Galaxy S22, S22+ and S22 Ultra — flagship Snapdragon, AMOLED, S Pen on the Ultra. Tested and warrantied at our Houston shop.",
+    },
+    intro:
+      "The Galaxy S22 series remains a great-value Samsung flagship — fast, beautiful AMOLED, and the S22 Ultra still has a built-in S Pen. Every S22 we sell is battery-checked, screen-tested and factory reset.",
+    highlights: [
+      "Used Galaxy S22 from $279",
+      "Galaxy S22+ from $349, S22 Ultra from $429",
+      "Refurbished tier with new battery, 90-day warranty",
+      "Unlocked for AT&T, T-Mobile, Verizon and prepaid",
+      "S Pen included with Ultra models",
+    ],
+    faqs: [
+      { q: "Does the S22 Ultra still come with the S Pen?", a: "Yes — every S22 Ultra we sell ships with a working S Pen, calibrated and tested." },
+      { q: "Is the S22 worth buying in 2026?", a: "Yes — the S22 still gets Samsung security updates, has a great AMOLED, and a refurbished one with a fresh battery typically costs less than half of a new flagship." },
+    ],
+    related: ["buy-samsung-phones-houston-tx", "buy-samsung-galaxy-s21-houston-tx", "buy-samsung-galaxy-a54-houston-tx", "samsung-galaxy-s22-repair-houston-tx"],
+  },
+  {
+    slug: "buy-samsung-galaxy-s21-houston-tx",
+    title: "Buy Samsung Galaxy S21 in Houston",
+    metaTitle: "Buy Samsung Galaxy S21 Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Shop unlocked Samsung Galaxy S21, S21+, S21 Ultra and S21 FE in Houston TX. Used & refurbished from $229 with warranty at GadgetX Repairs.",
+    hero: {
+      eyebrow: "Buy Galaxy S21",
+      h1: "Buy Samsung Galaxy S21 in Houston",
+      subhead:
+        "Unlocked Galaxy S21, S21+, S21 Ultra and S21 FE — older flagship pricing, still-strong daily driver. Tested and warrantied.",
+    },
+    intro:
+      "The Galaxy S21 is one of the best deals in our shop — a former flagship with a great AMOLED and triple cameras, often half the price of a current S model. Every S21 is battery-checked and factory reset.",
+    highlights: [
+      "Used Galaxy S21 / S21 FE from $229",
+      "Galaxy S21+ from $279, S21 Ultra from $349",
+      "Refurbished tier with new battery, 90-day warranty",
+      "Unlocked for AT&T, T-Mobile, Verizon and prepaid",
+      "Free prepaid activation with phone purchase",
+    ],
+    faqs: [
+      { q: "Is the S21 still getting Android updates?", a: "Yes — the S21 still receives Samsung security updates, and our refurbished units ship on the latest supported version." },
+    ],
+    related: ["buy-samsung-phones-houston-tx", "buy-samsung-galaxy-s22-houston-tx", "buy-samsung-galaxy-note-20-houston-tx", "samsung-galaxy-s21-repair-houston-tx"],
+  },
+  {
+    slug: "buy-samsung-galaxy-note-20-houston-tx",
+    title: "Buy Samsung Galaxy Note 20 in Houston",
+    metaTitle: "Buy Samsung Galaxy Note 20 Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Shop unlocked Samsung Galaxy Note 20 and Note 20 Ultra in Houston TX. Used & refurbished from $269 with warranty at GadgetX Repairs.",
+    hero: {
+      eyebrow: "Buy Galaxy Note 20",
+      h1: "Buy Samsung Galaxy Note 20 in Houston",
+      subhead:
+        "Unlocked Galaxy Note 20 and Note 20 Ultra — built-in S Pen, AMOLED display, flagship cameras. Tested and warrantied at our Houston shop.",
+    },
+    intro:
+      "The Galaxy Note 20 is one of the last true Note phones with a built-in S Pen — popular with note-takers, students and people who miss the dedicated stylus slot. Every Note 20 ships with a working, calibrated S Pen.",
+    highlights: [
+      "Used Galaxy Note 20 from $269",
+      "Galaxy Note 20 Ultra from $369",
+      "Working S Pen included and tested",
+      "Refurbished tier with new battery, 90-day warranty",
+      "Unlocked for AT&T, T-Mobile, Verizon and prepaid",
+    ],
+    faqs: [
+      { q: "Does the S Pen still work on a used Note 20?", a: "Yes — every Note 20 we sell ships with a working S Pen and we calibrate the digitizer before listing the phone." },
+      { q: "Will Samsung still update the Note 20?", a: "The Note 20 has reached the end of major Android upgrades but still receives security patches. Our refurbished units ship on the latest supported version." },
+    ],
+    related: ["buy-samsung-phones-houston-tx", "buy-samsung-galaxy-note-10-houston-tx", "buy-samsung-galaxy-s22-houston-tx", "samsung-galaxy-note-20-repair-houston-tx"],
+  },
+  {
+    slug: "buy-samsung-galaxy-note-10-houston-tx",
+    title: "Buy Samsung Galaxy Note 10 in Houston",
+    metaTitle: "Buy Samsung Galaxy Note 10 Houston TX | GadgetX Repairs",
+    metaDescription:
+      "Shop unlocked Samsung Galaxy Note 10 and Note 10+ in Houston TX. Used & refurbished from $199 with warranty at GadgetX Repairs. Walk-ins welcome!",
+    hero: {
+      eyebrow: "Buy Galaxy Note 10",
+      h1: "Buy Samsung Galaxy Note 10 in Houston",
+      subhead:
+        "Unlocked Galaxy Note 10 and Note 10+ — built-in S Pen, AMOLED display, flagship cameras at sub-flagship pricing.",
+    },
+    intro:
+      "The Galaxy Note 10 is one of the most affordable ways to get a true Note with a built-in S Pen. We test the digitizer, S Pen pressure, battery and charging on every Note 10 before it hits the case.",
+    highlights: [
+      "Used Galaxy Note 10 from $199",
+      "Galaxy Note 10+ from $269",
+      "Working S Pen included and tested",
+      "Refurbished tier with new battery, 90-day warranty",
+      "Unlocked for AT&T, T-Mobile, Verizon and prepaid",
+    ],
+    faqs: [
+      { q: "Is the Note 10 still a good buy in 2026?", a: "If you want a built-in S Pen at the lowest possible price, yes — the Note 10 is a solid daily driver and the S Pen experience is the same as on newer Notes." },
+    ],
+    related: ["buy-samsung-phones-houston-tx", "buy-samsung-galaxy-note-20-houston-tx", "buy-samsung-galaxy-s21-houston-tx", "samsung-galaxy-note-10-repair-houston-tx"],
   },
   {
     slug: "buy-motorola-phones-houston-tx",

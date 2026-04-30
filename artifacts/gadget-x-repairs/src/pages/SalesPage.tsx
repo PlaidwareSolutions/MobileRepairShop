@@ -25,6 +25,9 @@ const SHOP_BRAND_HUB_SLUGS = new Set([
   "used-phones-houston-tx",
   "refurbished-phones-houston-tx",
   "new-phones-houston-tx",
+  // buy-samsung is a hub now that we have per-model Samsung shop pages —
+  // the model pages roll up under it via getParentHub.
+  "buy-samsung-phones-houston-tx",
 ]);
 
 function getSalesPageType(slug: string): SalesPageType {
@@ -54,6 +57,9 @@ function getParentHub(slug: string, pageType: SalesPageType): { name: string; pa
     }
     if (slug === "used-phones-houston-tx" || slug === "refurbished-phones-houston-tx" || slug === "new-phones-houston-tx") {
       return { name: "Phones for Sale", path: "/phones-for-sale-houston-tx" };
+    }
+    if (slug.startsWith("buy-samsung-galaxy-")) {
+      return { name: "Buy Samsung Phones", path: "/buy-samsung-phones-houston-tx" };
     }
     return { name: "Phones for Sale", path: "/phones-for-sale-houston-tx" };
   }

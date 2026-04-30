@@ -11,6 +11,14 @@ export type ServiceData = {
   faqs: { q: string; a: string }[];
   serviceType: string;
   related: string[];
+  /**
+   * Optional cross-link to a model-specific shop page. When set, a
+   * "Looking to upgrade instead?" callout renders on the repair page so a
+   * customer who landed for a fix can jump straight to buying that exact
+   * model. Used on per-model Samsung Galaxy / iPhone repair pages that have
+   * a matching `buy-...-houston-tx` SALES_DATA entry.
+   */
+  upgradeTo?: { slug: string; label: string };
 };
 
 export const SERVICES_DATA: ServiceData[] = [
@@ -1966,6 +1974,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     serviceType: "screen-repair",
     related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a35-repair-houston-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-a54-houston-tx", label: "Galaxy A54" },
   },
   {
     slug: "samsung-galaxy-a35-repair-houston-tx",
@@ -1998,6 +2007,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     serviceType: "screen-repair",
     related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a54-repair-houston-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-a35-houston-tx", label: "Galaxy A35" },
   },
   {
     slug: "samsung-galaxy-a15-repair-houston-tx",
@@ -2030,6 +2040,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     serviceType: "screen-repair",
     related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a35-repair-houston-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-a15-houston-tx", label: "Galaxy A15" },
   },
   {
     slug: "samsung-galaxy-s22-repair-houston-tx",
@@ -2063,6 +2074,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     serviceType: "screen-repair",
     related: ["samsung-repair-houston-tx", "samsung-galaxy-s23-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-s22-houston-tx", label: "Galaxy S22" },
   },
   {
     slug: "samsung-galaxy-s21-repair-houston-tx",
@@ -2096,6 +2108,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     serviceType: "screen-repair",
     related: ["samsung-repair-houston-tx", "samsung-galaxy-s22-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-s21-houston-tx", label: "Galaxy S21" },
   },
   {
     slug: "samsung-galaxy-note-20-repair-houston-tx",
@@ -2129,6 +2142,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     serviceType: "screen-repair",
     related: ["samsung-repair-houston-tx", "samsung-galaxy-note-10-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-note-20-houston-tx", label: "Galaxy Note 20" },
   },
   {
     slug: "samsung-galaxy-note-10-repair-houston-tx",
@@ -2162,6 +2176,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     serviceType: "screen-repair",
     related: ["samsung-repair-houston-tx", "samsung-galaxy-note-20-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-note-10-houston-tx", label: "Galaxy Note 10" },
   },
 ];
 

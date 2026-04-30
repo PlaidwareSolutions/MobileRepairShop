@@ -235,6 +235,33 @@ export default function ServicePage() {
         </div>
       </section>
 
+      {data.upgradeTo && (
+        <section className="py-10 px-4 bg-white border-t border-zinc-200">
+          <div className="max-w-[1240px] mx-auto">
+            <div
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-zinc-50 border border-zinc-200 p-5 md:p-6"
+              data-testid="service-upgrade-callout"
+            >
+              <div className="min-w-0">
+                <div className="text-[10px] font-extrabold uppercase tracking-widest text-red-500 mb-1">
+                  Looking to upgrade instead?
+                </div>
+                <p className="font-bold text-zinc-900 text-base md:text-lg">
+                  We sell unlocked {data.upgradeTo.label} handsets too — tested, warrantied and ready to activate.
+                </p>
+              </div>
+              <Link
+                href={`/${data.upgradeTo.slug}`}
+                className="bg-zinc-900 text-white hover:bg-red-500 font-black uppercase tracking-widest text-xs px-5 py-3 shadow-[4px_4px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#09090b] transition-all whitespace-nowrap"
+                data-testid={`link-upgrade-${data.upgradeTo.slug}`}
+              >
+                Buy {data.upgradeTo.label} →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
+
       {inventoryGroup && (
         <section className="py-10 px-4 bg-white border-t border-zinc-200">
           <div className="max-w-[1240px] mx-auto">
