@@ -26,6 +26,13 @@ export type RepairQuoteLead = BaseLead & {
   urgency?: string | null;
   notes?: string | null;
   photoUrl?: string | null;
+  // Whether the customer dropped the device off in the shop or shipped it
+  // for the dedicated mail-in flow. Defaults to "in-store" on legacy rows
+  // that pre-date the column.
+  source?: "in-store" | "mail-in" | string | null;
+  // Where to ship the repaired device back. Required by the API for
+  // mail-in submissions, never set for in-store ones.
+  returnAddress?: string | null;
 };
 
 export type SellPhoneLead = BaseLead & {

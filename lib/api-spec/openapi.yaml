@@ -484,6 +484,10 @@ components:
           enum: [asap, today, this_week, flexible]
         notes: { type: string, maxLength: 2000 }
         photoUrl: { type: string, maxLength: 500 }
+        source:
+          type: string
+          enum: [in-store, mail-in]
+        returnAddress: { type: string, maxLength: 500 }
     SellPhoneInput:
       type: object
       required: [name, phone, brand, model]

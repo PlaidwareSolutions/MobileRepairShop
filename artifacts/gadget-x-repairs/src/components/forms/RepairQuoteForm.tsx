@@ -19,10 +19,23 @@ type FormValues = {
   urgency: "asap" | "today" | "this_week" | "flexible";
   notes?: string;
   photoUrl?: string;
+  returnAddress?: string;
   website?: string;
 };
 
-export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDeviceType?: string; defaultBrand?: string }) {
+export function RepairQuoteForm({
+  defaultDeviceType,
+  defaultBrand,
+  mode = "in-store",
+}: {
+  defaultDeviceType?: string;
+  defaultBrand?: string;
+  // "mail-in" enables the return-shipping-address field and tags the lead as
+  // a mail-in repair on the server. The Repair Quote / Contact tabs default
+  // to "in-store" and don't show the address field.
+  mode?: "in-store" | "mail-in";
+}) {
+  const isMailIn = mode === "mail-in";
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({
     defaultValues: {
       preferredContact: "call",
@@ -51,6 +64,7 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
       }
       await submitRepairQuote({
         ...values,
+        source: mode,
         website: values.website ?? "",
         renderedAt: renderedAtRef.current,
         cfTurnstileToken: cfTurnstileToken ?? undefined,
@@ -67,9 +81,19 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
 
   if (done) {
     return (
-      <div className="bg-red-500 text-black p-6 border border-zinc-200 shadow-md">
+      <div className="bg-red-500 text-black p-6 border border-zinc-200 shadow-md" data-testid="form-repair-quote-success">
         <div className="font-bold uppercase text-2xl mb-2">Got it.</div>
-        <p className="font-bold">We&apos;ll call or text you back today with your quote. For fastest response, call <a className="underline" href="tel:+13466236898">(346) 623-6898</a>.</p>
+        {isMailIn ? (
+          <p className="font-bold">
+            We&apos;ll call or text you back within one business day with your quote and shipping
+            instructions. For fastest response, call <a className="underline" href="tel:+13466236898">(346) 623-6898</a>.
+          </p>
+        ) : (
+          <p className="font-bold">
+            We&apos;ll call or text you back today with your quote. For fastest response, call{" "}
+            <a className="underline" href="tel:+13466236898">(346) 623-6898</a>.
+          </p>
+        )}
         <button onClick={() => setDone(false)} className="mt-4 underline font-bold uppercase text-sm">Submit another</button>
       </div>
     );
@@ -163,6 +187,32 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
         />
         <p className="text-xs font-bold text-zinc-500">Or text a photo to (346) 623-6898 on WhatsApp.</p>
       </div>
+      {isMailIn && (
+        <div className="space-y-2">
+          <Label htmlFor="rq-return-address" className="font-bold uppercase text-xs tracking-wide text-zinc-700">
+            Return shipping address
+          </Label>
+          <Textarea
+            id="rq-return-address"
+            placeholder={"Full name\nStreet address\nCity, State ZIP"}
+            {...register("returnAddress", {
+              required: true,
+              minLength: 10,
+              maxLength: 500,
+            })}
+            className="bg-white border border-zinc-200 focus:border-red-500 min-h-[110px]"
+            data-testid="input-return-address"
+          />
+          <p className="text-xs font-bold text-zinc-500">
+            Where we&apos;ll mail your repaired device once it&apos;s done.
+          </p>
+          {errors.returnAddress && (
+            <p className="text-red-500 text-xs font-bold uppercase">
+              Return address is required for mail-in repairs
+            </p>
+          )}
+        </div>
+      )}
       <div className="space-y-2">
         <Label htmlFor="rq-notes" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Anything else <span className="text-zinc-500">(optional)</span></Label>
         <Textarea id="rq-notes" {...register("notes", { maxLength: 2000 })} className="bg-white border border-zinc-200 focus:border-red-500" data-testid="input-notes" />
@@ -170,7 +220,11 @@ export function RepairQuoteForm({ defaultDeviceType, defaultBrand }: { defaultDe
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
       {turnstileWidget}
       <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide text-lg h-14 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-quote">
-        {isSubmitting ? "Sending..." : "Get My Quote"}
+        {isSubmitting
+          ? "Sending..."
+          : isMailIn
+            ? "Start My Mail-In Repair"
+            : "Get My Quote"}
       </Button>
     </form>
   );

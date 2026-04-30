@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Phone, MessageCircle, MapPin, Clock, Truck } from "lucide-react";
+import { Link } from "wouter";
+import { Phone, MessageCircle, MapPin, Clock, Truck, ArrowRight } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
@@ -80,16 +81,20 @@ export default function ContactPage() {
                   <div className="text-zinc-500 font-bold text-xs uppercase">Walk-ins welcome</div>
                 </div>
               </div>
-              <div
-                className="flex items-start gap-4 bg-red-50 border border-red-200 p-5"
+              <Link
+                href={SHIPPING.mailInSlug}
+                className="flex items-start gap-4 bg-red-50 border border-red-200 p-5 hover:bg-red-100 hover:border-red-500 transition-colors group focus:outline-none focus:ring-2 focus:ring-red-500"
                 data-testid="contact-mail-in-callout"
               >
                 <Truck className="w-7 h-7 text-red-600 shrink-0 mt-1" />
-                <div>
+                <div className="flex-1">
                   <div className="font-bold uppercase text-lg text-zinc-900">{SHIPPING.mailInTitle}</div>
                   <div className="text-zinc-700 font-medium text-sm mt-1">{SHIPPING.desc}</div>
+                  <div className="text-red-600 font-bold uppercase text-xs mt-2 inline-flex items-center gap-1">
+                    Start a mail-in repair <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
 

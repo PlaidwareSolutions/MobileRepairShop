@@ -139,6 +139,12 @@ const WHY_TILES: {
   desc: string;
   icon: LucideIcon;
   image?: Photo;
+  // Optional internal link. The "We Ship" tile points at the dedicated
+  // mail-in repair landing page so out-of-area visitors can actually start
+  // an intake online instead of just reading a one-line callout. The
+  // "Easy Financing" tile points at the financing landing page. Tiles
+  // without a `to` render as static cards (no link), preserving the
+  // previous behavior for the trust-points tiles.
   to?: string;
 }[] = [
   { title: "15 Years Heritage", desc: "Houston's trusted repair shop since 2010.", icon: Star,
@@ -149,7 +155,7 @@ const WHY_TILES: {
     image: photo("trust-certified", "Technician inspecting a circuit board through a microscope") },
   { title: "90-Day Warranty", desc: "Every repair backed by our 90-day warranty.", icon: CheckCircle2,
     image: photo("trust-warranty", "Smiling man in a black suit shaking hands with a customer") },
-  { title: SHIPPING.shortLabel, desc: SHIPPING.desc, icon: Truck },
+  { title: SHIPPING.shortLabel, desc: SHIPPING.desc, icon: Truck, to: SHIPPING.mailInSlug },
   { title: FINANCING.shortLabel, desc: FINANCING.desc, icon: CreditCard, to: FINANCING.pagePath },
 ];
 
@@ -489,7 +495,7 @@ export default function HomePage() {
                     <Link
                       key={item.title}
                       href={item.to}
-                      className={`${className} hover:border-red-500`}
+                      className={`${className} hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500`}
                       data-testid={`why-tile-link-${item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`}
                     >
                       {inner}

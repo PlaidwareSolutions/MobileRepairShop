@@ -6,6 +6,7 @@
  * OpenAPI spec version: 0.1.0
  */
 import type { RepairQuoteInputPreferredContact } from "./repairQuoteInputPreferredContact";
+import type { RepairQuoteInputSource } from "./repairQuoteInputSource";
 import type { RepairQuoteInputUrgency } from "./repairQuoteInputUrgency";
 
 export interface RepairQuoteInput {
@@ -47,4 +48,7 @@ export interface RepairQuoteInput {
   notes?: string;
   /** @maxLength 500 */
   photoUrl?: string;
+  source?: RepairQuoteInputSource;
+  /** @maxLength 500 */
+  returnAddress?: string;
 }

@@ -129,6 +129,11 @@ export function RepairQuoteCard({
       }
       badges={
         <>
+          {lead.source === "mail-in" && (
+            <Badge className="bg-blue-50 text-blue-700 border-blue-200">
+              mail-in
+            </Badge>
+          )}
           {lead.urgency && (
             <Badge
               className={
@@ -150,6 +155,16 @@ export function RepairQuoteCard({
       body={
         <div className="space-y-3">
           <div>{lead.problem}</div>
+          {lead.source === "mail-in" && lead.returnAddress && (
+            <div className="text-xs bg-blue-50 border border-blue-200 px-3 py-2 rounded">
+              <div className="font-bold uppercase tracking-wide text-blue-700 mb-1">
+                Return shipping address
+              </div>
+              <div className="whitespace-pre-line text-zinc-800">
+                {lead.returnAddress}
+              </div>
+            </div>
+          )}
           {lead.notes && (
             <div className="text-xs text-zinc-600 italic">Notes: {lead.notes}</div>
           )}

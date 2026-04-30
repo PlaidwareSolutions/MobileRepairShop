@@ -39,6 +39,12 @@ export const STATIC_ROUTES: RouteEntry[] = [
       "Contact Gadget X Repairs in Houston: call (346) 623-6898, text on WhatsApp, or visit 8389 Almeda Rd Suite J-2.",
   },
   {
+    path: "/mail-in-repair-houston-tx",
+    metaTitle: "Mail-In Phone & Laptop Repair | Gadget X Houston, TX",
+    metaDescription:
+      "Ship your phone, tablet, laptop or console to GadgetX Repairs in Houston TX for repair. Get a quote online, mail it in, we fix it and ship it back.",
+  },
+  {
     path: "/reviews-houston-tx",
     metaTitle: "Customer Reviews | Gadget X Repairs Houston",
     metaDescription:

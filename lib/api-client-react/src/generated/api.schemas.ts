@@ -41,6 +41,14 @@ export const RepairQuoteInputUrgency = {
   flexible: "flexible",
 } as const;
 
+export type RepairQuoteInputSource =
+  (typeof RepairQuoteInputSource)[keyof typeof RepairQuoteInputSource];
+
+export const RepairQuoteInputSource = {
+  "in-store": "in-store",
+  "mail-in": "mail-in",
+} as const;
+
 export interface RepairQuoteInput {
   /**
    * @minLength 1
@@ -80,6 +88,9 @@ export interface RepairQuoteInput {
   notes?: string;
   /** @maxLength 500 */
   photoUrl?: string;
+  source?: RepairQuoteInputSource;
+  /** @maxLength 500 */
+  returnAddress?: string;
 }
 
 export type SellPhoneInputLockedStatus =

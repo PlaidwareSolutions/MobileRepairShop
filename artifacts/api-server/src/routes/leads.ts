@@ -100,6 +100,25 @@ router.post(
       }
 
       const body = SubmitRepairQuoteBody.parse(req.body);
+      // Mail-in quotes ship the device to us, so the team needs a return
+      // address to mail it back. Reject mail-in submissions that don't
+      // include one — otherwise the lead is unfulfillable. In-store quotes
+      // never need it.
+      if (body.source === "mail-in" && !body.returnAddress?.trim()) {
+        res.status(400).json({
+          error: "Validation failed",
+          details: {
+            issues: [
+              {
+                code: "custom",
+                path: ["returnAddress"],
+                message: "Return shipping address is required for mail-in repairs.",
+              },
+            ],
+          },
+        });
+        return;
+      }
       const [row] = await db
         .insert(repairQuotesTable)
         .values({
@@ -114,6 +133,8 @@ router.post(
           urgency: body.urgency ?? "flexible",
           notes: body.notes ?? null,
           photoUrl: body.photoUrl ?? null,
+          source: body.source ?? "in-store",
+          returnAddress: body.returnAddress ?? null,
         })
         .returning({ id: repairQuotesTable.id });
       req.log.info({ leadType: "repair-quote", id: row.id }, "lead.created");

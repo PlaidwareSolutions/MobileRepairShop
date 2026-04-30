@@ -36,6 +36,8 @@ export const submitRepairQuoteBodyNotesMax = 2000;
 
 export const submitRepairQuoteBodyPhotoUrlMax = 500;
 
+export const submitRepairQuoteBodyReturnAddressMax = 500;
+
 export const SubmitRepairQuoteBody = zod.object({
   name: zod.string().min(1).max(submitRepairQuoteBodyNameMax),
   phone: zod
@@ -51,6 +53,11 @@ export const SubmitRepairQuoteBody = zod.object({
   urgency: zod.enum(["asap", "today", "this_week", "flexible"]).optional(),
   notes: zod.string().max(submitRepairQuoteBodyNotesMax).optional(),
   photoUrl: zod.string().max(submitRepairQuoteBodyPhotoUrlMax).optional(),
+  source: zod.enum(["in-store", "mail-in"]).optional(),
+  returnAddress: zod
+    .string()
+    .max(submitRepairQuoteBodyReturnAddressMax)
+    .optional(),
 });
 
 /**
@@ -254,6 +261,8 @@ export const getAdminLeadsResponseRepairQuotesItemTwoNotesMax = 2000;
 
 export const getAdminLeadsResponseRepairQuotesItemTwoPhotoUrlMax = 500;
 
+export const getAdminLeadsResponseRepairQuotesItemTwoReturnAddressMax = 500;
+
 export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoNameMax = 120;
 
 export const getAdminLeadsResponseSellPhoneSubmissionsItemTwoPhoneMin = 7;
@@ -355,6 +364,11 @@ export const GetAdminLeadsResponse = zod.object({
           photoUrl: zod
             .string()
             .max(getAdminLeadsResponseRepairQuotesItemTwoPhotoUrlMax)
+            .optional(),
+          source: zod.enum(["in-store", "mail-in"]).optional(),
+          returnAddress: zod
+            .string()
+            .max(getAdminLeadsResponseRepairQuotesItemTwoReturnAddressMax)
             .optional(),
         }),
       ),

@@ -33,6 +33,13 @@ export const repairQuotesTable = pgTable("repair_quotes", {
   urgency: text("urgency").notNull().default("flexible"),
   notes: text("notes"),
   photoUrl: text("photo_url"),
+  // Where the quote came from. "in-store" means walk-in / local; "mail-in"
+  // means an out-of-area customer who plans to ship the device. The mail-in
+  // path also requires `returnAddress` so the team knows where to ship the
+  // repaired device back to. Defaults to "in-store" so existing rows + clients
+  // keep working without a migration.
+  source: text("source").notNull().default("in-store"),
+  returnAddress: text("return_address"),
 });
 
 export const sellPhoneSubmissionsTable = pgTable("sell_phone_submissions", {

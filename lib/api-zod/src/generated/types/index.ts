@@ -30,6 +30,7 @@ export * from "./listInventoryParams";
 export * from "./messagingConfig";
 export * from "./repairQuoteInput";
 export * from "./repairQuoteInputPreferredContact";
+export * from "./repairQuoteInputSource";
 export * from "./repairQuoteInputUrgency";
 export * from "./repairQuoteRecord";
 export * from "./reservationInput";

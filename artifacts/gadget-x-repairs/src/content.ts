@@ -48,6 +48,16 @@ export const SHIPPING = {
   shortLabel: "We Ship",
   desc: "Mail in your device for repair, or buy a phone and we'll ship it to you.",
   mailInTitle: "Mail-in repairs welcome",
+  // Canonical slug for the dedicated mail-in repair landing page. Linked from
+  // the home-page "We Ship" tile, the contact-page mail-in callout, and the
+  // ticker so out-of-area visitors land on a page that actually accepts an
+  // online intake instead of a generic call-to-action.
+  mailInSlug: "/mail-in-repair-houston-tx",
+  // Quoted, conservative turnaround used in the customer-facing page copy and
+  // the success message. Mail-in repairs realistically take a few business
+  // days end-to-end (transit + repair + return transit), so we set
+  // expectations explicitly rather than implying same-day.
+  turnaroundDays: "3–5 business days",
 };
 
 export const FINANCING = {

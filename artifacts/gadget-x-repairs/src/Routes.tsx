@@ -13,6 +13,7 @@ import AreaPage from "@/pages/AreaPage";
 import ArticlePage from "@/pages/ArticlePage";
 import AboutPage from "@/pages/AboutPage";
 import ContactPage from "@/pages/ContactPage";
+import MailInRepairPage from "@/pages/MailInRepairPage";
 import ReviewsPage from "@/pages/ReviewsPage";
 import InventoryPage from "@/pages/InventoryPage";
 import FinancingPage from "@/pages/FinancingPage";
@@ -59,6 +60,14 @@ export function Routes() {
 
       <Route path="/about" component={AboutPage} />
       <Route path="/contact-houston-tx" component={ContactPage} />
+      {/*
+        Dedicated mail-in repair landing page for out-of-area customers.
+        Registered before the SERVICES map below because the slug looks like
+        a service slug (`/...-houston-tx`) and SERVICES_DATA could in theory
+        someday claim it; listing it here makes the routing intent explicit
+        and ensures wouter's <Switch> picks this component first.
+      */}
+      <Route path="/mail-in-repair-houston-tx" component={MailInRepairPage} />
       <Route path="/reviews-houston-tx" component={ReviewsPage} />
       <Route path="/inventory" component={InventoryPage} />
       {/*
