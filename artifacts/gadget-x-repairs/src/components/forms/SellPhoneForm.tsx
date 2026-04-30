@@ -168,8 +168,8 @@ export function SellPhoneForm() {
         />
         <p className="text-xs font-bold text-zinc-500">Or text a photo to (346) 623-6898 on WhatsApp.</p>
       </div>
-      {turnstileWidget}
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
+      {turnstileWidget}
       <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white text-black font-semibold uppercase tracking-wide text-lg h-14 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-sell">
         {isSubmitting ? "Sending..." : "Get Cash Offer"}
       </Button>

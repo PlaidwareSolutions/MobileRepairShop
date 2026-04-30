@@ -89,8 +89,8 @@ export function ContactForm() {
         <Label htmlFor="ct-message" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Message</Label>
         <Textarea id="ct-message" {...register("message", { required: true })} className="bg-white border border-zinc-200 focus:border-red-500 min-h-[120px]" data-testid="input-message" />
       </div>
-      {turnstileWidget}
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
+      {turnstileWidget}
       <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide text-lg h-14" data-testid="button-submit-contact">
         {isSubmitting ? "Sending..." : "Send Message"}
       </Button>

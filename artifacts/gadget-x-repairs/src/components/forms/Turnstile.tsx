@@ -91,6 +91,10 @@ export function useTurnstile(): UseTurnstileResult {
     null,
   );
   const [containerEl, setContainerEl] = useState<HTMLDivElement | null>(null);
+  // True only when Cloudflare actually shows the interactive challenge. With
+  // `appearance: 'interaction-only'` this stays false for the vast majority of
+  // sessions, so the styled wrapper + caption stay invisible.
+  const [challengeVisible, setChallengeVisible] = useState(false);
 
   // Stable ref-callback so React invokes us when the div mounts/unmounts.
   const refCallback = useCallback((node: HTMLDivElement | null) => {
@@ -114,6 +118,15 @@ export function useTurnstile(): UseTurnstileResult {
           appearance: "interaction-only",
           retry: "auto",
           "refresh-expired": "auto",
+          "before-interactive-callback": () => {
+            // Cloudflare is about to show the interactive widget — reveal the
+            // wrapper styling + caption so the user understands the extra step.
+            setChallengeVisible(true);
+          },
+          "after-interactive-callback": () => {
+            // Challenge solved. Keep the wrapper visible so the layout doesn't
+            // jump while the form submits; it'll go away on reset/unmount.
+          },
           callback: (token: string) => {
             tokenRef.current = token;
             const resolver = pendingResolverRef.current;
@@ -188,6 +201,7 @@ export function useTurnstile(): UseTurnstileResult {
 
   const reset = useCallback(() => {
     tokenRef.current = null;
+    setChallengeVisible(false);
     const ts = (window as unknown as { turnstile?: TurnstileGlobal }).turnstile;
     if (ts && widgetIdRef.current) {
       try {
@@ -198,12 +212,34 @@ export function useTurnstile(): UseTurnstileResult {
     }
   }, []);
 
+  // The host div is always mounted (so Cloudflare can render into it on
+  // demand), but the styled wrapper + caption only become visible when CF
+  // actually shows the interactive challenge. That keeps the form clean for
+  // the ~99% of sessions that never see a widget.
   const widget = TURNSTILE_ENABLED ? (
     <div
-      ref={refCallback}
-      className="cf-turnstile-host"
-      data-testid="turnstile-widget"
-    />
+      className={
+        challengeVisible
+          ? "flex flex-col items-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 px-3 py-3"
+          : undefined
+      }
+      data-testid="turnstile-wrapper"
+      data-challenge-visible={challengeVisible ? "true" : "false"}
+    >
+      <div
+        ref={refCallback}
+        className="cf-turnstile-host"
+        data-testid="turnstile-widget"
+      />
+      {challengeVisible && (
+        <p
+          className="text-xs text-zinc-600"
+          data-testid="turnstile-caption"
+        >
+          Verifying you're human…
+        </p>
+      )}
+    </div>
   ) : null;
 
   return { enabled: TURNSTILE_ENABLED, widget, ensureToken, reset };

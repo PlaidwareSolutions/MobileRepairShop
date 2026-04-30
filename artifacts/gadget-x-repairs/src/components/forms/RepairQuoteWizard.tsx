@@ -318,7 +318,6 @@ export function RepairQuoteWizard() {
               />
             </div>
 
-            {turnstileWidget}
             {error && (
               <div className="bg-red-600 text-white px-4 py-3 font-bold uppercase text-sm" data-testid="wizard-error">
                 {error}
@@ -331,6 +330,7 @@ export function RepairQuoteWizard() {
                 </button>
               </div>
             )}
+            {turnstileWidget}
 
             <button
               type="submit"

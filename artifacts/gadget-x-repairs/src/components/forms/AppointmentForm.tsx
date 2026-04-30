@@ -116,8 +116,8 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
         <Label htmlFor="ap-notes" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Notes <span className="text-zinc-500">(optional)</span></Label>
         <Textarea id="ap-notes" {...register("notes")} className="bg-white border border-zinc-200 focus:border-red-500" data-testid="input-notes" />
       </div>
-      {turnstileWidget}
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
+      {turnstileWidget}
       <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide text-lg h-14" data-testid="button-submit-appointment">
         {isSubmitting ? "Sending..." : "Book Appointment"}
       </Button>
