@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { Link } from "wouter";
-import { MapPin, Clock, Phone, ChevronDown } from "lucide-react";
+import { MapPin, Clock, Phone, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { BUSINESS, HERO, PROMO_BANNER, TICKER } from "@/content";
 
 type MegaMenuColumn = { heading: string; items: { label: string; to: string }[] };
@@ -259,6 +261,172 @@ function MegaMenuTrigger({
   );
 }
 
+function MobileNavDrawer() {
+  const [open, setOpen] = useState(false);
+  const [repairOpen, setRepairOpen] = useState(false);
+  const [openCol, setOpenCol] = useState<string | null>(null);
+
+  const handleOpenChange = (next: boolean) => {
+    setOpen(next);
+    if (!next) {
+      setRepairOpen(false);
+      setOpenCol(null);
+    }
+  };
+
+  const close = () => handleOpenChange(false);
+
+  return (
+    <Sheet open={open} onOpenChange={handleOpenChange}>
+      <SheetTrigger asChild>
+        <button
+          type="button"
+          aria-label="Open navigation menu"
+          data-testid="button-mobile-nav-open"
+          className="lg:hidden inline-flex items-center justify-center w-11 h-11 rounded border border-zinc-300 text-zinc-900 hover:bg-zinc-100 transition-colors"
+        >
+          <Menu className="w-6 h-6" />
+        </button>
+      </SheetTrigger>
+      <SheetContent
+        side="right"
+        className="w-[88vw] sm:w-[360px] p-0 bg-white border-l border-zinc-200 overflow-y-auto"
+        data-testid="mobile-nav-drawer"
+      >
+        <SheetTitle className="sr-only">Site navigation</SheetTitle>
+        <div className="flex items-center justify-between border-b border-zinc-200 px-4 py-3">
+          <span className="font-extrabold uppercase tracking-tight text-zinc-900 text-sm">
+            {BUSINESS.name}
+          </span>
+          <button
+            type="button"
+            onClick={close}
+            aria-label="Close navigation menu"
+            data-testid="button-mobile-nav-close"
+            className="inline-flex items-center justify-center w-9 h-9 rounded text-zinc-700 hover:bg-zinc-100"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        <nav className="py-2" aria-label="Mobile primary">
+          <div className="border-b border-zinc-200">
+            <div className="flex items-stretch">
+              <Link
+                href="/repair-services-houston-tx"
+                onClick={close}
+                className="flex-1 px-4 py-3 font-extrabold uppercase tracking-tight text-zinc-900 hover:bg-red-50"
+                data-testid="link-mobile-nav-repair-root"
+              >
+                Repair
+              </Link>
+              <button
+                type="button"
+                onClick={() => setRepairOpen((v) => !v)}
+                aria-expanded={repairOpen}
+                aria-controls="mobile-nav-repair-panel"
+                aria-label={repairOpen ? "Collapse repair menu" : "Expand repair menu"}
+                data-testid="button-mobile-nav-repair-toggle"
+                className="px-4 border-l border-zinc-200 text-zinc-700 hover:bg-red-50"
+              >
+                <ChevronDown
+                  className={`w-5 h-5 transition-transform ${repairOpen ? "rotate-180" : ""}`}
+                />
+              </button>
+            </div>
+            {repairOpen && (
+              <div id="mobile-nav-repair-panel" className="bg-zinc-50 border-t border-zinc-200">
+                {REPAIR_MEGA.map((col) => {
+                  const isOpen = openCol === col.heading;
+                  return (
+                    <div key={col.heading} className="border-b border-zinc-200 last:border-b-0">
+                      <button
+                        type="button"
+                        onClick={() => setOpenCol(isOpen ? null : col.heading)}
+                        aria-expanded={isOpen}
+                        className="w-full flex items-center justify-between px-5 py-2.5 text-left text-[11px] font-semibold uppercase tracking-wide text-red-600 hover:bg-zinc-100"
+                        data-testid={`button-mobile-nav-repair-group-${col.heading
+                          .toLowerCase()
+                          .replace(/[^a-z0-9]+/g, "-")
+                          .replace(/^-|-$/g, "")}`}
+                      >
+                        <span>{col.heading}</span>
+                        <ChevronDown
+                          className={`w-4 h-4 transition-transform ${isOpen ? "rotate-180" : ""}`}
+                        />
+                      </button>
+                      {isOpen && (
+                        <ul className="pb-2">
+                          {col.items.map((item) => (
+                            <li key={item.to}>
+                              <Link
+                                href={item.to}
+                                onClick={close}
+                                className="block px-7 py-2 text-sm text-zinc-800 hover:bg-red-500 hover:text-white"
+                                data-testid={`link-mobile-nav-repair-${item.to.replace(/\//g, "")}`}
+                              >
+                                {item.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
+          </div>
+
+          <Link
+            href="/shop-houston-tx"
+            onClick={close}
+            className="block px-4 py-3 font-extrabold uppercase tracking-tight text-zinc-900 hover:bg-red-50 border-b border-zinc-200"
+            data-testid="link-mobile-nav-shop"
+          >
+            Shop
+          </Link>
+          <Link
+            href="/sell-phone-houston-tx"
+            onClick={close}
+            className="block px-4 py-3 font-extrabold uppercase tracking-tight text-zinc-900 hover:bg-red-50 border-b border-zinc-200"
+            data-testid="link-mobile-nav-sell"
+          >
+            Sell
+          </Link>
+          <Link
+            href="/phone-activation-houston-tx"
+            onClick={close}
+            className="block px-4 py-3 font-extrabold uppercase tracking-tight text-zinc-900 hover:bg-red-50 border-b border-zinc-200"
+            data-testid="link-mobile-nav-prepaid"
+          >
+            Prepaid
+          </Link>
+          {NAV.map((item) => (
+            <Link
+              key={item.to}
+              href={item.to}
+              onClick={close}
+              className="block px-4 py-3 font-extrabold uppercase tracking-tight text-zinc-900 hover:bg-red-50 border-b border-zinc-200"
+              data-testid={`link-mobile-nav-${item.to.replace(/\//g, "")}`}
+            >
+              {item.label}
+            </Link>
+          ))}
+          <a
+            href={BUSINESS.phoneTel}
+            onClick={close}
+            className="flex items-center gap-2 px-4 py-3 font-extrabold uppercase tracking-tight text-red-600 hover:bg-red-50"
+            data-testid="link-mobile-nav-call"
+          >
+            <Phone className="w-4 h-4" />
+            {BUSINESS.phoneDisplay}
+          </a>
+        </nav>
+      </SheetContent>
+    </Sheet>
+  );
+}
+
 export function PromoBanner() {
   return (
     <div
@@ -322,12 +490,15 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Button
-          asChild
-          className="bg-red-600 hover:bg-zinc-900 hover:text-white text-white font-semibold uppercase tracking-wide text-sm px-5 md:px-6 h-12 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
-        >
-          <a href={BUSINESS.phoneTel}>Call Now</a>
-        </Button>
+        <div className="flex items-center gap-2">
+          <Button
+            asChild
+            className="bg-red-600 hover:bg-zinc-900 hover:text-white text-white font-semibold uppercase tracking-wide text-sm px-5 md:px-6 h-12 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
+          >
+            <a href={BUSINESS.phoneTel}>Call Now</a>
+          </Button>
+          <MobileNavDrawer />
+        </div>
       </div>
     </header>
   );
