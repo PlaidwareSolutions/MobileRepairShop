@@ -9,7 +9,7 @@ type MegaMenuColumn = { heading: string; items: { label: string; to: string }[] 
 
 const REPAIR_MEGA: MegaMenuColumn[] = [
   {
-    heading: "iPhone — Current",
+    heading: "iPhone",
     items: [
       { label: "All iPhone Repair", to: "/iphone-repair-houston-tx" },
       { label: "iPhone 16 Pro Max", to: "/iphone-16-pro-max-repair-houston-tx" },
@@ -18,11 +18,6 @@ const REPAIR_MEGA: MegaMenuColumn[] = [
       { label: "iPhone 15 Pro", to: "/iphone-15-pro-repair-houston-tx" },
       { label: "iPhone 15", to: "/iphone-15-repair-houston-tx" },
       { label: "iPhone 14", to: "/iphone-14-repair-houston-tx" },
-    ],
-  },
-  {
-    heading: "iPhone — Older",
-    items: [
       { label: "iPhone 13", to: "/iphone-13-repair-houston-tx" },
       { label: "iPhone 12", to: "/iphone-12-repair-houston-tx" },
       { label: "iPhone 11", to: "/iphone-11-repair-houston-tx" },
@@ -30,11 +25,6 @@ const REPAIR_MEGA: MegaMenuColumn[] = [
       { label: "iPhone SE", to: "/iphone-se-repair-houston-tx" },
       { label: "iPhone 8 / 8 Plus", to: "/iphone-8-repair-houston-tx" },
       { label: "iPhone 7 / 6s / 6", to: "/iphone-7-repair-houston-tx" },
-    ],
-  },
-  {
-    heading: "iPhone Services",
-    items: [
       { label: "iPhone Screen", to: "/iphone-screen-repair-houston-tx" },
       { label: "iPhone Battery", to: "/iphone-battery-replacement-houston-tx" },
       { label: "iPhone Back Glass", to: "/iphone-back-glass-repair-houston-tx" },
@@ -232,7 +222,11 @@ function MegaMenuTrigger({
       <div className="absolute left-0 top-full pt-2 hidden group-hover:block group-focus-within:block z-50">
         <div
           className={`bg-white border border-red-300 shadow-2xl p-6 grid gap-5 ${
-            columns.length >= 5 ? "grid-cols-5 w-[1100px]" : "grid-cols-4 w-[860px]"
+            columns.length >= 5
+              ? "grid-cols-5 w-[1100px]"
+              : columns.length === 4
+                ? "grid-cols-4 w-[860px]"
+                : "grid-cols-3 w-[720px]"
           }`}
         >
           {columns.map((col) => (
