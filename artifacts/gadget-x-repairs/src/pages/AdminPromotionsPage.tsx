@@ -851,6 +851,9 @@ function PromotionFormCard({
                   );
                 })}
               </div>
+              <p className="text-xs text-zinc-500 mt-1">
+                For overnight windows that cross midnight (e.g. Sat 10pm–2am), also check the next day (Sun) so the promo stays live after midnight.
+              </p>
             </div>
           )}
 

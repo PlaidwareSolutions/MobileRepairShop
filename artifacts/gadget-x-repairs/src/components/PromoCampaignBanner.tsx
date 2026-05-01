@@ -189,7 +189,9 @@ export function PromoCampaignBanner() {
         });
       })
       .catch(() => {
-        if (!cancelled && promos === null) setPromos([]);
+        // Discard the SSR seed on fetch failure so a paused/expired
+        // promo can't linger once the API is unreachable.
+        if (!cancelled) setPromos([]);
       });
     return () => {
       cancelled = true;
