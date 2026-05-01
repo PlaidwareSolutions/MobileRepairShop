@@ -5,6 +5,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
 import { SEO, localBusinessJsonLd, breadcrumbJsonLd } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
+import { SocialLinks } from "@/components/SocialLinks";
 import { BUSINESS } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 
@@ -68,6 +69,11 @@ export default function AboutPage() {
             <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
               <Link href="/contact-houston-tx">Contact Us</Link>
             </Button>
+          </div>
+
+          <div className="mt-10">
+            <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-3">Follow Us</p>
+            <SocialLinks business={business} iconClass="w-6 h-6" />
           </div>
         </div>
       </section>
