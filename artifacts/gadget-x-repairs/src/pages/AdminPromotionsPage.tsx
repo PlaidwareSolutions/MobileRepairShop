@@ -873,6 +873,12 @@ function PromotionFormCard({
                   data-testid="input-time-end"
                 />
               </div>
+              <p className="text-xs text-zinc-500 leading-snug -mt-2">
+                Times are local Houston time (America/Chicago) and are
+                interpreted day-by-day. For overnight windows that cross
+                midnight (for example "Sat 10:00 PM – 2:00 AM"), also tick
+                the next day so the spillover hours are covered.
+              </p>
             </>
           )}
 

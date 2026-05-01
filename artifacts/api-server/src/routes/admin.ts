@@ -957,19 +957,36 @@ router.patch("/promotions/:id", async (req: Request, res: Response, next: NextFu
       return;
     }
 
-    // Final-state validation: if recurrence ends up "weekly", ensure
-    // daysOfWeek is non-empty by reading current row when not supplied.
-    if (body.recurrence === "weekly" && (!body.daysOfWeek || body.daysOfWeek.length === 0)) {
+    // Final-state validation: a weekly promo must always end up with at
+    // least one day-of-week selected. PATCH lets the caller change either
+    // (or both) of `recurrence` and `daysOfWeek`, so we have to look at
+    // the merged final state — not just what's in the body — to catch
+    // both "switch existing row to weekly without supplying days" and
+    // "blank out days on an already-weekly row" cases.
+    const touchesScheduleShape =
+      body.recurrence !== undefined || body.daysOfWeek !== undefined;
+    if (touchesScheduleShape) {
       const [existing] = await db
-        .select({ days: promotionsTable.daysOfWeek })
+        .select({
+          recurrence: promotionsTable.recurrence,
+          days: promotionsTable.daysOfWeek,
+        })
         .from(promotionsTable)
         .where(eq(promotionsTable.id, id))
         .limit(1);
-      const currentDays = (existing?.days ?? "")
-        .split(",")
-        .map((s) => Number(s.trim()))
-        .filter((n) => Number.isInteger(n));
-      if (currentDays.length === 0) {
+      if (!existing) {
+        res.status(404).json({ error: "Promotion not found" });
+        return;
+      }
+      const finalRecurrence = body.recurrence ?? existing.recurrence;
+      const finalDays =
+        body.daysOfWeek !== undefined
+          ? body.daysOfWeek
+          : (existing.days ?? "")
+              .split(",")
+              .map((s) => Number(s.trim()))
+              .filter((n) => Number.isInteger(n));
+      if (finalRecurrence === "weekly" && finalDays.length === 0) {
         res
           .status(400)
           .json({ error: "Weekly recurrence requires at least one day" });
