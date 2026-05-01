@@ -368,6 +368,35 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* MAIL-IN CTA --------------------------------------------------- */}
+      <section className="bg-zinc-900 px-4 py-14 md:py-16">
+        <div className="max-w-[1240px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+          <div className="flex items-start gap-5">
+            <div className="bg-red-600 p-3 shrink-0 mt-1">
+              <Truck className="w-7 h-7 text-white" />
+            </div>
+            <div>
+              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight mb-2">
+                Not in Houston?{" "}
+                <span className="text-red-500">Ship Your Device.</span>
+              </h2>
+              <ul className="flex flex-wrap gap-x-6 gap-y-1 text-xs font-semibold uppercase tracking-wide text-zinc-400">
+                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Free repair quote</li>
+                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Insured shipping both ways</li>
+                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Back in {SHIPPING.turnaroundDays}</li>
+              </ul>
+            </div>
+          </div>
+          <Link
+            href={SHIPPING.mailInSlug}
+            className="shrink-0 inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-extrabold uppercase tracking-wide text-sm md:text-base px-8 py-4 shadow-lg hover:-translate-y-0.5 transition-all whitespace-nowrap"
+            data-testid="cta-mail-in-home"
+          >
+            Start My Mail-In Repair <ArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </section>
+
       {/* SERVICES GRID -------------------------------------------------- */}
       <section className="py-20 md:py-24 px-4 bg-white">
         <div className="max-w-[1240px] mx-auto">
@@ -416,35 +445,6 @@ export default function HomePage() {
               );
             })}
           </div>
-        </div>
-      </section>
-
-      {/* MAIL-IN CTA --------------------------------------------------- */}
-      <section className="bg-zinc-900 px-4 py-14 md:py-16">
-        <div className="max-w-[1240px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex items-start gap-5">
-            <div className="bg-red-600 p-3 shrink-0 mt-1">
-              <Truck className="w-7 h-7 text-white" />
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight mb-2">
-                Not in Houston?{" "}
-                <span className="text-red-500">Ship Your Device.</span>
-              </h2>
-              <ul className="flex flex-wrap gap-x-6 gap-y-1 text-xs font-semibold uppercase tracking-wide text-zinc-400">
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Free repair quote</li>
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Insured shipping both ways</li>
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Back in {SHIPPING.turnaroundDays}</li>
-              </ul>
-            </div>
-          </div>
-          <Link
-            href={SHIPPING.mailInSlug}
-            className="shrink-0 inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-extrabold uppercase tracking-wide text-sm md:text-base px-8 py-4 shadow-lg hover:-translate-y-0.5 transition-all whitespace-nowrap"
-            data-testid="cta-mail-in-home"
-          >
-            Start My Mail-In Repair <ArrowRight className="w-5 h-5" />
-          </Link>
         </div>
       </section>
 
