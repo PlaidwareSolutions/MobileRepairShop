@@ -166,7 +166,9 @@ export function PromoCampaignBanner() {
   const [dismissed, setDismissed] = useState<boolean>(() => readDismissed());
   const [index, setIndex] = useState(0);
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
-  const [mounted, setMounted] = useState(ssrPromos !== null && ssrPromos.length > 0);
+  // Always start un-mounted so the slide-in entrance animation runs on first
+  // paint, even when an SSR seed is present.
+  const [mounted, setMounted] = useState(false);
   const fadeTimer = useRef<number | null>(null);
 
   // Latest-index ref so the rotation interval can advance from the truly
