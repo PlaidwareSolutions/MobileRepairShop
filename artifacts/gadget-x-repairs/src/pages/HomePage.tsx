@@ -23,6 +23,7 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/PageShell";
+import { PromoCampaignBanner } from "@/components/PromoCampaignBanner";
 import { LocationCard } from "@/components/LocationCard";
 import { RepairQuoteWizard } from "@/components/forms/RepairQuoteWizard";
 import { SEO, localBusinessJsonLd } from "@/components/SEO";
@@ -219,6 +220,14 @@ export default function HomePage() {
         path="/phone-repair-houston-tx"
         jsonLd={localBusinessJsonLd()}
       />
+
+      {/* OWNER-MANAGED CAMPAIGN BANNER ---------------------------------- */}
+      {/* Animated banner driven by /admin/promotions. Server decides which
+          rows are live; this component handles entrance animation, rotation,
+          and session dismissal. Renders nothing during SSG/SSR (the data
+          fetch only runs in the browser), so there's no static HTML leak of
+          paused or scheduled-for-later campaigns. */}
+      <PromoCampaignBanner />
 
       {/* HERO ----------------------------------------------------------- */}
       <section className="relative overflow-hidden py-16 md:py-24 px-4 bg-zinc-100">

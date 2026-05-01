@@ -395,3 +395,101 @@ export async function adminReorderReplyTemplates(
     },
   );
 }
+
+// ---------------- Public Promotions ----------------
+
+export type PublicPromotion = {
+  id: number;
+  headline: string;
+  supportingLine: string | null;
+  badge: string | null;
+  ctaLabel: string | null;
+  ctaHref: string | null;
+  accent: "amber" | "red" | "emerald" | "blue";
+};
+
+export async function fetchActivePromotions(): Promise<PublicPromotion[]> {
+  const res = await fetch(`${BASE}/promotions/active`);
+  if (!res.ok) return [];
+  const data = (await res.json()) as { promotions?: PublicPromotion[] };
+  return Array.isArray(data.promotions) ? data.promotions : [];
+}
+
+// ---------------- Admin Promotions ----------------
+
+export type AdminPromotion = {
+  id: number;
+  headline: string;
+  supportingLine: string | null;
+  badge: string | null;
+  ctaLabel: string | null;
+  ctaHref: string | null;
+  accent: "amber" | "red" | "emerald" | "blue";
+  active: boolean;
+  startsAt: string | null;
+  endsAt: string | null;
+  recurrence: "always" | "daily" | "weekly";
+  daysOfWeek: string;
+  dailyStartMinutes: number | null;
+  dailyEndMinutes: number | null;
+  sortOrder: number;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type PromotionWriteInput = {
+  headline: string;
+  supportingLine?: string | null;
+  badge?: string | null;
+  ctaLabel?: string | null;
+  ctaHref?: string | null;
+  accent?: AdminPromotion["accent"];
+  active?: boolean;
+  startsAt?: string | null;
+  endsAt?: string | null;
+  recurrence?: AdminPromotion["recurrence"];
+  daysOfWeek?: number[];
+  dailyStartMinutes?: number | null;
+  dailyEndMinutes?: number | null;
+  sortOrder?: number;
+};
+
+export async function adminListPromotions(password: string) {
+  return (await adminFetch(password, "/admin/promotions")) as {
+    items: AdminPromotion[];
+  };
+}
+
+export async function adminCreatePromotion(
+  password: string,
+  body: PromotionWriteInput,
+) {
+  return (await adminFetch(password, "/admin/promotions", {
+    method: "POST",
+    body: JSON.stringify(body),
+  })) as { ok: true; item: AdminPromotion };
+}
+
+export async function adminUpdatePromotion(
+  password: string,
+  id: number,
+  body: Partial<PromotionWriteInput>,
+) {
+  return (await adminFetch(password, `/admin/promotions/${id}`, {
+    method: "PATCH",
+    body: JSON.stringify(body),
+  })) as { ok: true; item: AdminPromotion };
+}
+
+export async function adminDeletePromotion(password: string, id: number) {
+  return (await adminFetch(password, `/admin/promotions/${id}`, {
+    method: "DELETE",
+  })) as { ok: true; id: number };
+}
+
+export async function adminReorderPromotions(password: string, ids: number[]) {
+  return (await adminFetch(password, "/admin/promotions/reorder", {
+    method: "POST",
+    body: JSON.stringify({ ids }),
+  })) as { ok: true; count: number };
+}

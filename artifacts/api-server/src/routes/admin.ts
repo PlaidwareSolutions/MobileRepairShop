@@ -19,9 +19,13 @@ import {
   leadCommunicationsTable,
   leadReplyTemplatesTable,
   leadBlockEventsTable,
+  promotionsTable,
+  PROMOTION_RECURRENCE_VALUES,
+  PROMOTION_ACCENT_VALUES,
 } from "@workspace/db";
 import { ObjectStorageService } from "../lib/objectStorage";
 import { serializeAdminInventoryItem } from "../lib/inventoryMapper";
+import { serializeAdminPromotion } from "../lib/promotionsMapper";
 import { sendEmail, sendSms, messagingConfig } from "../lib/messaging";
 import { checkRateLimit } from "../lib/rate-limit";
 
@@ -765,6 +769,292 @@ function serializeDates<T extends { createdAt: Date; updatedAt: Date }>(row: T) 
     updatedAt: row.updatedAt.toISOString(),
   };
 }
+
+// ---------------- Promotions CRUD ----------------
+
+const TIME_HHMM_RE = /^([01]?\d|2[0-3]):[0-5]\d$/;
+
+function timeStringToMinutes(s: string): number {
+  const [h, m] = s.split(":").map(Number);
+  return h * 60 + m;
+}
+
+const TimeOfDay = z.union([
+  z.string().regex(TIME_HHMM_RE).transform(timeStringToMinutes),
+  z.number().int().min(0).max(1439),
+]);
+
+const DaysOfWeek = z
+  .array(z.number().int().min(0).max(6))
+  .max(7)
+  .transform((arr) => Array.from(new Set(arr)).sort((a, b) => a - b));
+
+const IsoDate = z
+  .string()
+  .min(1)
+  .transform((s, ctx) => {
+    const d = new Date(s);
+    if (Number.isNaN(d.getTime())) {
+      ctx.addIssue({ code: "custom", message: "Invalid date" });
+      return z.NEVER;
+    }
+    return d;
+  });
+
+const PromotionCreateSchema = z
+  .object({
+    headline: z.string().min(1).max(160),
+    supportingLine: z.string().max(280).optional().nullable(),
+    badge: z.string().max(40).optional().nullable(),
+    ctaLabel: z.string().max(40).optional().nullable(),
+    ctaHref: z.string().max(500).optional().nullable(),
+    accent: z.enum(PROMOTION_ACCENT_VALUES).default("amber"),
+    active: z.boolean().default(true),
+    startsAt: IsoDate.optional().nullable(),
+    endsAt: IsoDate.optional().nullable(),
+    recurrence: z.enum(PROMOTION_RECURRENCE_VALUES).default("always"),
+    daysOfWeek: DaysOfWeek.optional(),
+    dailyStartMinutes: TimeOfDay.optional().nullable(),
+    dailyEndMinutes: TimeOfDay.optional().nullable(),
+    sortOrder: z.number().finite().optional(),
+  })
+  .superRefine((v, ctx) => {
+    if (v.recurrence === "weekly" && (!v.daysOfWeek || v.daysOfWeek.length === 0)) {
+      ctx.addIssue({
+        code: "custom",
+        message: "Weekly recurrence requires at least one day",
+        path: ["daysOfWeek"],
+      });
+    }
+    if (
+      v.startsAt instanceof Date &&
+      v.endsAt instanceof Date &&
+      v.startsAt.getTime() > v.endsAt.getTime()
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        message: "startsAt must be before endsAt",
+        path: ["endsAt"],
+      });
+    }
+  });
+
+const PromotionUpdateSchema = z
+  .object({
+    headline: z.string().min(1).max(160).optional(),
+    supportingLine: z.string().max(280).optional().nullable(),
+    badge: z.string().max(40).optional().nullable(),
+    ctaLabel: z.string().max(40).optional().nullable(),
+    ctaHref: z.string().max(500).optional().nullable(),
+    accent: z.enum(PROMOTION_ACCENT_VALUES).optional(),
+    active: z.boolean().optional(),
+    startsAt: IsoDate.optional().nullable(),
+    endsAt: IsoDate.optional().nullable(),
+    recurrence: z.enum(PROMOTION_RECURRENCE_VALUES).optional(),
+    daysOfWeek: DaysOfWeek.optional(),
+    dailyStartMinutes: TimeOfDay.optional().nullable(),
+    dailyEndMinutes: TimeOfDay.optional().nullable(),
+    sortOrder: z.number().finite().optional(),
+  })
+  .superRefine((v, ctx) => {
+    if (
+      v.startsAt instanceof Date &&
+      v.endsAt instanceof Date &&
+      v.startsAt.getTime() > v.endsAt.getTime()
+    ) {
+      ctx.addIssue({
+        code: "custom",
+        message: "startsAt must be before endsAt",
+        path: ["endsAt"],
+      });
+    }
+  });
+
+const PromotionReorderSchema = z
+  .object({
+    ids: z.array(z.number().int().positive()).min(1).max(1000),
+  })
+  .refine((v) => new Set(v.ids).size === v.ids.length, {
+    message: "ids must be unique",
+    path: ["ids"],
+  });
+
+router.get("/promotions", async (_req: Request, res: Response, next: NextFunction) => {
+  try {
+    const rows = await db
+      .select()
+      .from(promotionsTable)
+      .orderBy(asc(promotionsTable.sortOrder), asc(promotionsTable.id));
+    res.json({ items: rows.map(serializeAdminPromotion) });
+  } catch (err) {
+    next(err as Error);
+  }
+});
+
+router.post("/promotions", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const body = PromotionCreateSchema.parse(req.body);
+
+    let sortOrder = body.sortOrder;
+    if (sortOrder == null) {
+      const all = await db.select({ s: promotionsTable.sortOrder }).from(promotionsTable);
+      const max = all.reduce((m, r) => Math.max(m, Number(r.s)), 0);
+      sortOrder = max + 10;
+    }
+
+    const [created] = await db
+      .insert(promotionsTable)
+      .values({
+        headline: body.headline,
+        supportingLine: body.supportingLine ?? null,
+        badge: body.badge ?? null,
+        ctaLabel: body.ctaLabel ?? null,
+        ctaHref: body.ctaHref ?? null,
+        accent: body.accent,
+        active: body.active,
+        startsAt: body.startsAt ?? null,
+        endsAt: body.endsAt ?? null,
+        recurrence: body.recurrence,
+        daysOfWeek: (body.daysOfWeek ?? []).join(","),
+        dailyStartMinutes: body.dailyStartMinutes ?? null,
+        dailyEndMinutes: body.dailyEndMinutes ?? null,
+        sortOrder: String(sortOrder),
+      })
+      .returning();
+    res.status(201).json({ ok: true, item: serializeAdminPromotion(created) });
+  } catch (err) {
+    if (handleZod(err, res)) return;
+    next(err as Error);
+  }
+});
+
+router.patch("/promotions/:id", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id <= 0) {
+      res.status(400).json({ error: "Invalid id" });
+      return;
+    }
+    const body = PromotionUpdateSchema.parse(req.body);
+    if (Object.keys(body).length === 0) {
+      res.status(400).json({ error: "No fields to update" });
+      return;
+    }
+
+    // Final-state validation: if recurrence ends up "weekly", ensure
+    // daysOfWeek is non-empty by reading current row when not supplied.
+    if (body.recurrence === "weekly" && (!body.daysOfWeek || body.daysOfWeek.length === 0)) {
+      const [existing] = await db
+        .select({ days: promotionsTable.daysOfWeek })
+        .from(promotionsTable)
+        .where(eq(promotionsTable.id, id))
+        .limit(1);
+      const currentDays = (existing?.days ?? "")
+        .split(",")
+        .map((s) => Number(s.trim()))
+        .filter((n) => Number.isInteger(n));
+      if (currentDays.length === 0) {
+        res
+          .status(400)
+          .json({ error: "Weekly recurrence requires at least one day" });
+        return;
+      }
+    }
+
+    const updates: Record<string, unknown> = { updatedAt: new Date() };
+    if (body.headline !== undefined) updates.headline = body.headline;
+    if (body.supportingLine !== undefined) updates.supportingLine = body.supportingLine ?? null;
+    if (body.badge !== undefined) updates.badge = body.badge ?? null;
+    if (body.ctaLabel !== undefined) updates.ctaLabel = body.ctaLabel ?? null;
+    if (body.ctaHref !== undefined) updates.ctaHref = body.ctaHref ?? null;
+    if (body.accent !== undefined) updates.accent = body.accent;
+    if (body.active !== undefined) updates.active = body.active;
+    if (body.startsAt !== undefined) updates.startsAt = body.startsAt ?? null;
+    if (body.endsAt !== undefined) updates.endsAt = body.endsAt ?? null;
+    if (body.recurrence !== undefined) updates.recurrence = body.recurrence;
+    if (body.daysOfWeek !== undefined) updates.daysOfWeek = body.daysOfWeek.join(",");
+    if (body.dailyStartMinutes !== undefined)
+      updates.dailyStartMinutes = body.dailyStartMinutes ?? null;
+    if (body.dailyEndMinutes !== undefined)
+      updates.dailyEndMinutes = body.dailyEndMinutes ?? null;
+    if (body.sortOrder !== undefined) updates.sortOrder = String(body.sortOrder);
+
+    const [updated] = await db
+      .update(promotionsTable)
+      .set(updates)
+      .where(eq(promotionsTable.id, id))
+      .returning();
+    if (!updated) {
+      res.status(404).json({ error: "Promotion not found" });
+      return;
+    }
+    res.json({ ok: true, item: serializeAdminPromotion(updated) });
+  } catch (err) {
+    if (handleZod(err, res)) return;
+    next(err as Error);
+  }
+});
+
+router.delete("/promotions/:id", async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const id = Number(req.params.id);
+    if (!Number.isInteger(id) || id <= 0) {
+      res.status(400).json({ error: "Invalid id" });
+      return;
+    }
+    const [deleted] = await db
+      .delete(promotionsTable)
+      .where(eq(promotionsTable.id, id))
+      .returning({ id: promotionsTable.id });
+    if (!deleted) {
+      res.status(404).json({ error: "Promotion not found" });
+      return;
+    }
+    res.json({ ok: true, id: deleted.id });
+  } catch (err) {
+    next(err as Error);
+  }
+});
+
+router.post(
+  "/promotions/reorder",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const body = PromotionReorderSchema.parse(req.body);
+      const existing = await db.select({ id: promotionsTable.id }).from(promotionsTable);
+      const existingIds = new Set(existing.map((r) => r.id));
+      const missing = body.ids.filter((id) => !existingIds.has(id));
+      if (missing.length > 0) {
+        res
+          .status(400)
+          .json({ error: "Unknown promotion ids", details: { missing } });
+        return;
+      }
+      const submitted = new Set(body.ids);
+      const others = existing.map((r) => r.id).filter((id) => !submitted.has(id));
+      const now = new Date();
+      await db.transaction(async (tx) => {
+        for (let i = 0; i < body.ids.length; i++) {
+          await tx
+            .update(promotionsTable)
+            .set({ sortOrder: String((i + 1) * 10), updatedAt: now })
+            .where(eq(promotionsTable.id, body.ids[i]));
+        }
+        const offset = body.ids.length;
+        for (let j = 0; j < others.length; j++) {
+          await tx
+            .update(promotionsTable)
+            .set({ sortOrder: String((offset + j + 1) * 10) })
+            .where(eq(promotionsTable.id, others[j]));
+        }
+      });
+      res.json({ ok: true, count: body.ids.length });
+    } catch (err) {
+      if (handleZod(err, res)) return;
+      next(err as Error);
+    }
+  },
+);
 
 // ---------------- Reply Templates (saved replies) ----------------
 

@@ -3,3 +3,4 @@ export * from "./inventory";
 export * from "./communications";
 export * from "./rate-limits";
 export * from "./lead-block-events";
+export * from "./promotions";

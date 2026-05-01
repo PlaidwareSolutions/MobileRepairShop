@@ -3,6 +3,7 @@ import healthRouter from "./health";
 import leadsRouter from "./leads";
 import adminRouter from "./admin";
 import inventoryRouter from "./inventory";
+import promotionsRouter from "./promotions";
 import storageRouter from "./storage";
 
 const router: IRouter = Router();
@@ -11,6 +12,7 @@ router.use(healthRouter);
 router.use("/leads", leadsRouter);
 router.use("/admin", adminRouter);
 router.use("/inventory", inventoryRouter);
+router.use("/promotions", promotionsRouter);
 router.use(storageRouter);
 
 router.use((err: Error, req: Request, res: Response, _next: NextFunction) => {

@@ -3,9 +3,10 @@ import { Link } from "wouter";
 const TABS: { to: string; label: string; testId: string }[] = [
   { to: "/admin/leads", label: "Leads", testId: "admin-nav-leads" },
   { to: "/admin/inventory", label: "Inventory", testId: "admin-nav-inventory" },
+  { to: "/admin/promotions", label: "Promotions", testId: "admin-nav-promotions" },
 ];
 
-export function AdminNav({ active }: { active: "leads" | "inventory" }) {
+export function AdminNav({ active }: { active: "leads" | "inventory" | "promotions" }) {
   return (
     <nav className="flex flex-wrap gap-2 mb-6" aria-label="Admin sections">
       {TABS.map((t) => {
