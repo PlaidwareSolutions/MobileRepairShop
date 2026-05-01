@@ -121,6 +121,28 @@ function localInputToIso(value: string): string | null {
   return d.toISOString();
 }
 
+// Render a datetime-local input value as the equivalent wall-clock time in
+// the shop timezone, so an owner editing from outside the shop's location
+// can immediately see how their input lands on the shop's clock.
+function formatInShopTimezone(value: string, timezone: string): string {
+  if (!value) return "";
+  const d = new Date(value);
+  if (Number.isNaN(d.getTime())) return "";
+  try {
+    return new Intl.DateTimeFormat("en-US", {
+      timeZone: timezone,
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    }).format(d);
+  } catch {
+    return d.toISOString();
+  }
+}
+
 function rowToForm(row: AdminPromotion): FormState {
   return {
     headline: row.headline,
@@ -938,6 +960,14 @@ function PromotionFormCard({
               className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
               data-testid="input-starts-at"
             />
+            {form.startsAtLocal && (
+              <p
+                className="text-[11px] text-zinc-500 mt-1"
+                data-testid="text-starts-at-shop"
+              >
+                = {formatInShopTimezone(form.startsAtLocal, shopTimezone)} (shop time)
+              </p>
+            )}
           </div>
           <div>
             <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
@@ -952,6 +982,14 @@ function PromotionFormCard({
               className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
               data-testid="input-ends-at"
             />
+            {form.endsAtLocal && (
+              <p
+                className="text-[11px] text-zinc-500 mt-1"
+                data-testid="text-ends-at-shop"
+              >
+                = {formatInShopTimezone(form.endsAtLocal, shopTimezone)} (shop time)
+              </p>
+            )}
           </div>
           <p className="text-xs text-zinc-500 leading-snug md:col-span-2 -mt-1">
             Window dates are stored as exact moments in time. They're entered

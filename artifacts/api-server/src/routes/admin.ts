@@ -1123,6 +1123,14 @@ router.post(
       const body = PromotionReorderSchema.parse(req.body);
       const existing = await db.select({ id: promotionsTable.id }).from(promotionsTable);
       const existingIds = new Set(existing.map((r) => r.id));
+      // Strict contract: client must submit the FULL set of promo ids exactly
+      // once each. This avoids ambiguous "others" handling and makes the
+      // reorder request a deterministic, idempotent operation.
+      const submittedSet = new Set(body.ids);
+      if (submittedSet.size !== body.ids.length) {
+        res.status(400).json({ error: "Duplicate ids in reorder request" });
+        return;
+      }
       const missing = body.ids.filter((id) => !existingIds.has(id));
       if (missing.length > 0) {
         res
@@ -1130,8 +1138,14 @@ router.post(
           .json({ error: "Unknown promotion ids", details: { missing } });
         return;
       }
-      const submitted = new Set(body.ids);
-      const others = existing.map((r) => r.id).filter((id) => !submitted.has(id));
+      const omitted = existing.map((r) => r.id).filter((id) => !submittedSet.has(id));
+      if (omitted.length > 0) {
+        res.status(400).json({
+          error: "Reorder must include all promotion ids",
+          details: { omitted },
+        });
+        return;
+      }
       const now = new Date();
       await db.transaction(async (tx) => {
         for (let i = 0; i < body.ids.length; i++) {
@@ -1139,13 +1153,6 @@ router.post(
             .update(promotionsTable)
             .set({ sortOrder: String((i + 1) * 10), updatedAt: now })
             .where(eq(promotionsTable.id, body.ids[i]));
-        }
-        const offset = body.ids.length;
-        for (let j = 0; j < others.length; j++) {
-          await tx
-            .update(promotionsTable)
-            .set({ sortOrder: String((offset + j + 1) * 10) })
-            .where(eq(promotionsTable.id, others[j]));
         }
       });
       res.json({ ok: true, count: body.ids.length });
