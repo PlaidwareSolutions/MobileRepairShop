@@ -12,6 +12,7 @@ import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
+import { SocialLinks } from "@/components/SocialLinks";
 import { SERVICES_BY_SLUG, SERVICES_DATA } from "@/data/services";
 import { inventoryGroupBySlug, inventoryGroupSlugForPageSlug } from "@/lib/inventoryGroups";
 import NotFound from "@/pages/not-found";
@@ -349,6 +350,15 @@ export default function ServicePage() {
                 </Link>
               ))}
             </div>
+          </div>
+        </section>
+      )}
+
+      {(business.socialFacebook || business.socialInstagram || business.socialTiktok || business.socialYoutube || business.socialX) && (
+        <section className="py-10 px-4 bg-zinc-50 border-t border-zinc-200">
+          <div className="max-w-[1240px] mx-auto">
+            <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-3">Follow Us</p>
+            <SocialLinks business={business} iconClass="w-6 h-6" />
           </div>
         </section>
       )}

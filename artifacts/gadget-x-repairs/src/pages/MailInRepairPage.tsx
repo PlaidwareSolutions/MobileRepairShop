@@ -20,6 +20,7 @@ import {
   breadcrumbJsonLd,
 } from "@/components/SEO";
 import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
+import { SocialLinks } from "@/components/SocialLinks";
 import { BUSINESS, SHIPPING } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 
@@ -377,6 +378,16 @@ export default function MailInRepairPage() {
           </div>
         </div>
       </section>
+
+      {/* Social links -------------------------------------------------- */}
+      {(business.socialFacebook || business.socialInstagram || business.socialTiktok || business.socialYoutube || business.socialX) && (
+        <section className="py-10 px-4 bg-zinc-50 border-t border-zinc-200">
+          <div className="max-w-[900px] mx-auto">
+            <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-3">Follow Us</p>
+            <SocialLinks business={business} iconClass="w-6 h-6" />
+          </div>
+        </section>
+      )}
 
       {/* FAQ ---------------------------------------------------------- */}
       <section className="py-16 md:py-20 px-4 bg-white" data-testid="mail-in-faq">
