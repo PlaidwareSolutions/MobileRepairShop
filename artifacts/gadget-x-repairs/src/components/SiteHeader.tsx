@@ -4,6 +4,7 @@ import { MapPin, Clock, Phone, ChevronDown, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { BUSINESS, HERO, PROMO_BANNER, TICKER } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 type MegaMenuColumn = { heading: string; items: { label: string; to: string }[] };
 
@@ -260,6 +261,7 @@ function MegaMenuTrigger({
 }
 
 function MobileNavDrawer() {
+  const business = useBusiness();
   const [open, setOpen] = useState(false);
   const [repairOpen, setRepairOpen] = useState(false);
   const [openCol, setOpenCol] = useState<string | null>(null);
@@ -411,13 +413,13 @@ function MobileNavDrawer() {
             </Link>
           ))}
           <a
-            href={BUSINESS.phoneTel}
+            href={business.phoneTel}
             onClick={close}
             className="flex items-center gap-2 px-4 py-3 font-extrabold uppercase tracking-tight text-red-600 hover:bg-red-50"
             data-testid="link-mobile-nav-call"
           >
             <Phone className="w-4 h-4" />
-            {BUSINESS.phoneDisplay}
+            {business.phoneDisplay}
           </a>
         </nav>
       </SheetContent>
@@ -439,25 +441,26 @@ export function PromoBanner() {
 }
 
 export function TopUtilityBar() {
+  const business = useBusiness();
   return (
     <div className="bg-zinc-100 border-b border-zinc-300 text-xs font-mono py-2 px-4 flex justify-between items-center tracking-tight text-zinc-600">
       <div className="flex items-center gap-4">
         <span className="hidden sm:inline-flex items-center gap-1">
           <MapPin className="w-3 h-3 text-red-500" />
-          {BUSINESS.addressFull}
+          {business.addressFull}
         </span>
         <span className="hidden md:inline-flex items-center gap-1">
           <Clock className="w-3 h-3 text-red-500" />
-          {BUSINESS.hoursShort}
+          {business.hoursShort}
         </span>
       </div>
       <div className="flex items-center gap-4">
         <span className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide">
           {HERO.badgeRepairTime}
         </span>
-        <a href={BUSINESS.phoneTel} className="hover:text-red-500 transition-colors flex items-center gap-1">
+        <a href={business.phoneTel} className="hover:text-red-500 transition-colors flex items-center gap-1">
           <Phone className="w-3 h-3" />
-          {BUSINESS.phoneDisplay}
+          {business.phoneDisplay}
         </a>
       </div>
     </div>
@@ -465,6 +468,7 @@ export function TopUtilityBar() {
 }
 
 export function SiteHeader() {
+  const business = useBusiness();
   return (
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-zinc-200">
       <div className="max-w-[1240px] mx-auto px-4 py-3 flex justify-between items-center gap-4">
@@ -493,7 +497,7 @@ export function SiteHeader() {
             asChild
             className="bg-red-600 hover:bg-zinc-900 hover:text-white text-white font-semibold uppercase tracking-wide text-sm px-5 md:px-6 h-12 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
           >
-            <a href={BUSINESS.phoneTel}>Call Now</a>
+            <a href={business.phoneTel}>Call Now</a>
           </Button>
           <MobileNavDrawer />
         </div>

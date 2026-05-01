@@ -20,6 +20,7 @@ import FinancingPage from "@/pages/FinancingPage";
 import AdminLeadsPage from "@/pages/AdminLeadsPage";
 import AdminInventoryPage from "@/pages/AdminInventoryPage";
 import AdminPromotionsPage from "@/pages/AdminPromotionsPage";
+import AdminBusinessSettingsPage from "@/pages/AdminBusinessSettingsPage";
 
 import { SERVICES_DATA } from "@/data/services";
 import { SALES_DATA } from "@/data/sales";
@@ -86,6 +87,7 @@ export function Routes() {
       <Route path="/admin/leads" component={AdminLeadsPage} />
       <Route path="/admin/inventory" component={AdminInventoryPage} />
       <Route path="/admin/promotions" component={AdminPromotionsPage} />
+      <Route path="/admin/business-settings" component={AdminBusinessSettingsPage} />
 
       <Route path="/articles/:slug" component={ArticlePage} />
 

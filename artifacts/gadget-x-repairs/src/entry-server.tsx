@@ -5,11 +5,14 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Routes } from "@/Routes";
 import { SsrPromosContext } from "@/components/PromoCampaignBanner";
-import type { PublicPromotion } from "@/lib/api";
+import { BusinessProvider } from "@/components/BusinessContext";
+import type { PublicPromotion, PublicBusinessSettings } from "@/lib/api";
 
 export type SsrData = {
   /** Live promos prefetched by the build script for SSR seeding. */
   promotions?: PublicPromotion[];
+  /** Business settings (phone/address/hours) prefetched for SSR seeding. */
+  business?: PublicBusinessSettings | null;
 };
 
 export type RenderResult = { html: string; head: string };
@@ -49,17 +52,20 @@ function extractHeadTags(rendered: string): { head: string; html: string } {
 export function render(url: string, ssr: SsrData = {}): RenderResult {
   const queryClient = new QueryClient();
   const promos = ssr.promotions ?? null;
+  const business = ssr.business ?? null;
 
   const rendered = renderToString(
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <TooltipProvider>
-          <SsrPromosContext.Provider value={promos}>
-            <WouterRouter ssrPath={url} base="">
-              <Routes />
-            </WouterRouter>
-          </SsrPromosContext.Provider>
-        </TooltipProvider>
+        <BusinessProvider initial={business}>
+          <TooltipProvider>
+            <SsrPromosContext.Provider value={promos}>
+              <WouterRouter ssrPath={url} base="">
+                <Routes />
+              </WouterRouter>
+            </SsrPromosContext.Provider>
+          </TooltipProvider>
+        </BusinessProvider>
       </QueryClientProvider>
     </HelmetProvider>,
   );

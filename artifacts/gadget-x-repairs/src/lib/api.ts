@@ -504,3 +504,64 @@ export async function adminReorderPromotions(password: string, ids: number[]) {
     body: JSON.stringify({ ids }),
   })) as { ok: true; count: number };
 }
+
+// ---------------- Business Settings (phone / address / hours) ----------------
+
+export type PublicBusinessSettings = {
+  phoneE164: string;
+  phoneDisplay: string;
+  phoneTel: string;
+  smsHref: string;
+  whatsappHref: string;
+  addressLine1: string;
+  addressLine2: string;
+  addressFull: string;
+  mapsLink: string;
+  mapsEmbed: string;
+  hoursShort: string;
+  hours: { day: string; time: string }[];
+  updatedAt: string;
+};
+
+export async function fetchBusinessSettings(): Promise<PublicBusinessSettings | null> {
+  try {
+    const res = await fetch(`${BASE}/business-settings`);
+    if (!res.ok) return null;
+    const data = (await res.json()) as { settings?: PublicBusinessSettings };
+    return data.settings ?? null;
+  } catch {
+    return null;
+  }
+}
+
+export type AdminBusinessSettingsInput = {
+  phoneE164?: string;
+  addressLine1?: string;
+  addressLine2?: string;
+  mapsLink?: string;
+  mapsEmbed?: string;
+  hoursShort?: string;
+  hoursSunday?: string;
+  hoursMonday?: string;
+  hoursTuesday?: string;
+  hoursWednesday?: string;
+  hoursThursday?: string;
+  hoursFriday?: string;
+  hoursSaturday?: string;
+};
+
+export async function adminGetBusinessSettings(password: string) {
+  return (await adminFetch(password, "/admin/business-settings")) as {
+    settings: PublicBusinessSettings;
+  };
+}
+
+export async function adminUpdateBusinessSettings(
+  password: string,
+  body: AdminBusinessSettingsInput,
+) {
+  return (await adminFetch(password, "/admin/business-settings", {
+    method: "PATCH",
+    body: JSON.stringify(body),
+  })) as { settings: PublicBusinessSettings };
+}

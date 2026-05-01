@@ -19,6 +19,7 @@ import {
   type InventoryGroup,
 } from "@/lib/inventoryGroups";
 import { BUSINESS, FINANCING } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 const DEFAULT_META = {
   title: "Phones & Laptops Inventory Houston | GadgetX Repairs",
@@ -78,6 +79,7 @@ function readSlugFromSearch(search: string): string {
 }
 
 export default function InventoryPage() {
+  const business = useBusiness();
   const [items, setItems] = useState<InventoryItem[]>(INVENTORY_FALLBACK);
   const [reserving, setReserving] = useState<InventoryItem | null>(null);
   const [, setLocation] = useLocation();
@@ -221,7 +223,7 @@ export default function InventoryPage() {
   // that have FAQs defined. Done as an array build (vs. inline conditional)
   // so the ordering stays predictable and easy to scan.
   const jsonLdPayload: object[] = [
-    localBusinessJsonLd(),
+    localBusinessJsonLd(business),
     breadcrumbJsonLd(breadcrumbJsonLdItems),
     // ItemList reflects only the items shown on this page so per-category
     // pages emit category-scoped structured data instead of the full
@@ -292,7 +294,7 @@ export default function InventoryPage() {
               className="bg-white border border-zinc-200 p-6 text-center text-zinc-600 font-bold uppercase tracking-wide text-sm"
               data-testid="inventory-empty"
             >
-              Nothing in this category right now — call us at {BUSINESS.phoneDisplay} and we'll let you know when it's back in stock.
+              Nothing in this category right now — call us at {business.phoneDisplay} and we'll let you know when it's back in stock.
             </div>
           )}
 
@@ -345,7 +347,7 @@ export default function InventoryPage() {
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     <Button asChild className="bg-white border border-zinc-300 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-10 px-2 text-xs" data-testid={`button-call-${it.id}`}>
-                      <a href={BUSINESS.phoneTel} aria-label={`Call about ${it.brand} ${it.model}`}>
+                      <a href={business.phoneTel} aria-label={`Call about ${it.brand} ${it.model}`}>
                         <Phone className="w-3.5 h-3.5 mr-1" /> Call
                       </a>
                     </Button>

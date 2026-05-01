@@ -1,6 +1,7 @@
 import { Link } from "wouter";
 import { Phone, MapPin, MessageCircle } from "lucide-react";
 import { BUSINESS, COPYRIGHT } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 const REPAIR_LINKS = [
   { label: "All Repair Services", to: "/repair-services-houston-tx" },
@@ -42,6 +43,7 @@ const COMPANY_LINKS = [
 ];
 
 export function SiteFooter() {
+  const business = useBusiness();
   return (
     <footer className="bg-zinc-900 text-zinc-400 pt-20 pb-32 md:pb-16 border-t border-zinc-800">
       <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 font-bold">
@@ -55,22 +57,22 @@ export function SiteFooter() {
           </div>
           <ul className="space-y-3 text-sm uppercase">
             <li>
-              <a href={BUSINESS.phoneTel} className="hover:text-red-500 flex items-center gap-2 text-zinc-200">
-                <Phone className="w-4 h-4 text-red-500" /> {BUSINESS.phoneDisplay}
+              <a href={business.phoneTel} className="hover:text-red-500 flex items-center gap-2 text-zinc-200">
+                <Phone className="w-4 h-4 text-red-500" /> {business.phoneDisplay}
               </a>
             </li>
             <li>
-              <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-center gap-2">
+              <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-center gap-2">
                 <MessageCircle className="w-4 h-4 text-red-500" /> WhatsApp Us
               </a>
             </li>
             <li>
-              <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-start gap-2">
+              <a href={business.mapsLink} target="_blank" rel="noreferrer" className="hover:text-red-500 flex items-start gap-2">
                 <MapPin className="w-4 h-4 mt-0.5 shrink-0 text-red-500" />
                 <span>
-                  {BUSINESS.addressLine1}
+                  {business.addressLine1}
                   <br />
-                  {BUSINESS.addressLine2}
+                  {business.addressLine2}
                 </span>
               </a>
             </li>

@@ -22,8 +22,10 @@ import {
 import { FinancingForm } from "@/components/forms/FinancingForm";
 import { Button } from "@/components/ui/button";
 import { BUSINESS, FINANCING, FINANCING_PAGE } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 export default function FinancingPage() {
+  const business = useBusiness();
   const path = FINANCING.pagePath;
   const meta = {
     title: "Phone Financing Houston TX | $10 Down | GadgetX Repairs",
@@ -38,7 +40,7 @@ export default function FinancingPage() {
         description={meta.description}
         path={path}
         jsonLd={[
-          localBusinessJsonLd(),
+          localBusinessJsonLd(business),
           breadcrumbJsonLd([{ name: "Phone Financing", path }]),
           faqJsonLd(FINANCING_PAGE.faqs),
         ]}
@@ -79,7 +81,7 @@ export default function FinancingPage() {
                 asChild
                 className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6"
               >
-                <a href={BUSINESS.phoneTel} data-testid="financing-cta-call">
+                <a href={business.phoneTel} data-testid="financing-cta-call">
                   <Phone className="w-4 h-4 mr-2" /> Call to Apply
                 </a>
               </Button>
@@ -89,7 +91,7 @@ export default function FinancingPage() {
                 className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6"
               >
                 <a
-                  href={BUSINESS.whatsapp}
+                  href={business.whatsappHref}
                   target="_blank"
                   rel="noreferrer"
                   data-testid="financing-cta-text"

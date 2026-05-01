@@ -1,5 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { BUSINESS } from "@/content";
+import { useBusiness, DEFAULT_BUSINESS } from "@/components/BusinessContext";
+import type { PublicBusinessSettings } from "@/lib/api";
 
 type Props = {
   title: string;
@@ -40,7 +42,13 @@ export function SEO({ title, description, path, type = "website", jsonLd, noinde
   );
 }
 
-export function localBusinessJsonLd() {
+// JSON-LD helpers accept the live business settings as a parameter so the
+// owner-edited phone/address always appears in structured data. The default
+// keeps old callers working (and ensures non-React contexts like build-time
+// tools still produce valid output) by falling back to the bundled defaults.
+type B = PublicBusinessSettings;
+
+export function localBusinessJsonLd(business: B = DEFAULT_BUSINESS) {
   return {
     "@context": "https://schema.org",
     "@type": "ElectronicsStore",
@@ -48,11 +56,11 @@ export function localBusinessJsonLd() {
     image: `${SITE_URL}${BUSINESS.logo}`,
     "@id": SITE_URL,
     url: SITE_URL,
-    telephone: BUSINESS.phoneDisplay,
+    telephone: business.phoneDisplay,
     priceRange: "$$",
     address: {
       "@type": "PostalAddress",
-      streetAddress: BUSINESS.addressLine1,
+      streetAddress: business.addressLine1,
       addressLocality: "Houston",
       addressRegion: "TX",
       postalCode: "77054",
@@ -63,11 +71,16 @@ export function localBusinessJsonLd() {
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "12:00", closes: "17:00" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "10:00", closes: "19:00" },
     ],
-    sameAs: [BUSINESS.mapsLink],
+    sameAs: [business.mapsLink],
   };
 }
 
-export function serviceJsonLd(name: string, description: string, path: string) {
+export function serviceJsonLd(
+  name: string,
+  description: string,
+  path: string,
+  business: B = DEFAULT_BUSINESS,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "Service",
@@ -75,10 +88,10 @@ export function serviceJsonLd(name: string, description: string, path: string) {
     provider: {
       "@type": "ElectronicsStore",
       name: BUSINESS.name,
-      telephone: BUSINESS.phoneDisplay,
+      telephone: business.phoneDisplay,
       address: {
         "@type": "PostalAddress",
-        streetAddress: BUSINESS.addressLine1,
+        streetAddress: business.addressLine1,
         addressLocality: "Houston",
         addressRegion: "TX",
         postalCode: "77054",
@@ -147,4 +160,18 @@ export function itemListJsonLd(name: string, items: { name: string; path: string
       url: `${SITE_URL}${it.path}`,
     })),
   };
+}
+
+// Convenience hook: returns the live local-business JSON-LD object so pages
+// don't have to thread `business` through every call. Callers that are
+// outside a React tree (e.g. build-time tooling) can still call
+// localBusinessJsonLd() directly without an arg.
+export function useLocalBusinessJsonLd() {
+  const business = useBusiness();
+  return localBusinessJsonLd(business);
+}
+
+export function useServiceJsonLd(name: string, description: string, path: string) {
+  const business = useBusiness();
+  return serviceJsonLd(name, description, path, business);
 }

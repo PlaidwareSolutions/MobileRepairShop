@@ -1,15 +1,16 @@
 import { Phone, MessageSquare, MessageCircle, Navigation, FileText } from "lucide-react";
 import { Link } from "wouter";
-import { BUSINESS } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 export function StickyMobileBar() {
+  const business = useBusiness();
   return (
     <div
       data-testid="sticky-mobile-bar"
       className="fixed bottom-0 left-0 right-0 z-50 md:hidden bg-white border-t border-zinc-200 grid grid-cols-5"
     >
       <a
-        href={BUSINESS.phoneTel}
+        href={business.phoneTel}
         data-testid="link-mobile-call"
         className="flex flex-col items-center justify-center gap-1 py-3 text-zinc-900 font-bold uppercase text-[10px] tracking-wide hover:bg-red-500 transition-colors"
       >
@@ -25,7 +26,7 @@ export function StickyMobileBar() {
         Quote
       </Link>
       <a
-        href={BUSINESS.sms}
+        href={business.smsHref}
         data-testid="link-mobile-sms"
         className="flex flex-col items-center justify-center gap-1 py-3 text-zinc-900 font-bold uppercase text-[10px] tracking-wide hover:bg-red-500 transition-colors border-r border-zinc-200"
       >
@@ -33,7 +34,7 @@ export function StickyMobileBar() {
         SMS
       </a>
       <a
-        href={BUSINESS.mapsLink}
+        href={business.mapsLink}
         target="_blank"
         rel="noreferrer"
         data-testid="link-mobile-map"
@@ -43,7 +44,7 @@ export function StickyMobileBar() {
         Map
       </a>
       <a
-        href={BUSINESS.whatsapp}
+        href={business.whatsappHref}
         target="_blank"
         rel="noreferrer"
         data-testid="link-mobile-whatsapp"

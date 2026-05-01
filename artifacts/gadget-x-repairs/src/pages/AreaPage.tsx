@@ -9,9 +9,11 @@ import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { Button } from "@/components/ui/button";
 import { AREAS_BY_SLUG } from "@/data/areas";
 import { BUSINESS } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 import NotFound from "@/pages/not-found";
 
 export default function AreaPage() {
+  const business = useBusiness();
   const [, params] = useRoute<{ slug: string }>("/:slug");
   const slug = params?.slug ?? "";
   const data = AREAS_BY_SLUG[slug];
@@ -24,7 +26,7 @@ export default function AreaPage() {
         title={data.metaTitle}
         description={data.metaDescription}
         path={path}
-        jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "Areas", path: "/phone-repair-houston-tx" }, { name: data.title, path }])]}
+        jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "Areas", path: "/phone-repair-houston-tx" }, { name: data.title, path }])]}
       />
       <Breadcrumbs items={[{ label: "Areas Served" }, { label: data.title }]} />
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
@@ -58,10 +60,10 @@ export default function AreaPage() {
             </ul>
             <div className="flex flex-wrap gap-3">
               <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
-                <a href={BUSINESS.phoneTel}>Call Now</a>
+                <a href={business.phoneTel}>Call Now</a>
               </Button>
               <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
-                <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer">Directions</a>
+                <a href={business.mapsLink} target="_blank" rel="noreferrer">Directions</a>
               </Button>
               <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
                 <Link href="/phone-repair-houston-tx">All Repairs</Link>

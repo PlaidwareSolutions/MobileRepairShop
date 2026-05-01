@@ -18,6 +18,7 @@ import {
   isPhonePageSlug,
 } from "@/lib/inventoryGroups";
 import { BUSINESS, FINANCING } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 import NotFound from "@/pages/not-found";
 
 type SalesPageType = "sell" | "shop-hub" | "shop-brand" | "accessories-hub" | "accessories";
@@ -73,6 +74,7 @@ function getParentHub(slug: string, pageType: SalesPageType): { name: string; pa
 }
 
 export default function SalesPage() {
+  const business = useBusiness();
   const [, params] = useRoute<{ slug: string }>("/:slug");
   const slug = params?.slug ?? "";
   const data = SALES_BY_SLUG[slug];
@@ -146,7 +148,7 @@ export default function SalesPage() {
         description={data.metaDescription}
         path={path}
         jsonLd={[
-          localBusinessJsonLd(),
+          localBusinessJsonLd(business),
           faqJsonLd(data.faqs),
           breadcrumbJsonLd(jsonLdBreadcrumb),
           isHub && childPages.length > 0 ? itemListJsonLd : productJsonLd,
@@ -173,7 +175,7 @@ export default function SalesPage() {
             </ul>
             <div className="mt-8 flex flex-wrap gap-3 items-center">
               <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
-                <a href={BUSINESS.phoneTel}>Call to Browse</a>
+                <a href={business.phoneTel}>Call to Browse</a>
               </Button>
               <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
                 <Link href={inventoryHref} data-testid="link-view-inventory">{inventoryLabel}</Link>

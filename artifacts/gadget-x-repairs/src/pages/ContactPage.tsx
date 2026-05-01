@@ -10,6 +10,7 @@ import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { SellPhoneForm } from "@/components/forms/SellPhoneForm";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { BUSINESS, SHIPPING } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 type FormTab = "message" | "repair" | "sell" | "appointment";
 
@@ -28,6 +29,7 @@ const TAB_HEADINGS: Record<FormTab, { title: string; accent: string }> = {
 };
 
 export default function ContactPage() {
+  const business = useBusiness();
   const [tab, setTab] = useState<FormTab>("message");
   const heading = TAB_HEADINGS[tab];
 
@@ -37,7 +39,7 @@ export default function ContactPage() {
         title="Contact GadgetX Repairs Houston TX"
         description="Get in touch with GadgetX Repairs in Houston TX. Find our address, phone number & hours. Contact us for repairs, activations & more. Call today!"
         path="/contact-houston-tx"
-        jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "Contact", path: "/contact-houston-tx" }])]}
+        jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "Contact", path: "/contact-houston-tx" }])]}
       />
       <Breadcrumbs items={[{ label: "Contact" }]} />
 
@@ -52,32 +54,32 @@ export default function ContactPage() {
             </p>
 
             <div className="space-y-6 max-w-md">
-              <a href={BUSINESS.phoneTel} className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-call">
+              <a href={business.phoneTel} className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-call">
                 <Phone className="w-7 h-7 text-red-500 shrink-0 mt-1" />
                 <div>
-                  <div className="font-bold uppercase text-lg text-zinc-900">{BUSINESS.phoneDisplay}</div>
+                  <div className="font-bold uppercase text-lg text-zinc-900">{business.phoneDisplay}</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase">Tap to call</div>
                 </div>
               </a>
-              <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-whatsapp">
+              <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-whatsapp">
                 <MessageCircle className="w-7 h-7 text-red-500 shrink-0 mt-1" />
                 <div>
                   <div className="font-bold uppercase text-lg text-zinc-900">WhatsApp / Text</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase">Send us a message</div>
                 </div>
               </a>
-              <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-maps">
+              <a href={business.mapsLink} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-maps">
                 <MapPin className="w-7 h-7 text-red-500 shrink-0 mt-1" />
                 <div>
-                  <div className="font-bold uppercase text-lg text-zinc-900">{BUSINESS.addressLine1}</div>
-                  <div className="text-zinc-600 font-bold uppercase text-sm">{BUSINESS.addressLine2}</div>
+                  <div className="font-bold uppercase text-lg text-zinc-900">{business.addressLine1}</div>
+                  <div className="text-zinc-600 font-bold uppercase text-sm">{business.addressLine2}</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase mt-1">Get directions</div>
                 </div>
               </a>
               <div className="flex items-start gap-4 bg-white border border-zinc-200 p-5">
                 <Clock className="w-7 h-7 text-red-500 shrink-0 mt-1" />
                 <div>
-                  <div className="font-bold uppercase text-lg text-zinc-900">{BUSINESS.hoursShort}</div>
+                  <div className="font-bold uppercase text-lg text-zinc-900">{business.hoursShort}</div>
                   <div className="text-zinc-500 font-bold text-xs uppercase">Walk-ins welcome</div>
                 </div>
               </div>

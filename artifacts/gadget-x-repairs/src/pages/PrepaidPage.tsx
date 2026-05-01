@@ -11,11 +11,13 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
 import { PREPAID_BY_SLUG, PREPAID_DATA, ALL_CARRIERS } from "@/data/prepaid";
 import { BUSINESS } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 import NotFound from "@/pages/not-found";
 
 const PREPAID_HUB_SLUG = "phone-activation-houston-tx";
 
 export default function PrepaidPage() {
+  const business = useBusiness();
   const [, params] = useRoute<{ slug: string }>("/:slug");
   const slug = params?.slug ?? "";
   const data = PREPAID_BY_SLUG[slug];
@@ -35,7 +37,7 @@ export default function PrepaidPage() {
     : [{ name: "Prepaid", path: `/${PREPAID_HUB_SLUG}` }, { name: data.title, path }];
 
   const jsonLdBlocks: Record<string, unknown>[] = [
-    localBusinessJsonLd(),
+    localBusinessJsonLd(business),
     faqJsonLd(data.faqs),
     breadcrumbJsonLd(jsonLdBreadcrumb),
   ];
@@ -118,10 +120,10 @@ export default function PrepaidPage() {
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
-                <a href={BUSINESS.phoneTel}>Call (346) 623-6898</a>
+                <a href={business.phoneTel}>Call {business.phoneDisplay}</a>
               </Button>
               <Button asChild className="bg-red-500 hover:bg-white text-black font-semibold uppercase tracking-wide h-12 px-6">
-                <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
+                <a href={business.whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
               </Button>
             </div>
           </div>

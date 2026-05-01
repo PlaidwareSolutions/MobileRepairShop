@@ -95,6 +95,39 @@ async function loadRender() {
   return mod.render;
 }
 
+// Best-effort SSR seed for owner-edited business settings (phone, address,
+// hours). Falls back to null if the API is unreachable — the client falls
+// back to bundled defaults from content.ts and still fetches on mount.
+async function loadInitialBusinessSettings() {
+  const url =
+    process.env.SSR_BUSINESS_URL ||
+    process.env.BUSINESS_API_URL ||
+    "http://localhost:8080/api/business-settings";
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 2500);
+    const res = await fetch(url, { signal: ctrl.signal });
+    clearTimeout(timer);
+    if (!res.ok) {
+      console.warn(
+        `build-seo: business-settings fetch returned ${res.status}; falling back to bundled defaults.`,
+      );
+      return null;
+    }
+    const json = await res.json();
+    if (json?.settings) {
+      console.log("build-seo: prefetched business settings for SSR.");
+      return json.settings;
+    }
+    return null;
+  } catch (e) {
+    console.warn(
+      `build-seo: could not prefetch business-settings from ${url} (${e?.message || e}); falling back to bundled defaults.`,
+    );
+    return null;
+  }
+}
+
 // Best-effort SSR seed for live promos. Falls back to [] if the API is
 // unreachable at build time — the client still fetches on mount.
 // Override URL via SSR_PROMOS_URL or PROMOS_API_URL.
@@ -258,18 +291,33 @@ async function main() {
     process.exit(1);
   }
   const baseHtml = await readFile(path.join(DIST_DIR, "index.html"), "utf8");
-  const [{ all, sitemap }, render, legacy, promotions] = await Promise.all([
+  const [{ all, sitemap }, render, legacy, promotions, business] = await Promise.all([
     loadRoutes(),
     loadRender(),
     loadLegacyRedirects(),
     loadInitialPromotions(),
+    loadInitialBusinessSettings(),
   ]);
-  // Only "/" embeds the promo banner; other routes get no SSR seed.
-  const ssrData = { promotions };
+  // Inject the business-settings seed into <head> as a window global so the
+  // client BusinessProvider can pick it up on first paint without an extra
+  // fetch on slow connections. Promotions are still scoped to "/" only since
+  // the banner is home-page-only.
+  const businessScript = business
+    ? `<script>window.__SSR_BUSINESS__=${JSON.stringify(business).replace(
+        /</g,
+        "\\u003c",
+      )};</script>`
+    : "";
+  const baseHtmlWithSeed = businessScript
+    ? baseHtml.replace("</head>", `${businessScript}\n</head>`)
+    : baseHtml;
   console.log(`build-seo: pre-rendering ${all.length} routes…`);
   for (const route of all) {
-    const routeSsr = route.path === "/" ? ssrData : {};
-    await writeRouteHtml(route, baseHtml, render, routeSsr);
+    const routeSsr =
+      route.path === "/"
+        ? { promotions, business }
+        : { business };
+    await writeRouteHtml(route, baseHtmlWithSeed, render, routeSsr);
   }
   const legacyEntries = Object.entries(legacy);
   for (const [from, to] of legacyEntries) {

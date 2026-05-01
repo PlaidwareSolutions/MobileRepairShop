@@ -21,6 +21,7 @@ import {
 } from "@/components/SEO";
 import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { BUSINESS, SHIPPING } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 const PAGE_TITLE = "Mail-In Phone & Laptop Repair | Gadget X Houston, TX";
 const PAGE_DESC =
@@ -86,6 +87,7 @@ const FAQS = [
 ];
 
 export default function MailInRepairPage() {
+  const business = useBusiness();
   const path = SHIPPING.mailInSlug;
   return (
     <PageShell hideTicker>
@@ -94,11 +96,12 @@ export default function MailInRepairPage() {
         description={PAGE_DESC}
         path={path}
         jsonLd={[
-          localBusinessJsonLd(),
+          localBusinessJsonLd(business),
           serviceJsonLd(
             "Mail-In Device Repair",
             PAGE_DESC,
             path,
+            business,
           ),
           faqJsonLd(FAQS),
           breadcrumbJsonLd([{ name: "Mail-In Repair", path }]),
@@ -186,30 +189,30 @@ export default function MailInRepairPage() {
                   <br />
                   Attn: Mail-In Repair
                   <br />
-                  {BUSINESS.addressLine1}
+                  {business.addressLine1}
                   <br />
-                  {BUSINESS.addressLine2}
+                  {business.addressLine2}
                 </address>
                 <div className="pt-4 border-t border-zinc-800 grid gap-3 text-xs">
                   <div className="flex items-start gap-3">
                     <Phone className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
                     <a
-                      href={BUSINESS.phoneTel}
+                      href={business.phoneTel}
                       className="font-semibold uppercase tracking-wide text-zinc-300 hover:text-red-500 transition-colors"
                     >
-                      {BUSINESS.phoneDisplay}
+                      {business.phoneDisplay}
                     </a>
                   </div>
                   <div className="flex items-start gap-3">
                     <Clock className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
                     <span className="font-semibold uppercase tracking-wide text-zinc-300">
-                      Boxes received {BUSINESS.hoursShort}
+                      Boxes received {business.hoursShort}
                     </span>
                   </div>
                   <div className="flex items-start gap-3">
                     <MapPin className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
                     <a
-                      href={BUSINESS.mapsLink}
+                      href={business.mapsLink}
                       target="_blank"
                       rel="noreferrer"
                       className="font-semibold uppercase tracking-wide text-zinc-300 hover:text-red-500 transition-colors"
@@ -358,14 +361,14 @@ export default function MailInRepairPage() {
                 Prefer to talk first?
               </div>
               <a
-                href={BUSINESS.phoneTel}
+                href={business.phoneTel}
                 className="font-bold uppercase text-2xl tracking-tight hover:text-red-500 transition-colors block"
               >
                 <Phone className="w-5 h-5 inline mr-2 text-red-500" />
-                {BUSINESS.phoneDisplay}
+                {business.phoneDisplay}
               </a>
               <div className="text-xs font-bold text-zinc-500 mt-2 uppercase tracking-wide">
-                {BUSINESS.hoursShort}
+                {business.hoursShort}
               </div>
             </div>
           </div>

@@ -6,6 +6,7 @@ import { LocationCard } from "@/components/LocationCard";
 import { SEO, localBusinessJsonLd, breadcrumbJsonLd } from "@/components/SEO";
 import { Button } from "@/components/ui/button";
 import { BUSINESS } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 const VALUES = [
   "Honest quotes — no surprises at pickup",
@@ -16,13 +17,14 @@ const VALUES = [
 ];
 
 export default function AboutPage() {
+  const business = useBusiness();
   return (
     <PageShell hideTicker>
       <SEO
         title="About GadgetX Repairs | 15 Years in Houston TX"
         description="About GadgetX Repairs in Houston TX — 15 years of honest repair, sales and prepaid service from our Almeda Rd shop. Walk-ins welcome!"
         path="/about"
-        jsonLd={[localBusinessJsonLd(), breadcrumbJsonLd([{ name: "About", path: "/about" }])]}
+        jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "About", path: "/about" }])]}
       />
       <Breadcrumbs items={[{ label: "About" }]} />
 
@@ -33,7 +35,7 @@ export default function AboutPage() {
           </h1>
           <p className="text-xl font-bold text-zinc-700 mb-6">
             Gadget X Repairs has been fixing phones, tablets, laptops and gaming consoles for Houston since 2010.
-            From our shop at {BUSINESS.addressFull}, we serve walk-in customers six days a week.
+            From our shop at {business.addressFull}, we serve walk-in customers six days a week.
           </p>
           <p className="text-lg font-bold text-zinc-600 mb-6">
             We started small — one bench, one technician — and grew because of one simple promise: tell people honestly
@@ -58,7 +60,7 @@ export default function AboutPage() {
 
           <div className="flex flex-wrap gap-3">
             <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
-              <a href={BUSINESS.phoneTel}>Call (346) 623-6898</a>
+              <a href={business.phoneTel}>Call {business.phoneDisplay}</a>
             </Button>
             <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
               <Link href="/reviews-houston-tx">Read Reviews</Link>

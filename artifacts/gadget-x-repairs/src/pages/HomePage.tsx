@@ -27,6 +27,7 @@ import { PromoCampaignBanner } from "@/components/PromoCampaignBanner";
 import { LocationCard } from "@/components/LocationCard";
 import { RepairQuoteWizard } from "@/components/forms/RepairQuoteWizard";
 import { SEO, localBusinessJsonLd } from "@/components/SEO";
+import { useBusiness } from "@/components/BusinessContext";
 import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { BeforeAfter, type BeforeAfterPair } from "@/components/BeforeAfter";
 import { BUSINESS, HERO, SHIPPING, FINANCING } from "@/content";
@@ -210,6 +211,7 @@ const AREA_TILES = [
 ];
 
 export default function HomePage() {
+  const business = useBusiness();
   const [ctaCall, ctaQuote, ctaDirections] = HERO.ctas;
 
   return (
@@ -218,7 +220,7 @@ export default function HomePage() {
         title="Best Phone Repair Houston TX | GadgetX Repairs"
         description="Top-rated phone repair in Houston TX. Fast fixes for screens, batteries & charging ports. Walk-ins welcome. Free quote at GadgetX Repairs today!"
         path="/phone-repair-houston-tx"
-        jsonLd={localBusinessJsonLd()}
+        jsonLd={localBusinessJsonLd(business)}
       />
 
       {/* Owner-managed campaign banner driven by /admin/promotions. */}
@@ -341,13 +343,13 @@ export default function HomePage() {
                 <div className="flex items-start gap-3">
                   <MapPin className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
                   <div>
-                    <div className="font-semibold uppercase tracking-wide text-zinc-300">{BUSINESS.addressLine1}</div>
-                    <div className="font-bold text-zinc-500">{BUSINESS.addressLine2}</div>
+                    <div className="font-semibold uppercase tracking-wide text-zinc-300">{business.addressLine1}</div>
+                    <div className="font-bold text-zinc-500">{business.addressLine2}</div>
                   </div>
                 </div>
                 <div className="flex items-start gap-3">
                   <Clock className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
-                  <div className="font-semibold uppercase tracking-wide text-zinc-300">{BUSINESS.hoursShort}</div>
+                  <div className="font-semibold uppercase tracking-wide text-zinc-300">{business.hoursShort}</div>
                 </div>
               </div>
             </div>
@@ -633,11 +635,11 @@ export default function HomePage() {
             </ul>
             <div className="hidden lg:block bg-zinc-900 text-white p-6 shadow-md">
               <div className="font-semibold uppercase tracking-wide text-xs text-zinc-500 mb-2">Prefer to call?</div>
-              <a href={BUSINESS.phoneTel} className="font-bold uppercase text-2xl tracking-tight hover:text-red-500 transition-colors block">
+              <a href={business.phoneTel} className="font-bold uppercase text-2xl tracking-tight hover:text-red-500 transition-colors block">
                 <Phone className="w-5 h-5 inline mr-2 text-red-500" />
-                {BUSINESS.phoneDisplay}
+                {business.phoneDisplay}
               </a>
-              <div className="text-xs font-bold text-zinc-500 mt-2 uppercase tracking-wide">{BUSINESS.hoursShort}</div>
+              <div className="text-xs font-bold text-zinc-500 mt-2 uppercase tracking-wide">{business.hoursShort}</div>
             </div>
           </div>
           <div className="lg:col-span-7">

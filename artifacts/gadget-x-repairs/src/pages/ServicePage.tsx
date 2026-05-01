@@ -7,6 +7,7 @@ import { Faq } from "@/components/Faq";
 import { RelatedLinks } from "@/components/RelatedLinks";
 import { LocationCard } from "@/components/LocationCard";
 import { SEO, localBusinessJsonLd, serviceJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/components/SEO";
+import { useBusiness } from "@/components/BusinessContext";
 import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
 import { ContactForm } from "@/components/forms/ContactForm";
@@ -73,6 +74,7 @@ function getRepairParentHub(slug: string): { name: string; path: string } | null
 }
 
 export default function ServicePage() {
+  const business = useBusiness();
   const [, params] = useRoute<{ slug: string }>("/:slug");
   const slug = params?.slug ?? "";
   const data = SERVICES_BY_SLUG[slug];
@@ -105,10 +107,10 @@ export default function ServicePage() {
         description={data.metaDescription}
         path={path}
         jsonLd={[
-          localBusinessJsonLd(),
+          localBusinessJsonLd(business),
           ...(isHub && hubChildren.length > 0
             ? [itemListJsonLd(data.title, hubChildren.map((c) => ({ name: c.title, path: `/${c.slug}` })))]
-            : [serviceJsonLd(data.title, data.metaDescription, path)]),
+            : [serviceJsonLd(data.title, data.metaDescription, path, business)]),
           faqJsonLd(data.faqs),
           breadcrumbJsonLd(jsonLdBreadcrumb),
         ]}

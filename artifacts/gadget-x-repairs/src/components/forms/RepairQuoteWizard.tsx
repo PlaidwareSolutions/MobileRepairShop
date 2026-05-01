@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { submitRepairQuote } from "@/lib/api";
 import { BUSINESS } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 import { useTurnstile, TURNSTILE_CLIENT_ERROR } from "./Turnstile";
 
 type WizardStep = 1 | 2 | 3 | 4;
@@ -49,6 +50,7 @@ const ISSUE_OPTIONS = [
 ];
 
 export function RepairQuoteWizard() {
+  const business = useBusiness();
   const [step, setStep] = useState<WizardStep>(1);
   const [device, setDevice] = useState("");
   const [model, setModel] = useState("");
@@ -115,7 +117,7 @@ export function RepairQuoteWizard() {
 
   function openWhatsappFallback() {
     const text = `Hi, I need a quote for a ${device}${model ? ` (${model})` : ""}. Issue: ${issue}. Name: ${name}.`;
-    const url = `${BUSINESS.whatsapp}?text=${encodeURIComponent(text)}`;
+    const url = `${business.whatsappHref}?text=${encodeURIComponent(text)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
@@ -133,8 +135,8 @@ export function RepairQuoteWizard() {
             <h3 className="text-3xl font-extrabold tracking-tight mb-2">Got it.</h3>
             <p className="font-bold text-zinc-700">
               We&apos;ll text or call you back today with a firm quote. For the fastest response, call{" "}
-              <a className="text-red-600 underline" href={BUSINESS.phoneTel}>
-                {BUSINESS.phoneDisplay}
+              <a className="text-red-600 underline" href={business.phoneTel}>
+                {business.phoneDisplay}
               </a>
               .
             </p>

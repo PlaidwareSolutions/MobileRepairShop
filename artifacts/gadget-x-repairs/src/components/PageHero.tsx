@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 import { Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { BUSINESS } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 
 export function PageHero({ eyebrow, h1, subhead, accentRight }: { eyebrow: string; h1: string; subhead: string; accentRight?: ReactNode }) {
+  const business = useBusiness();
   return (
     <section className="relative overflow-hidden py-16 md:py-24 px-4 border-b border-zinc-200">
       <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: "radial-gradient(#ef4444 1px, transparent 1px)", backgroundSize: "32px 32px" }}></div>
@@ -23,13 +24,13 @@ export function PageHero({ eyebrow, h1, subhead, accentRight }: { eyebrow: strin
           <p className="text-lg md:text-xl font-medium text-zinc-600 max-w-2xl">{subhead}</p>
           <div className="flex flex-wrap gap-3 pt-2">
             <Button asChild className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-sm h-12 px-6 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-lg">
-              <a href={BUSINESS.phoneTel}>Call (346) 623-6898</a>
+              <a href={business.phoneTel}>Call {business.phoneDisplay}</a>
             </Button>
             <Button asChild className="bg-zinc-900 hover:bg-zinc-800 text-white font-semibold uppercase tracking-wide text-sm h-12 px-6 shadow-sm hover:shadow-md transition-all">
-              <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">Text For Quote</a>
+              <a href={business.whatsappHref} target="_blank" rel="noreferrer">Text For Quote</a>
             </Button>
             <Button asChild variant="outline" className="border border-zinc-300 bg-white hover:bg-zinc-50 text-zinc-900 font-semibold uppercase tracking-wide text-sm h-12 px-6">
-              <a href={BUSINESS.mapsLink} target="_blank" rel="noreferrer">Directions</a>
+              <a href={business.mapsLink} target="_blank" rel="noreferrer">Directions</a>
             </Button>
           </div>
         </div>

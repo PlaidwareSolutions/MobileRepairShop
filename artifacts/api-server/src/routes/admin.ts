@@ -22,7 +22,13 @@ import {
   promotionsTable,
   PROMOTION_RECURRENCE_VALUES,
   PROMOTION_ACCENT_VALUES,
+  updateBusinessSettingsSchema,
 } from "@workspace/db";
+import {
+  getBusinessSettings,
+  updateBusinessSettings,
+  serializePublicBusinessSettings,
+} from "../lib/businessSettings";
 import { ObjectStorageService } from "../lib/objectStorage";
 import { serializeAdminInventoryItem } from "../lib/inventoryMapper";
 import { serializeAdminPromotion } from "../lib/promotionsMapper";
@@ -1367,6 +1373,45 @@ router.post(
       res.json({ ok: true, count: body.ids.length });
     } catch (err) {
       if (handleZod(err, res)) return;
+      next(err as Error);
+    }
+  },
+);
+
+// --- business settings (single-row config: phone / address / hours) ---
+//
+// GET returns the current settings serialized identically to the public
+// endpoint so the admin form can use the same shape as every other page.
+// PATCH validates against the partial update schema and returns the freshly
+// re-serialized row, so the admin UI updates immediately without a re-fetch.
+
+router.get(
+  "/business-settings",
+  async (_req: Request, res: Response, next: NextFunction) => {
+    try {
+      const row = await getBusinessSettings();
+      res.json({ settings: serializePublicBusinessSettings(row) });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
+
+router.patch(
+  "/business-settings",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const parsed = updateBusinessSettingsSchema.safeParse(req.body);
+      if (!parsed.success) {
+        res.status(400).json({
+          error: "Invalid settings",
+          issues: parsed.error.issues,
+        });
+        return;
+      }
+      const row = await updateBusinessSettings(parsed.data);
+      res.json({ settings: serializePublicBusinessSettings(row) });
+    } catch (err) {
       next(err as Error);
     }
   },

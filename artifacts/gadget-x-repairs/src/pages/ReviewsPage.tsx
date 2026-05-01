@@ -3,9 +3,11 @@ import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { LocationCard } from "@/components/LocationCard";
 import { SEO, localBusinessJsonLd, breadcrumbJsonLd } from "@/components/SEO";
+import { useBusiness } from "@/components/BusinessContext";
 import { REVIEWS_DATA } from "@/data/reviews";
 
 export default function ReviewsPage() {
+  const business = useBusiness();
   const avg = REVIEWS_DATA.reduce((s, r) => s + r.rating, 0) / REVIEWS_DATA.length;
   return (
     <PageShell hideTicker>
@@ -14,10 +16,10 @@ export default function ReviewsPage() {
         description="See what customers say about GadgetX Repairs in Houston TX. Real reviews from satisfied clients. Trusted phone & device repair specialists!"
         path="/reviews-houston-tx"
         jsonLd={[
-          localBusinessJsonLd(),
+          localBusinessJsonLd(business),
           breadcrumbJsonLd([{ name: "Reviews", path: "/reviews-houston-tx" }]),
           {
-            ...localBusinessJsonLd(),
+            ...localBusinessJsonLd(business),
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: avg.toFixed(1),

@@ -8,9 +8,11 @@ import { SEO, articleJsonLd, breadcrumbJsonLd, localBusinessJsonLd } from "@/com
 import { Button } from "@/components/ui/button";
 import { ARTICLES_BY_SLUG } from "@/data/articles";
 import { BUSINESS } from "@/content";
+import { useBusiness } from "@/components/BusinessContext";
 import NotFound from "@/pages/not-found";
 
 export default function ArticlePage() {
+  const business = useBusiness();
   const [, params] = useRoute<{ slug: string }>("/articles/:slug");
   const slug = params?.slug ?? "";
   const data = ARTICLES_BY_SLUG[slug];
@@ -25,7 +27,7 @@ export default function ArticlePage() {
         path={path}
         type="article"
         jsonLd={[
-          localBusinessJsonLd(),
+          localBusinessJsonLd(business),
           articleJsonLd({ title: data.title, description: data.metaDescription, path, published: data.publishedDate, updated: data.updatedDate }),
           breadcrumbJsonLd([{ name: "Articles", path: "/phone-repair-houston-tx" }, { name: data.title, path }]),
         ]}
@@ -60,10 +62,10 @@ export default function ArticlePage() {
               <div className="font-bold uppercase text-xl md:text-2xl mb-3">{data.cta}</div>
               <div className="flex flex-wrap gap-3 mt-4">
                 <Button asChild className="bg-white text-zinc-900 hover:bg-red-500 font-semibold uppercase tracking-wide h-12 px-6">
-                  <a href={BUSINESS.phoneTel}>Call (346) 623-6898</a>
+                  <a href={business.phoneTel}>Call {business.phoneDisplay}</a>
                 </Button>
                 <Button asChild variant="outline" className="border border-zinc-200 hover:bg-white hover:text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
-                  <a href={BUSINESS.whatsapp} target="_blank" rel="noreferrer">WhatsApp</a>
+                  <a href={business.whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
                 </Button>
               </div>
             </div>

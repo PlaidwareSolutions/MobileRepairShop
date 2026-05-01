@@ -1,16 +1,21 @@
 import { Link } from "wouter";
 
-const TABS: { to: string; label: string; testId: string }[] = [
-  { to: "/admin/leads", label: "Leads", testId: "admin-nav-leads" },
-  { to: "/admin/inventory", label: "Inventory", testId: "admin-nav-inventory" },
-  { to: "/admin/promotions", label: "Promotions", testId: "admin-nav-promotions" },
+const TABS: { to: string; label: string; testId: string; key: string }[] = [
+  { to: "/admin/leads", label: "Leads", testId: "admin-nav-leads", key: "leads" },
+  { to: "/admin/inventory", label: "Inventory", testId: "admin-nav-inventory", key: "inventory" },
+  { to: "/admin/promotions", label: "Promotions", testId: "admin-nav-promotions", key: "promotions" },
+  { to: "/admin/business-settings", label: "Business Info", testId: "admin-nav-business-settings", key: "business-settings" },
 ];
 
-export function AdminNav({ active }: { active: "leads" | "inventory" | "promotions" }) {
+export function AdminNav({
+  active,
+}: {
+  active: "leads" | "inventory" | "promotions" | "business-settings";
+}) {
   return (
     <nav className="flex flex-wrap gap-2 mb-6" aria-label="Admin sections">
       {TABS.map((t) => {
-        const isActive = active === t.to.replace("/admin/", "");
+        const isActive = active === t.key;
         return (
           <Link
             key={t.to}
