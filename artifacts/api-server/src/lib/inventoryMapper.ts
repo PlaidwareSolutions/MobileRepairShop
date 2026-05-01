@@ -7,12 +7,17 @@ const AVAILABILITY_LABEL: Record<string, string> = {
   hidden: "Hidden",
 };
 
+function centsToDollarsDisplay(cents: number): string {
+  const dollars = cents / 100;
+  return dollars % 1 === 0 ? `$${dollars}` : `$${dollars.toFixed(2)}`;
+}
+
 /**
  * Serialize a DB inventory row into the shape consumed by the public Inventory page
  * (matches the existing API contract: omit empty optional fields).
  */
 export function serializeInventoryItem(row: InventoryItemRow) {
-  const out: Record<string, string> = {
+  const out: Record<string, unknown> = {
     id: row.id,
     category: row.category,
     brand: row.brand,
@@ -26,7 +31,12 @@ export function serializeInventoryItem(row: InventoryItemRow) {
   if (row.warranty) out.warranty = row.warranty;
   if (row.availability) out.availability = AVAILABILITY_LABEL[row.availability] ?? row.availability;
   if (row.imageUrl) out.imageUrl = row.imageUrl;
+  if (row.imageUrl2) out.imageUrl2 = row.imageUrl2;
+  if (row.imageUrl3) out.imageUrl3 = row.imageUrl3;
   if (row.description) out.description = row.description;
+  out.financingEnabled = row.financingEnabled;
+  out.financingDownPaymentCents = row.financingDownPaymentCents;
+  out.financingDownPaymentDisplay = centsToDollarsDisplay(row.financingDownPaymentCents);
   return out;
 }
 
@@ -48,6 +58,10 @@ export function serializeAdminInventoryItem(row: InventoryItemRow) {
     priceDisplay: row.priceDisplay,
     availability: row.availability,
     imageUrl: row.imageUrl,
+    imageUrl2: row.imageUrl2,
+    imageUrl3: row.imageUrl3,
+    financingEnabled: row.financingEnabled,
+    financingDownPaymentCents: row.financingDownPaymentCents,
     description: row.description,
     sortOrder: Number(row.sortOrder),
     createdAt: row.createdAt.toISOString(),

@@ -210,6 +210,10 @@ export type AdminInventoryItem = {
   priceDisplay: string;
   availability: "in_stock" | "on_hold" | "sold" | "hidden";
   imageUrl: string | null;
+  imageUrl2: string | null;
+  imageUrl3: string | null;
+  financingEnabled: boolean;
+  financingDownPaymentCents: number;
   description: string | null;
   sortOrder: number;
   createdAt: string;
@@ -230,6 +234,10 @@ export type InventoryWriteInput = {
   priceDisplay: string;
   availability: AdminInventoryItem["availability"];
   imageUrl?: string | null;
+  imageUrl2?: string | null;
+  imageUrl3?: string | null;
+  financingEnabled?: boolean;
+  financingDownPaymentCents?: number;
   description?: string | null;
   sortOrder?: number;
 };

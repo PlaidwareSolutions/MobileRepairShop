@@ -4,6 +4,7 @@ import {
   timestamp,
   integer,
   numeric,
+  boolean,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod/v4";
@@ -30,6 +31,10 @@ export const inventoryItemsTable = pgTable("inventory_items", {
   priceDisplay: text("price_display").notNull(),
   availability: text("availability").notNull().default("in_stock"),
   imageUrl: text("image_url"),
+  imageUrl2: text("image_url_2"),
+  imageUrl3: text("image_url_3"),
+  financingEnabled: boolean("financing_enabled").notNull().default(true),
+  financingDownPaymentCents: integer("financing_down_payment_cents").notNull().default(8000),
   description: text("description"),
   sortOrder: numeric("sort_order", { precision: 10, scale: 2 })
     .notNull()

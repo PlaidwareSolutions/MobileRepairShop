@@ -11,6 +11,11 @@ export type InventoryItem = {
   warranty?: string;
   availability?: string;
   imageUrl?: string;
+  imageUrl2?: string;
+  imageUrl3?: string;
+  financingEnabled?: boolean;
+  financingDownPaymentCents?: number;
+  financingDownPaymentDisplay?: string;
   description?: string;
 };
 

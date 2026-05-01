@@ -1,5 +1,5 @@
-import { useEffect, useMemo, useState } from "react";
-import { Phone, Wrench, ArrowRight } from "lucide-react";
+import { useEffect, useMemo, useState, useCallback } from "react";
+import { Phone, Wrench, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { Link, useLocation, useRoute, useSearch } from "wouter";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -15,7 +15,6 @@ import {
   OTHER_GROUP,
   inventoryGroupBySlug,
   inventoryServiceHubForGroupSlug,
-  isPhoneCategory,
   type InventoryGroup,
 } from "@/lib/inventoryGroups";
 import { BUSINESS, FINANCING } from "@/content";
@@ -299,18 +298,12 @@ export default function InventoryPage() {
           )}
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {visible.map((it) => (
+            {visible.map((it) => {
+              const images = [it.imageUrl, it.imageUrl2, it.imageUrl3].filter((u): u is string => !!u);
+              return (
               <article key={it.id} className="bg-white border border-zinc-200 p-5 flex flex-col gap-3 hover:border-red-500 transition-colors" data-testid={`inventory-${it.id}`}>
-                {it.imageUrl && (
-                  <div className="-mx-5 -mt-5 mb-1 aspect-[4/3] bg-zinc-100 overflow-hidden border-b border-zinc-200">
-                    <img
-                      src={it.imageUrl}
-                      alt={`${it.brand} ${it.model}`}
-                      loading="lazy"
-                      className="w-full h-full object-cover"
-                      data-testid={`inventory-image-${it.id}`}
-                    />
-                  </div>
+                {images.length > 0 && (
+                  <ItemImageCarousel images={images} alt={`${it.brand} ${it.model}`} itemId={it.id} />
                 )}
                 <div className="flex items-center justify-between gap-2">
                   <div className="text-zinc-500 font-bold uppercase text-xs tracking-wide">{it.category}</div>
@@ -334,14 +327,14 @@ export default function InventoryPage() {
                 <div className="mt-auto pt-3 border-t border-zinc-300 flex flex-col gap-3">
                   <div className="flex items-center gap-2 flex-wrap">
                     <div className="font-bold uppercase text-2xl text-red-500">{it.price}</div>
-                    {isPhoneCategory(it.category) && (
+                    {it.financingEnabled && (
                       <Link
                         href={FINANCING.pagePath}
                         className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors"
                         data-testid={`financing-pill-${it.id}`}
-                        aria-label={`${FINANCING.pillLabel} — learn more`}
+                        aria-label={`Financing from ${it.financingDownPaymentDisplay ?? "$80"} down — learn more`}
                       >
-                        {FINANCING.pillLabel}
+                        Financing from {it.financingDownPaymentDisplay ?? "$80"} down
                       </Link>
                     )}
                   </div>
@@ -357,7 +350,8 @@ export default function InventoryPage() {
                   </div>
                 </div>
               </article>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
@@ -425,5 +419,51 @@ export default function InventoryPage() {
 
       <LocationCard />
     </PageShell>
+  );
+}
+
+function ItemImageCarousel({ images, alt, itemId }: { images: string[]; alt: string; itemId: string }) {
+  const [idx, setIdx] = useState(0);
+  const prev = useCallback(() => setIdx((i) => (i - 1 + images.length) % images.length), [images.length]);
+  const next = useCallback(() => setIdx((i) => (i + 1) % images.length), [images.length]);
+  const current = images[Math.min(idx, images.length - 1)];
+  return (
+    <div className="-mx-5 -mt-5 mb-1 aspect-[4/3] bg-zinc-100 overflow-hidden border-b border-zinc-200 relative group">
+      <img
+        src={current}
+        alt={alt}
+        loading="lazy"
+        className="w-full h-full object-cover"
+        data-testid={`inventory-image-${itemId}`}
+      />
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prev}
+            className="absolute left-1.5 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+            aria-label="Previous photo"
+          >
+            <ChevronLeft className="w-4 h-4" />
+          </button>
+          <button
+            onClick={next}
+            className="absolute right-1.5 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+            aria-label="Next photo"
+          >
+            <ChevronRight className="w-4 h-4" />
+          </button>
+          <div className="absolute bottom-1.5 left-0 right-0 flex justify-center gap-1">
+            {images.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setIdx(i)}
+                className={`w-1.5 h-1.5 rounded-full transition-colors ${i === idx ? "bg-white" : "bg-white/50"}`}
+                aria-label={`Photo ${i + 1}`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
   );
 }

@@ -80,6 +80,24 @@ export class ObjectStorageService {
   }
 
   /**
+   * Delete a publicly-stored object by its relative path (e.g. "inventory/<uuid>").
+   * Searches across all configured public search paths. No-ops silently if not found.
+   */
+  async deletePublicObject(relativePath: string): Promise<void> {
+    for (const searchPath of this.getPublicObjectSearchPaths()) {
+      const fullPath = `${searchPath}/${relativePath}`;
+      const { bucketName, objectName } = parseObjectPath(fullPath);
+      const bucket = objectStorageClient.bucket(bucketName);
+      const file = bucket.file(objectName);
+      const [exists] = await file.exists();
+      if (exists) {
+        await file.delete();
+        return;
+      }
+    }
+  }
+
+  /**
    * Generate a presigned PUT URL for a brand-new public object.
    * The object is placed under `<publicSearchPath>/<subdir>/<uuid>` so the existing
    * `/api/storage/public-objects/:path` route can serve it without any auth.

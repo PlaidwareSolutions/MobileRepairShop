@@ -530,6 +530,10 @@ const InventoryCreateSchema = z.object({
   priceDisplay: z.string().min(1).max(40),
   availability: z.enum(AVAILABILITY_VALUES).default("in_stock"),
   imageUrl: z.string().max(500).optional().nullable(),
+  imageUrl2: z.string().max(500).optional().nullable(),
+  imageUrl3: z.string().max(500).optional().nullable(),
+  financingEnabled: z.boolean().optional().default(true),
+  financingDownPaymentCents: z.number().int().min(0).max(100_000_00).optional().default(8000),
   description: z.string().max(4000).optional().nullable(),
   sortOrder: z.number().finite().optional(),
 });
@@ -637,6 +641,10 @@ router.post("/inventory", async (req: Request, res: Response, next: NextFunction
           priceDisplay: body.priceDisplay,
           availability: body.availability,
           imageUrl: body.imageUrl ?? null,
+          imageUrl2: body.imageUrl2 ?? null,
+          imageUrl3: body.imageUrl3 ?? null,
+          financingEnabled: body.financingEnabled ?? true,
+          financingDownPaymentCents: body.financingDownPaymentCents ?? 8000,
           description: body.description ?? null,
           sortOrder: String(sortOrder),
         })
@@ -676,6 +684,10 @@ router.patch("/inventory/:id", async (req: Request, res: Response, next: NextFun
     if (body.priceDisplay !== undefined) updates.priceDisplay = body.priceDisplay;
     if (body.availability !== undefined) updates.availability = body.availability;
     if (body.imageUrl !== undefined) updates.imageUrl = body.imageUrl ?? null;
+    if (body.imageUrl2 !== undefined) updates.imageUrl2 = body.imageUrl2 ?? null;
+    if (body.imageUrl3 !== undefined) updates.imageUrl3 = body.imageUrl3 ?? null;
+    if (body.financingEnabled !== undefined) updates.financingEnabled = body.financingEnabled;
+    if (body.financingDownPaymentCents !== undefined) updates.financingDownPaymentCents = body.financingDownPaymentCents;
     if (body.description !== undefined) updates.description = body.description ?? null;
     if (body.sortOrder !== undefined) updates.sortOrder = String(body.sortOrder);
 
@@ -695,9 +707,23 @@ router.patch("/inventory/:id", async (req: Request, res: Response, next: NextFun
   }
 });
 
+const STORAGE_SERVING_PREFIX = "/api/storage/public-objects/";
+
 router.delete("/inventory/:id", async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = String(req.params.id);
+
+    // Fetch the item first so we can purge its uploaded images after deletion.
+    const [existing] = await db
+      .select()
+      .from(inventoryItemsTable)
+      .where(eq(inventoryItemsTable.id, id))
+      .limit(1);
+    if (!existing) {
+      res.status(404).json({ error: "Item not found" });
+      return;
+    }
+
     const [deleted] = await db
       .delete(inventoryItemsTable)
       .where(eq(inventoryItemsTable.id, id))
@@ -706,6 +732,18 @@ router.delete("/inventory/:id", async (req: Request, res: Response, next: NextFu
       res.status(404).json({ error: "Item not found" });
       return;
     }
+
+    // Purge any images that were uploaded to object storage (best-effort; don't fail the response).
+    const imageUrls = [existing.imageUrl, existing.imageUrl2, existing.imageUrl3].filter(
+      (u): u is string => typeof u === "string" && u.startsWith(STORAGE_SERVING_PREFIX),
+    );
+    for (const url of imageUrls) {
+      const relativePath = url.slice(STORAGE_SERVING_PREFIX.length);
+      objectStorageService.deletePublicObject(relativePath).catch((err) => {
+        console.warn(`[inventory delete] failed to purge image ${relativePath}:`, err);
+      });
+    }
+
     res.json({ ok: true, id: deleted.id });
   } catch (err) {
     next(err as Error);

@@ -46,6 +46,10 @@ type FormState = {
   priceCents: string;
   availability: AdminInventoryItem["availability"];
   imageUrl: string;
+  imageUrl2: string;
+  imageUrl3: string;
+  financingEnabled: boolean;
+  financingDownPaymentCents: string;
   description: string;
 };
 
@@ -63,6 +67,10 @@ const EMPTY_FORM: FormState = {
   priceCents: "",
   availability: "in_stock",
   imageUrl: "",
+  imageUrl2: "",
+  imageUrl3: "",
+  financingEnabled: true,
+  financingDownPaymentCents: "80",
   description: "",
 };
 
@@ -91,12 +99,17 @@ function rowToForm(item: AdminInventoryItem): FormState {
     priceCents: centsToDollarsString(item.priceCents),
     availability: item.availability,
     imageUrl: item.imageUrl ?? "",
+    imageUrl2: item.imageUrl2 ?? "",
+    imageUrl3: item.imageUrl3 ?? "",
+    financingEnabled: item.financingEnabled,
+    financingDownPaymentCents: centsToDollarsString(item.financingDownPaymentCents),
     description: item.description ?? "",
   };
 }
 
 function formToInput(form: FormState, includeId: boolean): InventoryWriteInput {
   const priceCents = dollarsToCents(form.priceCents || form.priceDisplay);
+  const financingDownPaymentCents = dollarsToCents(form.financingDownPaymentCents || "80");
   const trimOrNull = (v: string) => {
     const t = v.trim();
     return t.length === 0 ? null : t;
@@ -114,6 +127,10 @@ function formToInput(form: FormState, includeId: boolean): InventoryWriteInput {
     priceDisplay: form.priceDisplay.trim() || `$${centsToDollarsString(priceCents)}`,
     availability: form.availability,
     imageUrl: trimOrNull(form.imageUrl),
+    imageUrl2: trimOrNull(form.imageUrl2),
+    imageUrl3: trimOrNull(form.imageUrl3),
+    financingEnabled: form.financingEnabled,
+    financingDownPaymentCents: financingDownPaymentCents || 8000,
     description: trimOrNull(form.description),
   };
   if (includeId && form.id.trim()) data.id = form.id.trim();
@@ -131,7 +148,7 @@ export default function AdminInventoryPage() {
   const [creating, setCreating] = useState(false);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [submitting, setSubmitting] = useState(false);
-  const [uploading, setUploading] = useState(false);
+  const [uploading, setUploading] = useState<number | null>(null);
 
   async function load(pw: string) {
     setError(null);
@@ -174,16 +191,17 @@ export default function AdminInventoryPage() {
     setForm(EMPTY_FORM);
   }
 
-  async function onUpload(file: File) {
-    setUploading(true);
+  async function onUpload(file: File, slot: 1 | 2 | 3) {
+    setUploading(slot);
     setError(null);
     try {
       const url = await adminUploadImage(password, file);
-      setForm((f) => ({ ...f, imageUrl: url }));
+      const key = slot === 1 ? "imageUrl" : slot === 2 ? "imageUrl2" : "imageUrl3";
+      setForm((f) => ({ ...f, [key]: url }));
     } catch (e) {
       setError(e instanceof Error ? e.message : "Upload failed");
     } finally {
-      setUploading(false);
+      setUploading(null);
     }
   }
 
@@ -321,7 +339,7 @@ export default function AdminInventoryPage() {
                   setForm={setForm}
                   isEdit={!!editing}
                   categories={categories}
-                  uploading={uploading}
+                  uploadingSlot={uploading}
                   submitting={submitting}
                   onClose={closeForm}
                   onUpload={onUpload}
@@ -368,11 +386,16 @@ export default function AdminInventoryPage() {
                           </div>
                         </td>
                         <td className="px-3 py-2">
-                          {it.imageUrl ? (
-                            <img src={it.imageUrl} alt="" className="w-16 h-12 object-cover rounded-md border border-zinc-200" />
-                          ) : (
-                            <div className="w-16 h-12 bg-zinc-50 border border-zinc-200 rounded-md flex items-center justify-center text-[10px] text-zinc-500 uppercase tracking-wide">No img</div>
-                          )}
+                          <div className="flex gap-1">
+                            {[it.imageUrl, it.imageUrl2, it.imageUrl3].map((url, idx) =>
+                              url ? (
+                                <img key={idx} src={url} alt="" className="w-12 h-10 object-cover rounded border border-zinc-200 shrink-0" />
+                              ) : null
+                            )}
+                            {!it.imageUrl && !it.imageUrl2 && !it.imageUrl3 && (
+                              <div className="w-16 h-12 bg-zinc-50 border border-zinc-200 rounded-md flex items-center justify-center text-[10px] text-zinc-500 uppercase tracking-wide">No img</div>
+                            )}
+                          </div>
                         </td>
                         <td className="px-3 py-2">
                           <div className="font-semibold text-zinc-900 text-base">{it.brand} {it.model}</div>
@@ -427,13 +450,68 @@ export default function AdminInventoryPage() {
   );
 }
 
+function ImageSlot({
+  label,
+  url,
+  onUrl,
+  onUpload,
+  uploading,
+  testPrefix,
+}: {
+  label: string;
+  url: string;
+  onUrl: (v: string) => void;
+  onUpload: (f: File) => void;
+  uploading: boolean;
+  testPrefix: string;
+}) {
+  return (
+    <div className="space-y-1.5">
+      <Label className="font-semibold uppercase text-[10px] tracking-wide text-zinc-500">{label}</Label>
+      <div className="flex items-start gap-3">
+        {url ? (
+          <div className="relative shrink-0">
+            <img src={url} alt="" className="w-20 h-16 object-cover rounded border border-zinc-200" />
+            <button
+              type="button"
+              onClick={() => onUrl("")}
+              className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] leading-none font-bold hover:bg-red-600"
+              aria-label="Remove image"
+            >×</button>
+          </div>
+        ) : (
+          <div className="w-20 h-16 bg-zinc-50 border border-dashed border-zinc-300 rounded flex items-center justify-center text-[9px] text-zinc-400 uppercase tracking-wide shrink-0">Empty</div>
+        )}
+        <div className="flex-1 min-w-0">
+          <input
+            type="file"
+            accept="image/*"
+            onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); }}
+            disabled={uploading}
+            className="block w-full text-xs text-zinc-700 file:mr-2 file:py-1.5 file:px-2.5 file:rounded file:border-0 file:bg-red-500 file:text-white file:font-semibold file:uppercase file:text-[10px] file:tracking-wide hover:file:bg-red-600 disabled:opacity-50"
+            data-testid={`${testPrefix}-upload`}
+          />
+          <Input
+            value={url}
+            onChange={(e) => onUrl(e.target.value)}
+            placeholder="…or paste URL"
+            className="bg-white border border-zinc-200 focus:border-red-500 h-8 mt-1.5 text-xs"
+            data-testid={`${testPrefix}-url`}
+          />
+          {uploading && <div className="text-red-500 text-[10px] font-semibold uppercase tracking-wide mt-1">Uploading…</div>}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function InventoryFormCard({
   title,
   form,
   setForm,
   isEdit,
   categories,
-  uploading,
+  uploadingSlot,
   submitting,
   onClose,
   onUpload,
@@ -444,10 +522,10 @@ function InventoryFormCard({
   setForm: (updater: (prev: FormState) => FormState) => void;
   isEdit: boolean;
   categories: string[];
-  uploading: boolean;
+  uploadingSlot: number | null;
   submitting: boolean;
   onClose: () => void;
-  onUpload: (f: File) => void;
+  onUpload: (f: File, slot: 1 | 2 | 3) => void;
   onSubmit: (e: React.FormEvent) => void;
 }) {
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) => setForm((f) => ({ ...f, [k]: v }));
@@ -544,35 +622,69 @@ function InventoryFormCard({
         </select>
       </Field>
 
-      <div className="md:col-span-2 space-y-2">
-        <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">Image</Label>
-        <div className="flex items-center gap-3">
-          {form.imageUrl ? (
-            <img src={form.imageUrl} alt="" className="w-24 h-20 object-cover rounded-md border border-zinc-200" />
-          ) : (
-            <div className="w-24 h-20 bg-zinc-50 border border-zinc-200 rounded-md flex items-center justify-center text-[10px] text-zinc-500 uppercase tracking-wide">No image</div>
-          )}
-          <div className="flex-1">
-            <input
-              type="file"
-              accept="image/*"
-              onChange={(e) => {
-                const f = e.target.files?.[0];
-                if (f) onUpload(f);
-              }}
-              disabled={uploading}
-              className="block w-full text-xs text-zinc-700 file:mr-3 file:py-2 file:px-3 file:rounded-md file:border-0 file:bg-red-500 file:text-white file:font-semibold file:uppercase file:tracking-wide hover:file:bg-red-600"
-              data-testid="input-image-upload"
-            />
+      {/* ---- Financing ---- */}
+      <div className="md:col-span-2 bg-zinc-50 border border-zinc-200 rounded-lg p-4 space-y-3">
+        <div className="flex items-center justify-between">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">Financing</Label>
+          <label className="flex items-center gap-2 cursor-pointer select-none">
+            <span className="text-xs font-semibold uppercase tracking-wide text-zinc-600">
+              {form.financingEnabled ? "Enabled" : "Disabled"}
+            </span>
+            <button
+              type="button"
+              role="switch"
+              aria-checked={form.financingEnabled}
+              onClick={() => set("financingEnabled", !form.financingEnabled)}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 ${form.financingEnabled ? "bg-red-500" : "bg-zinc-300"}`}
+              data-testid="toggle-financing"
+            >
+              <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${form.financingEnabled ? "translate-x-6" : "translate-x-1"}`} />
+            </button>
+          </label>
+        </div>
+        {form.financingEnabled && (
+          <div className="flex items-center gap-3">
+            <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-600 shrink-0">Down payment ($)</Label>
             <Input
-              value={form.imageUrl}
-              onChange={(e) => set("imageUrl", e.target.value)}
-              placeholder="…or paste an image URL"
-              className="bg-white border border-zinc-200 focus:border-red-500 h-9 mt-2 text-xs"
-              data-testid="input-image-url"
+              inputMode="decimal"
+              value={form.financingDownPaymentCents}
+              onChange={(e) => set("financingDownPaymentCents", e.target.value)}
+              placeholder="80"
+              className="bg-white border border-zinc-200 focus:border-red-500 h-9 w-36 text-sm"
+              data-testid="input-financing-down"
             />
-            {uploading && <div className="text-red-600 text-xs font-semibold uppercase tracking-wide mt-1">Uploading…</div>}
           </div>
+        )}
+      </div>
+
+      {/* ---- Images (up to 3) ---- */}
+      <div className="md:col-span-2 space-y-3">
+        <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">Photos (up to 3)</Label>
+        <div className="grid sm:grid-cols-3 gap-4">
+          <ImageSlot
+            label="Photo 1 (primary)"
+            url={form.imageUrl}
+            onUrl={(v) => set("imageUrl", v)}
+            onUpload={(f) => onUpload(f, 1)}
+            uploading={uploadingSlot === 1}
+            testPrefix="input-image-1"
+          />
+          <ImageSlot
+            label="Photo 2"
+            url={form.imageUrl2}
+            onUrl={(v) => set("imageUrl2", v)}
+            onUpload={(f) => onUpload(f, 2)}
+            uploading={uploadingSlot === 2}
+            testPrefix="input-image-2"
+          />
+          <ImageSlot
+            label="Photo 3"
+            url={form.imageUrl3}
+            onUrl={(v) => set("imageUrl3", v)}
+            onUpload={(f) => onUpload(f, 3)}
+            uploading={uploadingSlot === 3}
+            testPrefix="input-image-3"
+          />
         </div>
       </div>
 
@@ -597,7 +709,7 @@ function InventoryFormCard({
         </Button>
         <Button
           type="submit"
-          disabled={submitting || uploading}
+          disabled={submitting || uploadingSlot !== null}
           className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-11 px-6 shadow-sm"
           data-testid="button-save"
         >
