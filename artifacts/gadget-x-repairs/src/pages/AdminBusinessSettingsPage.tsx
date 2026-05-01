@@ -28,6 +28,11 @@ type FormState = {
   hoursThursday: string;
   hoursFriday: string;
   hoursSaturday: string;
+  socialFacebook: string;
+  socialInstagram: string;
+  socialTiktok: string;
+  socialYoutube: string;
+  socialX: string;
 };
 
 const EMPTY_FORM: FormState = {
@@ -44,6 +49,11 @@ const EMPTY_FORM: FormState = {
   hoursThursday: "",
   hoursFriday: "",
   hoursSaturday: "",
+  socialFacebook: "",
+  socialInstagram: "",
+  socialTiktok: "",
+  socialYoutube: "",
+  socialX: "",
 };
 
 const DAY_FIELDS: { key: keyof FormState; label: string }[] = [
@@ -75,6 +85,11 @@ function settingsToForm(s: PublicBusinessSettings): FormState {
     hoursThursday: byDay.get("Thursday") ?? "",
     hoursFriday: byDay.get("Friday") ?? "",
     hoursSaturday: byDay.get("Saturday") ?? "",
+    socialFacebook: s.socialFacebook ?? "",
+    socialInstagram: s.socialInstagram ?? "",
+    socialTiktok: s.socialTiktok ?? "",
+    socialYoutube: s.socialYoutube ?? "",
+    socialX: s.socialX ?? "",
   };
 }
 
@@ -93,6 +108,11 @@ function formToInput(form: FormState): AdminBusinessSettingsInput {
     hoursThursday: form.hoursThursday.trim(),
     hoursFriday: form.hoursFriday.trim(),
     hoursSaturday: form.hoursSaturday.trim(),
+    socialFacebook: form.socialFacebook.trim(),
+    socialInstagram: form.socialInstagram.trim(),
+    socialTiktok: form.socialTiktok.trim(),
+    socialYoutube: form.socialYoutube.trim(),
+    socialX: form.socialX.trim(),
   };
 }
 
@@ -343,6 +363,39 @@ export default function AdminBusinessSettingsPage() {
                     </div>
                   ))}
                 </div>
+              </fieldset>
+
+              <fieldset className="space-y-3">
+                <legend className="font-bold uppercase text-sm tracking-wide text-zinc-900">
+                  Social Media
+                </legend>
+                <p className="text-xs text-zinc-500">
+                  Paste the full URL for each platform you use. Leave a field blank to hide that icon.
+                </p>
+                {(
+                  [
+                    { key: "socialFacebook", label: "Facebook", placeholder: "https://facebook.com/yourpage" },
+                    { key: "socialInstagram", label: "Instagram", placeholder: "https://instagram.com/yourhandle" },
+                    { key: "socialTiktok", label: "TikTok", placeholder: "https://tiktok.com/@yourhandle" },
+                    { key: "socialYoutube", label: "YouTube", placeholder: "https://youtube.com/@yourchannel" },
+                    { key: "socialX", label: "X (Twitter)", placeholder: "https://x.com/yourhandle" },
+                  ] as { key: keyof FormState; label: string; placeholder: string }[]
+                ).map(({ key, label, placeholder }) => (
+                  <div key={key}>
+                    <Label htmlFor={key} className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                      {label}
+                    </Label>
+                    <Input
+                      id={key}
+                      type="url"
+                      value={form[key]}
+                      onChange={(e) => field(key, e.target.value)}
+                      placeholder={placeholder}
+                      className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                      data-testid={`input-${key}`}
+                    />
+                  </div>
+                ))}
               </fieldset>
 
               <div className="flex flex-wrap gap-3 items-center pt-2">

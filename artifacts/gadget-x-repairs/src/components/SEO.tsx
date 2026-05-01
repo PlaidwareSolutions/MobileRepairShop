@@ -71,7 +71,14 @@ export function localBusinessJsonLd(business: B = DEFAULT_BUSINESS) {
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "12:00", closes: "17:00" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "10:00", closes: "19:00" },
     ],
-    sameAs: [business.mapsLink],
+    sameAs: [
+      business.mapsLink,
+      business.socialFacebook,
+      business.socialInstagram,
+      business.socialTiktok,
+      business.socialYoutube,
+      business.socialX,
+    ].filter(Boolean) as string[],
   };
 }
 

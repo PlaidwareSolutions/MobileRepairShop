@@ -9,6 +9,7 @@ import { ContactForm } from "@/components/forms/ContactForm";
 import { RepairQuoteForm } from "@/components/forms/RepairQuoteForm";
 import { SellPhoneForm } from "@/components/forms/SellPhoneForm";
 import { AppointmentForm } from "@/components/forms/AppointmentForm";
+import { SocialLinks } from "@/components/SocialLinks";
 import { BUSINESS, SHIPPING } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 
@@ -83,6 +84,11 @@ export default function ContactPage() {
                   <div className="text-zinc-500 font-bold text-xs uppercase">Walk-ins welcome</div>
                 </div>
               </div>
+              <SocialLinks
+                business={business}
+                className="flex-wrap"
+                iconClass="w-6 h-6"
+              />
               <Link
                 href={SHIPPING.mailInSlug}
                 className="flex items-start gap-4 bg-red-50 border border-red-200 p-5 hover:bg-red-100 hover:border-red-500 transition-colors group focus:outline-none focus:ring-2 focus:ring-red-500"

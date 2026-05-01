@@ -25,6 +25,11 @@ const DEFAULT_SETTINGS: Omit<BusinessSettingsRow, "updatedAt"> = {
   hoursThursday: "10:00 AM – 7:00 PM",
   hoursFriday: "10:00 AM – 7:00 PM",
   hoursSaturday: "10:00 AM – 7:00 PM",
+  socialFacebook: null,
+  socialInstagram: null,
+  socialTiktok: null,
+  socialYoutube: null,
+  socialX: null,
 };
 
 /**
@@ -80,6 +85,13 @@ function formatPhoneDisplay(e164: string): string {
   return `+1 (${m[1]}) ${m[2]}-${m[3]}`;
 }
 
+// Normalize a social URL field: empty string and null both become null so the
+// public API has a consistent signal for "not configured".
+function normalizeSocialUrl(val: string | null | undefined): string | null {
+  if (!val || val.trim() === "") return null;
+  return val.trim();
+}
+
 export type PublicBusinessSettings = {
   phoneE164: string;
   phoneDisplay: string;
@@ -93,6 +105,11 @@ export type PublicBusinessSettings = {
   mapsEmbed: string;
   hoursShort: string;
   hours: { day: string; time: string }[];
+  socialFacebook: string | null;
+  socialInstagram: string | null;
+  socialTiktok: string | null;
+  socialYoutube: string | null;
+  socialX: string | null;
   updatedAt: string;
 };
 
@@ -121,6 +138,11 @@ export function serializePublicBusinessSettings(
       { day: "Friday", time: row.hoursFriday },
       { day: "Saturday", time: row.hoursSaturday },
     ],
+    socialFacebook: normalizeSocialUrl(row.socialFacebook),
+    socialInstagram: normalizeSocialUrl(row.socialInstagram),
+    socialTiktok: normalizeSocialUrl(row.socialTiktok),
+    socialYoutube: normalizeSocialUrl(row.socialYoutube),
+    socialX: normalizeSocialUrl(row.socialX),
     updatedAt: row.updatedAt.toISOString(),
   };
 }

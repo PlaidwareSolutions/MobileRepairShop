@@ -520,6 +520,11 @@ export type PublicBusinessSettings = {
   mapsEmbed: string;
   hoursShort: string;
   hours: { day: string; time: string }[];
+  socialFacebook: string | null;
+  socialInstagram: string | null;
+  socialTiktok: string | null;
+  socialYoutube: string | null;
+  socialX: string | null;
   updatedAt: string;
 };
 
@@ -548,6 +553,11 @@ export type AdminBusinessSettingsInput = {
   hoursThursday?: string;
   hoursFriday?: string;
   hoursSaturday?: string;
+  socialFacebook?: string;
+  socialInstagram?: string;
+  socialTiktok?: string;
+  socialYoutube?: string;
+  socialX?: string;
 };
 
 export async function adminGetBusinessSettings(password: string) {

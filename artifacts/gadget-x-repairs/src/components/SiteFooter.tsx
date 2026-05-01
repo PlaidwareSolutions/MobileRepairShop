@@ -2,6 +2,7 @@ import { Link } from "wouter";
 import { Phone, MapPin, MessageCircle } from "lucide-react";
 import { BUSINESS, COPYRIGHT } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
+import { SocialLinks } from "@/components/SocialLinks";
 
 const REPAIR_LINKS = [
   { label: "All Repair Services", to: "/repair-services-houston-tx" },
@@ -77,6 +78,7 @@ export function SiteFooter() {
               </a>
             </li>
           </ul>
+          <SocialLinks business={business} className="mt-6" iconClass="w-5 h-5" />
         </div>
 
         <FooterColumn title="Repair" items={REPAIR_LINKS} />

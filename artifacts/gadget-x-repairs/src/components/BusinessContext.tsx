@@ -24,6 +24,11 @@ export const DEFAULT_BUSINESS: PublicBusinessSettings = {
   mapsEmbed: BUSINESS.mapsEmbed,
   hoursShort: BUSINESS.hoursShort,
   hours: BUSINESS.hours,
+  socialFacebook: null,
+  socialInstagram: null,
+  socialTiktok: null,
+  socialYoutube: null,
+  socialX: null,
   updatedAt: "1970-01-01T00:00:00.000Z",
 };
 

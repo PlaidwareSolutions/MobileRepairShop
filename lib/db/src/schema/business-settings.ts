@@ -13,6 +13,9 @@ import { z } from "zod/v4";
 // Hours are stored as one column per weekday so the DB schema is fully
 // describable to drizzle (no JSON columns) and so partial updates can target
 // one day at a time without a JSON merge.
+//
+// Social columns are nullable — a null value means the platform is not
+// configured and its icon will not appear on the public site.
 
 export const businessSettingsTable = pgTable("business_settings", {
   id: integer("id").primaryKey(),
@@ -37,6 +40,13 @@ export const businessSettingsTable = pgTable("business_settings", {
   hoursFriday: text("hours_friday").notNull(),
   hoursSaturday: text("hours_saturday").notNull(),
 
+  // social media links (optional — null hides the icon on the public site)
+  socialFacebook: text("social_facebook"),
+  socialInstagram: text("social_instagram"),
+  socialTiktok: text("social_tiktok"),
+  socialYoutube: text("social_youtube"),
+  socialX: text("social_x"),
+
   updatedAt: timestamp("updated_at", { withTimezone: true })
     .notNull()
     .defaultNow(),
@@ -50,6 +60,10 @@ export const businessSettingsSchema = createSelectSchema(businessSettingsTable);
 // the owner can save just the field(s) they touched. `phoneE164` is validated
 // to a sane shape — the serializer assumes it starts with "+" and contains
 // only digits afterward when deriving tel:/sms:/wa.me links.
+//
+// Social fields accept an empty string (meaning "clear this platform") or a
+// full HTTPS URL. The serializer converts empty string → null so the public
+// API always exposes null for unconfigured platforms.
 export const updateBusinessSettingsSchema = z
   .object({
     phoneE164: z
@@ -74,6 +88,11 @@ export const updateBusinessSettingsSchema = z
     hoursThursday: z.string().trim().min(1).max(80),
     hoursFriday: z.string().trim().min(1).max(80),
     hoursSaturday: z.string().trim().min(1).max(80),
+    socialFacebook: z.string().trim().max(500).optional(),
+    socialInstagram: z.string().trim().max(500).optional(),
+    socialTiktok: z.string().trim().max(500).optional(),
+    socialYoutube: z.string().trim().max(500).optional(),
+    socialX: z.string().trim().max(500).optional(),
   })
   .partial();
 
