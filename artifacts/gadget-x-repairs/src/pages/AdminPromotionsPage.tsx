@@ -161,13 +161,16 @@ function formToInput(form: FormState): PromotionWriteInput {
     startsAt: localInputToIso(form.startsAtLocal),
     endsAt: localInputToIso(form.endsAtLocal),
     // For "always" we explicitly clear schedule details so editing back to
-    // "always" doesn't leave stale time/day fields lurking in the row.
+    // "always" doesn't leave stale time/day fields lurking in the row. The
+    // dailyStart/End fields here are "HH:MM" strings straight from the
+    // <input type="time">; the server schema accepts both that and a numeric
+    // minute offset, so no client-side conversion is needed.
     daysOfWeek: form.recurrence === "weekly" ? form.daysOfWeek : [],
     dailyStartMinutes:
       form.recurrence !== "always" && form.dailyStart ? form.dailyStart : null,
     dailyEndMinutes:
       form.recurrence !== "always" && form.dailyEnd ? form.dailyEnd : null,
-  } as PromotionWriteInput;
+  };
   return body;
 }
 

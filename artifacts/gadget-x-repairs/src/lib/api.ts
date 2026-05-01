@@ -450,8 +450,11 @@ export type PromotionWriteInput = {
   endsAt?: string | null;
   recurrence?: AdminPromotion["recurrence"];
   daysOfWeek?: number[];
-  dailyStartMinutes?: number | null;
-  dailyEndMinutes?: number | null;
+  // The API accepts either an "HH:MM" string (which is what the admin form
+  // sends straight from <input type="time">) or a number in 0..1439 (minutes
+  // since local midnight); the server normalises both before persisting.
+  dailyStartMinutes?: number | string | null;
+  dailyEndMinutes?: number | string | null;
   sortOrder?: number;
 };
 

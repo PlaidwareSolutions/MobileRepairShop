@@ -801,13 +801,29 @@ const IsoDate = z
     return d;
   });
 
+// Defense in depth: even though only authenticated owners can create
+// promotions, refuse to accept CTA URLs that aren't site-relative ("/foo"),
+// http(s), tel:, or mailto:. This blocks accidental "javascript:" pastes that
+// would render as anchor hrefs on the homepage.
+const CtaHref = z
+  .string()
+  .max(500)
+  .refine(
+    (v) =>
+      v.startsWith("/") ||
+      /^https?:\/\//i.test(v) ||
+      /^tel:/i.test(v) ||
+      /^mailto:/i.test(v),
+    { message: "CTA URL must be site-relative (/path), https://, http://, tel:, or mailto:" },
+  );
+
 const PromotionCreateSchema = z
   .object({
     headline: z.string().min(1).max(160),
     supportingLine: z.string().max(280).optional().nullable(),
     badge: z.string().max(40).optional().nullable(),
     ctaLabel: z.string().max(40).optional().nullable(),
-    ctaHref: z.string().max(500).optional().nullable(),
+    ctaHref: CtaHref.optional().nullable(),
     accent: z.enum(PROMOTION_ACCENT_VALUES).default("amber"),
     active: z.boolean().default(true),
     startsAt: IsoDate.optional().nullable(),
@@ -845,7 +861,7 @@ const PromotionUpdateSchema = z
     supportingLine: z.string().max(280).optional().nullable(),
     badge: z.string().max(40).optional().nullable(),
     ctaLabel: z.string().max(40).optional().nullable(),
-    ctaHref: z.string().max(500).optional().nullable(),
+    ctaHref: CtaHref.optional().nullable(),
     accent: z.enum(PROMOTION_ACCENT_VALUES).optional(),
     active: z.boolean().optional(),
     startsAt: IsoDate.optional().nullable(),
