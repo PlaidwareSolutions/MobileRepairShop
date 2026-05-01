@@ -461,6 +461,7 @@ export type PromotionWriteInput = {
 export async function adminListPromotions(password: string) {
   return (await adminFetch(password, "/admin/promotions")) as {
     items: AdminPromotion[];
+    shopTimezone: string;
   };
 }
 

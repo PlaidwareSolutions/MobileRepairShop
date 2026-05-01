@@ -2,7 +2,11 @@ import type { PromotionRow } from "@workspace/db";
 
 // Shop timezone — schedule windows are evaluated in local time so weekend
 // specials and "happy hour" promos work regardless of server location.
-export const SHOP_TIMEZONE = "America/Chicago";
+// Configurable via SHOP_TIMEZONE env var; defaults to America/Chicago (Houston).
+export const SHOP_TIMEZONE =
+  process.env.SHOP_TIMEZONE && process.env.SHOP_TIMEZONE.trim().length > 0
+    ? process.env.SHOP_TIMEZONE.trim()
+    : "America/Chicago";
 
 const WEEKDAY_INDEX: Record<string, number> = {
   Sun: 0,

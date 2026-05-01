@@ -214,6 +214,7 @@ export default function AdminPromotionsPage() {
   );
   const [authed, setAuthed] = useState(false);
   const [items, setItems] = useState<AdminPromotion[]>([]);
+  const [shopTimezone, setShopTimezone] = useState<string>("America/Chicago");
   const [error, setError] = useState<string | null>(null);
   const [info, setInfo] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
@@ -228,6 +229,7 @@ export default function AdminPromotionsPage() {
     try {
       const res = await adminListPromotions(pw);
       setItems(res.items);
+      if (res.shopTimezone) setShopTimezone(res.shopTimezone);
       setAuthed(true);
       if (typeof window !== "undefined") localStorage.setItem("gx_admin_pw", pw);
     } catch (e) {
@@ -424,7 +426,7 @@ export default function AdminPromotionsPage() {
                 </button>
                 <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500 ml-auto">
                   {items.length} promo{items.length === 1 ? "" : "s"} · times in
-                  Houston (CT)
+                  shop tz ({shopTimezone})
                 </span>
               </div>
 
@@ -455,6 +457,7 @@ export default function AdminPromotionsPage() {
                   onClose={closeForm}
                   onSubmit={onSubmit}
                   toggleDay={toggleDay}
+                  shopTimezone={shopTimezone}
                 />
               )}
 
@@ -606,6 +609,7 @@ type FormCardProps = {
   onClose: () => void;
   onSubmit: (e: FormEvent) => void;
   toggleDay: (d: number) => void;
+  shopTimezone: string;
 };
 
 function PromotionFormCard({
@@ -616,7 +620,9 @@ function PromotionFormCard({
   onClose,
   onSubmit,
   toggleDay,
+  shopTimezone,
 }: FormCardProps) {
+  const [previewAnimKey, setPreviewAnimKey] = useState(0);
   const showTimeOfDay =
     form.recurrence === "daily" || form.recurrence === "weekly";
   const showDays = form.recurrence === "weekly";
@@ -665,17 +671,40 @@ function PromotionFormCard({
       </div>
 
       <div>
-        <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700 mb-2 block">
-          Live preview (as customers will see it)
-        </Label>
+        <div className="flex items-center justify-between mb-2">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700 block">
+            Live preview (as customers will see it)
+          </Label>
+          <button
+            type="button"
+            onClick={() => setPreviewAnimKey((k) => k + 1)}
+            className="text-[11px] font-semibold uppercase tracking-wide text-red-600 hover:text-red-700"
+            data-testid="button-replay-preview"
+          >
+            ▸ Replay entrance
+          </button>
+        </div>
         <div
           className="rounded-lg overflow-hidden border border-zinc-200 shadow-inner relative"
           data-testid="promo-form-preview"
         >
-          <PromoBannerView promo={previewPromo} />
+          <div
+            key={previewAnimKey}
+            className="motion-safe:animate-[promoPreviewIn_400ms_ease-out]"
+          >
+            <PromoBannerView promo={previewPromo} />
+          </div>
+          <style>{`
+            @keyframes promoPreviewIn {
+              from { opacity: 0; transform: translateY(-8px); }
+              to   { opacity: 1; transform: translateY(0); }
+            }
+          `}</style>
         </div>
         <p className="text-[11px] text-zinc-500 mt-1.5">
-          Updates as you type. Badge has a subtle pulse on the live site.
+          Updates as you type. Badge pulses on the live site; on the homepage
+          the banner slides in on first paint and cross-fades between live
+          promos every 7s.
         </p>
       </div>
 
@@ -786,7 +815,7 @@ function PromotionFormCard({
 
       <div className="border-t border-zinc-200 pt-5">
         <h3 className="font-semibold uppercase text-xs tracking-wide text-zinc-700 mb-3">
-          Schedule (Houston / America/Chicago)
+          Schedule (shop time: {shopTimezone})
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
@@ -861,7 +890,7 @@ function PromotionFormCard({
             <>
               <div>
                 <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
-                  Time-of-day start (CT)
+                  Time-of-day start (shop time)
                 </Label>
                 <Input
                   type="time"
@@ -875,7 +904,7 @@ function PromotionFormCard({
               </div>
               <div>
                 <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
-                  Time-of-day end (CT)
+                  Time-of-day end (shop time)
                 </Label>
                 <Input
                   type="time"
@@ -888,7 +917,7 @@ function PromotionFormCard({
                 />
               </div>
               <p className="text-xs text-zinc-500 leading-snug -mt-2">
-                Times are local Houston time (America/Chicago) and are
+                Times are local shop time ({shopTimezone}) and are
                 interpreted day-by-day. For overnight windows that cross
                 midnight (for example "Sat 10:00 PM – 2:00 AM"), also tick
                 the next day so the spillover hours are covered.
@@ -928,9 +957,9 @@ function PromotionFormCard({
             Window dates are stored as exact moments in time. They're entered
             in <span className="font-semibold">your computer's local time</span>{" "}
             (currently {browserTzLabel}) and converted to UTC on save. If you
-            edit promos from outside Houston, double-check the resulting
-            on/off times against the shop's clock — the schedule below
-            (days + time-of-day) is always evaluated in America/Chicago.
+            edit promos from outside the shop's location, double-check the
+            resulting on/off times against the shop's clock — the schedule below
+            (days + time-of-day) is always evaluated in {shopTimezone}.
           </p>
         </div>
       </div>

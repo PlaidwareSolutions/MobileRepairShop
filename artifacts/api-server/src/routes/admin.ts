@@ -26,6 +26,7 @@ import {
 import { ObjectStorageService } from "../lib/objectStorage";
 import { serializeAdminInventoryItem } from "../lib/inventoryMapper";
 import { serializeAdminPromotion } from "../lib/promotionsMapper";
+import { SHOP_TIMEZONE } from "../lib/promotionsSchedule";
 import { sendEmail, sendSms, messagingConfig } from "../lib/messaging";
 import { checkRateLimit } from "../lib/rate-limit";
 
@@ -898,7 +899,10 @@ router.get("/promotions", async (_req: Request, res: Response, next: NextFunctio
       .select()
       .from(promotionsTable)
       .orderBy(asc(promotionsTable.sortOrder), asc(promotionsTable.id));
-    res.json({ items: rows.map(serializeAdminPromotion) });
+    res.json({
+      items: rows.map(serializeAdminPromotion),
+      shopTimezone: SHOP_TIMEZONE,
+    });
   } catch (err) {
     next(err as Error);
   }
