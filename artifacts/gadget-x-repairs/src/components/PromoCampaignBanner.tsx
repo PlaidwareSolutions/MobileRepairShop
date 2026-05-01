@@ -94,14 +94,12 @@ function writeDismissed() {
  */
 export function PromoBannerView({
   promo,
-  fading = false,
   onDismiss,
   showDots,
   totalCount,
   activeIndex,
 }: {
   promo: PublicPromotion;
-  fading?: boolean;
   onDismiss?: () => void;
   showDots?: boolean;
   totalCount?: number;
@@ -113,12 +111,7 @@ export function PromoBannerView({
       <div className="max-w-[1240px] mx-auto px-4 py-3 md:py-4 flex items-center gap-3 md:gap-5">
         <div
           key={promo.id}
-          className={[
-            "flex-1 min-w-0 flex flex-col md:flex-row md:items-center gap-2 md:gap-4",
-            "transition-opacity",
-            fading ? "opacity-0" : "opacity-100",
-          ].join(" ")}
-          style={{ transitionDuration: `${FADE_MS}ms` }}
+          className="flex-1 min-w-0 flex flex-col md:flex-row md:items-center gap-2 md:gap-4"
         >
           {promo.badge ? (
             <span
@@ -194,8 +187,11 @@ export function PromoCampaignBanner() {
   // a return navigation within the same tab honours a prior dismissal.
   const [dismissed, setDismissed] = useState<boolean>(() => readDismissed());
   const [index, setIndex] = useState(0);
+  // True cross-fade state: while `prevIndex` is non-null, two stacked layers
+  // render simultaneously — the previous promo fades opacity 1 → 0 while the
+  // current promo fades 0 → 1 over FADE_MS, with no intermediate empty frame.
+  const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const [mounted, setMounted] = useState(ssrPromos !== null && ssrPromos.length > 0);
-  const [fading, setFading] = useState(false);
   const fadeTimer = useRef<number | null>(null);
 
   // Always re-fetch on mount in the browser. Even if SSR seeded with data, we
@@ -240,25 +236,35 @@ export function PromoCampaignBanner() {
     }
   }, [visible.length, index]);
 
-  // Cross-fade rotation. Only runs when there are 2+ visible promos.
+  // True cross-fade rotation. Only runs when there are 2+ visible promos.
+  // Each tick: snapshot the current index into `prevIndex`, advance the
+  // current index, and let the JSX render both layers stacked. After
+  // FADE_MS we drop `prevIndex` so the unmounted-by-default state returns.
   useEffect(() => {
     if (visible.length < 2) return;
     const interval = window.setInterval(() => {
-      setFading(true);
+      setPrevIndex(index);
+      setIndex((i) => (i + 1) % visible.length);
+      if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
       fadeTimer.current = window.setTimeout(() => {
-        setIndex((i) => (i + 1) % visible.length);
-        setFading(false);
+        setPrevIndex(null);
       }, FADE_MS);
     }, ROTATION_MS);
     return () => {
       window.clearInterval(interval);
       if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
     };
+    // index intentionally omitted — we want the interval cadence stable;
+    // reading the latest index via setter callbacks above is sufficient.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible.length]);
 
   if (!promos || visible.length === 0) return null;
 
-  const current = visible[Math.min(index, visible.length - 1)];
+  const safeIndex = Math.min(index, visible.length - 1);
+  const current = visible[safeIndex];
+  const previous =
+    prevIndex !== null && prevIndex < visible.length ? visible[prevIndex] : null;
 
   function dismiss() {
     setDismissed(true);
@@ -279,14 +285,41 @@ export function PromoCampaignBanner() {
       ].join(" ")}
       style={{ transitionDuration: `${FADE_MS}ms` }}
     >
+      {/* Base layer: the current promo is always fully visible and drives
+          the banner's intrinsic height. */}
       <PromoBannerView
         promo={current}
-        fading={fading}
         onDismiss={dismiss}
         showDots={visible.length > 1}
         totalCount={visible.length}
-        activeIndex={index}
+        activeIndex={safeIndex}
       />
+      {/* Cross-fade overlay: the *previous* promo, stacked on top of the
+          current one, fading from opacity 1 → 0 over FADE_MS via a CSS
+          keyframe (which auto-plays on mount, so no rAF gymnastics). The
+          current promo underneath is fully opaque the whole time, so as
+          the overlay fades you literally see the new content emerge
+          through the old one — a real overlapping cross-fade rather than
+          a fade-out / fade-in. The overlay unmounts when the rotation
+          effect clears prevIndex after FADE_MS. */}
+      {previous ? (
+        <div
+          key={`promo-fade-${prevIndex}`}
+          aria-hidden="true"
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            animation: `promoCrossfadeOut ${FADE_MS}ms ease-out forwards`,
+          }}
+        >
+          <PromoBannerView promo={previous} />
+        </div>
+      ) : null}
+      <style>{`
+        @keyframes promoCrossfadeOut {
+          from { opacity: 1; }
+          to   { opacity: 0; }
+        }
+      `}</style>
     </section>
   );
 }

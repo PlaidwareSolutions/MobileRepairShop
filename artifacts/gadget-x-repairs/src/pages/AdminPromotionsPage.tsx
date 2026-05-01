@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { FormEvent } from "react";
 import { PageShell } from "@/components/PageShell";
 import { SEO } from "@/components/SEO";
@@ -621,6 +621,17 @@ function PromotionFormCard({
     form.recurrence === "daily" || form.recurrence === "weekly";
   const showDays = form.recurrence === "weekly";
 
+  // Best-effort label of the browser's current time zone, used in the helper
+  // text under the absolute date-window inputs so an owner editing from
+  // outside Houston can spot the mismatch before saving.
+  const browserTzLabel = useMemo(() => {
+    try {
+      return Intl.DateTimeFormat().resolvedOptions().timeZone || "your local time";
+    } catch {
+      return "your local time";
+    }
+  }, []);
+
   // Build a synthetic public-promo object that mirrors what the homepage
   // banner would receive for these form values. id is a stable sentinel so
   // the preview's React keys don't churn on every keystroke.
@@ -910,6 +921,14 @@ function PromotionFormCard({
               data-testid="input-ends-at"
             />
           </div>
+          <p className="text-xs text-zinc-500 leading-snug md:col-span-2 -mt-1">
+            Window dates are stored as exact moments in time. They're entered
+            in <span className="font-semibold">your computer's local time</span>{" "}
+            (currently {browserTzLabel}) and converted to UTC on save. If you
+            edit promos from outside Houston, double-check the resulting
+            on/off times against the shop's clock — the schedule below
+            (days + time-of-day) is always evaluated in America/Chicago.
+          </p>
         </div>
       </div>
 
