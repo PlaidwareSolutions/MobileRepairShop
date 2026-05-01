@@ -16,7 +16,10 @@ import { fetchActivePromotions, type PublicPromotion } from "@/lib/api";
 
 const ROTATION_MS = 7000;
 const FADE_MS = 400;
-const SESSION_KEY = "gx-dismissed-promos";
+// Single session-wide dismissal flag: clicking the banner's close button
+// hides the entire promotion slot for the remainder of the browser session,
+// regardless of how many live promos exist or which one was on screen.
+const SESSION_KEY = "gx-promo-banner-dismissed";
 
 type AccentPalette = {
   bg: string;
@@ -66,25 +69,19 @@ const ACCENT: Record<PublicPromotion["accent"], AccentPalette> = {
  */
 export const SsrPromosContext = createContext<PublicPromotion[] | null>(null);
 
-function readDismissed(): Set<number> {
-  if (typeof window === "undefined") return new Set();
+function readDismissed(): boolean {
+  if (typeof window === "undefined") return false;
   try {
-    const raw = window.sessionStorage.getItem(SESSION_KEY);
-    if (!raw) return new Set();
-    const parsed = JSON.parse(raw) as unknown;
-    if (Array.isArray(parsed)) {
-      return new Set(parsed.filter((n) => typeof n === "number"));
-    }
+    return window.sessionStorage.getItem(SESSION_KEY) === "1";
   } catch {
-    // ignore — corrupt storage just means "nothing dismissed"
+    return false;
   }
-  return new Set();
 }
 
-function writeDismissed(ids: Set<number>) {
+function writeDismissed() {
   if (typeof window === "undefined") return;
   try {
-    window.sessionStorage.setItem(SESSION_KEY, JSON.stringify(Array.from(ids)));
+    window.sessionStorage.setItem(SESSION_KEY, "1");
   } catch {
     // sessionStorage may be disabled in private mode; that's fine
   }
@@ -192,7 +189,10 @@ export function PromoCampaignBanner() {
   // paint so crawlers see the banner deterministically. On the client (no
   // provider) this stays null and the useEffect below kicks in.
   const [promos, setPromos] = useState<PublicPromotion[] | null>(ssrPromos);
-  const [dismissed, setDismissed] = useState<Set<number>>(() => readDismissed());
+  // Session-wide dismissal flag: one click hides the banner slot for the
+  // remainder of the browser session. Lazy-initialised from sessionStorage so
+  // a return navigation within the same tab honours a prior dismissal.
+  const [dismissed, setDismissed] = useState<boolean>(() => readDismissed());
   const [index, setIndex] = useState(0);
   const [mounted, setMounted] = useState(ssrPromos !== null && ssrPromos.length > 0);
   const [fading, setFading] = useState(false);
@@ -225,14 +225,15 @@ export function PromoCampaignBanner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Filter out dismissed promos. Memoized so the rotation effect's dep array
-  // sees a stable reference per dismissed-set change.
-  const visible = useMemo(() => {
-    if (!promos) return [];
-    return promos.filter((p) => !dismissed.has(p.id));
+  // When the user dismisses the banner, hide every live promo for the rest
+  // of the session. We deliberately do NOT filter per-promo IDs — dismissal
+  // is a single banner-slot decision.
+  const visible = useMemo<PublicPromotion[]>(() => {
+    if (!promos || dismissed) return [];
+    return promos;
   }, [promos, dismissed]);
 
-  // Reset index when the visible list shrinks (e.g. after a dismissal).
+  // Reset index when the visible list shrinks.
   useEffect(() => {
     if (index >= visible.length && visible.length > 0) {
       setIndex(0);
@@ -259,13 +260,9 @@ export function PromoCampaignBanner() {
 
   const current = visible[Math.min(index, visible.length - 1)];
 
-  function dismiss(id: number) {
-    setDismissed((prev) => {
-      const next = new Set(prev);
-      next.add(id);
-      writeDismissed(next);
-      return next;
-    });
+  function dismiss() {
+    setDismissed(true);
+    writeDismissed();
   }
 
   return (
@@ -285,7 +282,7 @@ export function PromoCampaignBanner() {
       <PromoBannerView
         promo={current}
         fading={fading}
-        onDismiss={() => dismiss(current.id)}
+        onDismiss={dismiss}
         showDots={visible.length > 1}
         totalCount={visible.length}
         activeIndex={index}
