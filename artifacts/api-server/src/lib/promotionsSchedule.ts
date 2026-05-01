@@ -1,8 +1,11 @@
 import type { PromotionRow } from "@workspace/db";
 
-// Shop timezone — schedule windows are evaluated in local time so weekend
-// specials and "happy hour" promos work regardless of server location.
-// Configurable via SHOP_TIMEZONE env var; defaults to America/Chicago (Houston).
+// Shop timezone — promo schedule windows are evaluated in local shop time so
+// weekend specials and "happy hour" promos work regardless of server location.
+// Source of truth is BUSINESS.timezone in artifacts/gadget-x-repairs/src/content.ts;
+// the SHOP_TIMEZONE env var lets ops override it without redeploying the frontend
+// and MUST match BUSINESS.timezone in normal operation. Default mirrors the
+// frontend default (America/Chicago — Houston, TX).
 export const SHOP_TIMEZONE =
   process.env.SHOP_TIMEZONE && process.env.SHOP_TIMEZONE.trim().length > 0
     ? process.env.SHOP_TIMEZONE.trim()

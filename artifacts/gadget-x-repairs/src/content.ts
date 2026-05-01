@@ -25,6 +25,9 @@ export const BUSINESS = {
   yearsInBusiness: 15,
   logo: "/images/gadget-x-logo-transparent.png?v=2026-04-28",
   logoOfficial: "/images/gadget-x-logo-transparent.png?v=2026-04-28",
+  // Canonical shop timezone — the API server (SHOP_TIMEZONE env var) must
+  // match this value so promo schedules evaluate against the same wall clock.
+  timezone: "America/Chicago",
 };
 
 export const HERO = {
