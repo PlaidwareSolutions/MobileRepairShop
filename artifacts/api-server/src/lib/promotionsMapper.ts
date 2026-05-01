@@ -1,16 +1,8 @@
 import type { PromotionRow } from "@workspace/db";
 import { isPromotionLive } from "./promotionsSchedule.js";
 
-/**
- * Computed status pill displayed to the owner in the admin list. The 4 states
- * correspond exactly to the spec's required status pills:
- *   - "paused": owner has flipped the master kill switch off.
- *   - "ended":  endsAt is set and has already passed (terminal state).
- *   - "live":   the schedule says the promo is live RIGHT NOW.
- *   - "scheduled": active and not yet ended, but not currently live (either
- *                  before startsAt, or outside the daily/weekly window). The
- *                  promo will/may go live again later.
- */
+// Owner-facing status pill. paused = master kill switch off; ended = endsAt
+// past; live = schedule currently matches; scheduled = active but not live now.
 export type PromotionStatus = "live" | "scheduled" | "ended" | "paused";
 
 export function computePromotionStatus(
@@ -23,11 +15,8 @@ export function computePromotionStatus(
   return "scheduled";
 }
 
-/**
- * Public-facing serialization. Only the fields needed to render the homepage
- * banner are exposed — schedule details and owner toggles are intentionally
- * omitted so that the client can never reveal a paused/draft promotion.
- */
+// Public payload — only the fields the homepage banner renders. Schedule
+// fields are omitted so the client can't infer paused/scheduled rows.
 export function serializePublicPromotion(row: PromotionRow) {
   return {
     id: row.id,
@@ -42,9 +31,7 @@ export function serializePublicPromotion(row: PromotionRow) {
 
 export type PublicPromotion = ReturnType<typeof serializePublicPromotion>;
 
-/**
- * Admin serialization — includes every schedule field plus timestamps.
- */
+// Admin payload — every schedule field plus timestamps and computed status.
 export function serializeAdminPromotion(row: PromotionRow) {
   return {
     id: row.id,

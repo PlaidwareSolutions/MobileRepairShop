@@ -801,10 +801,7 @@ const IsoDate = z
     return d;
   });
 
-// Defense in depth: even though only authenticated owners can create
-// promotions, refuse to accept CTA URLs that aren't site-relative ("/foo"),
-// http(s), tel:, or mailto:. This blocks accidental "javascript:" pastes that
-// would render as anchor hrefs on the homepage.
+// CTA href allowlist — blocks javascript:/data: pastes on owner-authored URLs.
 const CtaHref = z
   .string()
   .max(500)
@@ -957,14 +954,8 @@ router.patch("/promotions/:id", async (req: Request, res: Response, next: NextFu
       return;
     }
 
-    // Final-state validation: PATCH callers can change any subset of
-    // schedule-shaping fields, so we must look at the merged final state
-    // — not just what's in the body — to enforce the same invariants
-    // the create path enforces. Two invariants apply here:
-    //   1. A weekly promo always ends up with ≥1 day-of-week selected.
-    //   2. If both startsAt and endsAt end up set, startsAt ≤ endsAt.
-    // Without merging, "PATCH {daysOfWeek: []}" or "PATCH {endsAt: <past>}"
-    // could otherwise silently corrupt an already-valid row.
+    // Validate the merged final state so partial PATCHes can't corrupt the
+    // weekly-needs-days or startsAt≤endsAt invariants.
     const touchesScheduleShape =
       body.recurrence !== undefined ||
       body.daysOfWeek !== undefined ||
@@ -1094,10 +1085,7 @@ router.post(
       const maxSort = all.reduce((acc, r) => Math.max(acc, Number(r.s)), 0);
       const nextSort = String(maxSort + 10);
 
-      // Duplicate copies all fields but flips active=false and tags the
-      // headline with " (copy)" so the owner can immediately tell which row
-      // is the source and which is the new one. Owner re-activates after
-      // editing whatever needs changing.
+      // Duplicate as inactive draft with " (copy)" suffix so owner can edit before re-activating.
       const [created] = await db
         .insert(promotionsTable)
         .values({

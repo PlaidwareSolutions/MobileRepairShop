@@ -8,14 +8,7 @@ import { SsrPromosContext } from "@/components/PromoCampaignBanner";
 import type { PublicPromotion } from "@/lib/api";
 
 export type SsrData = {
-  /**
-   * Promotions evaluated as live by the server at build time. The build script
-   * fetches /api/promotions/active once before pre-rendering and passes the
-   * result here so the homepage banner can render deterministically in static
-   * HTML for crawlers. If the API was unreachable at build time the build
-   * script passes an empty array and no banner is included in the SSR HTML
-   * — the client will still fetch on mount.
-   */
+  /** Live promos prefetched by the build script for SSR seeding. */
   promotions?: PublicPromotion[];
 };
 

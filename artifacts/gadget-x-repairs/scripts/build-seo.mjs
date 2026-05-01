@@ -95,16 +95,9 @@ async function loadRender() {
   return mod.render;
 }
 
-/**
- * Best-effort: fetch live promotions from the API server so the homepage SSR
- * snapshot includes the first promo banner for crawlers. If the API is
- * unreachable at build time (the deploy pipeline doesn't always have the API
- * running locally), we degrade gracefully to an empty list — the client will
- * still fetch on mount and render the banner once the page is interactive.
- *
- * Override the source URL with SSR_PROMOS_URL or PROMOS_API_URL when running
- * in environments where the API lives somewhere other than localhost:8080.
- */
+// Best-effort SSR seed for live promos. Falls back to [] if the API is
+// unreachable at build time — the client still fetches on mount.
+// Override URL via SSR_PROMOS_URL or PROMOS_API_URL.
 async function loadInitialPromotions() {
   const url =
     process.env.SSR_PROMOS_URL ||
@@ -271,9 +264,7 @@ async function main() {
     loadLegacyRedirects(),
     loadInitialPromotions(),
   ]);
-  // Only the homepage embeds the promotion banner, so we only seed SSR data
-  // for "/" — every other route renders with no SSR promo context (the banner
-  // isn't mounted there anyway).
+  // Only "/" embeds the promo banner; other routes get no SSR seed.
   const ssrData = { promotions };
   console.log(`build-seo: pre-rendering ${all.length} routes…`);
   for (const route of all) {

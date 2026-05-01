@@ -9,16 +9,8 @@ import {
 import { X } from "lucide-react";
 import { fetchActivePromotions, type PublicPromotion } from "@/lib/api";
 
-// Owner-managed campaign banner that renders the live promotions returned by
-// the server. The server alone decides which promos are live (the client never
-// sees paused or out-of-window rows), so this component only needs to handle
-// presentation, rotation, and session dismissal.
-
 const ROTATION_MS = 7000;
 const FADE_MS = 400;
-// Single session-wide dismissal flag: clicking the banner's close button
-// hides the entire promotion slot for the remainder of the browser session,
-// regardless of how many live promos exist or which one was on screen.
 const SESSION_KEY = "gx-promo-banner-dismissed";
 
 type AccentPalette = {
@@ -60,13 +52,9 @@ const ACCENT: Record<PublicPromotion["accent"], AccentPalette> = {
   },
 };
 
-/**
- * SSR seed for the banner. The build-time prerender fetches /api/promotions/
- * active once and passes the result through this context so the first promo
- * can render in static HTML for crawlers. On the client the provider is
- * absent, so the value is `null` and the banner falls back to its in-browser
- * fetch on mount.
- */
+// SSR seed: build-time prerender supplies live promos through this context so
+// crawlers see the banner in static HTML. Absent on the client → null → the
+// banner falls back to its in-browser fetch on mount.
 export const SsrPromosContext = createContext<PublicPromotion[] | null>(null);
 
 function readDismissed(): boolean {
@@ -83,15 +71,12 @@ function writeDismissed() {
   try {
     window.sessionStorage.setItem(SESSION_KEY, "1");
   } catch {
-    // sessionStorage may be disabled in private mode; that's fine
+    /* private mode etc. — fine to ignore */
   }
 }
 
-/**
- * Pure, presentational rendering of a single promotion. No fetch, no
- * rotation, no dismiss button — used by the homepage banner for each visible
- * row and by the admin form for the live preview.
- */
+// Pure presentational view of a single promo. Reused by the homepage banner
+// and the admin form's live preview.
 export function PromoBannerView({
   promo,
   onDismiss,
@@ -177,42 +162,33 @@ export function PromoBannerView({
 
 export function PromoCampaignBanner() {
   const ssrPromos = useContext(SsrPromosContext);
-
-  // SSR seed: when the prerender provides initial data, render it on first
-  // paint so crawlers see the banner deterministically. On the client (no
-  // provider) this stays null and the useEffect below kicks in.
   const [promos, setPromos] = useState<PublicPromotion[] | null>(ssrPromos);
-  // Session-wide dismissal flag: one click hides the banner slot for the
-  // remainder of the browser session. Lazy-initialised from sessionStorage so
-  // a return navigation within the same tab honours a prior dismissal.
   const [dismissed, setDismissed] = useState<boolean>(() => readDismissed());
   const [index, setIndex] = useState(0);
-  // True cross-fade state: while `prevIndex` is non-null, two stacked layers
-  // render simultaneously — the previous promo fades opacity 1 → 0 while the
-  // current promo fades 0 → 1 over FADE_MS, with no intermediate empty frame.
   const [prevIndex, setPrevIndex] = useState<number | null>(null);
   const [mounted, setMounted] = useState(ssrPromos !== null && ssrPromos.length > 0);
   const fadeTimer = useRef<number | null>(null);
 
-  // Always re-fetch on mount in the browser. Even if SSR seeded with data, we
-  // refresh to pick up any changes the owner made since the build, and to
-  // re-evaluate the schedule against the current time (the SSR snapshot was
-  // taken at build time, which can be stale for "happy hour"-style promos).
+  // Latest-index ref so the rotation interval can advance from the truly
+  // current value without re-binding (which would reset the 7s cadence).
+  const indexRef = useRef(index);
+  useEffect(() => {
+    indexRef.current = index;
+  }, [index]);
+
+  // Always re-fetch on mount: the SSR seed reflects build-time, but the
+  // schedule must be re-evaluated against current wall-clock time.
   useEffect(() => {
     let cancelled = false;
     fetchActivePromotions()
       .then((items) => {
         if (cancelled) return;
         setPromos(items);
-        // Trigger entrance animation on the next frame so the transition
-        // actually plays (otherwise the element appears in its final state).
         requestAnimationFrame(() => {
           if (!cancelled) setMounted(true);
         });
       })
       .catch(() => {
-        // Network failure: keep whatever we already have (SSR seed if any),
-        // otherwise mark as resolved-empty so the null guard below applies.
         if (!cancelled && promos === null) setPromos([]);
       });
     return () => {
@@ -221,30 +197,24 @@ export function PromoCampaignBanner() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // When the user dismisses the banner, hide every live promo for the rest
-  // of the session. We deliberately do NOT filter per-promo IDs — dismissal
-  // is a single banner-slot decision.
+  // Dismissal is a single banner-slot decision — not per promo.
   const visible = useMemo<PublicPromotion[]>(() => {
     if (!promos || dismissed) return [];
     return promos;
   }, [promos, dismissed]);
 
-  // Reset index when the visible list shrinks.
   useEffect(() => {
     if (index >= visible.length && visible.length > 0) {
       setIndex(0);
     }
   }, [visible.length, index]);
 
-  // True cross-fade rotation. Only runs when there are 2+ visible promos.
-  // Each tick: snapshot the current index into `prevIndex`, advance the
-  // current index, and let the JSX render both layers stacked. After
-  // FADE_MS we drop `prevIndex` so the unmounted-by-default state returns.
   useEffect(() => {
     if (visible.length < 2) return;
     const interval = window.setInterval(() => {
-      setPrevIndex(index);
-      setIndex((i) => (i + 1) % visible.length);
+      const fromIndex = indexRef.current;
+      setPrevIndex(fromIndex);
+      setIndex((fromIndex + 1) % visible.length);
       if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
       fadeTimer.current = window.setTimeout(() => {
         setPrevIndex(null);
@@ -254,9 +224,6 @@ export function PromoCampaignBanner() {
       window.clearInterval(interval);
       if (fadeTimer.current) window.clearTimeout(fadeTimer.current);
     };
-    // index intentionally omitted — we want the interval cadence stable;
-    // reading the latest index via setter callbacks above is sufficient.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [visible.length]);
 
   if (!promos || visible.length === 0) return null;
@@ -285,8 +252,6 @@ export function PromoCampaignBanner() {
       ].join(" ")}
       style={{ transitionDuration: `${FADE_MS}ms` }}
     >
-      {/* Base layer: the current promo is always fully visible and drives
-          the banner's intrinsic height. */}
       <PromoBannerView
         promo={current}
         onDismiss={dismiss}
@@ -294,14 +259,6 @@ export function PromoCampaignBanner() {
         totalCount={visible.length}
         activeIndex={safeIndex}
       />
-      {/* Cross-fade overlay: the *previous* promo, stacked on top of the
-          current one, fading from opacity 1 → 0 over FADE_MS via a CSS
-          keyframe (which auto-plays on mount, so no rAF gymnastics). The
-          current promo underneath is fully opaque the whole time, so as
-          the overlay fades you literally see the new content emerge
-          through the old one — a real overlapping cross-fade rather than
-          a fade-out / fade-in. The overlay unmounts when the rotation
-          effect clears prevIndex after FADE_MS. */}
       {previous ? (
         <div
           key={`promo-fade-${prevIndex}`}

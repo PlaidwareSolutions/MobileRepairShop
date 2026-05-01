@@ -221,16 +221,7 @@ export default function HomePage() {
         jsonLd={localBusinessJsonLd()}
       />
 
-      {/* OWNER-MANAGED CAMPAIGN BANNER ---------------------------------- */}
-      {/* Animated banner driven by /admin/promotions. The API server is the
-          single source of truth for which rows are live; this component
-          handles entrance animation, rotation, and session dismissal. During
-          SSG/SSR the build script best-effort fetches the live promos and
-          seeds them via SsrPromosContext so the first promo renders in
-          static HTML for crawlers — and falls back gracefully to no banner
-          when the API is unreachable at build time. The client always
-          re-fetches on mount, so paused or scheduled-for-later campaigns
-          never appear regardless of when the prerender ran. */}
+      {/* Owner-managed campaign banner driven by /admin/promotions. */}
       <PromoCampaignBanner />
 
       {/* HERO ----------------------------------------------------------- */}
