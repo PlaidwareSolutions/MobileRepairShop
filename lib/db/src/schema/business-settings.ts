@@ -88,11 +88,11 @@ export const updateBusinessSettingsSchema = z
     hoursThursday: z.string().trim().min(1).max(80),
     hoursFriday: z.string().trim().min(1).max(80),
     hoursSaturday: z.string().trim().min(1).max(80),
-    socialFacebook: z.string().trim().max(500).optional(),
-    socialInstagram: z.string().trim().max(500).optional(),
-    socialTiktok: z.string().trim().max(500).optional(),
-    socialYoutube: z.string().trim().max(500).optional(),
-    socialX: z.string().trim().max(500).optional(),
+    socialFacebook: z.string().trim().max(500).refine((v) => v === "" || /^https?:\/\/.+/.test(v), { message: "Must be a valid URL or empty" }).optional(),
+    socialInstagram: z.string().trim().max(500).refine((v) => v === "" || /^https?:\/\/.+/.test(v), { message: "Must be a valid URL or empty" }).optional(),
+    socialTiktok: z.string().trim().max(500).refine((v) => v === "" || /^https?:\/\/.+/.test(v), { message: "Must be a valid URL or empty" }).optional(),
+    socialYoutube: z.string().trim().max(500).refine((v) => v === "" || /^https?:\/\/.+/.test(v), { message: "Must be a valid URL or empty" }).optional(),
+    socialX: z.string().trim().max(500).refine((v) => v === "" || /^https?:\/\/.+/.test(v), { message: "Must be a valid URL or empty" }).optional(),
   })
   .partial();
 
