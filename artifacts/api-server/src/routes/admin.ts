@@ -957,19 +957,26 @@ router.patch("/promotions/:id", async (req: Request, res: Response, next: NextFu
       return;
     }
 
-    // Final-state validation: a weekly promo must always end up with at
-    // least one day-of-week selected. PATCH lets the caller change either
-    // (or both) of `recurrence` and `daysOfWeek`, so we have to look at
-    // the merged final state — not just what's in the body — to catch
-    // both "switch existing row to weekly without supplying days" and
-    // "blank out days on an already-weekly row" cases.
+    // Final-state validation: PATCH callers can change any subset of
+    // schedule-shaping fields, so we must look at the merged final state
+    // — not just what's in the body — to enforce the same invariants
+    // the create path enforces. Two invariants apply here:
+    //   1. A weekly promo always ends up with ≥1 day-of-week selected.
+    //   2. If both startsAt and endsAt end up set, startsAt ≤ endsAt.
+    // Without merging, "PATCH {daysOfWeek: []}" or "PATCH {endsAt: <past>}"
+    // could otherwise silently corrupt an already-valid row.
     const touchesScheduleShape =
-      body.recurrence !== undefined || body.daysOfWeek !== undefined;
+      body.recurrence !== undefined ||
+      body.daysOfWeek !== undefined ||
+      body.startsAt !== undefined ||
+      body.endsAt !== undefined;
     if (touchesScheduleShape) {
       const [existing] = await db
         .select({
           recurrence: promotionsTable.recurrence,
           days: promotionsTable.daysOfWeek,
+          startsAt: promotionsTable.startsAt,
+          endsAt: promotionsTable.endsAt,
         })
         .from(promotionsTable)
         .where(eq(promotionsTable.id, id))
@@ -990,6 +997,20 @@ router.patch("/promotions/:id", async (req: Request, res: Response, next: NextFu
         res
           .status(400)
           .json({ error: "Weekly recurrence requires at least one day" });
+        return;
+      }
+      const finalStartsAt =
+        body.startsAt !== undefined ? body.startsAt : existing.startsAt;
+      const finalEndsAt =
+        body.endsAt !== undefined ? body.endsAt : existing.endsAt;
+      if (
+        finalStartsAt instanceof Date &&
+        finalEndsAt instanceof Date &&
+        finalStartsAt.getTime() > finalEndsAt.getTime()
+      ) {
+        res
+          .status(400)
+          .json({ error: "startsAt must be before endsAt" });
         return;
       }
     }
