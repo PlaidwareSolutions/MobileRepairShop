@@ -1,4 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { X } from "lucide-react";
 import { fetchActivePromotions, type PublicPromotion } from "@/lib/api";
 
@@ -11,10 +18,15 @@ const ROTATION_MS = 7000;
 const FADE_MS = 400;
 const SESSION_KEY = "gx-dismissed-promos";
 
-const ACCENT: Record<
-  PublicPromotion["accent"],
-  { bg: string; text: string; badge: string; cta: string; ctaHover: string }
-> = {
+type AccentPalette = {
+  bg: string;
+  text: string;
+  badge: string;
+  cta: string;
+  ctaHover: string;
+};
+
+const ACCENT: Record<PublicPromotion["accent"], AccentPalette> = {
   amber: {
     bg: "bg-gradient-to-r from-amber-500 to-amber-600",
     text: "text-zinc-900",
@@ -45,6 +57,15 @@ const ACCENT: Record<
   },
 };
 
+/**
+ * SSR seed for the banner. The build-time prerender fetches /api/promotions/
+ * active once and passes the result through this context so the first promo
+ * can render in static HTML for crawlers. On the client the provider is
+ * absent, so the value is `null` and the banner falls back to its in-browser
+ * fetch on mount.
+ */
+export const SsrPromosContext = createContext<PublicPromotion[] | null>(null);
+
 function readDismissed(): Set<number> {
   if (typeof window === "undefined") return new Set();
   try {
@@ -69,17 +90,118 @@ function writeDismissed(ids: Set<number>) {
   }
 }
 
+/**
+ * Pure, presentational rendering of a single promotion. No fetch, no
+ * rotation, no dismiss button — used by the homepage banner for each visible
+ * row and by the admin form for the live preview.
+ */
+export function PromoBannerView({
+  promo,
+  fading = false,
+  onDismiss,
+  showDots,
+  totalCount,
+  activeIndex,
+}: {
+  promo: PublicPromotion;
+  fading?: boolean;
+  onDismiss?: () => void;
+  showDots?: boolean;
+  totalCount?: number;
+  activeIndex?: number;
+}) {
+  const palette = ACCENT[promo.accent] ?? ACCENT.amber;
+  return (
+    <div className={`${palette.bg} ${palette.text}`}>
+      <div className="max-w-[1240px] mx-auto px-4 py-3 md:py-4 flex items-center gap-3 md:gap-5">
+        <div
+          key={promo.id}
+          className={[
+            "flex-1 min-w-0 flex flex-col md:flex-row md:items-center gap-2 md:gap-4",
+            "transition-opacity",
+            fading ? "opacity-0" : "opacity-100",
+          ].join(" ")}
+          style={{ transitionDuration: `${FADE_MS}ms` }}
+        >
+          {promo.badge ? (
+            <span
+              className={`shrink-0 self-start md:self-auto inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] md:text-xs font-bold uppercase tracking-wider motion-safe:animate-pulse ${palette.badge}`}
+              data-testid="promo-campaign-badge"
+            >
+              {promo.badge}
+            </span>
+          ) : null}
+          <div className="min-w-0 flex-1">
+            <p
+              className="text-sm md:text-base font-extrabold leading-snug truncate md:whitespace-normal"
+              data-testid="promo-campaign-headline"
+            >
+              {promo.headline}
+            </p>
+            {promo.supportingLine ? (
+              <p className="text-xs md:text-sm font-medium opacity-90 leading-snug truncate md:whitespace-normal">
+                {promo.supportingLine}
+              </p>
+            ) : null}
+          </div>
+          {promo.ctaLabel && promo.ctaHref ? (
+            <a
+              href={promo.ctaHref}
+              className={`shrink-0 inline-flex items-center justify-center rounded-md ${palette.cta} ${palette.ctaHover} text-xs md:text-sm font-bold uppercase tracking-wide px-4 py-2 transition-colors`}
+              data-testid="promo-campaign-cta"
+            >
+              {promo.ctaLabel}
+            </a>
+          ) : null}
+        </div>
+        {onDismiss ? (
+          <button
+            type="button"
+            onClick={onDismiss}
+            className="shrink-0 rounded-md p-1.5 hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-colors"
+            aria-label="Dismiss promotion"
+            data-testid="promo-campaign-dismiss"
+          >
+            <X className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
+          </button>
+        ) : null}
+      </div>
+      {showDots && totalCount && totalCount > 1 ? (
+        <div
+          className="absolute inset-x-0 bottom-0 flex justify-center gap-1 pb-1 pointer-events-none"
+          aria-hidden="true"
+        >
+          {Array.from({ length: totalCount }).map((_, i) => (
+            <span
+              key={i}
+              className={`h-1 w-1 rounded-full transition-opacity ${
+                i === activeIndex ? "opacity-90" : "opacity-40"
+              } bg-current`}
+            />
+          ))}
+        </div>
+      ) : null}
+    </div>
+  );
+}
+
 export function PromoCampaignBanner() {
-  const [promos, setPromos] = useState<PublicPromotion[] | null>(null);
+  const ssrPromos = useContext(SsrPromosContext);
+
+  // SSR seed: when the prerender provides initial data, render it on first
+  // paint so crawlers see the banner deterministically. On the client (no
+  // provider) this stays null and the useEffect below kicks in.
+  const [promos, setPromos] = useState<PublicPromotion[] | null>(ssrPromos);
   const [dismissed, setDismissed] = useState<Set<number>>(() => readDismissed());
   const [index, setIndex] = useState(0);
-  const [mounted, setMounted] = useState(false);
+  const [mounted, setMounted] = useState(ssrPromos !== null && ssrPromos.length > 0);
   const [fading, setFading] = useState(false);
   const fadeTimer = useRef<number | null>(null);
 
-  // Fetch on mount only. SSR (build-time prerender) skips this entirely
-  // because useEffect doesn't run during server rendering — the banner stays
-  // null in the static HTML, and shows up on the client once data arrives.
+  // Always re-fetch on mount in the browser. Even if SSR seeded with data, we
+  // refresh to pick up any changes the owner made since the build, and to
+  // re-evaluate the schedule against the current time (the SSR snapshot was
+  // taken at build time, which can be stale for "happy hour"-style promos).
   useEffect(() => {
     let cancelled = false;
     fetchActivePromotions()
@@ -93,11 +215,14 @@ export function PromoCampaignBanner() {
         });
       })
       .catch(() => {
-        if (!cancelled) setPromos([]);
+        // Network failure: keep whatever we already have (SSR seed if any),
+        // otherwise mark as resolved-empty so the null guard below applies.
+        if (!cancelled && promos === null) setPromos([]);
       });
     return () => {
       cancelled = true;
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Filter out dismissed promos. Memoized so the rotation effect's dep array
@@ -133,7 +258,6 @@ export function PromoCampaignBanner() {
   if (!promos || visible.length === 0) return null;
 
   const current = visible[Math.min(index, visible.length - 1)];
-  const palette = ACCENT[current.accent] ?? ACCENT.amber;
 
   function dismiss(id: number) {
     setDismissed((prev) => {
@@ -158,74 +282,14 @@ export function PromoCampaignBanner() {
       ].join(" ")}
       style={{ transitionDuration: `${FADE_MS}ms` }}
     >
-      <div className={`${palette.bg} ${palette.text}`}>
-        <div className="max-w-[1240px] mx-auto px-4 py-3 md:py-4 flex items-center gap-3 md:gap-5">
-          <div
-            key={current.id}
-            className={[
-              "flex-1 min-w-0 flex flex-col md:flex-row md:items-center gap-2 md:gap-4",
-              "transition-opacity",
-              fading ? "opacity-0" : "opacity-100",
-            ].join(" ")}
-            style={{ transitionDuration: `${FADE_MS}ms` }}
-          >
-            {current.badge ? (
-              <span
-                className={`shrink-0 self-start md:self-auto inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] md:text-xs font-bold uppercase tracking-wider ${palette.badge}`}
-                data-testid="promo-campaign-badge"
-              >
-                {current.badge}
-              </span>
-            ) : null}
-            <div className="min-w-0 flex-1">
-              <p
-                className="text-sm md:text-base font-extrabold leading-snug truncate md:whitespace-normal"
-                data-testid="promo-campaign-headline"
-              >
-                {current.headline}
-              </p>
-              {current.supportingLine ? (
-                <p className="text-xs md:text-sm font-medium opacity-90 leading-snug truncate md:whitespace-normal">
-                  {current.supportingLine}
-                </p>
-              ) : null}
-            </div>
-            {current.ctaLabel && current.ctaHref ? (
-              <a
-                href={current.ctaHref}
-                className={`shrink-0 inline-flex items-center justify-center rounded-md ${palette.cta} ${palette.ctaHover} text-xs md:text-sm font-bold uppercase tracking-wide px-4 py-2 transition-colors`}
-                data-testid="promo-campaign-cta"
-              >
-                {current.ctaLabel}
-              </a>
-            ) : null}
-          </div>
-          <button
-            type="button"
-            onClick={() => dismiss(current.id)}
-            className="shrink-0 rounded-md p-1.5 hover:bg-black/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/60 transition-colors"
-            aria-label="Dismiss promotion"
-            data-testid="promo-campaign-dismiss"
-          >
-            <X className="w-4 h-4 md:w-5 md:h-5" aria-hidden="true" />
-          </button>
-        </div>
-        {visible.length > 1 ? (
-          <div
-            className="absolute inset-x-0 bottom-0 flex justify-center gap-1 pb-1 pointer-events-none"
-            aria-hidden="true"
-          >
-            {visible.map((p, i) => (
-              <span
-                key={p.id}
-                className={`h-1 w-1 rounded-full transition-opacity ${
-                  i === index ? "opacity-90" : "opacity-40"
-                } bg-current`}
-              />
-            ))}
-          </div>
-        ) : null}
-      </div>
+      <PromoBannerView
+        promo={current}
+        fading={fading}
+        onDismiss={() => dismiss(current.id)}
+        showDots={visible.length > 1}
+        totalCount={visible.length}
+        activeIndex={index}
+      />
     </section>
   );
 }

@@ -1017,6 +1017,60 @@ router.delete("/promotions/:id", async (req: Request, res: Response, next: NextF
 });
 
 router.post(
+  "/promotions/:id/duplicate",
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const id = Number(req.params.id);
+      if (!Number.isInteger(id) || id <= 0) {
+        res.status(400).json({ error: "Invalid id" });
+        return;
+      }
+      const [src] = await db
+        .select()
+        .from(promotionsTable)
+        .where(eq(promotionsTable.id, id))
+        .limit(1);
+      if (!src) {
+        res.status(404).json({ error: "Promotion not found" });
+        return;
+      }
+      // Compute next sort order so the duplicate appears at the end of the
+      // list (where the owner expects "newly created" items to land).
+      const all = await db.select({ s: promotionsTable.sortOrder }).from(promotionsTable);
+      const maxSort = all.reduce((acc, r) => Math.max(acc, Number(r.s)), 0);
+      const nextSort = String(maxSort + 10);
+
+      // Duplicate copies all fields but flips active=false and tags the
+      // headline with " (copy)" so the owner can immediately tell which row
+      // is the source and which is the new one. Owner re-activates after
+      // editing whatever needs changing.
+      const [created] = await db
+        .insert(promotionsTable)
+        .values({
+          headline: `${src.headline} (copy)`,
+          supportingLine: src.supportingLine,
+          badge: src.badge,
+          ctaLabel: src.ctaLabel,
+          ctaHref: src.ctaHref,
+          accent: src.accent,
+          active: false,
+          startsAt: src.startsAt,
+          endsAt: src.endsAt,
+          recurrence: src.recurrence,
+          daysOfWeek: src.daysOfWeek,
+          dailyStartMinutes: src.dailyStartMinutes,
+          dailyEndMinutes: src.dailyEndMinutes,
+          sortOrder: nextSort,
+        })
+        .returning();
+      res.status(201).json({ ok: true, item: serializeAdminPromotion(created) });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
+
+router.post(
   "/promotions/reorder",
   async (req: Request, res: Response, next: NextFunction) => {
     try {

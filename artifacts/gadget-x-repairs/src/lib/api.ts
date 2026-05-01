@@ -433,6 +433,7 @@ export type AdminPromotion = {
   dailyStartMinutes: number | null;
   dailyEndMinutes: number | null;
   sortOrder: number;
+  status: "live" | "scheduled" | "ended" | "paused";
   createdAt: string;
   updatedAt: string;
 };
@@ -485,6 +486,12 @@ export async function adminDeletePromotion(password: string, id: number) {
   return (await adminFetch(password, `/admin/promotions/${id}`, {
     method: "DELETE",
   })) as { ok: true; id: number };
+}
+
+export async function adminDuplicatePromotion(password: string, id: number) {
+  return (await adminFetch(password, `/admin/promotions/${id}/duplicate`, {
+    method: "POST",
+  })) as { ok: true; item: AdminPromotion };
 }
 
 export async function adminReorderPromotions(password: string, ids: number[]) {

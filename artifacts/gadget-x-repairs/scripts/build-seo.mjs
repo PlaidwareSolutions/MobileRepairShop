@@ -95,6 +95,42 @@ async function loadRender() {
   return mod.render;
 }
 
+/**
+ * Best-effort: fetch live promotions from the API server so the homepage SSR
+ * snapshot includes the first promo banner for crawlers. If the API is
+ * unreachable at build time (the deploy pipeline doesn't always have the API
+ * running locally), we degrade gracefully to an empty list — the client will
+ * still fetch on mount and render the banner once the page is interactive.
+ *
+ * Override the source URL with SSR_PROMOS_URL or PROMOS_API_URL when running
+ * in environments where the API lives somewhere other than localhost:8080.
+ */
+async function loadInitialPromotions() {
+  const url =
+    process.env.SSR_PROMOS_URL ||
+    process.env.PROMOS_API_URL ||
+    "http://localhost:8080/api/promotions/active";
+  try {
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 2500);
+    const res = await fetch(url, { signal: ctrl.signal });
+    clearTimeout(timer);
+    if (!res.ok) {
+      console.warn(`build-seo: promotions fetch returned ${res.status}; SSR banner will be empty.`);
+      return [];
+    }
+    const json = await res.json();
+    const items = Array.isArray(json?.promotions) ? json.promotions : [];
+    console.log(`build-seo: prefetched ${items.length} live promotion(s) for SSR.`);
+    return items;
+  } catch (e) {
+    console.warn(
+      `build-seo: could not prefetch promotions from ${url} (${e?.message || e}); SSR banner will be empty. The client will fetch on mount.`,
+    );
+    return [];
+  }
+}
+
 function injectRendered(baseHtml, route, rendered) {
   const canonicalPath = CANONICAL_OVERRIDES[route.path] || route.path;
   const canonical = `${SITE_URL}${canonicalPath}`;
@@ -164,10 +200,10 @@ function injectRendered(baseHtml, route, rendered) {
   return out;
 }
 
-async function writeRouteHtml(route, baseHtml, render) {
+async function writeRouteHtml(route, baseHtml, render, ssrData) {
   let rendered;
   try {
-    rendered = render(route.path);
+    rendered = render(route.path, ssrData);
   } catch (e) {
     console.warn(`build-seo: render failed for ${route.path}:`, e.message);
     rendered = { html: "", head: "" };
@@ -229,14 +265,20 @@ async function main() {
     process.exit(1);
   }
   const baseHtml = await readFile(path.join(DIST_DIR, "index.html"), "utf8");
-  const [{ all, sitemap }, render, legacy] = await Promise.all([
+  const [{ all, sitemap }, render, legacy, promotions] = await Promise.all([
     loadRoutes(),
     loadRender(),
     loadLegacyRedirects(),
+    loadInitialPromotions(),
   ]);
+  // Only the homepage embeds the promotion banner, so we only seed SSR data
+  // for "/" — every other route renders with no SSR promo context (the banner
+  // isn't mounted there anyway).
+  const ssrData = { promotions };
   console.log(`build-seo: pre-rendering ${all.length} routes…`);
   for (const route of all) {
-    await writeRouteHtml(route, baseHtml, render);
+    const routeSsr = route.path === "/" ? ssrData : {};
+    await writeRouteHtml(route, baseHtml, render, routeSsr);
   }
   const legacyEntries = Object.entries(legacy);
   for (const [from, to] of legacyEntries) {

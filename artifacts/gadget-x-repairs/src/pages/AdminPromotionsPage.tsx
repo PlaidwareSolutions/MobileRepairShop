@@ -12,10 +12,36 @@ import {
   adminCreatePromotion,
   adminUpdatePromotion,
   adminDeletePromotion,
+  adminDuplicatePromotion,
   adminReorderPromotions,
   type AdminPromotion,
   type PromotionWriteInput,
+  type PublicPromotion,
 } from "@/lib/api";
+import { PromoBannerView } from "@/components/PromoCampaignBanner";
+
+const STATUS_PILL: Record<
+  AdminPromotion["status"],
+  { label: string; classes: string }
+> = {
+  live: {
+    label: "Live now",
+    classes:
+      "bg-emerald-100 border-emerald-300 text-emerald-800",
+  },
+  scheduled: {
+    label: "Scheduled",
+    classes: "bg-sky-50 border-sky-200 text-sky-700",
+  },
+  ended: {
+    label: "Ended",
+    classes: "bg-zinc-100 border-zinc-300 text-zinc-600",
+  },
+  paused: {
+    label: "Paused",
+    classes: "bg-amber-50 border-amber-200 text-amber-800",
+  },
+};
 
 const ACCENT_OPTIONS: { value: AdminPromotion["accent"]; label: string; swatch: string }[] = [
   { value: "amber", label: "Amber", swatch: "bg-amber-500" },
@@ -286,6 +312,17 @@ export default function AdminPromotionsPage() {
     }
   }
 
+  async function onDuplicate(row: AdminPromotion) {
+    setError(null);
+    try {
+      const res = await adminDuplicatePromotion(password, row.id);
+      setInfo(`Duplicated "${row.headline}" → "${res.item.headline}" (paused)`);
+      await load(password);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Duplicate failed");
+    }
+  }
+
   async function onMove(index: number, direction: -1 | 1) {
     const next = index + direction;
     if (next < 0 || next >= items.length) return;
@@ -425,8 +462,8 @@ export default function AdminPromotionsPage() {
                       <th className="text-left px-3 py-3">Order</th>
                       <th className="text-left px-3 py-3">Promo</th>
                       <th className="text-left px-3 py-3">Schedule</th>
-                      <th className="text-left px-3 py-3">Accent</th>
-                      <th className="text-left px-3 py-3">Active</th>
+                      <th className="text-left px-3 py-3">Status</th>
+                      <th className="text-left px-3 py-3">Toggle</th>
                       <th className="text-right px-3 py-3">Actions</th>
                     </tr>
                   </thead>
@@ -470,8 +507,18 @@ export default function AdminPromotionsPage() {
                           </div>
                         </td>
                         <td className="px-3 py-2">
-                          <div className="font-semibold text-zinc-900 text-base">
-                            {row.headline}
+                          <div className="flex items-center gap-2">
+                            <span
+                              aria-hidden="true"
+                              className={`inline-block w-3 h-3 rounded-full shrink-0 ${
+                                ACCENT_OPTIONS.find((a) => a.value === row.accent)
+                                  ?.swatch ?? "bg-zinc-300"
+                              }`}
+                              title={`Accent: ${row.accent}`}
+                            />
+                            <div className="font-semibold text-zinc-900 text-base">
+                              {row.headline}
+                            </div>
                           </div>
                           {row.supportingLine && (
                             <div className="text-[12px] text-zinc-600 mt-0.5">
@@ -490,12 +537,12 @@ export default function AdminPromotionsPage() {
                         </td>
                         <td className="px-3 py-2 align-middle">
                           <span
-                            className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
-                              ACCENT_OPTIONS.find((a) => a.value === row.accent)
-                                ?.swatch ?? "bg-zinc-300"
-                            } text-white border-transparent`}
+                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+                              STATUS_PILL[row.status].classes
+                            }`}
+                            data-testid={`status-${row.id}`}
                           >
-                            {row.accent}
+                            {STATUS_PILL[row.status].label}
                           </span>
                         </td>
                         <td className="px-3 py-2 align-middle">
@@ -518,6 +565,13 @@ export default function AdminPromotionsPage() {
                             data-testid={`button-edit-${row.id}`}
                           >
                             Edit
+                          </button>
+                          <button
+                            onClick={() => onDuplicate(row)}
+                            className="text-sky-600 hover:text-sky-700 font-semibold text-xs uppercase tracking-wide mr-3"
+                            data-testid={`button-duplicate-${row.id}`}
+                          >
+                            Duplicate
                           </button>
                           <button
                             onClick={() => onDelete(row)}
@@ -564,6 +618,19 @@ function PromotionFormCard({
     form.recurrence === "daily" || form.recurrence === "weekly";
   const showDays = form.recurrence === "weekly";
 
+  // Build a synthetic public-promo object that mirrors what the homepage
+  // banner would receive for these form values. id is a stable sentinel so
+  // the preview's React keys don't churn on every keystroke.
+  const previewPromo: PublicPromotion = {
+    id: -1,
+    headline: form.headline.trim() || "Your headline appears here",
+    supportingLine: form.supportingLine.trim() || null,
+    badge: form.badge.trim() || null,
+    ctaLabel: form.ctaLabel.trim() || null,
+    ctaHref: form.ctaHref.trim() || null,
+    accent: form.accent,
+  };
+
   return (
     <form
       onSubmit={onSubmit}
@@ -581,6 +648,21 @@ function PromotionFormCard({
         >
           Close
         </button>
+      </div>
+
+      <div>
+        <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700 mb-2 block">
+          Live preview (as customers will see it)
+        </Label>
+        <div
+          className="rounded-lg overflow-hidden border border-zinc-200 shadow-inner relative"
+          data-testid="promo-form-preview"
+        >
+          <PromoBannerView promo={previewPromo} />
+        </div>
+        <p className="text-[11px] text-zinc-500 mt-1.5">
+          Updates as you type. Badge has a subtle pulse on the live site.
+        </p>
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">

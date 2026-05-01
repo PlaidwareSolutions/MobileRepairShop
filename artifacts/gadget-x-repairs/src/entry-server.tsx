@@ -4,6 +4,20 @@ import { Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Routes } from "@/Routes";
+import { SsrPromosContext } from "@/components/PromoCampaignBanner";
+import type { PublicPromotion } from "@/lib/api";
+
+export type SsrData = {
+  /**
+   * Promotions evaluated as live by the server at build time. The build script
+   * fetches /api/promotions/active once before pre-rendering and passes the
+   * result here so the homepage banner can render deterministically in static
+   * HTML for crawlers. If the API was unreachable at build time the build
+   * script passes an empty array and no banner is included in the SSR HTML
+   * — the client will still fetch on mount.
+   */
+  promotions?: PublicPromotion[];
+};
 
 export type RenderResult = { html: string; head: string };
 
@@ -39,16 +53,19 @@ function extractHeadTags(rendered: string): { head: string; html: string } {
   return { head: tags.join("\n"), html };
 }
 
-export function render(url: string): RenderResult {
+export function render(url: string, ssr: SsrData = {}): RenderResult {
   const queryClient = new QueryClient();
+  const promos = ssr.promotions ?? null;
 
   const rendered = renderToString(
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
-          <WouterRouter ssrPath={url} base="">
-            <Routes />
-          </WouterRouter>
+          <SsrPromosContext.Provider value={promos}>
+            <WouterRouter ssrPath={url} base="">
+              <Routes />
+            </WouterRouter>
+          </SsrPromosContext.Provider>
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>,
