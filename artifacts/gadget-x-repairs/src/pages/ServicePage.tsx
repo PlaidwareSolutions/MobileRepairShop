@@ -277,7 +277,7 @@ export default function ServicePage() {
                   Looking to buy instead?
                 </div>
                 <p className="font-bold text-zinc-900 text-base md:text-lg">
-                  We also sell tested, warrantied {inventoryGroup.label.toLowerCase()} at our Houston shop.
+                  We also sell tested, warrantied {inventoryGroup.label.toLowerCase()} at our Humble shop.
                 </p>
               </div>
               <Link

@@ -135,7 +135,7 @@ export const ARTICLES_DATA: ArticleData[] = [
         ],
       },
     ],
-    cta: "Free laptop diagnostic at our Houston shop — bring it in or call (281) 446-2166.",
+    cta: "Free laptop diagnostic at our Humble shop — bring it in or call (281) 446-2166.",
     related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx", "computer-repair-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,

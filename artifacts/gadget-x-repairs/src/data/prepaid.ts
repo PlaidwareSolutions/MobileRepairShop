@@ -64,7 +64,7 @@ const make = (carrier: string, slug: string, isPayment = false): PrepaidData => 
     ? `${carrier} Bill Payment Houston | In-Store Cash | OK Cellular`
     : `${carrier} Activation Houston | New Lines, Port-Ins | OK Cellular`,
   metaDescription: isPayment
-    ? `Pay your ${carrier} bill in cash at our Houston shop. Walk in, pay, and you're done. Open Sun 11–7:30, Mon–Sat 10–8:30.`
+    ? `Pay your ${carrier} bill in cash at our Humble shop. Walk in, pay, and you're done. Open Sun 11–7:30, Mon–Sat 10–8:30.`
     : `New ${carrier} activation, port-ins and SIM swaps in Houston. Bring your phone or buy one in-store. Walk in any day.`,
   logoSrc: CARRIER_LOGOS[carrier],
   heroPhoto: isPayment ? CASH_PHOTO : SIM_PHOTO,

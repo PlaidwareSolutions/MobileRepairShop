@@ -326,7 +326,7 @@ export const OTHER_GROUP: InventoryGroup = {
       "Other tested, warrantied gadgets in stock at OK Cellular in Houston TX.",
   },
   heading: { prefix: "Other", highlight: "Inventory" },
-  intro: "Other tested gadgets currently in stock at our Houston shop.",
+  intro: "Other tested gadgets currently in stock at our Humble shop.",
 };
 
 export const ALL_FILTER_SLUG = "all";

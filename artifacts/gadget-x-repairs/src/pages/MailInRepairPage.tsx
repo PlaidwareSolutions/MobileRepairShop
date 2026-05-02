@@ -37,7 +37,7 @@ const STEPS = [
   {
     icon: Truck,
     title: "2. Ship us your device",
-    desc: "Pack your device securely and mail it to our Houston shop. Use any carrier — USPS, UPS, or FedEx all work. Insurance + tracking strongly recommended.",
+    desc: "Pack your device securely and mail it to our Humble shop. Use any carrier — USPS, UPS, or FedEx all work. Insurance + tracking strongly recommended.",
   },
   {
     icon: PackageCheck,
@@ -137,7 +137,7 @@ export default function MailInRepairPage() {
               Out of <span className="text-red-600">Houston?</span> Mail us your device.
             </h1>
             <p className="text-lg md:text-xl font-medium text-zinc-600 max-w-2xl">
-              Ship your phone, tablet, laptop or console to our Houston shop. We diagnose,
+              Ship your phone, tablet, laptop or console to our Humble shop. We diagnose,
               repair and ship it back — usually within {SHIPPING.turnaroundDays} of arrival.
               Same 90-day warranty as our in-shop work.
             </p>

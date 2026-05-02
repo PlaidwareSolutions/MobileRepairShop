@@ -235,7 +235,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Tablet Repair",
       h1: "iPad & Tablet Repair in Houston",
       subhead:
-        "Cracked glass, dead LCD, weak battery, broken Lightning or USB-C port — we repair every major tablet at our Houston shop.",
+        "Cracked glass, dead LCD, weak battery, broken Lightning or USB-C port — we repair every major tablet at our Humble shop.",
     },
     problems: ["Cracked front glass", "Dead or lined LCD", "Battery worn out", "Charging port loose or won't charge", "Home button not working", "Stuck on logo / no power"],
     brands: ["iPad / iPad Air / iPad mini / iPad Pro", "Samsung Galaxy Tab", "Amazon Fire HD", "Lenovo Tab", "Microsoft Surface (select models)"],
@@ -406,7 +406,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Dell Laptop Repair",
       h1: "Dell Laptop Repair in Houston",
       subhead:
-        "Latitude, Inspiron, XPS, Precision, Vostro — every Dell line repaired in our Houston shop.",
+        "Latitude, Inspiron, XPS, Precision, Vostro — every Dell line repaired in our Humble shop.",
     },
     problems: ["Black or cracked screen", "No boot", "Battery worn out", "Keyboard / trackpad failure", "Charging port loose", "Hard-drive failure"],
     brands: ["Dell Latitude", "Dell Inspiron", "Dell XPS", "Dell Precision", "Dell Vostro", "Dell Alienware"],
@@ -500,7 +500,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "PlayStation 5 Repair",
       h1: "PS5 Repair in Houston",
       subhead:
-        "Broken HDMI from a fall, no display, won't take discs, fan howling — we fix every PS5 problem in our Houston shop.",
+        "Broken HDMI from a fall, no display, won't take discs, fan howling — we fix every PS5 problem in our Humble shop.",
     },
     problems: ["Broken HDMI port — no video", "Disc drive won't read or eject", "Won't turn on or shuts off", "Loud fan / overheating", "Controller drift / broken trigger"],
     brands: ["PS5 Disc edition", "PS5 Digital edition", "PS5 Slim"],
@@ -1187,7 +1187,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Revvl Repair",
       h1: "T-Mobile Revvl Repair in Houston",
       subhead:
-        "Cracked Revvl screen, weak battery, USB-C port loose? We repair every T-Mobile Revvl model in our Houston shop.",
+        "Cracked Revvl screen, weak battery, USB-C port loose? We repair every T-Mobile Revvl model in our Humble shop.",
     },
     problems: ["Cracked screen", "Battery won't hold a charge", "USB-C port loose", "Speaker / mic failure", "Won't power on"],
     brands: ["Revvl", "Revvl Plus", "Revvl 4", "Revvl 5G", "Revvl 6", "Revvl 6 Pro", "Revvl 7", "Revvl 7 Pro"],
@@ -1471,7 +1471,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Laptop Motherboard",
       h1: "Laptop Motherboard Repair in Houston",
       subhead:
-        "Laptop won't power on, no display, dead after a spill, won't take a charge — laptop board-level repair done in our Houston shop.",
+        "Laptop won't power on, no display, dead after a spill, won't take a charge — laptop board-level repair done in our Humble shop.",
     },
     problems: ["Won't power on / no LEDs", "Powers on but no display", "Dead after a liquid spill", "Won't charge with a known-good charger", "Random shutdowns under load"],
     brands: ["HP", "Dell", "Lenovo", "ASUS", "Acer", "MSI", "MacBook Air / Pro"],
@@ -1880,7 +1880,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "iPhone 8 / 8 Plus Repair",
       h1: "iPhone 8 & 8 Plus Repair in Houston",
       subhead:
-        "iPhone 8 and 8 Plus — cracked LCD, weak battery, loose Lightning port, shattered back glass. Affordable, same-day repairs at our Houston shop.",
+        "iPhone 8 and 8 Plus — cracked LCD, weak battery, loose Lightning port, shattered back glass. Affordable, same-day repairs at our Humble shop.",
     },
     problems: ["Cracked LCD display", "Battery health below 80%", "Lightning port loose", "Back glass cracked", "Home button / Touch ID not working", "Won't turn on"],
     brands: ["iPhone 8", "iPhone 8 Plus"],
@@ -1913,7 +1913,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "iPhone 7 / 6s / 6 Repair",
       h1: "iPhone 7, 6s & 6 Repair in Houston",
       subhead:
-        "Still rocking an iPhone 7, 6s or 6? We fix cracked LCDs, weak batteries and loose Lightning ports on these legacy models for $59–$79 at our Houston shop — no upsells, no pressure to upgrade.",
+        "Still rocking an iPhone 7, 6s or 6? We fix cracked LCDs, weak batteries and loose Lightning ports on these legacy models for $59–$79 at our Humble shop — no upsells, no pressure to upgrade.",
     },
     problems: [
       "Cracked LCD or black display",
@@ -1953,7 +1953,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Galaxy A54 Repair",
       h1: "Samsung Galaxy A54 Repair in Houston",
       subhead:
-        "Galaxy A54 5G — cracked Super AMOLED, swollen battery, loose USB-C port, back glass shatter. Same-day where possible at our Houston shop.",
+        "Galaxy A54 5G — cracked Super AMOLED, swollen battery, loose USB-C port, back glass shatter. Same-day where possible at our Humble shop.",
     },
     problems: ["Cracked Super AMOLED display", "Battery degraded", "USB-C port not charging", "Back glass cracked", "Front or rear camera cracked", "Won't power on after a fall"],
     brands: ["Galaxy A54", "Galaxy A54 5G"],
@@ -1986,7 +1986,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Galaxy A35 Repair",
       h1: "Samsung Galaxy A35 Repair in Houston",
       subhead:
-        "Galaxy A35 5G — cracked Super AMOLED, weak battery, loose USB-C port, back glass shatter. Affordable repairs at our Houston shop.",
+        "Galaxy A35 5G — cracked Super AMOLED, weak battery, loose USB-C port, back glass shatter. Affordable repairs at our Humble shop.",
     },
     problems: ["Cracked Super AMOLED display", "Battery degraded", "USB-C port not charging", "Back glass cracked", "Camera lens cracked", "Won't power on after a fall"],
     brands: ["Galaxy A35", "Galaxy A35 5G"],
@@ -2019,7 +2019,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Galaxy A15 Repair",
       h1: "Samsung Galaxy A15 Repair in Houston",
       subhead:
-        "Galaxy A15 and A15 5G — cracked AMOLED, weak battery, loose USB-C port. Affordable repairs at our Houston shop, same day where possible.",
+        "Galaxy A15 and A15 5G — cracked AMOLED, weak battery, loose USB-C port. Affordable repairs at our Humble shop, same day where possible.",
     },
     problems: ["Cracked AMOLED display", "Battery drains fast", "USB-C port loose", "Back panel cracked", "Speaker or mic dead", "Won't power on"],
     brands: ["Galaxy A15", "Galaxy A15 5G"],
@@ -2086,7 +2086,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Galaxy S21 Repair",
       h1: "Samsung Galaxy S21 Repair in Houston",
       subhead:
-        "Galaxy S21, S21+, S21 Ultra and S21 FE — cracked AMOLED, weak battery, loose USB-C, shattered back. Same day where possible at our Houston shop.",
+        "Galaxy S21, S21+, S21 Ultra and S21 FE — cracked AMOLED, weak battery, loose USB-C, shattered back. Same day where possible at our Humble shop.",
     },
     problems: ["Cracked AMOLED display", "Battery health degraded", "USB-C charging port loose", "Back glass cracked", "Camera glass cracked", "Won't power on"],
     brands: ["Galaxy S21", "Galaxy S21+", "Galaxy S21 Ultra", "Galaxy S21 FE"],

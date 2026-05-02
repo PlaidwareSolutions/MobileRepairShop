@@ -190,7 +190,7 @@ export const SALES_DATA: SalesData[] = [
       eyebrow: "Shop OK Cellular",
       h1: "Shop OK Cellular Houston",
       subhead:
-        "Everything we sell — phones, laptops, accessories, prepaid SIMs and bill payments — all in one Houston shop on Will Clayton Pkwy.",
+        "Everything we sell — phones, laptops, accessories, prepaid SIMs and bill payments — all in one Humble shop on Will Clayton Pkwy.",
     },
     intro:
       "OK Cellular is your one-stop shop in Houston for unlocked phones, refurbished laptops, cases, chargers, screen protectors, prepaid activations and bill payments. Walk in any day and we'll set you up.",
@@ -361,7 +361,7 @@ export const SALES_DATA: SalesData[] = [
       eyebrow: "Buy Galaxy S22",
       h1: "Buy Samsung Galaxy S22 in Houston",
       subhead:
-        "Unlocked Galaxy S22, S22+ and S22 Ultra — flagship Snapdragon, AMOLED, S Pen on the Ultra. Tested and warrantied at our Houston shop.",
+        "Unlocked Galaxy S22, S22+ and S22 Ultra — flagship Snapdragon, AMOLED, S Pen on the Ultra. Tested and warrantied at our Humble shop.",
     },
     intro:
       "The Galaxy S22 series remains a great-value Samsung flagship — fast, beautiful AMOLED, and the S22 Ultra still has a built-in S Pen. Every S22 we sell is battery-checked, screen-tested and factory reset.",
@@ -414,7 +414,7 @@ export const SALES_DATA: SalesData[] = [
       eyebrow: "Buy Galaxy Note 20",
       h1: "Buy Samsung Galaxy Note 20 in Houston",
       subhead:
-        "Unlocked Galaxy Note 20 and Note 20 Ultra — built-in S Pen, AMOLED display, flagship cameras. Tested and warrantied at our Houston shop.",
+        "Unlocked Galaxy Note 20 and Note 20 Ultra — built-in S Pen, AMOLED display, flagship cameras. Tested and warrantied at our Humble shop.",
     },
     intro:
       "The Galaxy Note 20 is one of the last true Note phones with a built-in S Pen — popular with note-takers, students and people who miss the dedicated stylus slot. Every Note 20 ships with a working, calibrated S Pen.",
