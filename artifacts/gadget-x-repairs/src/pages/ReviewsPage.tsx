@@ -13,7 +13,7 @@ export default function ReviewsPage() {
     <PageShell hideTicker>
       <SEO
         title="Customer Reviews Houston TX | OK Cellular"
-        description="See what customers say about OK Cellular in Houston TX. Real reviews from satisfied clients. Trusted phone & device repair specialists!"
+        description="See what customers say about OK Cellular in Humble TX. Real reviews from satisfied clients. Trusted phone & device repair specialists!"
         path="/reviews-houston-tx"
         jsonLd={[
           localBusinessJsonLd(business),

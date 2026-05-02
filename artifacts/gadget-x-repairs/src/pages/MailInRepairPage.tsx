@@ -26,7 +26,7 @@ import { useBusiness } from "@/components/BusinessContext";
 
 const PAGE_TITLE = "Mail-In Phone & Laptop Repair | OK Cellular Houston, TX";
 const PAGE_DESC =
-  "Ship your phone, tablet, laptop or console to OK Cellular in Houston TX for repair. Get a quote online, mail it in, we fix it and ship it back.";
+  "Ship your phone, tablet, laptop or console to OK Cellular in Humble TX for repair. Get a quote online, mail it in, we fix it and ship it back.";
 
 const STEPS = [
   {

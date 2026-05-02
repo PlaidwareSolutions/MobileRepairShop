@@ -23,7 +23,7 @@ import { useBusiness } from "@/components/BusinessContext";
 const DEFAULT_META = {
   title: "Phones & Laptops Inventory Houston | OK Cellular",
   description:
-    "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at OK Cellular in Houston TX. Walk-ins welcome!",
+    "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at OK Cellular in Humble TX. Walk-ins welcome!",
   heading: { prefix: "Current", highlight: "Inventory" },
   intro:
     "Stock changes daily. Call to confirm availability or reserve an item — we'll hold it for 24 hours.",

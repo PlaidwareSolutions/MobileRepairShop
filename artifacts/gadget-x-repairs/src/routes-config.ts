@@ -28,33 +28,33 @@ export const STATIC_ROUTES: RouteEntry[] = [
   },
   {
     path: "/about",
-    metaTitle: "About OK Cellular | 15 Years in Houston TX",
+    metaTitle: "About OK Cellular | 15 Years in Humble TX",
     metaDescription:
-      "About OK Cellular in Houston TX — 15 years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!",
+      "About OK Cellular in Humble TX — 15 years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!",
   },
   {
     path: "/contact-houston-tx",
-    metaTitle: "Contact OK Cellular | Houston, TX",
+    metaTitle: "Contact OK Cellular | Humble, TX",
     metaDescription:
-      "Contact OK Cellular in Houston: call (281) 446-2166, text on WhatsApp, or visit 8910 Will Clayton Pkwy APT 200.",
+      "Contact OK Cellular in Humble TX: call (281) 446-2166, text on WhatsApp, or visit 8910 Will Clayton Pkwy APT 200.",
   },
   {
     path: "/mail-in-repair-houston-tx",
-    metaTitle: "Mail-In Phone & Laptop Repair | OK Cellular Houston, TX",
+    metaTitle: "Mail-In Phone & Laptop Repair | OK Cellular Humble, TX",
     metaDescription:
-      "Ship your phone, tablet, laptop or console to OK Cellular in Houston TX for repair. Get a quote online, mail it in, we fix it and ship it back.",
+      "Ship your phone, tablet, laptop or console to OK Cellular in Humble TX for repair. Get a quote online, mail it in, we fix it and ship it back.",
   },
   {
     path: "/reviews-houston-tx",
-    metaTitle: "Customer Reviews | OK Cellular Houston",
+    metaTitle: "Customer Reviews | OK Cellular Humble TX",
     metaDescription:
-      "5-star customer reviews for OK Cellular in Houston, TX — phone, tablet, laptop, PS5, Xbox repair and prepaid activation.",
+      "5-star customer reviews for OK Cellular in Humble, TX — phone, tablet, laptop, PS5, Xbox repair and prepaid activation.",
   },
   {
     path: "/inventory",
-    metaTitle: "Phones & Laptops Inventory Houston | OK Cellular",
+    metaTitle: "Phones & Laptops Inventory Humble TX | OK Cellular",
     metaDescription:
-      "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at OK Cellular in Houston TX. Walk-ins welcome!",
+      "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at OK Cellular in Humble TX. Walk-ins welcome!",
   },
   {
     path: "/financing-houston-tx",

@@ -22,8 +22,8 @@ export default function AboutPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="About OK Cellular | 15 Years in Houston TX"
-        description="About OK Cellular in Houston TX — 15 years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!"
+        title="About OK Cellular | 15 Years in Humble TX"
+        description="About OK Cellular in Humble TX — 15 years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!"
         path="/about"
         jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "About", path: "/about" }])]}
       />
