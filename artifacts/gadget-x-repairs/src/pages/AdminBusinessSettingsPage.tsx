@@ -356,7 +356,7 @@ export default function AdminBusinessSettingsPage() {
                         id={`day-${d.key}`}
                         value={form[d.key]}
                         onChange={(e) => field(d.key, e.target.value)}
-                        placeholder="10:00 AM – 7:00 PM"
+                        placeholder="10:00 AM – 8:30 PM"
                         className="bg-white border border-zinc-200 focus:border-red-500 h-12"
                         data-testid={`input-${d.key}`}
                       />

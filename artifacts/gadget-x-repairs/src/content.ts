@@ -2,7 +2,7 @@ export const BUSINESS = {
   name: "OK Cellular",
   tagline:
     "Cellphone, iPhone, iPad, MacBook, Laptop, Gaming Console & Accessories — We Sell and Repair",
-  phoneDisplay: "+1 (281) 446-2166",
+  phoneDisplay: "(281) 446-2166",
   phoneTel: "tel:+12814462166",
   whatsapp: "https://wa.me/12814462166",
   sms: "sms:+12814462166",
@@ -137,7 +137,7 @@ export const FINANCING_PAGE = {
     },
     {
       q: "What if I'm denied?",
-      a: "You can still walk out with the phone for cash, debit or zero-interest layaway. Call us at +1 (281) 446-2166 and we'll help you find an option that works.",
+      a: "You can still walk out with the phone for cash, debit or zero-interest layaway. Call us at (281) 446-2166 and we'll help you find an option that works.",
     },
   ],
 };
