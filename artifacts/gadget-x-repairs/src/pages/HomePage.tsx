@@ -217,8 +217,8 @@ export default function HomePage() {
   return (
     <PageShell>
       <SEO
-        title="Best Phone Repair Houston TX | GadgetX Repairs"
-        description="Top-rated phone repair in Houston TX. Fast fixes for screens, batteries & charging ports. Walk-ins welcome. Free quote at GadgetX Repairs today!"
+        title="Best Phone Repair Houston TX | OK Cellular"
+        description="Top-rated phone repair in Houston TX. Fast fixes for screens, batteries & charging ports. Walk-ins welcome. Free quote at OK Cellular today!"
         path="/phone-repair-houston-tx"
         jsonLd={localBusinessJsonLd(business)}
       />
@@ -489,10 +489,10 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Why Gadget X */}
+          {/* Why OK Cellular */}
           <div className="lg:col-span-5">
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
-              Why <span className="text-red-600">Gadget X?</span>
+              Why <span className="text-red-600">OK Cellular?</span>
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
               {WHY_TILES.map((item) => {

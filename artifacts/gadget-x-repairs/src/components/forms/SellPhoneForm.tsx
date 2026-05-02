@@ -166,7 +166,7 @@ export function SellPhoneForm() {
           className="bg-white border border-zinc-200 focus:border-red-500 h-12"
           data-testid="input-photo-url"
         />
-        <p className="text-xs font-bold text-zinc-500">Or text a photo to (346) 623-6898 on WhatsApp.</p>
+        <p className="text-xs font-bold text-zinc-500">Or text a photo to (281) 446-2166 on WhatsApp.</p>
       </div>
       {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
       {turnstileWidget}

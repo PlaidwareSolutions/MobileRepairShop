@@ -206,7 +206,7 @@ export default function AdminLeadsPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Admin · Leads | Gadget X"
+        title="Admin · Leads | OK Cellular"
         description="Admin lead inbox"
         path="/admin/leads"
         noindex

@@ -198,7 +198,7 @@ export function RepairQuoteCard({
           status={lead.status}
           phone={lead.phone}
           email={email}
-          whatsappPrefill={`Hi ${lead.name?.split(" ")[0] ?? "there"}, Gadget X Repairs here regarding your ${lead.brand} ${lead.model} repair request.`}
+          whatsappPrefill={`Hi ${lead.name?.split(" ")[0] ?? "there"}, OK Cellular here regarding your ${lead.brand} ${lead.model} repair request.`}
           emailDefaults={{ to: email ?? "", subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}
@@ -289,7 +289,7 @@ export function SellPhoneCard({
           status={lead.status}
           phone={lead.phone}
           email={null}
-          whatsappPrefill={`Hi ${lead.name?.split(" ")[0] ?? "there"}, Gadget X Repairs here about your ${lead.brand} ${lead.model} sell quote.`}
+          whatsappPrefill={`Hi ${lead.name?.split(" ")[0] ?? "there"}, OK Cellular here about your ${lead.brand} ${lead.model} sell quote.`}
           emailDefaults={{ subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}
@@ -395,7 +395,7 @@ export function ContactCard({
           status={lead.status}
           phone={phone}
           email={email}
-          whatsappPrefill={`Hi ${lead.name?.split(" ")[0] ?? "there"}, Gadget X Repairs here, replying to your message.`}
+          whatsappPrefill={`Hi ${lead.name?.split(" ")[0] ?? "there"}, OK Cellular here, replying to your message.`}
           emailDefaults={{ to: email ?? "", subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}
@@ -438,7 +438,7 @@ export function ReservationCard({
           status={lead.status}
           phone={lead.phone}
           email={null}
-          whatsappPrefill={`Hi ${lead.name?.split(" ")[0] ?? "there"}, your ${lead.itemLabel} is held for you at Gadget X Repairs.`}
+          whatsappPrefill={`Hi ${lead.name?.split(" ")[0] ?? "there"}, your ${lead.itemLabel} is held for you at OK Cellular.`}
           emailDefaults={{ subject: tpl.subject, html: tpl.html, text: tpl.text }}
           smsDefaults={{ body: sms.body }}
           messaging={rest.messaging}

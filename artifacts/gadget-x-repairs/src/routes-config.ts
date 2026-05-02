@@ -16,9 +16,9 @@ export type RouteEntry = {
 // to /phone-repair-houston-tx so existing search-engine signals are preserved.
 const HOME_META = {
   metaTitle:
-    "Phone, Laptop & PS5 Repair Houston TX | Gadget X Repairs",
+    "Phone, Laptop & PS5 Repair Houston TX | OK Cellular",
   metaDescription:
-    "Same-day phone, tablet, laptop and console repair in Houston, TX. iPhone, Samsung, Pixel, MacBook, PS5, Xbox. Call (346) 623-6898.",
+    "Same-day phone, tablet, laptop and console repair in Houston, TX. iPhone, Samsung, Pixel, MacBook, PS5, Xbox. Call (281) 446-2166.",
 };
 
 export const STATIC_ROUTES: RouteEntry[] = [
@@ -28,44 +28,44 @@ export const STATIC_ROUTES: RouteEntry[] = [
   },
   {
     path: "/about",
-    metaTitle: "About GadgetX Repairs | 15 Years in Houston TX",
+    metaTitle: "About OK Cellular | 15 Years in Houston TX",
     metaDescription:
-      "About GadgetX Repairs in Houston TX — 15 years of honest repair, sales and prepaid service from our Almeda Rd shop. Walk-ins welcome!",
+      "About OK Cellular in Houston TX — 15 years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!",
   },
   {
     path: "/contact-houston-tx",
-    metaTitle: "Contact Gadget X Repairs | Houston, TX",
+    metaTitle: "Contact OK Cellular | Houston, TX",
     metaDescription:
-      "Contact Gadget X Repairs in Houston: call (346) 623-6898, text on WhatsApp, or visit 8389 Almeda Rd Suite J-2.",
+      "Contact OK Cellular in Houston: call (281) 446-2166, text on WhatsApp, or visit 8910 Will Clayton Pkwy APT 200.",
   },
   {
     path: "/mail-in-repair-houston-tx",
-    metaTitle: "Mail-In Phone & Laptop Repair | Gadget X Houston, TX",
+    metaTitle: "Mail-In Phone & Laptop Repair | OK Cellular Houston, TX",
     metaDescription:
-      "Ship your phone, tablet, laptop or console to GadgetX Repairs in Houston TX for repair. Get a quote online, mail it in, we fix it and ship it back.",
+      "Ship your phone, tablet, laptop or console to OK Cellular in Houston TX for repair. Get a quote online, mail it in, we fix it and ship it back.",
   },
   {
     path: "/reviews-houston-tx",
-    metaTitle: "Customer Reviews | Gadget X Repairs Houston",
+    metaTitle: "Customer Reviews | OK Cellular Houston",
     metaDescription:
-      "5-star customer reviews for Gadget X Repairs in Houston, TX — phone, tablet, laptop, PS5, Xbox repair and prepaid activation.",
+      "5-star customer reviews for OK Cellular in Houston, TX — phone, tablet, laptop, PS5, Xbox repair and prepaid activation.",
   },
   {
     path: "/inventory",
-    metaTitle: "Phones & Laptops Inventory Houston | GadgetX Repairs",
+    metaTitle: "Phones & Laptops Inventory Houston | OK Cellular",
     metaDescription:
-      "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at GadgetX Repairs in Houston TX. Walk-ins welcome!",
+      "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at OK Cellular in Houston TX. Walk-ins welcome!",
   },
   {
     path: "/financing-houston-tx",
-    metaTitle: "Phone Financing Houston TX | $10 Down | GadgetX Repairs",
+    metaTitle: "Phone Financing Houston TX | $10 Down | OK Cellular",
     metaDescription:
       "Phone financing in Houston TX from $10 down. Walk out the same day with an unlocked iPhone, Samsung or Pixel. Pre-qualify in 60 seconds — no credit pull.",
   },
   {
     path: "/admin/leads",
-    metaTitle: "Admin · Leads | Gadget X",
-    metaDescription: "Admin lead inbox for Gadget X Repairs.",
+    metaTitle: "Admin · Leads | OK Cellular",
+    metaDescription: "Admin lead inbox for OK Cellular.",
   },
 ];
 

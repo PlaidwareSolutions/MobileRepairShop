@@ -379,7 +379,7 @@ export default function AdminPromotionsPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Admin · Promotions | Gadget X"
+        title="Admin · Promotions | OK Cellular"
         description="Admin promotions management"
         path="/admin/promotions"
         noindex

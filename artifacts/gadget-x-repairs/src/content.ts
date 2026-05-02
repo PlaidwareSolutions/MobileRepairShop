@@ -1,30 +1,30 @@
 export const BUSINESS = {
-  name: "Gadget X Repairs",
+  name: "OK Cellular",
   tagline:
     "Cellphone, iPhone, iPad, MacBook, Laptop, Gaming Console & Accessories — We Sell and Repair",
-  phoneDisplay: "+1 (346) 623-6898",
-  phoneTel: "tel:+13466236898",
-  whatsapp: "https://wa.me/13466236898",
-  sms: "sms:+13466236898",
-  addressLine1: "8389 Almeda Rd, Suite J-2",
-  addressLine2: "Houston, TX 77054",
-  addressFull: "8389 Almeda Rd, Suite J-2, Houston, TX 77054",
-  mapsLink: "https://maps.app.goo.gl/ALRF73zPbrG9qndz8",
+  phoneDisplay: "+1 (281) 446-2166",
+  phoneTel: "tel:+12814462166",
+  whatsapp: "https://wa.me/12814462166",
+  sms: "sms:+12814462166",
+  addressLine1: "8910 Will Clayton Pkwy APT 200",
+  addressLine2: "Humble, TX 77396",
+  addressFull: "8910 Will Clayton Pkwy APT 200, Humble, TX 77396",
+  mapsLink: "https://maps.app.goo.gl/A7NW74nbXMUS7NAM6",
   mapsEmbed:
-    "https://maps.google.com/maps?q=8389%20Almeda%20Rd%20Suite%20J-2%20Houston%20TX%2077054&t=&z=15&ie=UTF8&iwloc=&output=embed",
-  hoursShort: "Sun 12–5 PM | Mon–Sat 10 AM–7 PM",
+    "https://maps.google.com/maps?q=8910%20Will%20Clayton%20Pkwy%20APT%20200%20Humble%20TX%2077396&t=&z=15&ie=UTF8&iwloc=&output=embed",
+  hoursShort: "Sun 11 AM–7:30 PM | Mon–Sat 10 AM–8:30 PM",
   hours: [
-    { day: "Sunday", time: "12:00 PM – 5:00 PM" },
-    { day: "Monday", time: "10:00 AM – 7:00 PM" },
-    { day: "Tuesday", time: "10:00 AM – 7:00 PM" },
-    { day: "Wednesday", time: "10:00 AM – 7:00 PM" },
-    { day: "Thursday", time: "10:00 AM – 7:00 PM" },
-    { day: "Friday", time: "10:00 AM – 7:00 PM" },
-    { day: "Saturday", time: "10:00 AM – 7:00 PM" },
+    { day: "Sunday", time: "11:00 AM – 7:30 PM" },
+    { day: "Monday", time: "10:00 AM – 8:30 PM" },
+    { day: "Tuesday", time: "10:00 AM – 8:30 PM" },
+    { day: "Wednesday", time: "10:00 AM – 8:30 PM" },
+    { day: "Thursday", time: "10:00 AM – 8:30 PM" },
+    { day: "Friday", time: "10:00 AM – 8:30 PM" },
+    { day: "Saturday", time: "10:00 AM – 8:30 PM" },
   ],
   yearsInBusiness: 15,
-  logo: "/images/gadget-x-logo-transparent.png?v=2026-04-28",
-  logoOfficial: "/images/gadget-x-logo-transparent.png?v=2026-04-28",
+  logo: "/images/ok-cellular-logo-transparent.png?v=2026-05-02",
+  logoOfficial: "/images/ok-cellular-logo-transparent.png?v=2026-05-02",
   // Canonical shop timezone — the API server (SHOP_TIMEZONE env var) must
   // match this value so promo schedules evaluate against the same wall clock.
   timezone: "America/Chicago",
@@ -37,9 +37,9 @@ export const HERO = {
   subhead:
     "15 years of trusted repairs. Most fixes done the same day. All major brands welcome — walk-ins always welcome.",
   ctas: [
-    { label: "Call Now", href: "tel:+13466236898", kind: "primary" as const, icon: "phone" as const },
+    { label: "Call Now", href: "tel:+12814462166", kind: "primary" as const, icon: "phone" as const },
     { label: "Get Repair Quote", href: "#quote", kind: "secondary" as const, icon: "wrench" as const },
-    { label: "Directions", href: "https://maps.app.goo.gl/ALRF73zPbrG9qndz8", kind: "tertiary" as const, icon: "map" as const },
+    { label: "Directions", href: "https://maps.app.goo.gl/A7NW74nbXMUS7NAM6", kind: "tertiary" as const, icon: "map" as const },
   ],
 };
 
@@ -137,7 +137,7 @@ export const FINANCING_PAGE = {
     },
     {
       q: "What if I'm denied?",
-      a: "You can still walk out with the phone for cash, debit or zero-interest layaway. Call us at +1 (346) 623-6898 and we'll help you find an option that works.",
+      a: "You can still walk out with the phone for cash, debit or zero-interest layaway. Call us at +1 (281) 446-2166 and we'll help you find an option that works.",
     },
   ],
 };
@@ -215,4 +215,4 @@ export const FOOTER_LINKS = {
   company: ["About", "Locations", "Contact", "Reviews"],
 };
 
-export const COPYRIGHT = "© 2026 Gadget X Repairs. 15 years repairing Houston's devices.";
+export const COPYRIGHT = "© 2026 OK Cellular. 15 years repairing Houston's devices.";

@@ -21,9 +21,9 @@ import { BUSINESS, FINANCING } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 
 const DEFAULT_META = {
-  title: "Phones & Laptops Inventory Houston | GadgetX Repairs",
+  title: "Phones & Laptops Inventory Houston | OK Cellular",
   description:
-    "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at GadgetX Repairs in Houston TX. Walk-ins welcome!",
+    "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at OK Cellular in Houston TX. Walk-ins welcome!",
   heading: { prefix: "Current", highlight: "Inventory" },
   intro:
     "Stock changes daily. Call to confirm availability or reserve an item — we'll hold it for 24 hours.",
@@ -63,7 +63,7 @@ function inventoryProductJsonLd(items: InventoryItem[]) {
               : (it.condition ?? "").toLowerCase().includes("refurb")
               ? "https://schema.org/RefurbishedCondition"
               : "https://schema.org/UsedCondition",
-          seller: { "@type": "ElectronicsStore", name: "Gadget X Repairs" },
+          seller: { "@type": "ElectronicsStore", name: "OK Cellular" },
         },
       },
     })),

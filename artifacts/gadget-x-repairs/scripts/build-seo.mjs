@@ -49,7 +49,7 @@ function redirectHtml(toPath) {
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Page Moved | Gadget X Repairs</title>
+<title>Page Moved | OK Cellular</title>
 <meta name="robots" content="noindex, follow">
 <link rel="canonical" href="${dest}">
 <meta http-equiv="refresh" content="0; url=${toPath}">

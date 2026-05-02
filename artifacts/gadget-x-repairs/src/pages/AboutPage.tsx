@@ -22,8 +22,8 @@ export default function AboutPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="About GadgetX Repairs | 15 Years in Houston TX"
-        description="About GadgetX Repairs in Houston TX — 15 years of honest repair, sales and prepaid service from our Almeda Rd shop. Walk-ins welcome!"
+        title="About OK Cellular | 15 Years in Houston TX"
+        description="About OK Cellular in Houston TX — 15 years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!"
         path="/about"
         jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "About", path: "/about" }])]}
       />
@@ -35,7 +35,7 @@ export default function AboutPage() {
             15 YEARS REPAIRING <span className="text-red-500">HOUSTON'S DEVICES</span>
           </h1>
           <p className="text-xl font-bold text-zinc-700 mb-6">
-            Gadget X Repairs has been fixing phones, tablets, laptops and gaming consoles for Houston since 2010.
+            OK Cellular has been fixing phones, tablets, laptops and gaming consoles for Houston since 2010.
             From our shop at {business.addressFull}, we serve walk-in customers six days a week.
           </p>
           <p className="text-lg font-bold text-zinc-600 mb-6">

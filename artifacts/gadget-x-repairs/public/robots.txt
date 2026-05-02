@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://gadgetxrepairs.com/sitemap.xml
+Sitemap: https://okcellularrepairs.com/sitemap.xml

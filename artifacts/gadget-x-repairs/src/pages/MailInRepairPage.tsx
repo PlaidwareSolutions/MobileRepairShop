@@ -24,9 +24,9 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { BUSINESS, SHIPPING } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 
-const PAGE_TITLE = "Mail-In Phone & Laptop Repair | Gadget X Houston, TX";
+const PAGE_TITLE = "Mail-In Phone & Laptop Repair | OK Cellular Houston, TX";
 const PAGE_DESC =
-  "Ship your phone, tablet, laptop or console to GadgetX Repairs in Houston TX for repair. Get a quote online, mail it in, we fix it and ship it back.";
+  "Ship your phone, tablet, laptop or console to OK Cellular in Houston TX for repair. Get a quote online, mail it in, we fix it and ship it back.";
 
 const STEPS = [
   {
@@ -178,7 +178,7 @@ export default function MailInRepairPage() {
               <div className="flex items-center gap-3 mb-4 border-b border-zinc-800 pb-4">
                 <Truck className="w-6 h-6 text-red-500" />
                 <h2 className="text-xl md:text-2xl font-extrabold tracking-tight">
-                  Ship to <span className="text-red-500">Gadget X</span>
+                  Ship to <span className="text-red-500">OK Cellular</span>
                 </h2>
               </div>
               <div className="space-y-3 text-sm">

@@ -6,7 +6,7 @@ import { z } from "zod/v4";
 // and store hours. The row is keyed by id=1 — there is exactly one shop, and
 // keeping the singleton at a fixed id keeps the API simple (no list / pick).
 //
-// Phone is stored once as an E.164 string (e.g. "+13466236898"); display,
+// Phone is stored once as an E.164 string (e.g. "+12814462166"); display,
 // tel:, sms:, and wa.me links are derived in the serializer so the owner
 // only ever has to update one value when the number changes.
 //
@@ -69,7 +69,7 @@ export const updateBusinessSettingsSchema = z
     phoneE164: z
       .string()
       .trim()
-      .regex(/^\+\d{8,15}$/, "Phone must be E.164 format like +13466236898"),
+      .regex(/^\+\d{8,15}$/, "Phone must be E.164 format like +12814462166"),
     addressLine1: z.string().trim().min(1).max(200),
     addressLine2: z.string().trim().min(1).max(200),
     mapsLink: z

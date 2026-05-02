@@ -12,58 +12,58 @@ const STARTER_TEMPLATES: SeedTemplate[] = [
   {
     name: "Quote Ready",
     channel: "email",
-    subject: "Your Gadget X Repairs quote is ready",
+    subject: "Your OK Cellular quote is ready",
     body:
-      "Hi there,\n\nYour repair quote is ready. Please reply to this email to approve and we'll get started right away.\n\nThanks,\nGadget X Repairs",
+      "Hi there,\n\nYour repair quote is ready. Please reply to this email to approve and we'll get started right away.\n\nThanks,\nOK Cellular",
   },
   {
     name: "Running Late",
     channel: "email",
     subject: "Quick update on your repair",
     body:
-      "Hi there,\n\nJust a quick heads up — your repair is taking a little longer than expected. We'll have it ready as soon as possible and will reach out the moment it's done.\n\nThanks for your patience,\nGadget X Repairs",
+      "Hi there,\n\nJust a quick heads up — your repair is taking a little longer than expected. We'll have it ready as soon as possible and will reach out the moment it's done.\n\nThanks for your patience,\nOK Cellular",
   },
   {
     name: "Ready for Pickup",
     channel: "email",
     subject: "Your device is ready for pickup",
     body:
-      "Hi there,\n\nGreat news — your device is repaired and ready for pickup at Gadget X Repairs. We're open during normal business hours.\n\nSee you soon,\nGadget X Repairs",
+      "Hi there,\n\nGreat news — your device is repaired and ready for pickup at OK Cellular. We're open during normal business hours.\n\nSee you soon,\nOK Cellular",
   },
   {
     name: "Couldn't Reach You",
     channel: "email",
     subject: "Tried reaching you about your repair",
     body:
-      "Hi there,\n\nWe tried to contact you about your repair but couldn't get through. Please call us back at (346) 623-6898 or reply to this email when you have a moment.\n\nThanks,\nGadget X Repairs",
+      "Hi there,\n\nWe tried to contact you about your repair but couldn't get through. Please call us back at (281) 446-2166 or reply to this email when you have a moment.\n\nThanks,\nOK Cellular",
   },
   {
     name: "Quote Ready",
     channel: "sms",
     subject: null,
     body:
-      "Gadget X Repairs: your repair quote is ready. Reply YES to approve and we'll get started.",
+      "OK Cellular: your repair quote is ready. Reply YES to approve and we'll get started.",
   },
   {
     name: "Running Late",
     channel: "sms",
     subject: null,
     body:
-      "Gadget X Repairs: your repair is taking a bit longer than expected. We'll be in touch as soon as it's ready.",
+      "OK Cellular: your repair is taking a bit longer than expected. We'll be in touch as soon as it's ready.",
   },
   {
     name: "Ready for Pickup",
     channel: "sms",
     subject: null,
     body:
-      "Gadget X Repairs: your device is ready for pickup! See you during normal business hours.",
+      "OK Cellular: your device is ready for pickup! See you during normal business hours.",
   },
   {
     name: "Couldn't Reach You",
     channel: "sms",
     subject: null,
     body:
-      "Gadget X Repairs: we tried to reach you about your repair. Please call us back at (346) 623-6898.",
+      "OK Cellular: we tried to reach you about your repair. Please call us back at (281) 446-2166.",
   },
 ];
 

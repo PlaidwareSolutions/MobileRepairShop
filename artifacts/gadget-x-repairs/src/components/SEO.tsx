@@ -14,7 +14,9 @@ type Props = {
 
 export const SITE_URL =
   (typeof import.meta !== "undefined" && (import.meta.env?.VITE_SITE_URL as string | undefined)) ||
-  "https://gadgetxrepairs.com";
+  "https://okcellularrepairs.com";
+
+const ADDRESS_LOCALITY = "Humble";
 
 export function SEO({ title, description, path, type = "website", jsonLd, noindex }: Props) {
   const url = `${SITE_URL}${path}`;
@@ -30,11 +32,11 @@ export function SEO({ title, description, path, type = "website", jsonLd, noinde
       <meta property="og:description" content={description} />
       <meta property="og:url" content={url} />
       <meta property="og:site_name" content={BUSINESS.name} />
-      <meta property="og:image" content={`${SITE_URL}${BUSINESS.logo}`} />
-      <meta name="twitter:card" content="summary" />
+      <meta property="og:image" content={`${SITE_URL}/images/opengraph.png`} />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={`${SITE_URL}${BUSINESS.logo}`} />
+      <meta name="twitter:image" content={`${SITE_URL}/images/opengraph.png`} />
       {jsonLdArray.map((obj, i) => (
         <script key={i} type="application/ld+json">{JSON.stringify(obj)}</script>
       ))}
@@ -61,15 +63,15 @@ export function localBusinessJsonLd(business: B = DEFAULT_BUSINESS) {
     address: {
       "@type": "PostalAddress",
       streetAddress: business.addressLine1,
-      addressLocality: "Houston",
+      addressLocality: ADDRESS_LOCALITY,
       addressRegion: "TX",
-      postalCode: "77054",
+      postalCode: "77396",
       addressCountry: "US",
     },
     areaServed: ["Houston", "Sugar Land", "Missouri City", "Stafford", "Katy", "Alief", "Sharpstown"],
     openingHoursSpecification: [
-      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "12:00", closes: "17:00" },
-      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "10:00", closes: "19:00" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "11:00", closes: "19:30" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "10:00", closes: "20:30" },
     ],
     sameAs: [
       business.mapsLink,
@@ -99,9 +101,9 @@ export function serviceJsonLd(
       address: {
         "@type": "PostalAddress",
         streetAddress: business.addressLine1,
-        addressLocality: "Houston",
+        addressLocality: ADDRESS_LOCALITY,
         addressRegion: "TX",
-        postalCode: "77054",
+        postalCode: "77396",
         addressCountry: "US",
       },
     },

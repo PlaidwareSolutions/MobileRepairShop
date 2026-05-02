@@ -99,7 +99,7 @@ export default function PrepaidPage() {
       <section className="py-4 px-4 bg-white border-b border-zinc-200">
         <div className="max-w-[1240px] mx-auto">
           <p className="text-xs md:text-sm font-bold text-zinc-500 uppercase tracking-wide" data-testid="text-prepaid-disclaimer">
-            Disclaimer: Gadget X Repairs is an independent authorized retailer offering activations, SIM and bill-pay services. We are not an official corporate store of any carrier unless explicitly confirmed. All carrier names and logos are property of their respective owners.
+            Disclaimer: OK Cellular is an independent authorized retailer offering activations, SIM and bill-pay services. We are not an official corporate store of any carrier unless explicitly confirmed. All carrier names and logos are property of their respective owners.
           </p>
         </div>
       </section>

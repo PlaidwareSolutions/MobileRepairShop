@@ -23,8 +23,8 @@ site.
 
 All carrier names and logos are trademarks of their respective owners and
 are used solely under nominative-fair-use to identify the prepaid services
-that Gadget X Repairs activates and accepts payments for as an independent
-authorized retailer. Gadget X Repairs is not affiliated with, endorsed by,
+that OK Cellular activates and accepts payments for as an independent
+authorized retailer. OK Cellular is not affiliated with, endorsed by,
 or sponsored by any of these carriers unless explicitly stated.
 
 A user-facing version of this disclaimer is rendered on every Prepaid page

@@ -61,10 +61,10 @@ const make = (carrier: string, slug: string, isPayment = false): PrepaidData => 
     ? `${carrier} Bill Payment Houston`
     : `${carrier} Activation Houston`,
   metaTitle: isPayment
-    ? `${carrier} Bill Payment Houston | In-Store Cash | Gadget X`
-    : `${carrier} Activation Houston | New Lines, Port-Ins | Gadget X`,
+    ? `${carrier} Bill Payment Houston | In-Store Cash | OK Cellular`
+    : `${carrier} Activation Houston | New Lines, Port-Ins | OK Cellular`,
   metaDescription: isPayment
-    ? `Pay your ${carrier} bill in cash at our Houston shop. Walk in, pay, and you're done. Open Sun 12–5, Mon–Sat 10–7.`
+    ? `Pay your ${carrier} bill in cash at our Houston shop. Walk in, pay, and you're done. Open Sun 11–7:30, Mon–Sat 10–8:30.`
     : `New ${carrier} activation, port-ins and SIM swaps in Houston. Bring your phone or buy one in-store. Walk in any day.`,
   logoSrc: CARRIER_LOGOS[carrier],
   heroPhoto: isPayment ? CASH_PHOTO : SIM_PHOTO,
@@ -72,7 +72,7 @@ const make = (carrier: string, slug: string, isPayment = false): PrepaidData => 
     eyebrow: isPayment ? `${carrier} Bill Pay` : `${carrier} Prepaid`,
     h1: isPayment ? `${carrier} Bill Payment in Houston` : `${carrier} Activation in Houston`,
     subhead: isPayment
-      ? `Skip the online portal — pay your ${carrier} bill in cash at our Almeda Rd shop in minutes.`
+      ? `Skip the online portal — pay your ${carrier} bill in cash at our Will Clayton Pkwy shop in minutes.`
       : `New ${carrier} line, transfer your number from another carrier, or swap a SIM card — done in store, same visit.`,
   },
   services: isPayment
@@ -114,9 +114,9 @@ export const PREPAID_DATA: PrepaidData[] = [
 ];
 
 PREPAID_DATA[0].title = "Prepaid Phone Activations in Houston";
-PREPAID_DATA[0].metaTitle = "Phone Activation Houston TX | GadgetX Repairs";
+PREPAID_DATA[0].metaTitle = "Phone Activation Houston TX | OK Cellular";
 PREPAID_DATA[0].metaDescription =
-  "Quick phone & carrier activation in Houston TX. Boost Mobile, AT&T, Verizon & more. Fast setup at GadgetX Repairs. Walk-ins welcome today!";
+  "Quick phone & carrier activation in Houston TX. Boost Mobile, AT&T, Verizon & more. Fast setup at OK Cellular. Walk-ins welcome today!";
 PREPAID_DATA[0].hero.eyebrow = "Prepaid";
 PREPAID_DATA[0].hero.h1 = "Prepaid Phone Activations in Houston";
 PREPAID_DATA[0].hero.subhead = "We activate every major prepaid carrier — bring your phone or buy one from us.";
@@ -141,9 +141,9 @@ PREPAID_DATA[0].faqs = [
 ];
 
 PREPAID_DATA[1].title = "Bill Payments in Houston";
-PREPAID_DATA[1].metaTitle = "Bill Payments Houston TX | GadgetX Repairs";
+PREPAID_DATA[1].metaTitle = "Bill Payments Houston TX | OK Cellular";
 PREPAID_DATA[1].metaDescription =
-  "Pay your phone bill conveniently at GadgetX Repairs in Houston TX. Multiple carriers accepted. Fast, hassle-free bill payment. Walk-ins welcome!";
+  "Pay your phone bill conveniently at OK Cellular in Houston TX. Multiple carriers accepted. Fast, hassle-free bill payment. Walk-ins welcome!";
 PREPAID_DATA[1].hero.eyebrow = "Bill Payments";
 PREPAID_DATA[1].hero.h1 = "Cell Phone Bill Payments in Houston";
 PREPAID_DATA[1].hero.subhead =
@@ -159,44 +159,44 @@ PREPAID_DATA[1].services = [
 
 const META_OVERRIDES: Record<string, { metaTitle: string; metaDescription: string }> = {
   "boost-mobile-activation-houston-tx": {
-    metaTitle: "Boost Mobile Activation Houston TX | GadgetX",
+    metaTitle: "Boost Mobile Activation Houston TX | OK Cellular",
     metaDescription:
-      "Activate your Boost Mobile plan in Houston TX. Fast, hassle-free setup at GadgetX Repairs. New activations & plan upgrades. Walk-ins welcome!",
+      "Activate your Boost Mobile plan in Houston TX. Fast, hassle-free setup at OK Cellular. New activations & plan upgrades. Walk-ins welcome!",
   },
   "att-activation-houston-tx": {
-    metaTitle: "AT&T Activation Houston TX | GadgetX Repairs",
+    metaTitle: "AT&T Activation Houston TX | OK Cellular",
     metaDescription:
-      "Get your AT&T plan activated fast in Houston TX. New lines, upgrades & prepaid plans available. Quick setup at GadgetX Repairs. Walk-ins welcome!",
+      "Get your AT&T plan activated fast in Houston TX. New lines, upgrades & prepaid plans available. Quick setup at OK Cellular. Walk-ins welcome!",
   },
   "gen-mobile-activation-houston-tx": {
-    metaTitle: "Gen Mobile Activation Houston TX | GadgetX",
+    metaTitle: "Gen Mobile Activation Houston TX | OK Cellular",
     metaDescription:
-      "Activate your Gen Mobile plan in Houston TX. Fast & easy setup at GadgetX Repairs. New activations & plan changes. Walk-ins welcome today!",
+      "Activate your Gen Mobile plan in Houston TX. Fast & easy setup at OK Cellular. New activations & plan changes. Walk-ins welcome today!",
   },
   "simple-mobile-activation-houston-tx": {
-    metaTitle: "Simple Mobile Activation Houston TX | GadgetX",
+    metaTitle: "Simple Mobile Activation Houston TX | OK Cellular",
     metaDescription:
-      "Simple Mobile activation in Houston TX. Get your plan set up fast at GadgetX Repairs. New lines & upgrades. Walk-ins welcome anytime!",
+      "Simple Mobile activation in Houston TX. Get your plan set up fast at OK Cellular. New lines & upgrades. Walk-ins welcome anytime!",
   },
   "xfinity-mobile-activation-houston-tx": {
-    metaTitle: "Xfinity Mobile Activation Houston TX | GadgetX",
+    metaTitle: "Xfinity Mobile Activation Houston TX | OK Cellular",
     metaDescription:
-      "Activate your Xfinity Mobile plan in Houston TX. Fast & easy setup at GadgetX Repairs. New activations & plan upgrades. Walk-ins welcome!",
+      "Activate your Xfinity Mobile plan in Houston TX. Fast & easy setup at OK Cellular. New activations & plan upgrades. Walk-ins welcome!",
   },
   "h2o-wireless-activation-houston-tx": {
-    metaTitle: "H2O Wireless Activation Houston TX | GadgetX",
+    metaTitle: "H2O Wireless Activation Houston TX | OK Cellular",
     metaDescription:
-      "Activate your H2O Wireless plan in Houston TX. Quick & easy setup at GadgetX Repairs. New activations & plan changes. Walk-ins welcome!",
+      "Activate your H2O Wireless plan in Houston TX. Quick & easy setup at OK Cellular. New activations & plan changes. Walk-ins welcome!",
   },
   "lyca-mobile-activation-houston-tx": {
-    metaTitle: "Lyca Mobile Activation Houston TX | GadgetX",
+    metaTitle: "Lyca Mobile Activation Houston TX | OK Cellular",
     metaDescription:
-      "Lyca Mobile activation in Houston TX. Fast, hassle-free plan setup at GadgetX Repairs. New lines & upgrades available. Walk-ins welcome!",
+      "Lyca Mobile activation in Houston TX. Fast, hassle-free plan setup at OK Cellular. New lines & upgrades available. Walk-ins welcome!",
   },
   "verizon-prepaid-activation-houston-tx": {
-    metaTitle: "Verizon Prepaid Activation Houston TX | GadgetX",
+    metaTitle: "Verizon Prepaid Activation Houston TX | OK Cellular",
     metaDescription:
-      "Activate your Verizon Prepaid plan in Houston TX. Quick & easy setup at GadgetX Repairs. New activations & upgrades. Walk-ins welcome today!",
+      "Activate your Verizon Prepaid plan in Houston TX. Quick & easy setup at OK Cellular. New activations & upgrades. Walk-ins welcome today!",
   },
 };
 

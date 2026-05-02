@@ -28,7 +28,7 @@ export default function FinancingPage() {
   const business = useBusiness();
   const path = FINANCING.pagePath;
   const meta = {
-    title: "Phone Financing Houston TX | $10 Down | GadgetX Repairs",
+    title: "Phone Financing Houston TX | $10 Down | OK Cellular",
     description:
       "Phone financing in Houston TX from $10 down. Walk out the same day with an unlocked iPhone, Samsung or Pixel. Pre-qualify in 60 seconds — no credit pull.",
   };

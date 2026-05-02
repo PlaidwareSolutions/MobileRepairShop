@@ -12,7 +12,7 @@ import {
 // Keeping defaults in code means every page can render meaningful content
 // even before the database is seeded.
 export const DEFAULT_BUSINESS: PublicBusinessSettings = {
-  phoneE164: "+13466236898",
+  phoneE164: "+12814462166",
   phoneDisplay: BUSINESS.phoneDisplay,
   phoneTel: BUSINESS.phoneTel,
   smsHref: BUSINESS.sms,

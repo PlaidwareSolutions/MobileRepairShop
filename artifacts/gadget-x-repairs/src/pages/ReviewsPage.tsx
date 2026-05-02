@@ -12,8 +12,8 @@ export default function ReviewsPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Customer Reviews Houston TX | GadgetX Repairs"
-        description="See what customers say about GadgetX Repairs in Houston TX. Real reviews from satisfied clients. Trusted phone & device repair specialists!"
+        title="Customer Reviews Houston TX | OK Cellular"
+        description="See what customers say about OK Cellular in Houston TX. Real reviews from satisfied clients. Trusted phone & device repair specialists!"
         path="/reviews-houston-tx"
         jsonLd={[
           localBusinessJsonLd(business),

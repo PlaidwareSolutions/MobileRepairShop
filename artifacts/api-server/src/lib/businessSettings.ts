@@ -11,20 +11,20 @@ const SETTINGS_ROW_ID = 1;
 // always has something to edit and the public endpoint never returns 404.
 const DEFAULT_SETTINGS: Omit<BusinessSettingsRow, "updatedAt"> = {
   id: SETTINGS_ROW_ID,
-  phoneE164: "+13466236898",
-  addressLine1: "8389 Almeda Rd, Suite J-2",
-  addressLine2: "Houston, TX 77054",
-  mapsLink: "https://maps.app.goo.gl/ALRF73zPbrG9qndz8",
+  phoneE164: "+12814462166",
+  addressLine1: "8910 Will Clayton Pkwy APT 200",
+  addressLine2: "Humble, TX 77396",
+  mapsLink: "https://maps.app.goo.gl/A7NW74nbXMUS7NAM6",
   mapsEmbed:
-    "https://maps.google.com/maps?q=8389%20Almeda%20Rd%20Suite%20J-2%20Houston%20TX%2077054&t=&z=15&ie=UTF8&iwloc=&output=embed",
-  hoursShort: "Sun 12–5 PM | Mon–Sat 10 AM–7 PM",
-  hoursSunday: "12:00 PM – 5:00 PM",
-  hoursMonday: "10:00 AM – 7:00 PM",
-  hoursTuesday: "10:00 AM – 7:00 PM",
-  hoursWednesday: "10:00 AM – 7:00 PM",
-  hoursThursday: "10:00 AM – 7:00 PM",
-  hoursFriday: "10:00 AM – 7:00 PM",
-  hoursSaturday: "10:00 AM – 7:00 PM",
+    "https://maps.google.com/maps?q=8910%20Will%20Clayton%20Pkwy%20APT%20200%20Humble%20TX%2077396&t=&z=15&ie=UTF8&iwloc=&output=embed",
+  hoursShort: "Sun 11 AM–7:30 PM | Mon–Sat 10 AM–8:30 PM",
+  hoursSunday: "11:00 AM – 7:30 PM",
+  hoursMonday: "10:00 AM – 8:30 PM",
+  hoursTuesday: "10:00 AM – 8:30 PM",
+  hoursWednesday: "10:00 AM – 8:30 PM",
+  hoursThursday: "10:00 AM – 8:30 PM",
+  hoursFriday: "10:00 AM – 8:30 PM",
+  hoursSaturday: "10:00 AM – 8:30 PM",
   socialFacebook: null,
   socialInstagram: null,
   socialTiktok: null,
@@ -76,8 +76,8 @@ export async function updateBusinessSettings(
 
 // --- serializers ---
 
-// Format an E.164 number ("+13466236898") into a human-friendly display
-// ("+1 (346) 623-6898"). Falls back to the raw value for non-NANP numbers
+// Format an E.164 number ("+12814462166") into a human-friendly display
+// ("+1 (281) 446-2166"). Falls back to the raw value for non-NANP numbers
 // so we never crash on an unexpected country code.
 function formatPhoneDisplay(e164: string): string {
   const m = /^\+1(\d{3})(\d{3})(\d{4})$/.exec(e164);

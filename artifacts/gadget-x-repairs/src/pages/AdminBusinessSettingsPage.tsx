@@ -176,7 +176,7 @@ export default function AdminBusinessSettingsPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Admin: Business Settings | Gadget X"
+        title="Admin: Business Settings | OK Cellular"
         description="Edit phone number, address, and store hours."
         path="/admin/business-settings"
         noindex
@@ -255,13 +255,13 @@ export default function AdminBusinessSettingsPage() {
                 </legend>
                 <div>
                   <Label htmlFor="phone" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
-                    Phone (E.164 format, e.g. +13466236898)
+                    Phone (E.164 format, e.g. +12814462166)
                   </Label>
                   <Input
                     id="phone"
                     value={form.phoneE164}
                     onChange={(e) => field("phoneE164", e.target.value)}
-                    placeholder="+13466236898"
+                    placeholder="+12814462166"
                     className="bg-white border border-zinc-200 focus:border-red-500 h-12"
                     data-testid="input-phone"
                   />
@@ -338,7 +338,7 @@ export default function AdminBusinessSettingsPage() {
                     id="hoursShort"
                     value={form.hoursShort}
                     onChange={(e) => field("hoursShort", e.target.value)}
-                    placeholder="Sun 12–5 PM | Mon–Sat 10 AM–7 PM"
+                    placeholder="Sun 11 AM–7:30 PM | Mon–Sat 10 AM–8:30 PM"
                     className="bg-white border border-zinc-200 focus:border-red-500 h-12"
                     data-testid="input-hours-short"
                   />

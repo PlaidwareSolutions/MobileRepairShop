@@ -1,10 +1,10 @@
 type AnyLead = Record<string, unknown> & { id: number; name?: string };
 
 const SHOP = {
-  name: "Gadget X Repairs",
-  phone: "(346) 623-6898",
+  name: "OK Cellular",
+  phone: "(281) 446-2166",
   hoursLine:
-    "Open Sun 12–5pm and Mon–Sat 10am–7pm. Reply here or call us if you need anything.",
+    "Open Sun 11am–7:30pm and Mon–Sat 10am–8:30pm. Reply here or call us if you need anything.",
 };
 
 function escapeHtml(input: string): string {
@@ -167,7 +167,7 @@ export function smsTemplateFor(
     case "reservation": {
       const item = (lead.itemLabel as string) ?? "your item";
       return {
-        body: `Hi ${fn}, ${SHOP.name}: your ${item} is held for you. Open Sun 12–5 / Mon–Sat 10–7. ${SHOP.phone}.`,
+        body: `Hi ${fn}, ${SHOP.name}: your ${item} is held for you. Open Sun 11–7:30 / Mon–Sat 10–8:30. ${SHOP.phone}.`,
       };
     }
     default:

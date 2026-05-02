@@ -19,12 +19,12 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "iphone-screen-repair-cost-houston-tx",
     title: "How Much Does iPhone Screen Repair Cost in Houston?",
-    metaTitle: "iPhone Screen Repair Cost Houston 2026 | GadgetX Repairs",
+    metaTitle: "iPhone Screen Repair Cost Houston 2026 | OK Cellular",
     metaDescription:
-      "Up-to-date 2026 iPhone screen repair pricing in Houston by model — iPhone 6 to 16 Pro Max — from GadgetX Repairs. Honest quotes!",
+      "Up-to-date 2026 iPhone screen repair pricing in Houston by model — iPhone 6 to 16 Pro Max — from OK Cellular. Honest quotes!",
     excerpt: "Honest 2026 pricing by model for iPhone screen repair in Houston, plus the gotchas to watch out for.",
     intro:
-      "iPhone screen repair pricing depends mostly on the model and the panel type. Here's the real-world range you'll see in Houston in 2026, including at our Almeda Rd shop.",
+      "iPhone screen repair pricing depends mostly on the model and the panel type. Here's the real-world range you'll see in Houston in 2026, including at our Will Clayton Pkwy shop.",
     sections: [
       {
         h2: "Older iPhones (6–8, SE)",
@@ -55,7 +55,7 @@ export const ARTICLES_DATA: ArticleData[] = [
         ],
       },
     ],
-    cta: "Get a real iPhone screen quote — call (346) 623-6898 or stop by Almeda Rd.",
+    cta: "Get a real iPhone screen quote — call (281) 446-2166 or stop by Will Clayton Pkwy.",
     related: ["iphone-repair-houston-tx", "phone-accessories-houston-tx", "battery-replacement-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
@@ -63,9 +63,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "ps5-hdmi-port-repair-worth-it-houston-tx",
     title: "Is PS5 HDMI Port Repair Worth It?",
-    metaTitle: "PS5 HDMI Port Repair Worth It 2026? | GadgetX Repairs",
+    metaTitle: "PS5 HDMI Port Repair Worth It 2026? | OK Cellular",
     metaDescription:
-      "PS5 HDMI port repair at GadgetX Repairs in Houston runs about $99 vs $400+ for a new PS5. When it's worth fixing & what to expect.",
+      "PS5 HDMI port repair at OK Cellular in Houston runs about $99 vs $400+ for a new PS5. When it's worth fixing & what to expect.",
     excerpt: "PS5 HDMI port repair in Houston is around $99 vs. $400+ for a new console. Here's when it's worth doing.",
     intro:
       "Cable got knocked once too many times and now your PS5 has no signal. Should you fix the HDMI port, or buy a new console? Almost always: fix it.",
@@ -105,9 +105,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "repair-or-replace-laptop-houston-tx",
     title: "Repair or Replace Your Laptop?",
-    metaTitle: "Repair or Replace Your Laptop? | GadgetX Repairs Houston",
+    metaTitle: "Repair or Replace Your Laptop? | OK Cellular Houston",
     metaDescription:
-      "When laptop repair makes sense & when replacement is smarter — a practical 2026 guide from GadgetX Repairs in Houston TX.",
+      "When laptop repair makes sense & when replacement is smarter — a practical 2026 guide from OK Cellular in Houston TX.",
     excerpt: "A practical guide to deciding whether to repair your laptop or buy something new.",
     intro:
       "It's a question we get a few times a day. Here's how we'd think about it if it were our own laptop.",
@@ -135,7 +135,7 @@ export const ARTICLES_DATA: ArticleData[] = [
         ],
       },
     ],
-    cta: "Free laptop diagnostic at our Houston shop — bring it in or call (346) 623-6898.",
+    cta: "Free laptop diagnostic at our Houston shop — bring it in or call (281) 446-2166.",
     related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx", "computer-repair-houston-tx"],
     publishedDate: PUB,
     updatedDate: UPD,
@@ -143,9 +143,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "phone-battery-needs-replacement-houston-tx",
     title: "5 Signs Your Phone Battery Needs Replacement",
-    metaTitle: "5 Signs Phone Battery Needs Replacing | GadgetX Repairs",
+    metaTitle: "5 Signs Phone Battery Needs Replacing | OK Cellular",
     metaDescription:
-      "How to know when your iPhone or Android battery needs replacing — and what it costs at GadgetX Repairs in Houston TX.",
+      "How to know when your iPhone or Android battery needs replacing — and what it costs at OK Cellular in Houston TX.",
     excerpt: "Quick guide to knowing when it's time to swap your battery — before it leaves you stranded.",
     intro:
       "Phone batteries wear out — every single one. Here's how to spot a worn battery early.",
@@ -179,9 +179,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "used-vs-refurbished-phones-houston-tx",
     title: "Used vs Refurbished Phones — What's the Difference?",
-    metaTitle: "Used vs Refurbished Phones | GadgetX Repairs Houston",
+    metaTitle: "Used vs Refurbished Phones | OK Cellular Houston",
     metaDescription:
-      "Used vs refurbished phones explained — which gives better value & warranty? A Houston buyer's guide from GadgetX Repairs.",
+      "Used vs refurbished phones explained — which gives better value & warranty? A Houston buyer's guide from OK Cellular.",
     excerpt: "Two terms that get used loosely. Here's what they mean — and which one to buy.",
     intro:
       "If you're shopping for a phone in Houston, you'll see both 'used' and 'refurbished' labels. They mean different things.",
@@ -211,9 +211,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "can-locked-phone-be-unlocked-houston-tx",
     title: "Can a Locked Phone Be Unlocked?",
-    metaTitle: "Can a Locked Phone Be Unlocked? | GadgetX Repairs",
+    metaTitle: "Can a Locked Phone Be Unlocked? | OK Cellular",
     metaDescription:
-      "When & how a carrier-locked phone can be unlocked — what GadgetX Repairs in Houston TX can do. Free IMEI eligibility check!",
+      "When & how a carrier-locked phone can be unlocked — what OK Cellular in Houston TX can do. Free IMEI eligibility check!",
     excerpt: "Most carrier-locked phones can be unlocked legally — here's what's possible and what isn't.",
     intro:
       "Locked phones come from prepaid carriers (Cricket, Metro, Boost, AT&T Prepaid) and from postpaid devices still on a payment plan.",
@@ -245,9 +245,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "best-prepaid-plans-houston-tx",
     title: "Best Prepaid Plans in Houston for 2026",
-    metaTitle: "Best Prepaid Plans Houston 2026 | GadgetX Repairs",
+    metaTitle: "Best Prepaid Plans Houston 2026 | OK Cellular",
     metaDescription:
-      "Honest 2026 picks for the best prepaid plans in Houston — Cricket, Metro, T-Mobile, AT&T, Boost & Gen Mobile — from GadgetX Repairs.",
+      "Honest 2026 picks for the best prepaid plans in Houston — Cricket, Metro, T-Mobile, AT&T, Boost & Gen Mobile — from OK Cellular.",
     excerpt: "We see what plans actually work for our Houston customers — here's how we'd pick.",
     intro:
       "There's no single 'best' prepaid plan. The best plan is the one that gives you the coverage and data you actually use, for the lowest price. Here's how we'd choose in 2026.",
@@ -277,9 +277,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "check-before-buying-used-iphone-houston-tx",
     title: "What to Check Before Buying a Used iPhone",
-    metaTitle: "What to Check Buying a Used iPhone | GadgetX Repairs",
+    metaTitle: "What to Check Buying a Used iPhone | OK Cellular",
     metaDescription:
-      "A quick checklist for buying a used iPhone in Houston — battery health, iCloud lock & more — from GadgetX Repairs. Walk-ins welcome!",
+      "A quick checklist for buying a used iPhone in Houston — battery health, iCloud lock & more — from OK Cellular. Walk-ins welcome!",
     excerpt: "Don't buy a used iPhone without checking these. We see the regrets every week.",
     intro:
       "We love a good used iPhone deal, but only if you know what to check. This is the same list we run through on every phone we sell.",
@@ -313,9 +313,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "laptop-not-charging-houston-tx",
     title: "Laptop Not Charging? Here's What to Do",
-    metaTitle: "Laptop Not Charging — Diagnose & Fix | GadgetX Repairs",
+    metaTitle: "Laptop Not Charging — Diagnose & Fix | OK Cellular",
     metaDescription:
-      "Laptop won't charge? Common causes & what GadgetX Repairs in Houston TX can fix — dead chargers to broken jacks. Free diagnostic!",
+      "Laptop won't charge? Common causes & what OK Cellular in Houston TX can fix — dead chargers to broken jacks. Free diagnostic!",
     excerpt: "Most no-charge problems boil down to four things. Here's how to diagnose yours.",
     intro:
       "Plug in your laptop and nothing happens. Before you buy a new charger or a new laptop, run through this list.",
@@ -349,9 +349,9 @@ export const ARTICLES_DATA: ArticleData[] = [
   {
     slug: "xbox-hdmi-port-problems-houston-tx",
     title: "Xbox HDMI Port Problems — How We Fix Them",
-    metaTitle: "Xbox HDMI Port Problems & Repair | GadgetX Repairs",
+    metaTitle: "Xbox HDMI Port Problems & Repair | OK Cellular",
     metaDescription:
-      "Xbox HDMI port loose or broken? GadgetX Repairs in Houston TX microsolders a new port — about $99, 24–72 hrs. Free quote!",
+      "Xbox HDMI port loose or broken? OK Cellular in Houston TX microsolders a new port — about $99, 24–72 hrs. Free quote!",
     excerpt: "Loose Xbox HDMI port? Broken HDMI socket? It's a microsolder fix — and almost always worth it.",
     intro:
       "Xbox HDMI port problems are one of the most common console issues we see. Here's the playbook.",

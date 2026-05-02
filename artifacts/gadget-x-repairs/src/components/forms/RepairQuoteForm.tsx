@@ -86,12 +86,12 @@ export function RepairQuoteForm({
         {isMailIn ? (
           <p className="font-bold">
             We&apos;ll call or text you back within one business day with your quote and shipping
-            instructions. For fastest response, call <a className="underline" href="tel:+13466236898">(346) 623-6898</a>.
+            instructions. For fastest response, call <a className="underline" href="tel:+12814462166">(281) 446-2166</a>.
           </p>
         ) : (
           <p className="font-bold">
             We&apos;ll call or text you back today with your quote. For fastest response, call{" "}
-            <a className="underline" href="tel:+13466236898">(346) 623-6898</a>.
+            <a className="underline" href="tel:+12814462166">(281) 446-2166</a>.
           </p>
         )}
         <button onClick={() => setDone(false)} className="mt-4 underline font-bold uppercase text-sm">Submit another</button>
@@ -185,7 +185,7 @@ export function RepairQuoteForm({
           className="bg-white border border-zinc-200 focus:border-red-500 h-12"
           data-testid="input-photo-url"
         />
-        <p className="text-xs font-bold text-zinc-500">Or text a photo to (346) 623-6898 on WhatsApp.</p>
+        <p className="text-xs font-bold text-zinc-500">Or text a photo to (281) 446-2166 on WhatsApp.</p>
       </div>
       {isMailIn && (
         <div className="space-y-2">

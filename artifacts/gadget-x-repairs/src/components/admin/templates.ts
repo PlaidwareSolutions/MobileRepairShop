@@ -1,7 +1,7 @@
 type EmailTpl = { subject: string; html: string; text: string };
 type SmsTpl = { body: string };
 
-const SHOP = "Gadget X Repairs";
+const SHOP = "OK Cellular";
 const SIGN = `— ${SHOP}`;
 
 function firstName(name: string | undefined | null): string {

@@ -6,7 +6,7 @@ import { recordBlockEvent } from "../lib/blockEvents";
 // managed challenge (rare with `appearance: 'interaction-only'`). Worded so they
 // know how to recover without exposing implementation details.
 const FAILED_MESSAGE =
-  "We couldn't verify that submission. Please refresh the page and try again, or call us directly at (346) 623-6898.";
+  "We couldn't verify that submission. Please refresh the page and try again, or call us directly at (281) 446-2166.";
 
 /**
  * Express middleware that requires a valid Cloudflare Turnstile token on the

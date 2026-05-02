@@ -25,14 +25,14 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "phone-repair-houston-tx",
     title: "Phone Repair Houston",
-    metaTitle: "Phone Repair Houston, TX | Same-Day Cellphone Fix | Gadget X",
+    metaTitle: "Phone Repair Houston, TX | Same-Day Cellphone Fix | OK Cellular",
     metaDescription:
-      "Same-day phone repair in Houston for iPhone, Samsung, Pixel and Motorola. Screen, battery, charging port, water damage. 90-day warranty. (346) 623-6898.",
+      "Same-day phone repair in Houston for iPhone, Samsung, Pixel and Motorola. Screen, battery, charging port, water damage. 90-day warranty. (281) 446-2166.",
     hero: {
       eyebrow: "Cellphone Repair",
       h1: "Phone Repair in Houston",
       subhead:
-        "Whatever brand, whatever the damage — we fix phones the same day. 15 years repairing Houston's devices from our Almeda Rd shop.",
+        "Whatever brand, whatever the damage — we fix phones the same day. 15 years repairing Houston's devices from our Will Clayton Pkwy shop.",
     },
     problems: [
       "Cracked or shattered screen",
@@ -61,7 +61,7 @@ export const SERVICES_DATA: ServiceData[] = [
     faqs: [
       { q: "How long does phone repair take?", a: "Screen and battery replacements are usually done in 30–60 minutes. More complex board work may take 1–3 business days." },
       { q: "Do you fix water-damaged phones?", a: "Yes — bring it in fast and powered off. We charge a flat $25 diagnostic that's waived if you proceed with the repair." },
-      { q: "Do I need an appointment?", a: "Walk-ins are always welcome. If you want a guaranteed slot, call ahead at (346) 623-6898." },
+      { q: "Do I need an appointment?", a: "Walk-ins are always welcome. If you want a guaranteed slot, call ahead at (281) 446-2166." },
     ],
     serviceType: "screen-repair",
     related: ["iphone-repair-houston-tx", "samsung-repair-houston-tx", "battery-replacement-houston-tx"],
@@ -69,14 +69,14 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-repair-houston-tx",
     title: "iPhone Repair Houston",
-    metaTitle: "iPhone Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert iPhone repair in Houston TX. Screen, battery, back glass & more. All models serviced. Fast turnaround & warranty. Visit GadgetX Repairs!",
+      "Expert iPhone repair in Houston TX. Screen, battery, back glass & more. All models serviced. Fast turnaround & warranty. Visit OK Cellular!",
     hero: {
       eyebrow: "Apple iPhone Repair",
       h1: "iPhone Repair in Houston, TX",
       subhead:
-        "Cracked screen, swollen battery, dead Lightning or USB-C port — we repair every iPhone model, same day, from our shop on Almeda Rd.",
+        "Cracked screen, swollen battery, dead Lightning or USB-C port — we repair every iPhone model, same day, from our shop on Will Clayton Pkwy.",
     },
     problems: [
       "Cracked screen, dead pixels or no display",
@@ -124,9 +124,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-repair-houston-tx",
     title: "Samsung Phone Repair Houston",
-    metaTitle: "Samsung Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Samsung Repair Houston TX | OK Cellular",
     metaDescription:
-      "Trusted Samsung repair in Houston TX. Screen, battery & more for all Galaxy models. Fast turnaround, warranty included. Visit GadgetX Repairs!",
+      "Trusted Samsung repair in Houston TX. Screen, battery & more for all Galaxy models. Fast turnaround, warranty included. Visit OK Cellular!",
     hero: {
       eyebrow: "Samsung Galaxy Repair",
       h1: "Samsung Galaxy Repair in Houston",
@@ -166,9 +166,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "google-pixel-repair-houston-tx",
     title: "Google Pixel Repair Houston",
-    metaTitle: "Google Pixel Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Google Pixel Repair Houston TX | OK Cellular",
     metaDescription:
-      "Trusted Google Pixel repair in Houston TX. Screen, battery & more fixed by expert techs. Fast service, warranty included. Visit GadgetX Repairs!",
+      "Trusted Google Pixel repair in Houston TX. Screen, battery & more fixed by expert techs. Fast service, warranty included. Visit OK Cellular!",
     hero: {
       eyebrow: "Google Pixel Repair",
       h1: "Google Pixel Repair in Houston",
@@ -197,9 +197,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "motorola-repair-houston-tx",
     title: "Motorola Phone Repair Houston",
-    metaTitle: "Motorola Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Motorola Repair Houston TX | OK Cellular",
     metaDescription:
-      "Affordable Motorola phone repair in Houston TX. Screen, battery & charging port fixes. Fast service with warranty. Walk-in at GadgetX Repairs!",
+      "Affordable Motorola phone repair in Houston TX. Screen, battery & charging port fixes. Fast service with warranty. Walk-in at OK Cellular!",
     hero: {
       eyebrow: "Motorola Repair",
       h1: "Motorola Phone Repair in Houston",
@@ -228,9 +228,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "tablet-repair-houston-tx",
     title: "iPad & Tablet Repair Houston",
-    metaTitle: "Tablet Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Tablet Repair Houston TX | OK Cellular",
     metaDescription:
-      "Professional tablet repair in Houston TX. iPad, Samsung & more. Screen, battery & charging fixes. Fast turnaround at GadgetX Repairs. Walk-ins welcome!",
+      "Professional tablet repair in Houston TX. iPad, Samsung & more. Screen, battery & charging fixes. Fast turnaround at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Tablet Repair",
       h1: "iPad & Tablet Repair in Houston",
@@ -260,9 +260,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-repair-houston-tx",
     title: "Laptop Repair Houston",
-    metaTitle: "Laptop Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Laptop Repair Houston TX | OK Cellular",
     metaDescription:
-      "Professional laptop repair in Houston TX. MacBook, HP, Dell & Lenovo. Screen, battery, keyboard & more. Fast service at GadgetX Repairs!",
+      "Professional laptop repair in Houston TX. MacBook, HP, Dell & Lenovo. Screen, battery, keyboard & more. Fast service at OK Cellular!",
     hero: {
       eyebrow: "Laptop Repair",
       h1: "Laptop Repair in Houston",
@@ -303,9 +303,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "computer-repair-houston-tx",
     title: "Computer Repair Houston",
-    metaTitle: "Computer Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Computer Repair Houston TX | OK Cellular",
     metaDescription:
-      "Professional computer repair in Houston TX. Desktops & laptops. Hardware, software & virus removal. Fast, affordable service at GadgetX Repairs!",
+      "Professional computer repair in Houston TX. Desktops & laptops. Hardware, software & virus removal. Fast, affordable service at OK Cellular!",
     hero: {
       eyebrow: "Computer Repair",
       h1: "Computer Repair in Houston",
@@ -335,9 +335,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "macbook-repair-houston-tx",
     title: "MacBook Repair Houston",
-    metaTitle: "MacBook Repair Houston TX | GadgetX Repairs",
+    metaTitle: "MacBook Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert MacBook repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Fast diagnostics & warranty. Visit GadgetX Repairs today!",
+      "Expert MacBook repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Fast diagnostics & warranty. Visit OK Cellular today!",
     hero: {
       eyebrow: "Apple Laptop Repair",
       h1: "MacBook Repair in Houston",
@@ -367,9 +367,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "hp-laptop-repair-houston-tx",
     title: "HP Laptop Repair Houston",
-    metaTitle: "HP Laptop Repair Houston TX | GadgetX Repairs",
+    metaTitle: "HP Laptop Repair Houston TX | OK Cellular",
     metaDescription:
-      "Trusted HP laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixed by experts. Fast turnaround. Visit GadgetX Repairs today!",
+      "Trusted HP laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixed by experts. Fast turnaround. Visit OK Cellular today!",
     hero: {
       eyebrow: "HP Laptop Repair",
       h1: "HP Laptop Repair in Houston",
@@ -399,9 +399,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "dell-laptop-repair-houston-tx",
     title: "Dell Laptop Repair Houston",
-    metaTitle: "Dell Laptop Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Dell Laptop Repair Houston TX | OK Cellular",
     metaDescription:
-      "Reliable Dell laptop repair in Houston TX. Screen, battery, keyboard & more. Certified technicians & warranty. Walk-in at GadgetX Repairs!",
+      "Reliable Dell laptop repair in Houston TX. Screen, battery, keyboard & more. Certified technicians & warranty. Walk-in at OK Cellular!",
     hero: {
       eyebrow: "Dell Laptop Repair",
       h1: "Dell Laptop Repair in Houston",
@@ -430,9 +430,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "lenovo-laptop-repair-houston-tx",
     title: "Lenovo Laptop Repair Houston",
-    metaTitle: "Lenovo Laptop Repair Houston TX | GadgetX",
+    metaTitle: "Lenovo Laptop Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert Lenovo laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Quick turnaround & warranty. Visit GadgetX Repairs!",
+      "Expert Lenovo laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Quick turnaround & warranty. Visit OK Cellular!",
     hero: {
       eyebrow: "Lenovo Repair",
       h1: "Lenovo Laptop Repair in Houston",
@@ -461,9 +461,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "gaming-console-repair-houston-tx",
     title: "Gaming Console Repair Houston",
-    metaTitle: "Gaming Console Repair Houston TX | GadgetX",
+    metaTitle: "Gaming Console Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert gaming console repair in Houston TX. PS5, Xbox & controllers. Fast diagnostics & affordable fixes. Walk-in at GadgetX Repairs today!",
+      "Expert gaming console repair in Houston TX. PS5, Xbox & controllers. Fast diagnostics & affordable fixes. Walk-in at OK Cellular today!",
     hero: {
       eyebrow: "Console Repair",
       h1: "Gaming Console Repair in Houston",
@@ -493,9 +493,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ps5-repair-houston-tx",
     title: "PS5 Repair Houston",
-    metaTitle: "PS5 Repair Houston TX | GadgetX Repairs",
+    metaTitle: "PS5 Repair Houston TX | OK Cellular",
     metaDescription:
-      "PS5 not working? Get expert PS5 repair in Houston TX. HDMI, disc drive & more fixed fast. Affordable pricing & warranty at GadgetX Repairs!",
+      "PS5 not working? Get expert PS5 repair in Houston TX. HDMI, disc drive & more fixed fast. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "PlayStation 5 Repair",
       h1: "PS5 Repair in Houston",
@@ -525,9 +525,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "xbox-repair-houston-tx",
     title: "Xbox Repair Houston",
-    metaTitle: "Xbox Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Xbox Repair Houston TX | OK Cellular",
     metaDescription:
-      "Xbox not working? Get expert Xbox repair in Houston TX. Power, disc drive & controller issues fixed fast. Affordable & warrantied at GadgetX!",
+      "Xbox not working? Get expert Xbox repair in Houston TX. Power, disc drive & controller issues fixed fast. Affordable & warrantied at OK Cellular!",
     hero: {
       eyebrow: "Xbox Repair",
       h1: "Xbox Repair in Houston",
@@ -557,9 +557,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "controller-repair-houston-tx",
     title: "Controller Repair Houston",
-    metaTitle: "Controller Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Controller Repair Houston TX | OK Cellular",
     metaDescription:
-      "Broken game controller? Get it repaired fast in Houston TX. PS5 & Xbox controllers fixed. Affordable pricing & warranty at GadgetX Repairs!",
+      "Broken game controller? Get it repaired fast in Houston TX. PS5 & Xbox controllers fixed. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "Controller Repair",
       h1: "Controller Repair in Houston",
@@ -588,7 +588,7 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "hdmi-port-repair-houston-tx",
     title: "HDMI Port Repair Houston",
-    metaTitle: "HDMI Port Repair Houston | PS5, Xbox, TV, Laptop | Gadget X",
+    metaTitle: "HDMI Port Repair Houston | PS5, Xbox, TV | OK Cellular",
     metaDescription:
       "HDMI port repair in Houston for PS5, Xbox, Nintendo Switch dock, laptops and TVs. Broken HDMI socket microsoldered for $99.",
     hero: {
@@ -619,9 +619,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "motherboard-repair-houston-tx",
     title: "Motherboard Repair Houston",
-    metaTitle: "Motherboard Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Motherboard Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert motherboard repair in Houston TX. Phones, laptops & consoles. Complex board-level fixes by certified technicians. Visit GadgetX Repairs!",
+      "Expert motherboard repair in Houston TX. Phones, laptops & consoles. Complex board-level fixes by certified technicians. Visit OK Cellular!",
     hero: {
       eyebrow: "Board-level Repair",
       h1: "Motherboard / Logic-Board Repair in Houston",
@@ -651,9 +651,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "battery-replacement-houston-tx",
     title: "Battery Replacement Houston",
-    metaTitle: "Battery Replacement Houston TX | GadgetX Repairs",
+    metaTitle: "Battery Replacement Houston TX | OK Cellular",
     metaDescription:
-      "Phone, tablet & laptop battery replacement in Houston TX. All brands & models covered. Fast, affordable service with warranty at GadgetX Repairs!",
+      "Phone, tablet & laptop battery replacement in Houston TX. All brands & models covered. Fast, affordable service with warranty at OK Cellular!",
     hero: {
       eyebrow: "Battery Replacement",
       h1: "Battery Replacement in Houston",
@@ -683,9 +683,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "phone-unlocking-houston-tx",
     title: "Phone Unlocking Houston",
-    metaTitle: "Phone Unlocking Houston TX | GadgetX Repairs",
+    metaTitle: "Phone Unlocking Houston TX | OK Cellular",
     metaDescription:
-      "Unlock your phone in Houston TX. All carriers & brands supported. Fast & reliable unlocking service at GadgetX Repairs. Walk-ins welcome!",
+      "Unlock your phone in Houston TX. All carriers & brands supported. Fast & reliable unlocking service at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Phone Unlocking",
       h1: "Phone Unlocking in Houston",
@@ -713,14 +713,14 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "repair-services-houston-tx",
     title: "Repair Services Houston",
-    metaTitle: "Repair Services Houston TX | GadgetX Repairs",
+    metaTitle: "Repair Services Houston TX | OK Cellular",
     metaDescription:
-      "Professional repair services for phones, tablets, laptops & consoles in Houston TX. Same-day service available. Visit GadgetX Repairs today!",
+      "Professional repair services for phones, tablets, laptops & consoles in Houston TX. Same-day service available. Visit OK Cellular today!",
     hero: {
       eyebrow: "All Repair Services",
       h1: "Repair Services in Houston",
       subhead:
-        "Everything we fix, in one place. Phones, tablets, laptops, MacBooks, PS5, Xbox, Switch, controllers, HDMI ports and motherboards — all in our Almeda Rd shop.",
+        "Everything we fix, in one place. Phones, tablets, laptops, MacBooks, PS5, Xbox, Switch, controllers, HDMI ports and motherboards — all in our Will Clayton Pkwy shop.",
     },
     problems: [
       "iPhone, Samsung, Pixel, Motorola and Revvl phone repair",
@@ -734,7 +734,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     brands: ["Apple", "Samsung", "Google Pixel", "Motorola", "T-Mobile Revvl", "HP", "Dell", "Lenovo", "Sony PlayStation", "Microsoft Xbox", "Nintendo"],
     process: [
-      { step: "Bring it in", detail: "Walk in any day or call (346) 623-6898 ahead." },
+      { step: "Bring it in", detail: "Walk in any day or call (281) 446-2166 ahead." },
       { step: "Free diagnostic", detail: "Most repairs include a free diagnostic — we quote before any work." },
       { step: "Same-day where possible", detail: "Phone screens, batteries and controllers are usually done same day." },
       { step: "90-day warranty", detail: "Every repair we do is backed for 90 days." },
@@ -750,7 +750,7 @@ export const SERVICES_DATA: ServiceData[] = [
     ],
     faqs: [
       { q: "What devices do you repair?", a: "Phones (iPhone, Samsung, Pixel, Moto, Revvl), tablets (iPad, Galaxy Tab, Fire), laptops (HP, Dell, Lenovo, ASUS, MacBook), and consoles (PS5, Xbox, Switch). If it has a screen and a battery, we probably fix it." },
-      { q: "Do I need an appointment?", a: "Walk-ins are always welcome. If you want a guaranteed slot, call (346) 623-6898." },
+      { q: "Do I need an appointment?", a: "Walk-ins are always welcome. If you want a guaranteed slot, call (281) 446-2166." },
     ],
     serviceType: "screen-repair",
     related: ["phone-repair-houston-tx", "tablet-repair-houston-tx", "laptop-repair-houston-tx", "gaming-console-repair-houston-tx"],
@@ -758,9 +758,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-14-repair-houston-tx",
     title: "iPhone 14 Repair Houston",
-    metaTitle: "iPhone 14 Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone 14 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 14 repair in Houston TX. Screen, battery, back glass & charging port. Experienced techs & warranty. Visit GadgetX Repairs!",
+      "Affordable iPhone 14 repair in Houston TX. Screen, battery, back glass & charging port. Experienced techs & warranty. Visit OK Cellular!",
     hero: {
       eyebrow: "iPhone 14 Repair",
       h1: "iPhone 14 Repair in Houston",
@@ -791,9 +791,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-15-repair-houston-tx",
     title: "iPhone 15 Repair Houston",
-    metaTitle: "iPhone 15 Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone 15 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Quick & affordable iPhone 15 repair in Houston TX. Screen replacement, battery & more. Walk-ins welcome at GadgetX Repairs. Get a free quote!",
+      "Quick & affordable iPhone 15 repair in Houston TX. Screen replacement, battery & more. Walk-ins welcome at OK Cellular. Get a free quote!",
     hero: {
       eyebrow: "iPhone 15 Repair",
       h1: "iPhone 15 Repair in Houston",
@@ -824,7 +824,7 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-16-repair-houston-tx",
     title: "iPhone 16 Repair Houston",
-    metaTitle: "iPhone 16 Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone 16 Repair Houston TX | OK Cellular",
     metaDescription:
       "Affordable iPhone 16 repair in Houston TX. Cracked screen, battery & charging issues fixed fast. Certified technicians. Get your free quote today!",
     hero: {
@@ -856,9 +856,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-16-pro-repair-houston-tx",
     title: "iPhone 16 Pro Repair Houston",
-    metaTitle: "iPhone 16 Pro Repair Houston TX | GadgetX",
+    metaTitle: "iPhone 16 Pro Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert iPhone 16 Pro repair in Houston TX. Screen replacement, battery & more. Quick turnaround with a warranty. Visit GadgetX Repairs today!",
+      "Expert iPhone 16 Pro repair in Houston TX. Screen replacement, battery & more. Quick turnaround with a warranty. Visit OK Cellular today!",
     hero: {
       eyebrow: "iPhone 16 Pro Repair",
       h1: "iPhone 16 Pro Repair in Houston",
@@ -889,9 +889,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-screen-repair-houston-tx",
     title: "iPhone Screen Repair Houston",
-    metaTitle: "iPhone Screen Repair Houston TX | GadgetX",
+    metaTitle: "iPhone Screen Repair Houston TX | OK Cellular",
     metaDescription:
-      "Fast iPhone screen repair in Houston TX. Cracked or broken display fixed same day. All models. Affordable pricing & warranty at GadgetX Repairs!",
+      "Fast iPhone screen repair in Houston TX. Cracked or broken display fixed same day. All models. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "iPhone Screen Repair",
       h1: "iPhone Screen Repair in Houston",
@@ -923,9 +923,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-battery-replacement-houston-tx",
     title: "iPhone Battery Replacement Houston",
-    metaTitle: "iPhone Battery Replacement Houston TX | GadgetX",
+    metaTitle: "iPhone Battery Replacement Houston TX | OK Cellular",
     metaDescription:
-      "iPhone battery draining fast? Get a quick replacement in Houston TX. All models covered. Affordable pricing & warranty at GadgetX Repairs!",
+      "iPhone battery draining fast? Get a quick replacement in Houston TX. All models covered. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "iPhone Battery Replacement",
       h1: "iPhone Battery Replacement in Houston",
@@ -956,9 +956,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-back-glass-repair-houston-tx",
     title: "iPhone Back Glass Repair Houston",
-    metaTitle: "iPhone Back Glass Repair Houston TX | GadgetX",
+    metaTitle: "iPhone Back Glass Repair Houston TX | OK Cellular",
     metaDescription:
-      "Cracked iPhone back glass? Get it repaired fast in Houston TX. Affordable pricing, all models covered, warranty included at GadgetX Repairs!",
+      "Cracked iPhone back glass? Get it repaired fast in Houston TX. Affordable pricing, all models covered, warranty included at OK Cellular!",
     hero: {
       eyebrow: "iPhone Back Glass",
       h1: "iPhone Back Glass Repair in Houston",
@@ -988,9 +988,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-charging-port-repair-houston-tx",
     title: "iPhone Charging Port Repair Houston",
-    metaTitle: "iPhone Charging Port Repair Houston TX | GadgetX",
+    metaTitle: "iPhone Charging Port Repair Houston TX | OK Cellular",
     metaDescription:
-      "iPhone not charging? Get your charging port repaired in Houston TX. Fast, affordable fix for all iPhone models at GadgetX Repairs. Walk-ins welcome!",
+      "iPhone not charging? Get your charging port repaired in Houston TX. Fast, affordable fix for all iPhone models at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "iPhone Charging Port",
       h1: "iPhone Charging Port Repair in Houston",
@@ -1019,9 +1019,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-water-damage-repair-houston-tx",
     title: "iPhone Water Damage Repair Houston",
-    metaTitle: "iPhone Water Damage Repair Houston TX | GadgetX",
+    metaTitle: "iPhone Water Damage Repair Houston TX | OK Cellular",
     metaDescription:
-      "Dropped your iPhone in water? Expert water damage repair in Houston TX. Fast diagnosis & recovery service at GadgetX Repairs. Walk-ins welcome!",
+      "Dropped your iPhone in water? Expert water damage repair in Houston TX. Fast diagnosis & recovery service at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "iPhone Water Damage",
       h1: "iPhone Water Damage Repair in Houston",
@@ -1051,9 +1051,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-s24-repair-houston-tx",
     title: "Samsung Galaxy S24 Repair Houston",
-    metaTitle: "Samsung Galaxy S24 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy S24 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert Samsung Galaxy S24 repair in Houston TX. Cracked screen, battery & more fixed fast. Warranty included at GadgetX Repairs. Walk-ins welcome!",
+      "Expert Samsung Galaxy S24 repair in Houston TX. Cracked screen, battery & more fixed fast. Warranty included at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Galaxy S24 Repair",
       h1: "Samsung Galaxy S24 Repair in Houston",
@@ -1084,9 +1084,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-s23-repair-houston-tx",
     title: "Samsung Galaxy S23 Repair Houston",
-    metaTitle: "Samsung Galaxy S23 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy S23 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Reliable Samsung Galaxy S23 repair in Houston TX. Screen, battery & charging issues fixed fast. Certified techs & warranty at GadgetX Repairs!",
+      "Reliable Samsung Galaxy S23 repair in Houston TX. Screen, battery & charging issues fixed fast. Certified techs & warranty at OK Cellular!",
     hero: {
       eyebrow: "Galaxy S23 Repair",
       h1: "Samsung Galaxy S23 Repair in Houston",
@@ -1117,9 +1117,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-screen-repair-houston-tx",
     title: "Samsung Screen Repair Houston",
-    metaTitle: "Samsung Screen Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Screen Repair Houston TX | OK Cellular",
     metaDescription:
-      "Cracked Samsung screen? Get it repaired fast in Houston TX. All Galaxy models covered, affordable pricing & warranty. Visit GadgetX Repairs today!",
+      "Cracked Samsung screen? Get it repaired fast in Houston TX. All Galaxy models covered, affordable pricing & warranty. Visit OK Cellular today!",
     hero: {
       eyebrow: "Samsung Screen Repair",
       h1: "Samsung Screen Repair in Houston",
@@ -1149,9 +1149,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-battery-replacement-houston-tx",
     title: "Samsung Battery Replacement Houston",
-    metaTitle: "Samsung Battery Replacement Houston TX | GadgetX",
+    metaTitle: "Samsung Battery Replacement Houston TX | OK Cellular",
     metaDescription:
-      "Samsung battery not lasting? Get a fast replacement in Houston TX. All Galaxy models serviced. Affordable pricing & warranty at GadgetX Repairs!",
+      "Samsung battery not lasting? Get a fast replacement in Houston TX. All Galaxy models serviced. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "Samsung Battery",
       h1: "Samsung Galaxy Battery Replacement in Houston",
@@ -1180,9 +1180,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "revvl-repair-houston-tx",
     title: "T-Mobile Revvl Repair Houston",
-    metaTitle: "Revvl Phone Repair Houston TX | GadgetX Repairs",
+    metaTitle: "Revvl Phone Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert Revvl phone repair in Houston TX. Screen replacement, battery & more fixed fast. Affordable pricing & warranty. Visit GadgetX Repairs!",
+      "Expert Revvl phone repair in Houston TX. Screen replacement, battery & more fixed fast. Affordable pricing & warranty. Visit OK Cellular!",
     hero: {
       eyebrow: "Revvl Repair",
       h1: "T-Mobile Revvl Repair in Houston",
@@ -1211,9 +1211,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ipad-repair-houston-tx",
     title: "iPad Repair Houston",
-    metaTitle: "iPad Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPad Repair Houston TX | OK Cellular",
     metaDescription:
-      "Fast & affordable iPad repair in Houston TX. Screen, battery & charging port for all iPad models. Warranty included. Visit GadgetX Repairs today!",
+      "Fast & affordable iPad repair in Houston TX. Screen, battery & charging port for all iPad models. Warranty included. Visit OK Cellular today!",
     hero: {
       eyebrow: "iPad Repair",
       h1: "iPad Repair in Houston",
@@ -1243,9 +1243,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ipad-pro-repair-houston-tx",
     title: "iPad Pro Repair Houston",
-    metaTitle: "iPad Pro Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPad Pro Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert iPad Pro repair in Houston TX. Cracked screen, battery & more fixed fast. All sizes covered with warranty. Walk-in at GadgetX Repairs!",
+      "Expert iPad Pro repair in Houston TX. Cracked screen, battery & more fixed fast. All sizes covered with warranty. Walk-in at OK Cellular!",
     hero: {
       eyebrow: "iPad Pro Repair",
       h1: "iPad Pro Repair in Houston",
@@ -1275,9 +1275,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-tablet-repair-houston-tx",
     title: "Samsung Tablet Repair Houston",
-    metaTitle: "Samsung Tablet Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Tablet Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert Samsung tablet repair in Houston TX. Screen, battery & charging port fixed fast. All Galaxy Tab models. Warranty at GadgetX Repairs!",
+      "Expert Samsung tablet repair in Houston TX. Screen, battery & charging port fixed fast. All Galaxy Tab models. Warranty at OK Cellular!",
     hero: {
       eyebrow: "Samsung Tablet Repair",
       h1: "Samsung Galaxy Tab Repair in Houston",
@@ -1307,9 +1307,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "tablet-screen-repair-houston-tx",
     title: "Tablet Screen Repair Houston",
-    metaTitle: "Tablet Screen Repair Houston TX | GadgetX",
+    metaTitle: "Tablet Screen Repair Houston TX | OK Cellular",
     metaDescription:
-      "Cracked tablet screen? Get it fixed fast in Houston TX. iPad & Samsung tablet screen repairs, affordable pricing. Walk-in at GadgetX Repairs!",
+      "Cracked tablet screen? Get it fixed fast in Houston TX. iPad & Samsung tablet screen repairs, affordable pricing. Walk-in at OK Cellular!",
     hero: {
       eyebrow: "Tablet Screen",
       h1: "Tablet Screen Repair in Houston",
@@ -1339,9 +1339,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "tablet-battery-replacement-houston-tx",
     title: "Tablet Battery Replacement Houston",
-    metaTitle: "Tablet Battery Replacement Houston TX | GadgetX",
+    metaTitle: "Tablet Battery Replacement Houston TX | OK Cellular",
     metaDescription:
-      "Tablet battery draining fast? Get a quick replacement in Houston TX. iPad & Samsung tablets covered. Warranty included at GadgetX Repairs!",
+      "Tablet battery draining fast? Get a quick replacement in Houston TX. iPad & Samsung tablets covered. Warranty included at OK Cellular!",
     hero: {
       eyebrow: "Tablet Battery",
       h1: "Tablet Battery Replacement in Houston",
@@ -1371,9 +1371,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "tablet-charging-port-repair-houston-tx",
     title: "Tablet Charging Port Repair Houston",
-    metaTitle: "Tablet Charging Port Repair Houston TX | GadgetX",
+    metaTitle: "Tablet Charging Port Repair Houston TX | OK Cellular",
     metaDescription:
-      "Tablet not charging? Get your charging port repaired in Houston TX. iPad & Samsung tablets fixed fast. Walk-in at GadgetX Repairs today!",
+      "Tablet not charging? Get your charging port repaired in Houston TX. iPad & Samsung tablets fixed fast. Walk-in at OK Cellular today!",
     hero: {
       eyebrow: "Tablet Charging Port",
       h1: "Tablet Charging Port Repair in Houston",
@@ -1402,9 +1402,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-screen-repair-houston-tx",
     title: "Laptop Screen Repair Houston",
-    metaTitle: "Laptop Screen Repair Houston TX | GadgetX",
+    metaTitle: "Laptop Screen Repair Houston TX | OK Cellular",
     metaDescription:
-      "Cracked or broken laptop screen? Get it repaired fast in Houston TX. All brands covered. Affordable pricing & warranty at GadgetX Repairs!",
+      "Cracked or broken laptop screen? Get it repaired fast in Houston TX. All brands covered. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "Laptop Screen",
       h1: "Laptop Screen Repair in Houston",
@@ -1433,9 +1433,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-battery-replacement-houston-tx",
     title: "Laptop Battery Replacement Houston",
-    metaTitle: "Laptop Battery Replacement Houston TX | GadgetX",
+    metaTitle: "Laptop Battery Replacement Houston TX | OK Cellular",
     metaDescription:
-      "Laptop battery not holding charge? Get a fast replacement in Houston TX. All brands covered. Affordable pricing & warranty at GadgetX Repairs!",
+      "Laptop battery not holding charge? Get a fast replacement in Houston TX. All brands covered. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "Laptop Battery",
       h1: "Laptop Battery Replacement in Houston",
@@ -1464,9 +1464,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-motherboard-repair-houston-tx",
     title: "Laptop Motherboard Repair Houston",
-    metaTitle: "Laptop Motherboard Repair Houston TX | GadgetX",
+    metaTitle: "Laptop Motherboard Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert laptop motherboard repair in Houston TX. Experienced techs diagnose & fix complex issues fast. Warranty included at GadgetX Repairs!",
+      "Expert laptop motherboard repair in Houston TX. Experienced techs diagnose & fix complex issues fast. Warranty included at OK Cellular!",
     hero: {
       eyebrow: "Laptop Motherboard",
       h1: "Laptop Motherboard Repair in Houston",
@@ -1496,9 +1496,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "laptop-keyboard-repair-houston-tx",
     title: "Laptop Keyboard Repair Houston",
-    metaTitle: "Laptop Keyboard Repair Houston TX | GadgetX",
+    metaTitle: "Laptop Keyboard Repair Houston TX | OK Cellular",
     metaDescription:
-      "Broken or unresponsive laptop keyboard? Get it fixed fast in Houston TX. All brands, affordable pricing. Walk-in at GadgetX Repairs today!",
+      "Broken or unresponsive laptop keyboard? Get it fixed fast in Houston TX. All brands, affordable pricing. Walk-in at OK Cellular today!",
     hero: {
       eyebrow: "Laptop Keyboard",
       h1: "Laptop Keyboard Repair in Houston",
@@ -1527,9 +1527,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ps5-hdmi-repair-houston-tx",
     title: "PS5 HDMI Repair Houston",
-    metaTitle: "PS5 HDMI Repair Houston TX | GadgetX Repairs",
+    metaTitle: "PS5 HDMI Repair Houston TX | OK Cellular",
     metaDescription:
-      "PS5 with no HDMI signal? Get your PS5 HDMI port repaired in Houston TX. Fast, professional fix. Affordable pricing at GadgetX Repairs today!",
+      "PS5 with no HDMI signal? Get your PS5 HDMI port repaired in Houston TX. Fast, professional fix. Affordable pricing at OK Cellular today!",
     hero: {
       eyebrow: "PS5 HDMI Repair",
       h1: "PS5 HDMI Port Repair in Houston",
@@ -1558,9 +1558,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "google-lock-removal-houston-tx",
     title: "Google Account Lock Removal Houston",
-    metaTitle: "Google Lock Removal Houston TX | GadgetX",
+    metaTitle: "Google Lock Removal Houston TX | OK Cellular",
     metaDescription:
-      "Get your Google account lock removed in Houston TX. Fast FRP bypass service at GadgetX Repairs. All Android devices supported. Walk-ins welcome!",
+      "Get your Google account lock removed in Houston TX. Fast FRP bypass service at OK Cellular. All Android devices supported. Walk-ins welcome!",
     hero: {
       eyebrow: "Google Lock Removal",
       h1: "Google Account / FRP Lock Removal in Houston",
@@ -1589,9 +1589,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-15-pro-repair-houston-tx",
     title: "iPhone 15 Pro Repair Houston",
-    metaTitle: "iPhone 15 Pro Repair Houston TX | GadgetX",
+    metaTitle: "iPhone 15 Pro Repair Houston TX | OK Cellular",
     metaDescription:
-      "Reliable iPhone 15 Pro repair in Houston TX. Cracked screen, battery & more fixed by certified technicians. Walk-in or call GadgetX Repairs!",
+      "Reliable iPhone 15 Pro repair in Houston TX. Cracked screen, battery & more fixed by certified technicians. Walk-in or call OK Cellular!",
     hero: {
       eyebrow: "iPhone 15 Pro Repair",
       h1: "iPhone 15 Pro Repair in Houston",
@@ -1630,7 +1630,7 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-16-pro-max-repair-houston-tx",
     title: "iPhone 16 Pro Max Repair Houston",
-    metaTitle: "iPhone 16 Pro Max Repair Houston TX | GadgetX",
+    metaTitle: "iPhone 16 Pro Max Repair Houston TX | OK Cellular",
     metaDescription:
       "Fast iPhone 16 Pro Max repair in Houston TX. Screen, battery & charging port fixes. Trusted techs, warranty included. Get a free quote today!",
     hero: {
@@ -1670,9 +1670,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "ipad-air-repair-houston-tx",
     title: "iPad Air Repair Houston",
-    metaTitle: "iPad Air Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPad Air Repair Houston TX | OK Cellular",
     metaDescription:
-      "Reliable iPad Air repair in Houston TX. Screen replacement, battery & charging port fixes. All models, fast turnaround. Visit GadgetX Repairs!",
+      "Reliable iPad Air repair in Houston TX. Screen replacement, battery & charging port fixes. All models, fast turnaround. Visit OK Cellular!",
     hero: {
       eyebrow: "iPad Air Repair",
       h1: "iPad Air Repair in Houston",
@@ -1709,9 +1709,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-13-repair-houston-tx",
     title: "iPhone 13 Repair Houston",
-    metaTitle: "iPhone 13 Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone 13 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 13 repair in Houston TX. Cracked OLED, battery, Lightning port & back glass fixed same day. 90-day warranty at GadgetX Repairs.",
+      "Affordable iPhone 13 repair in Houston TX. Cracked OLED, battery, Lightning port & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone 13 Repair",
       h1: "iPhone 13 Repair in Houston",
@@ -1742,9 +1742,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-12-repair-houston-tx",
     title: "iPhone 12 Repair Houston",
-    metaTitle: "iPhone 12 Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone 12 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Fast iPhone 12 repair in Houston TX. Cracked OLED, battery replacement, Lightning port & back glass — most fixes done same day at GadgetX Repairs.",
+      "Fast iPhone 12 repair in Houston TX. Cracked OLED, battery replacement, Lightning port & back glass — most fixes done same day at OK Cellular.",
     hero: {
       eyebrow: "iPhone 12 Repair",
       h1: "iPhone 12 Repair in Houston",
@@ -1775,9 +1775,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-11-repair-houston-tx",
     title: "iPhone 11 Repair Houston",
-    metaTitle: "iPhone 11 Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone 11 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 11 repair in Houston TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at GadgetX Repairs.",
+      "Affordable iPhone 11 repair in Houston TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone 11 Repair",
       h1: "iPhone 11 Repair in Houston",
@@ -1808,9 +1808,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-x-repair-houston-tx",
     title: "iPhone X / XS / XR Repair Houston",
-    metaTitle: "iPhone X / XS / XR Repair Houston TX | GadgetX",
+    metaTitle: "iPhone X / XS / XR Repair Houston TX | OK Cellular",
     metaDescription:
-      "iPhone X, XS, XS Max and XR repair in Houston TX. Cracked OLED, battery, charging port and back glass fixed same day. 90-day warranty at GadgetX.",
+      "iPhone X, XS, XS Max and XR repair in Houston TX. Cracked OLED, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone X / XS / XR Repair",
       h1: "iPhone X, XS & XR Repair in Houston",
@@ -1841,9 +1841,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-se-repair-houston-tx",
     title: "iPhone SE Repair Houston",
-    metaTitle: "iPhone SE Repair Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone SE Repair Houston TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone SE repair in Houston TX (2016, 2020, 2022). Cracked screen, battery and charging port fixed same day. 90-day warranty at GadgetX.",
+      "Affordable iPhone SE repair in Houston TX (2016, 2020, 2022). Cracked screen, battery and charging port fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone SE Repair",
       h1: "iPhone SE Repair in Houston",
@@ -1873,9 +1873,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-8-repair-houston-tx",
     title: "iPhone 8 / 8 Plus Repair Houston",
-    metaTitle: "iPhone 8 / 8 Plus Repair Houston TX | GadgetX",
+    metaTitle: "iPhone 8 / 8 Plus Repair Houston TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 8 and 8 Plus repair in Houston TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at GadgetX.",
+      "Affordable iPhone 8 and 8 Plus repair in Houston TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone 8 / 8 Plus Repair",
       h1: "iPhone 8 & 8 Plus Repair in Houston",
@@ -1906,9 +1906,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "iphone-7-repair-houston-tx",
     title: "iPhone 7 / 6s / 6 Repair Houston",
-    metaTitle: "iPhone 7 / 6s / 6 Repair Houston TX | GadgetX",
+    metaTitle: "iPhone 7 / 6s / 6 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 7, 6s and 6 repair in Houston TX. Cracked screen, weak battery and loose Lightning port fixed same day from $59. 90-day warranty at GadgetX.",
+      "Affordable iPhone 7, 6s and 6 repair in Houston TX. Cracked screen, weak battery and loose Lightning port fixed same day from $59. 90-day warranty.",
     hero: {
       eyebrow: "iPhone 7 / 6s / 6 Repair",
       h1: "iPhone 7, 6s & 6 Repair in Houston",
@@ -1946,9 +1946,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-a54-repair-houston-tx",
     title: "Samsung Galaxy A54 Repair Houston",
-    metaTitle: "Samsung Galaxy A54 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy A54 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Galaxy A54 repair in Houston TX. Cracked AMOLED, battery, USB-C port and back glass fixed same day. Affordable pricing & 90-day warranty at GadgetX.",
+      "Galaxy A54 repair in Houston TX. Cracked AMOLED, battery, USB-C port and back glass fixed same day. Affordable pricing & 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy A54 Repair",
       h1: "Samsung Galaxy A54 Repair in Houston",
@@ -1979,9 +1979,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-a35-repair-houston-tx",
     title: "Samsung Galaxy A35 Repair Houston",
-    metaTitle: "Samsung Galaxy A35 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy A35 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Galaxy A35 repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. Affordable pricing & 90-day warranty at GadgetX.",
+      "Galaxy A35 repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. Affordable pricing & 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy A35 Repair",
       h1: "Samsung Galaxy A35 Repair in Houston",
@@ -2012,9 +2012,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-a15-repair-houston-tx",
     title: "Samsung Galaxy A15 Repair Houston",
-    metaTitle: "Samsung Galaxy A15 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy A15 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Galaxy A15 repair in Houston TX. Cracked screen, battery, USB-C port & back fixed affordably with a 90-day warranty at GadgetX Repairs.",
+      "Galaxy A15 repair in Houston TX. Cracked screen, battery, USB-C port & back fixed affordably with a 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy A15 Repair",
       h1: "Samsung Galaxy A15 Repair in Houston",
@@ -2045,9 +2045,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-s22-repair-houston-tx",
     title: "Samsung Galaxy S22 Repair Houston",
-    metaTitle: "Samsung Galaxy S22 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy S22 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Galaxy S22 / S22+ / S22 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at GadgetX.",
+      "Galaxy S22 / S22+ / S22 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy S22 Repair",
       h1: "Samsung Galaxy S22 Repair in Houston",
@@ -2079,9 +2079,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-s21-repair-houston-tx",
     title: "Samsung Galaxy S21 Repair Houston",
-    metaTitle: "Samsung Galaxy S21 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy S21 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Galaxy S21 / S21+ / S21 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at GadgetX.",
+      "Galaxy S21 / S21+ / S21 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy S21 Repair",
       h1: "Samsung Galaxy S21 Repair in Houston",
@@ -2113,9 +2113,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-note-20-repair-houston-tx",
     title: "Samsung Galaxy Note 20 Repair Houston",
-    metaTitle: "Samsung Galaxy Note 20 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy Note 20 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Galaxy Note 20 / Note 20 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at GadgetX.",
+      "Galaxy Note 20 / Note 20 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy Note 20 Repair",
       h1: "Samsung Galaxy Note 20 Repair in Houston",
@@ -2147,9 +2147,9 @@ export const SERVICES_DATA: ServiceData[] = [
   {
     slug: "samsung-galaxy-note-10-repair-houston-tx",
     title: "Samsung Galaxy Note 10 Repair Houston",
-    metaTitle: "Samsung Galaxy Note 10 Repair Houston TX | GadgetX",
+    metaTitle: "Samsung Galaxy Note 10 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Galaxy Note 10 / Note 10+ repair in Houston TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at GadgetX.",
+      "Galaxy Note 10 / Note 10+ repair in Houston TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy Note 10 Repair",
       h1: "Samsung Galaxy Note 10 Repair in Houston",

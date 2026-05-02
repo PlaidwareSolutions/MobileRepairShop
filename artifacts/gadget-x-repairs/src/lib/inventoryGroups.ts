@@ -103,9 +103,9 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     matches: ({ category, brand }) =>
       /\bapple\b/i.test(brand ?? "") || APPLE_CATEGORY_RE.test(category),
     seo: {
-      metaTitle: "Apple iPhones, iPads & MacBooks Houston | GadgetX Repairs",
+      metaTitle: "Apple iPhones, iPads & MacBooks Houston | OK Cellular",
       metaDescription:
-        "Shop used & refurbished Apple devices at GadgetX Repairs in Houston TX — iPhones, iPads, MacBooks, Apple Watch & AirPods. 90-day warranty.",
+        "Shop used & refurbished Apple devices at OK Cellular in Houston TX — iPhones, iPads, MacBooks, Apple Watch & AirPods. 90-day warranty.",
     },
     heading: { prefix: "Apple", highlight: "Inventory" },
     intro:
@@ -156,9 +156,9 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     matches: ({ category, brand }) =>
       /samsung/i.test(brand ?? "") || SAMSUNG_CATEGORY_RE.test(category),
     seo: {
-      metaTitle: "Used Samsung Galaxy Phones & Tablets Houston | GadgetX",
+      metaTitle: "Used Samsung Galaxy Phones & Tablets Houston | OK Cellular",
       metaDescription:
-        "Shop used & refurbished Samsung Galaxy phones, tablets and Galaxy Watch at GadgetX Repairs in Houston TX. Tested, unlocked, 90-day warranty.",
+        "Shop used & refurbished Samsung Galaxy phones, tablets and Galaxy Watch at OK Cellular in Houston TX. Tested, unlocked, 90-day warranty.",
     },
     heading: { prefix: "Samsung", highlight: "Inventory" },
     intro:
@@ -209,9 +209,9 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     matches: ({ category, brand }) =>
       /\bgoogle\b/i.test(brand ?? "") || GOOGLE_CATEGORY_RE.test(category),
     seo: {
-      metaTitle: "Used Google Pixel Phones Houston TX | GadgetX Repairs",
+      metaTitle: "Used Google Pixel Phones Houston TX | OK Cellular",
       metaDescription:
-        "Shop used & refurbished Google Pixel phones at GadgetX Repairs in Houston TX. Unlocked, tested, FRP cleared, backed by our 90-day warranty.",
+        "Shop used & refurbished Google Pixel phones at OK Cellular in Houston TX. Unlocked, tested, FRP cleared, backed by our 90-day warranty.",
     },
     heading: { prefix: "Google", highlight: "Inventory" },
     intro:
@@ -262,9 +262,9 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     matches: ({ category }) => CONSOLE_CATEGORY_RE.test(category),
     seo: {
       metaTitle:
-        "Used PlayStation, Xbox & Switch Houston | GadgetX Repairs",
+        "Used PlayStation, Xbox & Switch Houston | OK Cellular",
       metaDescription:
-        "Used & refurbished PS4, PS5, Xbox One, Series X|S & Nintendo Switch boxes at GadgetX Repairs in Houston TX. Tested with our 90-day warranty.",
+        "Used & refurbished PS4, PS5, Xbox One, Series X|S & Nintendo Switch boxes at OK Cellular in Houston TX. Tested with our 90-day warranty.",
     },
     heading: { prefix: "Gaming", highlight: "Consoles" },
     intro:
@@ -321,9 +321,9 @@ export const OTHER_GROUP: InventoryGroup = {
   label: "Other",
   matches: (input) => !INVENTORY_GROUPS.some((g) => g.matches(input)),
   seo: {
-    metaTitle: "Other Inventory | GadgetX Repairs Houston TX",
+    metaTitle: "Other Inventory | OK Cellular Houston TX",
     metaDescription:
-      "Other tested, warrantied gadgets in stock at GadgetX Repairs in Houston TX.",
+      "Other tested, warrantied gadgets in stock at OK Cellular in Houston TX.",
   },
   heading: { prefix: "Other", highlight: "Inventory" },
   intro: "Other tested gadgets currently in stock at our Houston shop.",

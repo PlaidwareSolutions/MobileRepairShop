@@ -270,7 +270,7 @@ export default function AdminInventoryPage() {
 
   return (
     <PageShell hideTicker>
-      <SEO title="Admin · Inventory | Gadget X" description="Admin inventory management" path="/admin/inventory" noindex />
+      <SEO title="Admin · Inventory | OK Cellular" description="Admin inventory management" path="/admin/inventory" noindex />
       <section className="py-12 px-4 bg-zinc-50 border-b border-zinc-200 min-h-[80vh]">
         <div className="max-w-[1240px] mx-auto">
           <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight">

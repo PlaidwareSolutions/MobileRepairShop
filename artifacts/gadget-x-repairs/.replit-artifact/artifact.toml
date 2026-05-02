@@ -1,6 +1,6 @@
 kind = "web"
 previewPath = "/"
-title = "Gadget X Repairs"
+title = "OK Cellular"
 version = "1.0.0"
 id = "artifacts/gadget-x-repairs"
 router = "path"

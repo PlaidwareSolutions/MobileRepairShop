@@ -250,4 +250,4 @@ export function useTurnstile(): UseTurnstileResult {
  * (script blocked, network issue, or the widget timed out without resolving).
  */
 export const TURNSTILE_CLIENT_ERROR =
-  "We couldn't complete the security check. Please refresh the page and try again, or call us at (346) 623-6898.";
+  "We couldn't complete the security check. Please refresh the page and try again, or call us at (281) 446-2166.";

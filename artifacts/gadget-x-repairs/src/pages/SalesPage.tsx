@@ -116,7 +116,7 @@ export default function SalesPage() {
     name: data.title,
     category: data.title,
     description: data.intro,
-    brand: { "@type": "Brand", name: "Gadget X Repairs" },
+    brand: { "@type": "Brand", name: "OK Cellular" },
     offers: {
       "@type": "AggregateOffer",
       priceCurrency: "USD",
@@ -124,7 +124,7 @@ export default function SalesPage() {
       highPrice: "999",
       offerCount: data.highlights.length,
       availability: "https://schema.org/InStock",
-      seller: { "@type": "ElectronicsStore", name: "Gadget X Repairs" },
+      seller: { "@type": "ElectronicsStore", name: "OK Cellular" },
     },
   };
   const itemListJsonLd = {

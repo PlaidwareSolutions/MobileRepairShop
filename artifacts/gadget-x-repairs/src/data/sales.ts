@@ -15,9 +15,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phones-for-sale-houston-tx",
     title: "Phones for Sale in Houston",
-    metaTitle: "Phones for Sale Houston TX | GadgetX Repairs",
+    metaTitle: "Phones for Sale Houston TX | OK Cellular",
     metaDescription:
-      "Buy new, used & refurbished phones in Houston TX. iPhone, Samsung, Motorola & more. Great prices at GadgetX Repairs. Visit us in store today!",
+      "Buy new, used & refurbished phones in Houston TX. iPhone, Samsung, Motorola & more. Great prices at OK Cellular. Visit us in store today!",
     hero: {
       eyebrow: "Phones for Sale",
       h1: "Phones for Sale in Houston",
@@ -42,9 +42,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "used-phones-houston-tx",
     title: "Used Phones Houston",
-    metaTitle: "Used Phones for Sale Houston TX | GadgetX Repairs",
+    metaTitle: "Used Phones for Sale Houston TX | OK Cellular",
     metaDescription:
-      "Buy quality used phones in Houston TX. iPhone, Samsung & more tested & ready to use. Affordable pricing at GadgetX Repairs. Walk-ins welcome!",
+      "Buy quality used phones in Houston TX. iPhone, Samsung & more tested & ready to use. Affordable pricing at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Used Phones",
       h1: "Used Phones in Houston",
@@ -62,9 +62,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "refurbished-phones-houston-tx",
     title: "Refurbished Phones Houston",
-    metaTitle: "Refurbished Phones Houston TX | GadgetX Repairs",
+    metaTitle: "Refurbished Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop certified refurbished phones in Houston TX. iPhone, Samsung & more at great prices. Quality-tested devices at GadgetX Repairs. Shop now!",
+      "Shop certified refurbished phones in Houston TX. iPhone, Samsung & more at great prices. Quality-tested devices at OK Cellular. Shop now!",
     hero: {
       eyebrow: "Refurbished Phones",
       h1: "Refurbished Phones in Houston",
@@ -82,9 +82,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "new-phones-houston-tx",
     title: "New Phones Houston",
-    metaTitle: "New Phones for Sale Houston TX | GadgetX Repairs",
+    metaTitle: "New Phones for Sale Houston TX | OK Cellular",
     metaDescription:
-      "Shop brand-new phones in Houston TX. iPhone, Samsung, Motorola & more. Best prices on the latest models at GadgetX Repairs. Visit us today!",
+      "Shop brand-new phones in Houston TX. iPhone, Samsung, Motorola & more. Best prices on the latest models at OK Cellular. Visit us today!",
     hero: {
       eyebrow: "New Phones",
       h1: "New Phones in Houston",
@@ -102,9 +102,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "sell-phone-houston-tx",
     title: "We Buy Your Phone in Houston",
-    metaTitle: "Sell Your Phone Houston TX | GadgetX Repairs",
+    metaTitle: "Sell Your Phone Houston TX | OK Cellular",
     metaDescription:
-      "Get cash for your old phone in Houston TX. We buy iPhones, Samsung & more. Fast & easy process at GadgetX Repairs. Walk-in for a free quote!",
+      "Get cash for your old phone in Houston TX. We buy iPhones, Samsung & more. Fast & easy process at OK Cellular. Walk-in for a free quote!",
     hero: {
       eyebrow: "Sell Your Phone",
       h1: "Sell Your Phone in Houston",
@@ -123,9 +123,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "laptops-for-sale-houston-tx",
     title: "Laptops for Sale Houston",
-    metaTitle: "Laptops for Sale Houston TX | GadgetX Repairs",
+    metaTitle: "Laptops for Sale Houston TX | OK Cellular",
     metaDescription:
-      "Buy new & used laptops in Houston TX. HP, Dell, Lenovo & MacBook available. Great prices at GadgetX Repairs. Walk-ins welcome. Shop today!",
+      "Buy new & used laptops in Houston TX. HP, Dell, Lenovo & MacBook available. Great prices at OK Cellular. Walk-ins welcome. Shop today!",
     hero: {
       eyebrow: "Laptops for Sale",
       h1: "Laptops for Sale in Houston",
@@ -143,9 +143,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phone-accessories-houston-tx",
     title: "Phone Accessories Houston",
-    metaTitle: "Phone Accessories Houston TX | GadgetX Repairs",
+    metaTitle: "Phone Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop phone accessories in Houston TX. Cases, chargers, cables, screen protectors & more. Top brands at GadgetX Repairs. Walk-ins welcome today!",
+      "Shop phone accessories in Houston TX. Cases, chargers, cables, screen protectors & more. Top brands at OK Cellular. Walk-ins welcome today!",
     hero: {
       eyebrow: "Accessories",
       h1: "Phone Accessories in Houston",
@@ -163,9 +163,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "laptop-accessories-houston-tx",
     title: "Laptop Accessories Houston",
-    metaTitle: "Laptop Accessories Houston TX | GadgetX Repairs",
+    metaTitle: "Laptop Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Laptop accessories at GadgetX Repairs in Houston TX — chargers, cases, sleeves, USB-C & HDMI adapters, mice & keyboards. Walk in!",
+      "Laptop accessories at OK Cellular in Houston TX — chargers, cases, sleeves, USB-C & HDMI adapters, mice & keyboards. Walk in!",
     hero: {
       eyebrow: "Laptop Accessories",
       h1: "Laptop Accessories in Houston",
@@ -182,18 +182,18 @@ export const SALES_DATA: SalesData[] = [
   },
   {
     slug: "shop-houston-tx",
-    title: "Shop Gadget X Houston",
-    metaTitle: "Shop Phones & Accessories Houston TX | GadgetX",
+    title: "Shop OK Cellular Houston",
+    metaTitle: "Shop Phones & Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop phones, laptops & accessories at GadgetX Repairs in Houston TX. New, used & refurbished devices. Great prices & quality products in store!",
+      "Shop phones, laptops & accessories at OK Cellular in Houston TX. New, used & refurbished devices. Great prices & quality products in store!",
     hero: {
-      eyebrow: "Shop Gadget X",
-      h1: "Shop Gadget X Houston",
+      eyebrow: "Shop OK Cellular",
+      h1: "Shop OK Cellular Houston",
       subhead:
-        "Everything we sell — phones, laptops, accessories, prepaid SIMs and bill payments — all in one Houston shop on Almeda Rd.",
+        "Everything we sell — phones, laptops, accessories, prepaid SIMs and bill payments — all in one Houston shop on Will Clayton Pkwy.",
     },
     intro:
-      "Gadget X is your one-stop shop in Houston for unlocked phones, refurbished laptops, cases, chargers, screen protectors, prepaid activations and bill payments. Walk in any day and we'll set you up.",
+      "OK Cellular is your one-stop shop in Houston for unlocked phones, refurbished laptops, cases, chargers, screen protectors, prepaid activations and bill payments. Walk in any day and we'll set you up.",
     highlights: [
       "Unlocked iPhones from $99 — Samsung, Pixel, Motorola too",
       "Refurbished MacBooks, HP, Dell and Lenovo laptops",
@@ -202,7 +202,7 @@ export const SALES_DATA: SalesData[] = [
       "We buy phones — even cracked ones — for cash",
     ],
     faqs: [
-      { q: "Do I need to make an appointment?", a: "Walk in any day. Sundays 12–5, Mon–Sat 10–7." },
+      { q: "Do I need to make an appointment?", a: "Walk in any day. Sundays 11–7:30, Mon–Sat 10–8:30." },
       { q: "Do you take trade-ins?", a: "Yes — bring your old phone or laptop and we'll quote you on the spot." },
     ],
     related: ["phones-for-sale-houston-tx", "laptops-for-sale-houston-tx", "phone-accessories-houston-tx", "phone-activation-houston-tx"],
@@ -210,9 +210,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-iphone-houston-tx",
     title: "Buy iPhone in Houston",
-    metaTitle: "Buy iPhone Houston TX | GadgetX Repairs",
+    metaTitle: "Buy iPhone Houston TX | OK Cellular",
     metaDescription:
-      "Buy new, used & refurbished iPhones in Houston TX. Latest models available. Competitive prices at GadgetX Repairs. Visit us in store today!",
+      "Buy new, used & refurbished iPhones in Houston TX. Latest models available. Competitive prices at OK Cellular. Visit us in store today!",
     hero: {
       eyebrow: "Buy iPhone",
       h1: "Buy iPhone in Houston",
@@ -237,9 +237,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-phones-houston-tx",
     title: "Buy Samsung Phones in Houston",
-    metaTitle: "Buy Samsung Phones Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Samsung Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop Samsung Galaxy phones in Houston TX. New, used & refurbished models at great prices. Visit GadgetX Repairs for the best Samsung deals!",
+      "Shop Samsung Galaxy phones in Houston TX. New, used & refurbished models at great prices. Visit OK Cellular for the best Samsung deals!",
     hero: {
       eyebrow: "Buy Samsung",
       h1: "Buy Samsung Phones in Houston",
@@ -256,7 +256,7 @@ export const SALES_DATA: SalesData[] = [
       "Free prepaid activation with phone purchase",
     ],
     faqs: [
-      { q: "Do you have the latest Galaxy S series?", a: "We carry recent Galaxy S models when supply allows. Call (346) 623-6898 for current inventory." },
+      { q: "Do you have the latest Galaxy S series?", a: "We carry recent Galaxy S models when supply allows. Call (281) 446-2166 for current inventory." },
     ],
     related: [
       "buy-samsung-galaxy-s22-houston-tx",
@@ -275,9 +275,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-galaxy-a54-houston-tx",
     title: "Buy Samsung Galaxy A54 in Houston",
-    metaTitle: "Buy Samsung Galaxy A54 Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Samsung Galaxy A54 Houston TX | OK Cellular",
     metaDescription:
-      "Shop unlocked Samsung Galaxy A54 5G in Houston TX. Used & refurbished A54 from $199 with 90-day warranty at GadgetX Repairs. Walk-ins welcome!",
+      "Shop unlocked Samsung Galaxy A54 5G in Houston TX. Used & refurbished A54 from $199 with 90-day warranty at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Buy Galaxy A54",
       h1: "Buy Samsung Galaxy A54 in Houston",
@@ -302,9 +302,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-galaxy-a35-houston-tx",
     title: "Buy Samsung Galaxy A35 in Houston",
-    metaTitle: "Buy Samsung Galaxy A35 Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Samsung Galaxy A35 Houston TX | OK Cellular",
     metaDescription:
-      "Shop unlocked Samsung Galaxy A35 5G in Houston TX. Used & refurbished A35 from $179 with 90-day warranty at GadgetX Repairs. Walk-ins welcome!",
+      "Shop unlocked Samsung Galaxy A35 5G in Houston TX. Used & refurbished A35 from $179 with 90-day warranty at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Buy Galaxy A35",
       h1: "Buy Samsung Galaxy A35 in Houston",
@@ -328,9 +328,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-galaxy-a15-houston-tx",
     title: "Buy Samsung Galaxy A15 in Houston",
-    metaTitle: "Buy Samsung Galaxy A15 Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Samsung Galaxy A15 Houston TX | OK Cellular",
     metaDescription:
-      "Shop unlocked Samsung Galaxy A15 in Houston TX. Used & new A15 from $129 with warranty at GadgetX Repairs. Free prepaid activation. Walk-ins welcome!",
+      "Shop unlocked Samsung Galaxy A15 in Houston TX. Used & new A15 from $129 with warranty at OK Cellular. Free prepaid activation. Walk-ins welcome!",
     hero: {
       eyebrow: "Buy Galaxy A15",
       h1: "Buy Samsung Galaxy A15 in Houston",
@@ -354,9 +354,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-galaxy-s22-houston-tx",
     title: "Buy Samsung Galaxy S22 in Houston",
-    metaTitle: "Buy Samsung Galaxy S22 Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Samsung Galaxy S22 Houston TX | OK Cellular",
     metaDescription:
-      "Shop unlocked Samsung Galaxy S22, S22+ and S22 Ultra in Houston TX. Used & refurbished from $279 with warranty at GadgetX Repairs. Walk-ins welcome!",
+      "Shop unlocked Samsung Galaxy S22, S22+ and S22 Ultra in Houston TX. Used & refurbished from $279 with warranty at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Buy Galaxy S22",
       h1: "Buy Samsung Galaxy S22 in Houston",
@@ -381,9 +381,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-galaxy-s21-houston-tx",
     title: "Buy Samsung Galaxy S21 in Houston",
-    metaTitle: "Buy Samsung Galaxy S21 Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Samsung Galaxy S21 Houston TX | OK Cellular",
     metaDescription:
-      "Shop unlocked Samsung Galaxy S21, S21+, S21 Ultra and S21 FE in Houston TX. Used & refurbished from $229 with warranty at GadgetX Repairs.",
+      "Shop unlocked Samsung Galaxy S21, S21+, S21 Ultra and S21 FE in Houston TX. Used & refurbished from $229 with warranty at OK Cellular.",
     hero: {
       eyebrow: "Buy Galaxy S21",
       h1: "Buy Samsung Galaxy S21 in Houston",
@@ -407,9 +407,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-galaxy-note-20-houston-tx",
     title: "Buy Samsung Galaxy Note 20 in Houston",
-    metaTitle: "Buy Samsung Galaxy Note 20 Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Samsung Galaxy Note 20 Houston TX | OK Cellular",
     metaDescription:
-      "Shop unlocked Samsung Galaxy Note 20 and Note 20 Ultra in Houston TX. Used & refurbished from $269 with warranty at GadgetX Repairs.",
+      "Shop unlocked Samsung Galaxy Note 20 and Note 20 Ultra in Houston TX. Used & refurbished from $269 with warranty at OK Cellular.",
     hero: {
       eyebrow: "Buy Galaxy Note 20",
       h1: "Buy Samsung Galaxy Note 20 in Houston",
@@ -434,9 +434,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-samsung-galaxy-note-10-houston-tx",
     title: "Buy Samsung Galaxy Note 10 in Houston",
-    metaTitle: "Buy Samsung Galaxy Note 10 Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Samsung Galaxy Note 10 Houston TX | OK Cellular",
     metaDescription:
-      "Shop unlocked Samsung Galaxy Note 10 and Note 10+ in Houston TX. Used & refurbished from $199 with warranty at GadgetX Repairs. Walk-ins welcome!",
+      "Shop unlocked Samsung Galaxy Note 10 and Note 10+ in Houston TX. Used & refurbished from $199 with warranty at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Buy Galaxy Note 10",
       h1: "Buy Samsung Galaxy Note 10 in Houston",
@@ -460,9 +460,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-motorola-phones-houston-tx",
     title: "Buy Motorola Phones in Houston",
-    metaTitle: "Buy Motorola Phones Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Motorola Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop Motorola phones in Houston TX. New & used models at affordable prices. Quality devices at GadgetX Repairs. Walk-ins welcome. Visit us today!",
+      "Shop Motorola phones in Houston TX. New & used models at affordable prices. Quality devices at OK Cellular. Walk-ins welcome. Visit us today!",
     hero: {
       eyebrow: "Buy Motorola",
       h1: "Buy Motorola Phones in Houston",
@@ -486,9 +486,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-google-pixel-phones-houston-tx",
     title: "Buy Google Pixel Phones in Houston",
-    metaTitle: "Buy Google Pixel Phones Houston TX | GadgetX",
+    metaTitle: "Buy Google Pixel Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop Google Pixel phones in Houston TX. New & refurbished models at competitive prices. Find your next phone at GadgetX Repairs today!",
+      "Shop Google Pixel phones in Houston TX. New & refurbished models at competitive prices. Find your next phone at OK Cellular today!",
     hero: {
       eyebrow: "Buy Pixel",
       h1: "Buy Google Pixel Phones in Houston",
@@ -512,9 +512,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-hp-laptops-houston-tx",
     title: "Buy HP Laptops in Houston",
-    metaTitle: "Buy HP Laptops Houston TX | GadgetX Repairs",
+    metaTitle: "Buy HP Laptops Houston TX | OK Cellular",
     metaDescription:
-      "Shop HP laptops in Houston TX. New & refurbished models at affordable prices. Find the perfect HP laptop at GadgetX Repairs. Visit us today!",
+      "Shop HP laptops in Houston TX. New & refurbished models at affordable prices. Find the perfect HP laptop at OK Cellular. Visit us today!",
     hero: {
       eyebrow: "Buy HP Laptop",
       h1: "Buy HP Laptops in Houston",
@@ -538,9 +538,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-dell-laptops-houston-tx",
     title: "Buy Dell Laptops in Houston",
-    metaTitle: "Buy Dell Laptops Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Dell Laptops Houston TX | OK Cellular",
     metaDescription:
-      "Shop Dell laptops in Houston TX. New & used models at great prices. Quality devices for work & school at GadgetX Repairs. Walk-ins welcome!",
+      "Shop Dell laptops in Houston TX. New & used models at great prices. Quality devices for work & school at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Buy Dell Laptop",
       h1: "Buy Dell Laptops in Houston",
@@ -564,9 +564,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-lenovo-laptops-houston-tx",
     title: "Buy Lenovo Laptops in Houston",
-    metaTitle: "Buy Lenovo Laptops Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Lenovo Laptops Houston TX | OK Cellular",
     metaDescription:
-      "Shop Lenovo laptops in Houston TX. New & refurbished models at competitive prices. Great value at GadgetX Repairs. Walk-ins welcome. Shop today!",
+      "Shop Lenovo laptops in Houston TX. New & refurbished models at competitive prices. Great value at OK Cellular. Walk-ins welcome. Shop today!",
     hero: {
       eyebrow: "Buy Lenovo Laptop",
       h1: "Buy Lenovo Laptops in Houston",
@@ -590,9 +590,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-macbook-houston-tx",
     title: "Buy MacBook in Houston",
-    metaTitle: "Buy MacBook Houston TX | GadgetX Repairs",
+    metaTitle: "Buy MacBook Houston TX | OK Cellular",
     metaDescription:
-      "Shop new & refurbished MacBooks in Houston TX. MacBook Air & Pro available at great prices. Quality Apple laptops at GadgetX Repairs. Shop now!",
+      "Shop new & refurbished MacBooks in Houston TX. MacBook Air & Pro available at great prices. Quality Apple laptops at OK Cellular. Shop now!",
     hero: {
       eyebrow: "Buy MacBook",
       h1: "Buy MacBook in Houston",
@@ -616,9 +616,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "sell-iphone-houston-tx",
     title: "Sell My iPhone in Houston",
-    metaTitle: "Sell Your iPhone Houston TX | GadgetX Repairs",
+    metaTitle: "Sell Your iPhone Houston TX | OK Cellular",
     metaDescription:
-      "Sell your old iPhone in Houston TX for top dollar. All models accepted. Fast & easy process at GadgetX Repairs. Walk-in for a free quote today!",
+      "Sell your old iPhone in Houston TX for top dollar. All models accepted. Fast & easy process at OK Cellular. Walk-in for a free quote today!",
     hero: {
       eyebrow: "Sell iPhone",
       h1: "Sell Your iPhone in Houston",
@@ -643,9 +643,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "sell-samsung-phone-houston-tx",
     title: "Sell My Samsung Phone in Houston",
-    metaTitle: "Sell Samsung Phone Houston TX | GadgetX Repairs",
+    metaTitle: "Sell Samsung Phone Houston TX | OK Cellular",
     metaDescription:
-      "Sell your Samsung Galaxy phone in Houston TX for cash. All models accepted. Fast, easy & fair at GadgetX Repairs. Walk-in for a free quote!",
+      "Sell your Samsung Galaxy phone in Houston TX for cash. All models accepted. Fast, easy & fair at OK Cellular. Walk-in for a free quote!",
     hero: {
       eyebrow: "Sell Samsung",
       h1: "Sell Your Samsung Galaxy in Houston",
@@ -669,9 +669,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phone-cases-houston-tx",
     title: "Phone Cases Houston",
-    metaTitle: "Phone Cases Houston TX | GadgetX Repairs",
+    metaTitle: "Phone Cases Houston TX | OK Cellular",
     metaDescription:
-      "Phone cases at GadgetX Repairs in Houston TX for current iPhone, Galaxy, Pixel & Motorola — slim, rugged, OtterBox-style & clear.",
+      "Phone cases at OK Cellular in Houston TX for current iPhone, Galaxy, Pixel & Motorola — slim, rugged, OtterBox-style & clear.",
     hero: {
       eyebrow: "Phone Cases",
       h1: "Phone Cases in Houston",
@@ -695,9 +695,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "screen-protectors-houston-tx",
     title: "Screen Protectors Houston",
-    metaTitle: "Screen Protectors Houston TX | GadgetX Repairs",
+    metaTitle: "Screen Protectors Houston TX | OK Cellular",
     metaDescription:
-      "Tempered glass screen protectors at GadgetX Repairs in Houston TX for iPhone, Galaxy, Pixel & Motorola — free pro install included!",
+      "Tempered glass screen protectors at OK Cellular in Houston TX for iPhone, Galaxy, Pixel & Motorola — free pro install included!",
     hero: {
       eyebrow: "Screen Protectors",
       h1: "Screen Protectors in Houston",
@@ -722,9 +722,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phone-chargers-houston-tx",
     title: "Phone Chargers Houston",
-    metaTitle: "Phone Chargers Houston TX | GadgetX Repairs",
+    metaTitle: "Phone Chargers Houston TX | OK Cellular",
     metaDescription:
-      "Phone chargers at GadgetX Repairs in Houston TX — USB-C, Lightning, MagSafe & wireless wall chargers. 20W, 30W & 65W options.",
+      "Phone chargers at OK Cellular in Houston TX — USB-C, Lightning, MagSafe & wireless wall chargers. 20W, 30W & 65W options.",
     hero: {
       eyebrow: "Phone Chargers",
       h1: "Phone Chargers in Houston",
@@ -748,9 +748,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "charging-cables-houston-tx",
     title: "Charging Cables Houston",
-    metaTitle: "Charging Cables Houston TX | GadgetX Repairs",
+    metaTitle: "Charging Cables Houston TX | OK Cellular",
     metaDescription:
-      "Charging cables at GadgetX Repairs in Houston TX — USB-C, Lightning & micro-USB. Braided, 6ft & reinforced for every phone!",
+      "Charging cables at OK Cellular in Houston TX — USB-C, Lightning & micro-USB. Braided, 6ft & reinforced for every phone!",
     hero: {
       eyebrow: "Charging Cables",
       h1: "Charging Cables in Houston",
@@ -774,9 +774,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "wall-adapters-houston-tx",
     title: "Wall Adapters Houston",
-    metaTitle: "USB-C Wall Adapters Houston TX | GadgetX Repairs",
+    metaTitle: "USB-C Wall Adapters Houston TX | OK Cellular",
     metaDescription:
-      "USB-C wall adapters at GadgetX Repairs in Houston TX — 20W, 30W, 45W & 65W fast chargers for iPhone, Samsung, Pixel & laptops.",
+      "USB-C wall adapters at OK Cellular in Houston TX — 20W, 30W, 45W & 65W fast chargers for iPhone, Samsung, Pixel & laptops.",
     hero: {
       eyebrow: "Wall Adapters",
       h1: "Wall Adapters in Houston",
@@ -800,9 +800,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "wireless-chargers-houston-tx",
     title: "Wireless Chargers Houston",
-    metaTitle: "Wireless Chargers Houston TX | GadgetX Repairs",
+    metaTitle: "Wireless Chargers Houston TX | OK Cellular",
     metaDescription:
-      "Shop wireless chargers in Houston TX. Fast wireless charging pads & stands for iPhone & Samsung. Great prices at GadgetX Repairs. Shop now!",
+      "Shop wireless chargers in Houston TX. Fast wireless charging pads & stands for iPhone & Samsung. Great prices at OK Cellular. Shop now!",
     hero: {
       eyebrow: "Wireless Chargers",
       h1: "Wireless Chargers in Houston",
@@ -826,9 +826,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "power-banks-houston-tx",
     title: "Power Banks Houston",
-    metaTitle: "Power Banks Houston TX | GadgetX Repairs",
+    metaTitle: "Power Banks Houston TX | OK Cellular",
     metaDescription:
-      "Shop portable power banks in Houston TX. High-capacity chargers to keep your devices powered. Great prices at GadgetX Repairs. Shop today!",
+      "Shop portable power banks in Houston TX. High-capacity chargers to keep your devices powered. Great prices at OK Cellular. Shop today!",
     hero: {
       eyebrow: "Power Banks",
       h1: "Power Banks in Houston",
@@ -852,9 +852,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "earbuds-houston-tx",
     title: "Earbuds Houston",
-    metaTitle: "Earbuds Houston TX | GadgetX Repairs",
+    metaTitle: "Earbuds Houston TX | OK Cellular",
     metaDescription:
-      "True wireless earbuds at GadgetX Repairs in Houston TX — AirPods-style, Galaxy Buds & budget options from $19. Charging case included!",
+      "True wireless earbuds at OK Cellular in Houston TX — AirPods-style, Galaxy Buds & budget options from $19. Charging case included!",
     hero: {
       eyebrow: "Earbuds",
       h1: "Earbuds in Houston",
@@ -878,9 +878,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "headphones-houston-tx",
     title: "Headphones Houston",
-    metaTitle: "Headphones Houston TX | GadgetX Repairs",
+    metaTitle: "Headphones Houston TX | OK Cellular",
     metaDescription:
-      "Shop headphones in Houston TX. Wired, wireless & Bluetooth options. Top brands & great sound quality at GadgetX Repairs. Walk-ins welcome!",
+      "Shop headphones in Houston TX. Wired, wireless & Bluetooth options. Top brands & great sound quality at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Headphones",
       h1: "Headphones in Houston",
@@ -904,9 +904,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "bluetooth-speakers-houston-tx",
     title: "Bluetooth Speakers Houston",
-    metaTitle: "Bluetooth Speakers Houston TX | GadgetX Repairs",
+    metaTitle: "Bluetooth Speakers Houston TX | OK Cellular",
     metaDescription:
-      "Shop Bluetooth speakers in Houston TX. Portable & powerful sound for any occasion. Top brands at GadgetX Repairs. Walk-ins welcome. Shop today!",
+      "Shop Bluetooth speakers in Houston TX. Portable & powerful sound for any occasion. Top brands at OK Cellular. Walk-ins welcome. Shop today!",
     hero: {
       eyebrow: "Bluetooth Speakers",
       h1: "Bluetooth Speakers in Houston",
@@ -930,9 +930,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "car-chargers-houston-tx",
     title: "Car Chargers Houston",
-    metaTitle: "Car Chargers Houston TX | GadgetX Repairs",
+    metaTitle: "Car Chargers Houston TX | OK Cellular",
     metaDescription:
-      "Shop car chargers in Houston TX. Fast USB & wireless car chargers for all phones. Affordable pricing at GadgetX Repairs. Walk-in or shop today!",
+      "Shop car chargers in Houston TX. Fast USB & wireless car chargers for all phones. Affordable pricing at OK Cellular. Walk-in or shop today!",
     hero: {
       eyebrow: "Car Chargers",
       h1: "Car Chargers in Houston",
@@ -956,9 +956,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "smart-watch-bands-houston-tx",
     title: "Smart Watch Bands Houston",
-    metaTitle: "Apple Watch & Galaxy Watch Bands | GadgetX Repairs",
+    metaTitle: "Apple Watch & Galaxy Watch Bands | OK Cellular",
     metaDescription:
-      "Apple Watch & Galaxy Watch bands at GadgetX Repairs in Houston TX — sport, leather, metal & Milanese loops. Every size in stock!",
+      "Apple Watch & Galaxy Watch bands at OK Cellular in Houston TX — sport, leather, metal & Milanese loops. Every size in stock!",
     hero: {
       eyebrow: "Smart Watch Bands",
       h1: "Apple Watch & Galaxy Watch Bands in Houston",
@@ -982,9 +982,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "otterbox-cases-houston-tx",
     title: "OtterBox Cases Houston",
-    metaTitle: "OtterBox Cases Houston TX | GadgetX Repairs",
+    metaTitle: "OtterBox Cases Houston TX | OK Cellular",
     metaDescription:
-      "OtterBox cases at GadgetX Repairs in Houston TX — Defender, Symmetry & Commuter for iPhone & Galaxy. Heavy-duty drop protection!",
+      "OtterBox cases at OK Cellular in Houston TX — Defender, Symmetry & Commuter for iPhone & Galaxy. Heavy-duty drop protection!",
     hero: {
       eyebrow: "OtterBox Cases",
       h1: "OtterBox Cases in Houston",
@@ -1008,9 +1008,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "apple-accessories-houston-tx",
     title: "Apple Accessories Houston",
-    metaTitle: "Apple Accessories Houston TX | GadgetX Repairs",
+    metaTitle: "Apple Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop genuine & compatible Apple accessories in Houston TX. Chargers, cases, AirPods & more. Great prices at GadgetX Repairs. Walk-ins welcome!",
+      "Shop genuine & compatible Apple accessories in Houston TX. Chargers, cases, AirPods & more. Great prices at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Apple Accessories",
       h1: "Apple Accessories in Houston",
@@ -1034,9 +1034,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "buy-revvl-phones-houston-tx",
     title: "Buy Revvl Phones Houston",
-    metaTitle: "Buy Revvl Phones Houston TX | GadgetX Repairs",
+    metaTitle: "Buy Revvl Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop Revvl phones in Houston TX. New & used models at affordable prices. Great T-Mobile network compatibility. Visit GadgetX Repairs today!",
+      "Shop Revvl phones in Houston TX. New & used models at affordable prices. Great T-Mobile network compatibility. Visit OK Cellular today!",
     hero: {
       eyebrow: "Buy Revvl Phones",
       h1: "Buy Revvl Phones in Houston",
@@ -1061,9 +1061,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "iphone-cases-houston-tx",
     title: "iPhone Cases Houston",
-    metaTitle: "iPhone Cases Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone Cases Houston TX | OK Cellular",
     metaDescription:
-      "Shop iPhone cases in Houston TX. Wide selection of protective & stylish cases for all iPhone models. Affordable prices at GadgetX Repairs!",
+      "Shop iPhone cases in Houston TX. Wide selection of protective & stylish cases for all iPhone models. Affordable prices at OK Cellular!",
     hero: {
       eyebrow: "iPhone Cases",
       h1: "iPhone Cases in Houston",
@@ -1087,9 +1087,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "iphone-screen-protectors-houston-tx",
     title: "iPhone Screen Protectors Houston",
-    metaTitle: "iPhone Screen Protectors Houston TX | GadgetX",
+    metaTitle: "iPhone Screen Protectors Houston TX | OK Cellular",
     metaDescription:
-      "Shop iPhone screen protectors in Houston TX. Tempered glass & film protectors for all models. Affordable prices at GadgetX Repairs. Shop now!",
+      "Shop iPhone screen protectors in Houston TX. Tempered glass & film protectors for all models. Affordable prices at OK Cellular. Shop now!",
     hero: {
       eyebrow: "iPhone Screen Protectors",
       h1: "iPhone Screen Protectors in Houston",
@@ -1113,9 +1113,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "iphone-chargers-houston-tx",
     title: "iPhone Chargers Houston",
-    metaTitle: "iPhone Chargers Houston TX | GadgetX Repairs",
+    metaTitle: "iPhone Chargers Houston TX | OK Cellular",
     metaDescription:
-      "Shop iPhone chargers in Houston TX. Fast chargers, cables & adapters for all iPhone models. Affordable prices at GadgetX Repairs. Walk-in today!",
+      "Shop iPhone chargers in Houston TX. Fast chargers, cables & adapters for all iPhone models. Affordable prices at OK Cellular. Walk-in today!",
     hero: {
       eyebrow: "iPhone Chargers",
       h1: "iPhone Chargers in Houston",
@@ -1139,9 +1139,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "phone-cables-houston-tx",
     title: "Phone Cables Houston",
-    metaTitle: "Phone Cables Houston TX | GadgetX Repairs",
+    metaTitle: "Phone Cables Houston TX | OK Cellular",
     metaDescription:
-      "Shop phone charging cables in Houston TX. USB-C, Lightning & Micro USB. Durable cables for all devices at GadgetX Repairs. Walk-ins welcome!",
+      "Shop phone charging cables in Houston TX. USB-C, Lightning & Micro USB. Durable cables for all devices at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Phone Cables",
       h1: "Phone Cables in Houston",
@@ -1165,9 +1165,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "hdmi-cables-houston-tx",
     title: "HDMI Cables Houston",
-    metaTitle: "HDMI Cables Houston TX | GadgetX Repairs",
+    metaTitle: "HDMI Cables Houston TX | OK Cellular",
     metaDescription:
-      "Shop HDMI cables in Houston TX. High-quality cables for TVs, monitors & gaming consoles. Great prices at GadgetX Repairs. Walk-ins welcome!",
+      "Shop HDMI cables in Houston TX. High-quality cables for TVs, monitors & gaming consoles. Great prices at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "HDMI Cables",
       h1: "HDMI Cables in Houston",
@@ -1191,9 +1191,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "car-phone-holders-houston-tx",
     title: "Car Phone Holders Houston",
-    metaTitle: "Car Phone Holders Houston TX | GadgetX Repairs",
+    metaTitle: "Car Phone Holders Houston TX | OK Cellular",
     metaDescription:
-      "Shop car phone holders in Houston TX. Secure mounts for all phone sizes. Magnetic, vent & windshield options at GadgetX Repairs. Shop today!",
+      "Shop car phone holders in Houston TX. Secure mounts for all phone sizes. Magnetic, vent & windshield options at OK Cellular. Shop today!",
     hero: {
       eyebrow: "Car Phone Holders",
       h1: "Car Phone Holders in Houston",
@@ -1217,9 +1217,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "wired-headphones-houston-tx",
     title: "Wired Headphones Houston",
-    metaTitle: "Wired Headphones Houston TX | GadgetX Repairs",
+    metaTitle: "Wired Headphones Houston TX | OK Cellular",
     metaDescription:
-      "Shop wired headphones in Houston TX. Great sound quality for all devices. Wide range of styles & brands at GadgetX Repairs. Walk-ins welcome!",
+      "Shop wired headphones in Houston TX. Great sound quality for all devices. Wide range of styles & brands at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Wired Headphones",
       h1: "Wired Headphones in Houston",
@@ -1243,9 +1243,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "wireless-earbuds-houston-tx",
     title: "Wireless Earbuds Houston",
-    metaTitle: "Wireless Earbuds Houston TX | GadgetX Repairs",
+    metaTitle: "Wireless Earbuds Houston TX | OK Cellular",
     metaDescription:
-      "Shop wireless earbuds in Houston TX. Bluetooth earbuds for calls, music & more. Top brands & great prices at GadgetX Repairs. Shop today!",
+      "Shop wireless earbuds in Houston TX. Bluetooth earbuds for calls, music & more. Top brands & great prices at OK Cellular. Shop today!",
     hero: {
       eyebrow: "Wireless Earbuds",
       h1: "Wireless Earbuds in Houston",
@@ -1269,9 +1269,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "airpods-houston-tx",
     title: "AirPods Houston",
-    metaTitle: "AirPods Houston TX | GadgetX Repairs",
+    metaTitle: "AirPods Houston TX | OK Cellular",
     metaDescription:
-      "Shop Apple AirPods in Houston TX. AirPods, AirPods Pro & AirPods Max available. Competitive prices at GadgetX Repairs. Walk-ins welcome!",
+      "Shop Apple AirPods in Houston TX. AirPods, AirPods Pro & AirPods Max available. Competitive prices at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "AirPods",
       h1: "AirPods in Houston",
@@ -1295,9 +1295,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "apple-watch-houston-tx",
     title: "Apple Watch Houston",
-    metaTitle: "Apple Watch Houston TX | GadgetX Repairs",
+    metaTitle: "Apple Watch Houston TX | OK Cellular",
     metaDescription:
-      "Shop Apple Watch in Houston TX. Latest Apple Watch models available. Competitive prices & bands at GadgetX Repairs. Walk-ins welcome. Shop today!",
+      "Shop Apple Watch in Houston TX. Latest Apple Watch models available. Competitive prices & bands at OK Cellular. Walk-ins welcome. Shop today!",
     hero: {
       eyebrow: "Apple Watch",
       h1: "Apple Watch in Houston",
@@ -1321,9 +1321,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "watch-bands-houston-tx",
     title: "Watch Bands Houston",
-    metaTitle: "Watch Bands Houston TX | GadgetX Repairs",
+    metaTitle: "Watch Bands Houston TX | OK Cellular",
     metaDescription:
-      "Shop watch bands in Houston TX. Compatible bands for Apple Watch & more. Wide variety of styles & colors at GadgetX Repairs. Walk-ins welcome!",
+      "Shop watch bands in Houston TX. Compatible bands for Apple Watch & more. Wide variety of styles & colors at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Watch Bands",
       h1: "Watch Bands in Houston",
@@ -1347,9 +1347,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "ipad-accessories-houston-tx",
     title: "iPad Accessories Houston",
-    metaTitle: "iPad Accessories Houston TX | GadgetX Repairs",
+    metaTitle: "iPad Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop iPad accessories in Houston TX. Cases, screen protectors, cables & more for all iPad models. Great prices at GadgetX Repairs. Shop today!",
+      "Shop iPad accessories in Houston TX. Cases, screen protectors, cables & more for all iPad models. Great prices at OK Cellular. Shop today!",
     hero: {
       eyebrow: "iPad Accessories",
       h1: "iPad Accessories in Houston",
@@ -1373,9 +1373,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "camera-lenses-houston-tx",
     title: "Phone Camera Lenses Houston",
-    metaTitle: "Camera Lenses Houston TX | GadgetX Repairs",
+    metaTitle: "Camera Lenses Houston TX | OK Cellular",
     metaDescription:
-      "Shop phone camera lenses in Houston TX. Clip-on wide-angle, macro & telephoto lenses for all phones. Great prices at GadgetX Repairs. Shop now!",
+      "Shop phone camera lenses in Houston TX. Clip-on wide-angle, macro & telephoto lenses for all phones. Great prices at OK Cellular. Shop now!",
     hero: {
       eyebrow: "Phone Camera Lenses",
       h1: "Phone Camera Lenses in Houston",
@@ -1399,9 +1399,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "samsung-accessories-houston-tx",
     title: "Samsung Accessories Houston",
-    metaTitle: "Samsung Accessories Houston TX | GadgetX Repairs",
+    metaTitle: "Samsung Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop Samsung accessories in Houston TX. Cases, chargers, cables & more for Galaxy phones & tablets. Affordable prices at GadgetX Repairs!",
+      "Shop Samsung accessories in Houston TX. Cases, chargers, cables & more for Galaxy phones & tablets. Affordable prices at OK Cellular!",
     hero: {
       eyebrow: "Samsung Accessories",
       h1: "Samsung Accessories in Houston",
@@ -1425,9 +1425,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "ncc-accessories-houston-tx",
     title: "NCC Accessories Houston",
-    metaTitle: "NCC Accessories Houston TX | GadgetX Repairs",
+    metaTitle: "NCC Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop NCC accessories in Houston TX. Quality phone accessories including cases, chargers & cables. Affordable prices at GadgetX Repairs. Shop now!",
+      "Shop NCC accessories in Houston TX. Quality phone accessories including cases, chargers & cables. Affordable prices at OK Cellular. Shop now!",
     hero: {
       eyebrow: "NCC Accessories",
       h1: "NCC Accessories in Houston",
@@ -1451,9 +1451,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "esoulk-accessories-houston-tx",
     title: "Esoulk Accessories Houston",
-    metaTitle: "Esoulk Accessories Houston TX | GadgetX Repairs",
+    metaTitle: "Esoulk Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop Esoulk accessories in Houston TX. Reliable phone chargers, cables & more at great prices. Available at GadgetX Repairs. Walk-ins welcome!",
+      "Shop Esoulk accessories in Houston TX. Reliable phone chargers, cables & more at great prices. Available at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Esoulk Accessories",
       h1: "Esoulk Accessories in Houston",
@@ -1477,9 +1477,9 @@ export const SALES_DATA: SalesData[] = [
   {
     slug: "third-party-accessories-houston-tx",
     title: "Third-Party Accessories Houston",
-    metaTitle: "Third-Party Accessories Houston TX | GadgetX",
+    metaTitle: "Third-Party Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop affordable third-party phone accessories in Houston TX. Cases, chargers, cables & more. Great value at GadgetX Repairs. Walk-ins welcome!",
+      "Shop affordable third-party phone accessories in Houston TX. Cases, chargers, cables & more. Great value at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Third-Party Accessories",
       h1: "Third-Party Accessories in Houston",

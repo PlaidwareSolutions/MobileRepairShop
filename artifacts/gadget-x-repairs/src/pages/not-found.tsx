@@ -16,7 +16,7 @@ const QUICK_LINKS = [
 export default function NotFound() {
   return (
     <PageShell hideTicker>
-      <SEO title="Page Not Found | Gadget X Repairs" description="The page you were looking for does not exist." path="/" noindex />
+      <SEO title="Page Not Found | OK Cellular" description="The page you were looking for does not exist." path="/" noindex />
       <section className="py-24 px-4 bg-zinc-50 min-h-[60vh]">
         <div className="max-w-2xl mx-auto text-center">
           <AlertCircle className="w-16 h-16 mx-auto text-red-500 mb-6" />

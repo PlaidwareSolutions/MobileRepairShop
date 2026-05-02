@@ -288,7 +288,7 @@ router.post(
           recordBlockEvent("turnstile_failed", "contact", req.log);
           res.status(400).json({
             error:
-              "We couldn't verify that submission. Please refresh the page and try again, or call us directly at (346) 623-6898.",
+              "We couldn't verify that submission. Please refresh the page and try again, or call us directly at (281) 446-2166.",
           });
           return;
         }

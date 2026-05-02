@@ -37,8 +37,8 @@ export default function ContactPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Contact GadgetX Repairs Houston TX"
-        description="Get in touch with GadgetX Repairs in Houston TX. Find our address, phone number & hours. Contact us for repairs, activations & more. Call today!"
+        title="Contact OK Cellular Houston TX"
+        description="Get in touch with OK Cellular in Houston TX. Find our address, phone number & hours. Contact us for repairs, activations & more. Call today!"
         path="/contact-houston-tx"
         jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "Contact", path: "/contact-houston-tx" }])]}
       />
