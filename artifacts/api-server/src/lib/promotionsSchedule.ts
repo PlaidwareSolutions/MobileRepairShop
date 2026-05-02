@@ -2,7 +2,7 @@ import type { PromotionRow } from "@workspace/db";
 
 // Shop timezone — promo schedule windows are evaluated in local shop time so
 // weekend specials and "happy hour" promos work regardless of server location.
-// Source of truth is BUSINESS.timezone in artifacts/gadget-x-repairs/src/content.ts;
+// Source of truth is BUSINESS.timezone in the OK Cellular web artifact's content.ts;
 // the SHOP_TIMEZONE env var lets ops override it without redeploying the frontend
 // and MUST match BUSINESS.timezone in normal operation. Default mirrors the
 // frontend default (America/Chicago — Houston, TX).

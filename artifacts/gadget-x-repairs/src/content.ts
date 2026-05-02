@@ -23,8 +23,8 @@ export const BUSINESS = {
     { day: "Saturday", time: "10:00 AM – 8:30 PM" },
   ],
   yearsInBusiness: 15,
-  logo: "/images/ok-cellular-logo-transparent.png?v=2026-05-02",
-  logoOfficial: "/images/ok-cellular-logo-transparent.png?v=2026-05-02",
+  logo: "/images/ok-cellular-logo.png?v=2026-05-02",
+  logoOfficial: "/images/ok-cellular-logo.png?v=2026-05-02",
   // Canonical shop timezone — the API server (SHOP_TIMEZONE env var) must
   // match this value so promo schedules evaluate against the same wall clock.
   timezone: "America/Chicago",
