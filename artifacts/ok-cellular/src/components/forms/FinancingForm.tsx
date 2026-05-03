@@ -92,7 +92,7 @@ export function FinancingForm() {
   if (done) {
     return (
       <div
-        className="bg-primary text-black p-6 border border-border shadow-md"
+        className="bg-primary text-primary-foreground p-6 border border-border shadow-md"
         data-testid="financing-form-success"
       >
         <div className="font-semibold text-2xl mb-2">Pre-qualification received.</div>
@@ -254,7 +254,7 @@ export function FinancingForm() {
 
       {error && (
         <div
-          className="bg-primary text-foreground px-4 py-3 font-medium text-sm"
+          className="bg-primary text-primary-foreground px-4 py-3 font-medium text-sm"
           data-testid="financing-form-error"
         >
           {error}
@@ -264,7 +264,7 @@ export function FinancingForm() {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-primary hover:bg-white hover:text-black text-foreground font-semibold uppercase tracking-wide text-lg h-14"
+        className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base h-12"
         data-testid="button-submit-financing"
       >
         {isSubmitting ? "Sending..." : "Pre-qualify Me"}

@@ -59,7 +59,7 @@ export default function AreaPage() {
               ))}
             </ul>
             <div className="flex flex-wrap gap-3">
-              <Button asChild className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-6">
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-12 px-6">
                 <a href={business.phoneTel}>Call Now</a>
               </Button>
               <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">

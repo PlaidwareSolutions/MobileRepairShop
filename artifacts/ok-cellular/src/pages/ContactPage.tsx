@@ -116,7 +116,7 @@ export default function ContactPage() {
                   aria-selected={tab === t.key}
                   onClick={() => setTab(t.key)}
                   data-testid={`tab-contact-${t.key}`}
-                  className={`px-3 py-2 font-semibold text-xs tracking-wide border transition-colors ${ tab === t.key ? "bg-primary border-primary text-foreground" : "bg-muted border-border text-muted-foreground hover:border-primary" }`}
+                  className={`px-3 py-2 font-semibold text-xs tracking-wide border transition-colors ${ tab === t.key ? "bg-primary border-primary text-primary-foreground" : "bg-muted border-border text-muted-foreground hover:border-primary" }`}
                 >
                   {t.label}
                 </button>

@@ -79,7 +79,7 @@ export default function FinancingPage() {
             <div className="flex flex-wrap gap-3">
               <Button
                 asChild
-                className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-6"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-12 px-6"
               >
                 <a href={business.phoneTel} data-testid="financing-cta-call">
                   <Phone className="w-4 h-4 mr-2" /> Call to Apply
@@ -197,7 +197,7 @@ export default function FinancingPage() {
             <div className="flex flex-wrap gap-3">
               <Button
                 asChild
-                className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-11 px-5"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-11 px-5"
               >
                 <Link href="/inventory/phones" data-testid="financing-eligible-inventory">
                   Browse Phones in Stock

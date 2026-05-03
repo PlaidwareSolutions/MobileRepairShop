@@ -141,7 +141,7 @@ export default function InventoryPage() {
         // A successful response is the source of truth — including an empty
         // list (e.g. when every item is sold or hidden). Only API failures
         // fall back to the static seed list (handled in catch).
-        if (Array.isArray(d)) setItems(d as InventoryItem[]);
+        if (Array.isArray(d)) setItems(d as unknown as InventoryItem[]);
       })
       .catch(() => {
         // keep fallback
@@ -256,7 +256,7 @@ export default function InventoryPage() {
                 key={c.slug}
                 onClick={() => selectFilter(c.slug)}
                 aria-pressed={filterSlug === c.slug}
-                className={`px-4 py-2 font-medium text-sm tracking-wide border transition-colors ${filterSlug === c.slug ? "bg-primary border-primary text-foreground" : "bg-muted border-border text-muted-foreground hover:border-primary"}`}
+                className={`px-4 py-2 font-medium text-sm tracking-wide border transition-colors ${filterSlug === c.slug ? "bg-primary border-primary text-primary-foreground" : "bg-muted border-border text-muted-foreground hover:border-primary"}`}
                 data-testid={`filter-${c.slug}`}
               >
                 {c.label}
@@ -344,7 +344,7 @@ export default function InventoryPage() {
                         <Phone className="w-3.5 h-3.5 mr-1" /> Call
                       </a>
                     </Button>
-                    <Button onClick={() => setReserving(it)} className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-10 px-2 text-xs" data-testid={`button-reserve-${it.id}`}>
+                    <Button onClick={() => setReserving(it)} className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-10 px-2 text-xs" data-testid={`button-reserve-${it.id}`}>
                       Reserve
                     </Button>
                   </div>

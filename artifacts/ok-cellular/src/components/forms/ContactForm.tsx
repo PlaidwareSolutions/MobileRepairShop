@@ -49,7 +49,7 @@ export function ContactForm() {
 
   if (done) {
     return (
-      <div className="bg-primary text-black p-6 border border-border shadow-md">
+      <div className="bg-primary text-primary-foreground p-6 border border-border shadow-md">
         <div className="font-semibold text-2xl mb-2">Message received.</div>
         <p className="font-bold">We&apos;ll get back to you today during business hours.</p>
         <button onClick={() => setDone(false)} className="mt-4 underline font-medium text-sm">Send another</button>
@@ -89,9 +89,9 @@ export function ContactForm() {
         <Label htmlFor="ct-message" className="font-semibold text-xs tracking-wide text-foreground">Message</Label>
         <Textarea id="ct-message" {...register("message", { required: true })} className="bg-white border border-border focus:border-primary min-h-[120px]" data-testid="input-message" />
       </div>
-      {error && <div className="bg-primary text-foreground px-4 py-3 font-medium text-sm">{error}</div>}
+      {error && <div className="bg-primary text-primary-foreground px-4 py-3 font-medium text-sm">{error}</div>}
       {turnstileWidget}
-      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-white hover:text-black text-foreground font-semibold uppercase tracking-wide text-lg h-14" data-testid="button-submit-contact">
+      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base h-12" data-testid="button-submit-contact">
         {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
     </form>

@@ -58,7 +58,7 @@ export default function ArticlePage() {
                 </div>
               </section>
             ))}
-            <div className="bg-primary text-black p-6 md:p-8 border border-border shadow-md">
+            <div className="bg-primary text-primary-foreground p-6 md:p-8 border border-border shadow-md">
               <div className="font-semibold text-xl md:text-2xl mb-3">{data.cta}</div>
               <div className="flex flex-wrap gap-3 mt-4">
                 <Button asChild className="bg-white text-foreground hover:bg-primary font-semibold h-12 px-6">

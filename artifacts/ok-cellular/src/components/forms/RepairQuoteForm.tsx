@@ -81,7 +81,7 @@ export function RepairQuoteForm({
 
   if (done) {
     return (
-      <div className="bg-primary text-black p-6 border border-border shadow-md" data-testid="form-repair-quote-success">
+      <div className="bg-primary text-primary-foreground p-6 border border-border shadow-md" data-testid="form-repair-quote-success">
         <div className="font-semibold text-2xl mb-2">Got it.</div>
         {isMailIn ? (
           <p className="font-bold">
@@ -217,9 +217,9 @@ export function RepairQuoteForm({
         <Label htmlFor="rq-notes" className="font-semibold text-xs tracking-wide text-foreground">Anything else <span className="text-muted-foreground">(optional)</span></Label>
         <Textarea id="rq-notes" {...register("notes", { maxLength: 2000 })} className="bg-white border border-border focus:border-primary" data-testid="input-notes" />
       </div>
-      {error && <div className="bg-primary text-foreground px-4 py-3 font-medium text-sm">{error}</div>}
+      {error && <div className="bg-primary text-primary-foreground px-4 py-3 font-medium text-sm">{error}</div>}
       {turnstileWidget}
-      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-white hover:text-black text-foreground font-semibold uppercase tracking-wide text-lg h-14 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-quote">
+      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base h-12 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-quote">
         {isSubmitting
           ? "Sending..."
           : isMailIn

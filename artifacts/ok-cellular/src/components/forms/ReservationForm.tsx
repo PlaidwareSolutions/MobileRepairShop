@@ -48,7 +48,7 @@ export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string
 
   if (done) {
     return (
-      <div className="bg-primary text-black p-6 border border-border">
+      <div className="bg-primary text-primary-foreground p-6 border border-border">
         <div className="font-semibold text-xl mb-2">Reserved.</div>
         <p className="font-bold text-sm">We&apos;ll hold {itemLabel} for 24 hours and call to confirm.</p>
         {onClose && <button onClick={onClose} className="mt-4 underline font-medium text-sm">Close</button>}
@@ -89,9 +89,9 @@ export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string
         <Label htmlFor="rs-notes" className="font-semibold text-xs tracking-wide text-foreground">Notes</Label>
         <Textarea id="rs-notes" {...register("notes")} className="bg-white border border-border focus:border-primary" data-testid="input-notes" />
       </div>
-      {error && <div className="bg-primary text-foreground px-4 py-3 font-medium text-sm">{error}</div>}
+      {error && <div className="bg-primary text-primary-foreground px-4 py-3 font-medium text-sm">{error}</div>}
       {turnstileWidget}
-      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-white text-black font-semibold h-12" data-testid="button-submit-reservation">
+      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-12" data-testid="button-submit-reservation">
         {isSubmitting ? "Sending..." : "Reserve"}
       </Button>
     </form>

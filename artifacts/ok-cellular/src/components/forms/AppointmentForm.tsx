@@ -56,7 +56,7 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
 
   if (done) {
     return (
-      <div className="bg-primary text-black p-6 border border-border shadow-md">
+      <div className="bg-primary text-primary-foreground p-6 border border-border shadow-md">
         <div className="font-semibold text-2xl mb-2">Booked.</div>
         <p className="font-bold">We&apos;ll confirm your appointment by text or call. Walk-ins welcome too.</p>
         <button onClick={() => setDone(false)} className="mt-4 underline font-medium text-sm">Book another</button>
@@ -116,9 +116,9 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
         <Label htmlFor="ap-notes" className="font-semibold text-xs tracking-wide text-foreground">Notes <span className="text-muted-foreground">(optional)</span></Label>
         <Textarea id="ap-notes" {...register("notes")} className="bg-white border border-border focus:border-primary" data-testid="input-notes" />
       </div>
-      {error && <div className="bg-primary text-foreground px-4 py-3 font-medium text-sm">{error}</div>}
+      {error && <div className="bg-primary text-primary-foreground px-4 py-3 font-medium text-sm">{error}</div>}
       {turnstileWidget}
-      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-white hover:text-black text-foreground font-semibold uppercase tracking-wide text-lg h-14" data-testid="button-submit-appointment">
+      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base h-12" data-testid="button-submit-appointment">
         {isSubmitting ? "Sending..." : "Book Appointment"}
       </Button>
     </form>

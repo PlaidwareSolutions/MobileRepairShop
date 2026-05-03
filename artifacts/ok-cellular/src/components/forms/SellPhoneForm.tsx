@@ -65,7 +65,7 @@ export function SellPhoneForm() {
 
   if (done) {
     return (
-      <div className="bg-primary text-black p-6 border border-border shadow-md">
+      <div className="bg-primary text-primary-foreground p-6 border border-border shadow-md">
         <div className="font-semibold text-2xl mb-2">Offer coming.</div>
         <p className="font-bold">We&apos;ll text or call you back today with our offer. Bring your phone in with ID for cash on the spot.</p>
         <button onClick={() => setDone(false)} className="mt-4 underline font-medium text-sm">Submit another</button>
@@ -168,9 +168,9 @@ export function SellPhoneForm() {
         />
         <p className="text-xs font-bold text-muted-foreground">Or text a photo to (281) 446-2166 on WhatsApp.</p>
       </div>
-      {error && <div className="bg-primary text-foreground px-4 py-3 font-medium text-sm">{error}</div>}
+      {error && <div className="bg-primary text-primary-foreground px-4 py-3 font-medium text-sm">{error}</div>}
       {turnstileWidget}
-      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-white text-black font-semibold uppercase tracking-wide text-lg h-14 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-sell">
+      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base h-12 shadow-md transition-all hover:-translate-y-0.5 hover:shadow-md" data-testid="button-submit-sell">
         {isSubmitting ? "Sending..." : "Get Cash Offer"}
       </Button>
     </form>

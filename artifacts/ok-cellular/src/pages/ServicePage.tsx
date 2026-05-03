@@ -89,8 +89,6 @@ export default function ServicePage() {
 
   const inventoryGroup = inventoryGroupBySlug(inventoryGroupSlugForPageSlug(data.slug));
 
-  // Pull a representative starting price/turnaround from the data so the
-  // iFixit-style "guide info" strip near the top is concrete, not generic.
   const startingPrice = data.pricing[0]?.price ?? "Free quote";
 
   return (
@@ -112,12 +110,11 @@ export default function ServicePage() {
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
-      {/* Guide info strip — iFixit-style at-a-glance metadata */}
       <section className="bg-card border-b border-border">
         <div className="max-w-[1240px] mx-auto px-4 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
           <InfoCell icon={<Wrench className="w-4 h-4 text-primary" />} label="Starting price" value={startingPrice} />
           <InfoCell icon={<Clock className="w-4 h-4 text-primary" />} label="Typical time" value="Same day" />
-          <InfoCell icon={<ShieldCheck className="w-4 h-4 text-primary" />} label="Warranty" value="90-day parts &amp; labor" />
+          <InfoCell icon={<ShieldCheck className="w-4 h-4 text-primary" />} label="Warranty" value="90-day parts & labor" />
           <InfoCell icon={<CheckCircle2 className="w-4 h-4 text-primary" />} label="Diagnostic" value="Free, no obligation" />
         </div>
       </section>
@@ -211,7 +208,6 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* Pricing table — clean iFixit-style */}
       <section className="bg-background">
         <div className="max-w-[1240px] mx-auto px-4 py-10 md:py-14">
           <div className="flex items-end justify-between gap-6 mb-5">

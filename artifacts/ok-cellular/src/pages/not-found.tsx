@@ -30,7 +30,7 @@ export default function NotFound() {
               </Link>
             ))}
           </div>
-          <Button asChild className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-8">
+          <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-12 px-8">
             <Link href="/phone-repair-houston-tx">Back Home</Link>
           </Button>
         </div>

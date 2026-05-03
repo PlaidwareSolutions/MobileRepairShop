@@ -214,7 +214,6 @@ export default function HomePage() {
       />
       <PromoCampaignBanner />
 
-      {/* HERO — search-led, calm, repair-handbook tone */}
       <section className="bg-card border-b border-border">
         <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-7 space-y-6">
@@ -344,7 +343,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* POPULAR REPAIRS — iFixit-style guide table */}
       <section className="bg-muted/40 border-y border-border">
         <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5">

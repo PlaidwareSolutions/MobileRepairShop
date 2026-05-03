@@ -119,10 +119,10 @@ export default function PrepaidPage() {
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-6">
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-12 px-6">
                 <a href={business.phoneTel}>Call {business.phoneDisplay}</a>
               </Button>
-              <Button asChild className="bg-primary hover:bg-white text-black font-semibold h-12 px-6">
+              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-12 px-6">
                 <a href={business.whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
               </Button>
             </div>

@@ -167,10 +167,6 @@ const NAV: { label: string; to: string }[] = [
   { label: "Contact", to: "/contact-houston-tx" },
 ];
 
-// Lightweight client-side dictionary for the global search input. We don't run
-// a full-text engine; instead we map common search terms to the most relevant
-// service or shop landing page. This keeps the iFixit-style search bar useful
-// without introducing a backend dependency.
 type SearchEntry = { keywords: string[]; to: string; label: string };
 const SEARCH_INDEX: SearchEntry[] = [
   { keywords: ["iphone screen", "iphone glass", "cracked iphone", "iphone display"], to: "/iphone-screen-repair-houston-tx", label: "iPhone Screen Repair" },
