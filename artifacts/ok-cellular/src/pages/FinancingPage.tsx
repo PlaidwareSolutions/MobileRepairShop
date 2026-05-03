@@ -54,13 +54,13 @@ export default function FinancingPage() {
       />
 
       {/* PROGRAM HIGHLIGHTS + FORM ----------------------------------- */}
-      <section className="py-16 px-4 bg-zinc-50 border-b border-zinc-200">
+      <section className="py-16 px-4 bg-muted/40 border-b border-border">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-              FROM <span className="text-red-500">{FINANCING.pillLabel.toUpperCase()}</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+              from <span className="text-primary">{FINANCING.pillLabel}</span>
             </h2>
-            <p className="text-base font-bold text-zinc-600 mb-6">
+            <p className="text-base font-bold text-muted-foreground mb-6">
               {FINANCING_PAGE.partnerLabel}. We don&apos;t share rates online — the lender
               shows you the exact down payment and schedule in store before you commit.
             </p>
@@ -68,10 +68,10 @@ export default function FinancingPage() {
               {FINANCING_PAGE.programHighlights.map((h) => (
                 <li
                   key={h}
-                  className="flex items-start gap-3 text-base font-bold text-zinc-700"
+                  className="flex items-start gap-3 text-base font-bold text-foreground"
                   data-testid="financing-highlight"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                   <span>{h}</span>
                 </li>
               ))}
@@ -79,7 +79,7 @@ export default function FinancingPage() {
             <div className="flex flex-wrap gap-3">
               <Button
                 asChild
-                className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6"
+                className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-6"
               >
                 <a href={business.phoneTel} data-testid="financing-cta-call">
                   <Phone className="w-4 h-4 mr-2" /> Call to Apply
@@ -88,7 +88,7 @@ export default function FinancingPage() {
               <Button
                 asChild
                 variant="outline"
-                className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6"
+                className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6"
               >
                 <a
                   href={business.whatsappHref}
@@ -102,7 +102,7 @@ export default function FinancingPage() {
               <Button
                 asChild
                 variant="outline"
-                className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6"
+                className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6"
               >
                 <Link href="/inventory/phones" data-testid="financing-cta-inventory">
                   Browse Phones
@@ -111,10 +111,10 @@ export default function FinancingPage() {
             </div>
           </div>
           <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-              PRE-<span className="text-red-500">QUALIFY</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+              Pre-<span className="text-primary">qualify</span>
             </h2>
-            <p className="text-base font-bold text-zinc-600 mb-6">
+            <p className="text-base font-bold text-muted-foreground mb-6">
               60-second soft check. We text you back today during business hours.
             </p>
             <FinancingForm />
@@ -123,23 +123,23 @@ export default function FinancingPage() {
       </section>
 
       {/* HOW IT WORKS ------------------------------------------------- */}
-      <section className="py-16 px-4 bg-white border-b border-zinc-200">
+      <section className="py-16 px-4 bg-white border-b border-border">
         <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
-            HOW IT <span className="text-red-500">WORKS</span>
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8 text-foreground">
+            How it <span className="text-primary">works</span>
           </h2>
           <ol className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
             {FINANCING_PAGE.steps.map((step, i) => (
               <li
                 key={step.title}
-                className="bg-zinc-50 border border-zinc-200 p-5 flex flex-col gap-3"
+                className="bg-muted/40 border border-border p-5 flex flex-col gap-3"
                 data-testid={`financing-step-${i + 1}`}
               >
-                <div className="bg-zinc-900 text-red-500 w-10 h-10 flex items-center justify-center font-extrabold text-lg">
+                <div className="bg-foreground text-primary w-10 h-10 flex items-center justify-center font-semibold text-lg">
                   {i + 1}
                 </div>
-                <h3 className="font-bold uppercase text-base text-zinc-900">{step.title}</h3>
-                <p className="text-sm font-bold text-zinc-600 leading-snug">{step.desc}</p>
+                <h3 className="font-semibold text-base text-foreground">{step.title}</h3>
+                <p className="text-sm font-bold text-muted-foreground leading-snug">{step.desc}</p>
               </li>
             ))}
           </ol>
@@ -147,12 +147,12 @@ export default function FinancingPage() {
       </section>
 
       {/* WHAT YOU NEED + ELIGIBLE DEVICES ----------------------------- */}
-      <section className="py-16 px-4 bg-zinc-50 border-b border-zinc-200">
+      <section className="py-16 px-4 bg-muted/40 border-b border-border">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
-          <div className="bg-white border border-zinc-200 p-6 md:p-8">
+          <div className="bg-white border border-border p-6 md:p-8">
             <div className="flex items-center gap-3 mb-4">
-              <ShieldCheck className="w-7 h-7 text-red-500" />
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900">
+              <ShieldCheck className="w-7 h-7 text-primary" />
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
                 What you need to apply
               </h2>
             </div>
@@ -160,35 +160,35 @@ export default function FinancingPage() {
               {FINANCING_PAGE.eligibility.map((e) => (
                 <li
                   key={e}
-                  className="flex items-start gap-3 text-base font-bold text-zinc-700"
+                  className="flex items-start gap-3 text-base font-bold text-foreground"
                   data-testid="financing-eligibility"
                 >
-                  <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                   <span>{e}</span>
                 </li>
               ))}
             </ul>
-            <p className="text-xs font-bold text-zinc-500 uppercase tracking-wide mt-6">
+            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mt-6">
               Bring everything to the shop and we&apos;ll handle the rest. Most approvals take
               under 10 minutes.
             </p>
           </div>
 
-          <div className="bg-white border border-zinc-200 p-6 md:p-8">
+          <div className="bg-white border border-border p-6 md:p-8">
             <div className="flex items-center gap-3 mb-4">
-              <Smartphone className="w-7 h-7 text-red-500" />
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900">
+              <Smartphone className="w-7 h-7 text-primary" />
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
                 Eligible devices
               </h2>
             </div>
-            <p className="text-base font-bold text-zinc-700 mb-4">
+            <p className="text-base font-bold text-foreground mb-4">
               {FINANCING_PAGE.eligibleDevicesNote}
             </p>
             <div className="flex flex-wrap gap-2 mb-6">
               {["iPhone", "Samsung Galaxy", "Google Pixel", "Motorola", "OnePlus"].map((b) => (
                 <span
                   key={b}
-                  className="bg-zinc-100 border border-zinc-200 px-3 py-1 font-bold uppercase text-xs"
+                  className="bg-muted border border-border px-3 py-1 font-semibold text-xs"
                 >
                   {b}
                 </span>
@@ -197,7 +197,7 @@ export default function FinancingPage() {
             <div className="flex flex-wrap gap-3">
               <Button
                 asChild
-                className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-11 px-5"
+                className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-11 px-5"
               >
                 <Link href="/inventory/phones" data-testid="financing-eligible-inventory">
                   Browse Phones in Stock
@@ -206,7 +206,7 @@ export default function FinancingPage() {
               <Button
                 asChild
                 variant="outline"
-                className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-11 px-5"
+                className="border border-border hover:bg-white hover:text-black font-semibold h-11 px-5"
               >
                 <Link href="/used-phones-houston-tx">Used Phones</Link>
               </Button>
@@ -216,38 +216,38 @@ export default function FinancingPage() {
       </section>
 
       {/* WHY FINANCE WITH US ------------------------------------------ */}
-      <section className="py-16 px-4 bg-white border-b border-zinc-200">
+      <section className="py-16 px-4 bg-white border-b border-border">
         <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
-            WHY FINANCE <span className="text-red-500">WITH US</span>
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-8 text-foreground">
+            Why finance <span className="text-primary">with us</span>
           </h2>
           <div className="grid md:grid-cols-3 gap-4">
-            <div className="bg-zinc-50 border border-zinc-200 p-5" data-testid="financing-why-1">
-              <div className="bg-zinc-900 text-white w-12 h-12 flex items-center justify-center mb-4">
-                <CreditCard className="w-6 h-6 text-red-500" />
+            <div className="bg-muted/40 border border-border p-5" data-testid="financing-why-1">
+              <div className="bg-foreground text-white w-12 h-12 flex items-center justify-center mb-4">
+                <CreditCard className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-bold uppercase text-base text-zinc-900 mb-2">No surprises</h3>
-              <p className="text-sm font-bold text-zinc-600">
+              <h3 className="font-semibold text-base text-foreground mb-2">No surprises</h3>
+              <p className="text-sm font-bold text-muted-foreground">
                 Down payment and schedule are confirmed before you sign — never a hidden fee
                 added later.
               </p>
             </div>
-            <div className="bg-zinc-50 border border-zinc-200 p-5" data-testid="financing-why-2">
-              <div className="bg-zinc-900 text-white w-12 h-12 flex items-center justify-center mb-4">
-                <Truck className="w-6 h-6 text-red-500" />
+            <div className="bg-muted/40 border border-border p-5" data-testid="financing-why-2">
+              <div className="bg-foreground text-white w-12 h-12 flex items-center justify-center mb-4">
+                <Truck className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-bold uppercase text-base text-zinc-900 mb-2">Walk out today</h3>
-              <p className="text-sm font-bold text-zinc-600">
+              <h3 className="font-semibold text-base text-foreground mb-2">Walk out today</h3>
+              <p className="text-sm font-bold text-muted-foreground">
                 We activate the line and transfer your data in store, so you leave with a phone
                 that&apos;s ready to use.
               </p>
             </div>
-            <div className="bg-zinc-50 border border-zinc-200 p-5" data-testid="financing-why-3">
-              <div className="bg-zinc-900 text-white w-12 h-12 flex items-center justify-center mb-4">
-                <ShieldCheck className="w-6 h-6 text-red-500" />
+            <div className="bg-muted/40 border border-border p-5" data-testid="financing-why-3">
+              <div className="bg-foreground text-white w-12 h-12 flex items-center justify-center mb-4">
+                <ShieldCheck className="w-6 h-6 text-primary" />
               </div>
-              <h3 className="font-bold uppercase text-base text-zinc-900 mb-2">90-day warranty</h3>
-              <p className="text-sm font-bold text-zinc-600">
+              <h3 className="font-semibold text-base text-foreground mb-2">90-day warranty</h3>
+              <p className="text-sm font-bold text-muted-foreground">
                 Every financed phone is backed by the same 90-day repair warranty as a cash
                 purchase.
               </p>

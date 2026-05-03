@@ -53,7 +53,7 @@ export default function PrepaidPage() {
   const heroAccent = (
     <div className="hidden md:flex flex-col items-end gap-4">
       {data.logoSrc && (
-        <div className="bg-white border-2 border-zinc-200 shadow-sm p-6 w-full max-w-[280px] flex items-center justify-center">
+        <div className="bg-white border-2 border-border shadow-sm p-6 w-full max-w-[280px] flex items-center justify-center">
           <img
             src={data.logoSrc}
             alt={`${data.carrier} logo`}
@@ -96,40 +96,40 @@ export default function PrepaidPage() {
         accentRight={(data.logoSrc || data.heroPhoto) ? heroAccent : undefined}
       />
 
-      <section className="py-4 px-4 bg-white border-b border-zinc-200">
+      <section className="py-4 px-4 bg-white border-b border-border">
         <div className="max-w-[1240px] mx-auto">
-          <p className="text-xs md:text-sm font-bold text-zinc-500 uppercase tracking-wide" data-testid="text-prepaid-disclaimer">
+          <p className="text-xs md:text-sm font-bold text-muted-foreground uppercase tracking-wide" data-testid="text-prepaid-disclaimer">
             Disclaimer: OK Cellular is an independent authorized retailer offering activations, SIM and bill-pay services. We are not an official corporate store of any carrier unless explicitly confirmed. All carrier names and logos are property of their respective owners.
           </p>
         </div>
       </section>
 
-      <section className="py-16 px-4 bg-zinc-50">
+      <section className="py-16 px-4 bg-muted/40">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-              WHAT WE <span className="text-red-500">DO</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+              What we <span className="text-primary">do</span>
             </h2>
             <ul className="space-y-3">
               {data.services.map((s) => (
-                <li key={s} className="flex items-start gap-3 text-base md:text-lg font-bold text-zinc-700">
-                  <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                <li key={s} className="flex items-start gap-3 text-base md:text-lg font-bold text-foreground">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                   <span>{s}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
+              <Button asChild className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-6">
                 <a href={business.phoneTel}>Call {business.phoneDisplay}</a>
               </Button>
-              <Button asChild className="bg-red-500 hover:bg-white text-black font-semibold uppercase tracking-wide h-12 px-6">
+              <Button asChild className="bg-primary hover:bg-white text-black font-semibold h-12 px-6">
                 <a href={business.whatsappHref} target="_blank" rel="noreferrer">WhatsApp</a>
               </Button>
             </div>
           </div>
           <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-              QUESTIONS? <span className="text-red-500">WE'RE HERE.</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+              Questions? <span className="text-primary">We're here.</span>
             </h2>
             <ContactForm />
           </div>
@@ -137,12 +137,12 @@ export default function PrepaidPage() {
       </section>
 
       {isHub && (
-        <section className="py-16 px-4 bg-white border-t border-zinc-200">
+        <section className="py-16 px-4 bg-white border-t border-border">
           <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-2 text-zinc-900">
-              EVERY <span className="text-red-500">CARRIER</span> WE ACTIVATE
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-2 text-foreground">
+              Every <span className="text-primary">carrier</span> we activate
             </h2>
-            <p className="text-base md:text-lg text-zinc-600 mb-8 max-w-2xl">
+            <p className="text-base md:text-lg text-muted-foreground mb-8 max-w-2xl">
               Walk in with any phone — we activate, port, or swap on every major prepaid network.
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3" data-testid="prepaid-carriers-grid">
@@ -159,7 +159,7 @@ export default function PrepaidPage() {
                         loading="lazy"
                       />
                     </div>
-                    <div className="px-3 pb-3 text-center text-xs font-bold uppercase tracking-wide text-zinc-700 group-hover:text-red-600 transition-colors">
+                    <div className="px-3 pb-3 text-center text-xs font-semibold tracking-wide text-foreground group-hover:text-primary transition-colors">
                       {c.name}
                     </div>
                   </>
@@ -168,7 +168,7 @@ export default function PrepaidPage() {
                   <Link
                     key={c.name}
                     href={`/${c.slug}`}
-                    className="bg-white border-2 border-zinc-200 hover:border-red-500 transition-colors group block"
+                    className="bg-white border-2 border-border hover:border-primary transition-colors group block"
                     data-testid={`carrier-tile-${c.slug}`}
                   >
                     {inner}
@@ -176,7 +176,7 @@ export default function PrepaidPage() {
                 ) : (
                   <div
                     key={c.name}
-                    className="bg-zinc-50 border-2 border-zinc-200 group cursor-default"
+                    className="bg-muted/40 border-2 border-border group cursor-default"
                     data-testid={`carrier-tile-${c.name.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
                   >
                     {inner}
@@ -184,7 +184,7 @@ export default function PrepaidPage() {
                 );
               })}
             </div>
-            <p className="mt-6 text-xs font-semibold text-zinc-500 uppercase tracking-wide">
+            <p className="mt-6 text-xs font-semibold text-muted-foreground uppercase tracking-wide">
               Logos shown for identification only. All carrier names and logos are property of their respective owners.
             </p>
           </div>
@@ -192,17 +192,17 @@ export default function PrepaidPage() {
       )}
 
       {isHub && hubChildren.length > 0 && (
-        <section className="py-16 px-4 bg-zinc-50 border-t border-zinc-200">
+        <section className="py-16 px-4 bg-muted/40 border-t border-border">
           <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
-              POPULAR <span className="text-red-500">CARRIER PAGES</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-8 text-foreground">
+              Popular <span className="text-primary">carrier pages</span>
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="prepaid-hub-children">
               {hubChildren.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${c.slug}`}
-                  className="bg-white border border-zinc-200 hover:border-red-500 p-5 transition-colors group flex items-center gap-3"
+                  className="bg-white border border-border hover:border-primary p-5 transition-colors group flex items-center gap-3"
                   data-testid={`prepaid-hub-child-${c.slug}`}
                 >
                   {c.logoSrc && (
@@ -215,7 +215,7 @@ export default function PrepaidPage() {
                       loading="lazy"
                     />
                   )}
-                  <div className="font-bold uppercase text-sm text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
+                  <div className="font-medium text-sm text-foreground group-hover:text-primary transition-colors leading-tight">
                     {c.title}
                   </div>
                 </Link>

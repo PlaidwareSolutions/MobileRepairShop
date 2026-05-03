@@ -271,7 +271,7 @@ export function SavedReplies({
   }, [hintKeys, subject, body, channel]);
 
   return (
-    <div className="border border-zinc-200 bg-white rounded-lg" data-testid="saved-replies">
+    <div className="border border-border bg-white rounded-lg" data-testid="saved-replies">
       <button
         type="button"
         onClick={() => {
@@ -279,28 +279,28 @@ export function SavedReplies({
           setView("pick");
           setEdit({ mode: "list" });
         }}
-        className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-semibold uppercase text-xs tracking-wide text-zinc-800 hover:bg-zinc-50"
+        className="w-full flex items-center justify-between px-3 py-2 rounded-lg font-semibold uppercase text-xs tracking-wide text-foreground hover:bg-muted/40"
         data-testid="saved-replies-toggle"
       >
         <span>
           Saved Replies{" "}
           {items && (
-            <span className="text-zinc-500 font-normal">({matching.length})</span>
+            <span className="text-muted-foreground font-normal">({matching.length})</span>
           )}
         </span>
-        <span className="text-zinc-500">{open ? "▾" : "▸"}</span>
+        <span className="text-muted-foreground">{open ? "▾" : "▸"}</span>
       </button>
 
       {open && (
-        <div className="border-t border-zinc-200 p-3 space-y-3">
+        <div className="border-t border-border p-3 space-y-3">
           <div className="flex gap-2">
             <button
               type="button"
               onClick={() => setView("pick")}
               className={`px-2.5 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border ${
                 view === "pick"
-                  ? "bg-red-500 text-white border-red-500 shadow-sm"
-                  : "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
+                  ? "bg-primary text-white border-primary shadow-sm"
+                  : "bg-white border-border text-foreground hover:border-primary hover:text-primary"
               }`}
               data-testid="saved-replies-tab-pick"
             >
@@ -314,8 +314,8 @@ export function SavedReplies({
               }}
               className={`px-2.5 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border ${
                 view === "manage"
-                  ? "bg-red-500 text-white border-red-500 shadow-sm"
-                  : "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
+                  ? "bg-primary text-white border-primary shadow-sm"
+                  : "bg-white border-border text-foreground hover:border-primary hover:text-primary"
               }`}
               data-testid="saved-replies-tab-manage"
             >
@@ -325,7 +325,7 @@ export function SavedReplies({
               <Button
                 type="button"
                 onClick={startNew}
-                className="ml-auto bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-[10px] h-7 px-2 shadow-sm"
+                className="ml-auto bg-primary hover:bg-primary text-white font-semibold uppercase tracking-wide text-[10px] h-7 px-2 shadow-sm"
                 data-testid="saved-replies-new"
               >
                 + New
@@ -335,7 +335,7 @@ export function SavedReplies({
 
           {error && (
             <div
-              className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg font-semibold text-xs"
+              className="bg-muted/60 border border-primary text-primary px-3 py-2 rounded-lg font-semibold text-xs"
               data-testid="saved-replies-error"
             >
               {error}
@@ -343,7 +343,7 @@ export function SavedReplies({
           )}
 
           {loading && (
-            <div className="text-xs uppercase tracking-wide text-zinc-500">
+            <div className="text-xs uppercase tracking-wide text-muted-foreground">
               Loading…
             </div>
           )}
@@ -351,7 +351,7 @@ export function SavedReplies({
           {view === "pick" && !loading && (
             <div className="space-y-2 max-h-56 overflow-auto" data-testid="saved-replies-pick-list">
               {matching.length === 0 && (
-                <div className="text-xs uppercase tracking-wide text-zinc-500">
+                <div className="text-xs uppercase tracking-wide text-muted-foreground">
                   No saved {channel} replies
                   {leadType ? ` for ${LEAD_TYPE_LABEL[leadType] ?? leadType}` : ""}.
                   Switch to Manage to add one.
@@ -362,23 +362,23 @@ export function SavedReplies({
                   key={t.id}
                   type="button"
                   onClick={() => applyTemplate(t)}
-                  className="w-full text-left bg-white border border-zinc-200 rounded-lg hover:border-red-500 hover:shadow-sm px-3 py-2 transition-all"
+                  className="w-full text-left bg-white border border-border rounded-lg hover:border-primary hover:shadow-sm px-3 py-2 transition-all"
                   data-testid={`saved-replies-apply-${t.id}`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold uppercase text-xs tracking-wide text-zinc-900">
+                    <span className="font-semibold uppercase text-xs tracking-wide text-foreground">
                       {t.name}
                     </span>
-                    <span className="px-1.5 py-0.5 font-semibold uppercase text-[9px] tracking-wide bg-zinc-100 text-zinc-700 border border-zinc-200">
+                    <span className="px-1.5 py-0.5 font-semibold uppercase text-[9px] tracking-wide bg-muted text-foreground border border-border">
                       {t.leadType ? LEAD_TYPE_LABEL[t.leadType] ?? t.leadType : "ANY"}
                     </span>
                   </div>
                   {t.subject && (
-                    <div className="text-[11px] text-zinc-600 mt-1 truncate">
+                    <div className="text-[11px] text-muted-foreground mt-1 truncate">
                       {t.subject}
                     </div>
                   )}
-                  <div className="text-[11px] text-zinc-500 mt-1 line-clamp-2 whitespace-pre-wrap">
+                  <div className="text-[11px] text-muted-foreground mt-1 line-clamp-2 whitespace-pre-wrap">
                     {t.body.replace(/<[^>]+>/g, " ").slice(0, 140)}
                   </div>
                 </button>
@@ -389,21 +389,21 @@ export function SavedReplies({
           {view === "manage" && !loading && edit.mode === "list" && (
             <div className="space-y-2 max-h-56 overflow-auto" data-testid="saved-replies-manage-list">
               {allForChannel.length === 0 && (
-                <div className="text-xs uppercase tracking-wide text-zinc-500">
+                <div className="text-xs uppercase tracking-wide text-muted-foreground">
                   No saved {channel} replies yet.
                 </div>
               )}
               {allForChannel.map((t, idx) => (
                 <div
                   key={t.id}
-                  className="bg-white border border-zinc-200 rounded-lg px-3 py-2"
+                  className="bg-white border border-border rounded-lg px-3 py-2"
                   data-testid={`saved-replies-row-${t.id}`}
                 >
                   <div className="flex items-center gap-2">
-                    <span className="font-semibold uppercase text-xs tracking-wide text-zinc-900">
+                    <span className="font-semibold uppercase text-xs tracking-wide text-foreground">
                       {t.name}
                     </span>
-                    <span className="px-1.5 py-0.5 font-semibold uppercase text-[9px] tracking-wide bg-zinc-100 text-zinc-700 border border-zinc-200">
+                    <span className="px-1.5 py-0.5 font-semibold uppercase text-[9px] tracking-wide bg-muted text-foreground border border-border">
                       {t.leadType ? LEAD_TYPE_LABEL[t.leadType] ?? t.leadType : "ANY"}
                     </span>
                     <div className="ml-auto flex gap-1">
@@ -413,7 +413,7 @@ export function SavedReplies({
                         disabled={idx === 0}
                         aria-label="Move up"
                         title="Move up"
-                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-zinc-200 disabled:hover:text-zinc-700"
+                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-border text-foreground hover:border-primary hover:text-primary disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground"
                         data-testid={`saved-replies-move-up-${t.id}`}
                       >
                         ↑
@@ -424,7 +424,7 @@ export function SavedReplies({
                         disabled={idx === allForChannel.length - 1}
                         aria-label="Move down"
                         title="Move down"
-                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600 disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-zinc-200 disabled:hover:text-zinc-700"
+                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-border text-foreground hover:border-primary hover:text-primary disabled:opacity-30 disabled:cursor-not-allowed disabled:hover:border-border disabled:hover:text-foreground"
                         data-testid={`saved-replies-move-down-${t.id}`}
                       >
                         ↓
@@ -432,7 +432,7 @@ export function SavedReplies({
                       <button
                         type="button"
                         onClick={() => startEdit(t)}
-                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-red-50 border-red-200 text-red-600 hover:bg-red-100 hover:border-red-300"
+                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-muted/60 border-primary text-primary hover:bg-primary/10 hover:border-primary"
                         data-testid={`saved-replies-edit-${t.id}`}
                       >
                         Edit
@@ -440,7 +440,7 @@ export function SavedReplies({
                       <button
                         type="button"
                         onClick={() => remove(t.id)}
-                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-zinc-200 text-zinc-500 hover:bg-red-50 hover:border-red-200 hover:text-red-600"
+                        className="px-2 py-1 rounded-md font-semibold uppercase text-[10px] tracking-wide border bg-white border-border text-muted-foreground hover:bg-muted/60 hover:border-primary hover:text-primary"
                         data-testid={`saved-replies-delete-${t.id}`}
                       >
                         Delete
@@ -457,7 +457,7 @@ export function SavedReplies({
               <div>
                 <Label
                   htmlFor="tpl-name"
-                  className="font-semibold uppercase text-[10px] tracking-wide text-zinc-700"
+                  className="font-semibold uppercase text-[10px] tracking-wide text-foreground"
                 >
                   Name
                 </Label>
@@ -466,14 +466,14 @@ export function SavedReplies({
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   placeholder="e.g. Quote ready"
-                  className="bg-white border border-zinc-200 focus:border-red-500 h-9 text-zinc-900"
+                  className="bg-white border border-border focus:border-primary h-9 text-foreground"
                   data-testid="saved-replies-form-name"
                 />
               </div>
               <div>
                 <Label
                   htmlFor="tpl-scope"
-                  className="font-semibold uppercase text-[10px] tracking-wide text-zinc-700"
+                  className="font-semibold uppercase text-[10px] tracking-wide text-foreground"
                 >
                   Scope (lead type)
                 </Label>
@@ -481,7 +481,7 @@ export function SavedReplies({
                   id="tpl-scope"
                   value={scope}
                   onChange={(e) => setScope(e.target.value)}
-                  className="w-full bg-white border border-zinc-200 focus:border-red-500 h-9 text-zinc-900 px-2"
+                  className="w-full bg-white border border-border focus:border-primary h-9 text-foreground px-2"
                   data-testid="saved-replies-form-scope"
                 >
                   {LEAD_TYPE_OPTIONS.map((o) => (
@@ -492,12 +492,12 @@ export function SavedReplies({
                 </select>
               </div>
               <div
-                className="bg-white border border-zinc-200 rounded-lg px-3 py-2"
+                className="bg-white border border-border rounded-lg px-3 py-2"
                 data-testid="saved-replies-form-placeholder-hint"
               >
-                <div className="font-semibold uppercase text-[10px] tracking-wide text-zinc-600 mb-1">
+                <div className="font-semibold uppercase text-[10px] tracking-wide text-muted-foreground mb-1">
                   Insert placeholder
-                  <span className="ml-2 text-zinc-600 font-normal normal-case tracking-normal">
+                  <span className="ml-2 text-muted-foreground font-normal normal-case tracking-normal">
                     into{" "}
                     {channel === "email" && formLastFocused === "subject"
                       ? "Subject"
@@ -511,19 +511,19 @@ export function SavedReplies({
                       type="button"
                       onMouseDown={(e) => e.preventDefault()}
                       onClick={() => insertFormPlaceholder(k)}
-                      className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded-md hover:border-red-500 hover:text-red-600 text-[11px] text-zinc-700 font-mono"
+                      className="px-1.5 py-0.5 bg-white border border-border rounded-md hover:border-primary hover:text-primary text-[11px] text-foreground font-mono"
                       data-testid={`saved-replies-form-placeholder-${k}`}
                     >{`{{${k}}}`}</button>
                   ))}
                 </div>
-                <div className="text-[10px] text-zinc-500 mt-1">
+                <div className="text-[10px] text-muted-foreground mt-1">
                   Click a token to insert it at the cursor of the focused field.
                   Filled in from the lead when you apply this reply.
                 </div>
               </div>
               {unknownKeys.length > 0 && (
                 <div
-                  className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg"
+                  className="bg-muted/60 border border-primary text-primary px-3 py-2 rounded-lg"
                   data-testid="saved-replies-form-unknown-placeholders"
                 >
                   <div className="font-semibold uppercase text-[10px] tracking-wide mb-1">
@@ -533,7 +533,7 @@ export function SavedReplies({
                     {unknownKeys.map((k) => (
                       <code
                         key={k}
-                        className="px-1.5 py-0.5 bg-white border border-red-200 rounded-md text-red-600 text-[11px] font-mono"
+                        className="px-1.5 py-0.5 bg-white border border-primary rounded-md text-primary text-[11px] font-mono"
                         data-testid={`saved-replies-form-unknown-${k}`}
                       >{`{{${k}}}`}</code>
                     ))}
@@ -547,7 +547,7 @@ export function SavedReplies({
                 <div>
                   <Label
                     htmlFor="tpl-subject"
-                    className="font-semibold uppercase text-[10px] tracking-wide text-zinc-700"
+                    className="font-semibold uppercase text-[10px] tracking-wide text-foreground"
                   >
                     Subject (optional)
                   </Label>
@@ -557,7 +557,7 @@ export function SavedReplies({
                     value={subject}
                     onChange={(e) => setSubject(e.target.value)}
                     onFocus={() => setFormLastFocused("subject")}
-                    className="bg-white border border-zinc-200 focus:border-red-500 h-9 text-zinc-900"
+                    className="bg-white border border-border focus:border-primary h-9 text-foreground"
                     data-testid="saved-replies-form-subject"
                   />
                 </div>
@@ -565,7 +565,7 @@ export function SavedReplies({
               <div>
                 <Label
                   htmlFor="tpl-body"
-                  className="font-semibold uppercase text-[10px] tracking-wide text-zinc-700"
+                  className="font-semibold uppercase text-[10px] tracking-wide text-foreground"
                 >
                   Body
                 </Label>
@@ -576,7 +576,7 @@ export function SavedReplies({
                   onChange={(e) => setBody(e.target.value)}
                   onFocus={() => setFormLastFocused("body")}
                   rows={5}
-                  className="bg-white border border-zinc-200 focus:border-red-500 text-zinc-900"
+                  className="bg-white border border-border focus:border-primary text-foreground"
                   data-testid="saved-replies-form-body"
                 />
               </div>
@@ -585,7 +585,7 @@ export function SavedReplies({
                   type="button"
                   variant="outline"
                   onClick={() => setEdit({ mode: "list" })}
-                  className="border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 font-semibold uppercase tracking-wide text-[10px] h-8 px-3"
+                  className="border border-border bg-white text-foreground hover:bg-muted/40 font-semibold uppercase tracking-wide text-[10px] h-8 px-3"
                   data-testid="saved-replies-form-cancel"
                 >
                   Cancel
@@ -594,7 +594,7 @@ export function SavedReplies({
                   type="button"
                   onClick={saveForm}
                   disabled={saving || !name || !body}
-                  className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-[10px] h-8 px-3 shadow-sm"
+                  className="bg-primary hover:bg-primary text-white font-semibold uppercase tracking-wide text-[10px] h-8 px-3 shadow-sm"
                   data-testid="saved-replies-form-save"
                 >
                   {saving ? "Saving…" : edit.mode === "new" ? "Create" : "Save"}

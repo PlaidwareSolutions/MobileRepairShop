@@ -112,7 +112,7 @@ export function ActionBar({
 
   return (
     <>
-      <div className="flex flex-wrap gap-2 items-center pt-3 mt-3 border-t border-zinc-200">
+      <div className="flex flex-wrap gap-2 items-center pt-3 mt-3 border-t border-border">
         {STATUSES.map((s) => (
           <span
             key={`b-${s}`}
@@ -121,7 +121,7 @@ export function ActionBar({
         ))}
         <span
           className={`px-2 py-1 rounded-full font-semibold uppercase text-[10px] tracking-wide ${
-            STATUS_BADGE_CLASS[status] ?? "bg-zinc-100 text-zinc-700 border border-zinc-200"
+            STATUS_BADGE_CLASS[status] ?? "bg-muted text-foreground border border-border"
           }`}
           data-testid={`badge-status-${leadType}-${id}`}
         >
@@ -133,8 +133,8 @@ export function ActionBar({
           aria-disabled={!canCall}
           className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg font-semibold uppercase text-xs tracking-wide border ${
             canCall
-              ? "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
-              : "bg-zinc-50 border-zinc-200 text-zinc-400 cursor-not-allowed"
+              ? "bg-white border-border text-foreground hover:border-primary hover:text-primary"
+              : "bg-muted/40 border-border text-muted-foreground cursor-not-allowed"
           }`}
           data-testid={`action-call-${leadType}-${id}`}
           onClick={(e) => {
@@ -151,8 +151,8 @@ export function ActionBar({
           aria-disabled={!canWhatsapp}
           className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg font-semibold uppercase text-xs tracking-wide border ${
             canWhatsapp
-              ? "bg-white border-zinc-200 text-zinc-700 hover:border-emerald-500 hover:text-emerald-600"
-              : "bg-zinc-50 border-zinc-200 text-zinc-400 cursor-not-allowed"
+              ? "bg-white border-border text-foreground hover:border-emerald-500 hover:text-emerald-600"
+              : "bg-muted/40 border-border text-muted-foreground cursor-not-allowed"
           }`}
           data-testid={`action-whatsapp-${leadType}-${id}`}
           onClick={(e) => {
@@ -168,8 +168,8 @@ export function ActionBar({
           onClick={() => setComposer("email")}
           className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg font-semibold uppercase text-xs tracking-wide border ${
             canEmail
-              ? "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
-              : "bg-zinc-50 border-zinc-200 text-zinc-400 cursor-not-allowed"
+              ? "bg-white border-border text-foreground hover:border-primary hover:text-primary"
+              : "bg-muted/40 border-border text-muted-foreground cursor-not-allowed"
           }`}
           data-testid={`action-email-${leadType}-${id}`}
         >
@@ -182,8 +182,8 @@ export function ActionBar({
           onClick={() => setComposer("sms")}
           className={`inline-flex items-center gap-1 px-3 py-1.5 rounded-lg font-semibold uppercase text-xs tracking-wide border ${
             canSms
-              ? "bg-white border-zinc-200 text-zinc-700 hover:border-blue-500 hover:text-blue-600"
-              : "bg-zinc-50 border-zinc-200 text-zinc-400 cursor-not-allowed"
+              ? "bg-white border-border text-foreground hover:border-blue-500 hover:text-blue-600"
+              : "bg-muted/40 border-border text-muted-foreground cursor-not-allowed"
           }`}
           data-testid={`action-sms-${leadType}-${id}`}
         >
@@ -215,7 +215,7 @@ export function ActionBar({
             <button
               type="button"
               onClick={() => handleStatus("archived")}
-              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg font-semibold uppercase text-xs tracking-wide border bg-white border-zinc-200 text-zinc-700 hover:border-zinc-400"
+              className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg font-semibold uppercase text-xs tracking-wide border bg-white border-border text-foreground hover:border-primary"
               data-testid={`action-archive-${leadType}-${id}`}
             >
               <Archive className="w-3 h-3" /> Archive
@@ -227,7 +227,7 @@ export function ActionBar({
               setShowActivity((v) => !v);
               if (!showActivity) setActivityKey((k) => k + 1);
             }}
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg font-semibold uppercase text-xs tracking-wide border bg-white border-zinc-200 text-zinc-700 hover:border-zinc-400"
+            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg font-semibold uppercase text-xs tracking-wide border bg-white border-border text-foreground hover:border-primary"
             data-testid={`action-activity-${leadType}-${id}`}
           >
             <ActivityIcon className="w-3 h-3" /> {showActivity ? "Hide" : "Activity"}
@@ -236,7 +236,7 @@ export function ActionBar({
       </div>
 
       {error && (
-        <div className="mt-3 bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg font-semibold text-xs">{error}</div>
+        <div className="mt-3 bg-muted/60 border border-primary text-primary px-3 py-2 rounded-lg font-semibold text-xs">{error}</div>
       )}
       {success && (
         <div className="mt-3 bg-emerald-50 border border-emerald-200 text-emerald-700 px-3 py-2 rounded-lg font-semibold text-xs">{success}</div>

@@ -26,10 +26,10 @@ const AVAILABILITY_OPTIONS: { value: AdminInventoryItem["availability"]; label: 
 ];
 
 const AVAILABILITY_BADGE: Record<AdminInventoryItem["availability"], string> = {
-  in_stock: "border-red-200 text-red-600 bg-red-50",
+  in_stock: "border-primary text-primary bg-muted/60",
   on_hold: "border-orange-200 text-orange-600 bg-orange-50",
-  sold: "border-zinc-200 text-zinc-600 bg-zinc-50",
-  hidden: "border-zinc-200 text-zinc-500 bg-zinc-50",
+  sold: "border-border text-muted-foreground bg-muted/40",
+  hidden: "border-border text-muted-foreground bg-muted/40",
 };
 
 type FormState = {
@@ -271,10 +271,10 @@ export default function AdminInventoryPage() {
   return (
     <PageShell hideTicker>
       <SEO title="Admin · Inventory | OK Cellular" description="Admin inventory management" path="/admin/inventory" noindex />
-      <section className="py-12 px-4 bg-zinc-50 border-b border-zinc-200 min-h-[80vh]">
+      <section className="py-12 px-4 bg-muted/40 border-b border-border min-h-[80vh]">
         <div className="max-w-[1240px] mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight">
-            Admin <span className="text-red-500">Inventory</span>
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-6 leading-tight">
+            Admin <span className="text-primary">Inventory</span>
           </h1>
 
           {authed && <AdminNav active="inventory" />}
@@ -285,23 +285,23 @@ export default function AdminInventoryPage() {
                 e.preventDefault();
                 load(password);
               }}
-              className="bg-white border border-zinc-200 rounded-xl shadow-md p-6 max-w-md space-y-4"
+              className="bg-white border border-border rounded-xl shadow-md p-6 max-w-md space-y-4"
               data-testid="form-admin-login"
             >
-              <Label htmlFor="ad-pw" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">Admin password</Label>
+              <Label htmlFor="ad-pw" className="font-semibold uppercase text-xs tracking-wide text-foreground">Admin password</Label>
               <Input
                 id="ad-pw"
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                className="bg-white border border-border focus:border-primary h-12"
                 data-testid="input-password"
               />
-              {error && <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm">{error}</div>}
+              {error && <div className="bg-muted/60 border border-primary text-primary px-4 py-3 rounded-lg font-semibold text-sm">{error}</div>}
               <Button
                 type="submit"
                 disabled={loading || !password}
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-12 shadow-sm"
+                className="w-full bg-primary hover:bg-primary text-white font-semibold h-12 shadow-sm"
                 data-testid="button-login"
               >
                 {loading ? "..." : "Sign In"}
@@ -312,24 +312,24 @@ export default function AdminInventoryPage() {
               <div className="flex flex-wrap gap-2 mb-4 items-center">
                 <Button
                   onClick={openCreate}
-                  className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-10 shadow-sm"
+                  className="bg-primary hover:bg-primary text-white font-semibold h-10 shadow-sm"
                   data-testid="button-new-item"
                 >
                   + New Item
                 </Button>
                 <button
                   onClick={() => load(password)}
-                  className="px-4 py-2 font-semibold uppercase text-sm tracking-wide border rounded-lg bg-white border-zinc-200 text-zinc-600 hover:border-red-500 hover:text-red-600"
+                  className="px-4 py-2 font-semibold uppercase text-sm tracking-wide border rounded-lg bg-white border-border text-muted-foreground hover:border-primary hover:text-primary"
                   data-testid="button-refresh"
                 >
                   Refresh
                 </button>
-                <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500 ml-auto">
+                <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground ml-auto">
                   {items.length} item{items.length === 1 ? "" : "s"}
                 </span>
               </div>
 
-              {error && <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm mb-4" data-testid="error-banner">{error}</div>}
+              {error && <div className="bg-muted/60 border border-primary text-primary px-4 py-3 rounded-lg font-semibold text-sm mb-4" data-testid="error-banner">{error}</div>}
               {info && <div className="bg-emerald-50 border border-emerald-200 text-emerald-700 px-4 py-3 rounded-lg font-semibold text-sm mb-4" data-testid="info-banner">{info}</div>}
 
               {(creating || editing) && (
@@ -347,9 +347,9 @@ export default function AdminInventoryPage() {
                 />
               )}
 
-              <div className="bg-white border border-zinc-200 rounded-xl shadow-sm overflow-x-auto">
+              <div className="bg-white border border-border rounded-xl shadow-sm overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-zinc-50 text-zinc-600 uppercase text-[10px] tracking-wide font-semibold border-b border-zinc-200">
+                  <thead className="bg-muted/40 text-muted-foreground uppercase text-[10px] tracking-wide font-semibold border-b border-border">
                     <tr>
                       <th className="text-left px-3 py-3">Order</th>
                       <th className="text-left px-3 py-3">Image</th>
@@ -363,23 +363,23 @@ export default function AdminInventoryPage() {
                   </thead>
                   <tbody>
                     {items.length === 0 && (
-                      <tr><td colSpan={8} className="px-4 py-12 text-center font-semibold text-zinc-500 uppercase tracking-wide">No items yet</td></tr>
+                      <tr><td colSpan={8} className="px-4 py-12 text-center font-semibold text-muted-foreground uppercase tracking-wide">No items yet</td></tr>
                     )}
                     {items.map((it, i) => (
-                      <tr key={it.id} className="border-t border-zinc-100 hover:bg-zinc-50/60" data-testid={`admin-inventory-row-${it.id}`}>
+                      <tr key={it.id} className="border-t border-border hover:bg-muted/60" data-testid={`admin-inventory-row-${it.id}`}>
                         <td className="px-3 py-2 align-middle">
                           <div className="flex flex-col gap-1">
                             <button
                               onClick={() => onMove(i, -1)}
                               disabled={i === 0}
-                              className="text-zinc-500 hover:text-red-600 disabled:opacity-30 font-semibold text-xs"
+                              className="text-muted-foreground hover:text-primary disabled:opacity-30 font-semibold text-xs"
                               data-testid={`button-up-${it.id}`}
                               aria-label="Move up"
                             >▲</button>
                             <button
                               onClick={() => onMove(i, 1)}
                               disabled={i === items.length - 1}
-                              className="text-zinc-500 hover:text-red-600 disabled:opacity-30 font-semibold text-xs"
+                              className="text-muted-foreground hover:text-primary disabled:opacity-30 font-semibold text-xs"
                               data-testid={`button-down-${it.id}`}
                               aria-label="Move down"
                             >▼</button>
@@ -389,26 +389,26 @@ export default function AdminInventoryPage() {
                           <div className="flex gap-1">
                             {[it.imageUrl, it.imageUrl2, it.imageUrl3].map((url, idx) =>
                               url ? (
-                                <img key={idx} src={url} alt="" className="w-12 h-10 object-cover rounded border border-zinc-200 shrink-0" />
+                                <img key={idx} src={url} alt="" className="w-12 h-10 object-cover rounded border border-border shrink-0" />
                               ) : null
                             )}
                             {!it.imageUrl && !it.imageUrl2 && !it.imageUrl3 && (
-                              <div className="w-16 h-12 bg-zinc-50 border border-zinc-200 rounded-md flex items-center justify-center text-[10px] text-zinc-500 uppercase tracking-wide">No img</div>
+                              <div className="w-16 h-12 bg-muted/40 border border-border rounded-md flex items-center justify-center text-[10px] text-muted-foreground uppercase tracking-wide">No img</div>
                             )}
                           </div>
                         </td>
                         <td className="px-3 py-2">
-                          <div className="font-semibold text-zinc-900 text-base">{it.brand} {it.model}</div>
-                          <div className="text-[11px] text-zinc-500 font-mono">{it.id}</div>
-                          <div className="text-[11px] text-zinc-500 mt-0.5">
+                          <div className="font-semibold text-foreground text-base">{it.brand} {it.model}</div>
+                          <div className="text-[11px] text-muted-foreground font-mono">{it.id}</div>
+                          <div className="text-[11px] text-muted-foreground mt-0.5">
                             {[it.storage, it.color, it.condition, it.carrier].filter(Boolean).join(" · ")}
                           </div>
                         </td>
-                        <td className="px-3 py-2 text-zinc-600 text-xs uppercase tracking-wide font-semibold">{it.category}</td>
+                        <td className="px-3 py-2 text-muted-foreground text-xs uppercase tracking-wide font-semibold">{it.category}</td>
                         <td className="px-3 py-2">
                           <GroupBadge category={it.category} brand={it.brand} testId={`admin-inventory-group-${it.id}`} />
                         </td>
-                        <td className="px-3 py-2 font-semibold text-red-600">{it.priceDisplay}</td>
+                        <td className="px-3 py-2 font-semibold text-primary">{it.priceDisplay}</td>
                         <td className="px-3 py-2">
                           <select
                             value={it.availability}
@@ -424,14 +424,14 @@ export default function AdminInventoryPage() {
                         <td className="px-3 py-2 text-right whitespace-nowrap">
                           <button
                             onClick={() => openEdit(it)}
-                            className="px-3 py-1 font-semibold uppercase text-[10px] tracking-wide border rounded-md border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600 mr-1"
+                            className="px-3 py-1 font-semibold uppercase text-[10px] tracking-wide border rounded-md border-border text-foreground hover:border-primary hover:text-primary mr-1"
                             data-testid={`button-edit-${it.id}`}
                           >
                             Edit
                           </button>
                           <button
                             onClick={() => onDelete(it)}
-                            className="px-3 py-1 font-semibold uppercase text-[10px] tracking-wide border rounded-md border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
+                            className="px-3 py-1 font-semibold uppercase text-[10px] tracking-wide border rounded-md border-border text-foreground hover:border-primary hover:text-primary"
                             data-testid={`button-delete-${it.id}`}
                           >
                             Delete
@@ -467,20 +467,20 @@ function ImageSlot({
 }) {
   return (
     <div className="space-y-1.5">
-      <Label className="font-semibold uppercase text-[10px] tracking-wide text-zinc-500">{label}</Label>
+      <Label className="font-semibold uppercase text-[10px] tracking-wide text-muted-foreground">{label}</Label>
       <div className="flex items-start gap-3">
         {url ? (
           <div className="relative shrink-0">
-            <img src={url} alt="" className="w-20 h-16 object-cover rounded border border-zinc-200" />
+            <img src={url} alt="" className="w-20 h-16 object-cover rounded border border-border" />
             <button
               type="button"
               onClick={() => onUrl("")}
-              className="absolute -top-1.5 -right-1.5 bg-red-500 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] leading-none font-bold hover:bg-red-600"
+              className="absolute -top-1.5 -right-1.5 bg-primary text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px] leading-none font-bold hover:bg-primary"
               aria-label="Remove image"
             >×</button>
           </div>
         ) : (
-          <div className="w-20 h-16 bg-zinc-50 border border-dashed border-zinc-300 rounded flex items-center justify-center text-[9px] text-zinc-400 uppercase tracking-wide shrink-0">Empty</div>
+          <div className="w-20 h-16 bg-muted/40 border border-dashed border-border rounded flex items-center justify-center text-[9px] text-muted-foreground uppercase tracking-wide shrink-0">Empty</div>
         )}
         <div className="flex-1 min-w-0">
           <input
@@ -488,17 +488,17 @@ function ImageSlot({
             accept="image/*"
             onChange={(e) => { const f = e.target.files?.[0]; if (f) onUpload(f); }}
             disabled={uploading}
-            className="block w-full text-xs text-zinc-700 file:mr-2 file:py-1.5 file:px-2.5 file:rounded file:border-0 file:bg-red-500 file:text-white file:font-semibold file:uppercase file:text-[10px] file:tracking-wide hover:file:bg-red-600 disabled:opacity-50"
+            className="block w-full text-xs text-foreground file:mr-2 file:py-1.5 file:px-2.5 file:rounded file:border-0 file:bg-primary file:text-white file:font-semibold file:text-[10px] file:tracking-wide hover:file:bg-primary disabled:opacity-50"
             data-testid={`${testPrefix}-upload`}
           />
           <Input
             value={url}
             onChange={(e) => onUrl(e.target.value)}
             placeholder="…or paste URL"
-            className="bg-white border border-zinc-200 focus:border-red-500 h-8 mt-1.5 text-xs"
+            className="bg-white border border-border focus:border-primary h-8 mt-1.5 text-xs"
             data-testid={`${testPrefix}-url`}
           />
-          {uploading && <div className="text-red-500 text-[10px] font-semibold uppercase tracking-wide mt-1">Uploading…</div>}
+          {uploading && <div className="text-primary text-[10px] font-semibold uppercase tracking-wide mt-1">Uploading…</div>}
         </div>
       </div>
     </div>
@@ -529,16 +529,16 @@ function InventoryFormCard({
   onSubmit: (e: React.FormEvent) => void;
 }) {
   const set = <K extends keyof FormState>(k: K, v: FormState[K]) => setForm((f) => ({ ...f, [k]: v }));
-  const inputCls = "bg-white border border-zinc-200 focus:border-red-500 h-11";
+  const inputCls = "bg-white border border-border focus:border-primary h-11";
   return (
     <form
       onSubmit={onSubmit}
-      className="bg-white border border-zinc-200 rounded-xl shadow-md p-6 mb-6 grid md:grid-cols-2 gap-4"
+      className="bg-white border border-border rounded-xl shadow-md p-6 mb-6 grid md:grid-cols-2 gap-4"
       data-testid="form-inventory"
     >
       <div className="md:col-span-2 flex justify-between items-center">
-        <h2 className="text-2xl font-extrabold tracking-tight text-zinc-900">{title}</h2>
-        <button type="button" onClick={onClose} className="text-zinc-500 hover:text-red-600 font-semibold text-2xl leading-none" aria-label="Close">×</button>
+        <h2 className="text-2xl font-semibold tracking-tight text-foreground">{title}</h2>
+        <button type="button" onClick={onClose} className="text-muted-foreground hover:text-primary font-semibold text-2xl leading-none" aria-label="Close">×</button>
       </div>
 
       <Field label="Category" required>
@@ -615,7 +615,7 @@ function InventoryFormCard({
         <select
           value={form.availability}
           onChange={(e) => set("availability", e.target.value as AdminInventoryItem["availability"])}
-          className="bg-white border border-zinc-200 focus:border-red-500 rounded-lg h-11 px-3 w-full text-zinc-900"
+          className="bg-white border border-border focus:border-primary rounded-lg h-11 px-3 w-full text-foreground"
           data-testid="select-form-availability"
         >
           {AVAILABILITY_OPTIONS.map((o) => <option key={o.value} value={o.value}>{o.label}</option>)}
@@ -623,11 +623,11 @@ function InventoryFormCard({
       </Field>
 
       {/* ---- Financing ---- */}
-      <div className="md:col-span-2 bg-zinc-50 border border-zinc-200 rounded-lg p-4 space-y-3">
+      <div className="md:col-span-2 bg-muted/40 border border-border rounded-lg p-4 space-y-3">
         <div className="flex items-center justify-between">
-          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">Financing</Label>
+          <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">Financing</Label>
           <label className="flex items-center gap-2 cursor-pointer select-none">
-            <span className="text-xs font-semibold uppercase tracking-wide text-zinc-600">
+            <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
               {form.financingEnabled ? "Enabled" : "Disabled"}
             </span>
             <button
@@ -635,7 +635,7 @@ function InventoryFormCard({
               role="switch"
               aria-checked={form.financingEnabled}
               onClick={() => set("financingEnabled", !form.financingEnabled)}
-              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-1 ${form.financingEnabled ? "bg-red-500" : "bg-zinc-300"}`}
+              className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 ${form.financingEnabled ? "bg-primary" : "bg-border"}`}
               data-testid="toggle-financing"
             >
               <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${form.financingEnabled ? "translate-x-6" : "translate-x-1"}`} />
@@ -644,13 +644,13 @@ function InventoryFormCard({
         </div>
         {form.financingEnabled && (
           <div className="flex items-center gap-3">
-            <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-600 shrink-0">Down payment ($)</Label>
+            <Label className="font-semibold uppercase text-xs tracking-wide text-muted-foreground shrink-0">Down payment ($)</Label>
             <Input
               inputMode="decimal"
               value={form.financingDownPaymentCents}
               onChange={(e) => set("financingDownPaymentCents", e.target.value)}
               placeholder="80"
-              className="bg-white border border-zinc-200 focus:border-red-500 h-9 w-36 text-sm"
+              className="bg-white border border-border focus:border-primary h-9 w-36 text-sm"
               data-testid="input-financing-down"
             />
           </div>
@@ -659,7 +659,7 @@ function InventoryFormCard({
 
       {/* ---- Images (up to 3) ---- */}
       <div className="md:col-span-2 space-y-3">
-        <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">Photos (up to 3)</Label>
+        <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">Photos (up to 3)</Label>
         <div className="grid sm:grid-cols-3 gap-4">
           <ImageSlot
             label="Photo 1 (primary)"
@@ -689,11 +689,11 @@ function InventoryFormCard({
       </div>
 
       <div className="md:col-span-2 space-y-2">
-        <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">Description</Label>
+        <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">Description</Label>
         <Textarea
           value={form.description}
           onChange={(e) => set("description", e.target.value)}
-          className="bg-white border border-zinc-200 focus:border-red-500"
+          className="bg-white border border-border focus:border-primary"
           data-testid="input-description"
         />
       </div>
@@ -702,7 +702,7 @@ function InventoryFormCard({
         <Button
           type="button"
           onClick={onClose}
-          className="bg-white border border-zinc-200 text-zinc-700 hover:bg-zinc-50 font-semibold uppercase tracking-wide h-11 px-6"
+          className="bg-white border border-border text-foreground hover:bg-muted/40 font-semibold h-11 px-6"
           data-testid="button-cancel"
         >
           Cancel
@@ -710,7 +710,7 @@ function InventoryFormCard({
         <Button
           type="submit"
           disabled={submitting || uploadingSlot !== null}
-          className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-11 px-6 shadow-sm"
+          className="bg-primary hover:bg-primary text-white font-semibold h-11 px-6 shadow-sm"
           data-testid="button-save"
         >
           {submitting ? "Saving…" : isEdit ? "Save changes" : "Create item"}
@@ -723,8 +723,8 @@ function InventoryFormCard({
 function Field({ label, required, children }: { label: string; required?: boolean; children: React.ReactNode }) {
   return (
     <div className="space-y-2">
-      <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
-        {label}{required && <span className="text-red-600"> *</span>}
+      <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
+        {label}{required && <span className="text-primary"> *</span>}
       </Label>
       {children}
     </div>
@@ -737,7 +737,7 @@ function CategoryGroupHint({ category, brand }: { category: string; brand?: stri
   if (!trimmed && !trimmedBrand) {
     return (
       <p
-        className="text-[11px] font-semibold uppercase tracking-wide text-zinc-500"
+        className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground"
         data-testid="hint-category-group"
       >
         Will appear under: —
@@ -754,7 +754,7 @@ function CategoryGroupHint({ category, brand }: { category: string; brand?: stri
       data-testid="hint-category-group"
       data-group-slug={group.slug}
     >
-      Will appear under: <span className="font-extrabold">{group.label}</span>
+      Will appear under: <span className="font-semibold">{group.label}</span>
       {isOther && (
         <span className="block mt-1 normal-case tracking-normal font-medium text-amber-700">
           ⚠ This won't show up under any "We Sell Too" tile filter. Set Brand to

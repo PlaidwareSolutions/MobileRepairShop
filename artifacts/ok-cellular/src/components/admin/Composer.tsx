@@ -128,14 +128,14 @@ export function Composer({
 
   return (
     <Dialog open={open} onOpenChange={(v) => !v && onClose()}>
-      <DialogContent className="bg-white border border-zinc-200 text-zinc-900 max-w-xl rounded-xl shadow-lg" data-testid="composer-modal">
+      <DialogContent className="bg-white border border-border text-foreground max-w-xl rounded-xl shadow-lg" data-testid="composer-modal">
         <DialogHeader>
-          <DialogTitle className="font-extrabold tracking-tight text-zinc-900">
+          <DialogTitle className="font-semibold tracking-tight text-foreground">
             {mode === "email" ? "Send Email" : "Send SMS"}
           </DialogTitle>
         </DialogHeader>
-        <div className="text-xs uppercase tracking-wide text-zinc-500 -mt-2 mb-2">
-          From: <span className="text-zinc-700">{fromLabel}</span>
+        <div className="text-xs uppercase tracking-wide text-muted-foreground -mt-2 mb-2">
+          From: <span className="text-foreground">{fromLabel}</span>
         </div>
         <div className="space-y-3">
           <SavedReplies
@@ -149,20 +149,20 @@ export function Composer({
             }}
           />
           <div>
-            <Label htmlFor="composer-to" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+            <Label htmlFor="composer-to" className="font-semibold uppercase text-xs tracking-wide text-foreground">
               To
             </Label>
             <Input
               id="composer-to"
               value={to}
               onChange={(e) => setTo(e.target.value)}
-              className="bg-white border border-zinc-200 focus:border-red-500 h-11 text-zinc-900"
+              className="bg-white border border-border focus:border-primary h-11 text-foreground"
               data-testid="composer-to"
             />
           </div>
           {mode === "email" && (
             <div>
-              <Label htmlFor="composer-subject" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+              <Label htmlFor="composer-subject" className="font-semibold uppercase text-xs tracking-wide text-foreground">
                 Subject
               </Label>
               <Input
@@ -171,13 +171,13 @@ export function Composer({
                 value={subject}
                 onChange={(e) => setSubject(e.target.value)}
                 onFocus={() => setLastFocused("subject")}
-                className="bg-white border border-zinc-200 focus:border-red-500 h-11 text-zinc-900"
+                className="bg-white border border-border focus:border-primary h-11 text-foreground"
                 data-testid="composer-subject"
               />
             </div>
           )}
           <div>
-            <Label htmlFor="composer-body" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+            <Label htmlFor="composer-body" className="font-semibold uppercase text-xs tracking-wide text-foreground">
               {mode === "email" ? "Message" : `Body (${body.length}/1600)`}
             </Label>
             <Textarea
@@ -188,17 +188,17 @@ export function Composer({
               onFocus={() => setLastFocused("body")}
               rows={mode === "email" ? 10 : 5}
               maxLength={mode === "email" ? 20000 : 1600}
-              className="bg-white border border-zinc-200 focus:border-red-500 text-zinc-900"
+              className="bg-white border border-border focus:border-primary text-foreground"
               data-testid="composer-body"
             />
           </div>
           <div
-            className="bg-zinc-50/60 border border-zinc-200 rounded-lg px-3 py-2"
+            className="bg-muted/60 border border-border rounded-lg px-3 py-2"
             data-testid="composer-placeholders"
           >
-            <div className="font-semibold uppercase text-[10px] tracking-wide text-zinc-600 mb-1">
+            <div className="font-semibold uppercase text-[10px] tracking-wide text-muted-foreground mb-1">
               Insert placeholder
-              <span className="ml-2 text-zinc-600 font-normal normal-case tracking-normal">
+              <span className="ml-2 text-muted-foreground font-normal normal-case tracking-normal">
                 into {mode === "email" && lastFocused === "subject" ? "Subject" : "Message"}
               </span>
             </div>
@@ -209,18 +209,18 @@ export function Composer({
                   type="button"
                   onMouseDown={(e) => e.preventDefault()}
                   onClick={() => insertPlaceholder(k)}
-                  className="px-1.5 py-0.5 bg-white border border-zinc-200 rounded-md hover:border-red-500 hover:text-red-600 text-[11px] text-zinc-700 font-mono"
+                  className="px-1.5 py-0.5 bg-white border border-border rounded-md hover:border-primary hover:text-primary text-[11px] text-foreground font-mono"
                   data-testid={`composer-placeholder-${k}`}
                 >{`{{${k}}}`}</button>
               ))}
             </div>
-            <div className="text-[10px] text-zinc-500 mt-1">
+            <div className="text-[10px] text-muted-foreground mt-1">
               Click a token to insert it at the cursor of the focused field.
             </div>
           </div>
           {hasUnfilledPlaceholders && (
             <div
-              className="bg-red-50 text-red-700 px-4 py-3 rounded-lg font-semibold uppercase text-xs tracking-wide border border-red-200"
+              className="bg-muted/60 text-primary px-4 py-3 rounded-lg font-semibold uppercase text-xs tracking-wide border border-primary"
               data-testid="composer-placeholder-warning"
               role="alert"
             >
@@ -234,7 +234,7 @@ export function Composer({
             </div>
           )}
           {error && (
-            <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm" data-testid="composer-error">
+            <div className="bg-muted/60 border border-primary text-primary px-4 py-3 rounded-lg font-semibold text-sm" data-testid="composer-error">
               {error}
             </div>
           )}
@@ -243,7 +243,7 @@ export function Composer({
               type="button"
               variant="outline"
               onClick={onClose}
-              className="border border-zinc-200 bg-white text-zinc-700 hover:bg-zinc-50 font-semibold uppercase tracking-wide"
+              className="border border-border bg-white text-foreground hover:bg-muted/40 font-semibold uppercase tracking-wide"
               data-testid="composer-cancel"
             >
               Cancel
@@ -264,7 +264,7 @@ export function Composer({
                       .join(", ")}`
                   : undefined
               }
-              className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide shadow-sm"
+              className="bg-primary hover:bg-primary text-white font-semibold uppercase tracking-wide shadow-sm"
               data-testid="composer-send"
             >
               {sending ? "Sending..." : `Send ${mode === "email" ? "Email" : "SMS"}`}

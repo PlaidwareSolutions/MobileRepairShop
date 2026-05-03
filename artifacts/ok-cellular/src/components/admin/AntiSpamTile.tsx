@@ -47,20 +47,20 @@ const STAT_ROWS: {
 export function AntiSpamTile({ stats, loading, error }: Props) {
   return (
     <section
-      className="bg-white border border-zinc-200 rounded-xl shadow-sm p-5 mb-6"
+      className="bg-white border border-border rounded-xl shadow-sm p-5 mb-6"
       data-testid="tile-anti-spam"
     >
       <div className="flex items-end justify-between mb-3 gap-3 flex-wrap">
         <div>
-          <h2 className="text-lg font-extrabold uppercase tracking-wide text-zinc-900">
+          <h2 className="text-lg font-semibold tracking-wide text-foreground">
             Anti-spam
           </h2>
-          <p className="text-xs text-zinc-500 mt-1">
+          <p className="text-xs text-muted-foreground mt-1">
             Real customers vs blocked submissions, by defense layer.
           </p>
         </div>
         {stats && (
-          <div className="text-[10px] uppercase tracking-wide text-zinc-400">
+          <div className="text-[10px] uppercase tracking-wide text-muted-foreground">
             7d / 30d
           </div>
         )}
@@ -68,7 +68,7 @@ export function AntiSpamTile({ stats, loading, error }: Props) {
 
       {error && (
         <div
-          className="bg-red-50 border border-red-200 text-red-700 px-3 py-2 rounded-lg font-semibold text-xs"
+          className="bg-muted/60 border border-primary text-primary px-3 py-2 rounded-lg font-semibold text-xs"
           data-testid="anti-spam-error"
         >
           {error}
@@ -77,7 +77,7 @@ export function AntiSpamTile({ stats, loading, error }: Props) {
 
       {!error && loading && !stats && (
         <div
-          className="text-sm text-zinc-500 italic"
+          className="text-sm text-muted-foreground italic"
           data-testid="anti-spam-loading"
         >
           Loading…
@@ -88,7 +88,7 @@ export function AntiSpamTile({ stats, loading, error }: Props) {
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
-              <tr className="text-left text-[11px] uppercase tracking-wide text-zinc-500 border-b border-zinc-200">
+              <tr className="text-left text-[11px] uppercase tracking-wide text-muted-foreground border-b border-border">
                 <th className="py-2 pr-4 font-semibold">Metric</th>
                 {stats.windows.map((w) => (
                   <th
@@ -104,10 +104,10 @@ export function AntiSpamTile({ stats, loading, error }: Props) {
               {STAT_ROWS.map((row) => (
                 <tr
                   key={row.key}
-                  className="border-b border-zinc-100 last:border-b-0"
+                  className="border-b border-border last:border-b-0"
                   data-testid={`row-${row.testId}`}
                 >
-                  <td className="py-2 pr-4 text-zinc-700 font-medium">
+                  <td className="py-2 pr-4 text-foreground font-medium">
                     {row.label}
                   </td>
                   {stats.windows.map((w) => {
@@ -116,8 +116,8 @@ export function AntiSpamTile({ stats, loading, error }: Props) {
                       row.tone === "ok"
                         ? "text-emerald-600"
                         : value > 0
-                          ? "text-zinc-900"
-                          : "text-zinc-400";
+                          ? "text-foreground"
+                          : "text-muted-foreground";
                     return (
                       <td
                         key={w.key}

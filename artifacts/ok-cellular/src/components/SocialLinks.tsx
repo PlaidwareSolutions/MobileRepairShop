@@ -66,7 +66,7 @@ export function SocialLinks({ business, className = "", iconClass = "w-5 h-5" }:
           target="_blank"
           rel="noreferrer"
           aria-label={label}
-          className="text-zinc-400 hover:text-red-500 transition-colors"
+          className="text-muted-foreground hover:text-primary transition-colors"
         >
           <Icon className={iconClass} />
         </a>

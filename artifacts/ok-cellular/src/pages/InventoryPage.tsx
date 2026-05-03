@@ -243,12 +243,12 @@ export default function InventoryPage() {
       />
       <Breadcrumbs items={breadcrumbItems} />
 
-      <section className="py-12 px-4 bg-zinc-50 border-b border-zinc-200">
+      <section className="py-12 px-4 bg-muted/40 border-b border-border">
         <div className="max-w-[1240px] mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight uppercase">
-            {heading.prefix} <span className="text-red-500">{heading.highlight}</span>
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-6 leading-tight">
+            {heading.prefix} <span className="text-primary">{heading.highlight}</span>
           </h1>
-          <p className="text-lg font-bold text-zinc-600 mb-8 max-w-2xl">{intro}</p>
+          <p className="text-lg font-bold text-muted-foreground mb-8 max-w-2xl">{intro}</p>
 
           <div className="flex flex-wrap gap-2 mb-8">
             {chips.map((c) => (
@@ -256,7 +256,7 @@ export default function InventoryPage() {
                 key={c.slug}
                 onClick={() => selectFilter(c.slug)}
                 aria-pressed={filterSlug === c.slug}
-                className={`px-4 py-2 font-bold uppercase text-sm tracking-wide border transition-colors ${filterSlug === c.slug ? "bg-red-500 border-red-500 text-zinc-900" : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-red-500"}`}
+                className={`px-4 py-2 font-medium text-sm tracking-wide border transition-colors ${filterSlug === c.slug ? "bg-primary border-primary text-foreground" : "bg-muted border-border text-muted-foreground hover:border-primary"}`}
                 data-testid={`filter-${c.slug}`}
               >
                 {c.label}
@@ -266,20 +266,20 @@ export default function InventoryPage() {
 
           {serviceHub && pathGroup && (
             <div
-              className="mb-8 bg-white border border-zinc-200 p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
+              className="mb-8 bg-white border border-border p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3"
               data-testid={`service-hub-callout-${pathGroup.slug}`}
             >
               <div className="flex items-start gap-3">
-                <Wrench className="w-5 h-5 text-red-500 shrink-0 mt-0.5" />
-                <p className="text-sm font-bold text-zinc-700">
+                <Wrench className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <p className="text-sm font-bold text-foreground">
                   Need yours fixed instead of replaced? See our{" "}
-                  <span className="text-zinc-900">{serviceHub.label}</span>{" "}
+                  <span className="text-foreground">{serviceHub.label}</span>{" "}
                   service in Houston.
                 </p>
               </div>
               <Link
                 href={serviceHub.path}
-                className="inline-flex items-center gap-1 self-start sm:self-auto px-4 py-2 font-bold uppercase text-xs tracking-wide border border-zinc-300 text-zinc-900 bg-zinc-100 hover:bg-red-500 hover:border-red-500 transition-colors"
+                className="inline-flex items-center gap-1 self-start sm:self-auto px-4 py-2 font-semibold text-xs tracking-wide border border-border text-foreground bg-muted hover:bg-primary hover:border-primary transition-colors"
                 data-testid={`service-hub-link-${pathGroup.slug}`}
               >
                 {serviceHub.label}
@@ -290,7 +290,7 @@ export default function InventoryPage() {
 
           {visible.length === 0 && (
             <div
-              className="bg-white border border-zinc-200 p-6 text-center text-zinc-600 font-bold uppercase tracking-wide text-sm"
+              className="bg-white border border-border p-6 text-center text-muted-foreground font-semibold tracking-wide text-sm"
               data-testid="inventory-empty"
             >
               Nothing in this category right now — call us at {business.phoneDisplay} and we'll let you know when it's back in stock.
@@ -301,36 +301,36 @@ export default function InventoryPage() {
             {visible.map((it) => {
               const images = [it.imageUrl, it.imageUrl2, it.imageUrl3].filter((u): u is string => !!u);
               return (
-              <article key={it.id} className="bg-white border border-zinc-200 p-5 flex flex-col gap-3 hover:border-red-500 transition-colors" data-testid={`inventory-${it.id}`}>
+              <article key={it.id} className="bg-white border border-border p-5 flex flex-col gap-3 hover:border-primary transition-colors" data-testid={`inventory-${it.id}`}>
                 {images.length > 0 && (
                   <ItemImageCarousel images={images} alt={`${it.brand} ${it.model}`} itemId={it.id} />
                 )}
                 <div className="flex items-center justify-between gap-2">
-                  <div className="text-zinc-500 font-bold uppercase text-xs tracking-wide">{it.category}</div>
+                  <div className="text-muted-foreground font-semibold text-xs tracking-wide">{it.category}</div>
                   {it.availability && (
                     <span
                       data-testid={`availability-${it.id}`}
-                      className={`px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide rounded-full border ${ it.availability.toLowerCase().includes("out") ? "border-zinc-300 text-zinc-600 bg-zinc-50" : "border-red-200 text-red-600 bg-red-50" }`}
+                      className={`px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide rounded-full border ${ it.availability.toLowerCase().includes("out") ? "border-border text-muted-foreground bg-muted/40" : "border-primary text-primary bg-muted/60" }`}
                     >
                       {it.availability}
                     </span>
                   )}
                 </div>
-                <h3 className="font-bold uppercase text-xl text-zinc-900">{it.brand} {it.model}</h3>
-                <ul className="space-y-1 text-sm font-bold text-zinc-600">
-                  {it.storage && <li>Storage: <span className="text-zinc-900">{it.storage}</span></li>}
-                  {it.color && <li>Color: <span className="text-zinc-900">{it.color}</span></li>}
-                  {it.condition && <li>Condition: <span className="text-zinc-900">{it.condition}</span></li>}
-                  {it.carrier && <li>Carrier: <span className="text-zinc-900">{it.carrier}</span></li>}
-                  {it.warranty && <li>Warranty: <span className="text-zinc-900">{it.warranty}</span></li>}
+                <h3 className="font-semibold text-xl text-foreground">{it.brand} {it.model}</h3>
+                <ul className="space-y-1 text-sm font-bold text-muted-foreground">
+                  {it.storage && <li>Storage: <span className="text-foreground">{it.storage}</span></li>}
+                  {it.color && <li>Color: <span className="text-foreground">{it.color}</span></li>}
+                  {it.condition && <li>Condition: <span className="text-foreground">{it.condition}</span></li>}
+                  {it.carrier && <li>Carrier: <span className="text-foreground">{it.carrier}</span></li>}
+                  {it.warranty && <li>Warranty: <span className="text-foreground">{it.warranty}</span></li>}
                 </ul>
-                <div className="mt-auto pt-3 border-t border-zinc-300 flex flex-col gap-3">
+                <div className="mt-auto pt-3 border-t border-border flex flex-col gap-3">
                   <div className="flex items-center gap-2 flex-wrap">
-                    <div className="font-bold uppercase text-2xl text-red-500">{it.price}</div>
+                    <div className="font-semibold text-2xl text-primary">{it.price}</div>
                     {it.financingEnabled && (
                       <Link
                         href={FINANCING.pagePath}
-                        className="bg-red-50 text-red-600 border border-red-200 rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors"
+                        className="bg-muted/60 text-primary border border-primary rounded-full px-2 py-0.5 uppercase font-semibold text-[10px] tracking-wide hover:bg-primary hover:text-white hover:border-primary transition-colors"
                         data-testid={`financing-pill-${it.id}`}
                         aria-label={`Financing from ${it.financingDownPaymentDisplay ?? "$80"} down — learn more`}
                       >
@@ -339,12 +339,12 @@ export default function InventoryPage() {
                     )}
                   </div>
                   <div className="grid grid-cols-2 gap-2">
-                    <Button asChild className="bg-white border border-zinc-300 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-10 px-2 text-xs" data-testid={`button-call-${it.id}`}>
+                    <Button asChild className="bg-white border border-border hover:bg-white hover:text-black text-foreground font-semibold h-10 px-2 text-xs" data-testid={`button-call-${it.id}`}>
                       <a href={business.phoneTel} aria-label={`Call about ${it.brand} ${it.model}`}>
                         <Phone className="w-3.5 h-3.5 mr-1" /> Call
                       </a>
                     </Button>
-                    <Button onClick={() => setReserving(it)} className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-10 px-2 text-xs" data-testid={`button-reserve-${it.id}`}>
+                    <Button onClick={() => setReserving(it)} className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-10 px-2 text-xs" data-testid={`button-reserve-${it.id}`}>
                       Reserve
                     </Button>
                   </div>
@@ -358,25 +358,25 @@ export default function InventoryPage() {
 
       {bodyCopy && pathGroup && (
         <section
-          className="py-12 px-4 bg-white border-b border-zinc-200"
+          className="py-12 px-4 bg-white border-b border-border"
           data-testid={`category-bodycopy-${pathGroup.slug}`}
         >
           <div className="max-w-[1240px] mx-auto grid lg:grid-cols-3 gap-10">
             <div className="lg:col-span-2 space-y-5">
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 uppercase">
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground uppercase">
                 About our {pathGroup.label.toLowerCase()}
               </h2>
               {bodyCopy.paragraphs.map((p, i) => (
-                <p key={i} className="text-base text-zinc-700 leading-relaxed">
+                <p key={i} className="text-base text-foreground leading-relaxed">
                   {p}
                 </p>
               ))}
             </div>
-            <aside className="bg-zinc-50 border border-zinc-200 p-6">
-              <h3 className="text-lg font-extrabold uppercase tracking-wide text-zinc-900 mb-3">
+            <aside className="bg-muted/40 border border-border p-6">
+              <h3 className="text-lg font-semibold tracking-wide text-foreground mb-3">
                 What's included
               </h3>
-              <ul className="space-y-2 text-sm font-medium text-zinc-700 list-disc pl-5">
+              <ul className="space-y-2 text-sm font-medium text-foreground list-disc pl-5">
                 {bodyCopy.included.map((line, i) => (
                   <li key={i}>{line}</li>
                 ))}
@@ -388,18 +388,18 @@ export default function InventoryPage() {
 
       {faqs && faqs.length > 0 && pathGroup && (
         <section
-          className="py-12 px-4 bg-zinc-50 border-b border-zinc-200"
+          className="py-12 px-4 bg-muted/40 border-b border-border"
           data-testid={`category-faqs-${pathGroup.slug}`}
         >
           <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 uppercase mb-6">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground uppercase mb-6">
               {pathGroup.label} FAQ
             </h2>
-            <dl className="divide-y divide-zinc-200 border-t border-b border-zinc-200">
+            <dl className="divide-y divide-zinc-200 border-t border-b border-border">
               {faqs.map((f, i) => (
                 <div key={i} className="py-5">
-                  <dt className="text-base font-bold text-zinc-900">{f.q}</dt>
-                  <dd className="mt-2 text-base text-zinc-700 leading-relaxed">
+                  <dt className="text-base font-bold text-foreground">{f.q}</dt>
+                  <dd className="mt-2 text-base text-foreground leading-relaxed">
                     {f.a}
                   </dd>
                 </div>
@@ -428,7 +428,7 @@ function ItemImageCarousel({ images, alt, itemId }: { images: string[]; alt: str
   const next = useCallback(() => setIdx((i) => (i + 1) % images.length), [images.length]);
   const current = images[Math.min(idx, images.length - 1)];
   return (
-    <div className="-mx-5 -mt-5 mb-1 aspect-[4/3] bg-zinc-100 overflow-hidden border-b border-zinc-200 relative group">
+    <div className="-mx-5 -mt-5 mb-1 aspect-[4/3] bg-muted overflow-hidden border-b border-border relative group">
       <img
         src={current}
         alt={alt}

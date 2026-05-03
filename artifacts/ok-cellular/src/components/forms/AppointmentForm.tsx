@@ -56,16 +56,16 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
 
   if (done) {
     return (
-      <div className="bg-red-500 text-black p-6 border border-zinc-200 shadow-md">
-        <div className="font-bold uppercase text-2xl mb-2">Booked.</div>
+      <div className="bg-primary text-black p-6 border border-border shadow-md">
+        <div className="font-semibold text-2xl mb-2">Booked.</div>
         <p className="font-bold">We&apos;ll confirm your appointment by text or call. Walk-ins welcome too.</p>
-        <button onClick={() => setDone(false)} className="mt-4 underline font-bold uppercase text-sm">Book another</button>
+        <button onClick={() => setDone(false)} className="mt-4 underline font-medium text-sm">Book another</button>
       </div>
     );
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="bg-zinc-100 border border-zinc-200 p-6 md:p-8 space-y-5" data-testid="form-appointment">
+    <form onSubmit={handleSubmit(onSubmit)} className="bg-muted border border-border p-6 md:p-8 space-y-5" data-testid="form-appointment">
       {/*
         Honeypot: real users never see or interact with this field.
         Hidden off-screen rather than display:none so headless browsers that
@@ -86,18 +86,18 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
 
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="ap-name" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Your name</Label>
-          <Input id="ap-name" {...register("name", { required: true })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-name" />
+          <Label htmlFor="ap-name" className="font-semibold text-xs tracking-wide text-foreground">Your name</Label>
+          <Input id="ap-name" {...register("name", { required: true })} className="bg-white border border-border focus:border-primary h-12" data-testid="input-name" />
         </div>
         <div className="space-y-2">
-          <Label htmlFor="ap-phone" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Phone</Label>
-          <Input id="ap-phone" type="tel" {...register("phone", { required: true })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-phone" />
+          <Label htmlFor="ap-phone" className="font-semibold text-xs tracking-wide text-foreground">Phone</Label>
+          <Input id="ap-phone" type="tel" {...register("phone", { required: true })} className="bg-white border border-border focus:border-primary h-12" data-testid="input-phone" />
         </div>
       </div>
       <div className="grid sm:grid-cols-2 gap-4">
         <div className="space-y-2">
-          <Label htmlFor="ap-service" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Service</Label>
-          <select id="ap-service" {...register("serviceType")} className="w-full h-12 bg-white border border-zinc-200 focus:border-red-500 px-3 font-bold uppercase text-sm" data-testid="select-service">
+          <Label htmlFor="ap-service" className="font-semibold text-xs tracking-wide text-foreground">Service</Label>
+          <select id="ap-service" {...register("serviceType")} className="w-full h-12 bg-white border border-border focus:border-primary px-3 font-medium text-sm" data-testid="select-service">
             <option value="screen-repair">Screen repair</option>
             <option value="battery-replacement">Battery replacement</option>
             <option value="hdmi-repair">HDMI port repair</option>
@@ -108,17 +108,17 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
           </select>
         </div>
         <div className="space-y-2">
-          <Label htmlFor="ap-datetime" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Preferred day & time</Label>
-          <Input id="ap-datetime" placeholder="Mon 3pm, tomorrow afternoon..." {...register("preferredDatetime", { required: true })} className="bg-white border border-zinc-200 focus:border-red-500 h-12" data-testid="input-datetime" />
+          <Label htmlFor="ap-datetime" className="font-semibold text-xs tracking-wide text-foreground">Preferred day & time</Label>
+          <Input id="ap-datetime" placeholder="Mon 3pm, tomorrow afternoon..." {...register("preferredDatetime", { required: true })} className="bg-white border border-border focus:border-primary h-12" data-testid="input-datetime" />
         </div>
       </div>
       <div className="space-y-2">
-        <Label htmlFor="ap-notes" className="font-bold uppercase text-xs tracking-wide text-zinc-700">Notes <span className="text-zinc-500">(optional)</span></Label>
-        <Textarea id="ap-notes" {...register("notes")} className="bg-white border border-zinc-200 focus:border-red-500" data-testid="input-notes" />
+        <Label htmlFor="ap-notes" className="font-semibold text-xs tracking-wide text-foreground">Notes <span className="text-muted-foreground">(optional)</span></Label>
+        <Textarea id="ap-notes" {...register("notes")} className="bg-white border border-border focus:border-primary" data-testid="input-notes" />
       </div>
-      {error && <div className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm">{error}</div>}
+      {error && <div className="bg-primary text-foreground px-4 py-3 font-medium text-sm">{error}</div>}
       {turnstileWidget}
-      <Button type="submit" disabled={isSubmitting} className="w-full bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide text-lg h-14" data-testid="button-submit-appointment">
+      <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-white hover:text-black text-foreground font-semibold uppercase tracking-wide text-lg h-14" data-testid="button-submit-appointment">
         {isSubmitting ? "Sending..." : "Book Appointment"}
       </Button>
     </form>

@@ -35,7 +35,7 @@ const STATUS_PILL: Record<
   },
   ended: {
     label: "Ended",
-    classes: "bg-zinc-100 border-zinc-300 text-zinc-600",
+    classes: "bg-muted border-border text-muted-foreground",
   },
   paused: {
     label: "Paused",
@@ -45,7 +45,7 @@ const STATUS_PILL: Record<
 
 const ACCENT_OPTIONS: { value: AdminPromotion["accent"]; label: string; swatch: string }[] = [
   { value: "amber", label: "Amber", swatch: "bg-amber-500" },
-  { value: "red", label: "Red", swatch: "bg-red-600" },
+  { value: "red", label: "Red", swatch: "bg-primary" },
   { value: "emerald", label: "Emerald", swatch: "bg-emerald-600" },
   { value: "blue", label: "Blue", swatch: "bg-sky-600" },
 ];
@@ -384,10 +384,10 @@ export default function AdminPromotionsPage() {
         path="/admin/promotions"
         noindex
       />
-      <section className="py-12 px-4 bg-zinc-50 border-b border-zinc-200 min-h-[80vh]">
+      <section className="py-12 px-4 bg-muted/40 border-b border-border min-h-[80vh]">
         <div className="max-w-[1240px] mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight">
-            Admin <span className="text-red-500">Promotions</span>
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-6 leading-tight">
+            Admin <span className="text-primary">Promotions</span>
           </h1>
 
           {authed && <AdminNav active="promotions" />}
@@ -398,12 +398,12 @@ export default function AdminPromotionsPage() {
                 e.preventDefault();
                 load(password);
               }}
-              className="bg-white border border-zinc-200 rounded-xl shadow-md p-6 max-w-md space-y-4"
+              className="bg-white border border-border rounded-xl shadow-md p-6 max-w-md space-y-4"
               data-testid="form-admin-login"
             >
               <Label
                 htmlFor="ad-pw"
-                className="font-semibold uppercase text-xs tracking-wide text-zinc-700"
+                className="font-semibold uppercase text-xs tracking-wide text-foreground"
               >
                 Admin password
               </Label>
@@ -412,18 +412,18 @@ export default function AdminPromotionsPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                className="bg-white border border-border focus:border-primary h-12"
                 data-testid="input-password"
               />
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm">
+                <div className="bg-muted/60 border border-primary text-primary px-4 py-3 rounded-lg font-semibold text-sm">
                   {error}
                 </div>
               )}
               <Button
                 type="submit"
                 disabled={loading || !password}
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-12 shadow-sm"
+                className="w-full bg-primary hover:bg-primary text-white font-semibold h-12 shadow-sm"
                 data-testid="button-login"
               >
                 {loading ? "..." : "Sign In"}
@@ -434,19 +434,19 @@ export default function AdminPromotionsPage() {
               <div className="flex flex-wrap gap-2 mb-4 items-center">
                 <Button
                   onClick={openCreate}
-                  className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-10 shadow-sm"
+                  className="bg-primary hover:bg-primary text-white font-semibold h-10 shadow-sm"
                   data-testid="button-new-promotion"
                 >
                   + New Promotion
                 </Button>
                 <button
                   onClick={() => load(password)}
-                  className="px-4 py-2 font-semibold uppercase text-sm tracking-wide border rounded-lg bg-white border-zinc-200 text-zinc-600 hover:border-red-500 hover:text-red-600"
+                  className="px-4 py-2 font-semibold uppercase text-sm tracking-wide border rounded-lg bg-white border-border text-muted-foreground hover:border-primary hover:text-primary"
                   data-testid="button-refresh"
                 >
                   Refresh
                 </button>
-                <span className="text-xs font-semibold uppercase tracking-wide text-zinc-500 ml-auto">
+                <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground ml-auto">
                   {items.length} promo{items.length === 1 ? "" : "s"} · times in
                   shop tz ({shopTimezone})
                 </span>
@@ -454,7 +454,7 @@ export default function AdminPromotionsPage() {
 
               {error && (
                 <div
-                  className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm mb-4"
+                  className="bg-muted/60 border border-primary text-primary px-4 py-3 rounded-lg font-semibold text-sm mb-4"
                   data-testid="error-banner"
                 >
                   {error}
@@ -483,9 +483,9 @@ export default function AdminPromotionsPage() {
                 />
               )}
 
-              <div className="bg-white border border-zinc-200 rounded-xl shadow-sm overflow-x-auto">
+              <div className="bg-white border border-border rounded-xl shadow-sm overflow-x-auto">
                 <table className="w-full text-sm">
-                  <thead className="bg-zinc-50 text-zinc-600 uppercase text-[10px] tracking-wide font-semibold border-b border-zinc-200">
+                  <thead className="bg-muted/40 text-muted-foreground uppercase text-[10px] tracking-wide font-semibold border-b border-border">
                     <tr>
                       <th className="text-left px-3 py-3">Order</th>
                       <th className="text-left px-3 py-3">Promo</th>
@@ -500,7 +500,7 @@ export default function AdminPromotionsPage() {
                       <tr>
                         <td
                           colSpan={6}
-                          className="px-4 py-12 text-center font-semibold text-zinc-500 uppercase tracking-wide"
+                          className="px-4 py-12 text-center font-semibold text-muted-foreground uppercase tracking-wide"
                         >
                           No promotions yet
                         </td>
@@ -509,7 +509,7 @@ export default function AdminPromotionsPage() {
                     {items.map((row, i) => (
                       <tr
                         key={row.id}
-                        className="border-t border-zinc-100 hover:bg-zinc-50/60"
+                        className="border-t border-border hover:bg-muted/60"
                         data-testid={`admin-promotion-row-${row.id}`}
                       >
                         <td className="px-3 py-2 align-middle">
@@ -517,7 +517,7 @@ export default function AdminPromotionsPage() {
                             <button
                               onClick={() => onMove(i, -1)}
                               disabled={i === 0}
-                              className="text-zinc-500 hover:text-red-600 disabled:opacity-30 font-semibold text-xs"
+                              className="text-muted-foreground hover:text-primary disabled:opacity-30 font-semibold text-xs"
                               data-testid={`button-up-${row.id}`}
                               aria-label="Move up"
                             >
@@ -526,7 +526,7 @@ export default function AdminPromotionsPage() {
                             <button
                               onClick={() => onMove(i, 1)}
                               disabled={i === items.length - 1}
-                              className="text-zinc-500 hover:text-red-600 disabled:opacity-30 font-semibold text-xs"
+                              className="text-muted-foreground hover:text-primary disabled:opacity-30 font-semibold text-xs"
                               data-testid={`button-down-${row.id}`}
                               aria-label="Move down"
                             >
@@ -540,32 +540,32 @@ export default function AdminPromotionsPage() {
                               aria-hidden="true"
                               className={`inline-block w-3 h-3 rounded-full shrink-0 ${
                                 ACCENT_OPTIONS.find((a) => a.value === row.accent)
-                                  ?.swatch ?? "bg-zinc-300"
+                                  ?.swatch ?? "bg-border"
                               }`}
                               title={`Accent: ${row.accent}`}
                             />
-                            <div className="font-semibold text-zinc-900 text-base">
+                            <div className="font-semibold text-foreground text-base">
                               {row.headline}
                             </div>
                           </div>
                           {row.supportingLine && (
-                            <div className="text-[12px] text-zinc-600 mt-0.5">
+                            <div className="text-[12px] text-muted-foreground mt-0.5">
                               {row.supportingLine}
                             </div>
                           )}
-                          <div className="text-[11px] text-zinc-500 mt-1 font-mono">
+                          <div className="text-[11px] text-muted-foreground mt-1 font-mono">
                             {row.badge ? `[${row.badge}] ` : ""}
                             {row.ctaLabel
                               ? `→ ${row.ctaLabel} (${row.ctaHref || "no href"})`
                               : ""}
                           </div>
                         </td>
-                        <td className="px-3 py-2 text-[12px] text-zinc-700 align-top">
+                        <td className="px-3 py-2 text-[12px] text-foreground align-top">
                           {describeSchedule(row)}
                         </td>
                         <td className="px-3 py-2 align-middle">
                           <span
-                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider border ${
+                            className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] font-semibold tracking-wider border ${
                               STATUS_PILL[row.status].classes
                             }`}
                             data-testid={`status-${row.id}`}
@@ -576,10 +576,10 @@ export default function AdminPromotionsPage() {
                         <td className="px-3 py-2 align-middle">
                           <button
                             onClick={() => onToggleActive(row)}
-                            className={`px-3 py-1 rounded-md text-[11px] font-bold uppercase tracking-wide border transition-colors ${
+                            className={`px-3 py-1 rounded-md text-[11px] font-semibold tracking-wide border transition-colors ${
                               row.active
                                 ? "bg-emerald-50 border-emerald-200 text-emerald-700 hover:bg-emerald-100"
-                                : "bg-zinc-50 border-zinc-200 text-zinc-500 hover:bg-zinc-100"
+                                : "bg-muted/40 border-border text-muted-foreground hover:bg-muted"
                             }`}
                             data-testid={`button-toggle-${row.id}`}
                           >
@@ -589,7 +589,7 @@ export default function AdminPromotionsPage() {
                         <td className="px-3 py-2 text-right whitespace-nowrap">
                           <button
                             onClick={() => openEdit(row)}
-                            className="text-red-600 hover:text-red-700 font-semibold text-xs uppercase tracking-wide mr-3"
+                            className="text-primary hover:text-primary font-semibold text-xs uppercase tracking-wide mr-3"
                             data-testid={`button-edit-${row.id}`}
                           >
                             Edit
@@ -603,7 +603,7 @@ export default function AdminPromotionsPage() {
                           </button>
                           <button
                             onClick={() => onDelete(row)}
-                            className="text-zinc-500 hover:text-red-600 font-semibold text-xs uppercase tracking-wide"
+                            className="text-muted-foreground hover:text-primary font-semibold text-xs uppercase tracking-wide"
                             data-testid={`button-delete-${row.id}`}
                           >
                             Delete
@@ -676,17 +676,17 @@ function PromotionFormCard({
   return (
     <form
       onSubmit={onSubmit}
-      className="bg-white border border-zinc-200 rounded-xl shadow-sm p-6 mb-6 space-y-5"
+      className="bg-white border border-border rounded-xl shadow-sm p-6 mb-6 space-y-5"
       data-testid="form-promotion"
     >
       <div className="flex items-center justify-between">
-        <h2 className="text-xl font-extrabold tracking-tight text-zinc-900">
+        <h2 className="text-xl font-semibold tracking-tight text-foreground">
           {title}
         </h2>
         <button
           type="button"
           onClick={onClose}
-          className="text-zinc-500 hover:text-red-600 font-semibold text-xs uppercase tracking-wide"
+          className="text-muted-foreground hover:text-primary font-semibold text-xs uppercase tracking-wide"
         >
           Close
         </button>
@@ -694,20 +694,20 @@ function PromotionFormCard({
 
       <div>
         <div className="flex items-center justify-between mb-2">
-          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700 block">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-foreground block">
             Live preview (as customers will see it)
           </Label>
           <button
             type="button"
             onClick={() => setPreviewAnimKey((k) => k + 1)}
-            className="text-[11px] font-semibold uppercase tracking-wide text-red-600 hover:text-red-700"
+            className="text-[11px] font-semibold uppercase tracking-wide text-primary hover:text-primary"
             data-testid="button-replay-preview"
           >
             ▸ Replay entrance
           </button>
         </div>
         <div
-          className="rounded-lg overflow-hidden border border-zinc-200 shadow-inner relative"
+          className="rounded-lg overflow-hidden border border-border shadow-inner relative"
           data-testid="promo-form-preview"
         >
           <div
@@ -723,7 +723,7 @@ function PromotionFormCard({
             }
           `}</style>
         </div>
-        <p className="text-[11px] text-zinc-500 mt-1.5">
+        <p className="text-[11px] text-muted-foreground mt-1.5">
           Updates as you type. Badge pulses on the live site; on the homepage
           the banner slides in on first paint and cross-fades between live
           promos every 7s.
@@ -732,7 +732,7 @@ function PromotionFormCard({
 
       <div className="grid md:grid-cols-2 gap-4">
         <div className="md:col-span-2">
-          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
             Headline *
           </Label>
           <Input
@@ -741,13 +741,13 @@ function PromotionFormCard({
               setForm((f) => ({ ...f, headline: e.target.value }))
             }
             maxLength={160}
-            className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
+            className="bg-white border border-border focus:border-primary h-11 mt-1"
             data-testid="input-headline"
             required
           />
         </div>
         <div className="md:col-span-2">
-          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
             Supporting line
           </Label>
           <Textarea
@@ -757,12 +757,12 @@ function PromotionFormCard({
             }
             maxLength={280}
             rows={2}
-            className="bg-white border border-zinc-200 focus:border-red-500 mt-1"
+            className="bg-white border border-border focus:border-primary mt-1"
             data-testid="input-supporting"
           />
         </div>
         <div>
-          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
             Badge
           </Label>
           <Input
@@ -772,12 +772,12 @@ function PromotionFormCard({
             }
             maxLength={40}
             placeholder="e.g. LIMITED"
-            className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
+            className="bg-white border border-border focus:border-primary h-11 mt-1"
             data-testid="input-badge"
           />
         </div>
         <div>
-          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
             Accent color
           </Label>
           <div className="flex gap-2 mt-1">
@@ -790,8 +790,8 @@ function PromotionFormCard({
                 }
                 className={`flex items-center gap-2 px-3 h-11 rounded-md border font-semibold text-xs uppercase tracking-wide ${
                   form.accent === opt.value
-                    ? "border-zinc-900 ring-2 ring-red-300"
-                    : "border-zinc-200 hover:border-red-300"
+                    ? "border-foreground ring-2 ring-primary"
+                    : "border-border hover:border-primary"
                 }`}
                 data-testid={`button-accent-${opt.value}`}
               >
@@ -804,7 +804,7 @@ function PromotionFormCard({
           </div>
         </div>
         <div>
-          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
             CTA label
           </Label>
           <Input
@@ -814,12 +814,12 @@ function PromotionFormCard({
             }
             maxLength={40}
             placeholder="e.g. Book now"
-            className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
+            className="bg-white border border-border focus:border-primary h-11 mt-1"
             data-testid="input-cta-label"
           />
         </div>
         <div>
-          <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+          <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
             CTA URL
           </Label>
           <Input
@@ -829,19 +829,19 @@ function PromotionFormCard({
             }
             maxLength={500}
             placeholder="/contact-houston-tx"
-            className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
+            className="bg-white border border-border focus:border-primary h-11 mt-1"
             data-testid="input-cta-href"
           />
         </div>
       </div>
 
-      <div className="border-t border-zinc-200 pt-5">
-        <h3 className="font-semibold uppercase text-xs tracking-wide text-zinc-700 mb-3">
+      <div className="border-t border-border pt-5">
+        <h3 className="font-semibold uppercase text-xs tracking-wide text-foreground mb-3">
           Schedule (shop time: {shopTimezone})
         </h3>
         <div className="grid md:grid-cols-2 gap-4">
           <div>
-            <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+            <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
               Recurrence
             </Label>
             <select
@@ -852,7 +852,7 @@ function PromotionFormCard({
                   recurrence: e.target.value as AdminPromotion["recurrence"],
                 }))
               }
-              className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1 w-full rounded-md px-3 font-medium text-sm"
+              className="bg-white border border-border focus:border-primary h-11 mt-1 w-full rounded-md px-3 font-medium text-sm"
               data-testid="select-recurrence"
             >
               {RECURRENCE_OPTIONS.map((o) => (
@@ -863,7 +863,7 @@ function PromotionFormCard({
             </select>
           </div>
           <div className="flex items-end">
-            <label className="inline-flex items-center gap-2 font-semibold text-sm text-zinc-700">
+            <label className="inline-flex items-center gap-2 font-semibold text-sm text-foreground">
               <input
                 type="checkbox"
                 checked={form.active}
@@ -879,7 +879,7 @@ function PromotionFormCard({
 
           {showDays && (
             <div className="md:col-span-2">
-              <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+              <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
                 Days of week
               </Label>
               <div className="flex flex-wrap gap-2 mt-1">
@@ -892,8 +892,8 @@ function PromotionFormCard({
                       onClick={() => toggleDay(idx)}
                       className={`px-3 h-10 rounded-md border font-semibold text-xs uppercase tracking-wide ${
                         checked
-                          ? "bg-red-500 border-red-500 text-white"
-                          : "bg-white border-zinc-200 text-zinc-700 hover:border-red-300"
+                          ? "bg-primary border-primary text-white"
+                          : "bg-white border-border text-foreground hover:border-primary"
                       }`}
                       data-testid={`button-day-${idx}`}
                     >
@@ -902,7 +902,7 @@ function PromotionFormCard({
                   );
                 })}
               </div>
-              <p className="text-xs text-zinc-500 mt-1">
+              <p className="text-xs text-muted-foreground mt-1">
                 For overnight windows that cross midnight (e.g. Sat 10pm–2am), also check the next day (Sun) so the promo stays live after midnight.
               </p>
             </div>
@@ -911,7 +911,7 @@ function PromotionFormCard({
           {showTimeOfDay && (
             <>
               <div>
-                <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
                   Time-of-day start (shop time)
                 </Label>
                 <Input
@@ -920,12 +920,12 @@ function PromotionFormCard({
                   onChange={(e) =>
                     setForm((f) => ({ ...f, dailyStart: e.target.value }))
                   }
-                  className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
+                  className="bg-white border border-border focus:border-primary h-11 mt-1"
                   data-testid="input-time-start"
                 />
               </div>
               <div>
-                <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
                   Time-of-day end (shop time)
                 </Label>
                 <Input
@@ -934,11 +934,11 @@ function PromotionFormCard({
                   onChange={(e) =>
                     setForm((f) => ({ ...f, dailyEnd: e.target.value }))
                   }
-                  className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
+                  className="bg-white border border-border focus:border-primary h-11 mt-1"
                   data-testid="input-time-end"
                 />
               </div>
-              <p className="text-xs text-zinc-500 leading-snug -mt-2">
+              <p className="text-xs text-muted-foreground leading-snug -mt-2">
                 Times are local shop time ({shopTimezone}) and are
                 interpreted day-by-day. For overnight windows that cross
                 midnight (for example "Sat 10:00 PM – 2:00 AM"), also tick
@@ -948,7 +948,7 @@ function PromotionFormCard({
           )}
 
           <div>
-            <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+            <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
               Window start (optional)
             </Label>
             <Input
@@ -957,12 +957,12 @@ function PromotionFormCard({
               onChange={(e) =>
                 setForm((f) => ({ ...f, startsAtLocal: e.target.value }))
               }
-              className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
+              className="bg-white border border-border focus:border-primary h-11 mt-1"
               data-testid="input-starts-at"
             />
             {form.startsAtLocal && (
               <p
-                className="text-[11px] text-zinc-500 mt-1"
+                className="text-[11px] text-muted-foreground mt-1"
                 data-testid="text-starts-at-shop"
               >
                 = {formatInShopTimezone(form.startsAtLocal, shopTimezone)} (shop time)
@@ -970,7 +970,7 @@ function PromotionFormCard({
             )}
           </div>
           <div>
-            <Label className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+            <Label className="font-semibold uppercase text-xs tracking-wide text-foreground">
               Window end (optional)
             </Label>
             <Input
@@ -979,19 +979,19 @@ function PromotionFormCard({
               onChange={(e) =>
                 setForm((f) => ({ ...f, endsAtLocal: e.target.value }))
               }
-              className="bg-white border border-zinc-200 focus:border-red-500 h-11 mt-1"
+              className="bg-white border border-border focus:border-primary h-11 mt-1"
               data-testid="input-ends-at"
             />
             {form.endsAtLocal && (
               <p
-                className="text-[11px] text-zinc-500 mt-1"
+                className="text-[11px] text-muted-foreground mt-1"
                 data-testid="text-ends-at-shop"
               >
                 = {formatInShopTimezone(form.endsAtLocal, shopTimezone)} (shop time)
               </p>
             )}
           </div>
-          <p className="text-xs text-zinc-500 leading-snug md:col-span-2 -mt-1">
+          <p className="text-xs text-muted-foreground leading-snug md:col-span-2 -mt-1">
             Window dates are stored as exact moments in time. They're entered
             in <span className="font-semibold">your computer's local time</span>{" "}
             (currently {browserTzLabel}) and converted to UTC on save. If you
@@ -1006,7 +1006,7 @@ function PromotionFormCard({
         <Button
           type="submit"
           disabled={submitting}
-          className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-11 shadow-sm"
+          className="bg-primary hover:bg-primary text-white font-semibold h-11 shadow-sm"
           data-testid="button-save"
         >
           {submitting ? "Saving..." : "Save promotion"}
@@ -1014,7 +1014,7 @@ function PromotionFormCard({
         <Button
           type="button"
           onClick={onClose}
-          className="bg-white text-zinc-700 border border-zinc-200 hover:border-red-300 font-semibold uppercase tracking-wide h-11"
+          className="bg-white text-foreground border border-border hover:border-primary font-semibold h-11"
           data-testid="button-cancel"
         >
           Cancel

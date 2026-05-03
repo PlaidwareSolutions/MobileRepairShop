@@ -92,16 +92,16 @@ export function FinancingForm() {
   if (done) {
     return (
       <div
-        className="bg-red-500 text-black p-6 border border-zinc-200 shadow-md"
+        className="bg-primary text-black p-6 border border-border shadow-md"
         data-testid="financing-form-success"
       >
-        <div className="font-bold uppercase text-2xl mb-2">Pre-qualification received.</div>
+        <div className="font-semibold text-2xl mb-2">Pre-qualification received.</div>
         <p className="font-bold">
           We&apos;ll text or call you back today during business hours with the next step.
         </p>
         <button
           onClick={() => setDone(false)}
-          className="mt-4 underline font-bold uppercase text-sm"
+          className="mt-4 underline font-medium text-sm"
           data-testid="financing-form-restart"
         >
           Submit another
@@ -113,7 +113,7 @@ export function FinancingForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="bg-zinc-100 border border-zinc-200 p-6 md:p-8 space-y-5"
+      className="bg-muted border border-border p-6 md:p-8 space-y-5"
       data-testid="form-financing"
     >
       {/*
@@ -145,7 +145,7 @@ export function FinancingForm() {
       <div className="space-y-2">
         <Label
           htmlFor="fin-name"
-          className="font-bold uppercase text-xs tracking-wide text-zinc-700"
+          className="font-semibold text-xs tracking-wide text-foreground"
         >
           Your name
         </Label>
@@ -153,18 +153,18 @@ export function FinancingForm() {
           id="fin-name"
           autoComplete="name"
           {...register("name", { required: true })}
-          className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+          className="bg-white border border-border focus:border-primary h-12"
           data-testid="input-financing-name"
         />
         {errors.name && (
-          <div className="text-red-600 font-bold text-xs uppercase">Name is required</div>
+          <div className="text-primary font-medium text-xs uppercase tracking-wide">Name is required</div>
         )}
       </div>
 
       <div className="space-y-2">
         <Label
           htmlFor="fin-phone"
-          className="font-bold uppercase text-xs tracking-wide text-zinc-700"
+          className="font-semibold text-xs tracking-wide text-foreground"
         >
           Callback phone
         </Label>
@@ -175,11 +175,11 @@ export function FinancingForm() {
           inputMode="tel"
           placeholder="(346) 555-0102"
           {...register("phone", { required: true, minLength: 7 })}
-          className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+          className="bg-white border border-border focus:border-primary h-12"
           data-testid="input-financing-phone"
         />
         {errors.phone && (
-          <div className="text-red-600 font-bold text-xs uppercase">
+          <div className="text-primary font-medium text-xs uppercase tracking-wide">
             We need a phone number to text you back
           </div>
         )}
@@ -188,7 +188,7 @@ export function FinancingForm() {
       <div className="space-y-2">
         <Label
           htmlFor="fin-desired"
-          className="font-bold uppercase text-xs tracking-wide text-zinc-700"
+          className="font-semibold text-xs tracking-wide text-foreground"
         >
           Phone you want
         </Label>
@@ -196,11 +196,11 @@ export function FinancingForm() {
           id="fin-desired"
           placeholder="iPhone 14, Samsung Galaxy S23, Pixel 8…"
           {...register("desiredPhone", { required: true })}
-          className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+          className="bg-white border border-border focus:border-primary h-12"
           data-testid="input-financing-desired-phone"
         />
         {errors.desiredPhone && (
-          <div className="text-red-600 font-bold text-xs uppercase">
+          <div className="text-primary font-medium text-xs uppercase tracking-wide">
             Tell us which phone you&apos;re after
           </div>
         )}
@@ -209,14 +209,14 @@ export function FinancingForm() {
       <div className="space-y-2">
         <Label
           htmlFor="fin-budget"
-          className="font-bold uppercase text-xs tracking-wide text-zinc-700"
+          className="font-semibold text-xs tracking-wide text-foreground"
         >
           Monthly budget
         </Label>
         <select
           id="fin-budget"
           {...register("monthlyBudget", { required: true })}
-          className="w-full bg-white border border-zinc-200 focus:border-red-500 focus:outline-none h-12 px-3 font-medium text-zinc-900"
+          className="w-full bg-white border border-border focus:border-primary focus:outline-none h-12 px-3 font-medium text-foreground"
           data-testid="input-financing-budget"
           defaultValue=""
         >
@@ -230,7 +230,7 @@ export function FinancingForm() {
           ))}
         </select>
         {errors.monthlyBudget && (
-          <div className="text-red-600 font-bold text-xs uppercase">
+          <div className="text-primary font-medium text-xs uppercase tracking-wide">
             Pick a monthly budget so we can match a phone
           </div>
         )}
@@ -239,22 +239,22 @@ export function FinancingForm() {
       <div className="space-y-2">
         <Label
           htmlFor="fin-notes"
-          className="font-bold uppercase text-xs tracking-wide text-zinc-700"
+          className="font-semibold text-xs tracking-wide text-foreground"
         >
-          Anything else? <span className="text-zinc-500 normal-case font-medium">(optional)</span>
+          Anything else? <span className="text-muted-foreground normal-case font-medium">(optional)</span>
         </Label>
         <Textarea
           id="fin-notes"
           placeholder="Trade-in, carrier, color, storage…"
           {...register("notes")}
-          className="bg-white border border-zinc-200 focus:border-red-500 min-h-[96px]"
+          className="bg-white border border-border focus:border-primary min-h-[96px]"
           data-testid="input-financing-notes"
         />
       </div>
 
       {error && (
         <div
-          className="bg-red-500 text-zinc-900 px-4 py-3 font-bold uppercase text-sm"
+          className="bg-primary text-foreground px-4 py-3 font-medium text-sm"
           data-testid="financing-form-error"
         >
           {error}
@@ -264,12 +264,12 @@ export function FinancingForm() {
       <Button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide text-lg h-14"
+        className="w-full bg-primary hover:bg-white hover:text-black text-foreground font-semibold uppercase tracking-wide text-lg h-14"
         data-testid="button-submit-financing"
       >
         {isSubmitting ? "Sending..." : "Pre-qualify Me"}
       </Button>
-      <p className="text-xs text-zinc-500 font-medium leading-snug">
+      <p className="text-xs text-muted-foreground font-medium leading-snug">
         Submitting this form is a soft pre-qualification only. It does not affect your credit
         score. The actual lender check happens in store after we confirm the phone is available.
       </p>

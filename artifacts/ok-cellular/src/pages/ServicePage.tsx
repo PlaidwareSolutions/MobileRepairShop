@@ -1,5 +1,5 @@
 import { useRoute, Link } from "wouter";
-import { CheckCircle2, Wrench } from "lucide-react";
+import { CheckCircle2, Wrench, Clock, ShieldCheck, ArrowRight, Phone } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -18,26 +18,14 @@ import { inventoryGroupBySlug, inventoryGroupSlugForPageSlug } from "@/lib/inven
 import NotFound from "@/pages/not-found";
 
 const PROCESS_PHOTOS: Photo[] = [
-  {
-    src640: "/images/photos/process-diagnostic-640.jpg",
-    src1024: "/images/photos/process-diagnostic-1024.jpg",
-    alt: "Customer setting their phone down on the counter for a free diagnostic",
-  },
-  {
-    src640: "/images/photos/process-bench-640.jpg",
-    src1024: "/images/photos/process-bench-1024.jpg",
-    alt: "Technician working on a device at the repair bench",
-  },
-  {
-    src640: "/images/photos/process-quality-640.jpg",
-    src1024: "/images/photos/process-quality-1024.jpg",
-    alt: "Hand testing a smartphone screen after the repair",
-  },
-  {
-    src640: "/images/photos/process-pickup-640.jpg",
-    src1024: "/images/photos/process-pickup-1024.jpg",
-    alt: "Customer picking up their finished device at the counter",
-  },
+  { src640: "/images/photos/process-diagnostic-640.jpg", src1024: "/images/photos/process-diagnostic-1024.jpg",
+    alt: "Customer setting their phone down on the counter for a free diagnostic" },
+  { src640: "/images/photos/process-bench-640.jpg", src1024: "/images/photos/process-bench-1024.jpg",
+    alt: "Technician working on a device at the repair bench" },
+  { src640: "/images/photos/process-quality-640.jpg", src1024: "/images/photos/process-quality-1024.jpg",
+    alt: "Hand testing a smartphone screen after the repair" },
+  { src640: "/images/photos/process-pickup-640.jpg", src1024: "/images/photos/process-pickup-1024.jpg",
+    alt: "Customer picking up their finished device at the counter" },
 ];
 
 const REPAIR_HUB_SLUGS = new Set([
@@ -101,6 +89,10 @@ export default function ServicePage() {
 
   const inventoryGroup = inventoryGroupBySlug(inventoryGroupSlugForPageSlug(data.slug));
 
+  // Pull a representative starting price/turnaround from the data so the
+  // iFixit-style "guide info" strip near the top is concrete, not generic.
+  const startingPrice = data.pricing[0]?.price ?? "Free quote";
+
   return (
     <PageShell hideTicker>
       <SEO
@@ -120,17 +112,28 @@ export default function ServicePage() {
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
-      {/* Problems */}
-      <section className="py-16 px-4 bg-zinc-50">
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
+      {/* Guide info strip — iFixit-style at-a-glance metadata */}
+      <section className="bg-card border-b border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+          <InfoCell icon={<Wrench className="w-4 h-4 text-primary" />} label="Starting price" value={startingPrice} />
+          <InfoCell icon={<Clock className="w-4 h-4 text-primary" />} label="Typical time" value="Same day" />
+          <InfoCell icon={<ShieldCheck className="w-4 h-4 text-primary" />} label="Warranty" value="90-day parts &amp; labor" />
+          <InfoCell icon={<CheckCircle2 className="w-4 h-4 text-primary" />} label="Diagnostic" value="Free, no obligation" />
+        </div>
+      </section>
+
+      {/* What we fix + Brands */}
+      <section className="bg-background">
+        <div className="max-w-[1240px] mx-auto px-4 py-10 md:py-14 grid lg:grid-cols-2 gap-10">
           <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-              WHAT WE <span className="text-red-500">FIX</span>
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Symptoms we fix</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-5">
+              What we repair on this device
             </h2>
-            <ul className="space-y-3">
+            <ul className="space-y-2.5">
               {data.problems.map((p) => (
-                <li key={p} className="flex items-start gap-3 text-lg font-bold text-zinc-700">
-                  <CheckCircle2 className="w-6 h-6 text-red-500 shrink-0 mt-0.5" />
+                <li key={p} className="flex items-start gap-2.5 text-base text-foreground">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                   <span>{p}</span>
                 </li>
               ))}
@@ -138,12 +141,16 @@ export default function ServicePage() {
           </div>
           {data.brands && data.brands.length > 0 && (
             <div>
-              <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-                BRANDS &amp; <span className="text-red-500">MODELS</span>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Compatible models</div>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-5">
+                Brands &amp; models supported
               </h2>
               <div className="flex flex-wrap gap-2">
                 {data.brands.map((b) => (
-                  <span key={b} className="bg-zinc-100 border border-zinc-200 px-4 py-2 font-bold uppercase text-sm">
+                  <span
+                    key={b}
+                    className="rounded-full border border-border bg-muted/40 px-3 py-1 text-xs font-medium text-foreground"
+                  >
                     {b}
                   </span>
                 ))}
@@ -153,17 +160,21 @@ export default function ServicePage() {
         </div>
       </section>
 
-      {/* Process */}
-      <section className="py-16 px-4 bg-red-500 text-black">
-        <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-10">
-            HOW IT <span className="text-zinc-900">WORKS</span>
+      {/* Process — guide-style numbered steps */}
+      <section className="bg-muted/40 border-y border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-10 md:py-14">
+          <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">How it works</div>
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-6">
+            From drop-off to pick-up in {data.process.length} steps
           </h2>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <ol className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {data.process.map((step, i) => {
               const stepPhoto = PROCESS_PHOTOS[i];
               return (
-                <div key={step.step} className="group bg-white text-zinc-900 transform hover:-translate-y-1 transition-transform overflow-hidden">
+                <li
+                  key={step.step}
+                  className="rounded-md border border-border bg-card overflow-hidden"
+                >
                   {stepPhoto ? (
                     <PhotoFrame
                       photo={stepPhoto}
@@ -171,94 +182,104 @@ export default function ServicePage() {
                       sizes="(min-width: 1024px) 280px, (min-width: 640px) 50vw, 100vw"
                     />
                   ) : null}
-                  <div className="p-6">
-                    <div className="text-red-500 font-extrabold text-5xl mb-2">0{i + 1}</div>
-                    <h3 className="text-xl font-bold uppercase mb-2">{step.step}</h3>
-                    <p className="text-zinc-600 font-bold text-sm">{step.detail}</p>
+                  <div className="p-4">
+                    <div className="flex items-center gap-2 text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">
+                      <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-primary text-primary-foreground tabular-nums">
+                        {i + 1}
+                      </span>
+                      Step {i + 1}
+                    </div>
+                    <h3 className="text-base font-semibold text-foreground mb-1">{step.step}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{step.detail}</p>
                   </div>
-                </div>
+                </li>
               );
             })}
-          </div>
-          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-zinc-950 text-white p-5 shadow-[6px_6px_0_0_#09090b]">
-            <p className="font-black uppercase tracking-tight text-sm md:text-base">
-              See the before-and-after for the kinds of repairs we do every day.
+          </ol>
+          <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 rounded-md border border-border bg-card p-4">
+            <p className="text-sm text-muted-foreground">
+              Curious what these repairs look like in real life? See the before-and-after gallery.
             </p>
             <Link
               href="/#our-work"
-              className="bg-white text-zinc-950 hover:bg-red-600 hover:text-white font-black uppercase tracking-widest text-xs px-5 py-3 shadow-[4px_4px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#fff] transition-all whitespace-nowrap"
+              className="inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline whitespace-nowrap"
               data-testid="link-our-work"
             >
-              View Our Work →
+              View our work <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Pricing */}
-      <section className="py-16 px-4 bg-zinc-100">
-        <div className="max-w-[1240px] mx-auto">
-          <div className="bg-zinc-900 text-white p-6 md:p-10 shadow-md">
-            <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-4">
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                Honest <span className="text-red-500">Pricing</span>
+      {/* Pricing table — clean iFixit-style */}
+      <section className="bg-background">
+        <div className="max-w-[1240px] mx-auto px-4 py-10 md:py-14">
+          <div className="flex items-end justify-between gap-6 mb-5">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Walk-in pricing</div>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+                Honest, up-front pricing
               </h2>
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-500">Walk-in Pricing</span>
             </div>
-            <div className="space-y-3">
+            <div className="hidden md:block text-xs text-muted-foreground max-w-xs text-right">
+              Starting prices. Final price confirmed after a free diagnostic — no surprises.
+            </div>
+          </div>
+          <div className="rounded-md border border-border bg-card overflow-hidden">
+            <div className="grid grid-cols-12 px-4 py-3 border-b border-border bg-muted/60 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+              <div className="col-span-8">Repair</div>
+              <div className="col-span-4 text-right">Starting at</div>
+            </div>
+            <ul className="divide-y divide-border">
               {data.pricing.map((p) => (
-                <div
+                <li
                   key={p.label}
-                  className="flex items-center justify-between gap-4 px-4 md:px-5 py-4 bg-zinc-900 hover:bg-red-600 transition-colors group"
+                  className="grid grid-cols-12 px-4 py-3.5 items-center text-sm hover:bg-muted/60 transition-colors"
                   data-testid={`pricing-${p.label}`}
                 >
-                  <div className="flex items-center gap-4 min-w-0">
-                    <div className="bg-zinc-800 group-hover:bg-zinc-900 p-2 shrink-0 transition-colors">
-                      <Wrench className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" />
-                    </div>
+                  <div className="col-span-8 flex items-start gap-2.5 min-w-0">
+                    <Wrench className="w-4 h-4 text-primary shrink-0 mt-0.5" />
                     <div className="min-w-0">
-                      <h4 className="text-base md:text-lg font-extrabold tracking-tight truncate">{p.label}</h4>
+                      <div className="text-foreground font-semibold">{p.label}</div>
                       {p.note && (
-                        <div className="text-[11px] font-semibold uppercase tracking-wide text-zinc-500 group-hover:text-red-200">
-                          {p.note}
-                        </div>
+                        <div className="text-xs text-muted-foreground mt-0.5">{p.note}</div>
                       )}
                     </div>
                   </div>
-                  <div className="font-bold uppercase text-sm md:text-base tracking-wide text-red-500 group-hover:text-white shrink-0">
+                  <div className="col-span-4 text-right text-foreground font-semibold tabular-nums">
                     {p.price}
                   </div>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </div>
-          <p className="text-sm text-zinc-500 font-bold uppercase mt-4">
+          <p className="text-xs text-muted-foreground mt-3">
             Quotes shown are starting prices. Final price confirmed after free diagnostic.
           </p>
         </div>
       </section>
 
       {data.upgradeTo && (
-        <section className="py-10 px-4 bg-white border-t border-zinc-200">
-          <div className="max-w-[1240px] mx-auto">
+        <section className="bg-muted/40 border-y border-border">
+          <div className="max-w-[1240px] mx-auto px-4 py-8">
             <div
-              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-zinc-50 border border-zinc-200 p-5 md:p-6"
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-md border border-border bg-card p-5"
               data-testid="service-upgrade-callout"
             >
               <div className="min-w-0">
-                <div className="text-[10px] font-extrabold uppercase tracking-widest text-red-500 mb-1">
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">
                   Looking to upgrade instead?
                 </div>
-                <p className="font-bold text-zinc-900 text-base md:text-lg">
+                <p className="text-base text-foreground">
                   We sell unlocked {data.upgradeTo.label} handsets too — tested, warrantied and ready to activate.
                 </p>
               </div>
               <Link
                 href={`/${data.upgradeTo.slug}`}
-                className="bg-zinc-900 text-white hover:bg-red-500 font-black uppercase tracking-widest text-xs px-5 py-3 shadow-[4px_4px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#09090b] transition-all whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm px-4 h-10 whitespace-nowrap transition-colors"
                 data-testid={`link-upgrade-${data.upgradeTo.slug}`}
               >
-                Buy {data.upgradeTo.label} →
+                Buy {data.upgradeTo.label} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -266,26 +287,26 @@ export default function ServicePage() {
       )}
 
       {inventoryGroup && (
-        <section className="py-10 px-4 bg-white border-t border-zinc-200">
-          <div className="max-w-[1240px] mx-auto">
+        <section className="bg-background">
+          <div className="max-w-[1240px] mx-auto px-4 py-8">
             <div
-              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 bg-zinc-50 border border-zinc-200 p-5 md:p-6"
+              className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 rounded-md border border-border bg-muted/40 p-5"
               data-testid="service-inventory-callout"
             >
               <div className="min-w-0">
-                <div className="text-[10px] font-extrabold uppercase tracking-widest text-red-500 mb-1">
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">
                   Looking to buy instead?
                 </div>
-                <p className="font-bold text-zinc-900 text-base md:text-lg">
+                <p className="text-base text-foreground">
                   We also sell tested, warrantied {inventoryGroup.label.toLowerCase()} at our Humble shop.
                 </p>
               </div>
               <Link
                 href={`/inventory/${inventoryGroup.slug}`}
-                className="bg-zinc-900 text-white hover:bg-red-500 font-black uppercase tracking-widest text-xs px-5 py-3 shadow-[4px_4px_0_0_#ef4444] hover:shadow-[2px_2px_0_0_#09090b] transition-all whitespace-nowrap"
+                className="inline-flex items-center gap-1.5 rounded-md border border-border bg-card hover:border-primary hover:text-primary font-semibold text-sm px-4 h-10 whitespace-nowrap transition-colors"
                 data-testid={`link-inventory-${inventoryGroup.slug}`}
               >
-                Browse {inventoryGroup.label} →
+                Browse {inventoryGroup.label} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -294,35 +315,38 @@ export default function ServicePage() {
 
       {/* Lead-capture form: Contact on hubs, Quote+Appointment on detail pages */}
       {REPAIR_HUB_SLUGS.has(data.slug) ? (
-        <section className="py-16 px-4 bg-white border-t border-zinc-200">
-          <div className="max-w-[900px] mx-auto">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-4 text-zinc-900 text-center">
-              NOT SURE WHAT YOU NEED? <span className="text-red-500">ASK US.</span>
+        <section className="bg-background border-t border-border">
+          <div className="max-w-[860px] mx-auto px-4 py-12 md:py-16">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Talk to a technician</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-3">
+              Not sure what you need? Ask us.
             </h2>
-            <p className="text-lg font-bold text-zinc-600 mb-8 max-w-2xl mx-auto text-center">
+            <p className="text-base text-muted-foreground mb-6 leading-relaxed">
               Send us a quick note about your device — we'll text or call back today with a firm price and the fastest way to get it fixed.
             </p>
             <ContactForm />
           </div>
         </section>
       ) : (
-        <section className="py-16 px-4 bg-white border-t border-zinc-200">
-          <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
+        <section className="bg-background border-t border-border">
+          <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-2 gap-10">
             <div>
-              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-zinc-900">
-                GET A <span className="text-red-500">QUOTE</span>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Free quote</div>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-3">
+                Get a quote in minutes
               </h2>
-              <p className="text-lg font-bold text-zinc-600 mb-6 max-w-md">
-                Tell us what's broken and we'll text or call you back today with a firm price.
+              <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                Tell us what's broken and we'll text or call back today with a firm price.
               </p>
               <RepairQuoteForm defaultDeviceType={data.hero.eyebrow} />
             </div>
             <div>
-              <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-zinc-900">
-                OR <span className="text-red-500">BOOK A SLOT</span>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Or book a slot</div>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-3">
+                Reserve a time at the bench
               </h2>
-              <p className="text-lg font-bold text-zinc-600 mb-6 max-w-md">
-                Walk-ins always welcome — but if you want a guaranteed slot, book here.
+              <p className="text-base text-muted-foreground mb-6 leading-relaxed">
+                Walk-ins are always welcome — but if you want a guaranteed slot, book one here.
               </p>
               <AppointmentForm defaultServiceType={data.serviceType} />
             </div>
@@ -331,20 +355,21 @@ export default function ServicePage() {
       )}
 
       {isHub && hubChildren.length > 0 && (
-        <section className="py-16 px-4 bg-zinc-50 border-t border-zinc-200">
-          <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
-              EVERY <span className="text-red-500">REPAIR</span> WE DO
+        <section className="bg-muted/40 border-t border-border">
+          <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-14">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Repair index</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-6">
+              Every repair we do
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="repair-hub-children">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2.5" data-testid="repair-hub-children">
               {hubChildren.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${c.slug}`}
-                  className="bg-white border border-zinc-200 hover:border-red-500 p-5 transition-colors group"
+                  className="rounded-md border border-border bg-card hover:border-primary hover:shadow-sm transition-all p-4"
                   data-testid={`repair-hub-child-${c.slug}`}
                 >
-                  <div className="font-bold uppercase text-base text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
+                  <div className="text-sm font-semibold text-foreground group-hover:text-primary leading-tight">
                     {c.title}
                   </div>
                 </Link>
@@ -355,17 +380,48 @@ export default function ServicePage() {
       )}
 
       {(business.socialFacebook || business.socialInstagram || business.socialTiktok || business.socialYoutube || business.socialX) && (
-        <section className="py-10 px-4 bg-zinc-50 border-t border-zinc-200">
-          <div className="max-w-[1240px] mx-auto">
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-3">Follow Us</p>
-            <SocialLinks business={business} iconClass="w-6 h-6" />
+        <section className="bg-background border-t border-border">
+          <div className="max-w-[1240px] mx-auto px-4 py-8 flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">Follow us</div>
+              <p className="text-sm text-muted-foreground">See more repairs and shop updates.</p>
+            </div>
+            <SocialLinks business={business} iconClass="w-5 h-5" />
           </div>
         </section>
       )}
+
+      {/* Quick-call strip — keeps phone visible after the form */}
+      <section className="bg-card border-t border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-6 flex flex-wrap items-center justify-between gap-3">
+          <div className="text-sm text-muted-foreground">
+            Prefer to talk to a real human?
+          </div>
+          <a
+            href={business.phoneTel}
+            className="inline-flex items-center gap-2 text-base font-semibold text-foreground hover:text-primary transition-colors"
+          >
+            <Phone className="w-4 h-4 text-primary" />
+            {business.phoneDisplay} — {business.hoursShort}
+          </a>
+        </div>
+      </section>
 
       <Faq items={data.faqs} />
       <LocationCard />
       <RelatedLinks slugs={data.related} inventoryGroupSlug={inventoryGroup?.slug} />
     </PageShell>
+  );
+}
+
+function InfoCell({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+  return (
+    <div className="flex items-start gap-2.5">
+      <div className="mt-0.5 shrink-0">{icon}</div>
+      <div className="min-w-0">
+        <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">{label}</div>
+        <div className="text-sm font-semibold text-foreground" dangerouslySetInnerHTML={{ __html: value }} />
+      </div>
+    </div>
   );
 }

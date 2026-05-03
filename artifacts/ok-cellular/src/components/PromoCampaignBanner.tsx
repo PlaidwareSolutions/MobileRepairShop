@@ -24,31 +24,31 @@ type AccentPalette = {
 const ACCENT: Record<PublicPromotion["accent"], AccentPalette> = {
   amber: {
     bg: "bg-gradient-to-r from-amber-500 to-amber-600",
-    text: "text-zinc-900",
-    badge: "bg-zinc-900 text-amber-200",
-    cta: "bg-zinc-900 text-amber-300",
-    ctaHover: "hover:bg-zinc-800",
+    text: "text-foreground",
+    badge: "bg-foreground text-amber-200",
+    cta: "bg-foreground text-amber-300",
+    ctaHover: "hover:bg-foreground/90",
   },
   red: {
-    bg: "bg-gradient-to-r from-red-600 to-red-700",
+    bg: "bg-gradient-to-r from-primary to-primary",
     text: "text-white",
     badge: "bg-white/20 text-white",
-    cta: "bg-white text-red-700",
-    ctaHover: "hover:bg-zinc-100",
+    cta: "bg-white text-primary",
+    ctaHover: "hover:bg-muted",
   },
   emerald: {
     bg: "bg-gradient-to-r from-emerald-600 to-emerald-700",
     text: "text-white",
     badge: "bg-white/20 text-white",
     cta: "bg-white text-emerald-700",
-    ctaHover: "hover:bg-zinc-100",
+    ctaHover: "hover:bg-muted",
   },
   blue: {
     bg: "bg-gradient-to-r from-sky-600 to-sky-700",
     text: "text-white",
     badge: "bg-white/20 text-white",
     cta: "bg-white text-sky-700",
-    ctaHover: "hover:bg-zinc-100",
+    ctaHover: "hover:bg-muted",
   },
 };
 
@@ -100,7 +100,7 @@ export function PromoBannerView({
         >
           {promo.badge ? (
             <span
-              className={`shrink-0 self-start md:self-auto inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] md:text-xs font-bold uppercase tracking-wider motion-safe:animate-pulse ${palette.badge}`}
+              className={`shrink-0 self-start md:self-auto inline-flex items-center rounded-full px-2.5 py-0.5 text-[10px] md:text-xs font-semibold tracking-wider motion-safe:animate-pulse ${palette.badge}`}
               data-testid="promo-campaign-badge"
             >
               {promo.badge}
@@ -108,7 +108,7 @@ export function PromoBannerView({
           ) : null}
           <div className="min-w-0 flex-1">
             <p
-              className="text-sm md:text-base font-extrabold leading-snug truncate md:whitespace-normal"
+              className="text-sm md:text-base font-semibold leading-snug truncate md:whitespace-normal"
               data-testid="promo-campaign-headline"
             >
               {promo.headline}
@@ -122,7 +122,7 @@ export function PromoBannerView({
           {promo.ctaLabel && promo.ctaHref ? (
             <a
               href={promo.ctaHref}
-              className={`shrink-0 inline-flex items-center justify-center rounded-md ${palette.cta} ${palette.ctaHover} text-xs md:text-sm font-bold uppercase tracking-wide px-4 py-2 transition-colors`}
+              className={`shrink-0 inline-flex items-center justify-center rounded-md ${palette.cta} ${palette.ctaHover} text-xs md:text-sm font-semibold tracking-wide px-4 py-2 transition-colors`}
               data-testid="promo-campaign-cta"
             >
               {promo.ctaLabel}

@@ -23,8 +23,8 @@ export function AdminNav({
             data-testid={t.testId}
             className={`px-4 py-2 font-semibold uppercase text-sm tracking-wide border rounded-lg transition-colors ${
               isActive
-                ? "bg-red-500 border-red-500 text-white shadow-sm"
-                : "bg-white border-zinc-200 text-zinc-700 hover:border-red-500 hover:text-red-600"
+                ? "bg-primary border-primary text-white shadow-sm"
+                : "bg-white border-border text-foreground hover:border-primary hover:text-primary"
             }`}
           >
             {t.label}

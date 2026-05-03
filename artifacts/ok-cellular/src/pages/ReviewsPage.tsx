@@ -45,35 +45,35 @@ export default function ReviewsPage() {
       />
       <Breadcrumbs items={[{ label: "Reviews" }]} />
 
-      <section className="py-12 md:py-16 px-4 bg-zinc-50 border-b border-zinc-200">
+      <section className="py-12 md:py-16 px-4 bg-muted/40 border-b border-border">
         <div className="max-w-[1240px] mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight">
-            REAL <span className="text-red-500">REVIEWS</span>
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-6 leading-tight">
+            Real <span className="text-primary">reviews</span>
           </h1>
           <div className="flex items-center gap-3 mb-12">
             <div className="flex">
               {Array.from({ length: 5 }).map((_, i) => (
-                <Star key={i} className="w-6 h-6 fill-red-500 text-red-500" />
+                <Star key={i} className="w-6 h-6 fill-red-500 text-primary" />
               ))}
             </div>
-            <span className="font-bold uppercase text-lg text-zinc-900">{avg.toFixed(1)} / 5 from {REVIEWS_DATA.length} customers</span>
+            <span className="font-semibold text-base text-foreground">{avg.toFixed(1)} / 5 from {REVIEWS_DATA.length} customers</span>
           </div>
 
           <div className="grid md:grid-cols-2 gap-6">
             {REVIEWS_DATA.map((r, i) => (
-              <article key={i} className="bg-white border border-zinc-200 p-6 hover:border-red-500 transition-colors">
+              <article key={i} className="bg-white border border-border p-6 hover:border-primary transition-colors">
                 <div className="flex items-center gap-2 mb-3">
                   {Array.from({ length: r.rating }).map((_, j) => (
-                    <Star key={j} className="w-4 h-4 fill-red-500 text-red-500" />
+                    <Star key={j} className="w-4 h-4 fill-red-500 text-primary" />
                   ))}
                 </div>
-                <p className="font-bold text-zinc-700 text-base md:text-lg leading-relaxed mb-4">"{r.body}"</p>
+                <p className="font-bold text-foreground text-base md:text-lg leading-relaxed mb-4">"{r.body}"</p>
                 <div className="flex justify-between items-center">
                   <div>
-                    <div className="font-bold uppercase text-sm text-zinc-900">{r.author}</div>
-                    {r.service && <div className="text-zinc-500 font-bold uppercase text-xs">{r.service}</div>}
+                    <div className="font-medium text-sm text-foreground">{r.author}</div>
+                    {r.service && <div className="text-muted-foreground font-semibold text-xs">{r.service}</div>}
                   </div>
-                  <div className="text-zinc-500 font-bold text-xs">{r.date}</div>
+                  <div className="text-muted-foreground font-bold text-xs">{r.date}</div>
                 </div>
               </article>
             ))}

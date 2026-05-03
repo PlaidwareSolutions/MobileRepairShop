@@ -31,48 +31,48 @@ export default function AreaPage() {
       <Breadcrumbs items={[{ label: "Areas Served" }, { label: data.title }]} />
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
-      <section className="py-16 px-4 bg-zinc-50">
+      <section className="py-16 px-4 bg-muted/40">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-              FROM <span className="text-red-500">{data.city.toUpperCase()}</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+              from <span className="text-primary">{data.city}</span>
             </h2>
-            <p className="text-lg font-bold text-zinc-700 mb-6 flex items-start gap-3">
-              <MapPin className="w-6 h-6 text-red-500 shrink-0 mt-1" />
+            <p className="text-lg font-bold text-foreground mb-6 flex items-start gap-3">
+              <MapPin className="w-6 h-6 text-primary shrink-0 mt-1" />
               {data.driveTime}
             </p>
-            <h3 className="text-zinc-500 font-bold uppercase tracking-wide text-xs mb-3">Nearby landmarks</h3>
+            <h3 className="text-muted-foreground font-semibold tracking-wide text-xs mb-3">Nearby landmarks</h3>
             <div className="flex flex-wrap gap-2 mb-8">
               {data.landmarks.map((l) => (
-                <span key={l} className="bg-zinc-100 border border-zinc-200 px-3 py-1 font-bold uppercase text-xs">
+                <span key={l} className="bg-muted border border-border px-3 py-1 font-semibold text-xs">
                   {l}
                 </span>
               ))}
             </div>
-            <h3 className="text-zinc-500 font-bold uppercase tracking-wide text-xs mb-3">What we do for {data.city}</h3>
+            <h3 className="text-muted-foreground font-semibold tracking-wide text-xs mb-3">What we do for {data.city}</h3>
             <ul className="space-y-3 mb-8">
               {data.whyUs.map((w) => (
-                <li key={w} className="flex items-start gap-3 text-base font-bold text-zinc-700">
-                  <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                <li key={w} className="flex items-start gap-3 text-base font-bold text-foreground">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                   <span>{w}</span>
                 </li>
               ))}
             </ul>
             <div className="flex flex-wrap gap-3">
-              <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
+              <Button asChild className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-6">
                 <a href={business.phoneTel}>Call Now</a>
               </Button>
-              <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
+              <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">
                 <a href={business.mapsLink} target="_blank" rel="noreferrer">Directions</a>
               </Button>
-              <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
+              <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">
                 <Link href="/phone-repair-houston-tx">All Repairs</Link>
               </Button>
             </div>
           </div>
           <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-              GET A <span className="text-red-500">QUOTE</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+              Get a <span className="text-primary">quote</span>
             </h2>
             <RepairQuoteForm />
           </div>

@@ -1,27 +1,27 @@
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
+import { useState, type FormEvent } from "react";
 import {
   Smartphone,
   Tablet,
   Laptop,
   Gamepad2,
   Headphones,
-  Wrench,
-  Zap,
-  Star,
-  Shield,
-  ShieldCheck,
-  ArrowRight,
-  CheckCircle2,
   Battery,
-  Wifi,
+  Search,
   Phone,
   MapPin,
   Clock,
   Truck,
   CreditCard,
+  ArrowRight,
+  Zap,
+  ShieldCheck,
+  Star,
+  CheckCircle2,
+  Wifi,
+  Wrench,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { PageShell } from "@/components/PageShell";
 import { PromoCampaignBanner } from "@/components/PromoCampaignBanner";
 import { LocationCard } from "@/components/LocationCard";
@@ -30,160 +30,88 @@ import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import { useBusiness } from "@/components/BusinessContext";
 import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { BeforeAfter, type BeforeAfterPair } from "@/components/BeforeAfter";
-import { BUSINESS, HERO, SHIPPING, FINANCING } from "@/content";
+import { BUSINESS, SHIPPING, FINANCING } from "@/content";
 import { INVENTORY_GROUPS } from "@/lib/inventoryGroups";
 
-// Each known inventory group has its own canonical path (`/inventory/<slug>`)
-// so the homepage tile deep-links into a real, indexable page instead of a
-// query-string-filtered view that Google mostly ignores.
 const inventoryHref = (slug: string) => `/inventory/${encodeURIComponent(slug)}`;
-
 const groupSlug = (slug: string): string => {
   const found = INVENTORY_GROUPS.find((g) => g.slug === slug);
-  if (!found) {
-    // Fail loud at module load so a typo here can't silently send shoppers to
-    // an unfiltered inventory page.
-    throw new Error(`Unknown inventory group slug: ${slug}`);
-  }
+  if (!found) throw new Error(`Unknown inventory group slug: ${slug}`);
   return found.slug;
 };
-
 const photo = (slug: string, alt: string): Photo => ({
   src640: `/images/photos/${slug}-640.jpg`,
   src1024: `/images/photos/${slug}-1024.jpg`,
   alt,
 });
 
-const SERVICE_TILES: {
-  name: string;
-  desc: string;
-  icon: LucideIcon;
-  to: string;
-  image?: Photo;
-}[] = [
-  { name: "iPhone Repair", desc: "Screen, battery, charging port.", icon: Smartphone, to: "/iphone-repair-houston-tx",
+const DEVICE_TILES: { name: string; desc: string; icon: LucideIcon; to: string; image?: Photo }[] = [
+  { name: "iPhone", desc: "iPhone 6 through 16 Pro Max", icon: Smartphone, to: "/iphone-repair-houston-tx",
     image: photo("iphone-repair", "Technician using a precision screwdriver on an opened iPhone") },
-  { name: "Samsung Repair", desc: "Galaxy S, Note, A and Z series.", icon: Smartphone, to: "/samsung-repair-houston-tx",
+  { name: "Samsung Galaxy", desc: "S, Note, A and Z series", icon: Smartphone, to: "/samsung-repair-houston-tx",
     image: photo("samsung-repair", "Disassembled Samsung smartphone with the back glass removed on a repair workbench") },
-  { name: "Pixel Repair", desc: "Google Pixel 3 through 9 Pro.", icon: Smartphone, to: "/google-pixel-repair-houston-tx",
+  { name: "Google Pixel", desc: "Pixel 3 through 9 Pro", icon: Smartphone, to: "/google-pixel-repair-houston-tx",
     image: photo("pixel-repair", "Pixel-style smartphone laid out with repair tools on a workbench") },
-  { name: "iPad / Tablet", desc: "Glass, LCD, battery replacement.", icon: Tablet, to: "/tablet-repair-houston-tx",
+  { name: "iPad / Tablet", desc: "Glass, LCD and battery", icon: Tablet, to: "/tablet-repair-houston-tx",
     image: photo("tablet-repair", "Hands holding a digital tablet up close") },
-  { name: "MacBook Repair", desc: "Screen, battery, keyboard, board.", icon: Laptop, to: "/macbook-repair-houston-tx",
+  { name: "MacBook", desc: "Screen, battery, board", icon: Laptop, to: "/macbook-repair-houston-tx",
     image: photo("macbook-repair", "Technician soldering a laptop logic board at the workbench") },
-  { name: "Laptop Repair", desc: "HP, Dell, Lenovo, ASUS, Acer.", icon: Laptop, to: "/laptop-repair-houston-tx",
+  { name: "PC Laptop", desc: "HP, Dell, Lenovo, ASUS", icon: Laptop, to: "/laptop-repair-houston-tx",
     image: photo("laptop-repair", "A hand fixing the internal parts of a laptop") },
-  { name: "PS5 Repair", desc: "HDMI port, disc drive, no power.", icon: Gamepad2, to: "/ps5-repair-houston-tx",
+  { name: "PlayStation", desc: "HDMI, disc drive, no power", icon: Gamepad2, to: "/ps5-repair-houston-tx",
     image: photo("ps5-repair", "Close-up of a PlayStation 5 DualSense controller") },
-  { name: "Xbox Repair", desc: "Power issues, HDMI, disc drive.", icon: Gamepad2, to: "/xbox-repair-houston-tx",
+  { name: "Xbox", desc: "Power, HDMI, disc drive", icon: Gamepad2, to: "/xbox-repair-houston-tx",
     image: photo("xbox-repair", "Xbox controller and console set up on a workbench") },
-  { name: "Battery Replace", desc: "Phones, tablets, laptops.", icon: Battery, to: "/battery-replacement-houston-tx",
+  { name: "Battery Replace", desc: "Phones, tablets, laptops", icon: Battery, to: "/battery-replacement-houston-tx",
     image: photo("battery-replace", "Open phone with battery exposed and repair tools laid out") },
-  { name: "Accessories", desc: "Cases, chargers, screen protectors.", icon: Headphones, to: "/phone-accessories-houston-tx",
+  { name: "Accessories", desc: "Cases, chargers, audio", icon: Headphones, to: "/phone-accessories-houston-tx",
     image: photo("accessories", "Smartphone displayed alongside cases and accessories on a counter") },
 ];
 
+const POPULAR_REPAIRS: { name: string; price: string; time: string; to: string; difficulty: string }[] = [
+  { name: "iPhone Screen Replacement", price: "from $79", time: "30–60 min", difficulty: "Walk-in", to: "/iphone-screen-repair-houston-tx" },
+  { name: "Phone Battery Replacement", price: "from $49", time: "30–45 min", difficulty: "Walk-in", to: "/battery-replacement-houston-tx" },
+  { name: "PS5 HDMI Port Repair", price: "from $99", time: "Same day", difficulty: "Bench job", to: "/ps5-hdmi-repair-houston-tx" },
+  { name: "Samsung Back Glass", price: "from $69", time: "Same day", difficulty: "Bench job", to: "/samsung-repair-houston-tx" },
+  { name: "iPhone Charging Port", price: "from $69", time: "45–90 min", difficulty: "Bench job", to: "/iphone-charging-port-repair-houston-tx" },
+  { name: "MacBook Repair", price: "Free quote", time: "1–3 days", difficulty: "By appointment", to: "/macbook-repair-houston-tx" },
+];
+
 const beforeAfterPair = (slug: string, label: string, beforeAlt: string, afterAlt: string): BeforeAfterPair => ({
-  slug,
-  label,
+  slug, label,
   before: photo(`before-${slug}`, beforeAlt),
   after: photo(`after-${slug}`, afterAlt),
 });
 
 const BEFORE_AFTER_PAIRS: BeforeAfterPair[] = [
-  beforeAfterPair(
-    "iphone-screen",
-    "iPhone Screen Replacement",
+  beforeAfterPair("iphone-screen", "iPhone Screen Replacement",
     "iPhone with shattered front display glass spider-webbed across the screen",
-    "Same iPhone with a brand-new pristine display showing a clean blue lock screen",
-  ),
-  beforeAfterPair(
-    "samsung-back",
-    "Samsung Back Glass",
+    "Same iPhone with a brand-new pristine display showing a clean blue lock screen"),
+  beforeAfterPair("samsung-back", "Samsung Back Glass",
     "Samsung Galaxy with the rear glass panel completely shattered",
-    "Same Samsung Galaxy with a flawless mirror-clean replacement back glass",
-  ),
-  beforeAfterPair(
-    "logic-board",
-    "Water-Damaged Board",
+    "Same Samsung Galaxy with a flawless mirror-clean replacement back glass"),
+  beforeAfterPair("logic-board", "Water-Damaged Board",
     "Smartphone logic board with white-blue corrosion crusted over the chips",
-    "Same logic board after micro-soldering and ultrasonic cleaning, components shiny again",
-  ),
-  beforeAfterPair(
-    "ipad-frame",
-    "Tablet Battery Swap",
+    "Same logic board after micro-soldering and ultrasonic cleaning, components shiny again"),
+  beforeAfterPair("ipad-frame", "Tablet Battery Swap",
     "Tablet with a swollen lithium battery lifting the screen away from a bent aluminum frame",
-    "Same tablet with a fresh battery installed and the frame realigned flush",
-  ),
-  beforeAfterPair(
-    "hdmi-port",
-    "Console HDMI Repair",
+    "Same tablet with a fresh battery installed and the frame realigned flush"),
+  beforeAfterPair("hdmi-port", "Console HDMI Repair",
     "Gaming console HDMI port with bent and crushed gold connector pins",
-    "Same HDMI port rebuilt with all pins straight and aligned again",
-  ),
-  beforeAfterPair(
-    "macbook-keys",
-    "Keyboard Repair",
+    "Same HDMI port rebuilt with all pins straight and aligned again"),
+  beforeAfterPair("macbook-keys", "Keyboard Repair",
     "Laptop keyboard with three keys missing and the scissor mechanisms exposed",
-    "Same laptop keyboard fully restored with every key seated and aligned",
-  ),
+    "Same laptop keyboard fully restored with every key seated and aligned"),
 ];
 
-const HERO_DIAGNOSTIC: { name: string; price: string; icon: LucideIcon; to: string }[] = [
-  { name: "iPhone Screen", price: "from $79", icon: Smartphone, to: "/iphone-screen-repair-houston-tx" },
-  { name: "Battery Swap", price: "from $49", icon: Battery, to: "/battery-replacement-houston-tx" },
-  { name: "PS5 HDMI", price: "from $99", icon: Gamepad2, to: "/ps5-hdmi-repair-houston-tx" },
-  { name: "MacBook Repair", price: "free quote", icon: Laptop, to: "/macbook-repair-houston-tx" },
-];
-
-const WHY_TILES: {
-  title: string;
-  desc: string;
-  icon: LucideIcon;
-  image?: Photo;
-  // Optional internal link. The "We Ship" tile points at the dedicated
-  // mail-in repair landing page so out-of-area visitors can actually start
-  // an intake online instead of just reading a one-line callout. The
-  // "Easy Financing" tile points at the financing landing page. Tiles
-  // without a `to` render as static cards (no link), preserving the
-  // previous behavior for the trust-points tiles.
-  to?: string;
-}[] = [
-  { title: "15 Years Heritage", desc: "Houston's trusted repair shop since 2010.", icon: Star,
-    image: photo("trust-heritage", "Portrait of a senior shop owner looking at the camera") },
-  { title: "Same-Day Turnaround", desc: "Most repairs done in 1–2 hours while you wait.", icon: Zap,
-    image: photo("trust-sameday", "Customer being handed their phone back at the counter") },
-  { title: "Certified Technicians", desc: "Skilled techs who know every device, inside and out.", icon: ShieldCheck,
-    image: photo("trust-certified", "Technician inspecting a circuit board through a microscope") },
-  { title: "90-Day Warranty", desc: "Every repair backed by our 90-day warranty.", icon: CheckCircle2,
-    image: photo("trust-warranty", "Smiling man in a black suit shaking hands with a customer") },
-  { title: SHIPPING.shortLabel, desc: SHIPPING.desc, icon: Truck, to: SHIPPING.mailInSlug },
-  { title: FINANCING.shortLabel, desc: FINANCING.desc, icon: CreditCard, to: FINANCING.pagePath },
-];
-
-const FEATURED_OFFERS = [
-  { title: "iPhone Screen", price: "from $79", note: "Most models in stock", icon: Smartphone, to: "/iphone-repair-houston-tx" },
-  { title: "Battery Replacement", price: "from $49", note: "Phones, tablets, laptops", icon: Battery, to: "/battery-replacement-houston-tx" },
-  { title: "HDMI Port Repair", price: "from $99", note: "PS5, Xbox, Switch", icon: Gamepad2, to: "/hdmi-port-repair-houston-tx" },
-  { title: "Used Phones", price: "from $99", note: "Unlocked, tested, warrantied", icon: Smartphone, to: "/used-phones-houston-tx" },
-  { title: "Prepaid Activation", price: "Walk in", note: "Cricket, Metro, T-Mobile, AT&T", icon: Wifi, to: "/phone-activation-houston-tx" },
-];
-
-const SELL_TILES: {
-  name: string;
-  desc: string;
-  icon: LucideIcon;
-  to: string;
-  slug: string;
-  image?: Photo;
-}[] = [
-  { name: "Apple", desc: "iPhones, iPads, MacBooks, Watches, AirPods", icon: Smartphone, to: inventoryHref(groupSlug("apple")), slug: groupSlug("apple"),
+const SELL_TILES: { name: string; desc: string; to: string; slug: string; image?: Photo }[] = [
+  { name: "Apple", desc: "iPhones, iPads, MacBooks, AirPods, Watches", to: inventoryHref(groupSlug("apple")), slug: groupSlug("apple"),
     image: photo("sell-phones", "Row of unlocked Apple iPhones on display stands at the shop counter") },
-  { name: "Samsung", desc: "Galaxy S, Note, A and Z series", icon: Smartphone, to: inventoryHref(groupSlug("samsung")), slug: groupSlug("samsung"),
+  { name: "Samsung", desc: "Galaxy S, Note, A and Z series", to: inventoryHref(groupSlug("samsung")), slug: groupSlug("samsung"),
     image: photo("sell-tablets", "Refurbished Samsung Galaxy phones on display stands at the shop counter") },
-  { name: "Google", desc: "Pixel 3 through 9 Pro", icon: Smartphone, to: inventoryHref(groupSlug("google")), slug: groupSlug("google"),
+  { name: "Google", desc: "Pixel 3 through 9 Pro", to: inventoryHref(groupSlug("google")), slug: groupSlug("google"),
     image: photo("sell-laptops", "Google Pixel phones lined up on the shop counter") },
-  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", icon: Gamepad2, to: inventoryHref(groupSlug("consoles")), slug: groupSlug("consoles"),
+  { name: "Gaming Consoles", desc: "PlayStation, Xbox, Switch", to: inventoryHref(groupSlug("consoles")), slug: groupSlug("consoles"),
     image: photo("sell-consoles", "Refurbished gaming consoles and controllers on the shop counter") },
 ];
 
@@ -210,9 +138,71 @@ const AREA_TILES = [
   { label: "Sharpstown", to: "/phone-repair-sharpstown-tx" },
 ];
 
+const STAT_TILES = [
+  { value: "15", unit: "yr", label: "Repairing Houston since 2010" },
+  { value: "90", unit: "d", label: "Warranty on every repair" },
+  { value: "1–2", unit: "h", label: "Typical walk-in turnaround" },
+  { value: "5★", unit: "", label: "Average customer rating" },
+];
+
+function HeroSearch() {
+  const [, setLocation] = useLocation();
+  const [v, setV] = useState("");
+  const onSubmit = (e: FormEvent) => {
+    e.preventDefault();
+    const q = v.trim().toLowerCase();
+    if (!q) {
+      setLocation("/repair-services-houston-tx");
+      return;
+    }
+    if (q.includes("iphone")) setLocation("/iphone-repair-houston-tx");
+    else if (q.includes("samsung") || q.includes("galaxy")) setLocation("/samsung-repair-houston-tx");
+    else if (q.includes("pixel") || q.includes("google")) setLocation("/google-pixel-repair-houston-tx");
+    else if (q.includes("ipad") || q.includes("tablet")) setLocation("/tablet-repair-houston-tx");
+    else if (q.includes("macbook")) setLocation("/macbook-repair-houston-tx");
+    else if (q.includes("laptop") || q.includes("computer")) setLocation("/laptop-repair-houston-tx");
+    else if (q.includes("ps5") || q.includes("playstation")) setLocation("/ps5-repair-houston-tx");
+    else if (q.includes("xbox")) setLocation("/xbox-repair-houston-tx");
+    else if (q.includes("battery")) setLocation("/battery-replacement-houston-tx");
+    else if (q.includes("hdmi")) setLocation("/hdmi-port-repair-houston-tx");
+    else if (q.includes("unlock")) setLocation("/phone-unlocking-houston-tx");
+    else if (q.includes("mail") || q.includes("ship")) setLocation("/mail-in-repair-houston-tx");
+    else if (q.includes("financ") || q.includes("$10")) setLocation("/financing-houston-tx");
+    else setLocation("/repair-services-houston-tx");
+  };
+  return (
+    <form
+      role="search"
+      onSubmit={onSubmit}
+      className="flex flex-col sm:flex-row gap-2 max-w-2xl"
+      data-testid="hero-search-form"
+    >
+      <label htmlFor="hero-search" className="sr-only">What are you fixing today?</label>
+      <div className="relative flex-1">
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <input
+          id="hero-search"
+          type="search"
+          value={v}
+          onChange={(e) => setV(e.target.value)}
+          placeholder="What are you fixing today? e.g. iPhone screen, PS5 HDMI…"
+          className="w-full h-12 pl-10 pr-4 rounded-md border border-border bg-card text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring"
+          data-testid="input-hero-search"
+        />
+      </div>
+      <button
+        type="submit"
+        className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base transition-colors"
+        data-testid="button-hero-search"
+      >
+        Find a repair <ArrowRight className="w-4 h-4" />
+      </button>
+    </form>
+  );
+}
+
 export default function HomePage() {
   const business = useBusiness();
-  const [ctaCall, ctaQuote, ctaDirections] = HERO.ctas;
 
   return (
     <PageShell>
@@ -222,224 +212,130 @@ export default function HomePage() {
         path="/phone-repair-houston-tx"
         jsonLd={localBusinessJsonLd(business)}
       />
-
-      {/* Owner-managed campaign banner driven by /admin/promotions. */}
       <PromoCampaignBanner />
 
-      {/* HERO ----------------------------------------------------------- */}
-      <section className="relative overflow-hidden py-16 md:py-24 px-4 bg-zinc-100">
-        <div
-          className="absolute inset-0 opacity-20"
-          style={{
-            backgroundImage: "radial-gradient(#ef4444 1px, transparent 1px)",
-            backgroundSize: "32px 32px",
-          }}
-          aria-hidden="true"
-        />
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start relative z-10">
-          {/* Left: headline + CTAs */}
-          <div className="lg:col-span-7 space-y-8">
-            <div className="flex flex-wrap gap-3">
-              <span className="bg-zinc-100 text-zinc-700 border border-zinc-200 rounded-full px-3 py-1 font-semibold uppercase tracking-wide text-xs inline-block">
-                {HERO.badgeYears}
+      {/* HERO — search-led, calm, repair-handbook tone */}
+      <section className="bg-card border-b border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-12 gap-10 items-start">
+          <div className="lg:col-span-7 space-y-6">
+            <div className="flex flex-wrap gap-2 text-xs">
+              <span className="inline-flex items-center gap-1.5 bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-1 font-medium">
+                15 years in Houston
               </span>
-              <span className="bg-red-50 text-red-600 border border-red-200 rounded-full px-3 py-1 font-semibold uppercase tracking-wide text-xs inline-flex items-center gap-2">
-                <Zap className="w-3.5 h-3.5" /> {HERO.badgeRepairTime}
+              <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full px-2.5 py-1 font-medium">
+                <Zap className="w-3 h-3" /> Most repairs in 15–20 min
+              </span>
+              <span className="inline-flex items-center gap-1.5 bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-1 font-medium">
+                90-day warranty
               </span>
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl leading-tight font-extrabold tracking-tight text-zinc-900">
-              Houston&apos;s <span className="text-red-600">Fix</span> for Phones, Tablets, Laptops &amp; Consoles.
+            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-tight text-foreground leading-[1.05]">
+              Houston's repair shop for phones, tablets, laptops &amp; consoles.
             </h1>
-            <p className="text-lg md:text-xl font-medium text-zinc-600 max-w-xl tracking-normal">
-              {HERO.subhead}
+            <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+              Walk in, mail in, or get a quote in minutes. Real technicians, transparent pricing, and a 90-day warranty on every fix — same shop on Will Clayton Pkwy since 2010.
             </p>
-            <div className="flex flex-wrap gap-4 pt-2">
-              <Button
-                asChild
-                className="bg-red-600 hover:bg-zinc-900 text-white font-semibold uppercase tracking-wide text-base h-14 px-7 shadow-md hover:shadow-md transition-all hover:-translate-y-0.5"
-              >
-                <a href={ctaCall.href} data-testid="hero-cta-call">
-                  <Phone className="w-5 h-5 mr-2" /> {ctaCall.label}
-                </a>
-              </Button>
-              <Button
-                asChild
-                className="bg-zinc-900 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-base h-14 px-7 shadow-md hover:shadow-md transition-all hover:-translate-y-0.5"
-              >
-                <a href={ctaQuote.href} data-testid="hero-cta-quote">
-                  <Wrench className="w-5 h-5 mr-2" /> {ctaQuote.label}
-                </a>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="border border-zinc-200 bg-transparent hover:bg-zinc-900 hover:text-white text-zinc-900 font-semibold uppercase tracking-wide text-base h-14 px-7"
-              >
-                <a href={ctaDirections.href} target="_blank" rel="noreferrer" data-testid="hero-cta-directions">
-                  <MapPin className="w-5 h-5 mr-2" /> {ctaDirections.label}
-                </a>
-              </Button>
-            </div>
-
-            {/* Quick stats strip */}
-            <div className="grid grid-cols-3 gap-4 pt-6 max-w-xl">
-              <div>
-                <div className="text-3xl md:text-4xl font-extrabold text-zinc-900">15</div>
-                <div className="text-[11px] md:text-xs font-semibold uppercase tracking-wide text-zinc-500">Years in Houston</div>
-              </div>
-              <div>
-                <div className="text-3xl md:text-4xl font-extrabold text-zinc-900">90<span className="text-red-600">d</span></div>
-                <div className="text-[11px] md:text-xs font-semibold uppercase tracking-wide text-zinc-500">Repair Warranty</div>
-              </div>
-              <div>
-                <div className="text-3xl md:text-4xl font-extrabold text-zinc-900">5<span className="text-red-600">★</span></div>
-                <div className="text-[11px] md:text-xs font-semibold uppercase tracking-wide text-zinc-500">Customer Rating</div>
-              </div>
+            <HeroSearch />
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground pt-1">
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-primary" /> Free diagnostic</span>
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-primary" /> Walk-ins welcome</span>
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-primary" /> All major brands</span>
             </div>
           </div>
 
-          {/* Right: Diagnostic Check panel */}
-          <div className="lg:col-span-5 w-full">
-            <div className="bg-zinc-900 text-white p-6 md:p-8 shadow-md">
-              <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-4">
-                <h3 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                  Diagnostic <span className="text-red-500">Check</span>
-                </h3>
-                <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-500">Live Pricing</span>
+          {/* Side panel: Visit / Hours / Quick stats */}
+          <aside className="lg:col-span-5 w-full">
+            <div className="rounded-md border border-border bg-card overflow-hidden">
+              <div className="px-5 py-4 border-b border-border bg-muted/40">
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Visit the shop</div>
+                <div className="text-base font-semibold text-foreground mt-0.5">{BUSINESS.name} — Humble, TX</div>
               </div>
-              <div className="space-y-3 mb-8">
-                {HERO_DIAGNOSTIC.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <Link
-                      key={item.to}
-                      href={item.to}
-                      className="flex items-center justify-between gap-4 px-4 md:px-5 py-4 bg-zinc-900 hover:bg-red-600 transition-colors group"
-                      data-testid={`hero-diagnostic-${item.to}`}
-                    >
-                      <div className="flex items-center gap-4 min-w-0">
-                        <div className="bg-zinc-800 group-hover:bg-zinc-900 p-2 shrink-0 transition-colors">
-                          <Icon className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" />
-                        </div>
-                        <div className="min-w-0">
-                          <h4 className="text-base md:text-lg font-extrabold tracking-tight truncate">{item.name}</h4>
-                        </div>
-                      </div>
-                      <div className="font-bold uppercase text-sm md:text-base tracking-wide text-red-500 group-hover:text-white shrink-0">
-                        {item.price}
-                      </div>
-                    </Link>
-                  );
-                })}
-              </div>
-              <a
-                href="#quote"
-                className="block w-full bg-red-600 text-white font-semibold uppercase tracking-wide text-sm py-3 text-center shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
-                data-testid="hero-diagnostic-cta"
-              >
-                Get My Quote →
-              </a>
-              <div className="mt-8 pt-6 border-t border-zinc-800 grid gap-3 text-xs">
-                <div className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
-                  <div>
-                    <div className="font-semibold uppercase tracking-wide text-zinc-300">{business.addressLine1}</div>
-                    <div className="font-bold text-zinc-500">{business.addressLine2}</div>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-zinc-500 mt-0.5 shrink-0" />
-                  <div className="font-semibold uppercase tracking-wide text-zinc-300">{business.hoursShort}</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* TRUST STRIP ---------------------------------------------------- */}
-      <div className="bg-zinc-50 text-zinc-700 border-y border-zinc-200 py-5">
-        <div className="max-w-[1240px] mx-auto px-4 flex flex-wrap justify-center gap-6 md:gap-10 font-semibold uppercase tracking-wide text-xs md:text-sm">
-          <div className="flex items-center gap-2"><Star className="w-4 h-4 text-red-500" /> 15+ Years in Houston</div>
-          <div className="flex items-center gap-2"><Zap className="w-4 h-4 text-red-500" /> Same-Day Repair</div>
-          <div className="flex items-center gap-2"><Shield className="w-4 h-4 text-red-500" /> 90-Day Warranty</div>
-          <div className="flex items-center gap-2"><Star className="w-4 h-4 text-red-500" /> 5-Star Reviews</div>
-          <div className="flex items-center gap-2"><Smartphone className="w-4 h-4 text-red-500" /> All Brands Welcome</div>
-        </div>
-      </div>
-
-      {/* MAIL-IN CTA --------------------------------------------------- */}
-      <section className="bg-zinc-900 px-4 py-14 md:py-16">
-        <div className="max-w-[1240px] mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
-          <div className="flex items-start gap-5">
-            <div className="bg-red-600 p-3 shrink-0 mt-1">
-              <Truck className="w-7 h-7 text-white" />
-            </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-extrabold tracking-tight text-white leading-tight mb-2">
-                Not in Houston?{" "}
-                <span className="text-red-500">Ship Your Device.</span>
-              </h2>
-              <ul className="flex flex-wrap gap-x-6 gap-y-1 text-xs font-semibold uppercase tracking-wide text-zinc-400">
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Free repair quote</li>
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Insured shipping both ways</li>
-                <li className="flex items-center gap-1.5"><CheckCircle2 className="w-3.5 h-3.5 text-red-500 shrink-0" /> Back in {SHIPPING.turnaroundDays}</li>
+              <ul className="p-5 space-y-3 text-sm">
+                <li className="flex items-start gap-3">
+                  <MapPin className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <a href={business.mapsLink} target="_blank" rel="noreferrer" className="text-foreground hover:text-primary transition-colors">
+                    {business.addressLine1}<br />
+                    <span className="text-muted-foreground">{business.addressLine2}</span>
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Clock className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <span className="text-foreground">{business.hoursShort}</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <Phone className="w-4 h-4 text-primary mt-0.5 shrink-0" />
+                  <a href={business.phoneTel} className="text-foreground hover:text-primary transition-colors font-medium">
+                    {business.phoneDisplay}
+                  </a>
+                </li>
               </ul>
+              <div className="px-5 pb-5 grid grid-cols-2 gap-2 text-sm">
+                <a href={business.phoneTel} className="inline-flex items-center justify-center gap-1.5 h-10 rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-colors" data-testid="hero-side-call">
+                  <Phone className="w-4 h-4" /> Call
+                </a>
+                <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-1.5 h-10 rounded-md border border-border bg-card hover:bg-muted text-foreground font-semibold transition-colors" data-testid="hero-side-whatsapp">
+                  WhatsApp
+                </a>
+              </div>
+              <div className="border-t border-border grid grid-cols-4">
+                {STAT_TILES.map((s) => (
+                  <div key={s.label} className="px-3 py-3 border-r last:border-r-0 border-border text-center">
+                    <div className="text-xl font-semibold text-foreground tabular-nums">
+                      {s.value}<span className="text-primary">{s.unit}</span>
+                    </div>
+                    <div className="text-[10px] text-muted-foreground leading-tight mt-0.5">{s.label}</div>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
-          <Link
-            href={SHIPPING.mailInSlug}
-            className="shrink-0 inline-flex items-center gap-2 bg-red-600 hover:bg-red-500 text-white font-extrabold uppercase tracking-wide text-sm md:text-base px-8 py-4 shadow-lg hover:-translate-y-0.5 transition-all whitespace-nowrap"
-            data-testid="cta-mail-in-home"
-          >
-            Start My Mail-In Repair <ArrowRight className="w-5 h-5" />
-          </Link>
+          </aside>
         </div>
       </section>
 
-      {/* SERVICES GRID -------------------------------------------------- */}
-      <section className="py-20 md:py-24 px-4 bg-white">
-        <div className="max-w-[1240px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-zinc-900">
-              What We <br />
-              <span className="text-red-600">Repair</span>
-            </h2>
-            <div className="max-w-sm">
-              <p className="text-lg md:text-xl font-medium text-zinc-600 tracking-normal">
-                No matter how badly you broke it, bring it in. We&apos;ve seen worse.
-              </p>
+      {/* BROWSE BY DEVICE */}
+      <section className="bg-background">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16">
+          <div className="flex items-end justify-between gap-6 mb-6">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Browse by device</div>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+                What are you fixing?
+              </h2>
             </div>
+            <Link
+              href="/repair-services-houston-tx"
+              className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+              data-testid="link-all-repairs"
+            >
+              All repair services <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {SERVICE_TILES.map((s) => {
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
+            {DEVICE_TILES.map((s) => {
               const Icon = s.icon;
               return (
                 <Link
                   key={s.to}
                   href={s.to}
-                  className="group block relative bg-zinc-50 border border-zinc-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all overflow-hidden"
+                  className="group rounded-md border border-border bg-card hover:border-primary hover:shadow-sm transition-all overflow-hidden"
                   data-testid={`tile-${s.to}`}
                 >
                   {s.image ? (
                     <PhotoFrame
                       photo={s.image}
                       aspect="4:3"
-                      sizes="(min-width: 1024px) 220px, (min-width: 640px) 50vw, 100vw"
+                      sizes="(min-width: 1024px) 220px, (min-width: 640px) 33vw, 50vw"
                     />
-                  ) : null}
-                  <div className="p-5 relative">
-                    <div className="absolute top-3 right-3 opacity-20 group-hover:opacity-100 transition-opacity">
-                      <ArrowRight className="w-5 h-5 text-red-600" />
+                  ) : (
+                    <div className="aspect-[4/3] bg-muted flex items-center justify-center">
+                      <Icon className="w-10 h-10 text-muted-foreground" />
                     </div>
-                    {s.image ? null : (
-                      <div className="bg-zinc-900 text-white w-12 h-12 flex items-center justify-center mb-5 group-hover:bg-red-600 transition-colors">
-                        <Icon className="w-6 h-6" />
-                      </div>
-                    )}
-                    <h3 className="text-lg font-extrabold tracking-tight mb-1">{s.name}</h3>
-                    <p className="text-xs font-bold text-zinc-500 mb-4 uppercase">{s.desc}</p>
-                    <div className="text-red-600 font-bold uppercase text-xs tracking-wide">View details →</div>
+                  )}
+                  <div className="p-3.5">
+                    <div className="text-sm font-semibold text-foreground leading-tight group-hover:text-primary transition-colors">
+                      {s.name}
+                    </div>
+                    <div className="text-xs text-muted-foreground mt-0.5">{s.desc}</div>
                   </div>
                 </Link>
               );
@@ -448,227 +344,239 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PRICE BOARD + WHY -------------------------------------------- */}
-      <section className="py-20 md:py-24 px-4 bg-zinc-100">
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-12 gap-12">
-          {/* Price board (charcoal) */}
-          <div className="lg:col-span-7 bg-zinc-900 text-white p-6 md:p-10 shadow-md">
-            <div className="flex items-center justify-between mb-8 border-b border-zinc-800 pb-4">
-              <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
-                Hot <span className="text-red-500">Deals</span>
-              </h2>
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-zinc-500">Walk-in Pricing</span>
-            </div>
-            <div className="space-y-3">
-              {FEATURED_OFFERS.map((offer) => {
-                const Icon = offer.icon;
-                return (
-                  <Link
-                    key={offer.title}
-                    href={offer.to}
-                    className="flex items-center justify-between gap-4 px-4 md:px-5 py-4 bg-zinc-900 hover:bg-red-600 transition-colors group"
-                    data-testid={`offer-${offer.to}`}
-                  >
-                    <div className="flex items-center gap-4 min-w-0">
-                      <div className="bg-zinc-800 group-hover:bg-zinc-900 p-2 shrink-0 transition-colors">
-                        <Icon className="w-5 h-5 text-red-500 group-hover:text-white transition-colors" />
-                      </div>
-                      <div className="min-w-0">
-                        <h4 className="text-base md:text-lg font-extrabold tracking-tight truncate">{offer.title}</h4>
-                        <div className="text-[11px] font-semibold uppercase tracking-wide text-zinc-500 group-hover:text-red-200">
-                          {offer.note}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="font-bold uppercase text-sm md:text-base tracking-wide text-red-500 group-hover:text-white shrink-0">
-                      {offer.price}
-                    </div>
-                  </Link>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Why OK Cellular */}
+      {/* POPULAR REPAIRS — iFixit-style guide table */}
+      <section className="bg-muted/40 border-y border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5">
-            <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
-              Why <span className="text-red-600">OK Cellular?</span>
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Walk-in pricing</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-3">
+              Most popular repairs &amp; what they cost
             </h2>
-            <div className="grid sm:grid-cols-2 gap-4">
-              {WHY_TILES.map((item) => {
-                const Icon = item.icon;
-                const inner = (
-                  <>
-                    {item.image ? (
-                      <PhotoFrame
-                        photo={item.image}
-                        aspect="1:1"
-                        sizes="(min-width: 1024px) 200px, 50vw"
-                      />
-                    ) : null}
-                    <div className="p-5 relative">
-                      {item.image ? (
-                        <div className="absolute -top-7 left-5 bg-zinc-900 text-white w-12 h-12 flex items-center justify-center shadow-md">
-                          <Icon className="w-6 h-6 text-red-500" />
-                        </div>
-                      ) : (
-                        <div className="bg-zinc-900 text-white w-12 h-12 flex items-center justify-center mb-4">
-                          <Icon className="w-6 h-6 text-red-500" />
-                        </div>
-                      )}
-                      <h4 className={`text-base font-bold uppercase mb-1 leading-tight ${item.image ? "mt-8" : ""}`}>
-                        {item.title}
-                      </h4>
-                      <p className="text-xs font-bold text-zinc-600 uppercase tracking-tight">{item.desc}</p>
-                    </div>
-                  </>
-                );
-                const className =
-                  "group bg-white border border-zinc-200 shadow-md hover:-translate-y-1 transition-transform overflow-hidden block";
-                if (item.to) {
-                  return (
+            <p className="text-base text-muted-foreground leading-relaxed mb-6">
+              Honest starting prices for the repairs we do every day. Final price is confirmed in a free in-person diagnostic — no surprises, no upsells.
+            </p>
+            <ul className="space-y-2.5 text-sm text-foreground mb-6">
+              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> 90-day repair warranty on every fix</li>
+              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> OEM-grade parts where available</li>
+              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> No fix, no fee — diagnostic is free</li>
+            </ul>
+            <Link
+              href="/repair-services-houston-tx"
+              className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
+              data-testid="link-all-pricing"
+            >
+              See all repairs &amp; pricing <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="lg:col-span-7">
+            <div className="rounded-md border border-border bg-card overflow-hidden">
+              <div className="grid grid-cols-12 px-4 py-3 border-b border-border bg-muted/60 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                <div className="col-span-6">Repair</div>
+                <div className="col-span-2 text-right tabular-nums">Price</div>
+                <div className="col-span-2 hidden sm:block">Time</div>
+                <div className="col-span-2 hidden md:block">Type</div>
+              </div>
+              <ul className="divide-y divide-border">
+                {POPULAR_REPAIRS.map((r) => (
+                  <li key={r.to}>
                     <Link
-                      key={item.title}
-                      href={item.to}
-                      className={`${className} hover:border-red-500 focus:outline-none focus:ring-2 focus:ring-red-500`}
-                      data-testid={`why-tile-link-${item.title.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}`}
+                      href={r.to}
+                      className="grid grid-cols-12 px-4 py-3.5 items-center text-sm hover:bg-muted/60 transition-colors"
+                      data-testid={`popular-${r.to}`}
                     >
-                      {inner}
+                      <div className="col-span-6 sm:col-span-6 flex items-center gap-2.5 min-w-0">
+                        <Wrench className="w-4 h-4 text-primary shrink-0" />
+                        <span className="text-foreground font-semibold truncate">{r.name}</span>
+                      </div>
+                      <div className="col-span-6 sm:col-span-2 text-right text-foreground font-semibold tabular-nums">
+                        {r.price}
+                      </div>
+                      <div className="col-span-12 sm:col-span-2 hidden sm:block text-muted-foreground tabular-nums">
+                        {r.time}
+                      </div>
+                      <div className="col-span-12 md:col-span-2 hidden md:block text-muted-foreground">
+                        {r.difficulty}
+                      </div>
                     </Link>
-                  );
-                }
-                return (
-                  <div key={item.title} className={className}>
-                    {inner}
-                  </div>
-                );
-              })}
+                  </li>
+                ))}
+              </ul>
             </div>
           </div>
         </div>
       </section>
 
-      {/* OUR WORK (BEFORE / AFTER) ------------------------------------ */}
-      <section id="our-work" className="py-20 md:py-24 px-4 bg-white scroll-mt-24">
-        <div className="max-w-[1240px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <h2 className="text-5xl md:text-7xl font-black uppercase tracking-tighter leading-none text-zinc-950">
-              Our <span className="text-red-600">Work</span>
-            </h2>
-            <p className="text-base font-bold text-zinc-600 uppercase tracking-tight max-w-md">
-              Cracked screens, corroded boards, swollen batteries — the kind of damage we fix every day.
+      {/* MAIL-IN + FINANCING — utility tiles */}
+      <section className="bg-background">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-4 md:gap-6">
+          <Link
+            href={SHIPPING.mailInSlug}
+            className="group rounded-md border border-border bg-card hover:border-primary hover:shadow-sm transition-all p-6 md:p-7 flex items-start gap-4"
+            data-testid="cta-mail-in-home"
+          >
+            <div className="w-10 h-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <Truck className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">Out of town?</div>
+              <div className="text-lg font-semibold text-foreground mb-1.5 group-hover:text-primary transition-colors">
+                Mail in your device for repair
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Free repair quote. Insured shipping both ways. Back in {SHIPPING.turnaroundDays}.
+              </p>
+              <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                Start a mail-in repair <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </Link>
+          <Link
+            href={FINANCING.pagePath}
+            className="group rounded-md border border-border bg-card hover:border-primary hover:shadow-sm transition-all p-6 md:p-7 flex items-start gap-4"
+            data-testid="cta-financing-home"
+          >
+            <div className="w-10 h-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
+              <CreditCard className="w-5 h-5" />
+            </div>
+            <div className="min-w-0">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">Buy now, pay later</div>
+              <div className="text-lg font-semibold text-foreground mb-1.5 group-hover:text-primary transition-colors">
+                Phone financing from $10 down
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Walk out the same day with an unlocked phone. Soft credit check — no impact to your score.
+              </p>
+              <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                See how financing works <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </Link>
+        </div>
+      </section>
+
+      {/* OUR WORK — before/after */}
+      <section id="our-work" className="bg-muted/40 border-y border-border scroll-mt-24">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16">
+          <div className="flex items-end justify-between gap-6 mb-6">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Our work</div>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+                Real repairs we do every day
+              </h2>
+            </div>
+            <p className="hidden md:block text-sm text-muted-foreground max-w-md">
+              Cracked screens, corroded boards, swollen batteries — drag the slider to see the before and the after.
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
             {BEFORE_AFTER_PAIRS.map((pair) => (
               <BeforeAfter
                 key={pair.slug}
                 pair={pair}
-                sizes="(min-width: 1024px) 200px, (min-width: 768px) 33vw, 50vw"
+                sizes="(min-width: 1024px) 380px, (min-width: 768px) 50vw, 100vw"
               />
             ))}
           </div>
-          <p className="text-xs font-bold text-zinc-500 uppercase tracking-widest mt-8 text-center">
+          <p className="text-xs text-muted-foreground mt-6 text-center">
             Most repairs done same-day. 90-day warranty on every fix. Photos are illustrative; your finished device is yours alone.
           </p>
         </div>
       </section>
 
-      {/* WE SELL TOO -------------------------------------------------- */}
-      <section className="py-20 md:py-24 px-4 bg-white border-y border-zinc-200">
-        <div className="max-w-[1240px] mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight leading-tight text-zinc-900">
-              We <span className="text-red-600">Sell</span> Too
-            </h2>
-            <p className="text-base font-bold text-zinc-600 uppercase tracking-tight max-w-md">
-              {BUSINESS.tagline}
-            </p>
-          </div>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-            {SELL_TILES.map((product) => {
-              const Icon = product.icon;
+      {/* WHY US — calm trust strip */}
+      <section className="bg-background">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              { icon: Star, title: "15 years in Houston", desc: "Same shop on Will Clayton Pkwy since 2010 — owner-operated and independent." },
+              { icon: Zap, title: "Same-day turnaround", desc: "Most walk-in repairs are done in 15–20 minutes while you wait." },
+              { icon: ShieldCheck, title: "Certified technicians", desc: "Board-level repair, micro-soldering and data recovery — done in-house." },
+              { icon: CheckCircle2, title: "90-day warranty", desc: "Every repair backed by a 90-day warranty on parts and labor." },
+            ].map((tile) => {
+              const Icon = tile.icon;
               return (
-                <Link
-                  key={product.slug}
-                  href={product.to}
-                  className="group block relative bg-zinc-50 border border-zinc-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all overflow-hidden"
-                  data-testid={`sell-${product.slug}`}
-                >
-                  {product.image ? (
-                    <PhotoFrame
-                      photo={product.image}
-                      aspect="4:3"
-                      sizes="(min-width: 1024px) 280px, 50vw"
-                    />
-                  ) : null}
-                  <div className="p-5 relative">
-                    <div className="absolute top-3 right-3 bg-zinc-900 text-white w-9 h-9 flex items-center justify-center group-hover:bg-red-600 transition-colors">
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <h3 className="text-lg font-extrabold tracking-tight mb-1 pr-12">{product.name}</h3>
-                    <p className="text-xs font-bold text-zinc-500 mb-4 uppercase">{product.desc}</p>
-                    <div className="text-red-600 font-bold uppercase text-xs tracking-wide">View details →</div>
+                <div key={tile.title} className="rounded-md border border-border bg-card p-5">
+                  <div className="w-9 h-9 rounded-md bg-primary/10 text-primary flex items-center justify-center mb-3">
+                    <Icon className="w-5 h-5" />
                   </div>
-                </Link>
+                  <h3 className="text-base font-semibold text-foreground mb-1">{tile.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{tile.desc}</p>
+                </div>
               );
             })}
-          </div>
-          <div className="flex justify-center">
-            <Button
-              asChild
-              className="bg-zinc-900 hover:bg-red-600 text-white font-semibold uppercase tracking-wide text-base h-14 px-8 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all"
-            >
-              <Link href="/inventory">Browse Full Inventory →</Link>
-            </Button>
           </div>
         </div>
       </section>
 
-      {/* QUOTE WIZARD -------------------------------------------------- */}
-      <section id="quote" className="py-20 md:py-24 px-4 bg-zinc-100 scroll-mt-24">
-        <div className="max-w-[1240px] mx-auto grid lg:grid-cols-12 gap-12 items-start">
+      {/* WE SELL TOO */}
+      <section className="bg-muted/40 border-y border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16">
+          <div className="flex items-end justify-between gap-6 mb-6">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">We sell too</div>
+              <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+                Tested, warrantied phones &amp; consoles
+              </h2>
+            </div>
+            <Link
+              href="/inventory"
+              className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
+              data-testid="link-full-inventory"
+            >
+              Browse full inventory <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+            {SELL_TILES.map((p) => (
+              <Link
+                key={p.slug}
+                href={p.to}
+                className="group rounded-md border border-border bg-card hover:border-primary hover:shadow-sm transition-all overflow-hidden"
+                data-testid={`sell-${p.slug}`}
+              >
+                {p.image ? (
+                  <PhotoFrame photo={p.image} aspect="4:3" sizes="(min-width: 1024px) 280px, 50vw" />
+                ) : null}
+                <div className="p-4">
+                  <div className="text-base font-semibold text-foreground group-hover:text-primary transition-colors">
+                    {p.name}
+                  </div>
+                  <div className="text-xs text-muted-foreground mt-0.5">{p.desc}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* QUOTE WIZARD */}
+      <section id="quote" className="bg-background scroll-mt-24">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-5">
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-zinc-900 leading-tight">
-              Get Your <br />
-              <span className="text-red-600">Repair Quote</span>
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">Free quote</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-3">
+              Tell us what's broken
             </h2>
-            <p className="text-lg font-bold text-zinc-600 mb-8 max-w-md uppercase tracking-tight">
-              Tell us what&apos;s broken. We&apos;ll tell you how much to fix it. Fast.
+            <p className="text-base text-muted-foreground leading-relaxed mb-6">
+              A real technician answers — usually within 30 minutes during shop hours. We'll text or call back today with a firm price and the fastest way to get your device fixed.
             </p>
-            <ul className="space-y-3 text-base font-bold text-zinc-700 mb-10">
-              <li className="flex items-center gap-3">
-                <div className="bg-red-600 text-white w-6 h-6 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <span className="uppercase tracking-tight">Free diagnostic</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="bg-red-600 text-white w-6 h-6 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <span className="uppercase tracking-tight">Same-day repair where possible</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="bg-red-600 text-white w-6 h-6 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <span className="uppercase tracking-tight">90-day warranty on every fix</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="bg-red-600 text-white w-6 h-6 flex items-center justify-center shrink-0">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                <span className="uppercase tracking-tight">A real technician answers — usually within 30 min</span>
-              </li>
+            <ul className="space-y-2.5 text-sm text-foreground mb-6">
+              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> Free in-person diagnostic</li>
+              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> Same-day repair where possible</li>
+              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> 90-day warranty on every fix</li>
             </ul>
-            <div className="hidden lg:block bg-zinc-900 text-white p-6 shadow-md">
-              <div className="font-semibold uppercase tracking-wide text-xs text-zinc-500 mb-2">Prefer to call?</div>
-              <a href={business.phoneTel} className="font-bold uppercase text-2xl tracking-tight hover:text-red-500 transition-colors block">
-                <Phone className="w-5 h-5 inline mr-2 text-red-500" />
+            <div className="hidden lg:block rounded-md border border-border bg-muted/40 p-5">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">
+                Prefer to call?
+              </div>
+              <a
+                href={business.phoneTel}
+                className="font-semibold text-xl text-foreground hover:text-primary transition-colors flex items-center gap-2"
+              >
+                <Phone className="w-5 h-5 text-primary" />
                 {business.phoneDisplay}
               </a>
-              <div className="text-xs font-bold text-zinc-500 mt-2 uppercase tracking-wide">{business.hoursShort}</div>
+              <div className="text-xs text-muted-foreground mt-2">{business.hoursShort}</div>
             </div>
           </div>
           <div className="lg:col-span-7">
@@ -677,43 +585,45 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* PREPAID + AREAS ----------------------------------------------- */}
-      <section className="py-12 bg-white border-b border-zinc-200">
-        <div className="max-w-[1240px] mx-auto px-4 grid md:grid-cols-2 gap-12">
+      {/* PREPAID + AREAS */}
+      <section className="bg-muted/40 border-y border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-10 md:py-12 grid md:grid-cols-2 gap-10">
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 mb-4">
-              Prepaid Activations &amp; Bill Pay
-            </h3>
-            <div className="flex flex-wrap gap-2 items-center mb-6">
-              {PREPAID_TILES.map((carrier) => (
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-3">
+              <Wifi className="w-3 h-3 inline mr-1 -mt-0.5" /> Prepaid &amp; bill pay
+            </div>
+            <h3 className="text-base font-semibold text-foreground mb-3">Activate any major prepaid carrier</h3>
+            <div className="flex flex-wrap gap-2 mb-4">
+              {PREPAID_TILES.map((c) => (
                 <Link
-                  key={carrier.label}
-                  href={carrier.to}
-                  className="bg-zinc-100 border border-zinc-200 hover:border-zinc-800 px-4 py-2 font-bold uppercase text-xs tracking-wide transition-colors"
-                  data-testid={`prepaid-${carrier.label}`}
+                  key={c.label}
+                  href={c.to}
+                  className="rounded-full border border-border bg-card hover:border-primary hover:text-primary px-3 py-1 text-xs font-medium text-foreground transition-colors"
+                  data-testid={`prepaid-${c.label}`}
                 >
-                  {carrier.label}
+                  {c.label}
                 </Link>
               ))}
             </div>
             <Link
               href="/bill-payments-houston-tx"
-              className="text-red-600 font-bold uppercase text-sm tracking-wide hover:underline inline-flex items-center gap-1"
+              className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1"
             >
-              Pay your bill in cash <ArrowRight className="w-4 h-4" />
+              Pay your bill in cash <ArrowRight className="w-3.5 h-3.5" />
             </Link>
           </div>
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 mb-4">Service Areas</h3>
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-3">Service areas</div>
+            <h3 className="text-base font-semibold text-foreground mb-3">We serve Houston &amp; the surrounding cities</h3>
             <div className="flex flex-wrap gap-2">
-              {AREA_TILES.map((area) => (
+              {AREA_TILES.map((a) => (
                 <Link
-                  key={area.label}
-                  href={area.to}
-                  className="text-zinc-700 font-bold uppercase text-xs tracking-wide border-b border-zinc-200 pb-1 hover:text-red-600 hover:border-red-600 transition-colors px-2"
-                  data-testid={`area-${area.label}`}
+                  key={a.label}
+                  href={a.to}
+                  className="rounded-full border border-border bg-card hover:border-primary hover:text-primary px-3 py-1 text-xs font-medium text-foreground transition-colors"
+                  data-testid={`area-${a.label}`}
                 >
-                  {area.label}
+                  {a.label}
                 </Link>
               ))}
             </div>

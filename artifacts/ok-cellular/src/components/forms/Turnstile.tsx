@@ -220,7 +220,7 @@ export function useTurnstile(): UseTurnstileResult {
     <div
       className={
         challengeVisible
-          ? "flex flex-col items-center gap-2 rounded-md border border-zinc-200 bg-zinc-50 px-3 py-3"
+          ? "flex flex-col items-center gap-2 rounded-md border border-border bg-muted/40 px-3 py-3"
           : undefined
       }
       data-testid="turnstile-wrapper"
@@ -233,7 +233,7 @@ export function useTurnstile(): UseTurnstileResult {
       />
       {challengeVisible && (
         <p
-          className="text-xs text-zinc-600"
+          className="text-xs text-muted-foreground"
           data-testid="turnstile-caption"
         >
           Verifying you're human…

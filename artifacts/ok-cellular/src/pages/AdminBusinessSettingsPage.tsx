@@ -181,10 +181,10 @@ export default function AdminBusinessSettingsPage() {
         path="/admin/business-settings"
         noindex
       />
-      <section className="py-12 px-4 bg-zinc-50 border-b border-zinc-200 min-h-[80vh]">
+      <section className="py-12 px-4 bg-muted/40 border-b border-border min-h-[80vh]">
         <div className="max-w-[1240px] mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-6 leading-tight">
-            Admin <span className="text-red-500">Business Info</span>
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-6 leading-tight">
+            Admin <span className="text-primary">Business Info</span>
           </h1>
 
           {authed && <AdminNav active="business-settings" />}
@@ -195,12 +195,12 @@ export default function AdminBusinessSettingsPage() {
                 e.preventDefault();
                 load(password);
               }}
-              className="bg-white border border-zinc-200 rounded-xl shadow-md p-6 max-w-md space-y-4"
+              className="bg-white border border-border rounded-xl shadow-md p-6 max-w-md space-y-4"
               data-testid="form-admin-login"
             >
               <Label
                 htmlFor="ad-pw"
-                className="font-semibold uppercase text-xs tracking-wide text-zinc-700"
+                className="font-semibold uppercase text-xs tracking-wide text-foreground"
               >
                 Admin password
               </Label>
@@ -209,18 +209,18 @@ export default function AdminBusinessSettingsPage() {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                className="bg-white border border-border focus:border-primary h-12"
                 data-testid="input-password"
               />
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm">
+                <div className="bg-muted/60 border border-primary text-primary px-4 py-3 rounded-lg font-semibold text-sm">
                   {error}
                 </div>
               )}
               <Button
                 type="submit"
                 disabled={loading || !password}
-                className="w-full bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-12 shadow-sm"
+                className="w-full bg-primary hover:bg-primary text-white font-semibold h-12 shadow-sm"
                 data-testid="button-login"
               >
                 {loading ? "..." : "Sign In"}
@@ -229,10 +229,10 @@ export default function AdminBusinessSettingsPage() {
           ) : (
             <form
               onSubmit={handleSubmit}
-              className="bg-white border border-zinc-200 rounded-xl shadow-md p-6 max-w-3xl space-y-6"
+              className="bg-white border border-border rounded-xl shadow-md p-6 max-w-3xl space-y-6"
               data-testid="form-business-settings"
             >
-              <p className="text-sm text-zinc-600 font-medium">
+              <p className="text-sm text-muted-foreground font-medium">
                 These details show up on the homepage, header, footer, contact
                 page, store map, and call/text/WhatsApp buttons across the
                 site. Saving here updates everywhere on the next page load.
@@ -244,17 +244,17 @@ export default function AdminBusinessSettingsPage() {
                 </div>
               )}
               {error && (
-                <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg font-semibold text-sm">
+                <div className="bg-muted/60 border border-primary text-primary px-4 py-3 rounded-lg font-semibold text-sm">
                   {error}
                 </div>
               )}
 
               <fieldset className="space-y-3">
-                <legend className="font-bold uppercase text-sm tracking-wide text-zinc-900">
+                <legend className="font-medium text-sm tracking-wide text-foreground">
                   Phone Number
                 </legend>
                 <div>
-                  <Label htmlFor="phone" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                  <Label htmlFor="phone" className="font-semibold uppercase text-xs tracking-wide text-foreground">
                     Phone (E.164 format, e.g. +12814462166)
                   </Label>
                   <Input
@@ -262,10 +262,10 @@ export default function AdminBusinessSettingsPage() {
                     value={form.phoneE164}
                     onChange={(e) => field("phoneE164", e.target.value)}
                     placeholder="+12814462166"
-                    className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                    className="bg-white border border-border focus:border-primary h-12"
                     data-testid="input-phone"
                   />
-                  <p className="text-xs text-zinc-500 mt-1">
+                  <p className="text-xs text-muted-foreground mt-1">
                     Display, tap-to-call, SMS, and WhatsApp links are all
                     derived from this single number.
                   </p>
@@ -273,65 +273,65 @@ export default function AdminBusinessSettingsPage() {
               </fieldset>
 
               <fieldset className="space-y-3">
-                <legend className="font-bold uppercase text-sm tracking-wide text-zinc-900">
+                <legend className="font-medium text-sm tracking-wide text-foreground">
                   Address
                 </legend>
                 <div>
-                  <Label htmlFor="addr1" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                  <Label htmlFor="addr1" className="font-semibold uppercase text-xs tracking-wide text-foreground">
                     Street (line 1)
                   </Label>
                   <Input
                     id="addr1"
                     value={form.addressLine1}
                     onChange={(e) => field("addressLine1", e.target.value)}
-                    className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                    className="bg-white border border-border focus:border-primary h-12"
                     data-testid="input-addr1"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="addr2" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                  <Label htmlFor="addr2" className="font-semibold uppercase text-xs tracking-wide text-foreground">
                     City, State Zip (line 2)
                   </Label>
                   <Input
                     id="addr2"
                     value={form.addressLine2}
                     onChange={(e) => field("addressLine2", e.target.value)}
-                    className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                    className="bg-white border border-border focus:border-primary h-12"
                     data-testid="input-addr2"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="mapsLink" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                  <Label htmlFor="mapsLink" className="font-semibold uppercase text-xs tracking-wide text-foreground">
                     Google Maps link (used by Directions buttons)
                   </Label>
                   <Input
                     id="mapsLink"
                     value={form.mapsLink}
                     onChange={(e) => field("mapsLink", e.target.value)}
-                    className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                    className="bg-white border border-border focus:border-primary h-12"
                     data-testid="input-maps-link"
                   />
                 </div>
                 <div>
-                  <Label htmlFor="mapsEmbed" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                  <Label htmlFor="mapsEmbed" className="font-semibold uppercase text-xs tracking-wide text-foreground">
                     Google Maps embed URL (used by location iframe)
                   </Label>
                   <Textarea
                     id="mapsEmbed"
                     value={form.mapsEmbed}
                     onChange={(e) => field("mapsEmbed", e.target.value)}
-                    className="bg-white border border-zinc-200 focus:border-red-500 min-h-[90px]"
+                    className="bg-white border border-border focus:border-primary min-h-[90px]"
                     data-testid="input-maps-embed"
                   />
                 </div>
               </fieldset>
 
               <fieldset className="space-y-3">
-                <legend className="font-bold uppercase text-sm tracking-wide text-zinc-900">
+                <legend className="font-medium text-sm tracking-wide text-foreground">
                   Store Hours
                 </legend>
                 <div>
-                  <Label htmlFor="hoursShort" className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                  <Label htmlFor="hoursShort" className="font-semibold uppercase text-xs tracking-wide text-foreground">
                     Short summary (shown in header / hero)
                   </Label>
                   <Input
@@ -339,7 +339,7 @@ export default function AdminBusinessSettingsPage() {
                     value={form.hoursShort}
                     onChange={(e) => field("hoursShort", e.target.value)}
                     placeholder="Sun 11 AM–7:30 PM | Mon–Sat 10 AM–8:30 PM"
-                    className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                    className="bg-white border border-border focus:border-primary h-12"
                     data-testid="input-hours-short"
                   />
                 </div>
@@ -348,7 +348,7 @@ export default function AdminBusinessSettingsPage() {
                     <div key={d.key}>
                       <Label
                         htmlFor={`day-${d.key}`}
-                        className="font-semibold uppercase text-xs tracking-wide text-zinc-700"
+                        className="font-semibold uppercase text-xs tracking-wide text-foreground"
                       >
                         {d.label}
                       </Label>
@@ -357,7 +357,7 @@ export default function AdminBusinessSettingsPage() {
                         value={form[d.key]}
                         onChange={(e) => field(d.key, e.target.value)}
                         placeholder="10:00 AM – 8:30 PM"
-                        className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                        className="bg-white border border-border focus:border-primary h-12"
                         data-testid={`input-${d.key}`}
                       />
                     </div>
@@ -366,10 +366,10 @@ export default function AdminBusinessSettingsPage() {
               </fieldset>
 
               <fieldset className="space-y-3">
-                <legend className="font-bold uppercase text-sm tracking-wide text-zinc-900">
+                <legend className="font-medium text-sm tracking-wide text-foreground">
                   Social Media
                 </legend>
-                <p className="text-xs text-zinc-500">
+                <p className="text-xs text-muted-foreground">
                   Paste the full URL for each platform you use. Leave a field blank to hide that icon.
                 </p>
                 {(
@@ -382,7 +382,7 @@ export default function AdminBusinessSettingsPage() {
                   ] as { key: keyof FormState; label: string; placeholder: string }[]
                 ).map(({ key, label, placeholder }) => (
                   <div key={key}>
-                    <Label htmlFor={key} className="font-semibold uppercase text-xs tracking-wide text-zinc-700">
+                    <Label htmlFor={key} className="font-semibold uppercase text-xs tracking-wide text-foreground">
                       {label}
                     </Label>
                     <Input
@@ -391,7 +391,7 @@ export default function AdminBusinessSettingsPage() {
                       value={form[key]}
                       onChange={(e) => field(key, e.target.value)}
                       placeholder={placeholder}
-                      className="bg-white border border-zinc-200 focus:border-red-500 h-12"
+                      className="bg-white border border-border focus:border-primary h-12"
                       data-testid={`input-${key}`}
                     />
                   </div>
@@ -402,7 +402,7 @@ export default function AdminBusinessSettingsPage() {
                 <Button
                   type="submit"
                   disabled={submitting}
-                  className="bg-red-500 hover:bg-red-600 text-white font-semibold uppercase tracking-wide h-12 px-6 shadow-sm"
+                  className="bg-primary hover:bg-primary text-white font-semibold h-12 px-6 shadow-sm"
                   data-testid="button-save"
                 >
                   {submitting ? "Saving..." : "Save Changes"}
@@ -412,13 +412,13 @@ export default function AdminBusinessSettingsPage() {
                   variant="outline"
                   disabled={!current || submitting}
                   onClick={() => current && setForm(settingsToForm(current))}
-                  className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6"
+                  className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6"
                   data-testid="button-revert"
                 >
                   Revert
                 </Button>
                 {current && (
-                  <span className="text-xs font-medium text-zinc-500">
+                  <span className="text-xs font-medium text-muted-foreground">
                     Last updated {new Date(current.updatedAt).toLocaleString()}
                   </span>
                 )}

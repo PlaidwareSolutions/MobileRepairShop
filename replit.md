@@ -1,5 +1,53 @@
 # Workspace
 
+## ok-cellular iFixit-inspired redesign (2026-05-03)
+
+`artifacts/ok-cellular/` was visually rewritten in an iFixit-inspired
+technical-handbook style while keeping the OK Cellular Repairs brand,
+all routes, all `/api/leads/*` payloads, and all content (15 yrs in
+Houston, 90-day warranty, $10-down financing, full hours, NAP, 6
+service categories incl. Accessories) unchanged. `artifacts/api-server/`
+and the database schema were not touched.
+
+Design tokens (`src/index.css`): white background, foreground
+hsl(220 13% 18%), border hsl(220 13% 91%), single confident primary
+accent iFixit blue hsl(207 90% 41%), sharp 0.25rem radius, Inter
+system sans, low calm shadows.
+
+Chrome rebuilt: `SiteHeader` is now search-led (TopUtilityBar + main
+bar with logo + GlobalSearch + Call CTA + nav row with calm white
+mega-menus + mobile drawer); `SiteFooter` is light/muted; `PageHero`
+is a calm panel; `Breadcrumbs` are first-class on every non-home
+page; `StickyMobileBar`'s WhatsApp tile uses `#075E54` (dark teal)
+to meet WCAG AA with white text. `PageShell.hideTicker` is now a
+no-op; `TickerTape` is kept exported for back-compat.
+
+Templates: `HomePage` is search hero + visit-the-shop side panel +
+device tiles + popular-repairs table + mail-in/financing utility
+cards + before/after + why-us + sell tiles + RepairQuoteWizard +
+prepaid/areas chips. `ServicePage` is a guide template with
+at-a-glance Price/Time/Warranty/Diagnostic cells, symptoms + brands
+columns, numbered process, pricing table, upgrade/inventory
+callouts, quote+appointment forms, hub child grid, and quick-call
+strip.
+
+Across all non-shadcn `*.tsx`: `red-*` mapped to primary; `zinc-*`
+mapped to foreground/muted/border/muted-foreground;
+`font-extrabold/font-black` collapsed to `font-semibold`; brutalist
+`shadow-[Npx_Npx_0_0_#hex]` collapsed to `shadow-md`. Heading
+`uppercase tracking-tight` styling and CTA-button uppercase pairings
+were dropped, and hardcoded ALL-CAPS H1/H2 strings on About,
+Contact, Reviews, Area, Prepaid, Financing, Sales, and Inventory
+were rewritten in title case (with the existing primary-coloured
+highlight word retained). `uppercase tracking-wide` is kept only on
+tiny eyebrow labels (10–12 px) as intentional iFixit-style section
+markers. `ui/toast.tsx` and `ui/sidebar.tsx` retain the expected
+shadcn destructive/red usage.
+
+Verification: `pnpm --filter @workspace/ok-cellular run build`
+passes — 160 prerendered routes, 59 legacy redirects,
+audit-seo + audit-sitemap green against `okcellularrepairs.com`.
+
 ## Anti-spam on lead forms (2026-04-29)
 
 All five OK Cellular lead forms (Repair Quote + the wizard, Sell Phone, Appointment, Contact, Reservation) now have a defense-in-depth stack against junk leads, applied in this order on every POST to `/api/leads/*`:

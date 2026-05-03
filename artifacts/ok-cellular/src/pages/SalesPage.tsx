@@ -158,32 +158,32 @@ export default function SalesPage() {
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
 
-      <section className="py-16 px-4 bg-zinc-50">
+      <section className="py-16 px-4 bg-muted/40">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-              WHY <span className="text-red-500">US</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+              Why <span className="text-primary">us</span>
             </h2>
-            <p className="text-lg font-bold text-zinc-600 mb-6">{data.intro}</p>
+            <p className="text-lg font-bold text-muted-foreground mb-6">{data.intro}</p>
             <ul className="space-y-3">
               {data.highlights.map((h) => (
-                <li key={h} className="flex items-start gap-3 text-base md:text-lg font-bold text-zinc-700">
-                  <CheckCircle2 className="w-5 h-5 text-red-500 shrink-0 mt-1" />
+                <li key={h} className="flex items-start gap-3 text-base md:text-lg font-bold text-foreground">
+                  <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-1" />
                   <span>{h}</span>
                 </li>
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3 items-center">
-              <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
+              <Button asChild className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-6">
                 <a href={business.phoneTel}>Call to Browse</a>
               </Button>
-              <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
+              <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">
                 <Link href={inventoryHref} data-testid="link-view-inventory">{inventoryLabel}</Link>
               </Button>
               {isPhonePageSlug(data.slug) && (
                 <Link
                   href={FINANCING.pagePath}
-                  className="bg-red-50 text-red-600 border border-red-200 rounded-full px-3 py-1 uppercase font-semibold text-[11px] tracking-wide hover:bg-red-500 hover:text-white hover:border-red-500 transition-colors"
+                  className="bg-muted/60 text-primary border border-primary rounded-full px-3 py-1 uppercase font-semibold text-[11px] tracking-wide hover:bg-primary hover:text-white hover:border-primary transition-colors"
                   data-testid="financing-pill"
                   aria-label={`${FINANCING.pillLabel} — learn more`}
                 >
@@ -195,30 +195,30 @@ export default function SalesPage() {
           <div>
             {isSellPage ? (
               <>
-                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-                  {isBuyback ? <>GET YOUR <span className="text-red-500">CASH OFFER</span></> : <>SELL YOUR <span className="text-red-500">PHONE</span></>}
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+                  {isBuyback ? <>GET YOUR <span className="text-primary">CASH OFFER</span></> : <>SELL YOUR <span className="text-primary">PHONE</span></>}
                 </h2>
-                <p className="text-lg font-bold text-zinc-600 mb-6">
+                <p className="text-lg font-bold text-muted-foreground mb-6">
                   We pay cash for working iPhones, Samsungs, Pixels and Motorolas — including phones with cracked screens.
                 </p>
                 <SellPhoneForm />
               </>
             ) : isHub ? (
               <>
-                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-                  ASK ABOUT <span className="text-red-500">STOCK</span>
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+                  Ask about <span className="text-primary">stock</span>
                 </h2>
-                <p className="text-lg font-bold text-zinc-600 mb-6">
+                <p className="text-lg font-bold text-muted-foreground mb-6">
                   Looking for something specific? Send us a quick message and we'll text or call you back today with what we have in stock and the price.
                 </p>
                 <ContactForm />
               </>
             ) : (
               <>
-                <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-6 text-zinc-900">
-                  RESERVE <span className="text-red-500">OR VISIT</span>
+                <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-6 text-foreground">
+                  Reserve <span className="text-primary">or visit</span>
                 </h2>
-                <p className="text-lg font-bold text-zinc-600 mb-6">
+                <p className="text-lg font-bold text-muted-foreground mb-6">
                   Reserve {data.title.toLowerCase()} for in-store pickup. Walk-ins always welcome — but reserving guarantees we have it ready when you arrive.
                 </p>
                 <ReservationForm itemId={data.slug} itemLabel={data.title} />
@@ -229,20 +229,20 @@ export default function SalesPage() {
       </section>
 
       {isHub && childPages.length > 0 && (
-        <section className="py-16 px-4 bg-white border-t border-zinc-200">
+        <section className="py-16 px-4 bg-white border-t border-border">
           <div className="max-w-[1240px] mx-auto">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight mb-8 text-zinc-900">
-              BROWSE <span className="text-red-500">{data.hero.eyebrow.toUpperCase()}</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-8 text-foreground">
+              Browse <span className="text-primary">{data.hero.eyebrow}</span>
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3" data-testid="hub-children">
               {childPages.map((c) => (
                 <Link
                   key={c.slug}
                   href={`/${c.slug}`}
-                  className="bg-zinc-50 border border-zinc-200 hover:border-red-500 p-5 transition-colors group"
+                  className="bg-muted/40 border border-border hover:border-primary p-5 transition-colors group"
                   data-testid={`hub-child-${c.slug}`}
                 >
-                  <div className="font-bold uppercase text-base text-zinc-900 group-hover:text-red-500 transition-colors leading-tight">
+                  <div className="font-semibold text-base text-foreground group-hover:text-primary transition-colors leading-tight">
                     {c.title}
                   </div>
                 </Link>

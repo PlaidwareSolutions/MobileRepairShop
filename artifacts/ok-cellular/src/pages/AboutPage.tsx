@@ -29,50 +29,50 @@ export default function AboutPage() {
       />
       <Breadcrumbs items={[{ label: "About" }]} />
 
-      <section className="py-16 md:py-24 px-4 bg-zinc-50 border-b border-zinc-200">
+      <section className="py-16 md:py-24 px-4 bg-muted/40 border-b border-border">
         <div className="max-w-3xl mx-auto">
-          <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-8 leading-tight">
-            15 YEARS REPAIRING <span className="text-red-500">HOUSTON'S DEVICES</span>
+          <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-8 leading-tight">
+            15 years repairing <span className="text-primary">Houston's devices</span>
           </h1>
-          <p className="text-xl font-bold text-zinc-700 mb-6">
+          <p className="text-xl font-bold text-foreground mb-6">
             OK Cellular has been fixing phones, tablets, laptops and gaming consoles for Houston since 2010.
             From our shop at {business.addressFull}, we serve walk-in customers six days a week.
           </p>
-          <p className="text-lg font-bold text-zinc-600 mb-6">
+          <p className="text-lg font-bold text-muted-foreground mb-6">
             We started small — one bench, one technician — and grew because of one simple promise: tell people honestly
             what's wrong with their device, charge them honestly to fix it, and stand behind the work.
           </p>
-          <p className="text-lg font-bold text-zinc-600 mb-10">
+          <p className="text-lg font-bold text-muted-foreground mb-10">
             Today we repair every major brand of phone, tablet, laptop and console; sell tested used and refurbished
             phones; activate every prepaid carrier; and accept bill payments. The promise hasn't changed.
           </p>
 
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-6">
-            WHAT WE <span className="text-red-500">STAND FOR</span>
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-6">
+            What we <span className="text-primary">stand for</span>
           </h2>
           <ul className="space-y-3 mb-10">
             {VALUES.map((v) => (
-              <li key={v} className="flex items-start gap-3 text-lg font-bold text-zinc-700">
-                <CheckCircle2 className="w-6 h-6 text-red-500 shrink-0 mt-1" />
+              <li key={v} className="flex items-start gap-3 text-lg font-bold text-foreground">
+                <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-1" />
                 <span>{v}</span>
               </li>
             ))}
           </ul>
 
           <div className="flex flex-wrap gap-3">
-            <Button asChild className="bg-red-500 hover:bg-white hover:text-black text-zinc-900 font-semibold uppercase tracking-wide h-12 px-6">
+            <Button asChild className="bg-primary hover:bg-white hover:text-black text-foreground font-semibold h-12 px-6">
               <a href={business.phoneTel}>Call {business.phoneDisplay}</a>
             </Button>
-            <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
+            <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">
               <Link href="/reviews-houston-tx">Read Reviews</Link>
             </Button>
-            <Button asChild variant="outline" className="border border-zinc-300 hover:bg-white hover:text-black font-semibold uppercase tracking-wide h-12 px-6">
+            <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">
               <Link href="/contact-houston-tx">Contact Us</Link>
             </Button>
           </div>
 
           <div className="mt-10">
-            <p className="text-sm font-bold uppercase tracking-widest text-zinc-500 mb-3">Follow Us</p>
+            <p className="text-sm font-semibold uppercase tracking-wide text-muted-foreground mb-3">Follow Us</p>
             <SocialLinks business={business} iconClass="w-6 h-6" />
           </div>
         </div>

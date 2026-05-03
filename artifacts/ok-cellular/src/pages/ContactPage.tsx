@@ -44,44 +44,44 @@ export default function ContactPage() {
       />
       <Breadcrumbs items={[{ label: "Contact" }]} />
 
-      <section className="py-12 md:py-16 px-4 bg-zinc-50 border-b border-zinc-200">
+      <section className="py-12 md:py-16 px-4 bg-muted/40 border-b border-border">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-zinc-900 mb-8 leading-tight">
-              GET IN <span className="text-red-500">TOUCH</span>
+            <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-8 leading-tight">
+              Get in <span className="text-primary">touch</span>
             </h1>
-            <p className="text-xl font-bold text-zinc-600 mb-8 max-w-md">
+            <p className="text-xl font-bold text-muted-foreground mb-8 max-w-md">
               Fastest answer? Call or WhatsApp. Walk in any day during business hours — no appointment needed.
             </p>
 
             <div className="space-y-6 max-w-md">
-              <a href={business.phoneTel} className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-call">
-                <Phone className="w-7 h-7 text-red-500 shrink-0 mt-1" />
+              <a href={business.phoneTel} className="flex items-start gap-4 bg-white border border-border p-5 hover:border-primary transition-colors" data-testid="link-call">
+                <Phone className="w-7 h-7 text-primary shrink-0 mt-1" />
                 <div>
-                  <div className="font-bold uppercase text-lg text-zinc-900">{business.phoneDisplay}</div>
-                  <div className="text-zinc-500 font-bold text-xs uppercase">Tap to call</div>
+                  <div className="font-semibold text-base text-foreground">{business.phoneDisplay}</div>
+                  <div className="text-muted-foreground font-medium text-xs uppercase tracking-wide">Tap to call</div>
                 </div>
               </a>
-              <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-whatsapp">
-                <MessageCircle className="w-7 h-7 text-red-500 shrink-0 mt-1" />
+              <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-border p-5 hover:border-primary transition-colors" data-testid="link-whatsapp">
+                <MessageCircle className="w-7 h-7 text-primary shrink-0 mt-1" />
                 <div>
-                  <div className="font-bold uppercase text-lg text-zinc-900">WhatsApp / Text</div>
-                  <div className="text-zinc-500 font-bold text-xs uppercase">Send us a message</div>
+                  <div className="font-semibold text-base text-foreground">WhatsApp / Text</div>
+                  <div className="text-muted-foreground font-medium text-xs uppercase tracking-wide">Send us a message</div>
                 </div>
               </a>
-              <a href={business.mapsLink} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-zinc-200 p-5 hover:border-red-500 transition-colors" data-testid="link-maps">
-                <MapPin className="w-7 h-7 text-red-500 shrink-0 mt-1" />
+              <a href={business.mapsLink} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-border p-5 hover:border-primary transition-colors" data-testid="link-maps">
+                <MapPin className="w-7 h-7 text-primary shrink-0 mt-1" />
                 <div>
-                  <div className="font-bold uppercase text-lg text-zinc-900">{business.addressLine1}</div>
-                  <div className="text-zinc-600 font-bold uppercase text-sm">{business.addressLine2}</div>
-                  <div className="text-zinc-500 font-bold text-xs uppercase mt-1">Get directions</div>
+                  <div className="font-semibold text-base text-foreground">{business.addressLine1}</div>
+                  <div className="text-muted-foreground font-medium text-sm">{business.addressLine2}</div>
+                  <div className="text-muted-foreground font-medium text-xs uppercase tracking-wide mt-1">Get directions</div>
                 </div>
               </a>
-              <div className="flex items-start gap-4 bg-white border border-zinc-200 p-5">
-                <Clock className="w-7 h-7 text-red-500 shrink-0 mt-1" />
+              <div className="flex items-start gap-4 bg-white border border-border p-5">
+                <Clock className="w-7 h-7 text-primary shrink-0 mt-1" />
                 <div>
-                  <div className="font-bold uppercase text-lg text-zinc-900">{business.hoursShort}</div>
-                  <div className="text-zinc-500 font-bold text-xs uppercase">Walk-ins welcome</div>
+                  <div className="font-semibold text-base text-foreground">{business.hoursShort}</div>
+                  <div className="text-muted-foreground font-medium text-xs uppercase tracking-wide">Walk-ins welcome</div>
                 </div>
               </div>
               <SocialLinks
@@ -91,14 +91,14 @@ export default function ContactPage() {
               />
               <Link
                 href={SHIPPING.mailInSlug}
-                className="flex items-start gap-4 bg-red-50 border border-red-200 p-5 hover:bg-red-100 hover:border-red-500 transition-colors group focus:outline-none focus:ring-2 focus:ring-red-500"
+                className="flex items-start gap-4 bg-muted/60 border border-primary p-5 hover:bg-primary/10 hover:border-primary transition-colors group focus:outline-none focus:ring-2 focus:ring-ring"
                 data-testid="contact-mail-in-callout"
               >
-                <Truck className="w-7 h-7 text-red-600 shrink-0 mt-1" />
+                <Truck className="w-7 h-7 text-primary shrink-0 mt-1" />
                 <div className="flex-1">
-                  <div className="font-bold uppercase text-lg text-zinc-900">{SHIPPING.mailInTitle}</div>
-                  <div className="text-zinc-700 font-medium text-sm mt-1">{SHIPPING.desc}</div>
-                  <div className="text-red-600 font-bold uppercase text-xs mt-2 inline-flex items-center gap-1">
+                  <div className="font-semibold text-base text-foreground">{SHIPPING.mailInTitle}</div>
+                  <div className="text-foreground font-medium text-sm mt-1">{SHIPPING.desc}</div>
+                  <div className="text-primary font-semibold text-xs mt-2 inline-flex items-center gap-1">
                     Start a mail-in repair <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                   </div>
                 </div>
@@ -116,15 +116,15 @@ export default function ContactPage() {
                   aria-selected={tab === t.key}
                   onClick={() => setTab(t.key)}
                   data-testid={`tab-contact-${t.key}`}
-                  className={`px-3 py-2 font-bold uppercase text-xs tracking-wide border transition-colors ${ tab === t.key ? "bg-red-500 border-red-500 text-zinc-900" : "bg-zinc-100 border-zinc-300 text-zinc-600 hover:border-red-500" }`}
+                  className={`px-3 py-2 font-semibold text-xs tracking-wide border transition-colors ${ tab === t.key ? "bg-primary border-primary text-foreground" : "bg-muted border-border text-muted-foreground hover:border-primary" }`}
                 >
                   {t.label}
                 </button>
               ))}
             </div>
 
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-zinc-900 mb-6">
-              {heading.title} <span className="text-red-500">{heading.accent}</span>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-6">
+              {heading.title} <span className="text-primary">{heading.accent}</span>
             </h2>
 
             {tab === "message" && <ContactForm />}

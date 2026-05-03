@@ -49,29 +49,29 @@ function CardShell({
     <article
       className={`bg-white border rounded-xl shadow-sm p-5 ${
         hasUnread
-          ? "border-red-300 ring-2 ring-red-200"
+          ? "border-primary ring-2 ring-primary"
           : isNew
-            ? "border-red-200"
-            : "border-zinc-200"
+            ? "border-primary"
+            : "border-border"
       }`}
       data-testid={testId}
       data-unread-inbound={unreadInboundCount}
     >
       <div className="flex flex-wrap justify-between items-start gap-3 mb-3">
         <div>
-          <div className="text-2xl md:text-3xl font-extrabold tracking-tight text-zinc-900 leading-tight">
+          <div className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground leading-tight">
             {primary}
           </div>
-          {meta && <div className="text-xs text-zinc-600 mt-1">{meta}</div>}
+          {meta && <div className="text-xs text-muted-foreground mt-1">{meta}</div>}
         </div>
         <div className="flex flex-col items-end gap-1">
-          <div className="font-mono text-[10px] uppercase tracking-wide text-zinc-500">
+          <div className="font-mono text-[10px] uppercase tracking-wide text-muted-foreground">
             #{id} · {formatRelative(createdAt)}
           </div>
           <div className="flex flex-wrap gap-1 justify-end">
             {hasUnread && (
               <span
-                className="bg-red-500 text-white px-2 py-0.5 rounded-full font-semibold uppercase text-[10px] tracking-wide shadow-sm"
+                className="bg-primary text-white px-2 py-0.5 rounded-full font-semibold uppercase text-[10px] tracking-wide shadow-sm"
                 data-testid={`badge-card-reply-${testId}`}
               >
                 {unreadInboundCount} REPLY
@@ -81,13 +81,13 @@ function CardShell({
           </div>
         </div>
       </div>
-      {body && <div className="text-sm text-zinc-800 whitespace-pre-wrap break-words">{body}</div>}
+      {body && <div className="text-sm text-foreground whitespace-pre-wrap break-words">{body}</div>}
       {actionBar}
     </article>
   );
 }
 
-function Badge({ children, className = "bg-zinc-100 text-zinc-700 border-zinc-200" }: { children: ReactNode; className?: string }) {
+function Badge({ children, className = "bg-muted text-foreground border-border" }: { children: ReactNode; className?: string }) {
   return (
     <span className={`px-2 py-0.5 rounded-full border font-semibold uppercase text-[10px] tracking-wide ${className}`}>
       {children}
@@ -120,14 +120,14 @@ export function RepairQuoteCard({
       primary={
         <>
           {lead.brand} {lead.model}
-          <span className="block text-sm font-semibold uppercase tracking-wide text-red-600 mt-1">
+          <span className="block text-sm font-semibold uppercase tracking-wide text-primary mt-1">
             {lead.deviceType}
           </span>
         </>
       }
       meta={
         <>
-          <span className="text-zinc-900 font-semibold">{lead.name}</span> ·{" "}
+          <span className="text-foreground font-semibold">{lead.name}</span> ·{" "}
           {lead.phone}
           {email ? ` · ${email}` : ""}
         </>
@@ -143,10 +143,10 @@ export function RepairQuoteCard({
             <Badge
               className={
                 lead.urgency === "asap"
-                  ? "bg-red-50 text-red-600 border-red-200"
+                  ? "bg-muted/60 text-primary border-primary"
                   : lead.urgency === "today"
                     ? "bg-orange-50 text-orange-600 border-orange-200"
-                    : "bg-zinc-100 text-zinc-700 border-zinc-200"
+                    : "bg-muted text-foreground border-border"
               }
             >
               {lead.urgency.replaceAll("_", " ")}
@@ -162,16 +162,16 @@ export function RepairQuoteCard({
           <div>{lead.problem}</div>
           {lead.source === "mail-in" && lead.returnAddress && (
             <div className="text-xs bg-blue-50 border border-blue-200 px-3 py-2 rounded">
-              <div className="font-bold uppercase tracking-wide text-blue-700 mb-1">
+              <div className="font-semibold tracking-wide text-blue-700 mb-1">
                 Return shipping address
               </div>
-              <div className="whitespace-pre-line text-zinc-800">
+              <div className="whitespace-pre-line text-foreground">
                 {lead.returnAddress}
               </div>
             </div>
           )}
           {lead.notes && (
-            <div className="text-xs text-zinc-600 italic">Notes: {lead.notes}</div>
+            <div className="text-xs text-muted-foreground italic">Notes: {lead.notes}</div>
           )}
           {lead.photoUrl && (
             <a
@@ -183,7 +183,7 @@ export function RepairQuoteCard({
               <img
                 src={lead.photoUrl}
                 alt="Customer attachment"
-                className="max-h-32 rounded-md border border-zinc-200"
+                className="max-h-32 rounded-md border border-border"
               />
             </a>
           )}
@@ -236,7 +236,7 @@ export function SellPhoneCard({
       }
       meta={
         <>
-          <span className="text-zinc-900 font-semibold">{lead.name}</span> · {lead.phone}
+          <span className="text-foreground font-semibold">{lead.name}</span> · {lead.phone}
         </>
       }
       badges={
@@ -247,8 +247,8 @@ export function SellPhoneCard({
                 lead.condition === "mint"
                   ? "bg-emerald-50 text-emerald-700 border-emerald-200"
                   : lead.condition === "broken"
-                    ? "bg-red-50 text-red-600 border-red-200"
-                    : "bg-zinc-100 text-zinc-700 border-zinc-200"
+                    ? "bg-muted/60 text-primary border-primary"
+                    : "bg-muted text-foreground border-border"
               }
             >
               {lead.condition}
@@ -264,17 +264,17 @@ export function SellPhoneCard({
       body={
         <div className="space-y-2">
           {lead.carrier && (
-            <div className="text-xs text-zinc-600">Carrier: {lead.carrier}</div>
+            <div className="text-xs text-muted-foreground">Carrier: {lead.carrier}</div>
           )}
           {lead.damageNotes && (
-            <div className="text-xs text-zinc-600 italic">Damage: {lead.damageNotes}</div>
+            <div className="text-xs text-muted-foreground italic">Damage: {lead.damageNotes}</div>
           )}
           {lead.photoUrl && (
             <a href={lead.photoUrl} target="_blank" rel="noopener noreferrer">
               <img
                 src={lead.photoUrl}
                 alt="Phone photo"
-                className="max-h-32 rounded-md border border-zinc-200"
+                className="max-h-32 rounded-md border border-border"
               />
             </a>
           )}
@@ -318,7 +318,7 @@ export function AppointmentCard({
       primary={lead.preferredDatetime}
       meta={
         <>
-          <span className="text-zinc-900 font-semibold">{lead.name}</span> · {lead.phone}
+          <span className="text-foreground font-semibold">{lead.name}</span> · {lead.phone}
         </>
       }
       badges={
@@ -424,7 +424,7 @@ export function ReservationCard({
       primary={lead.itemLabel}
       meta={
         <>
-          <span className="text-zinc-900 font-semibold">{lead.name}</span> · {lead.phone} · item id{" "}
+          <span className="text-foreground font-semibold">{lead.name}</span> · {lead.phone} · item id{" "}
           <span className="font-mono">{lead.itemId}</span>
         </>
       }

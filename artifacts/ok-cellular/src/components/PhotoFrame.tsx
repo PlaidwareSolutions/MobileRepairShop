@@ -43,7 +43,7 @@ export function PhotoFrame({
   const webp640 = swapExt(photo.src640, "webp");
   const webp1024 = swapExt(photo.src1024, "webp");
   return (
-    <div className={cn("relative overflow-hidden bg-zinc-200", dims.aspectClass, className)}>
+    <div className={cn("relative overflow-hidden bg-muted", dims.aspectClass, className)}>
       <picture>
         <source
           type="image/avif"
@@ -74,7 +74,7 @@ export function PhotoFrame({
       {hover && (
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-red-600 mix-blend-multiply opacity-0 group-hover:opacity-30 transition-opacity duration-300"
+          className="absolute inset-0 bg-primary mix-blend-multiply opacity-0 group-hover:opacity-30 transition-opacity duration-300"
         />
       )}
     </div>
