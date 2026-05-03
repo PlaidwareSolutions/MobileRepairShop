@@ -68,13 +68,13 @@ const DEVICE_TILES: { name: string; desc: string; icon: LucideIcon; to: string; 
     image: photo("accessories", "Smartphone displayed alongside cases and accessories on a counter") },
 ];
 
-const POPULAR_REPAIRS: { name: string; price: string; time: string; to: string; difficulty: string }[] = [
-  { name: "iPhone Screen Replacement", price: "from $79", time: "30–60 min", difficulty: "Walk-in", to: "/iphone-screen-repair-humble-tx" },
-  { name: "Phone Battery Replacement", price: "from $49", time: "30–45 min", difficulty: "Walk-in", to: "/battery-replacement-humble-tx" },
-  { name: "PS5 HDMI Port Repair", price: "from $99", time: "Same day", difficulty: "Bench job", to: "/ps5-hdmi-repair-humble-tx" },
-  { name: "Samsung Back Glass", price: "from $69", time: "Same day", difficulty: "Bench job", to: "/samsung-repair-humble-tx" },
-  { name: "iPhone Charging Port", price: "from $69", time: "45–90 min", difficulty: "Bench job", to: "/iphone-charging-port-repair-humble-tx" },
-  { name: "MacBook Repair", price: "Free quote", time: "1–3 days", difficulty: "By appointment", to: "/macbook-repair-humble-tx" },
+const POPULAR_REPAIRS: { name: string; price: string; time: string; to: string; difficulty: string; icon: LucideIcon; grad: string }[] = [
+  { name: "iPhone Screen Replacement", price: "from $79", time: "30–60 min", difficulty: "Walk-in", to: "/iphone-screen-repair-humble-tx", icon: Smartphone, grad: "from-sky-400 to-blue-600" },
+  { name: "Phone Battery Replacement", price: "from $49", time: "30–45 min", difficulty: "Walk-in", to: "/battery-replacement-humble-tx", icon: Battery, grad: "from-emerald-400 to-teal-600" },
+  { name: "PS5 HDMI Port Repair", price: "from $99", time: "Same day", difficulty: "Bench job", to: "/ps5-hdmi-repair-humble-tx", icon: Gamepad2, grad: "from-fuchsia-400 to-violet-600" },
+  { name: "Samsung Back Glass", price: "from $69", time: "Same day", difficulty: "Bench job", to: "/samsung-repair-humble-tx", icon: Smartphone, grad: "from-amber-400 to-orange-500" },
+  { name: "iPhone Charging Port", price: "from $69", time: "45–90 min", difficulty: "Bench job", to: "/iphone-charging-port-repair-humble-tx", icon: Zap, grad: "from-cyan-400 to-sky-600" },
+  { name: "MacBook Repair", price: "Free quote", time: "1–3 days", difficulty: "By appointment", to: "/macbook-repair-humble-tx", icon: Laptop, grad: "from-rose-400 to-pink-600" },
 ];
 
 const beforeAfterPair = (slug: string, label: string, beforeAlt: string, afterAlt: string): BeforeAfterPair => ({
@@ -422,9 +422,9 @@ export default function HomePage() {
               Honest starting prices for the repairs we do every day. Final price is confirmed in a free in-person diagnostic — no surprises, no upsells.
             </p>
             <ul className="space-y-2.5 text-sm text-foreground mb-6">
-              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> 90-day repair warranty on every fix</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> OEM-grade parts where available</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> No fix, no fee — diagnostic is free</li>
+              <li className="flex items-start gap-2"><span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-white shadow-sm mt-0.5 shrink-0"><CheckCircle2 className="w-3.5 h-3.5" strokeWidth={2.5} /></span> 90-day repair warranty on every fix</li>
+              <li className="flex items-start gap-2"><span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-white shadow-sm mt-0.5 shrink-0"><CheckCircle2 className="w-3.5 h-3.5" strokeWidth={2.5} /></span> OEM-grade parts where available</li>
+              <li className="flex items-start gap-2"><span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-white shadow-sm mt-0.5 shrink-0"><CheckCircle2 className="w-3.5 h-3.5" strokeWidth={2.5} /></span> No fix, no fee — diagnostic is free</li>
             </ul>
             <Link
               href="/repair-services-humble-tx"
@@ -443,15 +443,19 @@ export default function HomePage() {
                 <div className="col-span-2 hidden md:block">Type</div>
               </div>
               <ul className="divide-y divide-border">
-                {POPULAR_REPAIRS.map((r) => (
+                {POPULAR_REPAIRS.map((r) => {
+                  const RIcon = r.icon;
+                  return (
                   <li key={r.to}>
                     <Link
                       href={r.to}
                       className="grid grid-cols-12 px-4 py-3.5 items-center text-sm hover:bg-muted/60 transition-colors"
                       data-testid={`popular-${r.to}`}
                     >
-                      <div className="col-span-6 sm:col-span-6 flex items-center gap-2.5 min-w-0">
-                        <Wrench className="w-4 h-4 text-primary shrink-0" />
+                      <div className="col-span-6 sm:col-span-6 flex items-center gap-3 min-w-0">
+                        <span className={`inline-flex items-center justify-center w-8 h-8 rounded-lg bg-gradient-to-br ${r.grad} text-white shadow-sm shrink-0`}>
+                          <RIcon className="w-4 h-4" />
+                        </span>
                         <span className="text-foreground font-semibold truncate">{r.name}</span>
                       </div>
                       <div className="col-span-6 sm:col-span-2 text-right text-foreground font-semibold tabular-nums">
@@ -465,7 +469,8 @@ export default function HomePage() {
                       </div>
                     </Link>
                   </li>
-                ))}
+                  );
+                })}
               </ul>
             </div>
           </div>
@@ -477,43 +482,45 @@ export default function HomePage() {
         <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-4 md:gap-6">
           <Link
             href={SHIPPING.mailInSlug}
-            className="group rounded-md border border-border bg-card hover:border-primary hover:shadow-sm transition-all p-6 md:p-7 flex items-start gap-4"
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:-translate-y-0.5 transition-all p-6 md:p-7 flex items-start gap-5"
             data-testid="cta-mail-in-home"
           >
-            <div className="w-10 h-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
-              <Truck className="w-5 h-5" />
+            <div aria-hidden="true" className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-sky-400/20 blur-3xl opacity-70 group-hover:opacity-100 transition-opacity" />
+            <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-400 to-blue-600 text-white shadow-lg shadow-sky-500/30 flex items-center justify-center shrink-0">
+              <Truck className="w-7 h-7" strokeWidth={2.25} />
             </div>
-            <div className="min-w-0">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">Out of town?</div>
-              <div className="text-lg font-semibold text-foreground mb-1.5 group-hover:text-primary transition-colors">
+            <div className="relative min-w-0">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-sky-600 mb-1">Out of town?</div>
+              <div className="text-lg font-bold text-foreground mb-1.5 group-hover:text-primary transition-colors">
                 Mail in your device for repair
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Free repair quote. Insured shipping both ways. Back in {SHIPPING.turnaroundDays}.
               </p>
               <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                Start a mail-in repair <ArrowRight className="w-4 h-4" />
+                Start a mail-in repair <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
           </Link>
           <Link
             href={FINANCING.pagePath}
-            className="group rounded-md border border-border bg-card hover:border-primary hover:shadow-sm transition-all p-6 md:p-7 flex items-start gap-4"
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:-translate-y-0.5 transition-all p-6 md:p-7 flex items-start gap-5"
             data-testid="cta-financing-home"
           >
-            <div className="w-10 h-10 rounded-md bg-primary/10 text-primary flex items-center justify-center shrink-0">
-              <CreditCard className="w-5 h-5" />
+            <div aria-hidden="true" className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-fuchsia-400/20 blur-3xl opacity-70 group-hover:opacity-100 transition-opacity" />
+            <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-fuchsia-400 to-violet-600 text-white shadow-lg shadow-fuchsia-500/30 flex items-center justify-center shrink-0">
+              <CreditCard className="w-7 h-7" strokeWidth={2.25} />
             </div>
-            <div className="min-w-0">
-              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">Buy now, pay later</div>
-              <div className="text-lg font-semibold text-foreground mb-1.5 group-hover:text-primary transition-colors">
+            <div className="relative min-w-0">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-fuchsia-600 mb-1">Buy now, pay later</div>
+              <div className="text-lg font-bold text-foreground mb-1.5 group-hover:text-primary transition-colors">
                 Phone financing from $10 down
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Walk out the same day with an unlocked phone. Soft credit check — no impact to your score.
               </p>
               <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
-                See how financing works <ArrowRight className="w-4 h-4" />
+                See how financing works <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </div>
             </div>
           </Link>
@@ -628,9 +635,9 @@ export default function HomePage() {
               A real technician answers — usually within 30 minutes during shop hours. We'll text or call back today with a firm price and the fastest way to get your device fixed.
             </p>
             <ul className="space-y-2.5 text-sm text-foreground mb-6">
-              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> Free in-person diagnostic</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> Same-day repair where possible</li>
-              <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> 90-day warranty on every fix</li>
+              <li className="flex items-start gap-2"><span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-white shadow-sm mt-0.5 shrink-0"><CheckCircle2 className="w-3.5 h-3.5" strokeWidth={2.5} /></span> Free in-person diagnostic</li>
+              <li className="flex items-start gap-2"><span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-white shadow-sm mt-0.5 shrink-0"><CheckCircle2 className="w-3.5 h-3.5" strokeWidth={2.5} /></span> Same-day repair where possible</li>
+              <li className="flex items-start gap-2"><span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gradient-to-br from-emerald-400 to-teal-600 text-white shadow-sm mt-0.5 shrink-0"><CheckCircle2 className="w-3.5 h-3.5" strokeWidth={2.5} /></span> 90-day warranty on every fix</li>
             </ul>
             <div className="hidden lg:block rounded-md border border-border bg-muted/40 p-5">
               <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-1.5">
