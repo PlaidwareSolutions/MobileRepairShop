@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { MapPin, Clock, Phone, ChevronDown, Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
-import { BUSINESS, HERO, PROMO_BANNER, TICKER } from "@/content";
+import { BUSINESS, HERO } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 
 type MegaMenuColumn = { heading: string; items: { label: string; to: string }[] };
@@ -553,19 +553,6 @@ function MobileNavDrawer() {
   );
 }
 
-export function PromoBanner() {
-  return (
-    <div
-      className="bg-foreground text-background text-center text-xs md:text-sm font-medium px-4 py-2"
-      role="region"
-      aria-label="Promotional offer"
-      data-testid="promo-banner"
-    >
-      {PROMO_BANNER.text}
-    </div>
-  );
-}
-
 export function TopUtilityBar() {
   const business = useBusiness();
   return (
@@ -677,21 +664,3 @@ export function SiteHeader() {
   );
 }
 
-export function TickerTape() {
-  const loop = [...TICKER.items, ...TICKER.items];
-  return (
-    <div
-      className="w-full overflow-hidden bg-muted py-2 border-b border-border flex items-center"
-      aria-hidden="true"
-    >
-      <div className="animate-[marquee_28s_linear_infinite] whitespace-nowrap text-muted-foreground text-sm flex gap-8">
-        {loop.map((item, i) => (
-          <span key={`ticker-${i}`} className="flex items-center gap-8">
-            <span>{item}</span>
-            <span className="text-primary">·</span>
-          </span>
-        ))}
-      </div>
-    </div>
-  );
-}
