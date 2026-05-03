@@ -1,5 +1,4 @@
 uploads = []
-outputs = []
 
 [[generated]]
 id = "MGFtD8U2cIqkFJdluLM7F"
@@ -96,3 +95,27 @@ id = "fQctvpmO83AhGCNU-kN31"
 uri = "file://artifacts/gadget-x-repairs/public/images/photos/_tmp/sell-consoles.png"
 type = "image"
 title = "sell gaming consoles"
+
+[[outputs]]
+id = "VGlLSuKNQN2nlsyGrc-ja"
+uri = "file://artifacts/mockup-sandbox/public/images/owner-portrait.jpg"
+type = "image"
+title = "warm portrait of a friendly senior technician or shop owner looking at the camera in a repair shop"
+
+[[outputs]]
+id = "XaPzXfPBda8uGh-vhKq4i"
+uri = "file://artifacts/mockup-sandbox/public/images/shop-tools.jpg"
+type = "image"
+title = "precision repair tools, screwdrivers, and a magnifying glass on a clean workbench"
+
+[[outputs]]
+id = "h6-map7Vgx2jSJkCmqYn7"
+uri = "file://artifacts/mockup-sandbox/public/images/broken-phone.jpg"
+type = "image"
+title = "a smartphone with a severely shattered and cracked screen"
+
+[[outputs]]
+id = "1xbNioytSV8sbiBU2EW_y"
+uri = "file://artifacts/mockup-sandbox/public/images/fixed-phone.jpg"
+type = "image"
+title = "a pristine, perfectly clean smartphone with a flawless screen"
