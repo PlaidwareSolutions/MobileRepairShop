@@ -103,16 +103,16 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     matches: ({ category, brand }) =>
       /\bapple\b/i.test(brand ?? "") || APPLE_CATEGORY_RE.test(category),
     seo: {
-      metaTitle: "Apple iPhones, iPads & MacBooks Houston | OK Cellular",
+      metaTitle: "Apple iPhones, iPads & MacBooks Humble | OK Cellular",
       metaDescription:
-        "Shop used & refurbished Apple devices at OK Cellular in Houston TX — iPhones, iPads, MacBooks, Apple Watch & AirPods. 90-day warranty.",
+        "Shop used & refurbished Apple devices at OK Cellular in Humble TX — iPhones, iPads, MacBooks, Apple Watch & AirPods. 90-day warranty.",
     },
     heading: { prefix: "Apple", highlight: "Inventory" },
     intro:
       "Used and refurbished Apple devices in one place — iPhones, iPads, MacBooks, Apple Watch and AirPods. Tested in-shop, signed out of the previous owner's Apple ID, and backed by our 90-day warranty.",
     bodyCopy: {
       paragraphs: [
-        "Our Apple inventory in Houston covers the full Apple lineup we see come through trade-ins and bulk buys: unlocked iPhones (typically iPhone 11 through the latest generation in stock), iPad / iPad Air / iPad Pro tablets in both Wi-Fi and cellular configurations, MacBook Air and MacBook Pro laptops (Intel and Apple Silicon M1 / M2 generations as available), Apple Watch (SE, Series 7 / 8 / 9 and Ultra when in stock) and AirPods (2nd gen, 3rd gen, AirPods Pro and AirPods Max).",
+        "Our Apple inventory in Humble covers the full Apple lineup we see come through trade-ins and bulk buys: unlocked iPhones (typically iPhone 11 through the latest generation in stock), iPad / iPad Air / iPad Pro tablets in both Wi-Fi and cellular configurations, MacBook Air and MacBook Pro laptops (Intel and Apple Silicon M1 / M2 generations as available), Apple Watch (SE, Series 7 / 8 / 9 and Ultra when in stock) and AirPods (2nd gen, 3rd gen, AirPods Pro and AirPods Max).",
         "Every Apple device is graded the same way: Excellent (minimal wear, 90%+ battery health on iPhones), Very Good (light cosmetic marks, clean screen, strong battery) or Good (working daily driver, visible wear, priced accordingly). Battery health is disclosed on every iPhone listing; iPad and MacBook batteries get a calibrated diagnostic and are replaced if below threshold before resale.",
         "Activation Lock (iCloud) is cleared with documentation before any iPhone, iPad, MacBook or Apple Watch goes on the floor — you will never get a 'cannot activate' or 'this Apple Watch is linked to an Apple ID' surprise after you take one home. Sign in with your own Apple ID on first boot the same way you would with a brand-new device.",
       ],
@@ -156,16 +156,16 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     matches: ({ category, brand }) =>
       /samsung/i.test(brand ?? "") || SAMSUNG_CATEGORY_RE.test(category),
     seo: {
-      metaTitle: "Used Samsung Galaxy Phones & Tablets Houston | OK Cellular",
+      metaTitle: "Used Samsung Galaxy Phones & Tablets Humble | OK Cellular",
       metaDescription:
-        "Shop used & refurbished Samsung Galaxy phones, tablets and Galaxy Watch at OK Cellular in Houston TX. Tested, unlocked, 90-day warranty.",
+        "Shop used & refurbished Samsung Galaxy phones, tablets and Galaxy Watch at OK Cellular in Humble TX. Tested, unlocked, 90-day warranty.",
     },
     heading: { prefix: "Samsung", highlight: "Inventory" },
     intro:
       "Used and refurbished Samsung Galaxy devices — flagship S and Note phones, mid-range A series, Galaxy Tab tablets and Galaxy Watch. Unlocked, tested in-shop, 90-day warranty.",
     bodyCopy: {
       paragraphs: [
-        "Our Samsung inventory in Houston is mostly Galaxy phones — the Galaxy S series flagships (S21 through the current generation), the value-priced Galaxy A series (A15 / A35 / A54 and similar), and the Galaxy Note line while it was being made (Note 10 and Note 20). Galaxy Tab tablets and Galaxy Watch wearables show up regularly too.",
+        "Our Samsung inventory in Humble is mostly Galaxy phones — the Galaxy S series flagships (S21 through the current generation), the value-priced Galaxy A series (A15 / A35 / A54 and similar), and the Galaxy Note line while it was being made (Note 10 and Note 20). Galaxy Tab tablets and Galaxy Watch wearables show up regularly too.",
         "Every Samsung phone is graded into Excellent, Very Good or Good condition tiers. We test the cellular radios, Wi-Fi, Bluetooth, fingerprint sensor, cameras, speakers, microphones and USB-C port before the device hits the floor. Battery diagnostics are run with the manufacturer-equivalent test, and any battery below our threshold is replaced.",
         "Carrier locks are clearly marked. Most of what we sell is unlocked and confirmed working on AT&T, T-Mobile, Verizon, Cricket, Metro and Mint. Samsung-specific protections (Knox e-fuse status, Reactivation Lock and the Find My Mobile lock) are all cleared with documentation before sale — no surprises after you take one home.",
       ],
@@ -209,16 +209,16 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     matches: ({ category, brand }) =>
       /\bgoogle\b/i.test(brand ?? "") || GOOGLE_CATEGORY_RE.test(category),
     seo: {
-      metaTitle: "Used Google Pixel Phones Houston TX | OK Cellular",
+      metaTitle: "Used Google Pixel Phones Humble TX | OK Cellular",
       metaDescription:
-        "Shop used & refurbished Google Pixel phones at OK Cellular in Houston TX. Unlocked, tested, FRP cleared, backed by our 90-day warranty.",
+        "Shop used & refurbished Google Pixel phones at OK Cellular in Humble TX. Unlocked, tested, FRP cleared, backed by our 90-day warranty.",
     },
     heading: { prefix: "Google", highlight: "Inventory" },
     intro:
       "Used and refurbished Google Pixel handsets — unlocked, FRP cleared, tested in-shop and backed by our 90-day warranty. Stock changes weekly; call to confirm or reserve.",
     bodyCopy: {
       paragraphs: [
-        "Our Google Pixel inventory in Houston covers the Pixel phone line we see most often through trade-ins — typically Pixel 6 and 6a through the current generation, with the occasional Pixel 5 / 5a still in rotation. Most are unlocked and work on AT&T, T-Mobile, Verizon, Cricket, Metro and Mint Mobile.",
+        "Our Google Pixel inventory in Humble covers the Pixel phone line we see most often through trade-ins — typically Pixel 6 and 6a through the current generation, with the occasional Pixel 5 / 5a still in rotation. Most are unlocked and work on AT&T, T-Mobile, Verizon, Cricket, Metro and Mint Mobile.",
         "Every Pixel is graded the same way as our other phones (Excellent / Very Good / Good) and we disclose battery health and any cosmetic notes on every listing. The fingerprint sensor (under-display on Pixel 6 and later, capacitive on older models), face unlock, cameras, speakers and USB-C port are all tested before the phone hits the floor.",
         "Google's FRP (Factory Reset Protection) lock is cleared on every device before sale. You sign in with your own Google Account on first boot and the phone behaves exactly like a new Pixel — including ongoing OS and security updates from Google for the model's supported window.",
       ],
@@ -262,16 +262,16 @@ export const INVENTORY_GROUPS: InventoryGroup[] = [
     matches: ({ category }) => CONSOLE_CATEGORY_RE.test(category),
     seo: {
       metaTitle:
-        "Used PlayStation, Xbox & Switch Houston | OK Cellular",
+        "Used PlayStation, Xbox & Switch Humble | OK Cellular",
       metaDescription:
-        "Used & refurbished PS4, PS5, Xbox One, Series X|S & Nintendo Switch boxes at OK Cellular in Houston TX. Tested with our 90-day warranty.",
+        "Used & refurbished PS4, PS5, Xbox One, Series X|S & Nintendo Switch boxes at OK Cellular in Humble TX. Tested with our 90-day warranty.",
     },
     heading: { prefix: "Gaming", highlight: "Consoles" },
     intro:
       "PlayStation, Xbox and Nintendo Switch console boxes we've cleaned, tested and warrantied in-shop. Controllers and cables included unless noted.",
     bodyCopy: {
       paragraphs: [
-        "Our refurbished console stock in Houston covers Sony PlayStation 4 (slim and Pro) and PlayStation 5, Microsoft Xbox One, Series S and Series X, and Nintendo Switch in all three flavours (original, OLED and Switch Lite). Disc-drive vs. digital-edition variants are clearly labelled on each listing.",
+        "Our refurbished console stock in Humble covers Sony PlayStation 4 (slim and Pro) and PlayStation 5, Microsoft Xbox One, Series S and Series X, and Nintendo Switch in all three flavours (original, OLED and Switch Lite). Disc-drive vs. digital-edition variants are clearly labelled on each listing.",
         "Every console is opened up, deep-cleaned of dust, has its thermal paste replaced if temperatures look high, and is stress-tested for at least 30 minutes under load. We confirm the disc drive reads original retail discs, HDMI output works at the console's native resolution, controller pairing works, and the system is fully updated to the latest firmware.",
         "Switch consoles get a specific joycon-drift check on both sticks, a dock and HDMI-out test, and a battery diagnostic. PlayStation and Xbox controllers are inspected for stick drift, trigger response and bumper click before being included in the box.",
       ],
@@ -321,9 +321,9 @@ export const OTHER_GROUP: InventoryGroup = {
   label: "Other",
   matches: (input) => !INVENTORY_GROUPS.some((g) => g.matches(input)),
   seo: {
-    metaTitle: "Other Inventory | OK Cellular Houston TX",
+    metaTitle: "Other Inventory | OK Cellular Humble TX",
     metaDescription:
-      "Other tested, warrantied gadgets in stock at OK Cellular in Houston TX.",
+      "Other tested, warrantied gadgets in stock at OK Cellular in Humble TX.",
   },
   heading: { prefix: "Other", highlight: "Inventory" },
   intro: "Other tested gadgets currently in stock at our Humble shop.",
@@ -366,14 +366,14 @@ export function inventoryGroupForCategory(
  * `/inventory/<group>` page instead of the generic `/inventory` index.
  *
  * Returns `null` when the slug has no clear bucket (e.g. generic
- * "battery-replacement-houston-tx" or accessory pages, or non-Apple/Samsung/
+ * "battery-replacement-humble-tx" or accessory pages, or non-Apple/Samsung/
  * Google laptops like HP/Dell/Lenovo) — callers should fall back to the
  * generic inventory link in that case.
  *
  * Order matters: console keywords are checked first because "console" is
  * brand-agnostic; then brand-specific keywords (apple/samsung/google); then
  * generic Apple device keywords (ipad/macbook/iphone) so a slug like
- * `/buy-iphone-houston-tx` lands in the apple bucket without needing the
+ * `/buy-iphone-humble-tx` lands in the apple bucket without needing the
  * literal word "apple" in it.
  */
 export function inventoryGroupSlugForPageSlug(
@@ -409,11 +409,11 @@ export function inventoryGroupSlugForPageSlug(
 export type InventoryServiceHub = { path: string; label: string };
 
 const SERVICE_HUB_BY_GROUP_SLUG: Record<string, InventoryServiceHub> = {
-  apple: { path: "/iphone-repair-houston-tx", label: "iPhone & Apple Repair" },
-  samsung: { path: "/samsung-repair-houston-tx", label: "Samsung Repair" },
-  google: { path: "/google-pixel-repair-houston-tx", label: "Google Pixel Repair" },
+  apple: { path: "/iphone-repair-humble-tx", label: "iPhone & Apple Repair" },
+  samsung: { path: "/samsung-repair-humble-tx", label: "Samsung Repair" },
+  google: { path: "/google-pixel-repair-humble-tx", label: "Google Pixel Repair" },
   consoles: {
-    path: "/gaming-console-repair-houston-tx",
+    path: "/gaming-console-repair-humble-tx",
     label: "Gaming Console Repair",
   },
 };

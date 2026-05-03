@@ -651,7 +651,7 @@ function PromotionFormCard({
 
   // Best-effort label of the browser's current time zone, used in the helper
   // text under the absolute date-window inputs so an owner editing from
-  // outside Houston can spot the mismatch before saving.
+  // outside Humble can spot the mismatch before saving.
   const browserTzLabel = useMemo(() => {
     try {
       return Intl.DateTimeFormat().resolvedOptions().timeZone || "your local time";
@@ -828,7 +828,7 @@ function PromotionFormCard({
               setForm((f) => ({ ...f, ctaHref: e.target.value }))
             }
             maxLength={500}
-            placeholder="/contact-houston-tx"
+            placeholder="/contact-humble-tx"
             className="bg-white border border-border focus:border-primary h-11 mt-1"
             data-testid="input-cta-href"
           />

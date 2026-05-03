@@ -5,44 +5,44 @@ import { useBusiness } from "@/components/BusinessContext";
 import { SocialLinks } from "@/components/SocialLinks";
 
 const REPAIR_LINKS = [
-  { label: "All Repair Services", to: "/repair-services-houston-tx" },
-  { label: "iPhone Repair", to: "/iphone-repair-houston-tx" },
-  { label: "iPhone Screen", to: "/iphone-screen-repair-houston-tx" },
-  { label: "Samsung Repair", to: "/samsung-repair-houston-tx" },
-  { label: "iPad / Tablet", to: "/tablet-repair-houston-tx" },
-  { label: "Laptop Repair", to: "/laptop-repair-houston-tx" },
-  { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
-  { label: "PS5 / Xbox HDMI", to: "/ps5-hdmi-repair-houston-tx" },
-  { label: "Battery Replacement", to: "/battery-replacement-houston-tx" },
-  { label: "Phone Unlocking", to: "/phone-unlocking-houston-tx" },
+  { label: "All Repair Services", to: "/repair-services-humble-tx" },
+  { label: "iPhone Repair", to: "/iphone-repair-humble-tx" },
+  { label: "iPhone Screen", to: "/iphone-screen-repair-humble-tx" },
+  { label: "Samsung Repair", to: "/samsung-repair-humble-tx" },
+  { label: "iPad / Tablet", to: "/tablet-repair-humble-tx" },
+  { label: "Laptop Repair", to: "/laptop-repair-humble-tx" },
+  { label: "MacBook Repair", to: "/macbook-repair-humble-tx" },
+  { label: "PS5 / Xbox HDMI", to: "/ps5-hdmi-repair-humble-tx" },
+  { label: "Battery Replacement", to: "/battery-replacement-humble-tx" },
+  { label: "Phone Unlocking", to: "/phone-unlocking-humble-tx" },
 ];
 
 const SHOP_LINKS = [
-  { label: "Shop Index", to: "/shop-houston-tx" },
-  { label: "Phones for Sale", to: "/phones-for-sale-houston-tx" },
-  { label: "Buy iPhone", to: "/buy-iphone-houston-tx" },
-  { label: "Buy Samsung", to: "/buy-samsung-phones-houston-tx" },
-  { label: "Laptops for Sale", to: "/laptops-for-sale-houston-tx" },
-  { label: "Buy MacBook", to: "/buy-macbook-houston-tx" },
-  { label: "Phone Cases", to: "/phone-cases-houston-tx" },
-  { label: "Phone Chargers", to: "/phone-chargers-houston-tx" },
-  { label: "Sell Your Phone", to: "/sell-phone-houston-tx" },
+  { label: "Shop Index", to: "/shop-humble-tx" },
+  { label: "Phones for Sale", to: "/phones-for-sale-humble-tx" },
+  { label: "Buy iPhone", to: "/buy-iphone-humble-tx" },
+  { label: "Buy Samsung", to: "/buy-samsung-phones-humble-tx" },
+  { label: "Laptops for Sale", to: "/laptops-for-sale-humble-tx" },
+  { label: "Buy MacBook", to: "/buy-macbook-humble-tx" },
+  { label: "Phone Cases", to: "/phone-cases-humble-tx" },
+  { label: "Phone Chargers", to: "/phone-chargers-humble-tx" },
+  { label: "Sell Your Phone", to: "/sell-phone-humble-tx" },
   { label: "Inventory", to: "/inventory" },
 ];
 
 const PREPAID_LINKS = [
-  { label: "All Prepaid Carriers", to: "/phone-activation-houston-tx" },
-  { label: "Bill Payments", to: "/bill-payments-houston-tx" },
-  { label: "Boost Mobile", to: "/boost-mobile-activation-houston-tx" },
-  { label: "AT&T Prepaid", to: "/att-activation-houston-tx" },
+  { label: "All Prepaid Carriers", to: "/phone-activation-humble-tx" },
+  { label: "Bill Payments", to: "/bill-payments-humble-tx" },
+  { label: "Boost Mobile", to: "/boost-mobile-activation-humble-tx" },
+  { label: "AT&T Prepaid", to: "/att-activation-humble-tx" },
 ];
 
 const COMPANY_LINKS = [
   { label: "About", to: "/about" },
-  { label: "Reviews", to: "/reviews-houston-tx" },
-  { label: "Contact", to: "/contact-houston-tx" },
-  { label: "Mail-In Repair", to: "/mail-in-repair-houston-tx" },
-  { label: "Financing", to: "/financing-houston-tx" },
+  { label: "Reviews", to: "/reviews-humble-tx" },
+  { label: "Contact", to: "/contact-humble-tx" },
+  { label: "Mail-In Repair", to: "/mail-in-repair-humble-tx" },
+  { label: "Financing", to: "/financing-humble-tx" },
 ];
 
 export function SiteFooter() {
@@ -51,7 +51,7 @@ export function SiteFooter() {
     <footer className="bg-muted/40 text-muted-foreground border-t border-border pt-16 pb-32 md:pb-12">
       <div className="max-w-[1240px] mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
         <div className="lg:col-span-2">
-          <Link href="/phone-repair-houston-tx" className="inline-block mb-5">
+          <Link href="/phone-repair-humble-tx" className="inline-block mb-5">
             <img
               src={BUSINESS.logo}
               alt={BUSINESS.name}
@@ -64,7 +64,7 @@ export function SiteFooter() {
             {BUSINESS.tagline}
           </p>
           <div className="text-sm font-semibold text-foreground mb-4">
-            {BUSINESS.yearsInBusiness} years repairing devices in Houston.
+            {BUSINESS.yearsInBusiness} years repairing devices in Humble.
           </div>
           <ul className="space-y-2.5 text-sm">
             <li>

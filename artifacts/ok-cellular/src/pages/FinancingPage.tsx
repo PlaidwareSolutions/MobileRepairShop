@@ -28,9 +28,9 @@ export default function FinancingPage() {
   const business = useBusiness();
   const path = FINANCING.pagePath;
   const meta = {
-    title: "Phone Financing Houston TX | $10 Down | OK Cellular",
+    title: "Phone Financing Humble TX | $10 Down | OK Cellular",
     description:
-      "Phone financing in Houston TX from $10 down. Walk out the same day with an unlocked iPhone, Samsung or Pixel. Pre-qualify in 60 seconds — no credit pull.",
+      "Phone financing in Humble TX from $10 down. Walk out the same day with an unlocked iPhone, Samsung or Pixel. Pre-qualify in 60 seconds — no credit pull.",
   };
 
   return (
@@ -208,7 +208,7 @@ export default function FinancingPage() {
                 variant="outline"
                 className="border border-border hover:bg-white hover:text-black font-semibold h-11 px-5"
               >
-                <Link href="/used-phones-houston-tx">Used Phones</Link>
+                <Link href="/used-phones-humble-tx">Used Phones</Link>
               </Button>
             </div>
           </div>

@@ -68,7 +68,7 @@ export function localBusinessJsonLd(business: B = DEFAULT_BUSINESS) {
       postalCode: "77396",
       addressCountry: "US",
     },
-    areaServed: ["Houston", "Sugar Land", "Missouri City", "Stafford", "Katy", "Alief", "Sharpstown"],
+    areaServed: ["Humble", "Sugar Land", "Missouri City", "Stafford", "Katy", "Alief", "Sharpstown"],
     openingHoursSpecification: [
       { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "11:00", closes: "19:30" },
       { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "10:00", closes: "20:30" },
@@ -107,7 +107,7 @@ export function serviceJsonLd(
         addressCountry: "US",
       },
     },
-    areaServed: { "@type": "City", name: "Houston" },
+    areaServed: { "@type": "City", name: "Humble" },
     description,
     url: `${SITE_URL}${path}`,
   };

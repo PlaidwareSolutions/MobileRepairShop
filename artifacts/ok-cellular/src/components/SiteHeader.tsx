@@ -12,69 +12,69 @@ const REPAIR_MEGA: MegaMenuColumn[] = [
   {
     heading: "iPhone",
     items: [
-      { label: "All iPhone Repair", to: "/iphone-repair-houston-tx" },
-      { label: "iPhone 16 Pro Max", to: "/iphone-16-pro-max-repair-houston-tx" },
-      { label: "iPhone 16 Pro", to: "/iphone-16-pro-repair-houston-tx" },
-      { label: "iPhone 16", to: "/iphone-16-repair-houston-tx" },
-      { label: "iPhone 15 Pro", to: "/iphone-15-pro-repair-houston-tx" },
-      { label: "iPhone 15", to: "/iphone-15-repair-houston-tx" },
-      { label: "iPhone 14", to: "/iphone-14-repair-houston-tx" },
-      { label: "iPhone 13", to: "/iphone-13-repair-houston-tx" },
-      { label: "iPhone 12", to: "/iphone-12-repair-houston-tx" },
-      { label: "iPhone 11", to: "/iphone-11-repair-houston-tx" },
-      { label: "iPhone X / XS / XR", to: "/iphone-x-repair-houston-tx" },
-      { label: "iPhone SE", to: "/iphone-se-repair-houston-tx" },
-      { label: "iPhone 8 / 8 Plus", to: "/iphone-8-repair-houston-tx" },
-      { label: "iPhone 7 / 6s / 6", to: "/iphone-7-repair-houston-tx" },
-      { label: "Screen Replacement", to: "/iphone-screen-repair-houston-tx" },
-      { label: "Battery Replacement", to: "/iphone-battery-replacement-houston-tx" },
-      { label: "Back Glass", to: "/iphone-back-glass-repair-houston-tx" },
-      { label: "Charging Port", to: "/iphone-charging-port-repair-houston-tx" },
-      { label: "Water Damage", to: "/iphone-water-damage-repair-houston-tx" },
+      { label: "All iPhone Repair", to: "/iphone-repair-humble-tx" },
+      { label: "iPhone 16 Pro Max", to: "/iphone-16-pro-max-repair-humble-tx" },
+      { label: "iPhone 16 Pro", to: "/iphone-16-pro-repair-humble-tx" },
+      { label: "iPhone 16", to: "/iphone-16-repair-humble-tx" },
+      { label: "iPhone 15 Pro", to: "/iphone-15-pro-repair-humble-tx" },
+      { label: "iPhone 15", to: "/iphone-15-repair-humble-tx" },
+      { label: "iPhone 14", to: "/iphone-14-repair-humble-tx" },
+      { label: "iPhone 13", to: "/iphone-13-repair-humble-tx" },
+      { label: "iPhone 12", to: "/iphone-12-repair-humble-tx" },
+      { label: "iPhone 11", to: "/iphone-11-repair-humble-tx" },
+      { label: "iPhone X / XS / XR", to: "/iphone-x-repair-humble-tx" },
+      { label: "iPhone SE", to: "/iphone-se-repair-humble-tx" },
+      { label: "iPhone 8 / 8 Plus", to: "/iphone-8-repair-humble-tx" },
+      { label: "iPhone 7 / 6s / 6", to: "/iphone-7-repair-humble-tx" },
+      { label: "Screen Replacement", to: "/iphone-screen-repair-humble-tx" },
+      { label: "Battery Replacement", to: "/iphone-battery-replacement-humble-tx" },
+      { label: "Back Glass", to: "/iphone-back-glass-repair-humble-tx" },
+      { label: "Charging Port", to: "/iphone-charging-port-repair-humble-tx" },
+      { label: "Water Damage", to: "/iphone-water-damage-repair-humble-tx" },
     ],
   },
   {
     heading: "Samsung & Android",
     items: [
-      { label: "All Samsung Galaxy", to: "/samsung-repair-houston-tx" },
-      { label: "Galaxy S24", to: "/samsung-galaxy-s24-repair-houston-tx" },
-      { label: "Galaxy S23", to: "/samsung-galaxy-s23-repair-houston-tx" },
-      { label: "Galaxy S22", to: "/samsung-galaxy-s22-repair-houston-tx" },
-      { label: "Galaxy S21", to: "/samsung-galaxy-s21-repair-houston-tx" },
-      { label: "Galaxy A54", to: "/samsung-galaxy-a54-repair-houston-tx" },
-      { label: "Galaxy A35", to: "/samsung-galaxy-a35-repair-houston-tx" },
-      { label: "Galaxy A15", to: "/samsung-galaxy-a15-repair-houston-tx" },
-      { label: "Galaxy Note 20", to: "/samsung-galaxy-note-20-repair-houston-tx" },
-      { label: "Galaxy Note 10", to: "/samsung-galaxy-note-10-repair-houston-tx" },
-      { label: "Samsung Screen", to: "/samsung-screen-repair-houston-tx" },
-      { label: "Samsung Battery", to: "/samsung-battery-replacement-houston-tx" },
-      { label: "Google Pixel", to: "/google-pixel-repair-houston-tx" },
-      { label: "Motorola", to: "/motorola-repair-houston-tx" },
-      { label: "T-Mobile Revvl", to: "/revvl-repair-houston-tx" },
+      { label: "All Samsung Galaxy", to: "/samsung-repair-humble-tx" },
+      { label: "Galaxy S24", to: "/samsung-galaxy-s24-repair-humble-tx" },
+      { label: "Galaxy S23", to: "/samsung-galaxy-s23-repair-humble-tx" },
+      { label: "Galaxy S22", to: "/samsung-galaxy-s22-repair-humble-tx" },
+      { label: "Galaxy S21", to: "/samsung-galaxy-s21-repair-humble-tx" },
+      { label: "Galaxy A54", to: "/samsung-galaxy-a54-repair-humble-tx" },
+      { label: "Galaxy A35", to: "/samsung-galaxy-a35-repair-humble-tx" },
+      { label: "Galaxy A15", to: "/samsung-galaxy-a15-repair-humble-tx" },
+      { label: "Galaxy Note 20", to: "/samsung-galaxy-note-20-repair-humble-tx" },
+      { label: "Galaxy Note 10", to: "/samsung-galaxy-note-10-repair-humble-tx" },
+      { label: "Samsung Screen", to: "/samsung-screen-repair-humble-tx" },
+      { label: "Samsung Battery", to: "/samsung-battery-replacement-humble-tx" },
+      { label: "Google Pixel", to: "/google-pixel-repair-humble-tx" },
+      { label: "Motorola", to: "/motorola-repair-humble-tx" },
+      { label: "T-Mobile Revvl", to: "/revvl-repair-humble-tx" },
     ],
   },
   {
     heading: "Tablet, Laptop & Console",
     items: [
-      { label: "All Repair Services", to: "/repair-services-houston-tx" },
-      { label: "iPad / Tablet", to: "/tablet-repair-houston-tx" },
-      { label: "iPad", to: "/ipad-repair-houston-tx" },
-      { label: "iPad Pro", to: "/ipad-pro-repair-houston-tx" },
-      { label: "iPad Air", to: "/ipad-air-repair-houston-tx" },
-      { label: "Samsung Tablet", to: "/samsung-tablet-repair-houston-tx" },
-      { label: "Tablet Screen", to: "/tablet-screen-repair-houston-tx" },
-      { label: "Laptop Repair", to: "/laptop-repair-houston-tx" },
-      { label: "Laptop Screen", to: "/laptop-screen-repair-houston-tx" },
-      { label: "Laptop Battery", to: "/laptop-battery-replacement-houston-tx" },
-      { label: "MacBook Repair", to: "/macbook-repair-houston-tx" },
-      { label: "Gaming Consoles", to: "/gaming-console-repair-houston-tx" },
-      { label: "PS5 Repair", to: "/ps5-repair-houston-tx" },
-      { label: "PS5 HDMI Repair", to: "/ps5-hdmi-repair-houston-tx" },
-      { label: "Xbox Repair", to: "/xbox-repair-houston-tx" },
-      { label: "HDMI Port Repair", to: "/hdmi-port-repair-houston-tx" },
-      { label: "Battery Replacement", to: "/battery-replacement-houston-tx" },
-      { label: "Phone Unlocking", to: "/phone-unlocking-houston-tx" },
-      { label: "Google Lock Removal", to: "/google-lock-removal-houston-tx" },
+      { label: "All Repair Services", to: "/repair-services-humble-tx" },
+      { label: "iPad / Tablet", to: "/tablet-repair-humble-tx" },
+      { label: "iPad", to: "/ipad-repair-humble-tx" },
+      { label: "iPad Pro", to: "/ipad-pro-repair-humble-tx" },
+      { label: "iPad Air", to: "/ipad-air-repair-humble-tx" },
+      { label: "Samsung Tablet", to: "/samsung-tablet-repair-humble-tx" },
+      { label: "Tablet Screen", to: "/tablet-screen-repair-humble-tx" },
+      { label: "Laptop Repair", to: "/laptop-repair-humble-tx" },
+      { label: "Laptop Screen", to: "/laptop-screen-repair-humble-tx" },
+      { label: "Laptop Battery", to: "/laptop-battery-replacement-humble-tx" },
+      { label: "MacBook Repair", to: "/macbook-repair-humble-tx" },
+      { label: "Gaming Consoles", to: "/gaming-console-repair-humble-tx" },
+      { label: "PS5 Repair", to: "/ps5-repair-humble-tx" },
+      { label: "PS5 HDMI Repair", to: "/ps5-hdmi-repair-humble-tx" },
+      { label: "Xbox Repair", to: "/xbox-repair-humble-tx" },
+      { label: "HDMI Port Repair", to: "/hdmi-port-repair-humble-tx" },
+      { label: "Battery Replacement", to: "/battery-replacement-humble-tx" },
+      { label: "Phone Unlocking", to: "/phone-unlocking-humble-tx" },
+      { label: "Google Lock Removal", to: "/google-lock-removal-humble-tx" },
     ],
   },
 ];
@@ -83,126 +83,126 @@ const SHOP_MEGA: MegaMenuColumn[] = [
   {
     heading: "Phones",
     items: [
-      { label: "All Phones for Sale", to: "/phones-for-sale-houston-tx" },
-      { label: "Used Phones", to: "/used-phones-houston-tx" },
-      { label: "Refurbished Phones", to: "/refurbished-phones-houston-tx" },
-      { label: "New Phones", to: "/new-phones-houston-tx" },
-      { label: "Buy iPhone", to: "/buy-iphone-houston-tx" },
-      { label: "Buy Samsung", to: "/buy-samsung-phones-houston-tx" },
-      { label: "Buy Galaxy A54", to: "/buy-samsung-galaxy-a54-houston-tx" },
-      { label: "Buy Galaxy A15", to: "/buy-samsung-galaxy-a15-houston-tx" },
-      { label: "Buy Galaxy S22", to: "/buy-samsung-galaxy-s22-houston-tx" },
-      { label: "Buy Galaxy Note 20", to: "/buy-samsung-galaxy-note-20-houston-tx" },
-      { label: "Buy Pixel", to: "/buy-google-pixel-phones-houston-tx" },
-      { label: "Buy Motorola", to: "/buy-motorola-phones-houston-tx" },
-      { label: "Buy Revvl", to: "/buy-revvl-phones-houston-tx" },
+      { label: "All Phones for Sale", to: "/phones-for-sale-humble-tx" },
+      { label: "Used Phones", to: "/used-phones-humble-tx" },
+      { label: "Refurbished Phones", to: "/refurbished-phones-humble-tx" },
+      { label: "New Phones", to: "/new-phones-humble-tx" },
+      { label: "Buy iPhone", to: "/buy-iphone-humble-tx" },
+      { label: "Buy Samsung", to: "/buy-samsung-phones-humble-tx" },
+      { label: "Buy Galaxy A54", to: "/buy-samsung-galaxy-a54-humble-tx" },
+      { label: "Buy Galaxy A15", to: "/buy-samsung-galaxy-a15-humble-tx" },
+      { label: "Buy Galaxy S22", to: "/buy-samsung-galaxy-s22-humble-tx" },
+      { label: "Buy Galaxy Note 20", to: "/buy-samsung-galaxy-note-20-humble-tx" },
+      { label: "Buy Pixel", to: "/buy-google-pixel-phones-humble-tx" },
+      { label: "Buy Motorola", to: "/buy-motorola-phones-humble-tx" },
+      { label: "Buy Revvl", to: "/buy-revvl-phones-humble-tx" },
     ],
   },
   {
     heading: "Laptops",
     items: [
-      { label: "All Laptops for Sale", to: "/laptops-for-sale-houston-tx" },
-      { label: "Buy MacBook", to: "/buy-macbook-houston-tx" },
-      { label: "Buy HP Laptops", to: "/buy-hp-laptops-houston-tx" },
-      { label: "Buy Dell Laptops", to: "/buy-dell-laptops-houston-tx" },
-      { label: "Buy Lenovo Laptops", to: "/buy-lenovo-laptops-houston-tx" },
-      { label: "Laptop Accessories", to: "/laptop-accessories-houston-tx" },
+      { label: "All Laptops for Sale", to: "/laptops-for-sale-humble-tx" },
+      { label: "Buy MacBook", to: "/buy-macbook-humble-tx" },
+      { label: "Buy HP Laptops", to: "/buy-hp-laptops-humble-tx" },
+      { label: "Buy Dell Laptops", to: "/buy-dell-laptops-humble-tx" },
+      { label: "Buy Lenovo Laptops", to: "/buy-lenovo-laptops-humble-tx" },
+      { label: "Laptop Accessories", to: "/laptop-accessories-humble-tx" },
     ],
   },
   {
     heading: "Cases & Cables",
     items: [
-      { label: "All Accessories", to: "/phone-accessories-houston-tx" },
-      { label: "iPhone Cases", to: "/iphone-cases-houston-tx" },
-      { label: "OtterBox Cases", to: "/otterbox-cases-houston-tx" },
-      { label: "Screen Protectors", to: "/iphone-screen-protectors-houston-tx" },
-      { label: "iPhone Chargers", to: "/iphone-chargers-houston-tx" },
-      { label: "Phone Cables", to: "/phone-cables-houston-tx" },
-      { label: "HDMI Cables", to: "/hdmi-cables-houston-tx" },
-      { label: "Wireless Chargers", to: "/wireless-chargers-houston-tx" },
-      { label: "Car Phone Holders", to: "/car-phone-holders-houston-tx" },
-      { label: "Power Banks", to: "/power-banks-houston-tx" },
+      { label: "All Accessories", to: "/phone-accessories-humble-tx" },
+      { label: "iPhone Cases", to: "/iphone-cases-humble-tx" },
+      { label: "OtterBox Cases", to: "/otterbox-cases-humble-tx" },
+      { label: "Screen Protectors", to: "/iphone-screen-protectors-humble-tx" },
+      { label: "iPhone Chargers", to: "/iphone-chargers-humble-tx" },
+      { label: "Phone Cables", to: "/phone-cables-humble-tx" },
+      { label: "HDMI Cables", to: "/hdmi-cables-humble-tx" },
+      { label: "Wireless Chargers", to: "/wireless-chargers-humble-tx" },
+      { label: "Car Phone Holders", to: "/car-phone-holders-humble-tx" },
+      { label: "Power Banks", to: "/power-banks-humble-tx" },
     ],
   },
   {
     heading: "Audio, Watch & More",
     items: [
-      { label: "AirPods", to: "/airpods-houston-tx" },
-      { label: "Wireless Earbuds", to: "/wireless-earbuds-houston-tx" },
-      { label: "Wired Headphones", to: "/wired-headphones-houston-tx" },
-      { label: "Bluetooth Speakers", to: "/bluetooth-speakers-houston-tx" },
-      { label: "Apple Watch", to: "/apple-watch-houston-tx" },
-      { label: "Watch Bands", to: "/watch-bands-houston-tx" },
-      { label: "iPad Accessories", to: "/ipad-accessories-houston-tx" },
-      { label: "Camera Lenses", to: "/camera-lenses-houston-tx" },
-      { label: "Apple Accessories", to: "/apple-accessories-houston-tx" },
-      { label: "Samsung Accessories", to: "/samsung-accessories-houston-tx" },
-      { label: "Shop Index", to: "/shop-houston-tx" },
+      { label: "AirPods", to: "/airpods-humble-tx" },
+      { label: "Wireless Earbuds", to: "/wireless-earbuds-humble-tx" },
+      { label: "Wired Headphones", to: "/wired-headphones-humble-tx" },
+      { label: "Bluetooth Speakers", to: "/bluetooth-speakers-humble-tx" },
+      { label: "Apple Watch", to: "/apple-watch-humble-tx" },
+      { label: "Watch Bands", to: "/watch-bands-humble-tx" },
+      { label: "iPad Accessories", to: "/ipad-accessories-humble-tx" },
+      { label: "Camera Lenses", to: "/camera-lenses-humble-tx" },
+      { label: "Apple Accessories", to: "/apple-accessories-humble-tx" },
+      { label: "Samsung Accessories", to: "/samsung-accessories-humble-tx" },
+      { label: "Shop Index", to: "/shop-humble-tx" },
     ],
   },
 ];
 
 const PREPAID_DROPDOWN: { label: string; to: string }[] = [
-  { label: "All Prepaid Activations", to: "/phone-activation-houston-tx" },
-  { label: "Bill Payments", to: "/bill-payments-houston-tx" },
-  { label: "Boost Mobile", to: "/boost-mobile-activation-houston-tx" },
-  { label: "AT&T Prepaid", to: "/att-activation-houston-tx" },
-  { label: "Gen Mobile", to: "/gen-mobile-activation-houston-tx" },
-  { label: "Simple Mobile", to: "/simple-mobile-activation-houston-tx" },
-  { label: "Xfinity Mobile", to: "/xfinity-mobile-activation-houston-tx" },
-  { label: "H2O Wireless", to: "/h2o-wireless-activation-houston-tx" },
-  { label: "Lyca Mobile", to: "/lyca-mobile-activation-houston-tx" },
-  { label: "Verizon Prepaid", to: "/verizon-prepaid-activation-houston-tx" },
+  { label: "All Prepaid Activations", to: "/phone-activation-humble-tx" },
+  { label: "Bill Payments", to: "/bill-payments-humble-tx" },
+  { label: "Boost Mobile", to: "/boost-mobile-activation-humble-tx" },
+  { label: "AT&T Prepaid", to: "/att-activation-humble-tx" },
+  { label: "Gen Mobile", to: "/gen-mobile-activation-humble-tx" },
+  { label: "Simple Mobile", to: "/simple-mobile-activation-humble-tx" },
+  { label: "Xfinity Mobile", to: "/xfinity-mobile-activation-humble-tx" },
+  { label: "H2O Wireless", to: "/h2o-wireless-activation-humble-tx" },
+  { label: "Lyca Mobile", to: "/lyca-mobile-activation-humble-tx" },
+  { label: "Verizon Prepaid", to: "/verizon-prepaid-activation-humble-tx" },
 ];
 
 const SELL_DROPDOWN: { label: string; to: string }[] = [
-  { label: "Sell Any Phone", to: "/sell-phone-houston-tx" },
-  { label: "Sell iPhone", to: "/sell-iphone-houston-tx" },
-  { label: "Sell Samsung", to: "/sell-samsung-phone-houston-tx" },
+  { label: "Sell Any Phone", to: "/sell-phone-humble-tx" },
+  { label: "Sell iPhone", to: "/sell-iphone-humble-tx" },
+  { label: "Sell Samsung", to: "/sell-samsung-phone-humble-tx" },
 ];
 
 const NAV: { label: string; to: string }[] = [
   { label: "Inventory", to: "/inventory" },
-  { label: "Reviews", to: "/reviews-houston-tx" },
-  { label: "Contact", to: "/contact-houston-tx" },
+  { label: "Reviews", to: "/reviews-humble-tx" },
+  { label: "Contact", to: "/contact-humble-tx" },
 ];
 
 type SearchEntry = { keywords: string[]; to: string; label: string };
 const SEARCH_INDEX: SearchEntry[] = [
-  { keywords: ["iphone screen", "iphone glass", "cracked iphone", "iphone display"], to: "/iphone-screen-repair-houston-tx", label: "iPhone Screen Repair" },
-  { keywords: ["iphone battery", "iphone replacement battery"], to: "/iphone-battery-replacement-houston-tx", label: "iPhone Battery Replacement" },
-  { keywords: ["iphone charging", "iphone charge port", "iphone won't charge"], to: "/iphone-charging-port-repair-houston-tx", label: "iPhone Charging Port" },
-  { keywords: ["iphone back", "back glass"], to: "/iphone-back-glass-repair-houston-tx", label: "iPhone Back Glass" },
-  { keywords: ["iphone water", "water damage"], to: "/iphone-water-damage-repair-houston-tx", label: "iPhone Water Damage" },
-  { keywords: ["iphone"], to: "/iphone-repair-houston-tx", label: "iPhone Repair" },
-  { keywords: ["samsung screen"], to: "/samsung-screen-repair-houston-tx", label: "Samsung Screen Repair" },
-  { keywords: ["samsung battery"], to: "/samsung-battery-replacement-houston-tx", label: "Samsung Battery Replacement" },
-  { keywords: ["galaxy", "samsung"], to: "/samsung-repair-houston-tx", label: "Samsung Repair" },
-  { keywords: ["pixel", "google"], to: "/google-pixel-repair-houston-tx", label: "Google Pixel Repair" },
-  { keywords: ["motorola"], to: "/motorola-repair-houston-tx", label: "Motorola Repair" },
-  { keywords: ["ipad pro"], to: "/ipad-pro-repair-houston-tx", label: "iPad Pro Repair" },
-  { keywords: ["ipad air"], to: "/ipad-air-repair-houston-tx", label: "iPad Air Repair" },
-  { keywords: ["ipad", "tablet"], to: "/tablet-repair-houston-tx", label: "iPad / Tablet Repair" },
-  { keywords: ["macbook"], to: "/macbook-repair-houston-tx", label: "MacBook Repair" },
-  { keywords: ["laptop battery"], to: "/laptop-battery-replacement-houston-tx", label: "Laptop Battery" },
-  { keywords: ["laptop screen"], to: "/laptop-screen-repair-houston-tx", label: "Laptop Screen" },
-  { keywords: ["laptop", "computer"], to: "/laptop-repair-houston-tx", label: "Laptop Repair" },
-  { keywords: ["ps5 hdmi", "playstation hdmi"], to: "/ps5-hdmi-repair-houston-tx", label: "PS5 HDMI Repair" },
-  { keywords: ["ps5", "playstation"], to: "/ps5-repair-houston-tx", label: "PS5 Repair" },
-  { keywords: ["xbox"], to: "/xbox-repair-houston-tx", label: "Xbox Repair" },
-  { keywords: ["hdmi"], to: "/hdmi-port-repair-houston-tx", label: "HDMI Port Repair" },
-  { keywords: ["battery"], to: "/battery-replacement-houston-tx", label: "Battery Replacement" },
-  { keywords: ["unlock"], to: "/phone-unlocking-houston-tx", label: "Phone Unlocking" },
-  { keywords: ["mail in", "mail-in", "ship"], to: "/mail-in-repair-houston-tx", label: "Mail-In Repair" },
-  { keywords: ["financing", "finance", "$10 down"], to: "/financing-houston-tx", label: "Phone Financing" },
-  { keywords: ["sell"], to: "/sell-phone-houston-tx", label: "Sell Your Phone" },
-  { keywords: ["case"], to: "/phone-accessories-houston-tx", label: "Cases & Accessories" },
-  { keywords: ["activation", "prepaid", "cricket", "metro", "t-mobile"], to: "/phone-activation-houston-tx", label: "Prepaid Activation" },
-  { keywords: ["bill"], to: "/bill-payments-houston-tx", label: "Bill Payments" },
+  { keywords: ["iphone screen", "iphone glass", "cracked iphone", "iphone display"], to: "/iphone-screen-repair-humble-tx", label: "iPhone Screen Repair" },
+  { keywords: ["iphone battery", "iphone replacement battery"], to: "/iphone-battery-replacement-humble-tx", label: "iPhone Battery Replacement" },
+  { keywords: ["iphone charging", "iphone charge port", "iphone won't charge"], to: "/iphone-charging-port-repair-humble-tx", label: "iPhone Charging Port" },
+  { keywords: ["iphone back", "back glass"], to: "/iphone-back-glass-repair-humble-tx", label: "iPhone Back Glass" },
+  { keywords: ["iphone water", "water damage"], to: "/iphone-water-damage-repair-humble-tx", label: "iPhone Water Damage" },
+  { keywords: ["iphone"], to: "/iphone-repair-humble-tx", label: "iPhone Repair" },
+  { keywords: ["samsung screen"], to: "/samsung-screen-repair-humble-tx", label: "Samsung Screen Repair" },
+  { keywords: ["samsung battery"], to: "/samsung-battery-replacement-humble-tx", label: "Samsung Battery Replacement" },
+  { keywords: ["galaxy", "samsung"], to: "/samsung-repair-humble-tx", label: "Samsung Repair" },
+  { keywords: ["pixel", "google"], to: "/google-pixel-repair-humble-tx", label: "Google Pixel Repair" },
+  { keywords: ["motorola"], to: "/motorola-repair-humble-tx", label: "Motorola Repair" },
+  { keywords: ["ipad pro"], to: "/ipad-pro-repair-humble-tx", label: "iPad Pro Repair" },
+  { keywords: ["ipad air"], to: "/ipad-air-repair-humble-tx", label: "iPad Air Repair" },
+  { keywords: ["ipad", "tablet"], to: "/tablet-repair-humble-tx", label: "iPad / Tablet Repair" },
+  { keywords: ["macbook"], to: "/macbook-repair-humble-tx", label: "MacBook Repair" },
+  { keywords: ["laptop battery"], to: "/laptop-battery-replacement-humble-tx", label: "Laptop Battery" },
+  { keywords: ["laptop screen"], to: "/laptop-screen-repair-humble-tx", label: "Laptop Screen" },
+  { keywords: ["laptop", "computer"], to: "/laptop-repair-humble-tx", label: "Laptop Repair" },
+  { keywords: ["ps5 hdmi", "playstation hdmi"], to: "/ps5-hdmi-repair-humble-tx", label: "PS5 HDMI Repair" },
+  { keywords: ["ps5", "playstation"], to: "/ps5-repair-humble-tx", label: "PS5 Repair" },
+  { keywords: ["xbox"], to: "/xbox-repair-humble-tx", label: "Xbox Repair" },
+  { keywords: ["hdmi"], to: "/hdmi-port-repair-humble-tx", label: "HDMI Port Repair" },
+  { keywords: ["battery"], to: "/battery-replacement-humble-tx", label: "Battery Replacement" },
+  { keywords: ["unlock"], to: "/phone-unlocking-humble-tx", label: "Phone Unlocking" },
+  { keywords: ["mail in", "mail-in", "ship"], to: "/mail-in-repair-humble-tx", label: "Mail-In Repair" },
+  { keywords: ["financing", "finance", "$10 down"], to: "/financing-humble-tx", label: "Phone Financing" },
+  { keywords: ["sell"], to: "/sell-phone-humble-tx", label: "Sell Your Phone" },
+  { keywords: ["case"], to: "/phone-accessories-humble-tx", label: "Cases & Accessories" },
+  { keywords: ["activation", "prepaid", "cricket", "metro", "t-mobile"], to: "/phone-activation-humble-tx", label: "Prepaid Activation" },
+  { keywords: ["bill"], to: "/bill-payments-humble-tx", label: "Bill Payments" },
   { keywords: ["inventory", "in stock", "phones for sale"], to: "/inventory", label: "Inventory" },
   { keywords: ["about"], to: "/about", label: "About" },
-  { keywords: ["contact", "address", "directions", "location"], to: "/contact-houston-tx", label: "Contact" },
-  { keywords: ["reviews"], to: "/reviews-houston-tx", label: "Reviews" },
+  { keywords: ["contact", "address", "directions", "location"], to: "/contact-humble-tx", label: "Contact" },
+  { keywords: ["reviews"], to: "/reviews-humble-tx", label: "Reviews" },
 ];
 
 function findSearchMatch(raw: string): SearchEntry | null {
@@ -237,7 +237,7 @@ function GlobalSearch({ id = "site-search" }: { id?: string }) {
   function onSubmit(e: FormEvent) {
     e.preventDefault();
     const match = findSearchMatch(value);
-    go(match ? match.to : "/repair-services-houston-tx");
+    go(match ? match.to : "/repair-services-humble-tx");
   }
 
   return (
@@ -438,7 +438,7 @@ function MobileNavDrawer() {
           <div className="border-b border-border">
             <div className="flex items-stretch">
               <Link
-                href="/repair-services-houston-tx"
+                href="/repair-services-humble-tx"
                 onClick={close}
                 className="flex-1 px-4 py-3 font-semibold text-foreground hover:bg-muted"
                 data-testid="link-mobile-nav-repair-root"
@@ -504,7 +504,7 @@ function MobileNavDrawer() {
           </div>
 
           <Link
-            href="/shop-houston-tx"
+            href="/shop-humble-tx"
             onClick={close}
             className="block px-4 py-3 font-semibold text-foreground hover:bg-muted border-b border-border"
             data-testid="link-mobile-nav-shop"
@@ -512,7 +512,7 @@ function MobileNavDrawer() {
             Shop
           </Link>
           <Link
-            href="/sell-phone-houston-tx"
+            href="/sell-phone-humble-tx"
             onClick={close}
             className="block px-4 py-3 font-semibold text-foreground hover:bg-muted border-b border-border"
             data-testid="link-mobile-nav-sell"
@@ -520,7 +520,7 @@ function MobileNavDrawer() {
             Sell
           </Link>
           <Link
-            href="/phone-activation-houston-tx"
+            href="/phone-activation-humble-tx"
             onClick={close}
             className="block px-4 py-3 font-semibold text-foreground hover:bg-muted border-b border-border"
             data-testid="link-mobile-nav-prepaid"
@@ -590,7 +590,7 @@ export function SiteHeader() {
       {/* Main bar: logo + global search + Call CTA + mobile menu */}
       <div className="max-w-[1240px] mx-auto px-4 py-3 flex items-center gap-4 md:gap-6">
         <Link
-          href="/phone-repair-houston-tx"
+          href="/phone-repair-humble-tx"
           className="flex items-center gap-2 shrink-0"
           aria-label={`${BUSINESS.name} home`}
         >
@@ -652,7 +652,7 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link
-            href="/mail-in-repair-houston-tx"
+            href="/mail-in-repair-humble-tx"
             className="ml-auto text-primary hover:underline py-2 font-semibold"
             data-testid="nav-mail-in"
           >

@@ -11,9 +11,9 @@ export const SITE_URL =
 
 // Routes that share the same canonical URL as another route (i.e. they render the
 // same component but live at multiple paths). The home page is rendered at both `/`
-// and `/phone-repair-houston-tx`; the latter is the canonical SEO URL, so when we
+// and `/phone-repair-humble-tx`; the latter is the canonical SEO URL, so when we
 // prerender `/` the <link rel="canonical"> and og:url must still point at
-// /phone-repair-houston-tx — otherwise crawlers would see two competing canonicals.
+// /phone-repair-humble-tx — otherwise crawlers would see two competing canonicals.
 export const CANONICAL_OVERRIDES = {
-  "/": "/phone-repair-houston-tx",
+  "/": "/phone-repair-humble-tx",
 };

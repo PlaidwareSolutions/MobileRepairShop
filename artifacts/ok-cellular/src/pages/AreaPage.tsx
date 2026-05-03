@@ -26,7 +26,7 @@ export default function AreaPage() {
         title={data.metaTitle}
         description={data.metaDescription}
         path={path}
-        jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "Areas", path: "/phone-repair-houston-tx" }, { name: data.title, path }])]}
+        jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "Areas", path: "/phone-repair-humble-tx" }, { name: data.title, path }])]}
       />
       <Breadcrumbs items={[{ label: "Areas Served" }, { label: data.title }]} />
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
@@ -66,7 +66,7 @@ export default function AreaPage() {
                 <a href={business.mapsLink} target="_blank" rel="noreferrer">Directions</a>
               </Button>
               <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">
-                <Link href="/phone-repair-houston-tx">All Repairs</Link>
+                <Link href="/phone-repair-humble-tx">All Repairs</Link>
               </Button>
             </div>
           </div>

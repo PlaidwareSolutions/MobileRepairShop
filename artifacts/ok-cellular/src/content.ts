@@ -32,8 +32,8 @@ export const BUSINESS = {
 
 export const HERO = {
   badgeRepairTime: "Most repairs in 15-20 min",
-  badgeYears: "15 Years in Houston",
-  h1: "Fast Phone, Tablet, Laptop & Game Console Repair in Houston",
+  badgeYears: "15 Years in Humble",
+  h1: "Fast Phone, Tablet, Laptop & Game Console Repair in Humble",
   subhead:
     "15 years of trusted repairs. Most fixes done the same day. All major brands welcome — walk-ins always welcome.",
   ctas: [
@@ -55,7 +55,7 @@ export const SHIPPING = {
   // the home-page "We Ship" tile, the contact-page mail-in callout, and the
   // ticker so out-of-area visitors land on a page that actually accepts an
   // online intake instead of a generic call-to-action.
-  mailInSlug: "/mail-in-repair-houston-tx",
+  mailInSlug: "/mail-in-repair-humble-tx",
   // Quoted, conservative turnaround used in the customer-facing page copy and
   // the success message. Mail-in repairs realistically take a few business
   // days end-to-end (transit + repair + return transit), so we set
@@ -67,14 +67,14 @@ export const FINANCING = {
   shortLabel: "Easy Financing",
   desc: "Phones from $10–$80 down. Walk out with your phone today.",
   pillLabel: "Financing from $10 down",
-  pageSlug: "financing-houston-tx",
-  pagePath: "/financing-houston-tx",
+  pageSlug: "financing-humble-tx",
+  pagePath: "/financing-humble-tx",
 };
 
 export const FINANCING_PAGE = {
   hero: {
     eyebrow: "Phone Financing",
-    h1: "Phone Financing in Houston — From $10 Down",
+    h1: "Phone Financing in Humble — From $10 Down",
     subhead:
       "Walk out the same day with an unlocked iPhone, Samsung or Pixel. Our lease-to-own partner runs a soft check that won't touch your credit score, and most shoppers are approved in minutes.",
   },
@@ -148,12 +148,12 @@ export const TICKER = {
     "We Match & Beat Any Price",
     "Mail-In Repairs Welcome",
     "Phones from $10 Down",
-    "15 Years in Houston",
+    "15 Years in Humble",
   ],
 };
 
 export const TRUST_POINTS = [
-  { label: "15+ Years in Houston", icon: "star" as const },
+  { label: "15+ Years in Humble", icon: "star" as const },
   { label: "Same-Day Repair", icon: "zap" as const },
   { label: "90-Day Warranty", icon: "shield" as const },
   { label: "5-Star Reviews", icon: "star" as const },
@@ -174,7 +174,7 @@ export const SERVICES = [
 ];
 
 export const WHY_CHOOSE = [
-  { title: "15 Years Heritage", desc: "Houston's trusted repair shop since 2010.", icon: "star" as const },
+  { title: "15 Years Heritage", desc: "Humble's trusted repair shop since 2010.", icon: "star" as const },
   { title: "Same-Day Turnaround", desc: "Most repairs completed in 1–2 hours while you wait.", icon: "zap" as const },
   { title: "Certified Technicians", desc: "Skilled techs who know every device, inside and out.", icon: "shield" as const },
   { title: "90-Day Warranty", desc: "Every repair is backed by our 90-day warranty.", icon: "check" as const },
@@ -199,7 +199,7 @@ export const SELL_PRODUCTS = [
 export const PREPAID_CARRIERS = ["Cricket", "Metro by T-Mobile", "T-Mobile", "AT&T Prepaid"];
 
 export const SERVICE_AREAS = [
-  "Houston",
+  "Humble",
   "Sugar Land",
   "Missouri City",
   "Stafford",
@@ -215,4 +215,4 @@ export const FOOTER_LINKS = {
   company: ["About", "Locations", "Contact", "Reviews"],
 };
 
-export const COPYRIGHT = "© 2026 OK Cellular. 15 years repairing Houston's devices.";
+export const COPYRIGHT = "© 2026 OK Cellular. 15 years repairing Humble's devices.";

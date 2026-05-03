@@ -56,37 +56,37 @@ const PROCESS_PHOTOS: Photo[] = [
 ];
 
 const REPAIR_HUB_SLUGS = new Set([
-  "repair-services-houston-tx",
-  "phone-repair-houston-tx",
+  "repair-services-humble-tx",
+  "phone-repair-humble-tx",
 ]);
 
 function getRepairParentHub(slug: string): { name: string; path: string } | null {
-  if (slug === "repair-services-houston-tx") return null;
-  if (slug === "phone-repair-houston-tx") return { name: "Repair Services", path: "/repair-services-houston-tx" };
-  if (slug.startsWith("iphone-") && slug !== "iphone-repair-houston-tx") {
-    return { name: "iPhone Repair", path: "/iphone-repair-houston-tx" };
+  if (slug === "repair-services-humble-tx") return null;
+  if (slug === "phone-repair-humble-tx") return { name: "Repair Services", path: "/repair-services-humble-tx" };
+  if (slug.startsWith("iphone-") && slug !== "iphone-repair-humble-tx") {
+    return { name: "iPhone Repair", path: "/iphone-repair-humble-tx" };
   }
-  if (slug.startsWith("samsung-galaxy-") || slug === "samsung-screen-repair-houston-tx" || slug === "samsung-battery-replacement-houston-tx") {
-    return { name: "Samsung Repair", path: "/samsung-repair-houston-tx" };
+  if (slug.startsWith("samsung-galaxy-") || slug === "samsung-screen-repair-humble-tx" || slug === "samsung-battery-replacement-humble-tx") {
+    return { name: "Samsung Repair", path: "/samsung-repair-humble-tx" };
   }
-  if (slug === "ipad-repair-houston-tx" || slug === "ipad-pro-repair-houston-tx" || slug === "ipad-air-repair-houston-tx" || slug === "samsung-tablet-repair-houston-tx" || slug.startsWith("tablet-")) {
-    if (slug === "tablet-repair-houston-tx") return { name: "Repair Services", path: "/repair-services-houston-tx" };
-    return { name: "Tablet Repair", path: "/tablet-repair-houston-tx" };
+  if (slug === "ipad-repair-humble-tx" || slug === "ipad-pro-repair-humble-tx" || slug === "ipad-air-repair-humble-tx" || slug === "samsung-tablet-repair-humble-tx" || slug.startsWith("tablet-")) {
+    if (slug === "tablet-repair-humble-tx") return { name: "Repair Services", path: "/repair-services-humble-tx" };
+    return { name: "Tablet Repair", path: "/tablet-repair-humble-tx" };
   }
-  if (slug.startsWith("laptop-") && slug !== "laptop-repair-houston-tx") {
-    return { name: "Laptop Repair", path: "/laptop-repair-houston-tx" };
+  if (slug.startsWith("laptop-") && slug !== "laptop-repair-humble-tx") {
+    return { name: "Laptop Repair", path: "/laptop-repair-humble-tx" };
   }
-  if (slug === "macbook-repair-houston-tx" || slug === "hp-laptop-repair-houston-tx" || slug === "dell-laptop-repair-houston-tx" || slug === "lenovo-laptop-repair-houston-tx") {
-    return { name: "Laptop Repair", path: "/laptop-repair-houston-tx" };
+  if (slug === "macbook-repair-humble-tx" || slug === "hp-laptop-repair-humble-tx" || slug === "dell-laptop-repair-humble-tx" || slug === "lenovo-laptop-repair-humble-tx") {
+    return { name: "Laptop Repair", path: "/laptop-repair-humble-tx" };
   }
-  if (slug === "computer-repair-houston-tx") return { name: "Repair Services", path: "/repair-services-houston-tx" };
-  if (slug === "ps5-repair-houston-tx" || slug === "ps5-hdmi-repair-houston-tx" || slug === "xbox-repair-houston-tx" || slug === "controller-repair-houston-tx") {
-    return { name: "Gaming Console Repair", path: "/gaming-console-repair-houston-tx" };
+  if (slug === "computer-repair-humble-tx") return { name: "Repair Services", path: "/repair-services-humble-tx" };
+  if (slug === "ps5-repair-humble-tx" || slug === "ps5-hdmi-repair-humble-tx" || slug === "xbox-repair-humble-tx" || slug === "controller-repair-humble-tx") {
+    return { name: "Gaming Console Repair", path: "/gaming-console-repair-humble-tx" };
   }
-  if (slug === "google-lock-removal-houston-tx") {
-    return { name: "Phone Unlocking", path: "/phone-unlocking-houston-tx" };
+  if (slug === "google-lock-removal-humble-tx") {
+    return { name: "Phone Unlocking", path: "/phone-unlocking-humble-tx" };
   }
-  return { name: "Repair Services", path: "/repair-services-houston-tx" };
+  return { name: "Repair Services", path: "/repair-services-humble-tx" };
 }
 
 export default function ServicePage() {

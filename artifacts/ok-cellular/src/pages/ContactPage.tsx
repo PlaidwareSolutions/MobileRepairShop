@@ -37,10 +37,10 @@ export default function ContactPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Contact OK Cellular Houston TX"
+        title="Contact OK Cellular Humble TX"
         description="Reach OK Cellular in Humble, TX. Address, phone, WhatsApp, hours and directions. Walk-ins welcome for repairs, activations and bill pay."
-        path="/contact-houston-tx"
-        jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "Contact", path: "/contact-houston-tx" }])]}
+        path="/contact-humble-tx"
+        jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "Contact", path: "/contact-humble-tx" }])]}
       />
       <Breadcrumbs items={[{ label: "Contact" }]} />
 

@@ -21,7 +21,7 @@ import { BUSINESS, FINANCING } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 
 const DEFAULT_META = {
-  title: "Phones & Laptops Inventory Houston | OK Cellular",
+  title: "Phones & Laptops Inventory Humble | OK Cellular",
   description:
     "Browse current inventory of unlocked iPhones, Samsungs, Pixels and MacBooks at OK Cellular in Humble TX. Walk-ins welcome!",
   heading: { prefix: "Current", highlight: "Inventory" },
@@ -274,7 +274,7 @@ export default function InventoryPage() {
                 <p className="text-sm font-bold text-foreground">
                   Need yours fixed instead of replaced? See our{" "}
                   <span className="text-foreground">{serviceHub.label}</span>{" "}
-                  service in Houston.
+                  service in Humble.
                 </p>
               </div>
               <Link

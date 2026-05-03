@@ -16,23 +16,23 @@ export type ServiceData = {
    * "Looking to upgrade instead?" callout renders on the repair page so a
    * customer who landed for a fix can jump straight to buying that exact
    * model. Used on per-model Samsung Galaxy / iPhone repair pages that have
-   * a matching `buy-...-houston-tx` SALES_DATA entry.
+   * a matching `buy-...-humble-tx` SALES_DATA entry.
    */
   upgradeTo?: { slug: string; label: string };
 };
 
 export const SERVICES_DATA: ServiceData[] = [
   {
-    slug: "phone-repair-houston-tx",
-    title: "Phone Repair Houston",
-    metaTitle: "Phone Repair Houston, TX | Same-Day Cellphone Fix | OK Cellular",
+    slug: "phone-repair-humble-tx",
+    title: "Phone Repair Humble",
+    metaTitle: "Phone Repair Humble, TX | Same-Day Cellphone Fix | OK Cellular",
     metaDescription:
-      "Same-day phone repair in Houston for iPhone, Samsung, Pixel and Motorola. Screen, battery, charging port, water damage. 90-day warranty. (281) 446-2166.",
+      "Same-day phone repair in Humble for iPhone, Samsung, Pixel and Motorola. Screen, battery, charging port, water damage. 90-day warranty. (281) 446-2166.",
     hero: {
       eyebrow: "Cellphone Repair",
-      h1: "Phone Repair in Houston",
+      h1: "Phone Repair in Humble",
       subhead:
-        "Whatever brand, whatever the damage — we fix phones the same day. 15 years repairing Houston's devices from our Will Clayton Pkwy shop.",
+        "Whatever brand, whatever the damage — we fix phones the same day. 15 years repairing Humble's devices from our Will Clayton Pkwy shop.",
     },
     problems: [
       "Cracked or shattered screen",
@@ -64,17 +64,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do I need an appointment?", a: "Walk-ins are always welcome. If you want a guaranteed slot, call ahead at (281) 446-2166." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "samsung-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["iphone-repair-humble-tx", "samsung-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "iphone-repair-houston-tx",
-    title: "iPhone Repair Houston",
-    metaTitle: "iPhone Repair Houston TX | OK Cellular",
+    slug: "iphone-repair-humble-tx",
+    title: "iPhone Repair Humble",
+    metaTitle: "iPhone Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert iPhone repair in Houston TX. Screen, battery, back glass & more. All models serviced. Fast turnaround & warranty. Visit OK Cellular!",
+      "Expert iPhone repair in Humble TX. Screen, battery, back glass & more. All models serviced. Fast turnaround & warranty. Visit OK Cellular!",
     hero: {
       eyebrow: "Apple iPhone Repair",
-      h1: "iPhone Repair in Houston, TX",
+      h1: "iPhone Repair in Humble, TX",
       subhead:
         "Cracked screen, swollen battery, dead Lightning or USB-C port — we repair every iPhone model, same day, from our shop on Will Clayton Pkwy.",
     },
@@ -119,17 +119,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you fix a swollen iPhone battery?", a: "Yes — and you should not keep using a phone with a swollen battery. Power it off and bring it in." },
     ],
     serviceType: "screen-repair",
-    related: ["battery-replacement-houston-tx", "phone-repair-houston-tx", "tablet-repair-houston-tx"],
+    related: ["battery-replacement-humble-tx", "phone-repair-humble-tx", "tablet-repair-humble-tx"],
   },
   {
-    slug: "samsung-repair-houston-tx",
-    title: "Samsung Phone Repair Houston",
-    metaTitle: "Samsung Repair Houston TX | OK Cellular",
+    slug: "samsung-repair-humble-tx",
+    title: "Samsung Phone Repair Humble",
+    metaTitle: "Samsung Repair Humble TX | OK Cellular",
     metaDescription:
-      "Trusted Samsung repair in Houston TX. Screen, battery & more for all Galaxy models. Fast turnaround, warranty included. Visit OK Cellular!",
+      "Trusted Samsung repair in Humble TX. Screen, battery & more for all Galaxy models. Fast turnaround, warranty included. Visit OK Cellular!",
     hero: {
       eyebrow: "Samsung Galaxy Repair",
-      h1: "Samsung Galaxy Repair in Houston",
+      h1: "Samsung Galaxy Repair in Humble",
       subhead:
         "From budget A-series to flagship S Ultra and Z Fold, we repair every Galaxy model with quality parts and a 90-day warranty.",
     },
@@ -161,17 +161,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will the fingerprint sensor still work after a Samsung screen repair?", a: "On most models, yes. We calibrate the in-display sensor as part of the repair." },
     ],
     serviceType: "screen-repair",
-    related: ["phone-repair-houston-tx", "battery-replacement-houston-tx", "google-pixel-repair-houston-tx"],
+    related: ["phone-repair-humble-tx", "battery-replacement-humble-tx", "google-pixel-repair-humble-tx"],
   },
   {
-    slug: "google-pixel-repair-houston-tx",
-    title: "Google Pixel Repair Houston",
-    metaTitle: "Google Pixel Repair Houston TX | OK Cellular",
+    slug: "google-pixel-repair-humble-tx",
+    title: "Google Pixel Repair Humble",
+    metaTitle: "Google Pixel Repair Humble TX | OK Cellular",
     metaDescription:
-      "Trusted Google Pixel repair in Houston TX. Screen, battery & more fixed by expert techs. Fast service, warranty included. Visit OK Cellular!",
+      "Trusted Google Pixel repair in Humble TX. Screen, battery & more fixed by expert techs. Fast service, warranty included. Visit OK Cellular!",
     hero: {
       eyebrow: "Google Pixel Repair",
-      h1: "Google Pixel Repair in Houston",
+      h1: "Google Pixel Repair in Humble",
       subhead:
         "We repair every Pixel from Pixel 3 to the latest Pixel 9 Pro — screen, battery, charging port and more, same day.",
     },
@@ -192,17 +192,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you repair a Pixel that won't turn on?", a: "Yes — bring it in for a free diagnostic. Most no-power issues come down to battery, charging port or board-level work, all of which we handle." },
     ],
     serviceType: "screen-repair",
-    related: ["phone-repair-houston-tx", "samsung-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["phone-repair-humble-tx", "samsung-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "motorola-repair-houston-tx",
-    title: "Motorola Phone Repair Houston",
-    metaTitle: "Motorola Repair Houston TX | OK Cellular",
+    slug: "motorola-repair-humble-tx",
+    title: "Motorola Phone Repair Humble",
+    metaTitle: "Motorola Repair Humble TX | OK Cellular",
     metaDescription:
-      "Affordable Motorola phone repair in Houston TX. Screen, battery & charging port fixes. Fast service with warranty. Walk-in at OK Cellular!",
+      "Affordable Motorola phone repair in Humble TX. Screen, battery & charging port fixes. Fast service with warranty. Walk-in at OK Cellular!",
     hero: {
       eyebrow: "Motorola Repair",
-      h1: "Motorola Phone Repair in Houston",
+      h1: "Motorola Phone Repair in Humble",
       subhead:
         "Moto G, Moto E, Edge, Razr — we fix every Motorola, including the popular prepaid models, same day.",
     },
@@ -223,17 +223,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you fix Razr foldable screens?", a: "Yes. The inner foldable display is more expensive than a rigid Moto screen — we quote on the spot after diagnostic." },
     ],
     serviceType: "screen-repair",
-    related: ["phone-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["phone-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "tablet-repair-houston-tx",
-    title: "iPad & Tablet Repair Houston",
-    metaTitle: "Tablet Repair Houston TX | OK Cellular",
+    slug: "tablet-repair-humble-tx",
+    title: "iPad & Tablet Repair Humble",
+    metaTitle: "Tablet Repair Humble TX | OK Cellular",
     metaDescription:
-      "Professional tablet repair in Houston TX. iPad, Samsung & more. Screen, battery & charging fixes. Fast turnaround at OK Cellular. Walk-ins welcome!",
+      "Professional tablet repair in Humble TX. iPad, Samsung & more. Screen, battery & charging fixes. Fast turnaround at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Tablet Repair",
-      h1: "iPad & Tablet Repair in Houston",
+      h1: "iPad & Tablet Repair in Humble",
       subhead:
         "Cracked glass, dead LCD, weak battery, broken Lightning or USB-C port — we repair every major tablet at our Humble shop.",
     },
@@ -255,17 +255,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you do glass-only on an iPad?", a: "On most iPad models with separate glass and LCD, yes. On newer fused-display iPad Pros, the entire assembly must be replaced." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["iphone-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "laptop-repair-houston-tx",
-    title: "Laptop Repair Houston",
-    metaTitle: "Laptop Repair Houston TX | OK Cellular",
+    slug: "laptop-repair-humble-tx",
+    title: "Laptop Repair Humble",
+    metaTitle: "Laptop Repair Humble TX | OK Cellular",
     metaDescription:
-      "Professional laptop repair in Houston TX. MacBook, HP, Dell & Lenovo. Screen, battery, keyboard & more. Fast service at OK Cellular!",
+      "Professional laptop repair in Humble TX. MacBook, HP, Dell & Lenovo. Screen, battery, keyboard & more. Fast service at OK Cellular!",
     hero: {
       eyebrow: "Laptop Repair",
-      h1: "Laptop Repair in Houston",
+      h1: "Laptop Repair in Humble",
       subhead:
         "We repair every major laptop brand — Windows, Chromebook, even older systems — from screen swaps to motherboard work.",
     },
@@ -298,17 +298,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you recover data from a dead laptop?", a: "In most cases yes. We can pull data from the drive even if the laptop won't boot." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["macbook-repair-houston-tx", "computer-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["macbook-repair-humble-tx", "computer-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "computer-repair-houston-tx",
-    title: "Computer Repair Houston",
-    metaTitle: "Computer Repair Houston TX | OK Cellular",
+    slug: "computer-repair-humble-tx",
+    title: "Computer Repair Humble",
+    metaTitle: "Computer Repair Humble TX | OK Cellular",
     metaDescription:
-      "Professional computer repair in Houston TX. Desktops & laptops. Hardware, software & virus removal. Fast, affordable service at OK Cellular!",
+      "Professional computer repair in Humble TX. Desktops & laptops. Hardware, software & virus removal. Fast, affordable service at OK Cellular!",
     hero: {
       eyebrow: "Computer Repair",
-      h1: "Computer Repair in Houston",
+      h1: "Computer Repair in Humble",
       subhead:
         "Slow Windows, virus, no boot, dead power supply, failed hard drive — we diagnose and repair desktops, laptops and all-in-ones.",
     },
@@ -330,17 +330,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you build a custom PC?", a: "We can spec, source and assemble a custom desktop. Pricing depends on the parts list — bring us your budget and target use." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx"],
+    related: ["laptop-repair-humble-tx", "macbook-repair-humble-tx"],
   },
   {
-    slug: "macbook-repair-houston-tx",
-    title: "MacBook Repair Houston",
-    metaTitle: "MacBook Repair Houston TX | OK Cellular",
+    slug: "macbook-repair-humble-tx",
+    title: "MacBook Repair Humble",
+    metaTitle: "MacBook Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert MacBook repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Fast diagnostics & warranty. Walk-ins welcome at OK Cellular.",
+      "Expert MacBook repair in Humble TX. Screen, battery, keyboard & motherboard fixes. Fast diagnostics & warranty. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "Apple Laptop Repair",
-      h1: "MacBook Repair in Houston",
+      h1: "MacBook Repair in Humble",
       subhead:
         "MacBook Air, MacBook Pro and older MacBooks — Intel and Apple Silicon. Screen, battery, keyboard, logic board, spill cleanup.",
     },
@@ -362,17 +362,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you repair Apple Silicon MacBooks?", a: "Yes — M1, M2 and M3 MacBook Air and MacBook Pro screens, batteries and keyboards are all repairable in our shop." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["laptop-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "hp-laptop-repair-houston-tx",
-    title: "HP Laptop Repair Houston",
-    metaTitle: "HP Laptop Repair Houston TX | OK Cellular",
+    slug: "hp-laptop-repair-humble-tx",
+    title: "HP Laptop Repair Humble",
+    metaTitle: "HP Laptop Repair Humble TX | OK Cellular",
     metaDescription:
-      "Trusted HP laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixed by experts. Fast turnaround. Walk-ins welcome at OK Cellular.",
+      "Trusted HP laptop repair in Humble TX. Screen, battery, keyboard & motherboard fixed by experts. Fast turnaround. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "HP Laptop Repair",
-      h1: "HP Laptop Repair in Houston",
+      h1: "HP Laptop Repair in Humble",
       subhead:
         "We repair every major HP laptop family — Pavilion, Envy, Elitebook, Spectre, Probook, and HP Stream — with quality parts and 90-day warranty.",
     },
@@ -394,17 +394,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you fix an HP laptop that won't turn on?", a: "Yes — most no-power issues come down to charging jack, battery, or motherboard. We diagnose first, then quote." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston-tx", "computer-repair-houston-tx"],
+    related: ["laptop-repair-humble-tx", "computer-repair-humble-tx"],
   },
   {
-    slug: "dell-laptop-repair-houston-tx",
-    title: "Dell Laptop Repair Houston",
-    metaTitle: "Dell Laptop Repair Houston TX | OK Cellular",
+    slug: "dell-laptop-repair-humble-tx",
+    title: "Dell Laptop Repair Humble",
+    metaTitle: "Dell Laptop Repair Humble TX | OK Cellular",
     metaDescription:
-      "Reliable Dell laptop repair in Houston TX. Screen, battery, keyboard & more. Certified technicians & warranty. Walk-in at OK Cellular!",
+      "Reliable Dell laptop repair in Humble TX. Screen, battery, keyboard & more. Certified technicians & warranty. Walk-in at OK Cellular!",
     hero: {
       eyebrow: "Dell Laptop Repair",
-      h1: "Dell Laptop Repair in Houston",
+      h1: "Dell Laptop Repair in Humble",
       subhead:
         "Latitude, Inspiron, XPS, Precision, Vostro — every Dell line repaired in our Humble shop.",
     },
@@ -425,17 +425,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you replace a Dell XPS touchscreen?", a: "Yes. XPS touch displays are higher-cost than non-touch — we'll quote based on your exact model." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston-tx", "computer-repair-houston-tx"],
+    related: ["laptop-repair-humble-tx", "computer-repair-humble-tx"],
   },
   {
-    slug: "lenovo-laptop-repair-houston-tx",
-    title: "Lenovo Laptop Repair Houston",
-    metaTitle: "Lenovo Laptop Repair Houston TX | OK Cellular",
+    slug: "lenovo-laptop-repair-humble-tx",
+    title: "Lenovo Laptop Repair Humble",
+    metaTitle: "Lenovo Laptop Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert Lenovo laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Quick turnaround & warranty. Visit OK Cellular!",
+      "Expert Lenovo laptop repair in Humble TX. Screen, battery, keyboard & motherboard fixes. Quick turnaround & warranty. Visit OK Cellular!",
     hero: {
       eyebrow: "Lenovo Repair",
-      h1: "Lenovo Laptop Repair in Houston",
+      h1: "Lenovo Laptop Repair in Humble",
       subhead:
         "ThinkPad, IdeaPad, Yoga 2-in-1, Legion gaming and Chromebooks — every Lenovo we see, we repair.",
     },
@@ -456,17 +456,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you fix Lenovo Yoga 360 hinges?", a: "Yes. Hinge failures are common on 2-in-1 Yogas. We replace the hinge assembly and reinforce the surrounding plastics." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston-tx", "computer-repair-houston-tx"],
+    related: ["laptop-repair-humble-tx", "computer-repair-humble-tx"],
   },
   {
-    slug: "gaming-console-repair-houston-tx",
-    title: "Gaming Console Repair Houston",
-    metaTitle: "Gaming Console Repair Houston TX | OK Cellular",
+    slug: "gaming-console-repair-humble-tx",
+    title: "Gaming Console Repair Humble",
+    metaTitle: "Gaming Console Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert gaming console repair in Houston TX. PS5, Xbox & controllers. Fast diagnostics & affordable fixes. Walk-in at OK Cellular.",
+      "Expert gaming console repair in Humble TX. PS5, Xbox & controllers. Fast diagnostics & affordable fixes. Walk-in at OK Cellular.",
     hero: {
       eyebrow: "Console Repair",
-      h1: "Gaming Console Repair in Houston",
+      h1: "Gaming Console Repair in Humble",
       subhead:
         "PlayStation, Xbox and Nintendo Switch — broken HDMI, won't read discs, won't power on, overheating, controller failure. We fix it.",
     },
@@ -488,17 +488,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "How long does a PS5 HDMI repair take?", a: "Usually 24–72 hours from drop-off. We microsolder a new HDMI port — no replacing the whole console needed." },
     ],
     serviceType: "hdmi-repair",
-    related: ["ps5-repair-houston-tx", "xbox-repair-houston-tx", "controller-repair-houston-tx", "hdmi-port-repair-houston-tx"],
+    related: ["ps5-repair-humble-tx", "xbox-repair-humble-tx", "controller-repair-humble-tx", "hdmi-port-repair-humble-tx"],
   },
   {
-    slug: "ps5-repair-houston-tx",
-    title: "PS5 Repair Houston",
-    metaTitle: "PS5 Repair Houston TX | OK Cellular",
+    slug: "ps5-repair-humble-tx",
+    title: "PS5 Repair Humble",
+    metaTitle: "PS5 Repair Humble TX | OK Cellular",
     metaDescription:
-      "PS5 not working? Get expert PS5 repair in Houston TX. HDMI, disc drive & more fixed fast. Affordable pricing & warranty at OK Cellular!",
+      "PS5 not working? Get expert PS5 repair in Humble TX. HDMI, disc drive & more fixed fast. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "PlayStation 5 Repair",
-      h1: "PS5 Repair in Houston",
+      h1: "PS5 Repair in Humble",
       subhead:
         "Broken HDMI from a fall, no display, won't take discs, fan howling — we fix every PS5 problem in our Humble shop.",
     },
@@ -520,17 +520,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is it worth repairing my PS5 HDMI port?", a: "Almost always yes. A new PS5 is $400+; an HDMI repair is around $99 with a 90-day warranty." },
     ],
     serviceType: "hdmi-repair",
-    related: ["gaming-console-repair-houston-tx", "xbox-repair-houston-tx", "hdmi-port-repair-houston-tx", "controller-repair-houston-tx"],
+    related: ["gaming-console-repair-humble-tx", "xbox-repair-humble-tx", "hdmi-port-repair-humble-tx", "controller-repair-humble-tx"],
   },
   {
-    slug: "xbox-repair-houston-tx",
-    title: "Xbox Repair Houston",
-    metaTitle: "Xbox Repair Houston TX | OK Cellular",
+    slug: "xbox-repair-humble-tx",
+    title: "Xbox Repair Humble",
+    metaTitle: "Xbox Repair Humble TX | OK Cellular",
     metaDescription:
-      "Xbox not working? Get expert Xbox repair in Houston TX. Power, disc drive & controller issues fixed fast. Affordable & warrantied at OK Cellular!",
+      "Xbox not working? Get expert Xbox repair in Humble TX. Power, disc drive & controller issues fixed fast. Affordable & warrantied at OK Cellular!",
     hero: {
       eyebrow: "Xbox Repair",
-      h1: "Xbox Repair in Houston",
+      h1: "Xbox Repair in Humble",
       subhead:
         "Series X, Series S, Xbox One — busted HDMI, won't read discs, no power, overheating, controller drift. We fix Xbox the same week, often same day.",
     },
@@ -552,17 +552,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Why does my Xbox keep overheating?", a: "Usually dust buildup and dried thermal paste. Our $59 deep clean fixes most overheating cases." },
     ],
     serviceType: "hdmi-repair",
-    related: ["gaming-console-repair-houston-tx", "ps5-repair-houston-tx", "hdmi-port-repair-houston-tx", "controller-repair-houston-tx"],
+    related: ["gaming-console-repair-humble-tx", "ps5-repair-humble-tx", "hdmi-port-repair-humble-tx", "controller-repair-humble-tx"],
   },
   {
-    slug: "controller-repair-houston-tx",
-    title: "Controller Repair Houston",
-    metaTitle: "Controller Repair Houston TX | OK Cellular",
+    slug: "controller-repair-humble-tx",
+    title: "Controller Repair Humble",
+    metaTitle: "Controller Repair Humble TX | OK Cellular",
     metaDescription:
-      "Broken game controller? Get it repaired fast in Houston TX. PS5 & Xbox controllers fixed. Affordable pricing & warranty at OK Cellular!",
+      "Broken game controller? Get it repaired fast in Humble TX. PS5 & Xbox controllers fixed. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "Controller Repair",
-      h1: "Controller Repair in Houston",
+      h1: "Controller Repair in Humble",
       subhead:
         "DualSense drift, Xbox triggers, Switch joycon drift — controller repair from $39 with a 90-day warranty.",
     },
@@ -583,17 +583,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you fix joycon drift on the spot?", a: "In most cases, yes — bring both joycons in and we'll usually have them back to you the same day." },
     ],
     serviceType: "hdmi-repair",
-    related: ["ps5-repair-houston-tx", "xbox-repair-houston-tx", "gaming-console-repair-houston-tx"],
+    related: ["ps5-repair-humble-tx", "xbox-repair-humble-tx", "gaming-console-repair-humble-tx"],
   },
   {
-    slug: "hdmi-port-repair-houston-tx",
-    title: "HDMI Port Repair Houston",
-    metaTitle: "HDMI Port Repair Houston | PS5, Xbox, TV | OK Cellular",
+    slug: "hdmi-port-repair-humble-tx",
+    title: "HDMI Port Repair Humble",
+    metaTitle: "HDMI Port Repair Humble | PS5, Xbox, TV | OK Cellular",
     metaDescription:
-      "HDMI port repair in Houston for PS5, Xbox, Nintendo Switch dock, laptops and TVs. Broken HDMI socket microsoldered for $99.",
+      "HDMI port repair in Humble for PS5, Xbox, Nintendo Switch dock, laptops and TVs. Broken HDMI socket microsoldered for $99.",
     hero: {
       eyebrow: "HDMI Port Repair",
-      h1: "HDMI Port Repair in Houston",
+      h1: "HDMI Port Repair in Humble",
       subhead:
         "Broken HDMI socket on your PS5, Xbox, Switch dock or laptop? We microsolder a new port — usually 24–72 hours.",
     },
@@ -614,17 +614,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Why does HDMI break so easily?", a: "Most HDMI ports break from leverage on the plugged-in cable — pets, kids, kicking the cable. The repair is straightforward; the trick is microsoldering experience." },
     ],
     serviceType: "hdmi-repair",
-    related: ["ps5-repair-houston-tx", "xbox-repair-houston-tx", "gaming-console-repair-houston-tx", "motherboard-repair-houston-tx"],
+    related: ["ps5-repair-humble-tx", "xbox-repair-humble-tx", "gaming-console-repair-humble-tx", "motherboard-repair-humble-tx"],
   },
   {
-    slug: "motherboard-repair-houston-tx",
-    title: "Motherboard Repair Houston",
-    metaTitle: "Motherboard Repair Houston TX | OK Cellular",
+    slug: "motherboard-repair-humble-tx",
+    title: "Motherboard Repair Humble",
+    metaTitle: "Motherboard Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert motherboard repair in Houston TX. Phones, laptops & consoles. Complex board-level fixes by certified technicians. Visit OK Cellular!",
+      "Expert motherboard repair in Humble TX. Phones, laptops & consoles. Complex board-level fixes by certified technicians. Visit OK Cellular!",
     hero: {
       eyebrow: "Board-level Repair",
-      h1: "Motherboard / Logic-Board Repair in Houston",
+      h1: "Motherboard / Logic-Board Repair in Humble",
       subhead:
         "When your phone, laptop or console won't turn on after a fall, spill or charging-port damage, board-level work is usually what brings it back. We do it.",
     },
@@ -646,17 +646,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "When is board repair worth it vs. replacing the device?", a: "If the device is recent enough that replacement is over $300, board repair is almost always worth it. We give you a clear quote before any work begins." },
     ],
     serviceType: "motherboard-repair",
-    related: ["macbook-repair-houston-tx", "iphone-repair-houston-tx", "hdmi-port-repair-houston-tx"],
+    related: ["macbook-repair-humble-tx", "iphone-repair-humble-tx", "hdmi-port-repair-humble-tx"],
   },
   {
-    slug: "battery-replacement-houston-tx",
-    title: "Battery Replacement Houston",
-    metaTitle: "Battery Replacement Houston TX | OK Cellular",
+    slug: "battery-replacement-humble-tx",
+    title: "Battery Replacement Humble",
+    metaTitle: "Battery Replacement Humble TX | OK Cellular",
     metaDescription:
-      "Phone, tablet & laptop battery replacement in Houston TX. All brands & models covered. Fast, affordable service with warranty at OK Cellular!",
+      "Phone, tablet & laptop battery replacement in Humble TX. All brands & models covered. Fast, affordable service with warranty at OK Cellular!",
     hero: {
       eyebrow: "Battery Replacement",
-      h1: "Battery Replacement in Houston",
+      h1: "Battery Replacement in Humble",
       subhead:
         "If your phone dies by lunch or your laptop won't unplug, you need a new battery. We swap them same day from $49.",
     },
@@ -678,17 +678,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is a swollen battery dangerous?", a: "Yes. Power off the device immediately, do not charge it, and bring it in for replacement." },
     ],
     serviceType: "battery-replacement",
-    related: ["iphone-repair-houston-tx", "macbook-repair-houston-tx", "laptop-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "macbook-repair-humble-tx", "laptop-repair-humble-tx"],
   },
   {
-    slug: "phone-unlocking-houston-tx",
-    title: "Phone Unlocking Houston",
-    metaTitle: "Phone Unlocking Houston TX | OK Cellular",
+    slug: "phone-unlocking-humble-tx",
+    title: "Phone Unlocking Humble",
+    metaTitle: "Phone Unlocking Humble TX | OK Cellular",
     metaDescription:
-      "Unlock your phone in Houston TX. All carriers & brands supported. Fast & reliable unlocking service at OK Cellular. Walk-ins welcome!",
+      "Unlock your phone in Humble TX. All carriers & brands supported. Fast & reliable unlocking service at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Phone Unlocking",
-      h1: "Phone Unlocking in Houston",
+      h1: "Phone Unlocking in Humble",
       subhead:
         "Travelling, switching carriers or selling your phone? We unlock most major carrier locks so you can use any SIM card.",
     },
@@ -708,17 +708,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is it legal to unlock my phone?", a: "Yes. In the U.S., once your contract or device payment is complete, you have the right to unlock your device." },
     ],
     serviceType: "phone-unlocking",
-    related: ["phone-repair-houston-tx", "iphone-repair-houston-tx"],
+    related: ["phone-repair-humble-tx", "iphone-repair-humble-tx"],
   },
   {
-    slug: "repair-services-houston-tx",
-    title: "Repair Services Houston",
-    metaTitle: "Repair Services Houston TX | OK Cellular",
+    slug: "repair-services-humble-tx",
+    title: "Repair Services Humble",
+    metaTitle: "Repair Services Humble TX | OK Cellular",
     metaDescription:
-      "Professional repair services for phones, tablets, laptops & consoles in Houston TX. Same-day service available. Walk-ins welcome at OK Cellular.",
+      "Professional repair services for phones, tablets, laptops & consoles in Humble TX. Same-day service available. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "All Repair Services",
-      h1: "Repair Services in Houston",
+      h1: "Repair Services in Humble",
       subhead:
         "Everything we fix, in one place. Phones, tablets, laptops, MacBooks, PS5, Xbox, Switch, controllers, HDMI ports and motherboards — all in our Will Clayton Pkwy shop.",
     },
@@ -753,17 +753,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do I need an appointment?", a: "Walk-ins are always welcome. If you want a guaranteed slot, call (281) 446-2166." },
     ],
     serviceType: "screen-repair",
-    related: ["phone-repair-houston-tx", "tablet-repair-houston-tx", "laptop-repair-houston-tx", "gaming-console-repair-houston-tx"],
+    related: ["phone-repair-humble-tx", "tablet-repair-humble-tx", "laptop-repair-humble-tx", "gaming-console-repair-humble-tx"],
   },
   {
-    slug: "iphone-14-repair-houston-tx",
-    title: "iPhone 14 Repair Houston",
-    metaTitle: "iPhone 14 Repair Houston TX | OK Cellular",
+    slug: "iphone-14-repair-humble-tx",
+    title: "iPhone 14 Repair Humble",
+    metaTitle: "iPhone 14 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 14 repair in Houston TX. Screen, battery, back glass & charging port. Experienced techs & warranty. Visit OK Cellular!",
+      "Affordable iPhone 14 repair in Humble TX. Screen, battery, back glass & charging port. Experienced techs & warranty. Visit OK Cellular!",
     hero: {
       eyebrow: "iPhone 14 Repair",
-      h1: "iPhone 14 Repair in Houston",
+      h1: "iPhone 14 Repair in Humble",
       subhead:
         "iPhone 14, 14 Plus, 14 Pro, 14 Pro Max — cracked OLED, dying battery, broken Lightning port, back glass. Most fixes done in 60 minutes.",
     },
@@ -786,17 +786,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will Face ID still work after iPhone 14 screen repair?", a: "On most iPhone 14 repairs we preserve Face ID. We tell you up front if your specific repair needs a component transfer." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-15-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-15-repair-humble-tx"],
   },
   {
-    slug: "iphone-15-repair-houston-tx",
-    title: "iPhone 15 Repair Houston",
-    metaTitle: "iPhone 15 Repair Houston TX | OK Cellular",
+    slug: "iphone-15-repair-humble-tx",
+    title: "iPhone 15 Repair Humble",
+    metaTitle: "iPhone 15 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Quick & affordable iPhone 15 repair in Houston TX. Screen replacement, battery & more. Walk-ins welcome at OK Cellular. Get a free quote!",
+      "Quick & affordable iPhone 15 repair in Humble TX. Screen replacement, battery & more. Walk-ins welcome at OK Cellular. Get a free quote!",
     hero: {
       eyebrow: "iPhone 15 Repair",
-      h1: "iPhone 15 Repair in Houston",
+      h1: "iPhone 15 Repair in Humble",
       subhead:
         "iPhone 15, 15 Plus, 15 Pro, 15 Pro Max — cracked Super Retina display, USB-C port damage, battery, back glass. We fix all of them.",
     },
@@ -819,17 +819,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Did Apple fix the iPhone 15 USB-C port to be more durable?", a: "It's similar to other USB-C devices — durable in normal use but vulnerable to leverage. We replace damaged ports for around $89." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-charging-port-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-16-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-charging-port-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-16-repair-humble-tx"],
   },
   {
-    slug: "iphone-16-repair-houston-tx",
-    title: "iPhone 16 Repair Houston",
-    metaTitle: "iPhone 16 Repair Houston TX | OK Cellular",
+    slug: "iphone-16-repair-humble-tx",
+    title: "iPhone 16 Repair Humble",
+    metaTitle: "iPhone 16 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 16 repair in Houston TX. Cracked screen, battery & charging issues fixed fast. Certified technicians. Free quote on request.",
+      "Affordable iPhone 16 repair in Humble TX. Cracked screen, battery & charging issues fixed fast. Certified technicians. Free quote on request.",
     hero: {
       eyebrow: "iPhone 16 Repair",
-      h1: "iPhone 16 Repair in Houston",
+      h1: "iPhone 16 Repair in Humble",
       subhead:
         "Brand new iPhone, brand new break. iPhone 16 and 16 Plus screen, battery, USB-C and back glass repair, same week or sooner.",
     },
@@ -851,17 +851,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you have iPhone 16 parts in stock?", a: "Most days yes. If we don't have your specific color back glass on hand, parts arrive within 1–2 business days." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-16-pro-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-15-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-16-pro-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-15-repair-humble-tx"],
   },
   {
-    slug: "iphone-16-pro-repair-houston-tx",
-    title: "iPhone 16 Pro Repair Houston",
-    metaTitle: "iPhone 16 Pro Repair Houston TX | OK Cellular",
+    slug: "iphone-16-pro-repair-humble-tx",
+    title: "iPhone 16 Pro Repair Humble",
+    metaTitle: "iPhone 16 Pro Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert iPhone 16 Pro repair in Houston TX. Screen replacement, battery & more. Quick turnaround with a warranty. Walk-ins welcome at OK Cellular.",
+      "Expert iPhone 16 Pro repair in Humble TX. Screen replacement, battery & more. Quick turnaround with a warranty. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "iPhone 16 Pro Repair",
-      h1: "iPhone 16 Pro Repair in Houston",
+      h1: "iPhone 16 Pro Repair in Humble",
       subhead:
         "iPhone 16 Pro and 16 Pro Max — cracked ProMotion OLED, USB-C port damage, dead battery, back glass shatter. Quality parts, 90-day warranty.",
     },
@@ -884,17 +884,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will my 120Hz ProMotion still work after a screen repair?", a: "Yes — we use OEM-grade panels that maintain ProMotion 120Hz refresh." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-16-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-15-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-16-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-15-repair-humble-tx"],
   },
   {
-    slug: "iphone-screen-repair-houston-tx",
-    title: "iPhone Screen Repair Houston",
-    metaTitle: "iPhone Screen Repair Houston TX | OK Cellular",
+    slug: "iphone-screen-repair-humble-tx",
+    title: "iPhone Screen Repair Humble",
+    metaTitle: "iPhone Screen Repair Humble TX | OK Cellular",
     metaDescription:
-      "Fast iPhone screen repair in Houston TX. Cracked or broken display fixed same day. All models. Affordable pricing & warranty at OK Cellular!",
+      "Fast iPhone screen repair in Humble TX. Cracked or broken display fixed same day. All models. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "iPhone Screen Repair",
-      h1: "iPhone Screen Repair in Houston",
+      h1: "iPhone Screen Repair in Humble",
       subhead:
         "Cracked iPhone screen, dead pixels, black bars or no touch — we replace iPhone screens same day, every model from iPhone 6 to iPhone 16 Pro Max.",
     },
@@ -918,17 +918,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you fix a black iPhone screen that still vibrates on calls?", a: "Yes — that's almost always a screen failure (LCD/OLED dead while logic board is fine). A standard screen replacement fixes it." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-back-glass-repair-houston-tx", "iphone-charging-port-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-back-glass-repair-humble-tx", "iphone-charging-port-repair-humble-tx"],
   },
   {
-    slug: "iphone-battery-replacement-houston-tx",
-    title: "iPhone Battery Replacement Houston",
-    metaTitle: "iPhone Battery Replacement Houston TX | OK Cellular",
+    slug: "iphone-battery-replacement-humble-tx",
+    title: "iPhone Battery Replacement Humble",
+    metaTitle: "iPhone Battery Replacement Humble TX | OK Cellular",
     metaDescription:
-      "iPhone battery draining fast? Get a quick replacement in Houston TX. All models covered. Affordable pricing & warranty at OK Cellular!",
+      "iPhone battery draining fast? Get a quick replacement in Humble TX. All models covered. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "iPhone Battery Replacement",
-      h1: "iPhone Battery Replacement in Houston",
+      h1: "iPhone Battery Replacement in Humble",
       subhead:
         "Battery health below 80%? Phone shutting down at 30%? Battery swollen? We swap iPhone batteries from $49, same day, every model.",
     },
@@ -951,17 +951,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is a swollen iPhone battery dangerous?", a: "Yes. Power off the phone immediately, do not charge, and bring it in." },
     ],
     serviceType: "battery-replacement",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "battery-replacement-houston-tx", "iphone-charging-port-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "battery-replacement-humble-tx", "iphone-charging-port-repair-humble-tx"],
   },
   {
-    slug: "iphone-back-glass-repair-houston-tx",
-    title: "iPhone Back Glass Repair Houston",
-    metaTitle: "iPhone Back Glass Repair Houston TX | OK Cellular",
+    slug: "iphone-back-glass-repair-humble-tx",
+    title: "iPhone Back Glass Repair Humble",
+    metaTitle: "iPhone Back Glass Repair Humble TX | OK Cellular",
     metaDescription:
-      "Cracked iPhone back glass? Get it repaired fast in Houston TX. Affordable pricing, all models covered, warranty included at OK Cellular!",
+      "Cracked iPhone back glass? Get it repaired fast in Humble TX. Affordable pricing, all models covered, warranty included at OK Cellular!",
     hero: {
       eyebrow: "iPhone Back Glass",
-      h1: "iPhone Back Glass Repair in Houston",
+      h1: "iPhone Back Glass Repair in Humble",
       subhead:
         "Cracked iPhone back? Laser-removed and replaced from $89 — without disturbing the wireless charging coil or rear cameras.",
     },
@@ -983,17 +983,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will wireless charging still work after a back glass repair?", a: "Yes — our process preserves the wireless charging and MagSafe coils." },
     ],
     serviceType: "back-glass-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-charging-port-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-charging-port-repair-humble-tx"],
   },
   {
-    slug: "iphone-charging-port-repair-houston-tx",
-    title: "iPhone Charging Port Repair Houston",
-    metaTitle: "iPhone Charging Port Repair Houston TX | OK Cellular",
+    slug: "iphone-charging-port-repair-humble-tx",
+    title: "iPhone Charging Port Repair Humble",
+    metaTitle: "iPhone Charging Port Repair Humble TX | OK Cellular",
     metaDescription:
-      "iPhone not charging? Get your charging port repaired in Houston TX. Fast, affordable fix for all iPhone models at OK Cellular. Walk-ins welcome!",
+      "iPhone not charging? Get your charging port repaired in Humble TX. Fast, affordable fix for all iPhone models at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "iPhone Charging Port",
-      h1: "iPhone Charging Port Repair in Houston",
+      h1: "iPhone Charging Port Repair in Humble",
       subhead:
         "iPhone won't charge or the cable falls out? Lightning or USB-C port replaced from $69, often same day.",
     },
@@ -1014,17 +1014,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Could it be the cable, not the phone?", a: "Often, yes. Try a different cable first. If multiple known-good cables don't charge, the port is likely the problem." },
     ],
     serviceType: "charging-port-repair",
-    related: ["iphone-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-screen-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-screen-repair-humble-tx"],
   },
   {
-    slug: "iphone-water-damage-repair-houston-tx",
-    title: "iPhone Water Damage Repair Houston",
-    metaTitle: "iPhone Water Damage Repair Houston TX | OK Cellular",
+    slug: "iphone-water-damage-repair-humble-tx",
+    title: "iPhone Water Damage Repair Humble",
+    metaTitle: "iPhone Water Damage Repair Humble TX | OK Cellular",
     metaDescription:
-      "Dropped your iPhone in water? Expert water damage repair in Houston TX. Fast diagnosis & recovery service at OK Cellular. Walk-ins welcome!",
+      "Dropped your iPhone in water? Expert water damage repair in Humble TX. Fast diagnosis & recovery service at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "iPhone Water Damage",
-      h1: "iPhone Water Damage Repair in Houston",
+      h1: "iPhone Water Damage Repair in Humble",
       subhead:
         "Dropped your iPhone in water? Power it off and bring it in fast. The sooner we clean the board, the better the chance of full recovery.",
     },
@@ -1046,17 +1046,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "What's the success rate?", a: "Highly variable. The sooner you bring it in (ideally within 24 hours), the better the chance of full recovery." },
     ],
     serviceType: "water-damage-repair",
-    related: ["iphone-repair-houston-tx", "motherboard-repair-houston-tx", "iphone-battery-replacement-houston-tx"],
+    related: ["iphone-repair-humble-tx", "motherboard-repair-humble-tx", "iphone-battery-replacement-humble-tx"],
   },
   {
-    slug: "samsung-galaxy-s24-repair-houston-tx",
-    title: "Samsung Galaxy S24 Repair Houston",
-    metaTitle: "Samsung Galaxy S24 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-s24-repair-humble-tx",
+    title: "Samsung Galaxy S24 Repair Humble",
+    metaTitle: "Samsung Galaxy S24 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert Samsung Galaxy S24 repair in Houston TX. Cracked screen, battery & more fixed fast. Warranty included at OK Cellular. Walk-ins welcome!",
+      "Expert Samsung Galaxy S24 repair in Humble TX. Cracked screen, battery & more fixed fast. Warranty included at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Galaxy S24 Repair",
-      h1: "Samsung Galaxy S24 Repair in Houston",
+      h1: "Samsung Galaxy S24 Repair in Humble",
       subhead:
         "Galaxy S24, S24 Plus, S24 Ultra — cracked AMOLED, swollen battery, broken USB-C, S Pen lost. Quality parts, same-day where possible.",
     },
@@ -1079,17 +1079,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will the in-display fingerprint sensor work after S24 screen repair?", a: "Yes — we calibrate the in-display sensor as part of the screen replacement." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-s23-repair-houston-tx"],
+    related: ["samsung-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx", "samsung-galaxy-s23-repair-humble-tx"],
   },
   {
-    slug: "samsung-galaxy-s23-repair-houston-tx",
-    title: "Samsung Galaxy S23 Repair Houston",
-    metaTitle: "Samsung Galaxy S23 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-s23-repair-humble-tx",
+    title: "Samsung Galaxy S23 Repair Humble",
+    metaTitle: "Samsung Galaxy S23 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Reliable Samsung Galaxy S23 repair in Houston TX. Screen, battery & charging issues fixed fast. Certified techs & warranty at OK Cellular!",
+      "Reliable Samsung Galaxy S23 repair in Humble TX. Screen, battery & charging issues fixed fast. Certified techs & warranty at OK Cellular!",
     hero: {
       eyebrow: "Galaxy S23 Repair",
-      h1: "Samsung Galaxy S23 Repair in Houston",
+      h1: "Samsung Galaxy S23 Repair in Humble",
       subhead:
         "Galaxy S23, S23+, S23 Ultra — cracked AMOLED, weak battery, broken USB-C, busted back glass. Same-day where possible.",
     },
@@ -1112,17 +1112,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Are S23 screens harder to find than S24?", a: "Both are widely available — most S23 repairs are completed same day." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-galaxy-s24-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+    related: ["samsung-repair-humble-tx", "samsung-galaxy-s24-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx"],
   },
   {
-    slug: "samsung-screen-repair-houston-tx",
-    title: "Samsung Screen Repair Houston",
-    metaTitle: "Samsung Screen Repair Houston TX | OK Cellular",
+    slug: "samsung-screen-repair-humble-tx",
+    title: "Samsung Screen Repair Humble",
+    metaTitle: "Samsung Screen Repair Humble TX | OK Cellular",
     metaDescription:
-      "Cracked Samsung screen? Get it repaired fast in Houston TX. All Galaxy models covered, affordable pricing & warranty. Walk-ins welcome at OK Cellular.",
+      "Cracked Samsung screen? Get it repaired fast in Humble TX. All Galaxy models covered, affordable pricing & warranty. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "Samsung Screen Repair",
-      h1: "Samsung Screen Repair in Houston",
+      h1: "Samsung Screen Repair in Humble",
       subhead:
         "Cracked Samsung AMOLED, lines, dead pixels or no touch — every Galaxy series from A to S Ultra to Z Fold replaced with quality AMOLED.",
     },
@@ -1144,17 +1144,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you fix the inner Z Fold screen?", a: "Yes. Inner foldable screens are pricier than rigid AMOLED — we'll quote your model after diagnostic." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-galaxy-s24-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
+    related: ["samsung-repair-humble-tx", "samsung-galaxy-s24-repair-humble-tx", "samsung-battery-replacement-humble-tx"],
   },
   {
-    slug: "samsung-battery-replacement-houston-tx",
-    title: "Samsung Battery Replacement Houston",
-    metaTitle: "Samsung Battery Replacement Houston TX | OK Cellular",
+    slug: "samsung-battery-replacement-humble-tx",
+    title: "Samsung Battery Replacement Humble",
+    metaTitle: "Samsung Battery Replacement Humble TX | OK Cellular",
     metaDescription:
-      "Samsung battery not lasting? Get a fast replacement in Houston TX. All Galaxy models serviced. Affordable pricing & warranty at OK Cellular!",
+      "Samsung battery not lasting? Get a fast replacement in Humble TX. All Galaxy models serviced. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "Samsung Battery",
-      h1: "Samsung Galaxy Battery Replacement in Houston",
+      h1: "Samsung Galaxy Battery Replacement in Humble",
       subhead:
         "Galaxy battery dying fast? Phone shutting off at 30%? Battery swollen? We swap Samsung batteries from $59, same day.",
     },
@@ -1175,17 +1175,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is a swollen Samsung battery dangerous?", a: "Yes. Power off the phone, don't charge, bring it in." },
     ],
     serviceType: "battery-replacement",
-    related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["samsung-repair-humble-tx", "samsung-screen-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "revvl-repair-houston-tx",
-    title: "T-Mobile Revvl Repair Houston",
-    metaTitle: "Revvl Phone Repair Houston TX | OK Cellular",
+    slug: "revvl-repair-humble-tx",
+    title: "T-Mobile Revvl Repair Humble",
+    metaTitle: "Revvl Phone Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert Revvl phone repair in Houston TX. Screen replacement, battery & more fixed fast. Affordable pricing & warranty. Visit OK Cellular!",
+      "Expert Revvl phone repair in Humble TX. Screen replacement, battery & more fixed fast. Affordable pricing & warranty. Visit OK Cellular!",
     hero: {
       eyebrow: "Revvl Repair",
-      h1: "T-Mobile Revvl Repair in Houston",
+      h1: "T-Mobile Revvl Repair in Humble",
       subhead:
         "Cracked Revvl screen, weak battery, USB-C port loose? We repair every T-Mobile Revvl model in our Humble shop.",
     },
@@ -1206,19 +1206,19 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Are Revvl parts hard to find?", a: "Some older Revvl parts can take a day to source — we tell you on the spot if a part isn't in stock." },
     ],
     serviceType: "screen-repair",
-    related: ["phone-repair-houston-tx", "samsung-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["phone-repair-humble-tx", "samsung-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "ipad-repair-houston-tx",
-    title: "iPad Repair Houston",
-    metaTitle: "iPad Repair Houston TX | OK Cellular",
+    slug: "ipad-repair-humble-tx",
+    title: "iPad Repair Humble",
+    metaTitle: "iPad Repair Humble TX | OK Cellular",
     metaDescription:
-      "Fast & affordable iPad repair in Houston TX. Screen, battery & charging port for all iPad models. Warranty included. Walk-ins welcome at OK Cellular.",
+      "Fast & affordable iPad repair in Humble TX. Screen, battery & charging port for all iPad models. Warranty included. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "iPad Repair",
-      h1: "iPad Repair in Houston",
+      h1: "iPad Repair in Humble",
       subhead:
-        "Cracked iPad glass, dead LCD, weak battery, broken Lightning or USB-C port — we repair every standard iPad and iPad mini in Houston.",
+        "Cracked iPad glass, dead LCD, weak battery, broken Lightning or USB-C port — we repair every standard iPad and iPad mini in Humble.",
     },
     problems: ["Cracked front glass", "Dead or lined LCD", "Battery worn out", "Charging port loose", "Home button not working", "Won't turn on"],
     brands: ["iPad (every generation)", "iPad mini (every generation)"],
@@ -1238,17 +1238,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you do glass-only on an iPad?", a: "On most older iPads with separate glass and LCD, yes. On newer fused-display iPads, the entire assembly must be replaced." },
     ],
     serviceType: "screen-repair",
-    related: ["tablet-repair-houston-tx", "ipad-pro-repair-houston-tx", "tablet-screen-repair-houston-tx", "tablet-battery-replacement-houston-tx"],
+    related: ["tablet-repair-humble-tx", "ipad-pro-repair-humble-tx", "tablet-screen-repair-humble-tx", "tablet-battery-replacement-humble-tx"],
   },
   {
-    slug: "ipad-pro-repair-houston-tx",
-    title: "iPad Pro Repair Houston",
-    metaTitle: "iPad Pro Repair Houston TX | OK Cellular",
+    slug: "ipad-pro-repair-humble-tx",
+    title: "iPad Pro Repair Humble",
+    metaTitle: "iPad Pro Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert iPad Pro repair in Houston TX. Cracked screen, battery & more fixed fast. All sizes covered with warranty. Walk-in at OK Cellular!",
+      "Expert iPad Pro repair in Humble TX. Cracked screen, battery & more fixed fast. All sizes covered with warranty. Walk-in at OK Cellular!",
     hero: {
       eyebrow: "iPad Pro Repair",
-      h1: "iPad Pro Repair in Houston",
+      h1: "iPad Pro Repair in Humble",
       subhead:
         "iPad Pro 11\" and 12.9\" / 13\" — cracked fused display, weak battery, broken USB-C / Thunderbolt port. Quality parts, 90-day warranty.",
     },
@@ -1270,17 +1270,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Why are iPad Pro screens so expensive?", a: "On newer iPad Pros the glass, LCD and digitizer are fused — Apple sells the assembly only. We use OEM-grade equivalents to bring the price down." },
     ],
     serviceType: "screen-repair",
-    related: ["tablet-repair-houston-tx", "ipad-repair-houston-tx", "tablet-screen-repair-houston-tx"],
+    related: ["tablet-repair-humble-tx", "ipad-repair-humble-tx", "tablet-screen-repair-humble-tx"],
   },
   {
-    slug: "samsung-tablet-repair-houston-tx",
-    title: "Samsung Tablet Repair Houston",
-    metaTitle: "Samsung Tablet Repair Houston TX | OK Cellular",
+    slug: "samsung-tablet-repair-humble-tx",
+    title: "Samsung Tablet Repair Humble",
+    metaTitle: "Samsung Tablet Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert Samsung tablet repair in Houston TX. Screen, battery & charging port fixed fast. All Galaxy Tab models. Warranty at OK Cellular!",
+      "Expert Samsung tablet repair in Humble TX. Screen, battery & charging port fixed fast. All Galaxy Tab models. Warranty at OK Cellular!",
     hero: {
       eyebrow: "Samsung Tablet Repair",
-      h1: "Samsung Galaxy Tab Repair in Houston",
+      h1: "Samsung Galaxy Tab Repair in Humble",
       subhead:
         "Galaxy Tab S, Tab A, Tab Active — cracked AMOLED / LCD, weak battery, broken USB-C, lost S Pen. Quality parts, 90-day warranty.",
     },
@@ -1302,17 +1302,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you replace S Pen for Tab S?", a: "Yes — most Tab S models have replacement S Pens in stock or we order one within 1–2 days." },
     ],
     serviceType: "screen-repair",
-    related: ["tablet-repair-houston-tx", "samsung-repair-houston-tx", "tablet-screen-repair-houston-tx"],
+    related: ["tablet-repair-humble-tx", "samsung-repair-humble-tx", "tablet-screen-repair-humble-tx"],
   },
   {
-    slug: "tablet-screen-repair-houston-tx",
-    title: "Tablet Screen Repair Houston",
-    metaTitle: "Tablet Screen Repair Houston TX | OK Cellular",
+    slug: "tablet-screen-repair-humble-tx",
+    title: "Tablet Screen Repair Humble",
+    metaTitle: "Tablet Screen Repair Humble TX | OK Cellular",
     metaDescription:
-      "Cracked tablet screen? Get it fixed fast in Houston TX. iPad & Samsung tablet screen repairs, affordable pricing. Walk-in at OK Cellular!",
+      "Cracked tablet screen? Get it fixed fast in Humble TX. iPad & Samsung tablet screen repairs, affordable pricing. Walk-in at OK Cellular!",
     hero: {
       eyebrow: "Tablet Screen",
-      h1: "Tablet Screen Repair in Houston",
+      h1: "Tablet Screen Repair in Humble",
       subhead:
         "Cracked iPad glass, dead Galaxy Tab AMOLED, broken Fire HD screen — we replace tablet screens with quality parts and a 90-day warranty.",
     },
@@ -1334,17 +1334,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is glass-only ever an option on tablets?", a: "On older iPads with separate glass and LCD, yes. On most newer tablets the assembly is fused and must be replaced as a unit." },
     ],
     serviceType: "screen-repair",
-    related: ["tablet-repair-houston-tx", "ipad-repair-houston-tx", "samsung-tablet-repair-houston-tx", "tablet-battery-replacement-houston-tx"],
+    related: ["tablet-repair-humble-tx", "ipad-repair-humble-tx", "samsung-tablet-repair-humble-tx", "tablet-battery-replacement-humble-tx"],
   },
   {
-    slug: "tablet-battery-replacement-houston-tx",
-    title: "Tablet Battery Replacement Houston",
-    metaTitle: "Tablet Battery Replacement Houston TX | OK Cellular",
+    slug: "tablet-battery-replacement-humble-tx",
+    title: "Tablet Battery Replacement Humble",
+    metaTitle: "Tablet Battery Replacement Humble TX | OK Cellular",
     metaDescription:
-      "Tablet battery draining fast? Get a quick replacement in Houston TX. iPad & Samsung tablets covered. Warranty included at OK Cellular!",
+      "Tablet battery draining fast? Get a quick replacement in Humble TX. iPad & Samsung tablets covered. Warranty included at OK Cellular!",
     hero: {
       eyebrow: "Tablet Battery",
-      h1: "Tablet Battery Replacement in Houston",
+      h1: "Tablet Battery Replacement in Humble",
       subhead:
         "iPad battery dying fast? Galaxy Tab won't hold a charge? We swap tablet batteries from $89 with a 90-day warranty.",
     },
@@ -1366,17 +1366,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is a swollen tablet battery dangerous?", a: "Yes — power it off, don't charge it, bring it in. Swollen batteries can vent or rupture." },
     ],
     serviceType: "battery-replacement",
-    related: ["tablet-repair-houston-tx", "ipad-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["tablet-repair-humble-tx", "ipad-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "tablet-charging-port-repair-houston-tx",
-    title: "Tablet Charging Port Repair Houston",
-    metaTitle: "Tablet Charging Port Repair Houston TX | OK Cellular",
+    slug: "tablet-charging-port-repair-humble-tx",
+    title: "Tablet Charging Port Repair Humble",
+    metaTitle: "Tablet Charging Port Repair Humble TX | OK Cellular",
     metaDescription:
-      "Tablet not charging? Get your charging port repaired in Houston TX. iPad & Samsung tablets fixed fast. Walk-in at OK Cellular.",
+      "Tablet not charging? Get your charging port repaired in Humble TX. iPad & Samsung tablets fixed fast. Walk-in at OK Cellular.",
     hero: {
       eyebrow: "Tablet Charging Port",
-      h1: "Tablet Charging Port Repair in Houston",
+      h1: "Tablet Charging Port Repair in Humble",
       subhead:
         "Tablet won't charge or the cable wobbles? We replace Lightning and USB-C ports on every major tablet brand from $79.",
     },
@@ -1397,17 +1397,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is it the cable or the port?", a: "Try a known-good cable and charger first. If multiple cables don't work, the port is the problem." },
     ],
     serviceType: "charging-port-repair",
-    related: ["tablet-repair-houston-tx", "ipad-repair-houston-tx", "tablet-battery-replacement-houston-tx"],
+    related: ["tablet-repair-humble-tx", "ipad-repair-humble-tx", "tablet-battery-replacement-humble-tx"],
   },
   {
-    slug: "laptop-screen-repair-houston-tx",
-    title: "Laptop Screen Repair Houston",
-    metaTitle: "Laptop Screen Repair Houston TX | OK Cellular",
+    slug: "laptop-screen-repair-humble-tx",
+    title: "Laptop Screen Repair Humble",
+    metaTitle: "Laptop Screen Repair Humble TX | OK Cellular",
     metaDescription:
-      "Cracked or broken laptop screen? Get it repaired fast in Houston TX. All brands covered. Affordable pricing & warranty at OK Cellular!",
+      "Cracked or broken laptop screen? Get it repaired fast in Humble TX. All brands covered. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "Laptop Screen",
-      h1: "Laptop Screen Repair in Houston",
+      h1: "Laptop Screen Repair in Humble",
       subhead:
         "Cracked LCD, black screen, vertical lines or no backlight — we replace laptop screens on every major brand from $99.",
     },
@@ -1428,17 +1428,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is it the screen or the graphics chip?", a: "We test both — if your laptop boots and outputs to an external monitor, the screen / cable is the problem. If not, it could be GPU." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx", "laptop-battery-replacement-houston-tx", "laptop-keyboard-repair-houston-tx"],
+    related: ["laptop-repair-humble-tx", "macbook-repair-humble-tx", "laptop-battery-replacement-humble-tx", "laptop-keyboard-repair-humble-tx"],
   },
   {
-    slug: "laptop-battery-replacement-houston-tx",
-    title: "Laptop Battery Replacement Houston",
-    metaTitle: "Laptop Battery Replacement Houston TX | OK Cellular",
+    slug: "laptop-battery-replacement-humble-tx",
+    title: "Laptop Battery Replacement Humble",
+    metaTitle: "Laptop Battery Replacement Humble TX | OK Cellular",
     metaDescription:
-      "Laptop battery not holding charge? Get a fast replacement in Houston TX. All brands covered. Affordable pricing & warranty at OK Cellular!",
+      "Laptop battery not holding charge? Get a fast replacement in Humble TX. All brands covered. Affordable pricing & warranty at OK Cellular!",
     hero: {
       eyebrow: "Laptop Battery",
-      h1: "Laptop Battery Replacement in Houston",
+      h1: "Laptop Battery Replacement in Humble",
       subhead:
         "Laptop only runs plugged in? Battery health degraded? Battery swollen? We swap laptop batteries from $69 with a 90-day warranty.",
     },
@@ -1459,17 +1459,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is a swollen laptop battery dangerous?", a: "Yes — power it down, unplug it, bring it in. Swollen laptop batteries can vent and damage the trackpad / chassis." },
     ],
     serviceType: "battery-replacement",
-    related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx", "battery-replacement-houston-tx"],
+    related: ["laptop-repair-humble-tx", "macbook-repair-humble-tx", "battery-replacement-humble-tx"],
   },
   {
-    slug: "laptop-motherboard-repair-houston-tx",
-    title: "Laptop Motherboard Repair Houston",
-    metaTitle: "Laptop Motherboard Repair Houston TX | OK Cellular",
+    slug: "laptop-motherboard-repair-humble-tx",
+    title: "Laptop Motherboard Repair Humble",
+    metaTitle: "Laptop Motherboard Repair Humble TX | OK Cellular",
     metaDescription:
-      "Expert laptop motherboard repair in Houston TX. Experienced techs diagnose & fix complex issues fast. Warranty included at OK Cellular!",
+      "Expert laptop motherboard repair in Humble TX. Experienced techs diagnose & fix complex issues fast. Warranty included at OK Cellular!",
     hero: {
       eyebrow: "Laptop Motherboard",
-      h1: "Laptop Motherboard Repair in Houston",
+      h1: "Laptop Motherboard Repair in Humble",
       subhead:
         "Laptop won't power on, no display, dead after a spill, won't take a charge — laptop board-level repair done in our Humble shop.",
     },
@@ -1491,17 +1491,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is laptop board repair worth it?", a: "If the laptop's worth $400+ in working condition and the repair is under half that, almost always yes. We quote first." },
     ],
     serviceType: "motherboard-repair",
-    related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx", "motherboard-repair-houston-tx"],
+    related: ["laptop-repair-humble-tx", "macbook-repair-humble-tx", "motherboard-repair-humble-tx"],
   },
   {
-    slug: "laptop-keyboard-repair-houston-tx",
-    title: "Laptop Keyboard Repair Houston",
-    metaTitle: "Laptop Keyboard Repair Houston TX | OK Cellular",
+    slug: "laptop-keyboard-repair-humble-tx",
+    title: "Laptop Keyboard Repair Humble",
+    metaTitle: "Laptop Keyboard Repair Humble TX | OK Cellular",
     metaDescription:
-      "Broken or unresponsive laptop keyboard? Get it fixed fast in Houston TX. All brands, affordable pricing. Walk-in at OK Cellular.",
+      "Broken or unresponsive laptop keyboard? Get it fixed fast in Humble TX. All brands, affordable pricing. Walk-in at OK Cellular.",
     hero: {
       eyebrow: "Laptop Keyboard",
-      h1: "Laptop Keyboard Repair in Houston",
+      h1: "Laptop Keyboard Repair in Humble",
       subhead:
         "Sticky keys, dead keys, missing keycaps or a whole keyboard that stopped working — we replace laptop keyboards on every major brand.",
     },
@@ -1522,17 +1522,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Can you replace just one key on a laptop?", a: "Sometimes — depends on the brand and model. Otherwise we replace the whole keyboard assembly." },
     ],
     serviceType: "laptop-diagnostic",
-    related: ["laptop-repair-houston-tx", "macbook-repair-houston-tx", "laptop-screen-repair-houston-tx"],
+    related: ["laptop-repair-humble-tx", "macbook-repair-humble-tx", "laptop-screen-repair-humble-tx"],
   },
   {
-    slug: "ps5-hdmi-repair-houston-tx",
-    title: "PS5 HDMI Repair Houston",
-    metaTitle: "PS5 HDMI Repair Houston TX | OK Cellular",
+    slug: "ps5-hdmi-repair-humble-tx",
+    title: "PS5 HDMI Repair Humble",
+    metaTitle: "PS5 HDMI Repair Humble TX | OK Cellular",
     metaDescription:
-      "PS5 with no HDMI signal? Get your PS5 HDMI port repaired in Houston TX. Fast, professional fix. Fair pricing at OK Cellular.",
+      "PS5 with no HDMI signal? Get your PS5 HDMI port repaired in Humble TX. Fast, professional fix. Fair pricing at OK Cellular.",
     hero: {
       eyebrow: "PS5 HDMI Repair",
-      h1: "PS5 HDMI Port Repair in Houston",
+      h1: "PS5 HDMI Port Repair in Humble",
       subhead:
         "PS5 with no signal, broken HDMI port or bent pins inside the socket? We microsolder a new HDMI port from $99 — no need to replace your console.",
     },
@@ -1553,17 +1553,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is it worth fixing the HDMI port vs. buying a new PS5?", a: "Almost always yes — $99 repair vs. $400+ for a new PS5." },
     ],
     serviceType: "hdmi-repair",
-    related: ["ps5-repair-houston-tx", "hdmi-port-repair-houston-tx", "gaming-console-repair-houston-tx", "xbox-repair-houston-tx"],
+    related: ["ps5-repair-humble-tx", "hdmi-port-repair-humble-tx", "gaming-console-repair-humble-tx", "xbox-repair-humble-tx"],
   },
   {
-    slug: "google-lock-removal-houston-tx",
-    title: "Google Account Lock Removal Houston",
-    metaTitle: "Google Lock Removal Houston TX | OK Cellular",
+    slug: "google-lock-removal-humble-tx",
+    title: "Google Account Lock Removal Humble",
+    metaTitle: "Google Lock Removal Humble TX | OK Cellular",
     metaDescription:
-      "Get your Google account lock removed in Houston TX. Fast FRP bypass service at OK Cellular. All Android devices supported. Walk-ins welcome!",
+      "Get your Google account lock removed in Humble TX. Fast FRP bypass service at OK Cellular. All Android devices supported. Walk-ins welcome!",
     hero: {
       eyebrow: "Google Lock Removal",
-      h1: "Google Account / FRP Lock Removal in Houston",
+      h1: "Google Account / FRP Lock Removal in Humble",
       subhead:
         "Bought a used phone and it's stuck on a previous owner's Google login? FRP lock removal for devices you legally own, ID required.",
     },
@@ -1584,17 +1584,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will my data be wiped?", a: "Yes — Google account / FRP removal involves a clean state for the device. There is no data to recover from a locked Android." },
     ],
     serviceType: "phone-unlocking",
-    related: ["phone-unlocking-houston-tx", "samsung-repair-houston-tx", "phone-repair-houston-tx"],
+    related: ["phone-unlocking-humble-tx", "samsung-repair-humble-tx", "phone-repair-humble-tx"],
   },
   {
-    slug: "iphone-15-pro-repair-houston-tx",
-    title: "iPhone 15 Pro Repair Houston",
-    metaTitle: "iPhone 15 Pro Repair Houston TX | OK Cellular",
+    slug: "iphone-15-pro-repair-humble-tx",
+    title: "iPhone 15 Pro Repair Humble",
+    metaTitle: "iPhone 15 Pro Repair Humble TX | OK Cellular",
     metaDescription:
-      "Reliable iPhone 15 Pro repair in Houston TX. Cracked screen, battery & more fixed by certified technicians. Walk-in or call OK Cellular!",
+      "Reliable iPhone 15 Pro repair in Humble TX. Cracked screen, battery & more fixed by certified technicians. Walk-in or call OK Cellular!",
     hero: {
       eyebrow: "iPhone 15 Pro Repair",
-      h1: "iPhone 15 Pro Repair in Houston",
+      h1: "iPhone 15 Pro Repair in Humble",
       subhead:
         "iPhone 15 Pro and 15 Pro Max — cracked ProMotion OLED, USB-C port wear, dead battery, back glass shatter. Quality parts, 90-day warranty.",
     },
@@ -1625,17 +1625,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you fix bent titanium frames?", a: "Light frame straightening, yes. Severely bent frames require a full housing swap, which we can quote." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-15-repair-houston-tx", "iphone-16-pro-repair-houston-tx", "iphone-screen-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-15-repair-humble-tx", "iphone-16-pro-repair-humble-tx", "iphone-screen-repair-humble-tx"],
   },
   {
-    slug: "iphone-16-pro-max-repair-houston-tx",
-    title: "iPhone 16 Pro Max Repair Houston",
-    metaTitle: "iPhone 16 Pro Max Repair Houston TX | OK Cellular",
+    slug: "iphone-16-pro-max-repair-humble-tx",
+    title: "iPhone 16 Pro Max Repair Humble",
+    metaTitle: "iPhone 16 Pro Max Repair Humble TX | OK Cellular",
     metaDescription:
-      "Fast iPhone 16 Pro Max repair in Houston TX. Screen, battery & charging port fixes. Trusted techs, warranty included. Free quote on request.",
+      "Fast iPhone 16 Pro Max repair in Humble TX. Screen, battery & charging port fixes. Trusted techs, warranty included. Free quote on request.",
     hero: {
       eyebrow: "iPhone 16 Pro Max Repair",
-      h1: "iPhone 16 Pro Max Repair in Houston",
+      h1: "iPhone 16 Pro Max Repair in Humble",
       subhead:
         "iPhone 16 Pro Max — cracked 6.9\" ProMotion OLED, dead battery, USB-C wear, back glass shatter, Camera Control button broken. Quality parts, same-day where possible.",
     },
@@ -1665,17 +1665,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is the 16 Pro Max screen interchangeable with the 16 Pro?", a: "No — they're different sizes (6.9\" vs 6.3\"). We always match by exact model." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-16-pro-repair-houston-tx", "iphone-16-repair-houston-tx", "iphone-screen-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-16-pro-repair-humble-tx", "iphone-16-repair-humble-tx", "iphone-screen-repair-humble-tx"],
   },
   {
-    slug: "ipad-air-repair-houston-tx",
-    title: "iPad Air Repair Houston",
-    metaTitle: "iPad Air Repair Houston TX | OK Cellular",
+    slug: "ipad-air-repair-humble-tx",
+    title: "iPad Air Repair Humble",
+    metaTitle: "iPad Air Repair Humble TX | OK Cellular",
     metaDescription:
-      "Reliable iPad Air repair in Houston TX. Screen replacement, battery & charging port fixes. All models, fast turnaround. Visit OK Cellular!",
+      "Reliable iPad Air repair in Humble TX. Screen replacement, battery & charging port fixes. All models, fast turnaround. Visit OK Cellular!",
     hero: {
       eyebrow: "iPad Air Repair",
-      h1: "iPad Air Repair in Houston",
+      h1: "iPad Air Repair in Humble",
       subhead:
         "iPad Air (2, 3, 4, 5 and M2) — cracked Liquid Retina screen, dead battery, USB-C port damage, Touch ID failure. Quality parts, 90-day warranty.",
     },
@@ -1704,17 +1704,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will Apple Pencil still work after a screen repair?", a: "Yes — we use OEM-grade panels that fully support Apple Pencil 1 or 2 depending on your Air model." },
     ],
     serviceType: "screen-repair",
-    related: ["ipad-repair-houston-tx", "ipad-pro-repair-houston-tx", "tablet-screen-repair-houston-tx", "tablet-battery-replacement-houston-tx"],
+    related: ["ipad-repair-humble-tx", "ipad-pro-repair-humble-tx", "tablet-screen-repair-humble-tx", "tablet-battery-replacement-humble-tx"],
   },
   {
-    slug: "iphone-13-repair-houston-tx",
-    title: "iPhone 13 Repair Houston",
-    metaTitle: "iPhone 13 Repair Houston TX | OK Cellular",
+    slug: "iphone-13-repair-humble-tx",
+    title: "iPhone 13 Repair Humble",
+    metaTitle: "iPhone 13 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 13 repair in Houston TX. Cracked OLED, battery, Lightning port & back glass fixed same day. 90-day warranty at OK Cellular.",
+      "Affordable iPhone 13 repair in Humble TX. Cracked OLED, battery, Lightning port & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone 13 Repair",
-      h1: "iPhone 13 Repair in Houston",
+      h1: "iPhone 13 Repair in Humble",
       subhead:
         "iPhone 13, 13 mini, 13 Pro, 13 Pro Max — cracked Super Retina OLED, weak battery, Lightning port damage, back glass. Same-day on most repairs.",
     },
@@ -1737,17 +1737,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will Face ID still work after iPhone 13 screen repair?", a: "On most iPhone 13 repairs we preserve Face ID. We tell you up front if your specific repair needs a component transfer." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-14-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-14-repair-humble-tx"],
   },
   {
-    slug: "iphone-12-repair-houston-tx",
-    title: "iPhone 12 Repair Houston",
-    metaTitle: "iPhone 12 Repair Houston TX | OK Cellular",
+    slug: "iphone-12-repair-humble-tx",
+    title: "iPhone 12 Repair Humble",
+    metaTitle: "iPhone 12 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Fast iPhone 12 repair in Houston TX. Cracked OLED, battery replacement, Lightning port & back glass — most fixes done same day at OK Cellular.",
+      "Fast iPhone 12 repair in Humble TX. Cracked OLED, battery replacement, Lightning port & back glass — most fixes done same day at OK Cellular.",
     hero: {
       eyebrow: "iPhone 12 Repair",
-      h1: "iPhone 12 Repair in Houston",
+      h1: "iPhone 12 Repair in Humble",
       subhead:
         "iPhone 12 mini, 12, 12 Pro, 12 Pro Max — cracked OLED, battery shutdowns, Lightning port damage, MagSafe / back glass. Same day on most repairs.",
     },
@@ -1770,17 +1770,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Why does my iPhone 12 shut off at 30%?", a: "That's almost always battery health below 80%. A battery swap from $59 fixes it and restores full runtime." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-13-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-13-repair-humble-tx"],
   },
   {
-    slug: "iphone-11-repair-houston-tx",
-    title: "iPhone 11 Repair Houston",
-    metaTitle: "iPhone 11 Repair Houston TX | OK Cellular",
+    slug: "iphone-11-repair-humble-tx",
+    title: "iPhone 11 Repair Humble",
+    metaTitle: "iPhone 11 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 11 repair in Houston TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
+      "Affordable iPhone 11 repair in Humble TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone 11 Repair",
-      h1: "iPhone 11 Repair in Houston",
+      h1: "iPhone 11 Repair in Humble",
       subhead:
         "iPhone 11, 11 Pro, 11 Pro Max — cracked Liquid Retina, dying battery, loose Lightning port, back glass shatter. Most repairs done same day.",
     },
@@ -1803,17 +1803,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is the iPhone 11 still worth repairing in 2026?", a: "Yes — iPhone 11 still gets iOS updates and remains a strong daily driver. A $119 screen swap is far cheaper than upgrading." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-12-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-12-repair-humble-tx"],
   },
   {
-    slug: "iphone-x-repair-houston-tx",
-    title: "iPhone X / XS / XR Repair Houston",
-    metaTitle: "iPhone X / XS / XR Repair Houston TX | OK Cellular",
+    slug: "iphone-x-repair-humble-tx",
+    title: "iPhone X / XS / XR Repair Humble",
+    metaTitle: "iPhone X / XS / XR Repair Humble TX | OK Cellular",
     metaDescription:
-      "iPhone X, XS, XS Max and XR repair in Houston TX. Cracked OLED, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
+      "iPhone X, XS, XS Max and XR repair in Humble TX. Cracked OLED, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone X / XS / XR Repair",
-      h1: "iPhone X, XS & XR Repair in Houston",
+      h1: "iPhone X, XS & XR Repair in Humble",
       subhead:
         "iPhone X, XS, XS Max, XR — cracked OLED or LCD, weak battery, loose Lightning port, shattered back glass. Most repairs done same day.",
     },
@@ -1836,17 +1836,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will Face ID still work after iPhone X / XS / XR screen repair?", a: "Usually yes. A few specific repairs need a component transfer — we tell you up front if yours does." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-11-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-11-repair-humble-tx"],
   },
   {
-    slug: "iphone-se-repair-houston-tx",
-    title: "iPhone SE Repair Houston",
-    metaTitle: "iPhone SE Repair Houston TX | OK Cellular",
+    slug: "iphone-se-repair-humble-tx",
+    title: "iPhone SE Repair Humble",
+    metaTitle: "iPhone SE Repair Humble TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone SE repair in Houston TX (2016, 2020, 2022). Cracked screen, battery and charging port fixed same day. 90-day warranty at OK Cellular.",
+      "Affordable iPhone SE repair in Humble TX (2016, 2020, 2022). Cracked screen, battery and charging port fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone SE Repair",
-      h1: "iPhone SE Repair in Houston",
+      h1: "iPhone SE Repair in Humble",
       subhead:
         "iPhone SE 1st gen (2016), 2nd gen (2020), 3rd gen (2022) — cracked screen, weak battery, loose Lightning port. Same-day on most repairs.",
     },
@@ -1868,17 +1868,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will Touch ID still work after iPhone SE screen repair?", a: "Yes — we transfer your original Home button so Touch ID keeps working after the screen swap." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-8-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-8-repair-humble-tx"],
   },
   {
-    slug: "iphone-8-repair-houston-tx",
-    title: "iPhone 8 / 8 Plus Repair Houston",
-    metaTitle: "iPhone 8 / 8 Plus Repair Houston TX | OK Cellular",
+    slug: "iphone-8-repair-humble-tx",
+    title: "iPhone 8 / 8 Plus Repair Humble",
+    metaTitle: "iPhone 8 / 8 Plus Repair Humble TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 8 and 8 Plus repair in Houston TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
+      "Affordable iPhone 8 and 8 Plus repair in Humble TX. Cracked screen, battery, charging port and back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "iPhone 8 / 8 Plus Repair",
-      h1: "iPhone 8 & 8 Plus Repair in Houston",
+      h1: "iPhone 8 & 8 Plus Repair in Humble",
       subhead:
         "iPhone 8 and 8 Plus — cracked LCD, weak battery, loose Lightning port, shattered back glass. Affordable, same-day repairs at our Humble shop.",
     },
@@ -1901,17 +1901,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is iPhone 8 still worth repairing?", a: "For a $79 screen or $49 battery, almost always yes — iPhone 8 still works fine for calls, texts and most apps. Heavier repairs we'll quote honestly." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-se-repair-houston-tx", "iphone-7-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-se-repair-humble-tx", "iphone-7-repair-humble-tx"],
   },
   {
-    slug: "iphone-7-repair-houston-tx",
-    title: "iPhone 7 / 6s / 6 Repair Houston",
-    metaTitle: "iPhone 7 / 6s / 6 Repair Houston TX | OK Cellular",
+    slug: "iphone-7-repair-humble-tx",
+    title: "iPhone 7 / 6s / 6 Repair Humble",
+    metaTitle: "iPhone 7 / 6s / 6 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 7, 6s and 6 repair in Houston TX. Cracked screen, weak battery and loose Lightning port fixed same day from $59. 90-day warranty.",
+      "Affordable iPhone 7, 6s and 6 repair in Humble TX. Cracked screen, weak battery and loose Lightning port fixed same day from $59. 90-day warranty.",
     hero: {
       eyebrow: "iPhone 7 / 6s / 6 Repair",
-      h1: "iPhone 7, 6s & 6 Repair in Houston",
+      h1: "iPhone 7, 6s & 6 Repair in Humble",
       subhead:
         "Still rocking an iPhone 7, 6s or 6? We fix cracked LCDs, weak batteries and loose Lightning ports on these legacy models for $59–$79 at our Humble shop — no upsells, no pressure to upgrade.",
     },
@@ -1941,17 +1941,17 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Do you still stock parts for iPhone 6 and 6s?", a: "Yes — we keep LCDs and batteries for iPhone 6, 6s, 7 and their Plus variants in stock. Walk-in or call ahead." },
     ],
     serviceType: "screen-repair",
-    related: ["iphone-repair-houston-tx", "iphone-screen-repair-houston-tx", "iphone-battery-replacement-houston-tx", "iphone-8-repair-houston-tx"],
+    related: ["iphone-repair-humble-tx", "iphone-screen-repair-humble-tx", "iphone-battery-replacement-humble-tx", "iphone-8-repair-humble-tx"],
   },
   {
-    slug: "samsung-galaxy-a54-repair-houston-tx",
-    title: "Samsung Galaxy A54 Repair Houston",
-    metaTitle: "Samsung Galaxy A54 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-a54-repair-humble-tx",
+    title: "Samsung Galaxy A54 Repair Humble",
+    metaTitle: "Samsung Galaxy A54 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Galaxy A54 repair in Houston TX. Cracked AMOLED, battery, USB-C port and back glass fixed same day. Affordable pricing & 90-day warranty at OK Cellular.",
+      "Galaxy A54 repair in Humble TX. Cracked AMOLED, battery, USB-C port and back glass fixed same day. Affordable pricing & 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy A54 Repair",
-      h1: "Samsung Galaxy A54 Repair in Houston",
+      h1: "Samsung Galaxy A54 Repair in Humble",
       subhead:
         "Galaxy A54 5G — cracked Super AMOLED, swollen battery, loose USB-C port, back glass shatter. Same-day where possible at our Humble shop.",
     },
@@ -1973,18 +1973,18 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Are A-series screens cheaper to repair than S-series?", a: "Yes — A-series AMOLED panels are less expensive than S-series, so most A54 screen repairs come in well under a flagship S repair." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a35-repair-houston-tx"],
-    upgradeTo: { slug: "buy-samsung-galaxy-a54-houston-tx", label: "Galaxy A54" },
+    related: ["samsung-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx", "samsung-galaxy-a35-repair-humble-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-a54-humble-tx", label: "Galaxy A54" },
   },
   {
-    slug: "samsung-galaxy-a35-repair-houston-tx",
-    title: "Samsung Galaxy A35 Repair Houston",
-    metaTitle: "Samsung Galaxy A35 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-a35-repair-humble-tx",
+    title: "Samsung Galaxy A35 Repair Humble",
+    metaTitle: "Samsung Galaxy A35 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Galaxy A35 repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. Affordable pricing & 90-day warranty at OK Cellular.",
+      "Galaxy A35 repair in Humble TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. Affordable pricing & 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy A35 Repair",
-      h1: "Samsung Galaxy A35 Repair in Houston",
+      h1: "Samsung Galaxy A35 Repair in Humble",
       subhead:
         "Galaxy A35 5G — cracked Super AMOLED, weak battery, loose USB-C port, back glass shatter. Affordable repairs at our Humble shop.",
     },
@@ -2006,18 +2006,18 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "How long does a Galaxy A35 screen repair take?", a: "Most A35 screen jobs are done same day — usually within 2–3 hours of drop-off." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a54-repair-houston-tx"],
-    upgradeTo: { slug: "buy-samsung-galaxy-a35-houston-tx", label: "Galaxy A35" },
+    related: ["samsung-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx", "samsung-galaxy-a54-repair-humble-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-a35-humble-tx", label: "Galaxy A35" },
   },
   {
-    slug: "samsung-galaxy-a15-repair-houston-tx",
-    title: "Samsung Galaxy A15 Repair Houston",
-    metaTitle: "Samsung Galaxy A15 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-a15-repair-humble-tx",
+    title: "Samsung Galaxy A15 Repair Humble",
+    metaTitle: "Samsung Galaxy A15 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Galaxy A15 repair in Houston TX. Cracked screen, battery, USB-C port & back fixed affordably with a 90-day warranty at OK Cellular.",
+      "Galaxy A15 repair in Humble TX. Cracked screen, battery, USB-C port & back fixed affordably with a 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy A15 Repair",
-      h1: "Samsung Galaxy A15 Repair in Houston",
+      h1: "Samsung Galaxy A15 Repair in Humble",
       subhead:
         "Galaxy A15 and A15 5G — cracked AMOLED, weak battery, loose USB-C port. Affordable repairs at our Humble shop, same day where possible.",
     },
@@ -2039,18 +2039,18 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is the Galaxy A15 worth repairing?", a: "For an entry-level Galaxy, yes — a $119 screen or $59 battery typically costs much less than replacing the phone outright." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx", "samsung-galaxy-a35-repair-houston-tx"],
-    upgradeTo: { slug: "buy-samsung-galaxy-a15-houston-tx", label: "Galaxy A15" },
+    related: ["samsung-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx", "samsung-galaxy-a35-repair-humble-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-a15-humble-tx", label: "Galaxy A15" },
   },
   {
-    slug: "samsung-galaxy-s22-repair-houston-tx",
-    title: "Samsung Galaxy S22 Repair Houston",
-    metaTitle: "Samsung Galaxy S22 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-s22-repair-humble-tx",
+    title: "Samsung Galaxy S22 Repair Humble",
+    metaTitle: "Samsung Galaxy S22 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Galaxy S22 / S22+ / S22 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at OK Cellular.",
+      "Galaxy S22 / S22+ / S22 Ultra repair in Humble TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy S22 Repair",
-      h1: "Samsung Galaxy S22 Repair in Houston",
+      h1: "Samsung Galaxy S22 Repair in Humble",
       subhead:
         "Galaxy S22, S22+, S22 Ultra — cracked AMOLED, weak battery, loose USB-C, shattered back glass, S Pen issues (Ultra). Same day where possible.",
     },
@@ -2073,18 +2073,18 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will the in-display fingerprint sensor work after S22 screen repair?", a: "Yes — we calibrate the in-display sensor as part of the screen replacement." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-galaxy-s23-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
-    upgradeTo: { slug: "buy-samsung-galaxy-s22-houston-tx", label: "Galaxy S22" },
+    related: ["samsung-repair-humble-tx", "samsung-galaxy-s23-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-s22-humble-tx", label: "Galaxy S22" },
   },
   {
-    slug: "samsung-galaxy-s21-repair-houston-tx",
-    title: "Samsung Galaxy S21 Repair Houston",
-    metaTitle: "Samsung Galaxy S21 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-s21-repair-humble-tx",
+    title: "Samsung Galaxy S21 Repair Humble",
+    metaTitle: "Samsung Galaxy S21 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Galaxy S21 / S21+ / S21 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at OK Cellular.",
+      "Galaxy S21 / S21+ / S21 Ultra repair in Humble TX. Cracked AMOLED, battery, USB-C port & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy S21 Repair",
-      h1: "Samsung Galaxy S21 Repair in Houston",
+      h1: "Samsung Galaxy S21 Repair in Humble",
       subhead:
         "Galaxy S21, S21+, S21 Ultra and S21 FE — cracked AMOLED, weak battery, loose USB-C, shattered back. Same day where possible at our Humble shop.",
     },
@@ -2107,18 +2107,18 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Is the Galaxy S21 still supported by Samsung?", a: "Yes — the S21 still gets security updates. A screen or battery repair is a fraction of replacement cost and keeps it running for years." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-galaxy-s22-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
-    upgradeTo: { slug: "buy-samsung-galaxy-s21-houston-tx", label: "Galaxy S21" },
+    related: ["samsung-repair-humble-tx", "samsung-galaxy-s22-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-s21-humble-tx", label: "Galaxy S21" },
   },
   {
-    slug: "samsung-galaxy-note-20-repair-houston-tx",
-    title: "Samsung Galaxy Note 20 Repair Houston",
-    metaTitle: "Samsung Galaxy Note 20 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-note-20-repair-humble-tx",
+    title: "Samsung Galaxy Note 20 Repair Humble",
+    metaTitle: "Samsung Galaxy Note 20 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Galaxy Note 20 / Note 20 Ultra repair in Houston TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at OK Cellular.",
+      "Galaxy Note 20 / Note 20 Ultra repair in Humble TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy Note 20 Repair",
-      h1: "Samsung Galaxy Note 20 Repair in Houston",
+      h1: "Samsung Galaxy Note 20 Repair in Humble",
       subhead:
         "Galaxy Note 20 and Note 20 Ultra — cracked AMOLED, weak battery, loose USB-C, broken S Pen, back glass shatter. Same day where possible.",
     },
@@ -2141,18 +2141,18 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Will the S Pen still work after Note 20 screen repair?", a: "Yes — we calibrate the digitizer as part of the screen replacement, so S Pen pressure and tilt keep working." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-galaxy-note-10-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
-    upgradeTo: { slug: "buy-samsung-galaxy-note-20-houston-tx", label: "Galaxy Note 20" },
+    related: ["samsung-repair-humble-tx", "samsung-galaxy-note-10-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-note-20-humble-tx", label: "Galaxy Note 20" },
   },
   {
-    slug: "samsung-galaxy-note-10-repair-houston-tx",
-    title: "Samsung Galaxy Note 10 Repair Houston",
-    metaTitle: "Samsung Galaxy Note 10 Repair Houston TX | OK Cellular",
+    slug: "samsung-galaxy-note-10-repair-humble-tx",
+    title: "Samsung Galaxy Note 10 Repair Humble",
+    metaTitle: "Samsung Galaxy Note 10 Repair Humble TX | OK Cellular",
     metaDescription:
-      "Galaxy Note 10 / Note 10+ repair in Houston TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at OK Cellular.",
+      "Galaxy Note 10 / Note 10+ repair in Humble TX. Cracked AMOLED, battery, USB-C, S Pen & back glass fixed same day. 90-day warranty at OK Cellular.",
     hero: {
       eyebrow: "Galaxy Note 10 Repair",
-      h1: "Samsung Galaxy Note 10 Repair in Houston",
+      h1: "Samsung Galaxy Note 10 Repair in Humble",
       subhead:
         "Galaxy Note 10 and Note 10+ — cracked AMOLED, weak battery, loose USB-C, broken S Pen, back glass shatter. Same day where possible.",
     },
@@ -2175,8 +2175,8 @@ export const SERVICES_DATA: ServiceData[] = [
       { q: "Are Note 10 parts still available in 2026?", a: "Yes — we stock OEM-grade Note 10 screens and batteries, and most repairs are completed same day." },
     ],
     serviceType: "screen-repair",
-    related: ["samsung-repair-houston-tx", "samsung-galaxy-note-20-repair-houston-tx", "samsung-screen-repair-houston-tx", "samsung-battery-replacement-houston-tx"],
-    upgradeTo: { slug: "buy-samsung-galaxy-note-10-houston-tx", label: "Galaxy Note 10" },
+    related: ["samsung-repair-humble-tx", "samsung-galaxy-note-20-repair-humble-tx", "samsung-screen-repair-humble-tx", "samsung-battery-replacement-humble-tx"],
+    upgradeTo: { slug: "buy-samsung-galaxy-note-10-humble-tx", label: "Galaxy Note 10" },
   },
 ];
 

@@ -24,7 +24,7 @@ import { SocialLinks } from "@/components/SocialLinks";
 import { BUSINESS, SHIPPING } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 
-const PAGE_TITLE = "Mail-In Phone & Laptop Repair | OK Cellular Houston, TX";
+const PAGE_TITLE = "Mail-In Phone & Laptop Repair | OK Cellular Humble, TX";
 const PAGE_DESC =
   "Ship your phone, tablet, laptop or console to OK Cellular in Humble TX for repair. Get a quote online, mail it in, we fix it and ship it back.";
 
@@ -130,11 +130,11 @@ export default function MailInRepairPage() {
                 <Truck className="w-3.5 h-3.5" /> Mail-In Repair
               </span>
               <span className="bg-muted text-foreground border border-border rounded-full px-3 py-1 font-semibold uppercase tracking-wide text-xs inline-block">
-                15 Years in Houston
+                15 Years in Humble
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl leading-tight font-semibold tracking-tight text-foreground">
-              Out of <span className="text-primary">Houston?</span> Mail us your device.
+              Out of <span className="text-primary">Humble?</span> Mail us your device.
             </h1>
             <p className="text-lg md:text-xl font-medium text-muted-foreground max-w-2xl">
               Ship your phone, tablet, laptop or console to our Humble shop. We diagnose,

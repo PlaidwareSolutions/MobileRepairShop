@@ -18,7 +18,7 @@ export function StickyMobileBar() {
         Call
       </a>
       <Link
-        href="/contact-houston-tx"
+        href="/contact-humble-tx"
         data-testid="link-mobile-quote"
         className="flex flex-col items-center justify-center gap-1 py-3 text-primary-foreground bg-primary font-semibold text-[11px] tracking-tight hover:bg-primary/90 transition-colors border-x border-border"
       >

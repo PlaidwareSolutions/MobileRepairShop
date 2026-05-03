@@ -250,7 +250,7 @@ function buildSitemap(routes) {
     .map((r) => {
       let priority = "0.6";
       let changefreq = "monthly";
-      if (r.path === "/phone-repair-houston-tx") {
+      if (r.path === "/phone-repair-humble-tx") {
         priority = "1.0";
         changefreq = "weekly";
       } else if (r.path.startsWith("/articles/")) {

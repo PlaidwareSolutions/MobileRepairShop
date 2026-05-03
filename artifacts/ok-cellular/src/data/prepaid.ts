@@ -44,33 +44,33 @@ export const ALL_CARRIERS: { name: string; logoSrc: string; slug?: string }[] = 
   { name: "Cricket Wireless", logoSrc: CARRIER_LOGOS["Cricket Wireless"] },
   { name: "Metro by T-Mobile", logoSrc: CARRIER_LOGOS["Metro by T-Mobile"] },
   { name: "T-Mobile", logoSrc: CARRIER_LOGOS["T-Mobile"] },
-  { name: "AT&T Prepaid", logoSrc: CARRIER_LOGOS["AT&T Prepaid"], slug: "att-activation-houston-tx" },
-  { name: "Boost Mobile", logoSrc: CARRIER_LOGOS["Boost Mobile"], slug: "boost-mobile-activation-houston-tx" },
-  { name: "Verizon Prepaid", logoSrc: CARRIER_LOGOS["Verizon Prepaid"], slug: "verizon-prepaid-activation-houston-tx" },
-  { name: "Xfinity Mobile", logoSrc: CARRIER_LOGOS["Xfinity Mobile"], slug: "xfinity-mobile-activation-houston-tx" },
-  { name: "Gen Mobile", logoSrc: CARRIER_LOGOS["Gen Mobile"], slug: "gen-mobile-activation-houston-tx" },
-  { name: "Simple Mobile", logoSrc: CARRIER_LOGOS["Simple Mobile"], slug: "simple-mobile-activation-houston-tx" },
-  { name: "H2O Wireless", logoSrc: CARRIER_LOGOS["H2O Wireless"], slug: "h2o-wireless-activation-houston-tx" },
-  { name: "Lyca Mobile", logoSrc: CARRIER_LOGOS["Lyca Mobile"], slug: "lyca-mobile-activation-houston-tx" },
+  { name: "AT&T Prepaid", logoSrc: CARRIER_LOGOS["AT&T Prepaid"], slug: "att-activation-humble-tx" },
+  { name: "Boost Mobile", logoSrc: CARRIER_LOGOS["Boost Mobile"], slug: "boost-mobile-activation-humble-tx" },
+  { name: "Verizon Prepaid", logoSrc: CARRIER_LOGOS["Verizon Prepaid"], slug: "verizon-prepaid-activation-humble-tx" },
+  { name: "Xfinity Mobile", logoSrc: CARRIER_LOGOS["Xfinity Mobile"], slug: "xfinity-mobile-activation-humble-tx" },
+  { name: "Gen Mobile", logoSrc: CARRIER_LOGOS["Gen Mobile"], slug: "gen-mobile-activation-humble-tx" },
+  { name: "Simple Mobile", logoSrc: CARRIER_LOGOS["Simple Mobile"], slug: "simple-mobile-activation-humble-tx" },
+  { name: "H2O Wireless", logoSrc: CARRIER_LOGOS["H2O Wireless"], slug: "h2o-wireless-activation-humble-tx" },
+  { name: "Lyca Mobile", logoSrc: CARRIER_LOGOS["Lyca Mobile"], slug: "lyca-mobile-activation-humble-tx" },
 ];
 
 const make = (carrier: string, slug: string, isPayment = false): PrepaidData => ({
   slug,
   carrier,
   title: isPayment
-    ? `${carrier} Bill Payment Houston`
-    : `${carrier} Activation Houston`,
+    ? `${carrier} Bill Payment Humble`
+    : `${carrier} Activation Humble`,
   metaTitle: isPayment
-    ? `${carrier} Bill Payment Houston | In-Store Cash | OK Cellular`
-    : `${carrier} Activation Houston | New Lines, Port-Ins | OK Cellular`,
+    ? `${carrier} Bill Payment Humble | In-Store Cash | OK Cellular`
+    : `${carrier} Activation Humble | New Lines, Port-Ins | OK Cellular`,
   metaDescription: isPayment
     ? `Pay your ${carrier} bill in cash at our Humble shop. Walk in, pay, and you're done. Open Sun 11–7:30, Mon–Sat 10–8:30.`
-    : `New ${carrier} activation, port-ins and SIM swaps in Houston. Bring your phone or buy one in-store. Walk in any day.`,
+    : `New ${carrier} activation, port-ins and SIM swaps in Humble. Bring your phone or buy one in-store. Walk in any day.`,
   logoSrc: CARRIER_LOGOS[carrier],
   heroPhoto: isPayment ? CASH_PHOTO : SIM_PHOTO,
   hero: {
     eyebrow: isPayment ? `${carrier} Bill Pay` : `${carrier} Prepaid`,
-    h1: isPayment ? `${carrier} Bill Payment in Houston` : `${carrier} Activation in Houston`,
+    h1: isPayment ? `${carrier} Bill Payment in Humble` : `${carrier} Activation in Humble`,
     subhead: isPayment
       ? `Skip the online portal — pay your ${carrier} bill in cash at our Will Clayton Pkwy shop in minutes.`
       : `New ${carrier} line, transfer your number from another carrier, or swap a SIM card — done in store, same visit.`,
@@ -101,24 +101,24 @@ const make = (carrier: string, slug: string, isPayment = false): PrepaidData => 
 });
 
 export const PREPAID_DATA: PrepaidData[] = [
-  make("Prepaid", "phone-activation-houston-tx"),
-  make("All carriers", "bill-payments-houston-tx", true),
-  make("Boost Mobile", "boost-mobile-activation-houston-tx"),
-  make("AT&T Prepaid", "att-activation-houston-tx"),
-  make("Gen Mobile", "gen-mobile-activation-houston-tx"),
-  make("Simple Mobile", "simple-mobile-activation-houston-tx"),
-  make("Xfinity Mobile", "xfinity-mobile-activation-houston-tx"),
-  make("H2O Wireless", "h2o-wireless-activation-houston-tx"),
-  make("Lyca Mobile", "lyca-mobile-activation-houston-tx"),
-  make("Verizon Prepaid", "verizon-prepaid-activation-houston-tx"),
+  make("Prepaid", "phone-activation-humble-tx"),
+  make("All carriers", "bill-payments-humble-tx", true),
+  make("Boost Mobile", "boost-mobile-activation-humble-tx"),
+  make("AT&T Prepaid", "att-activation-humble-tx"),
+  make("Gen Mobile", "gen-mobile-activation-humble-tx"),
+  make("Simple Mobile", "simple-mobile-activation-humble-tx"),
+  make("Xfinity Mobile", "xfinity-mobile-activation-humble-tx"),
+  make("H2O Wireless", "h2o-wireless-activation-humble-tx"),
+  make("Lyca Mobile", "lyca-mobile-activation-humble-tx"),
+  make("Verizon Prepaid", "verizon-prepaid-activation-humble-tx"),
 ];
 
-PREPAID_DATA[0].title = "Prepaid Phone Activations in Houston";
-PREPAID_DATA[0].metaTitle = "Phone Activation Houston TX | OK Cellular";
+PREPAID_DATA[0].title = "Prepaid Phone Activations in Humble";
+PREPAID_DATA[0].metaTitle = "Phone Activation Humble TX | OK Cellular";
 PREPAID_DATA[0].metaDescription =
-  "Quick phone & carrier activation in Houston TX. Boost Mobile, AT&T, Verizon & more. Fast setup at OK Cellular. Walk-ins welcome.";
+  "Quick phone & carrier activation in Humble TX. Boost Mobile, AT&T, Verizon & more. Fast setup at OK Cellular. Walk-ins welcome.";
 PREPAID_DATA[0].hero.eyebrow = "Prepaid";
-PREPAID_DATA[0].hero.h1 = "Prepaid Phone Activations in Houston";
+PREPAID_DATA[0].hero.h1 = "Prepaid Phone Activations in Humble";
 PREPAID_DATA[0].hero.subhead = "We activate every major prepaid carrier — bring your phone or buy one from us.";
 PREPAID_DATA[0].logoSrc = undefined;
 PREPAID_DATA[0].heroPhoto = SIM_PHOTO;
@@ -140,12 +140,12 @@ PREPAID_DATA[0].faqs = [
   { q: "Can you port my number?", a: "Yes — most ports complete in 1–2 hours. Bring your old SIM, account info or phone, and a photo ID." },
 ];
 
-PREPAID_DATA[1].title = "Bill Payments in Houston";
-PREPAID_DATA[1].metaTitle = "Bill Payments Houston TX | OK Cellular";
+PREPAID_DATA[1].title = "Bill Payments in Humble";
+PREPAID_DATA[1].metaTitle = "Bill Payments Humble TX | OK Cellular";
 PREPAID_DATA[1].metaDescription =
-  "Pay your phone bill conveniently at OK Cellular in Houston TX. Multiple carriers accepted. Fast, hassle-free bill payment. Walk-ins welcome!";
+  "Pay your phone bill conveniently at OK Cellular in Humble TX. Multiple carriers accepted. Fast, hassle-free bill payment. Walk-ins welcome!";
 PREPAID_DATA[1].hero.eyebrow = "Bill Payments";
-PREPAID_DATA[1].hero.h1 = "Cell Phone Bill Payments in Houston";
+PREPAID_DATA[1].hero.h1 = "Cell Phone Bill Payments in Humble";
 PREPAID_DATA[1].hero.subhead =
   "Skip the app — bring cash. We accept payments for every major prepaid carrier and most resellers.";
 PREPAID_DATA[1].logoSrc = undefined;
@@ -158,45 +158,45 @@ PREPAID_DATA[1].services = [
 ];
 
 const META_OVERRIDES: Record<string, { metaTitle: string; metaDescription: string }> = {
-  "boost-mobile-activation-houston-tx": {
-    metaTitle: "Boost Mobile Activation Houston TX | OK Cellular",
+  "boost-mobile-activation-humble-tx": {
+    metaTitle: "Boost Mobile Activation Humble TX | OK Cellular",
     metaDescription:
-      "Activate your Boost Mobile plan in Houston TX. Fast, hassle-free setup at OK Cellular. New activations & plan upgrades. Walk-ins welcome!",
+      "Activate your Boost Mobile plan in Humble TX. Fast, hassle-free setup at OK Cellular. New activations & plan upgrades. Walk-ins welcome!",
   },
-  "att-activation-houston-tx": {
-    metaTitle: "AT&T Activation Houston TX | OK Cellular",
+  "att-activation-humble-tx": {
+    metaTitle: "AT&T Activation Humble TX | OK Cellular",
     metaDescription:
-      "Get your AT&T plan activated fast in Houston TX. New lines, upgrades & prepaid plans available. Quick setup at OK Cellular. Walk-ins welcome!",
+      "Get your AT&T plan activated fast in Humble TX. New lines, upgrades & prepaid plans available. Quick setup at OK Cellular. Walk-ins welcome!",
   },
-  "gen-mobile-activation-houston-tx": {
-    metaTitle: "Gen Mobile Activation Houston TX | OK Cellular",
+  "gen-mobile-activation-humble-tx": {
+    metaTitle: "Gen Mobile Activation Humble TX | OK Cellular",
     metaDescription:
-      "Activate your Gen Mobile plan in Houston TX. Fast & easy setup at OK Cellular. New activations & plan changes. Walk-ins welcome.",
+      "Activate your Gen Mobile plan in Humble TX. Fast & easy setup at OK Cellular. New activations & plan changes. Walk-ins welcome.",
   },
-  "simple-mobile-activation-houston-tx": {
-    metaTitle: "Simple Mobile Activation Houston TX | OK Cellular",
+  "simple-mobile-activation-humble-tx": {
+    metaTitle: "Simple Mobile Activation Humble TX | OK Cellular",
     metaDescription:
-      "Simple Mobile activation in Houston TX. Get your plan set up fast at OK Cellular. New lines & upgrades. Walk-ins welcome anytime!",
+      "Simple Mobile activation in Humble TX. Get your plan set up fast at OK Cellular. New lines & upgrades. Walk-ins welcome anytime!",
   },
-  "xfinity-mobile-activation-houston-tx": {
-    metaTitle: "Xfinity Mobile Activation Houston TX | OK Cellular",
+  "xfinity-mobile-activation-humble-tx": {
+    metaTitle: "Xfinity Mobile Activation Humble TX | OK Cellular",
     metaDescription:
-      "Activate your Xfinity Mobile plan in Houston TX. Fast & easy setup at OK Cellular. New activations & plan upgrades. Walk-ins welcome!",
+      "Activate your Xfinity Mobile plan in Humble TX. Fast & easy setup at OK Cellular. New activations & plan upgrades. Walk-ins welcome!",
   },
-  "h2o-wireless-activation-houston-tx": {
-    metaTitle: "H2O Wireless Activation Houston TX | OK Cellular",
+  "h2o-wireless-activation-humble-tx": {
+    metaTitle: "H2O Wireless Activation Humble TX | OK Cellular",
     metaDescription:
-      "Activate your H2O Wireless plan in Houston TX. Quick & easy setup at OK Cellular. New activations & plan changes. Walk-ins welcome!",
+      "Activate your H2O Wireless plan in Humble TX. Quick & easy setup at OK Cellular. New activations & plan changes. Walk-ins welcome!",
   },
-  "lyca-mobile-activation-houston-tx": {
-    metaTitle: "Lyca Mobile Activation Houston TX | OK Cellular",
+  "lyca-mobile-activation-humble-tx": {
+    metaTitle: "Lyca Mobile Activation Humble TX | OK Cellular",
     metaDescription:
-      "Lyca Mobile activation in Houston TX. Fast, hassle-free plan setup at OK Cellular. New lines & upgrades available. Walk-ins welcome!",
+      "Lyca Mobile activation in Humble TX. Fast, hassle-free plan setup at OK Cellular. New lines & upgrades available. Walk-ins welcome!",
   },
-  "verizon-prepaid-activation-houston-tx": {
-    metaTitle: "Verizon Prepaid Activation Houston TX | OK Cellular",
+  "verizon-prepaid-activation-humble-tx": {
+    metaTitle: "Verizon Prepaid Activation Humble TX | OK Cellular",
     metaDescription:
-      "Activate your Verizon Prepaid plan in Houston TX. Quick & easy setup at OK Cellular. New activations & upgrades. Walk-ins welcome.",
+      "Activate your Verizon Prepaid plan in Humble TX. Quick & easy setup at OK Cellular. New activations & upgrades. Walk-ins welcome.",
   },
 };
 

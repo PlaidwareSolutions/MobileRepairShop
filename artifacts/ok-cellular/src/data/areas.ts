@@ -95,7 +95,7 @@ export const AREAS_DATA: AreaData[] = [
     slug: "phone-repair-alief-tx",
     city: "Alief",
     title: "Phone Repair Alief",
-    metaTitle: "Phone Repair Alief Houston | OK Cellular (Humble)",
+    metaTitle: "Phone Repair Alief Humble | OK Cellular (Humble)",
     metaDescription:
       "Same-day phone, tablet, laptop & console repair for Alief at OK Cellular in Humble TX. Drive in or mail-in. Walk-ins welcome!",
     hero: {
@@ -113,7 +113,7 @@ export const AREAS_DATA: AreaData[] = [
     slug: "phone-repair-sharpstown-tx",
     city: "Sharpstown",
     title: "Phone Repair Sharpstown",
-    metaTitle: "Phone Repair Sharpstown Houston | OK Cellular (Humble)",
+    metaTitle: "Phone Repair Sharpstown Humble | OK Cellular (Humble)",
     metaDescription:
       "Same-day phone, tablet, laptop & console repair for Sharpstown at OK Cellular in Humble TX. Drive in or mail-in. Walk-ins welcome!",
     hero: {

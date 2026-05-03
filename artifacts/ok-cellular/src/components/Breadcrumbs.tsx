@@ -7,7 +7,7 @@ export function Breadcrumbs({ items }: { items: { label: string; to?: string }[]
       <ol className="max-w-[1240px] mx-auto px-4 py-2.5 flex flex-wrap items-center gap-1.5 text-[13px] text-muted-foreground">
         <li>
           <Link
-            href="/phone-repair-houston-tx"
+            href="/phone-repair-humble-tx"
             className="hover:text-primary inline-flex items-center gap-1.5 transition-colors"
           >
             <Home className="w-3.5 h-3.5" />

@@ -23,21 +23,21 @@ import NotFound from "@/pages/not-found";
 
 type SalesPageType = "sell" | "shop-hub" | "shop-brand" | "accessories-hub" | "accessories";
 
-const ACCESSORY_HUB_SLUGS = new Set(["phone-accessories-houston-tx"]);
+const ACCESSORY_HUB_SLUGS = new Set(["phone-accessories-humble-tx"]);
 const SHOP_BRAND_HUB_SLUGS = new Set([
-  "phones-for-sale-houston-tx",
-  "laptops-for-sale-houston-tx",
-  "used-phones-houston-tx",
-  "refurbished-phones-houston-tx",
-  "new-phones-houston-tx",
+  "phones-for-sale-humble-tx",
+  "laptops-for-sale-humble-tx",
+  "used-phones-humble-tx",
+  "refurbished-phones-humble-tx",
+  "new-phones-humble-tx",
   // buy-samsung is a hub now that we have per-model Samsung shop pages —
   // the model pages roll up under it via getParentHub.
-  "buy-samsung-phones-houston-tx",
+  "buy-samsung-phones-humble-tx",
 ]);
 
 function getSalesPageType(slug: string): SalesPageType {
   if (slug.startsWith("sell-")) return "sell";
-  if (slug === "shop-houston-tx") return "shop-hub";
+  if (slug === "shop-humble-tx") return "shop-hub";
   if (ACCESSORY_HUB_SLUGS.has(slug)) return "accessories-hub";
   if (slug.startsWith("buy-") || SHOP_BRAND_HUB_SLUGS.has(slug)) return "shop-brand";
   return "accessories";
@@ -48,29 +48,29 @@ function isHubPage(slug: string, pageType: SalesPageType): boolean {
 }
 
 function getParentHub(slug: string, pageType: SalesPageType): { name: string; path: string } | null {
-  if (slug === "shop-houston-tx") return null;
+  if (slug === "shop-humble-tx") return null;
   if (pageType === "sell") {
-    if (slug === "sell-phone-houston-tx") return { name: "Shop", path: "/shop-houston-tx" };
-    return { name: "Sell Your Phone", path: "/sell-phone-houston-tx" };
+    if (slug === "sell-phone-humble-tx") return { name: "Shop", path: "/shop-humble-tx" };
+    return { name: "Sell Your Phone", path: "/sell-phone-humble-tx" };
   }
   if (pageType === "shop-brand") {
-    if (slug === "phones-for-sale-houston-tx" || slug === "laptops-for-sale-houston-tx") {
-      return { name: "Shop", path: "/shop-houston-tx" };
+    if (slug === "phones-for-sale-humble-tx" || slug === "laptops-for-sale-humble-tx") {
+      return { name: "Shop", path: "/shop-humble-tx" };
     }
-    if (slug.includes("laptop") || slug === "buy-macbook-houston-tx") {
-      return { name: "Laptops for Sale", path: "/laptops-for-sale-houston-tx" };
+    if (slug.includes("laptop") || slug === "buy-macbook-humble-tx") {
+      return { name: "Laptops for Sale", path: "/laptops-for-sale-humble-tx" };
     }
-    if (slug === "used-phones-houston-tx" || slug === "refurbished-phones-houston-tx" || slug === "new-phones-houston-tx") {
-      return { name: "Phones for Sale", path: "/phones-for-sale-houston-tx" };
+    if (slug === "used-phones-humble-tx" || slug === "refurbished-phones-humble-tx" || slug === "new-phones-humble-tx") {
+      return { name: "Phones for Sale", path: "/phones-for-sale-humble-tx" };
     }
     if (slug.startsWith("buy-samsung-galaxy-")) {
-      return { name: "Buy Samsung Phones", path: "/buy-samsung-phones-houston-tx" };
+      return { name: "Buy Samsung Phones", path: "/buy-samsung-phones-humble-tx" };
     }
-    return { name: "Phones for Sale", path: "/phones-for-sale-houston-tx" };
+    return { name: "Phones for Sale", path: "/phones-for-sale-humble-tx" };
   }
   // accessories
-  if (slug === "phone-accessories-houston-tx") return { name: "Shop", path: "/shop-houston-tx" };
-  return { name: "Phone Accessories", path: "/phone-accessories-houston-tx" };
+  if (slug === "phone-accessories-humble-tx") return { name: "Shop", path: "/shop-humble-tx" };
+  return { name: "Phone Accessories", path: "/phone-accessories-humble-tx" };
 }
 
 export default function SalesPage() {
@@ -82,7 +82,7 @@ export default function SalesPage() {
   const path = `/${data.slug}`;
   const pageType = getSalesPageType(data.slug);
   const parent = getParentHub(data.slug, pageType);
-  const isBuyback = data.slug === "sell-phone-houston-tx";
+  const isBuyback = data.slug === "sell-phone-humble-tx";
   const isSellPage = pageType === "sell";
   const isHub = isHubPage(data.slug, pageType);
   // Accessories pages aren't really tied to a device-class inventory bucket, so

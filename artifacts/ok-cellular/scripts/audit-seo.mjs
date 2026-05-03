@@ -29,7 +29,7 @@
  *   - That shared URL equals SITE_URL + the page's path on disk, with
  *     CANONICAL_OVERRIDES (see scripts/seo-config.mjs) applied — e.g. the
  *     prerendered `/index.html` must canonicalise to
- *     SITE_URL + /phone-repair-houston-tx, not SITE_URL + /.
+ *     SITE_URL + /phone-repair-humble-tx, not SITE_URL + /.
  *   - The <title> text, og:title content, and twitter:title content are equal
  *     (after HTML-entity decoding), so the headline a user sees in the browser
  *     tab matches what's shared to Facebook/X/LinkedIn previews.

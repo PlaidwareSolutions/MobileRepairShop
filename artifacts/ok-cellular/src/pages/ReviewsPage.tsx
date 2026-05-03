@@ -12,12 +12,12 @@ export default function ReviewsPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="Customer Reviews Houston TX | OK Cellular"
+        title="Customer Reviews Humble TX | OK Cellular"
         description="See what customers say about OK Cellular in Humble TX. Real reviews from satisfied clients. Trusted phone & device repair specialists!"
-        path="/reviews-houston-tx"
+        path="/reviews-humble-tx"
         jsonLd={[
           localBusinessJsonLd(business),
-          breadcrumbJsonLd([{ name: "Reviews", path: "/reviews-houston-tx" }]),
+          breadcrumbJsonLd([{ name: "Reviews", path: "/reviews-humble-tx" }]),
           {
             ...localBusinessJsonLd(business),
             aggregateRating: {

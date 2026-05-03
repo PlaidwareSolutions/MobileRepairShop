@@ -34,7 +34,7 @@ export function Routes() {
       {/*
         Legacy URL redirects MUST come first. wouter's <Switch> picks the first match,
         so listing these before the dynamic /articles/:slug route ensures legacy article
-        paths (e.g. /articles/iphone-screen-repair-cost-houston) redirect to their new
+        paths (e.g. /articles/iphone-screen-repair-cost-humble) redirect to their new
         canonical URL instead of falling through to ArticlePage and 404'ing on the
         missing slug. Same reasoning for legacy service/sales/prepaid/area paths and `/`.
       */}
@@ -45,37 +45,37 @@ export function Routes() {
       ))}
 
       {/*
-        Home page is canonical at /phone-repair-houston-tx (SEO canonical URL set in HomePage's
-        <SEO path="/phone-repair-houston-tx" />), but we also render it directly at `/` so that
+        Home page is canonical at /phone-repair-humble-tx (SEO canonical URL set in HomePage's
+        <SEO path="/phone-repair-humble-tx" />), but we also render it directly at `/` so that
         the SSG-prerendered dist/public/index.html is a real page. Without this, the static
         host's SPA fallback to index.html for unknown URLs would serve a redirect stub and
         loop forever.
 
-        SERVICES_DATA still contains a "phone-repair-houston-tx" entry so that other services
+        SERVICES_DATA still contains a "phone-repair-humble-tx" entry so that other services
         can reference it via their `related` arrays. We intentionally shadow that ServicePage
-        route by registering HomePage at /phone-repair-houston-tx FIRST — wouter's <Switch>
+        route by registering HomePage at /phone-repair-humble-tx FIRST — wouter's <Switch>
         picks the first match, so the SERVICES map below never claims this slug. Do not move
         these Routes below the SERVICES map.
       */}
       <Route path="/" component={HomePage} />
-      <Route path="/phone-repair-houston-tx" component={HomePage} />
+      <Route path="/phone-repair-humble-tx" component={HomePage} />
 
       <Route path="/about" component={AboutPage} />
-      <Route path="/contact-houston-tx" component={ContactPage} />
+      <Route path="/contact-humble-tx" component={ContactPage} />
       {/*
         Dedicated mail-in repair landing page for out-of-area customers.
         Registered before the SERVICES map below because the slug looks like
-        a service slug (`/...-houston-tx`) and SERVICES_DATA could in theory
+        a service slug (`/...-humble-tx`) and SERVICES_DATA could in theory
         someday claim it; listing it here makes the routing intent explicit
         and ensures wouter's <Switch> picks this component first.
       */}
-      <Route path="/mail-in-repair-houston-tx" component={MailInRepairPage} />
-      <Route path="/reviews-houston-tx" component={ReviewsPage} />
+      <Route path="/mail-in-repair-humble-tx" component={MailInRepairPage} />
+      <Route path="/reviews-humble-tx" component={ReviewsPage} />
       <Route path="/inventory" component={InventoryPage} />
       {/*
         Per-category canonical routes (e.g. /inventory/phones). Each known
         inventory group gets its own URL so search engines can rank the page
-        for queries like "used phones Houston" — query strings on /inventory
+        for queries like "used phones Humble" — query strings on /inventory
         are mostly ignored as canonical URLs by Google. The wouter param
         :group is read inside InventoryPage; unknown slugs fall back to the
         unfiltered view (with a soft redirect to /inventory). Listed before
@@ -83,7 +83,7 @@ export function Routes() {
         "inventory/phones" can never shadow it.
       */}
       <Route path="/inventory/:group" component={InventoryPage} />
-      <Route path="/financing-houston-tx" component={FinancingPage} />
+      <Route path="/financing-humble-tx" component={FinancingPage} />
       <Route path="/admin/leads" component={AdminLeadsPage} />
       <Route path="/admin/inventory" component={AdminInventoryPage} />
       <Route path="/admin/promotions" component={AdminPromotionsPage} />

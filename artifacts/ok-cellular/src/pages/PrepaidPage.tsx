@@ -14,7 +14,7 @@ import { BUSINESS } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 import NotFound from "@/pages/not-found";
 
-const PREPAID_HUB_SLUG = "phone-activation-houston-tx";
+const PREPAID_HUB_SLUG = "phone-activation-humble-tx";
 
 export default function PrepaidPage() {
   const business = useBusiness();

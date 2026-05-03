@@ -46,35 +46,35 @@ const photo = (slug: string, alt: string): Photo => ({
 });
 
 const DEVICE_TILES: { name: string; desc: string; icon: LucideIcon; to: string; image?: Photo }[] = [
-  { name: "iPhone", desc: "iPhone 6 through 16 Pro Max", icon: Smartphone, to: "/iphone-repair-houston-tx",
+  { name: "iPhone", desc: "iPhone 6 through 16 Pro Max", icon: Smartphone, to: "/iphone-repair-humble-tx",
     image: photo("iphone-repair", "Technician using a precision screwdriver on an opened iPhone") },
-  { name: "Samsung Galaxy", desc: "S, Note, A and Z series", icon: Smartphone, to: "/samsung-repair-houston-tx",
+  { name: "Samsung Galaxy", desc: "S, Note, A and Z series", icon: Smartphone, to: "/samsung-repair-humble-tx",
     image: photo("samsung-repair", "Disassembled Samsung smartphone with the back glass removed on a repair workbench") },
-  { name: "Google Pixel", desc: "Pixel 3 through 9 Pro", icon: Smartphone, to: "/google-pixel-repair-houston-tx",
+  { name: "Google Pixel", desc: "Pixel 3 through 9 Pro", icon: Smartphone, to: "/google-pixel-repair-humble-tx",
     image: photo("pixel-repair", "Pixel-style smartphone laid out with repair tools on a workbench") },
-  { name: "iPad / Tablet", desc: "Glass, LCD and battery", icon: Tablet, to: "/tablet-repair-houston-tx",
+  { name: "iPad / Tablet", desc: "Glass, LCD and battery", icon: Tablet, to: "/tablet-repair-humble-tx",
     image: photo("tablet-repair", "Hands holding a digital tablet up close") },
-  { name: "MacBook", desc: "Screen, battery, board", icon: Laptop, to: "/macbook-repair-houston-tx",
+  { name: "MacBook", desc: "Screen, battery, board", icon: Laptop, to: "/macbook-repair-humble-tx",
     image: photo("macbook-repair", "Technician soldering a laptop logic board at the workbench") },
-  { name: "PC Laptop", desc: "HP, Dell, Lenovo, ASUS", icon: Laptop, to: "/laptop-repair-houston-tx",
+  { name: "PC Laptop", desc: "HP, Dell, Lenovo, ASUS", icon: Laptop, to: "/laptop-repair-humble-tx",
     image: photo("laptop-repair", "A hand fixing the internal parts of a laptop") },
-  { name: "PlayStation", desc: "HDMI, disc drive, no power", icon: Gamepad2, to: "/ps5-repair-houston-tx",
+  { name: "PlayStation", desc: "HDMI, disc drive, no power", icon: Gamepad2, to: "/ps5-repair-humble-tx",
     image: photo("ps5-repair", "Close-up of a PlayStation 5 DualSense controller") },
-  { name: "Xbox", desc: "Power, HDMI, disc drive", icon: Gamepad2, to: "/xbox-repair-houston-tx",
+  { name: "Xbox", desc: "Power, HDMI, disc drive", icon: Gamepad2, to: "/xbox-repair-humble-tx",
     image: photo("xbox-repair", "Xbox controller and console set up on a workbench") },
-  { name: "Battery Replace", desc: "Phones, tablets, laptops", icon: Battery, to: "/battery-replacement-houston-tx",
+  { name: "Battery Replace", desc: "Phones, tablets, laptops", icon: Battery, to: "/battery-replacement-humble-tx",
     image: photo("battery-replace", "Open phone with battery exposed and repair tools laid out") },
-  { name: "Accessories", desc: "Cases, chargers, audio", icon: Headphones, to: "/phone-accessories-houston-tx",
+  { name: "Accessories", desc: "Cases, chargers, audio", icon: Headphones, to: "/phone-accessories-humble-tx",
     image: photo("accessories", "Smartphone displayed alongside cases and accessories on a counter") },
 ];
 
 const POPULAR_REPAIRS: { name: string; price: string; time: string; to: string; difficulty: string }[] = [
-  { name: "iPhone Screen Replacement", price: "from $79", time: "30–60 min", difficulty: "Walk-in", to: "/iphone-screen-repair-houston-tx" },
-  { name: "Phone Battery Replacement", price: "from $49", time: "30–45 min", difficulty: "Walk-in", to: "/battery-replacement-houston-tx" },
-  { name: "PS5 HDMI Port Repair", price: "from $99", time: "Same day", difficulty: "Bench job", to: "/ps5-hdmi-repair-houston-tx" },
-  { name: "Samsung Back Glass", price: "from $69", time: "Same day", difficulty: "Bench job", to: "/samsung-repair-houston-tx" },
-  { name: "iPhone Charging Port", price: "from $69", time: "45–90 min", difficulty: "Bench job", to: "/iphone-charging-port-repair-houston-tx" },
-  { name: "MacBook Repair", price: "Free quote", time: "1–3 days", difficulty: "By appointment", to: "/macbook-repair-houston-tx" },
+  { name: "iPhone Screen Replacement", price: "from $79", time: "30–60 min", difficulty: "Walk-in", to: "/iphone-screen-repair-humble-tx" },
+  { name: "Phone Battery Replacement", price: "from $49", time: "30–45 min", difficulty: "Walk-in", to: "/battery-replacement-humble-tx" },
+  { name: "PS5 HDMI Port Repair", price: "from $99", time: "Same day", difficulty: "Bench job", to: "/ps5-hdmi-repair-humble-tx" },
+  { name: "Samsung Back Glass", price: "from $69", time: "Same day", difficulty: "Bench job", to: "/samsung-repair-humble-tx" },
+  { name: "iPhone Charging Port", price: "from $69", time: "45–90 min", difficulty: "Bench job", to: "/iphone-charging-port-repair-humble-tx" },
+  { name: "MacBook Repair", price: "Free quote", time: "1–3 days", difficulty: "By appointment", to: "/macbook-repair-humble-tx" },
 ];
 
 const beforeAfterPair = (slug: string, label: string, beforeAlt: string, afterAlt: string): BeforeAfterPair => ({
@@ -116,20 +116,20 @@ const SELL_TILES: { name: string; desc: string; to: string; slug: string; image?
 ];
 
 const PREPAID_TILES = [
-  { label: "Cricket", to: "/phone-activation-houston-tx" },
-  { label: "Metro by T-Mobile", to: "/phone-activation-houston-tx" },
-  { label: "T-Mobile", to: "/phone-activation-houston-tx" },
-  { label: "AT&T Prepaid", to: "/att-activation-houston-tx" },
-  { label: "Boost Mobile", to: "/boost-mobile-activation-houston-tx" },
-  { label: "Gen Mobile", to: "/gen-mobile-activation-houston-tx" },
-  { label: "Simple Mobile", to: "/simple-mobile-activation-houston-tx" },
-  { label: "H2O Wireless", to: "/h2o-wireless-activation-houston-tx" },
-  { label: "Lyca Mobile", to: "/lyca-mobile-activation-houston-tx" },
-  { label: "Verizon Prepaid", to: "/verizon-prepaid-activation-houston-tx" },
+  { label: "Cricket", to: "/phone-activation-humble-tx" },
+  { label: "Metro by T-Mobile", to: "/phone-activation-humble-tx" },
+  { label: "T-Mobile", to: "/phone-activation-humble-tx" },
+  { label: "AT&T Prepaid", to: "/att-activation-humble-tx" },
+  { label: "Boost Mobile", to: "/boost-mobile-activation-humble-tx" },
+  { label: "Gen Mobile", to: "/gen-mobile-activation-humble-tx" },
+  { label: "Simple Mobile", to: "/simple-mobile-activation-humble-tx" },
+  { label: "H2O Wireless", to: "/h2o-wireless-activation-humble-tx" },
+  { label: "Lyca Mobile", to: "/lyca-mobile-activation-humble-tx" },
+  { label: "Verizon Prepaid", to: "/verizon-prepaid-activation-humble-tx" },
 ];
 
 const AREA_TILES = [
-  { label: "Houston", to: "/phone-repair-houston-tx" },
+  { label: "Humble", to: "/phone-repair-humble-tx" },
   { label: "Sugar Land", to: "/phone-repair-sugar-land-tx" },
   { label: "Missouri City", to: "/phone-repair-missouri-city-tx" },
   { label: "Stafford", to: "/phone-repair-stafford-tx" },
@@ -139,7 +139,7 @@ const AREA_TILES = [
 ];
 
 const STAT_TILES = [
-  { value: "15", unit: "yr", label: "Repairing Houston since 2010" },
+  { value: "15", unit: "yr", label: "Repairing Humble since 2010" },
   { value: "90", unit: "d", label: "Warranty on every repair" },
   { value: "1–2", unit: "h", label: "Typical walk-in turnaround" },
   { value: "5★", unit: "", label: "Average customer rating" },
@@ -152,23 +152,23 @@ function HeroSearch() {
     e.preventDefault();
     const q = v.trim().toLowerCase();
     if (!q) {
-      setLocation("/repair-services-houston-tx");
+      setLocation("/repair-services-humble-tx");
       return;
     }
-    if (q.includes("iphone")) setLocation("/iphone-repair-houston-tx");
-    else if (q.includes("samsung") || q.includes("galaxy")) setLocation("/samsung-repair-houston-tx");
-    else if (q.includes("pixel") || q.includes("google")) setLocation("/google-pixel-repair-houston-tx");
-    else if (q.includes("ipad") || q.includes("tablet")) setLocation("/tablet-repair-houston-tx");
-    else if (q.includes("macbook")) setLocation("/macbook-repair-houston-tx");
-    else if (q.includes("laptop") || q.includes("computer")) setLocation("/laptop-repair-houston-tx");
-    else if (q.includes("ps5") || q.includes("playstation")) setLocation("/ps5-repair-houston-tx");
-    else if (q.includes("xbox")) setLocation("/xbox-repair-houston-tx");
-    else if (q.includes("battery")) setLocation("/battery-replacement-houston-tx");
-    else if (q.includes("hdmi")) setLocation("/hdmi-port-repair-houston-tx");
-    else if (q.includes("unlock")) setLocation("/phone-unlocking-houston-tx");
-    else if (q.includes("mail") || q.includes("ship")) setLocation("/mail-in-repair-houston-tx");
-    else if (q.includes("financ") || q.includes("$10")) setLocation("/financing-houston-tx");
-    else setLocation("/repair-services-houston-tx");
+    if (q.includes("iphone")) setLocation("/iphone-repair-humble-tx");
+    else if (q.includes("samsung") || q.includes("galaxy")) setLocation("/samsung-repair-humble-tx");
+    else if (q.includes("pixel") || q.includes("google")) setLocation("/google-pixel-repair-humble-tx");
+    else if (q.includes("ipad") || q.includes("tablet")) setLocation("/tablet-repair-humble-tx");
+    else if (q.includes("macbook")) setLocation("/macbook-repair-humble-tx");
+    else if (q.includes("laptop") || q.includes("computer")) setLocation("/laptop-repair-humble-tx");
+    else if (q.includes("ps5") || q.includes("playstation")) setLocation("/ps5-repair-humble-tx");
+    else if (q.includes("xbox")) setLocation("/xbox-repair-humble-tx");
+    else if (q.includes("battery")) setLocation("/battery-replacement-humble-tx");
+    else if (q.includes("hdmi")) setLocation("/hdmi-port-repair-humble-tx");
+    else if (q.includes("unlock")) setLocation("/phone-unlocking-humble-tx");
+    else if (q.includes("mail") || q.includes("ship")) setLocation("/mail-in-repair-humble-tx");
+    else if (q.includes("financ") || q.includes("$10")) setLocation("/financing-humble-tx");
+    else setLocation("/repair-services-humble-tx");
   };
   return (
     <form
@@ -207,9 +207,9 @@ export default function HomePage() {
   return (
     <PageShell>
       <SEO
-        title="Best Phone Repair Houston TX | OK Cellular"
-        description="Walk-in phone, tablet, laptop and console repair in Houston, TX. Free diagnostic, same-day on most repairs, 90-day warranty. OK Cellular on Will Clayton Pkwy."
-        path="/phone-repair-houston-tx"
+        title="Best Phone Repair Humble TX | OK Cellular"
+        description="Walk-in phone, tablet, laptop and console repair in Humble, TX. Free diagnostic, same-day on most repairs, 90-day warranty. OK Cellular on Will Clayton Pkwy."
+        path="/phone-repair-humble-tx"
         jsonLd={localBusinessJsonLd(business)}
       />
       <PromoCampaignBanner />
@@ -219,7 +219,7 @@ export default function HomePage() {
           <div className="lg:col-span-7 space-y-6">
             <div className="flex flex-wrap gap-2 text-xs">
               <span className="inline-flex items-center gap-1.5 bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-1 font-medium">
-                15 years in Houston
+                15 years in Humble
               </span>
               <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full px-2.5 py-1 font-medium">
                 <Zap className="w-3 h-3" /> Most repairs in 15–20 min
@@ -229,7 +229,7 @@ export default function HomePage() {
               </span>
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-tight text-foreground leading-[1.05]">
-              Houston's repair shop for phones, tablets, laptops &amp; consoles.
+              Humble's repair shop for phones, tablets, laptops &amp; consoles.
             </h1>
             <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
               Walk in, mail in, or get a quote in minutes. Real technicians, transparent pricing, and a 90-day warranty on every fix — same shop on Will Clayton Pkwy since 2010.
@@ -302,7 +302,7 @@ export default function HomePage() {
               </h2>
             </div>
             <Link
-              href="/repair-services-houston-tx"
+              href="/repair-services-humble-tx"
               className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-primary hover:underline"
               data-testid="link-all-repairs"
             >
@@ -359,7 +359,7 @@ export default function HomePage() {
               <li className="flex items-start gap-2"><CheckCircle2 className="w-4 h-4 text-primary mt-0.5 shrink-0" /> No fix, no fee — diagnostic is free</li>
             </ul>
             <Link
-              href="/repair-services-houston-tx"
+              href="/repair-services-humble-tx"
               className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary hover:underline"
               data-testid="link-all-pricing"
             >
@@ -486,7 +486,7 @@ export default function HomePage() {
         <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Star, title: "15 years in Houston", desc: "Same shop on Will Clayton Pkwy since 2010 — owner-operated and independent." },
+              { icon: Star, title: "15 years in Humble", desc: "Same shop on Will Clayton Pkwy since 2010 — owner-operated and independent." },
               { icon: Zap, title: "Same-day turnaround", desc: "Most walk-in repairs are done in 15–20 minutes while you wait." },
               { icon: ShieldCheck, title: "Certified technicians", desc: "Board-level repair, micro-soldering and data recovery — done in-house." },
               { icon: CheckCircle2, title: "90-day warranty", desc: "Every repair backed by a 90-day warranty on parts and labor." },
@@ -604,7 +604,7 @@ export default function HomePage() {
               ))}
             </div>
             <Link
-              href="/bill-payments-houston-tx"
+              href="/bill-payments-humble-tx"
               className="text-sm font-semibold text-primary hover:underline inline-flex items-center gap-1"
             >
               Pay your bill in cash <ArrowRight className="w-3.5 h-3.5" />
@@ -612,7 +612,7 @@ export default function HomePage() {
           </div>
           <div>
             <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-3">Service areas</div>
-            <h3 className="text-base font-semibold text-foreground mb-3">We serve Houston &amp; the surrounding cities</h3>
+            <h3 className="text-base font-semibold text-foreground mb-3">We serve Humble &amp; the surrounding cities</h3>
             <div className="flex flex-wrap gap-2">
               {AREA_TILES.map((a) => (
                 <Link
