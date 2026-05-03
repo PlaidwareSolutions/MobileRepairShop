@@ -214,88 +214,111 @@ export default function HomePage() {
       />
       <PromoCampaignBanner />
 
-      <section className="relative overflow-hidden bg-card border-b border-border">
+      {/* HERO — bold dark gradient with photo collage */}
+      <section className="relative overflow-hidden bg-slate-950 text-white">
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_55%_at_92%_-5%,hsl(var(--primary)/0.12),transparent_70%),radial-gradient(45%_45%_at_-5%_110%,hsl(var(--primary)/0.08),transparent_70%)]"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_15%_10%,hsl(var(--primary)/0.45),transparent_60%),radial-gradient(50%_60%_at_95%_90%,hsl(207_90%_55%/0.35),transparent_60%),radial-gradient(40%_50%_at_70%_30%,hsl(280_70%_55%/0.20),transparent_60%)]"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+          className="pointer-events-none absolute inset-0 opacity-[0.05] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:48px_48px]"
         />
-        <div className="relative max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-12 gap-10 items-start">
-          <div className="lg:col-span-7 space-y-6">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-32 -left-20 w-[28rem] h-[28rem] rounded-full bg-primary/20 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 right-0 w-[28rem] h-[28rem] rounded-full bg-fuchsia-500/15 blur-3xl"
+        />
+
+        <div className="relative max-w-[1240px] mx-auto px-4 pt-14 pb-16 md:pt-20 md:pb-24 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+          <div className="lg:col-span-7 space-y-7">
             <div className="flex flex-wrap gap-2 text-xs">
-              <span className="inline-flex items-center gap-1.5 bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-1 font-medium">
-                15 years in Humble
+              <span className="inline-flex items-center gap-1.5 bg-white/10 text-white border border-white/15 backdrop-blur rounded-full px-3 py-1 font-medium">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inset-0 rounded-full bg-emerald-400 animate-ping opacity-70" />
+                  <span className="relative h-2 w-2 rounded-full bg-emerald-400" />
+                </span>
+                Open today · {business.hoursShort}
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-primary/10 text-primary border border-primary/20 rounded-full px-2.5 py-1 font-medium">
+              <span className="inline-flex items-center gap-1.5 bg-gradient-to-r from-primary to-sky-400 text-white border border-white/20 rounded-full px-3 py-1 font-semibold shadow-lg shadow-primary/30">
                 <Zap className="w-3 h-3" /> Most repairs in 15–20 min
               </span>
-              <span className="inline-flex items-center gap-1.5 bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-1 font-medium">
-                90-day warranty
+              <span className="inline-flex items-center gap-1.5 bg-white/10 text-white border border-white/15 backdrop-blur rounded-full px-3 py-1 font-medium">
+                <Star className="w-3 h-3 fill-amber-300 text-amber-300" /> 5.0 · 800+ reviews
               </span>
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-[3.5rem] font-semibold tracking-tight text-foreground leading-[1.05]">
-              Humble's repair shop for phones, tablets, laptops &amp; consoles.
+            <h1 className="text-[2.6rem] sm:text-5xl lg:text-[4.25rem] font-extrabold tracking-tight leading-[0.98]">
+              Phones, tablets,<br />
+              laptops &amp; consoles —{" "}
+              <span className="bg-gradient-to-r from-sky-300 via-cyan-200 to-fuchsia-300 bg-clip-text text-transparent">
+                fixed fast in Humble.
+              </span>
             </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-2xl leading-relaxed">
+            <p className="text-base md:text-lg text-slate-300 max-w-2xl leading-relaxed">
               Walk in, mail in, or get a quote in minutes. Real technicians, transparent pricing, and a 90-day warranty on every fix — same shop on Will Clayton Pkwy since 2010.
             </p>
             <HeroSearch />
-            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-muted-foreground pt-1">
-              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-primary" /> Free diagnostic</span>
-              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-primary" /> Walk-ins welcome</span>
-              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-primary" /> All major brands</span>
+            <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300 pt-1">
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Free diagnostic</span>
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Walk-ins welcome</span>
+              <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> All major brands</span>
+            </div>
+            <div className="grid grid-cols-4 gap-3 sm:gap-5 pt-4 max-w-2xl">
+              {STAT_TILES.map((s) => (
+                <div key={s.label} className="rounded-lg bg-white/5 backdrop-blur border border-white/10 px-3 py-3 text-center">
+                  <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums leading-none">
+                    {s.value}<span className="bg-gradient-to-r from-sky-300 to-fuchsia-300 bg-clip-text text-transparent">{s.unit}</span>
+                  </div>
+                  <div className="text-[10px] text-slate-400 leading-tight mt-1.5 uppercase tracking-wide">{s.label}</div>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Side panel: Visit / Hours / Quick stats */}
+          {/* Right: photo collage + visit card */}
           <aside className="lg:col-span-5 w-full">
-            <div className="rounded-md border border-border bg-card overflow-hidden">
-              <div className="px-5 py-4 border-b border-border bg-muted/40">
-                <div className="text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">Visit the shop</div>
-                <div className="text-base font-semibold text-foreground mt-0.5">{BUSINESS.name} — Humble, TX</div>
+            <div className="relative">
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40 rotate-[-2deg]">
+                  <PhotoFrame photo={photo("iphone-repair", "iPhone screen replacement")} aspect="4:3" sizes="220px" loading="eager" fetchPriority="high" hover={false} />
+                </div>
+                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40 rotate-[2deg] mt-6">
+                  <PhotoFrame photo={photo("ps5-repair", "PS5 repair")} aspect="4:3" sizes="220px" loading="eager" hover={false} />
+                </div>
+                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40 rotate-[1deg] -mt-2">
+                  <PhotoFrame photo={photo("macbook-repair", "MacBook repair")} aspect="4:3" sizes="220px" hover={false} />
+                </div>
+                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40 rotate-[-1deg] mt-2">
+                  <PhotoFrame photo={photo("samsung-repair", "Samsung repair")} aspect="4:3" sizes="220px" hover={false} />
+                </div>
               </div>
-              <ul className="p-5 space-y-3 text-sm">
-                <li className="flex items-start gap-3">
-                  <MapPin className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                  <a href={business.mapsLink} target="_blank" rel="noreferrer" className="text-foreground hover:text-primary transition-colors">
-                    {business.addressLine1}<br />
-                    <span className="text-muted-foreground">{business.addressLine2}</span>
+              <div className="rounded-xl bg-white/[0.07] backdrop-blur-md ring-1 ring-white/15 p-4 flex items-center justify-between gap-3">
+                <div className="min-w-0">
+                  <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Visit the shop</div>
+                  <div className="text-sm font-semibold text-white truncate">{business.addressLine1}</div>
+                  <div className="text-xs text-slate-400 truncate">{business.addressLine2}</div>
+                </div>
+                <div className="flex gap-2 shrink-0">
+                  <a href={business.phoneTel} className="inline-flex items-center justify-center h-10 px-3 rounded-lg bg-white text-slate-900 hover:bg-slate-100 font-semibold text-sm transition-colors" data-testid="hero-side-call">
+                    <Phone className="w-4 h-4 mr-1.5" /> Call
                   </a>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Clock className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                  <span className="text-foreground">{business.hoursShort}</span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <Phone className="w-4 h-4 text-primary mt-0.5 shrink-0" />
-                  <a href={business.phoneTel} className="text-foreground hover:text-primary transition-colors font-medium">
-                    {business.phoneDisplay}
+                  <a href={business.mapsLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors" aria-label="Directions">
+                    <MapPin className="w-4 h-4" />
                   </a>
-                </li>
-              </ul>
-              <div className="px-5 pb-5 grid grid-cols-2 gap-2 text-sm">
-                <a href={business.phoneTel} className="inline-flex items-center justify-center gap-1.5 h-10 rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-semibold transition-colors" data-testid="hero-side-call">
-                  <Phone className="w-4 h-4" /> Call
-                </a>
-                <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-1.5 h-10 rounded-md border border-border bg-card hover:bg-muted text-foreground font-semibold transition-colors" data-testid="hero-side-whatsapp">
-                  WhatsApp
-                </a>
-              </div>
-              <div className="border-t border-border grid grid-cols-4">
-                {STAT_TILES.map((s) => (
-                  <div key={s.label} className="px-3 py-3 border-r last:border-r-0 border-border text-center">
-                    <div className="text-xl font-semibold text-foreground tabular-nums">
-                      {s.value}<span className="text-primary">{s.unit}</span>
-                    </div>
-                    <div className="text-[10px] text-muted-foreground leading-tight mt-0.5">{s.label}</div>
-                  </div>
-                ))}
+                </div>
               </div>
             </div>
           </aside>
+        </div>
+
+        {/* Wave divider */}
+        <div aria-hidden="true" className="relative">
+          <svg className="block w-full h-12 md:h-16 text-background" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="currentColor">
+            <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,80 1440,40 L1440,80 L0,80 Z" />
+          </svg>
         </div>
       </section>
 
@@ -317,14 +340,17 @@ export default function HomePage() {
               { n: "01", title: "Free diagnostic", desc: "Walk in or send it. A real technician inspects, tests, and gives you a firm price upfront — no fee, no pressure.", img: photo("process-diagnostic", "Technician inspecting a phone at the workbench") },
               { n: "02", title: "We fix it on-site", desc: "Board-level repair, micro-soldering, screen and battery work — done in our shop using OEM-grade parts.", img: photo("process-bench", "Hands working on a phone logic board with precision tools") },
               { n: "03", title: "Pick up & warranty", desc: "Most walk-ins are done in 15–20 minutes. Every fix is backed by a 90-day parts-and-labor warranty.", img: photo("process-pickup", "Customer picking up a repaired phone at the counter") },
-            ].map((step) => (
-              <div key={step.n} className="group relative rounded-lg border border-border bg-card overflow-hidden hover:shadow-md transition-shadow">
-                <PhotoFrame photo={step.img} aspect="16:9" sizes="(min-width: 768px) 380px, 100vw" />
-                <div className="absolute top-3 left-3 inline-flex items-center justify-center h-8 w-8 rounded-md bg-card/95 backdrop-blur ring-1 ring-border text-primary font-bold text-sm tabular-nums shadow-sm">
+            ].map((step, i) => (
+              <div key={step.n} className="group relative rounded-2xl border border-border bg-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all">
+                <div className="relative">
+                  <PhotoFrame photo={step.img} aspect="16:9" sizes="(min-width: 768px) 380px, 100vw" />
+                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
+                </div>
+                <div className={`absolute top-4 left-4 inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br ${i === 0 ? "from-amber-400 to-orange-500" : i === 1 ? "from-sky-400 to-primary" : "from-emerald-400 to-teal-600"} text-white font-extrabold text-lg tabular-nums shadow-xl shadow-black/20 ring-2 ring-white/30`}>
                   {step.n}
                 </div>
-                <div className="p-5">
-                  <h3 className="text-base font-semibold text-foreground mb-1.5">{step.title}</h3>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
                 </div>
               </div>
@@ -528,19 +554,19 @@ export default function HomePage() {
         <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Star, title: "15 years in Humble", desc: "Same shop on Will Clayton Pkwy since 2010 — owner-operated and independent.", grad: "from-amber-500/20 to-amber-500/5", text: "text-amber-600", ring: "ring-amber-500/20" },
-              { icon: Zap, title: "Same-day turnaround", desc: "Most walk-in repairs are done in 15–20 minutes while you wait.", grad: "from-sky-500/20 to-sky-500/5", text: "text-sky-600", ring: "ring-sky-500/20" },
-              { icon: ShieldCheck, title: "Certified technicians", desc: "Board-level repair, micro-soldering and data recovery — done in-house.", grad: "from-emerald-500/20 to-emerald-500/5", text: "text-emerald-600", ring: "ring-emerald-500/20" },
-              { icon: CheckCircle2, title: "90-day warranty", desc: "Every repair backed by a 90-day warranty on parts and labor.", grad: "from-violet-500/20 to-violet-500/5", text: "text-violet-600", ring: "ring-violet-500/20" },
+              { icon: Star, title: "15 years in Humble", desc: "Same shop on Will Clayton Pkwy since 2010 — owner-operated and independent.", grad: "from-amber-400 to-orange-500", glow: "bg-amber-400/30" },
+              { icon: Zap, title: "Same-day turnaround", desc: "Most walk-in repairs are done in 15–20 minutes while you wait.", grad: "from-sky-400 to-blue-600", glow: "bg-sky-400/30" },
+              { icon: ShieldCheck, title: "Certified technicians", desc: "Board-level repair, micro-soldering and data recovery — done in-house.", grad: "from-emerald-400 to-teal-600", glow: "bg-emerald-400/30" },
+              { icon: CheckCircle2, title: "90-day warranty", desc: "Every repair backed by a 90-day warranty on parts and labor.", grad: "from-fuchsia-400 to-violet-600", glow: "bg-fuchsia-400/30" },
             ].map((tile) => {
               const Icon = tile.icon;
               return (
-                <div key={tile.title} className="group relative overflow-hidden rounded-lg border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-md">
-                  <div aria-hidden="true" className={`pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${tile.grad} blur-2xl opacity-70 group-hover:opacity-100 transition-opacity`} />
-                  <div className={`relative w-10 h-10 rounded-lg bg-gradient-to-br ${tile.grad} ${tile.text} ring-1 ${tile.ring} flex items-center justify-center mb-3`}>
-                    <Icon className="w-5 h-5" />
+                <div key={tile.title} className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-900/10">
+                  <div aria-hidden="true" className={`pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full ${tile.glow} blur-3xl opacity-60 group-hover:opacity-100 transition-opacity`} />
+                  <div className={`relative w-12 h-12 rounded-xl bg-gradient-to-br ${tile.grad} text-white shadow-lg flex items-center justify-center mb-4`}>
+                    <Icon className="w-6 h-6" />
                   </div>
-                  <h3 className="relative text-base font-semibold text-foreground mb-1">{tile.title}</h3>
+                  <h3 className="relative text-base font-bold text-foreground mb-1.5">{tile.title}</h3>
                   <p className="relative text-sm text-muted-foreground leading-relaxed">{tile.desc}</p>
                 </div>
               );
@@ -696,6 +722,37 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* BIG CTA — vibrant gradient banner */}
+      <section className="relative overflow-hidden bg-slate-950 text-white">
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_80%_at_20%_50%,hsl(var(--primary)/0.55),transparent_60%),radial-gradient(50%_80%_at_85%_50%,hsl(280_70%_55%/0.45),transparent_60%)]" />
+        <div aria-hidden="true" className="pointer-events-none absolute inset-0 opacity-[0.06] [background-image:linear-gradient(to_right,white_1px,transparent_1px),linear-gradient(to_bottom,white_1px,transparent_1px)] [background-size:40px_40px]" />
+        <div className="relative max-w-[1240px] mx-auto px-4 py-14 md:py-20 grid md:grid-cols-3 gap-8 items-center">
+          <div className="md:col-span-2">
+            <div className="inline-flex items-center gap-1.5 bg-white/10 backdrop-blur border border-white/15 text-white text-xs font-semibold uppercase tracking-wide rounded-full px-3 py-1 mb-4">
+              <Zap className="w-3 h-3 text-amber-300" /> Walk-ins welcome
+            </div>
+            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-[1.05] mb-4">
+              Got a broken device?{" "}
+              <span className="bg-gradient-to-r from-sky-300 via-cyan-200 to-fuchsia-300 bg-clip-text text-transparent">
+                Bring it in today.
+              </span>
+            </h2>
+            <p className="text-base md:text-lg text-slate-300 max-w-xl leading-relaxed">
+              Most repairs are done in 15–20 minutes — and every fix is backed by a 90-day warranty. Free diagnostic, no pressure, real technicians.
+            </p>
+          </div>
+          <div className="flex flex-col gap-3 md:items-end">
+            <a href={business.phoneTel} className="group inline-flex items-center justify-center gap-2 h-14 px-7 rounded-xl bg-white text-slate-900 hover:bg-slate-100 font-bold text-base transition-all shadow-2xl shadow-black/30 hover:scale-[1.02]" data-testid="cta-banner-call">
+              <Phone className="w-5 h-5" /> {business.phoneDisplay}
+            </a>
+            <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-xl bg-white/10 backdrop-blur border border-white/20 text-white hover:bg-white/20 font-semibold text-sm transition-colors" data-testid="cta-banner-whatsapp">
+              Text us on WhatsApp <ArrowRight className="w-4 h-4" />
+            </a>
+            <div className="text-xs text-slate-400 md:text-right">{business.hoursShort}</div>
           </div>
         </div>
       </section>
