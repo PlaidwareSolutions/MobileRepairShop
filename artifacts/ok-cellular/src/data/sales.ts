@@ -17,7 +17,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Phones for Sale in Houston",
     metaTitle: "Phones for Sale Houston TX | OK Cellular",
     metaDescription:
-      "Buy new, used & refurbished phones in Houston TX. iPhone, Samsung, Motorola & more. Great prices at OK Cellular. Visit us in store today!",
+      "Buy new, used & refurbished phones in Houston TX. iPhone, Samsung, Motorola & more. Fair prices at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Phones for Sale",
       h1: "Phones for Sale in Houston",
@@ -64,7 +64,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Refurbished Phones Houston",
     metaTitle: "Refurbished Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop certified refurbished phones in Houston TX. iPhone, Samsung & more at great prices. Quality-tested devices at OK Cellular. Shop now!",
+      "Shop certified refurbished phones in Houston TX. iPhone, Samsung & more at fair prices. Quality-tested devices at OK Cellular. Available in store.",
     hero: {
       eyebrow: "Refurbished Phones",
       h1: "Refurbished Phones in Houston",
@@ -84,7 +84,7 @@ export const SALES_DATA: SalesData[] = [
     title: "New Phones Houston",
     metaTitle: "New Phones for Sale Houston TX | OK Cellular",
     metaDescription:
-      "Shop brand-new phones in Houston TX. iPhone, Samsung, Motorola & more. Best prices on the latest models at OK Cellular. Visit us today!",
+      "Shop brand-new phones in Houston TX. iPhone, Samsung, Motorola & more. Latest models stocked at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "New Phones",
       h1: "New Phones in Houston",
@@ -125,7 +125,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Laptops for Sale Houston",
     metaTitle: "Laptops for Sale Houston TX | OK Cellular",
     metaDescription:
-      "Buy new & used laptops in Houston TX. HP, Dell, Lenovo & MacBook available. Great prices at OK Cellular. Walk-ins welcome. Shop today!",
+      "Buy new & used laptops in Houston TX. HP, Dell, Lenovo & MacBook available. Fair prices at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Laptops for Sale",
       h1: "Laptops for Sale in Houston",
@@ -145,7 +145,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Phone Accessories Houston",
     metaTitle: "Phone Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop phone accessories in Houston TX. Cases, chargers, cables, screen protectors & more. Top brands at OK Cellular. Walk-ins welcome today!",
+      "Shop phone accessories in Houston TX. Cases, chargers, cables, screen protectors & more. Top brands at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Accessories",
       h1: "Phone Accessories in Houston",
@@ -185,7 +185,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Shop OK Cellular Houston",
     metaTitle: "Shop Phones & Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop phones, laptops & accessories at OK Cellular in Houston TX. New, used & refurbished devices. Great prices & quality products in store!",
+      "Shop phones, laptops & accessories at OK Cellular in Houston TX. New, used & refurbished devices. Fair prices & quality products in store!",
     hero: {
       eyebrow: "Shop OK Cellular",
       h1: "Shop OK Cellular Houston",
@@ -212,7 +212,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy iPhone in Houston",
     metaTitle: "Buy iPhone Houston TX | OK Cellular",
     metaDescription:
-      "Buy new, used & refurbished iPhones in Houston TX. Latest models available. Competitive prices at OK Cellular. Visit us in store today!",
+      "Buy new, used & refurbished iPhones in Houston TX. Latest models available. Competitive prices at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Buy iPhone",
       h1: "Buy iPhone in Houston",
@@ -239,7 +239,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy Samsung Phones in Houston",
     metaTitle: "Buy Samsung Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop Samsung Galaxy phones in Houston TX. New, used & refurbished models at great prices. Visit OK Cellular for the best Samsung deals!",
+      "Shop Samsung Galaxy phones in Houston TX. New, used & refurbished models at fair prices. Samsung Galaxy models in stock at OK Cellular.",
     hero: {
       eyebrow: "Buy Samsung",
       h1: "Buy Samsung Phones in Houston",
@@ -391,7 +391,7 @@ export const SALES_DATA: SalesData[] = [
         "Unlocked Galaxy S21, S21+, S21 Ultra and S21 FE — older flagship pricing, still-strong daily driver. Tested and warrantied.",
     },
     intro:
-      "The Galaxy S21 is one of the best deals in our shop — a former flagship with a great AMOLED and triple cameras, often half the price of a current S model. Every S21 is battery-checked and factory reset.",
+      "The Galaxy S21 is a strong value pick — a former flagship with a great AMOLED and triple cameras, often half the price of a current S model. Every S21 is battery-checked and factory reset.",
     highlights: [
       "Used Galaxy S21 / S21 FE from $229",
       "Galaxy S21+ from $279, S21 Ultra from $349",
@@ -462,7 +462,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy Motorola Phones in Houston",
     metaTitle: "Buy Motorola Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop Motorola phones in Houston TX. New & used models at affordable prices. Quality devices at OK Cellular. Walk-ins welcome. Visit us today!",
+      "Shop Motorola phones in Houston TX. New & used models at affordable prices. Quality devices at OK Cellular. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "Buy Motorola",
       h1: "Buy Motorola Phones in Houston",
@@ -488,7 +488,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy Google Pixel Phones in Houston",
     metaTitle: "Buy Google Pixel Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop Google Pixel phones in Houston TX. New & refurbished models at competitive prices. Find your next phone at OK Cellular today!",
+      "Shop Google Pixel phones in Houston TX. New & refurbished models at competitive prices. Pixels stocked at OK Cellular.",
     hero: {
       eyebrow: "Buy Pixel",
       h1: "Buy Google Pixel Phones in Houston",
@@ -514,7 +514,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy HP Laptops in Houston",
     metaTitle: "Buy HP Laptops Houston TX | OK Cellular",
     metaDescription:
-      "Shop HP laptops in Houston TX. New & refurbished models at affordable prices. Find the perfect HP laptop at OK Cellular. Visit us today!",
+      "Shop HP laptops in Houston TX. New & refurbished models at affordable prices. Find the perfect HP laptop at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Buy HP Laptop",
       h1: "Buy HP Laptops in Houston",
@@ -540,7 +540,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy Dell Laptops in Houston",
     metaTitle: "Buy Dell Laptops Houston TX | OK Cellular",
     metaDescription:
-      "Shop Dell laptops in Houston TX. New & used models at great prices. Quality devices for work & school at OK Cellular. Walk-ins welcome!",
+      "Shop Dell laptops in Houston TX. New & used models at fair prices. Quality devices for work & school at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Buy Dell Laptop",
       h1: "Buy Dell Laptops in Houston",
@@ -566,7 +566,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy Lenovo Laptops in Houston",
     metaTitle: "Buy Lenovo Laptops Houston TX | OK Cellular",
     metaDescription:
-      "Shop Lenovo laptops in Houston TX. New & refurbished models at competitive prices. Great value at OK Cellular. Walk-ins welcome. Shop today!",
+      "Shop Lenovo laptops in Houston TX. New & refurbished models at competitive prices. Great value at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Buy Lenovo Laptop",
       h1: "Buy Lenovo Laptops in Houston",
@@ -592,7 +592,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy MacBook in Houston",
     metaTitle: "Buy MacBook Houston TX | OK Cellular",
     metaDescription:
-      "Shop new & refurbished MacBooks in Houston TX. MacBook Air & Pro available at great prices. Quality Apple laptops at OK Cellular. Shop now!",
+      "Shop new & refurbished MacBooks in Houston TX. MacBook Air & Pro available at fair prices. Quality Apple laptops at OK Cellular. Available in store.",
     hero: {
       eyebrow: "Buy MacBook",
       h1: "Buy MacBook in Houston",
@@ -618,7 +618,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Sell My iPhone in Houston",
     metaTitle: "Sell Your iPhone Houston TX | OK Cellular",
     metaDescription:
-      "Sell your old iPhone in Houston TX for top dollar. All models accepted. Fast & easy process at OK Cellular. Walk-in for a free quote today!",
+      "Sell your old iPhone in Houston TX for top dollar. All models accepted. Fast & easy process at OK Cellular. Free quote on request — walk in any time.",
     hero: {
       eyebrow: "Sell iPhone",
       h1: "Sell Your iPhone in Houston",
@@ -802,7 +802,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Wireless Chargers Houston",
     metaTitle: "Wireless Chargers Houston TX | OK Cellular",
     metaDescription:
-      "Shop wireless chargers in Houston TX. Fast wireless charging pads & stands for iPhone & Samsung. Great prices at OK Cellular. Shop now!",
+      "Shop wireless chargers in Houston TX. Fast wireless charging pads & stands for iPhone & Samsung. Fair prices at OK Cellular. Available in store.",
     hero: {
       eyebrow: "Wireless Chargers",
       h1: "Wireless Chargers in Houston",
@@ -828,7 +828,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Power Banks Houston",
     metaTitle: "Power Banks Houston TX | OK Cellular",
     metaDescription:
-      "Shop portable power banks in Houston TX. High-capacity chargers to keep your devices powered. Great prices at OK Cellular. Shop today!",
+      "Shop portable power banks in Houston TX. High-capacity chargers to keep your devices powered. Fair prices at OK Cellular. Available in store.",
     hero: {
       eyebrow: "Power Banks",
       h1: "Power Banks in Houston",
@@ -880,7 +880,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Headphones Houston",
     metaTitle: "Headphones Houston TX | OK Cellular",
     metaDescription:
-      "Shop headphones in Houston TX. Wired, wireless & Bluetooth options. Top brands & great sound quality at OK Cellular. Walk-ins welcome!",
+      "Shop headphones in Houston TX. Wired, wireless & Bluetooth options. Top brands available at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Headphones",
       h1: "Headphones in Houston",
@@ -906,7 +906,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Bluetooth Speakers Houston",
     metaTitle: "Bluetooth Speakers Houston TX | OK Cellular",
     metaDescription:
-      "Shop Bluetooth speakers in Houston TX. Portable & powerful sound for any occasion. Top brands at OK Cellular. Walk-ins welcome. Shop today!",
+      "Shop Bluetooth speakers in Houston TX. Portable & powerful sound for any occasion. Top brands at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Bluetooth Speakers",
       h1: "Bluetooth Speakers in Houston",
@@ -932,7 +932,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Car Chargers Houston",
     metaTitle: "Car Chargers Houston TX | OK Cellular",
     metaDescription:
-      "Shop car chargers in Houston TX. Fast USB & wireless car chargers for all phones. Affordable pricing at OK Cellular. Walk-in or shop today!",
+      "Shop car chargers in Houston TX. Fast USB & wireless car chargers for all phones. Affordable pricing at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Car Chargers",
       h1: "Car Chargers in Houston",
@@ -1010,7 +1010,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Apple Accessories Houston",
     metaTitle: "Apple Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop genuine & compatible Apple accessories in Houston TX. Chargers, cases, AirPods & more. Great prices at OK Cellular. Walk-ins welcome!",
+      "Shop genuine & compatible Apple accessories in Houston TX. Chargers, cases, AirPods & more. Fair prices at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Apple Accessories",
       h1: "Apple Accessories in Houston",
@@ -1036,7 +1036,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Buy Revvl Phones Houston",
     metaTitle: "Buy Revvl Phones Houston TX | OK Cellular",
     metaDescription:
-      "Shop Revvl phones in Houston TX. New & used models at affordable prices. Great T-Mobile network compatibility. Visit OK Cellular today!",
+      "Shop Revvl phones in Houston TX. New & used models at affordable prices. Great T-Mobile network compatibility. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "Buy Revvl Phones",
       h1: "Buy Revvl Phones in Houston",
@@ -1089,7 +1089,7 @@ export const SALES_DATA: SalesData[] = [
     title: "iPhone Screen Protectors Houston",
     metaTitle: "iPhone Screen Protectors Houston TX | OK Cellular",
     metaDescription:
-      "Shop iPhone screen protectors in Houston TX. Tempered glass & film protectors for all models. Affordable prices at OK Cellular. Shop now!",
+      "Shop iPhone screen protectors in Houston TX. Tempered glass & film protectors for all models. Affordable prices at OK Cellular. Available in store.",
     hero: {
       eyebrow: "iPhone Screen Protectors",
       h1: "iPhone Screen Protectors in Houston",
@@ -1115,7 +1115,7 @@ export const SALES_DATA: SalesData[] = [
     title: "iPhone Chargers Houston",
     metaTitle: "iPhone Chargers Houston TX | OK Cellular",
     metaDescription:
-      "Shop iPhone chargers in Houston TX. Fast chargers, cables & adapters for all iPhone models. Affordable prices at OK Cellular. Walk-in today!",
+      "Shop iPhone chargers in Houston TX. Fast chargers, cables & adapters for all iPhone models. Affordable prices at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "iPhone Chargers",
       h1: "iPhone Chargers in Houston",
@@ -1167,7 +1167,7 @@ export const SALES_DATA: SalesData[] = [
     title: "HDMI Cables Houston",
     metaTitle: "HDMI Cables Houston TX | OK Cellular",
     metaDescription:
-      "Shop HDMI cables in Houston TX. High-quality cables for TVs, monitors & gaming consoles. Great prices at OK Cellular. Walk-ins welcome!",
+      "Shop HDMI cables in Houston TX. High-quality cables for TVs, monitors & gaming consoles. Fair prices at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "HDMI Cables",
       h1: "HDMI Cables in Houston",
@@ -1193,7 +1193,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Car Phone Holders Houston",
     metaTitle: "Car Phone Holders Houston TX | OK Cellular",
     metaDescription:
-      "Shop car phone holders in Houston TX. Secure mounts for all phone sizes. Magnetic, vent & windshield options at OK Cellular. Shop today!",
+      "Shop car phone holders in Houston TX. Secure mounts for all phone sizes. Magnetic, vent & windshield options at OK Cellular. Available in store.",
     hero: {
       eyebrow: "Car Phone Holders",
       h1: "Car Phone Holders in Houston",
@@ -1245,7 +1245,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Wireless Earbuds Houston",
     metaTitle: "Wireless Earbuds Houston TX | OK Cellular",
     metaDescription:
-      "Shop wireless earbuds in Houston TX. Bluetooth earbuds for calls, music & more. Top brands & great prices at OK Cellular. Shop today!",
+      "Shop wireless earbuds in Houston TX. Bluetooth earbuds for calls, music & more. Top brands & great prices at OK Cellular. Available in store.",
     hero: {
       eyebrow: "Wireless Earbuds",
       h1: "Wireless Earbuds in Houston",
@@ -1297,7 +1297,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Apple Watch Houston",
     metaTitle: "Apple Watch Houston TX | OK Cellular",
     metaDescription:
-      "Shop Apple Watch in Houston TX. Latest Apple Watch models available. Competitive prices & bands at OK Cellular. Walk-ins welcome. Shop today!",
+      "Shop Apple Watch in Houston TX. Latest Apple Watch models available. Competitive prices & bands at OK Cellular. Walk-ins welcome.",
     hero: {
       eyebrow: "Apple Watch",
       h1: "Apple Watch in Houston",
@@ -1349,7 +1349,7 @@ export const SALES_DATA: SalesData[] = [
     title: "iPad Accessories Houston",
     metaTitle: "iPad Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop iPad accessories in Houston TX. Cases, screen protectors, cables & more for all iPad models. Great prices at OK Cellular. Shop today!",
+      "Shop iPad accessories in Houston TX. Cases, screen protectors, cables & more for all iPad models. Fair prices at OK Cellular. Available in store.",
     hero: {
       eyebrow: "iPad Accessories",
       h1: "iPad Accessories in Houston",
@@ -1375,7 +1375,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Phone Camera Lenses Houston",
     metaTitle: "Camera Lenses Houston TX | OK Cellular",
     metaDescription:
-      "Shop phone camera lenses in Houston TX. Clip-on wide-angle, macro & telephoto lenses for all phones. Great prices at OK Cellular. Shop now!",
+      "Shop phone camera lenses in Houston TX. Clip-on wide-angle, macro & telephoto lenses for all phones. Fair prices at OK Cellular. Available in store.",
     hero: {
       eyebrow: "Phone Camera Lenses",
       h1: "Phone Camera Lenses in Houston",
@@ -1427,7 +1427,7 @@ export const SALES_DATA: SalesData[] = [
     title: "NCC Accessories Houston",
     metaTitle: "NCC Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop NCC accessories in Houston TX. Quality phone accessories including cases, chargers & cables. Affordable prices at OK Cellular. Shop now!",
+      "Shop NCC accessories in Houston TX. Quality phone accessories including cases, chargers & cables. Affordable prices at OK Cellular. Available in store.",
     hero: {
       eyebrow: "NCC Accessories",
       h1: "NCC Accessories in Houston",
@@ -1453,7 +1453,7 @@ export const SALES_DATA: SalesData[] = [
     title: "Esoulk Accessories Houston",
     metaTitle: "Esoulk Accessories Houston TX | OK Cellular",
     metaDescription:
-      "Shop Esoulk accessories in Houston TX. Reliable phone chargers, cables & more at great prices. Available at OK Cellular. Walk-ins welcome!",
+      "Shop Esoulk accessories in Houston TX. Reliable phone chargers, cables & more at fair prices. Available at OK Cellular. Walk-ins welcome!",
     hero: {
       eyebrow: "Esoulk Accessories",
       h1: "Esoulk Accessories in Houston",

@@ -116,7 +116,7 @@ export const PREPAID_DATA: PrepaidData[] = [
 PREPAID_DATA[0].title = "Prepaid Phone Activations in Houston";
 PREPAID_DATA[0].metaTitle = "Phone Activation Houston TX | OK Cellular";
 PREPAID_DATA[0].metaDescription =
-  "Quick phone & carrier activation in Houston TX. Boost Mobile, AT&T, Verizon & more. Fast setup at OK Cellular. Walk-ins welcome today!";
+  "Quick phone & carrier activation in Houston TX. Boost Mobile, AT&T, Verizon & more. Fast setup at OK Cellular. Walk-ins welcome.";
 PREPAID_DATA[0].hero.eyebrow = "Prepaid";
 PREPAID_DATA[0].hero.h1 = "Prepaid Phone Activations in Houston";
 PREPAID_DATA[0].hero.subhead = "We activate every major prepaid carrier — bring your phone or buy one from us.";
@@ -171,7 +171,7 @@ const META_OVERRIDES: Record<string, { metaTitle: string; metaDescription: strin
   "gen-mobile-activation-houston-tx": {
     metaTitle: "Gen Mobile Activation Houston TX | OK Cellular",
     metaDescription:
-      "Activate your Gen Mobile plan in Houston TX. Fast & easy setup at OK Cellular. New activations & plan changes. Walk-ins welcome today!",
+      "Activate your Gen Mobile plan in Houston TX. Fast & easy setup at OK Cellular. New activations & plan changes. Walk-ins welcome.",
   },
   "simple-mobile-activation-houston-tx": {
     metaTitle: "Simple Mobile Activation Houston TX | OK Cellular",
@@ -196,7 +196,7 @@ const META_OVERRIDES: Record<string, { metaTitle: string; metaDescription: strin
   "verizon-prepaid-activation-houston-tx": {
     metaTitle: "Verizon Prepaid Activation Houston TX | OK Cellular",
     metaDescription:
-      "Activate your Verizon Prepaid plan in Houston TX. Quick & easy setup at OK Cellular. New activations & upgrades. Walk-ins welcome today!",
+      "Activate your Verizon Prepaid plan in Houston TX. Quick & easy setup at OK Cellular. New activations & upgrades. Walk-ins welcome.",
   },
 };
 

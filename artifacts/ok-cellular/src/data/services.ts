@@ -337,7 +337,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "MacBook Repair Houston",
     metaTitle: "MacBook Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert MacBook repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Fast diagnostics & warranty. Visit OK Cellular today!",
+      "Expert MacBook repair in Houston TX. Screen, battery, keyboard & motherboard fixes. Fast diagnostics & warranty. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "Apple Laptop Repair",
       h1: "MacBook Repair in Houston",
@@ -369,7 +369,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "HP Laptop Repair Houston",
     metaTitle: "HP Laptop Repair Houston TX | OK Cellular",
     metaDescription:
-      "Trusted HP laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixed by experts. Fast turnaround. Visit OK Cellular today!",
+      "Trusted HP laptop repair in Houston TX. Screen, battery, keyboard & motherboard fixed by experts. Fast turnaround. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "HP Laptop Repair",
       h1: "HP Laptop Repair in Houston",
@@ -463,7 +463,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "Gaming Console Repair Houston",
     metaTitle: "Gaming Console Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert gaming console repair in Houston TX. PS5, Xbox & controllers. Fast diagnostics & affordable fixes. Walk-in at OK Cellular today!",
+      "Expert gaming console repair in Houston TX. PS5, Xbox & controllers. Fast diagnostics & affordable fixes. Walk-in at OK Cellular.",
     hero: {
       eyebrow: "Console Repair",
       h1: "Gaming Console Repair in Houston",
@@ -715,7 +715,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "Repair Services Houston",
     metaTitle: "Repair Services Houston TX | OK Cellular",
     metaDescription:
-      "Professional repair services for phones, tablets, laptops & consoles in Houston TX. Same-day service available. Visit OK Cellular today!",
+      "Professional repair services for phones, tablets, laptops & consoles in Houston TX. Same-day service available. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "All Repair Services",
       h1: "Repair Services in Houston",
@@ -826,7 +826,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "iPhone 16 Repair Houston",
     metaTitle: "iPhone 16 Repair Houston TX | OK Cellular",
     metaDescription:
-      "Affordable iPhone 16 repair in Houston TX. Cracked screen, battery & charging issues fixed fast. Certified technicians. Get your free quote today!",
+      "Affordable iPhone 16 repair in Houston TX. Cracked screen, battery & charging issues fixed fast. Certified technicians. Free quote on request.",
     hero: {
       eyebrow: "iPhone 16 Repair",
       h1: "iPhone 16 Repair in Houston",
@@ -858,7 +858,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "iPhone 16 Pro Repair Houston",
     metaTitle: "iPhone 16 Pro Repair Houston TX | OK Cellular",
     metaDescription:
-      "Expert iPhone 16 Pro repair in Houston TX. Screen replacement, battery & more. Quick turnaround with a warranty. Visit OK Cellular today!",
+      "Expert iPhone 16 Pro repair in Houston TX. Screen replacement, battery & more. Quick turnaround with a warranty. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "iPhone 16 Pro Repair",
       h1: "iPhone 16 Pro Repair in Houston",
@@ -1119,7 +1119,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "Samsung Screen Repair Houston",
     metaTitle: "Samsung Screen Repair Houston TX | OK Cellular",
     metaDescription:
-      "Cracked Samsung screen? Get it repaired fast in Houston TX. All Galaxy models covered, affordable pricing & warranty. Visit OK Cellular today!",
+      "Cracked Samsung screen? Get it repaired fast in Houston TX. All Galaxy models covered, affordable pricing & warranty. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "Samsung Screen Repair",
       h1: "Samsung Screen Repair in Houston",
@@ -1213,7 +1213,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "iPad Repair Houston",
     metaTitle: "iPad Repair Houston TX | OK Cellular",
     metaDescription:
-      "Fast & affordable iPad repair in Houston TX. Screen, battery & charging port for all iPad models. Warranty included. Visit OK Cellular today!",
+      "Fast & affordable iPad repair in Houston TX. Screen, battery & charging port for all iPad models. Warranty included. Walk-ins welcome at OK Cellular.",
     hero: {
       eyebrow: "iPad Repair",
       h1: "iPad Repair in Houston",
@@ -1373,7 +1373,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "Tablet Charging Port Repair Houston",
     metaTitle: "Tablet Charging Port Repair Houston TX | OK Cellular",
     metaDescription:
-      "Tablet not charging? Get your charging port repaired in Houston TX. iPad & Samsung tablets fixed fast. Walk-in at OK Cellular today!",
+      "Tablet not charging? Get your charging port repaired in Houston TX. iPad & Samsung tablets fixed fast. Walk-in at OK Cellular.",
     hero: {
       eyebrow: "Tablet Charging Port",
       h1: "Tablet Charging Port Repair in Houston",
@@ -1498,7 +1498,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "Laptop Keyboard Repair Houston",
     metaTitle: "Laptop Keyboard Repair Houston TX | OK Cellular",
     metaDescription:
-      "Broken or unresponsive laptop keyboard? Get it fixed fast in Houston TX. All brands, affordable pricing. Walk-in at OK Cellular today!",
+      "Broken or unresponsive laptop keyboard? Get it fixed fast in Houston TX. All brands, affordable pricing. Walk-in at OK Cellular.",
     hero: {
       eyebrow: "Laptop Keyboard",
       h1: "Laptop Keyboard Repair in Houston",
@@ -1529,7 +1529,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "PS5 HDMI Repair Houston",
     metaTitle: "PS5 HDMI Repair Houston TX | OK Cellular",
     metaDescription:
-      "PS5 with no HDMI signal? Get your PS5 HDMI port repaired in Houston TX. Fast, professional fix. Affordable pricing at OK Cellular today!",
+      "PS5 with no HDMI signal? Get your PS5 HDMI port repaired in Houston TX. Fast, professional fix. Fair pricing at OK Cellular.",
     hero: {
       eyebrow: "PS5 HDMI Repair",
       h1: "PS5 HDMI Port Repair in Houston",
@@ -1632,7 +1632,7 @@ export const SERVICES_DATA: ServiceData[] = [
     title: "iPhone 16 Pro Max Repair Houston",
     metaTitle: "iPhone 16 Pro Max Repair Houston TX | OK Cellular",
     metaDescription:
-      "Fast iPhone 16 Pro Max repair in Houston TX. Screen, battery & charging port fixes. Trusted techs, warranty included. Get a free quote today!",
+      "Fast iPhone 16 Pro Max repair in Houston TX. Screen, battery & charging port fixes. Trusted techs, warranty included. Free quote on request.",
     hero: {
       eyebrow: "iPhone 16 Pro Max Repair",
       h1: "iPhone 16 Pro Max Repair in Houston",

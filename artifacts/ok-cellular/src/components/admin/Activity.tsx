@@ -97,7 +97,7 @@ export function Activity({
                 key={c.id}
                 className={
                   isInbound
-                    ? `bg-muted/60/40 border-l-4 border-primary border-y border-r border-primary rounded-md p-3 text-xs text-foreground space-y-1`
+                    ? `bg-muted/60 border-l-4 border-primary border-y border-r border-primary rounded-md p-3 text-xs text-foreground space-y-1`
                     : `bg-white border border-border rounded-md p-3 text-xs text-foreground space-y-1`
                 }
                 data-testid={`activity-item-${c.id}`}
