@@ -1,11 +1,11 @@
 {
-  "name": "@workspace/gadget-x-repairs",
+  "name": "@workspace/ok-cellular",
   "version": "0.0.0",
   "private": true,
   "type": "module",
   "scripts": {
     "dev": "vite --config vite.config.ts --host 0.0.0.0",
-    "build": "vite build --config vite.config.ts && vite build --config vite.config.ssr.ts && tsx scripts/build-seo.mjs && tsx scripts/audit-seo.mjs && tsx scripts/audit-sitemap.mjs",
+    "build": "PORT=${PORT:-24982} BASE_PATH=${BASE_PATH:-/} vite build --config vite.config.ts && PORT=${PORT:-24982} BASE_PATH=${BASE_PATH:-/} vite build --config vite.config.ssr.ts && tsx scripts/build-seo.mjs && tsx scripts/audit-seo.mjs && tsx scripts/audit-sitemap.mjs",
     "serve": "vite preview --config vite.config.ts --host 0.0.0.0",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },

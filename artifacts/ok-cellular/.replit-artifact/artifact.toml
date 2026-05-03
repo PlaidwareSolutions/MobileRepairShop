@@ -2,7 +2,7 @@ kind = "web"
 previewPath = "/"
 title = "OK Cellular"
 version = "1.0.0"
-id = "artifacts/gadget-x-repairs"
+id = "artifacts/ok-cellular"
 router = "path"
 
 [[integratedSkills]]
@@ -15,11 +15,11 @@ paths = [ "/" ]
 localPort = 24982
 
 [services.development]
-run = "pnpm --filter @workspace/gadget-x-repairs run dev"
+run = "pnpm --filter @workspace/ok-cellular run dev"
 
 [services.production]
-build = [ "pnpm", "--filter", "@workspace/gadget-x-repairs", "run", "build" ]
-publicDir = "artifacts/gadget-x-repairs/dist/public"
+build = [ "pnpm", "--filter", "@workspace/ok-cellular", "run", "build" ]
+publicDir = "artifacts/ok-cellular/dist/public"
 serve = "static"
 
 [[services.production.rewrites]]
