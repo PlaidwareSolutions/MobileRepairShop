@@ -38,7 +38,7 @@ export default function ContactPage() {
     <PageShell hideTicker>
       <SEO
         title="Contact OK Cellular Houston TX"
-        description="Get in touch with OK Cellular in Humble TX. Find our address, phone number & hours. Contact us for repairs, activations & more. Call today!"
+        description="Reach OK Cellular in Humble, TX. Address, phone, WhatsApp, hours and directions. Walk-ins welcome for repairs, activations and bill pay."
         path="/contact-houston-tx"
         jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "Contact", path: "/contact-houston-tx" }])]}
       />
@@ -59,14 +59,14 @@ export default function ContactPage() {
                 <Phone className="w-7 h-7 text-primary shrink-0 mt-1" />
                 <div>
                   <div className="font-semibold text-base text-foreground">{business.phoneDisplay}</div>
-                  <div className="text-muted-foreground font-medium text-xs uppercase tracking-wide">Tap to call</div>
+                  <div className="text-muted-foreground text-xs">Tap to call</div>
                 </div>
               </a>
               <a href={business.whatsappHref} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-border p-5 hover:border-primary transition-colors" data-testid="link-whatsapp">
                 <MessageCircle className="w-7 h-7 text-primary shrink-0 mt-1" />
                 <div>
                   <div className="font-semibold text-base text-foreground">WhatsApp / Text</div>
-                  <div className="text-muted-foreground font-medium text-xs uppercase tracking-wide">Send us a message</div>
+                  <div className="text-muted-foreground text-xs">Send us a message</div>
                 </div>
               </a>
               <a href={business.mapsLink} target="_blank" rel="noreferrer" className="flex items-start gap-4 bg-white border border-border p-5 hover:border-primary transition-colors" data-testid="link-maps">
@@ -74,14 +74,14 @@ export default function ContactPage() {
                 <div>
                   <div className="font-semibold text-base text-foreground">{business.addressLine1}</div>
                   <div className="text-muted-foreground font-medium text-sm">{business.addressLine2}</div>
-                  <div className="text-muted-foreground font-medium text-xs uppercase tracking-wide mt-1">Get directions</div>
+                  <div className="text-muted-foreground text-xs mt-1">Get directions</div>
                 </div>
               </a>
               <div className="flex items-start gap-4 bg-white border border-border p-5">
                 <Clock className="w-7 h-7 text-primary shrink-0 mt-1" />
                 <div>
                   <div className="font-semibold text-base text-foreground">{business.hoursShort}</div>
-                  <div className="text-muted-foreground font-medium text-xs uppercase tracking-wide">Walk-ins welcome</div>
+                  <div className="text-muted-foreground text-xs">Walk-ins welcome</div>
                 </div>
               </div>
               <SocialLinks

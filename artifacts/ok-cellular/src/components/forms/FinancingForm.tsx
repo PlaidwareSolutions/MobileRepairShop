@@ -267,7 +267,7 @@ export function FinancingForm() {
         className="w-full bg-primary text-primary-foreground hover:bg-primary/90 font-semibold text-base h-12"
         data-testid="button-submit-financing"
       >
-        {isSubmitting ? "Sending..." : "Pre-qualify Me"}
+        {isSubmitting ? "Sending..." : "Pre-qualify"}
       </Button>
       <p className="text-xs text-muted-foreground font-medium leading-snug">
         Submitting this form is a soft pre-qualification only. It does not affect your credit

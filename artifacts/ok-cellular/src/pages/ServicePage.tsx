@@ -17,6 +17,33 @@ import { SERVICES_BY_SLUG, SERVICES_DATA } from "@/data/services";
 import { inventoryGroupBySlug, inventoryGroupSlugForPageSlug } from "@/lib/inventoryGroups";
 import NotFound from "@/pages/not-found";
 
+function makePhoto(name: string, alt: string): Photo {
+  return {
+    src640: `/images/photos/${name}-640.jpg`,
+    src1024: `/images/photos/${name}-1024.jpg`,
+    alt,
+  };
+}
+
+const HERO_PHOTO_DEFAULT = makePhoto(
+  "after-iphone-screen",
+  "Repaired smartphone screen on the OK Cellular workbench",
+);
+
+function heroPhotoForSlug(slug: string): Photo {
+  if (slug.includes("battery")) return makePhoto("battery-replace", "Replacement smartphone battery on the bench");
+  if (slug.includes("ipad")) return makePhoto("after-ipad-frame", "Repaired iPad on the OK Cellular workbench");
+  if (slug.includes("samsung")) return makePhoto("after-samsung-back", "Repaired Samsung Galaxy back glass");
+  if (slug.includes("macbook") || slug.includes("laptop")) return makePhoto("after-macbook-keys", "Repaired MacBook keyboard on the bench");
+  if (slug.includes("ps5") || slug.includes("xbox") || slug.includes("hdmi") || slug.includes("console") || slug.includes("controller")) {
+    return makePhoto("after-hdmi-port", "Repaired console HDMI port on the bench");
+  }
+  if (slug.includes("water") || slug.includes("logic") || slug.includes("microsolder") || slug.includes("board")) {
+    return makePhoto("after-logic-board", "Logic board after micro-soldering repair");
+  }
+  return HERO_PHOTO_DEFAULT;
+}
+
 const PROCESS_PHOTOS: Photo[] = [
   { src640: "/images/photos/process-diagnostic-640.jpg", src1024: "/images/photos/process-diagnostic-1024.jpg",
     alt: "Customer setting their phone down on the counter for a free diagnostic" },
@@ -108,7 +135,28 @@ export default function ServicePage() {
       />
       <Breadcrumbs items={breadcrumbItems} />
 
-      <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
+      <PageHero
+        eyebrow={data.hero.eyebrow}
+        h1={data.hero.h1}
+        subhead={data.hero.subhead}
+        accentRight={
+          <div className="md:col-span-1 hidden md:block">
+            <div className="border border-border bg-white shadow-md overflow-hidden">
+              <PhotoFrame
+                photo={heroPhotoForSlug(data.slug)}
+                aspect="4:3"
+                sizes="(min-width: 1024px) 360px, 50vw"
+                loading="eager"
+                fetchPriority="high"
+                hover={false}
+              />
+              <div className="px-4 py-2.5 border-t border-border text-[11px] font-semibold uppercase tracking-wide text-muted-foreground">
+                On the bench at OK Cellular
+              </div>
+            </div>
+          </div>
+        }
+      />
 
       <section className="bg-card border-b border-border">
         <div className="max-w-[1240px] mx-auto px-4 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">

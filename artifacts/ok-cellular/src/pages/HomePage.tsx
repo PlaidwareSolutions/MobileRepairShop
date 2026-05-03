@@ -208,7 +208,7 @@ export default function HomePage() {
     <PageShell>
       <SEO
         title="Best Phone Repair Houston TX | OK Cellular"
-        description="Top-rated phone repair in Houston TX. Fast fixes for screens, batteries & charging ports. Walk-ins welcome. Free quote at OK Cellular today!"
+        description="Walk-in phone, tablet, laptop and console repair in Houston, TX. Free diagnostic, same-day on most repairs, 90-day warranty. OK Cellular on Will Clayton Pkwy."
         path="/phone-repair-houston-tx"
         jsonLd={localBusinessJsonLd(business)}
       />
