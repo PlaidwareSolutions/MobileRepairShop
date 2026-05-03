@@ -16,8 +16,16 @@ export function PageHero({
 }) {
   const business = useBusiness();
   return (
-    <section className="bg-card border-b border-border">
-      <div className="max-w-[1240px] mx-auto px-4 py-10 md:py-14 grid md:grid-cols-3 gap-10 items-end">
+    <section className="relative overflow-hidden bg-card border-b border-border">
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_60%_at_85%_0%,hsl(var(--primary)/0.10),transparent_70%),radial-gradient(40%_40%_at_0%_100%,hsl(var(--primary)/0.06),transparent_70%)]"
+      />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"
+      />
+      <div className="relative max-w-[1240px] mx-auto px-4 py-10 md:py-14 grid md:grid-cols-3 gap-10 items-end">
         <div className="md:col-span-2 space-y-5">
           <div className="flex flex-wrap gap-2 text-xs">
             <span className="inline-flex items-center gap-1.5 bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-1 font-medium">

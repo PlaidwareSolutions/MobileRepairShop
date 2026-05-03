@@ -214,8 +214,16 @@ export default function HomePage() {
       />
       <PromoCampaignBanner />
 
-      <section className="bg-card border-b border-border">
-        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-12 gap-10 items-start">
+      <section className="relative overflow-hidden bg-card border-b border-border">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(55%_55%_at_92%_-5%,hsl(var(--primary)/0.12),transparent_70%),radial-gradient(45%_45%_at_-5%_110%,hsl(var(--primary)/0.08),transparent_70%)]"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent"
+        />
+        <div className="relative max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid lg:grid-cols-12 gap-10 items-start">
           <div className="lg:col-span-7 space-y-6">
             <div className="flex flex-wrap gap-2 text-xs">
               <span className="inline-flex items-center gap-1.5 bg-muted text-muted-foreground border border-border rounded-full px-2.5 py-1 font-medium">
@@ -288,6 +296,40 @@ export default function HomePage() {
               </div>
             </div>
           </aside>
+        </div>
+      </section>
+
+      {/* HOW IT WORKS — visual 3-step process */}
+      <section className="relative bg-background border-b border-border overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 -top-24 h-48 bg-[radial-gradient(50%_100%_at_50%_100%,hsl(var(--primary)/0.06),transparent_70%)]"
+        />
+        <div className="relative max-w-[1240px] mx-auto px-4 py-12 md:py-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">How it works</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+              Three steps from broken to back in your pocket
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+            {[
+              { n: "01", title: "Free diagnostic", desc: "Walk in or send it. A real technician inspects, tests, and gives you a firm price upfront — no fee, no pressure.", img: photo("process-diagnostic", "Technician inspecting a phone at the workbench") },
+              { n: "02", title: "We fix it on-site", desc: "Board-level repair, micro-soldering, screen and battery work — done in our shop using OEM-grade parts.", img: photo("process-bench", "Hands working on a phone logic board with precision tools") },
+              { n: "03", title: "Pick up & warranty", desc: "Most walk-ins are done in 15–20 minutes. Every fix is backed by a 90-day parts-and-labor warranty.", img: photo("process-pickup", "Customer picking up a repaired phone at the counter") },
+            ].map((step) => (
+              <div key={step.n} className="group relative rounded-lg border border-border bg-card overflow-hidden hover:shadow-md transition-shadow">
+                <PhotoFrame photo={step.img} aspect="16:9" sizes="(min-width: 768px) 380px, 100vw" />
+                <div className="absolute top-3 left-3 inline-flex items-center justify-center h-8 w-8 rounded-md bg-card/95 backdrop-blur ring-1 ring-border text-primary font-bold text-sm tabular-nums shadow-sm">
+                  {step.n}
+                </div>
+                <div className="p-5">
+                  <h3 className="text-base font-semibold text-foreground mb-1.5">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -481,24 +523,25 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* WHY US — calm trust strip */}
+      {/* WHY US — color-accented trust strip */}
       <section className="bg-background">
         <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Star, title: "15 years in Humble", desc: "Same shop on Will Clayton Pkwy since 2010 — owner-operated and independent." },
-              { icon: Zap, title: "Same-day turnaround", desc: "Most walk-in repairs are done in 15–20 minutes while you wait." },
-              { icon: ShieldCheck, title: "Certified technicians", desc: "Board-level repair, micro-soldering and data recovery — done in-house." },
-              { icon: CheckCircle2, title: "90-day warranty", desc: "Every repair backed by a 90-day warranty on parts and labor." },
+              { icon: Star, title: "15 years in Humble", desc: "Same shop on Will Clayton Pkwy since 2010 — owner-operated and independent.", grad: "from-amber-500/20 to-amber-500/5", text: "text-amber-600", ring: "ring-amber-500/20" },
+              { icon: Zap, title: "Same-day turnaround", desc: "Most walk-in repairs are done in 15–20 minutes while you wait.", grad: "from-sky-500/20 to-sky-500/5", text: "text-sky-600", ring: "ring-sky-500/20" },
+              { icon: ShieldCheck, title: "Certified technicians", desc: "Board-level repair, micro-soldering and data recovery — done in-house.", grad: "from-emerald-500/20 to-emerald-500/5", text: "text-emerald-600", ring: "ring-emerald-500/20" },
+              { icon: CheckCircle2, title: "90-day warranty", desc: "Every repair backed by a 90-day warranty on parts and labor.", grad: "from-violet-500/20 to-violet-500/5", text: "text-violet-600", ring: "ring-violet-500/20" },
             ].map((tile) => {
               const Icon = tile.icon;
               return (
-                <div key={tile.title} className="rounded-md border border-border bg-card p-5">
-                  <div className="w-9 h-9 rounded-md bg-primary/10 text-primary flex items-center justify-center mb-3">
+                <div key={tile.title} className="group relative overflow-hidden rounded-lg border border-border bg-card p-5 transition-all hover:-translate-y-0.5 hover:shadow-md">
+                  <div aria-hidden="true" className={`pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full bg-gradient-to-br ${tile.grad} blur-2xl opacity-70 group-hover:opacity-100 transition-opacity`} />
+                  <div className={`relative w-10 h-10 rounded-lg bg-gradient-to-br ${tile.grad} ${tile.text} ring-1 ${tile.ring} flex items-center justify-center mb-3`}>
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="text-base font-semibold text-foreground mb-1">{tile.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{tile.desc}</p>
+                  <h3 className="relative text-base font-semibold text-foreground mb-1">{tile.title}</h3>
+                  <p className="relative text-sm text-muted-foreground leading-relaxed">{tile.desc}</p>
                 </div>
               );
             })}
@@ -579,6 +622,34 @@ export default function HomePage() {
           </div>
           <div className="lg:col-span-7">
             <RepairQuoteWizard />
+          </div>
+        </div>
+      </section>
+
+      {/* CARRIER STRIP — animated logo marquee */}
+      <section className="relative bg-card border-y border-border overflow-hidden">
+        <div className="max-w-[1240px] mx-auto px-4 py-8 md:py-10">
+          <div className="text-center text-[11px] font-semibold uppercase tracking-wide text-muted-foreground mb-5">
+            Activate &amp; pay any major prepaid carrier — in cash, in-store
+          </div>
+          <div className="relative overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <div className="flex gap-10 md:gap-14 animate-[marquee_28s_linear_infinite] motion-reduce:animate-none whitespace-nowrap">
+              {[
+                "att-prepaid","boost-mobile","cricket","gen-mobile","h2o-wireless","lyca-mobile",
+                "metro-by-tmobile","simple-mobile","t-mobile","verizon","xfinity-mobile",
+                "att-prepaid","boost-mobile","cricket","gen-mobile","h2o-wireless","lyca-mobile",
+                "metro-by-tmobile","simple-mobile","t-mobile","verizon","xfinity-mobile",
+              ].map((c, i) => (
+                <img
+                  key={`${c}-${i}`}
+                  src={`/images/carriers/${c}.png`}
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                  className="h-7 md:h-9 w-auto opacity-70 hover:opacity-100 grayscale hover:grayscale-0 transition-all shrink-0"
+                />
+              ))}
+            </div>
           </div>
         </div>
       </section>
