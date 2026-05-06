@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useRoute, Link } from "wouter";
 import { CheckCircle2 } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
@@ -10,8 +11,11 @@ import { SEO, SITE_URL, localBusinessJsonLd, faqJsonLd, breadcrumbJsonLd } from 
 import { SellPhoneForm } from "@/components/forms/SellPhoneForm";
 import { ReservationForm } from "@/components/forms/ReservationForm";
 import { ContactForm } from "@/components/forms/ContactForm";
+import { InventoryTileList } from "@/components/InventoryTileList";
 import { Button } from "@/components/ui/button";
 import { SALES_BY_SLUG, SALES_DATA } from "@/data/sales";
+import { fetchInventory } from "@/lib/api";
+import type { InventoryItem } from "@/data/inventory";
 import {
   inventoryGroupBySlug,
   inventoryGroupSlugForPageSlug,
@@ -95,6 +99,46 @@ export default function SalesPage() {
   const inventoryHref = inventoryGroup ? `/inventory/${inventoryGroup.slug}` : "/inventory";
   const inventoryLabel = inventoryGroup ? `View ${inventoryGroup.label}` : "View Inventory";
 
+  // Inline inventory rendering: only the iPhone sales page surfaces live tiles
+  // today. Other brand sales pages keep the existing "View <Group>" CTA so
+  // their behaviour is unchanged by this task.
+  const showInlineInventory = data.slug === "buy-iphone-humble-tx";
+  const [inlineState, setInlineState] = useState<{
+    status: "loading" | "ready" | "error";
+    items: InventoryItem[];
+  }>({ status: "loading", items: [] });
+
+  useEffect(() => {
+    if (!showInlineInventory) return;
+    let cancelled = false;
+    setInlineState({ status: "loading", items: [] });
+    fetchInventory()
+      .then((d) => {
+        if (cancelled) return;
+        const all = Array.isArray(d) ? (d as unknown as InventoryItem[]) : [];
+        const appleGroup = inventoryGroupBySlug("apple");
+        const apple = appleGroup
+          ? all.filter((it) =>
+              appleGroup.matches({ category: it.category, brand: it.brand }),
+            )
+          : [];
+        // Narrow the Apple group to iPhones only on this page — iPads /
+        // MacBooks / Apple Watch / AirPods belong on the broader
+        // /inventory/apple view, not the "Buy iPhone" sales page.
+        const iphones = apple.filter(
+          (it) => /iphone/i.test(it.category) || /iphone/i.test(it.model),
+        );
+        setInlineState({ status: "ready", items: iphones });
+      })
+      .catch(() => {
+        if (cancelled) return;
+        setInlineState({ status: "error", items: [] });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [showInlineInventory]);
+
   const breadcrumbItems = parent
     ? [{ label: parent.name, to: parent.path }, { label: data.title }]
     : [{ label: data.title }];
@@ -177,9 +221,11 @@ export default function SalesPage() {
               <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-12 px-6">
                 <a href={business.phoneTel}>Call to Browse</a>
               </Button>
-              <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">
-                <Link href={inventoryHref} data-testid="link-view-inventory">{inventoryLabel}</Link>
-              </Button>
+              {!showInlineInventory && (
+                <Button asChild variant="outline" className="border border-border hover:bg-white hover:text-black font-semibold h-12 px-6">
+                  <Link href={inventoryHref} data-testid="link-view-inventory">{inventoryLabel}</Link>
+                </Button>
+              )}
               {isPhonePageSlug(data.slug) && (
                 <Link
                   href={FINANCING.pagePath}
@@ -227,6 +273,55 @@ export default function SalesPage() {
           </div>
         </div>
       </section>
+
+      {showInlineInventory && (
+        <section
+          className="py-16 px-4 bg-white border-t border-border"
+          data-testid="sales-inline-inventory"
+        >
+          <div className="max-w-[1240px] mx-auto">
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-8 text-foreground">
+              iPhones <span className="text-primary">in stock</span>
+            </h2>
+            {inlineState.status === "loading" && (
+              <div
+                className="bg-muted/40 border border-border p-6 text-center text-muted-foreground font-semibold tracking-wide text-sm"
+                data-testid="sales-inventory-loading"
+              >
+                Loading current iPhone inventory…
+              </div>
+            )}
+            {inlineState.status === "error" && (
+              <div
+                className="bg-muted/40 border border-border p-6 text-center text-muted-foreground font-semibold tracking-wide text-sm"
+                data-testid="sales-inventory-error"
+              >
+                We couldn't load live inventory just now — call us at {business.phoneDisplay} and we'll tell you what's on the shelf.
+              </div>
+            )}
+            {inlineState.status === "ready" && inlineState.items.length === 0 && (
+              <div
+                className="bg-muted/40 border border-border p-6 text-center text-muted-foreground font-semibold tracking-wide text-sm"
+                data-testid="sales-inventory-empty"
+              >
+                No iPhones in stock right now — call us at {business.phoneDisplay} and we'll let you know when more come in.
+              </div>
+            )}
+            {inlineState.status === "ready" && inlineState.items.length > 0 && (
+              <InventoryTileList items={inlineState.items} />
+            )}
+            <div className="mt-8">
+              <Link
+                href={inventoryHref}
+                className="text-sm font-semibold text-primary hover:underline"
+                data-testid="link-see-all-apple-inventory"
+              >
+                See all Apple inventory →
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {isHub && childPages.length > 0 && (
         <section className="py-16 px-4 bg-white border-t border-border">
