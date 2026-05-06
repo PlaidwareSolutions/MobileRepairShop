@@ -19,6 +19,7 @@ import type { InventoryItem } from "@/data/inventory";
 import {
   inventoryGroupBySlug,
   inventoryGroupSlugForPageSlug,
+  isPhoneCategory,
   isPhonePageSlug,
 } from "@/lib/inventoryGroups";
 import { BUSINESS, FINANCING } from "@/content";
@@ -38,6 +39,74 @@ const SHOP_BRAND_HUB_SLUGS = new Set([
   // the model pages roll up under it via getParentHub.
   "buy-samsung-phones-humble-tx",
 ]);
+
+type InlineModelFilter = { regex: RegExp; label: string };
+type InlineInventoryConfig = {
+  groupSlug: "apple" | "samsung" | "google";
+  brandLabel: string;
+  modelFilter?: InlineModelFilter;
+  // When true, narrow the in-group results to phones only via
+  // `isPhoneCategory`. Brand pages set this so Samsung tablets / Galaxy
+  // Watch and Pixel Watch / Buds don't surface on the phone-shopping page
+  // — those still belong on the broader `/inventory/<group>` view.
+  phonesOnly?: boolean;
+  // Heading + empty-state subject. e.g. "iPhones", "Samsung phones",
+  // "Google Pixel phones", "Galaxy S22".
+  sectionLabel: string;
+};
+
+// Per-model Samsung sales pages → inventory category/model regex used to
+// narrow `inGroup` results to just that model. Keep regexes loose enough to
+// catch storefront variations ("Galaxy S22", "SGS22", bare "S22") but anchored
+// with `\b` so "S22" doesn't false-match "S22+ Ultra" rivals like "S221".
+const SAMSUNG_MODEL_FILTERS: Record<string, InlineModelFilter> = {
+  "buy-samsung-galaxy-s22-humble-tx": { regex: /galaxy s22|sgs22|\bs22\b/i, label: "Galaxy S22" },
+  "buy-samsung-galaxy-s21-humble-tx": { regex: /galaxy s21|sgs21|\bs21\b/i, label: "Galaxy S21" },
+  "buy-samsung-galaxy-a54-humble-tx": { regex: /galaxy a54|\ba54\b/i, label: "Galaxy A54" },
+  "buy-samsung-galaxy-a35-humble-tx": { regex: /galaxy a35|\ba35\b/i, label: "Galaxy A35" },
+  "buy-samsung-galaxy-a15-humble-tx": { regex: /galaxy a15|\ba15\b/i, label: "Galaxy A15" },
+  "buy-samsung-galaxy-note-20-humble-tx": { regex: /galaxy note ?20|\bnote ?20\b/i, label: "Galaxy Note 20" },
+  "buy-samsung-galaxy-note-10-humble-tx": { regex: /galaxy note ?10|\bnote ?10\b/i, label: "Galaxy Note 10" },
+};
+
+function resolveInlineInventory(slug: string): InlineInventoryConfig | null {
+  if (slug === "buy-iphone-humble-tx") {
+    return {
+      groupSlug: "apple",
+      brandLabel: "Apple",
+      // Narrow the Apple group to iPhones only — iPads / MacBooks /
+      // Apple Watch / AirPods belong on the broader /inventory/apple view.
+      modelFilter: { regex: /iphone/i, label: "iPhone" },
+      sectionLabel: "iPhones",
+    };
+  }
+  if (slug === "buy-samsung-phones-humble-tx") {
+    return {
+      groupSlug: "samsung",
+      brandLabel: "Samsung",
+      phonesOnly: true,
+      sectionLabel: "Samsung phones",
+    };
+  }
+  if (slug === "buy-google-pixel-phones-humble-tx") {
+    return {
+      groupSlug: "google",
+      brandLabel: "Google",
+      phonesOnly: true,
+      sectionLabel: "Google Pixel phones",
+    };
+  }
+  const samsungModel = SAMSUNG_MODEL_FILTERS[slug];
+  if (samsungModel) {
+    return {
+      groupSlug: "samsung",
+      brandLabel: "Samsung",
+      modelFilter: samsungModel,
+      sectionLabel: samsungModel.label,
+    };
+  }
+  return null;
+}
 
 function getSalesPageType(slug: string): SalesPageType {
   if (slug.startsWith("sell-")) return "sell";
@@ -99,36 +168,45 @@ export default function SalesPage() {
   const inventoryHref = inventoryGroup ? `/inventory/${inventoryGroup.slug}` : "/inventory";
   const inventoryLabel = inventoryGroup ? `View ${inventoryGroup.label}` : "View Inventory";
 
-  // Inline inventory rendering: only the iPhone sales page surfaces live tiles
-  // today. Other brand sales pages keep the existing "View <Group>" CTA so
-  // their behaviour is unchanged by this task.
-  const showInlineInventory = data.slug === "buy-iphone-humble-tx";
+  // Inline inventory rendering: a slug-driven resolver decides whether the
+  // current sales page surfaces live tiles, which inventory group to filter
+  // to, and (optionally) which specific model to narrow to. Adding a new
+  // brand or per-model page is a one-line change to `inlineInventoryConfig`
+  // below — no new branches in JSX or the fetch effect.
+  const inlineConfig = resolveInlineInventory(data.slug);
+  const showInlineInventory = inlineConfig !== null;
   const [inlineState, setInlineState] = useState<{
     status: "loading" | "ready" | "error";
     items: InventoryItem[];
   }>({ status: "loading", items: [] });
 
   useEffect(() => {
-    if (!showInlineInventory) return;
+    if (!inlineConfig) return;
     let cancelled = false;
     setInlineState({ status: "loading", items: [] });
     fetchInventory()
       .then((d) => {
         if (cancelled) return;
         const all = Array.isArray(d) ? (d as unknown as InventoryItem[]) : [];
-        const appleGroup = inventoryGroupBySlug("apple");
-        const apple = appleGroup
+        const group = inventoryGroupBySlug(inlineConfig.groupSlug);
+        const inGroup = group
           ? all.filter((it) =>
-              appleGroup.matches({ category: it.category, brand: it.brand }),
+              group.matches({ category: it.category, brand: it.brand }),
             )
           : [];
-        // Narrow the Apple group to iPhones only on this page — iPads /
-        // MacBooks / Apple Watch / AirPods belong on the broader
-        // /inventory/apple view, not the "Buy iPhone" sales page.
-        const iphones = apple.filter(
-          (it) => /iphone/i.test(it.category) || /iphone/i.test(it.model),
-        );
-        setInlineState({ status: "ready", items: iphones });
+        const phoneNarrowed = inlineConfig.phonesOnly
+          ? inGroup.filter(
+              (it) => isPhoneCategory(it.category) || isPhoneCategory(it.model),
+            )
+          : inGroup;
+        const filtered = inlineConfig.modelFilter
+          ? phoneNarrowed.filter(
+              (it) =>
+                inlineConfig.modelFilter!.regex.test(it.category) ||
+                inlineConfig.modelFilter!.regex.test(it.model),
+            )
+          : phoneNarrowed;
+        setInlineState({ status: "ready", items: filtered });
       })
       .catch(() => {
         if (cancelled) return;
@@ -137,7 +215,7 @@ export default function SalesPage() {
     return () => {
       cancelled = true;
     };
-  }, [showInlineInventory]);
+  }, [inlineConfig?.groupSlug, inlineConfig?.modelFilter?.label]);
 
   const breadcrumbItems = parent
     ? [{ label: parent.name, to: parent.path }, { label: data.title }]
@@ -274,21 +352,21 @@ export default function SalesPage() {
         </div>
       </section>
 
-      {showInlineInventory && (
+      {showInlineInventory && inlineConfig && (
         <section
           className="py-16 px-4 bg-white border-t border-border"
           data-testid="sales-inline-inventory"
         >
           <div className="max-w-[1240px] mx-auto">
             <h2 className="text-2xl md:text-3xl font-semibold tracking-tight mb-8 text-foreground">
-              iPhones <span className="text-primary">in stock</span>
+              {inlineConfig.sectionLabel} <span className="text-primary">in stock</span>
             </h2>
             {inlineState.status === "loading" && (
               <div
                 className="bg-muted/40 border border-border p-6 text-center text-muted-foreground font-semibold tracking-wide text-sm"
                 data-testid="sales-inventory-loading"
               >
-                Loading current iPhone inventory…
+                Loading current {inlineConfig.sectionLabel.toLowerCase()} inventory…
               </div>
             )}
             {inlineState.status === "error" && (
@@ -304,7 +382,36 @@ export default function SalesPage() {
                 className="bg-muted/40 border border-border p-6 text-center text-muted-foreground font-semibold tracking-wide text-sm"
                 data-testid="sales-inventory-empty"
               >
-                No iPhones in stock right now — call us at {business.phoneDisplay} and we'll let you know when more come in.
+                {inlineConfig.groupSlug === "apple" ? (
+                  <>
+                    No {inlineConfig.sectionLabel} in stock right now — call us at{" "}
+                    {business.phoneDisplay} and we'll let you know when more come in.
+                  </>
+                ) : inlineConfig.modelFilter ? (
+                  <>
+                    No {inlineConfig.modelFilter.label} in stock right now —{" "}
+                    <Link
+                      href={`/inventory/${inlineConfig.groupSlug}`}
+                      className="text-primary hover:underline"
+                      data-testid="link-empty-see-all-inventory"
+                    >
+                      see all {inlineConfig.brandLabel} inventory
+                    </Link>
+                    .
+                  </>
+                ) : (
+                  <>
+                    No {inlineConfig.brandLabel} phones in stock right now —{" "}
+                    <Link
+                      href={`/inventory/${inlineConfig.groupSlug}`}
+                      className="text-primary hover:underline"
+                      data-testid="link-empty-see-all-inventory"
+                    >
+                      see all {inlineConfig.brandLabel} inventory
+                    </Link>
+                    .
+                  </>
+                )}
               </div>
             )}
             {inlineState.status === "ready" && inlineState.items.length > 0 && (
@@ -312,11 +419,11 @@ export default function SalesPage() {
             )}
             <div className="mt-8">
               <Link
-                href={inventoryHref}
+                href={`/inventory/${inlineConfig.groupSlug}`}
                 className="text-sm font-semibold text-primary hover:underline"
-                data-testid="link-see-all-apple-inventory"
+                data-testid="link-see-all-brand-inventory"
               >
-                See all Apple inventory →
+                See all {inlineConfig.brandLabel} inventory →
               </Link>
             </div>
           </div>
