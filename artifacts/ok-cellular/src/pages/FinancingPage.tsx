@@ -13,6 +13,7 @@ import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Faq } from "@/components/Faq";
 import { LocationCard } from "@/components/LocationCard";
+import { SocialLinks } from "@/components/SocialLinks";
 import {
   SEO,
   localBusinessJsonLd,
@@ -257,6 +258,18 @@ export default function FinancingPage() {
       </section>
 
       <Faq items={FINANCING_PAGE.faqs} title="Financing — Frequently Asked Questions" />
+
+      {(business.socialFacebook || business.socialInstagram || business.socialTiktok || business.socialYoutube || business.socialX) && (
+        <section className="bg-background border-t border-border" data-testid="financing-follow-us">
+          <div className="max-w-[1240px] mx-auto px-4 py-8 flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">Follow us</div>
+              <p className="text-sm text-muted-foreground">See more shop updates and customer stories.</p>
+            </div>
+            <SocialLinks business={business} iconClass="w-5 h-5" />
+          </div>
+        </section>
+      )}
 
       <LocationCard />
     </PageShell>

@@ -6,6 +6,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Faq } from "@/components/Faq";
 import { LocationCard } from "@/components/LocationCard";
 import { PhotoFrame } from "@/components/PhotoFrame";
+import { SocialLinks } from "@/components/SocialLinks";
 import { SEO, localBusinessJsonLd, faqJsonLd, breadcrumbJsonLd, itemListJsonLd } from "@/components/SEO";
 import { ContactForm } from "@/components/forms/ContactForm";
 import { Button } from "@/components/ui/button";
@@ -226,6 +227,19 @@ export default function PrepaidPage() {
       )}
 
       <Faq items={data.faqs} />
+
+      {(business.socialFacebook || business.socialInstagram || business.socialTiktok || business.socialYoutube || business.socialX) && (
+        <section className="bg-background border-t border-border" data-testid="prepaid-follow-us">
+          <div className="max-w-[1240px] mx-auto px-4 py-8 flex items-center justify-between gap-4 flex-wrap">
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-1">Follow us</div>
+              <p className="text-sm text-muted-foreground">See more shop updates and carrier deals.</p>
+            </div>
+            <SocialLinks business={business} iconClass="w-5 h-5" />
+          </div>
+        </section>
+      )}
+
       <LocationCard />
     </PageShell>
   );
