@@ -21,6 +21,7 @@ import AdminLeadsPage from "@/pages/AdminLeadsPage";
 import AdminInventoryPage from "@/pages/AdminInventoryPage";
 import AdminPromotionsPage from "@/pages/AdminPromotionsPage";
 import AdminBusinessSettingsPage from "@/pages/AdminBusinessSettingsPage";
+import SearchPage from "@/pages/SearchPage";
 
 import { SERVICES_DATA } from "@/data/services";
 import { SALES_DATA } from "@/data/sales";
@@ -84,6 +85,7 @@ export function Routes() {
       */}
       <Route path="/inventory/:group" component={InventoryPage} />
       <Route path="/financing-humble-tx" component={FinancingPage} />
+      <Route path="/search" component={SearchPage} />
       <Route path="/admin/leads" component={AdminLeadsPage} />
       <Route path="/admin/inventory" component={AdminInventoryPage} />
       <Route path="/admin/promotions" component={AdminPromotionsPage} />
