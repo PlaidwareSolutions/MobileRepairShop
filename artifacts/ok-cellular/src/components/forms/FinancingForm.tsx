@@ -45,7 +45,7 @@ function buildContactMessage(values: FormValues): string {
 type FinancingFormProps = {
   defaultPhone?: string;
   phoneTick?: number;
-  formRef?: React.RefObject<HTMLFormElement>;
+  formRef?: React.RefObject<HTMLFormElement | null>;
 };
 
 export function FinancingForm({ defaultPhone, phoneTick, formRef }: FinancingFormProps) {

@@ -11,7 +11,7 @@ import { useBusiness } from "@/components/BusinessContext";
 
 const PAGE_TITLE = "Book a Repair — OK Cellular | Humble, TX";
 const PAGE_DESC =
-  "Book your phone, tablet, laptop or console repair online in minutes. Pick your device, describe the issue, choose drop-off or mail-in, and optionally hold your slot with a $10 deposit. OK Cellular — Humble TX.";
+  "Book a repair online at OK Cellular, Humble TX — phones, tablets, laptops & consoles. Drop off in-store or mail it in. Optional $10 deposit holds your slot.";
 
 const TRUST_POINTS = [
   { icon: Wrench, text: "Most repairs done same day" },
@@ -70,7 +70,7 @@ export default function BookRepairPage() {
       {/* Hero */}
       <section className="bg-primary text-white py-12 px-4">
         <div className="max-w-4xl mx-auto">
-          <Breadcrumbs items={BREADCRUMBS} dark />
+          <Breadcrumbs items={BREADCRUMBS} />
           <h1 className="text-4xl md:text-5xl font-black tracking-tight mt-4 mb-3">
             Book Your Repair Online
           </h1>
@@ -131,7 +131,7 @@ export default function BookRepairPage() {
             <div className="border border-border bg-white p-5 space-y-3">
               <h2 className="font-bold text-sm text-foreground">Prefer to call or text?</h2>
               <a
-                href={`tel:${BUSINESS.phoneE164}`}
+                href={BUSINESS.phoneTel}
                 className="flex items-center gap-2 font-semibold text-primary hover:underline"
               >
                 <Phone className="w-4 h-4" />
