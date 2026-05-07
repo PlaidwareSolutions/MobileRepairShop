@@ -515,6 +515,14 @@ function MobileNavDrawer({
               {item.label}
             </Link>
           ))}
+          <Link
+            href="/book-repair-humble-tx"
+            onClick={close}
+            className="flex items-center gap-2 px-4 py-3 font-semibold text-emerald-700 hover:bg-muted border-b border-border"
+            data-testid="link-mobile-nav-book-repair"
+          >
+            Book a Repair
+          </Link>
           <a
             href={business.phoneTel}
             onClick={close}
@@ -714,8 +722,15 @@ export function SiteHeader() {
             </Link>
           ))}
           <Link
+            href="/book-repair-humble-tx"
+            className="ml-auto inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-semibold px-4 py-1.5 rounded-md text-sm transition-colors my-1.5"
+            data-testid="nav-book-repair"
+          >
+            Book a Repair
+          </Link>
+          <Link
             href="/mail-in-repair-humble-tx"
-            className="ml-auto inline-flex items-center gap-1.5 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-4 py-1.5 rounded-md text-sm transition-colors my-1.5"
+            className="inline-flex items-center gap-1.5 bg-primary hover:bg-primary/90 text-primary-foreground font-semibold px-4 py-1.5 rounded-md text-sm transition-colors my-1.5"
             data-testid="nav-mail-in"
           >
             Mail-In Repair

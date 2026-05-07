@@ -134,6 +134,11 @@ export function RepairQuoteCard({
       }
       badges={
         <>
+          {lead.depositPaid && (
+            <Badge className="bg-emerald-50 text-emerald-700 border-emerald-300">
+              $10 deposit paid
+            </Badge>
+          )}
           {lead.source === "mail-in" && (
             <Badge className="bg-blue-50 text-blue-700 border-blue-200">
               mail-in

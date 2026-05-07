@@ -33,6 +33,12 @@ export type RepairQuoteLead = BaseLead & {
   // Where to ship the repaired device back. Required by the API for
   // mail-in submissions, never set for in-store ones.
   returnAddress?: string | null;
+  // Preferred drop-off date/time captured by the intake form.
+  preferredDatetime?: string | null;
+  // Stripe deposit fields — set when the customer pays the $10 hold deposit.
+  depositPaid?: boolean | null;
+  depositAmountCents?: number | null;
+  stripePaymentIntentId?: string | null;
 };
 
 export type SellPhoneLead = BaseLead & {

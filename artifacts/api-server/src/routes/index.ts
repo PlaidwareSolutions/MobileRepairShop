@@ -6,6 +6,7 @@ import inventoryRouter from "./inventory";
 import promotionsRouter from "./promotions";
 import businessSettingsRouter from "./business-settings";
 import storageRouter from "./storage";
+import paymentsRouter from "./payments";
 
 const router: IRouter = Router();
 
@@ -16,6 +17,7 @@ router.use("/inventory", inventoryRouter);
 router.use("/promotions", promotionsRouter);
 router.use("/business-settings", businessSettingsRouter);
 router.use(storageRouter);
+router.use("/payments", paymentsRouter);
 
 router.use((err: Error, req: Request, res: Response, _next: NextFunction) => {
   req.log.error({ err }, "api.error");

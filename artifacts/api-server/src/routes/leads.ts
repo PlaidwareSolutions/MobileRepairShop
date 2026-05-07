@@ -14,11 +14,13 @@ import {
   SubmitContactBody,
   SubmitReservationBody,
 } from "@workspace/api-zod";
-import { ZodError } from "zod";
+import { ZodError, z } from "zod";
 import { leadRateLimit } from "../middleware/leadRateLimit";
 import { requireTurnstile } from "../middleware/turnstile";
 import { turnstileEnabled, verifyTurnstileToken } from "../lib/turnstile";
 import { recordBlockEvent } from "../lib/blockEvents";
+import { sendEmail, sendSms, messagingConfig } from "../lib/messaging";
+import { getStripeClient } from "../lib/stripeClient";
 
 const router: IRouter = Router();
 
@@ -356,6 +358,150 @@ router.post(
         .returning({ id: itemReservationsTable.id });
       req.log.info({ leadType: "reservation", id: row.id }, "lead.created");
       res.status(201).json({ ok: true, id: row.id });
+    } catch (err) {
+      handleValidation(err, res, next);
+    }
+  },
+);
+
+const RepairIntakeBody = z.object({
+  deviceType: z.string().min(1).max(80),
+  brand: z.string().min(1).max(80),
+  model: z.string().min(1).max(120),
+  problem: z.string().min(1).max(4000),
+  photoUrl: z.string().max(500).optional(),
+  urgency: z.enum(["asap", "today", "this_week", "flexible"]).optional().default("flexible"),
+  source: z.enum(["in-store", "mail-in"]).optional().default("in-store"),
+  preferredDatetime: z.string().max(80).optional(),
+  returnAddress: z.string().max(500).optional(),
+  name: z.string().min(1).max(120),
+  phone: z.string().min(7).max(40),
+  email: z.string().email().max(200).optional(),
+  preferredContact: z.enum(["call", "text", "whatsapp", "email"]).optional().default("call"),
+  notes: z.string().max(2000).optional(),
+  stripePaymentIntentId: z.string().max(200).optional(),
+});
+
+router.post(
+  "/repair-intake",
+  leadRateLimit("repair-intake"),
+  requireTurnstile("repair-intake"),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const bot = detectBot(req);
+      if (bot.isBot) {
+        req.log.warn(
+          {
+            leadType: "repair-intake",
+            ip: req.ip,
+            honeypotFilled: bot.honeypotFilled,
+            elapsedMs: bot.elapsedMs,
+          },
+          "lead.bot_blocked",
+        );
+        recordBlockEvent("honeypot", "repair-intake", req.log);
+        res.status(201).json({ ok: true, id: fakeLeadId() });
+        return;
+      }
+
+      const body = RepairIntakeBody.parse(req.body);
+
+      if (body.source === "mail-in" && !body.returnAddress?.trim()) {
+        res.status(400).json({
+          error: "Validation failed",
+          details: {
+            issues: [
+              {
+                code: "custom",
+                path: ["returnAddress"],
+                message: "Return shipping address is required for mail-in repairs.",
+              },
+            ],
+          },
+        });
+        return;
+      }
+
+      // Verify Stripe deposit if provided
+      let depositPaid = false;
+      let depositAmountCents: number | null = null;
+      if (body.stripePaymentIntentId) {
+        try {
+          const stripe = await getStripeClient();
+          const intent = await stripe.paymentIntents.retrieve(body.stripePaymentIntentId);
+          if (intent.status === "succeeded") {
+            depositPaid = true;
+            depositAmountCents = intent.amount;
+          } else {
+            req.log.warn(
+              { intentId: body.stripePaymentIntentId, status: intent.status },
+              "lead.deposit_not_succeeded",
+            );
+          }
+        } catch (err) {
+          req.log.warn({ err }, "lead.deposit_verify_failed");
+        }
+      }
+
+      const [row] = await db
+        .insert(repairQuotesTable)
+        .values({
+          name: body.name,
+          phone: body.phone,
+          email: body.email ?? null,
+          deviceType: body.deviceType,
+          brand: body.brand,
+          model: body.model,
+          problem: body.problem,
+          preferredContact: body.preferredContact ?? "call",
+          urgency: body.urgency ?? "flexible",
+          notes: body.notes ?? null,
+          photoUrl: body.photoUrl ?? null,
+          source: body.source ?? "in-store",
+          returnAddress: body.returnAddress ?? null,
+          preferredDatetime: body.preferredDatetime ?? null,
+          depositPaid,
+          depositAmountCents,
+          stripePaymentIntentId: body.stripePaymentIntentId ?? null,
+        })
+        .returning({ id: repairQuotesTable.id });
+
+      req.log.info({ leadType: "repair-intake", id: row.id, depositPaid }, "lead.created");
+
+      // Send confirmation messages — non-blocking, best-effort.
+      const depositNote = depositPaid ? " Your $10 deposit has been received." : "";
+      if (messagingConfig.smsEnabled) {
+        sendSms({
+          to: body.phone,
+          body: `Hi ${body.name}, we received your repair request for your ${body.brand} ${body.model}.${depositNote} We'll be in touch shortly. — OK Cellular (281) 446-2166`,
+        }).catch((err) => {
+          req.log.warn({ err, id: row.id }, "lead.confirmation_sms_failed");
+        });
+      }
+      if (messagingConfig.emailEnabled && body.email) {
+        const depositLine = depositPaid
+          ? `<p><strong>Deposit:</strong> $10 received — your appointment slot is held.</p>`
+          : "";
+        sendEmail({
+          to: body.email,
+          subject: `Repair request received — ${body.brand} ${body.model}`,
+          html: `
+            <h2>We got your repair request!</h2>
+            <p><strong>Device:</strong> ${body.brand} ${body.model} (${body.deviceType})</p>
+            <p><strong>Issue:</strong> ${body.problem}</p>
+            ${body.preferredDatetime ? `<p><strong>Preferred time:</strong> ${body.preferredDatetime}</p>` : ""}
+            <p><strong>Service method:</strong> ${body.source === "mail-in" ? "Mail-in" : "Drop off at our shop"}</p>
+            ${depositLine}
+            <p>We'll call or text you back to confirm. For fastest response call <a href="tel:+12814462166">(281) 446-2166</a>.</p>
+            <p>— OK Cellular, 3201 FM 1960 E, Humble TX 77338</p>
+          `,
+          text: `Hi ${body.name}, we received your repair request for your ${body.brand} ${body.model}. Issue: ${body.problem}. We'll be in touch shortly. — OK Cellular (281) 446-2166`,
+        }).catch((err) => {
+          req.log.warn({ err, id: row.id }, "lead.confirmation_email_failed");
+        });
+      }
+
+      res.status(201).json({ ok: true, id: row.id, depositPaid });
     } catch (err) {
       handleValidation(err, res, next);
     }

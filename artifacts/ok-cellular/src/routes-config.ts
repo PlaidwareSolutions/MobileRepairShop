@@ -45,6 +45,12 @@ export const STATIC_ROUTES: RouteEntry[] = [
       "Ship your phone, tablet, laptop or console to OK Cellular in Humble TX for repair. Get a quote online, mail it in, we fix it and ship it back.",
   },
   {
+    path: "/book-repair-humble-tx",
+    metaTitle: "Book a Repair Online | OK Cellular Humble, TX",
+    metaDescription:
+      "Book your phone, tablet, laptop or console repair online. Describe your issue, choose drop-off or mail-in, and optionally hold your slot with a $10 deposit. OK Cellular — Humble TX.",
+  },
+  {
     path: "/reviews-humble-tx",
     metaTitle: "Customer Reviews | OK Cellular Humble TX",
     metaDescription:

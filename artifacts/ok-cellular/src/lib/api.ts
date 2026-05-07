@@ -25,6 +25,18 @@ export const submitAppointment = (body: unknown) =>
 export const submitContact = (body: unknown) => postJson("/leads/contact", body);
 export const submitReservation = (body: unknown) =>
   postJson("/leads/reservation", body);
+export const submitRepairIntake = (body: unknown) =>
+  postJson<unknown, { ok: boolean; id?: number; depositPaid?: boolean }>("/leads/repair-intake", body);
+
+export async function fetchStripeConfig(): Promise<{ available: boolean; publishableKey: string | null }> {
+  try {
+    const res = await fetch(`${BASE}/payments/config`);
+    if (!res.ok) return { available: false, publishableKey: null };
+    return (await res.json()) as { available: boolean; publishableKey: string | null };
+  } catch {
+    return { available: false, publishableKey: null };
+  }
+}
 
 export async function fetchInventory(category?: string) {
   const url = category

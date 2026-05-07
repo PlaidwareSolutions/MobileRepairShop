@@ -5,6 +5,7 @@ import {
   timestamp,
   integer,
   numeric,
+  boolean,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod/v4";
@@ -40,6 +41,13 @@ export const repairQuotesTable = pgTable("repair_quotes", {
   // keep working without a migration.
   source: text("source").notNull().default("in-store"),
   returnAddress: text("return_address"),
+  // Preferred drop-off date/time captured by the intake booking form.
+  preferredDatetime: text("preferred_datetime"),
+  // Stripe deposit fields — populated when the customer pays the $10 slot-hold
+  // deposit through the online intake form.
+  depositPaid: boolean("deposit_paid").notNull().default(false),
+  depositAmountCents: integer("deposit_amount_cents"),
+  stripePaymentIntentId: text("stripe_payment_intent_id"),
 });
 
 export const sellPhoneSubmissionsTable = pgTable("sell_phone_submissions", {
