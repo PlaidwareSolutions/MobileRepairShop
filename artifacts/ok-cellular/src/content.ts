@@ -118,6 +118,38 @@ export const FINANCING_PAGE = {
   ],
   eligibleDevicesNote:
     "Phones only — iPhone, Samsung Galaxy, Google Pixel, Motorola and OnePlus models in our inventory all qualify. Tablets, laptops and consoles aren't part of the financing program today.",
+  phoneExamples: [
+    {
+      name: "iPhone 14",
+      storage: "128 GB",
+      retailPrice: 399,
+      fromMonthly: 23,
+      tag: "Most Popular",
+    },
+    {
+      name: "Samsung Galaxy A55",
+      storage: "128 GB",
+      retailPrice: 349,
+      fromMonthly: 20,
+      tag: "Best Value",
+    },
+    {
+      name: "Google Pixel 8a",
+      storage: "128 GB",
+      retailPrice: 399,
+      fromMonthly: 23,
+      tag: null,
+    },
+    {
+      name: "Samsung Galaxy S23",
+      storage: "256 GB",
+      retailPrice: 549,
+      fromMonthly: 32,
+      tag: "Premium Pick",
+    },
+  ],
+  calculatorNote:
+    "Estimates assume a $0 down payment spread over the selected term. Actual payment depends on your approval tier and down payment. All figures are illustrative — exact schedule confirmed in store before you sign.",
   faqs: [
     {
       q: "Is this a credit card or a loan?",

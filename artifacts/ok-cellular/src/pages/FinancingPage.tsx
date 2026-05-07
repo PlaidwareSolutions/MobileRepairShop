@@ -21,6 +21,7 @@ import {
   faqJsonLd,
 } from "@/components/SEO";
 import { FinancingForm } from "@/components/forms/FinancingForm";
+import { FinancingCalculator } from "@/components/FinancingCalculator";
 import { Button } from "@/components/ui/button";
 import { BUSINESS, FINANCING, FINANCING_PAGE } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
@@ -120,6 +121,52 @@ export default function FinancingPage() {
             </p>
             <FinancingForm />
           </div>
+        </div>
+      </section>
+
+      {/* PHONE EXAMPLES ----------------------------------------------- */}
+      <section className="py-16 px-4 bg-white border-b border-border">
+        <div className="max-w-[1240px] mx-auto">
+          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-2 text-foreground">
+            Popular phones <span className="text-primary">you can finance</span>
+          </h2>
+          <p className="text-base font-bold text-muted-foreground mb-8">
+            Example monthly payments based on an 18-month term with $0 down. Exact numbers confirmed in store.
+          </p>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+            {FINANCING_PAGE.phoneExamples.map((phone) => (
+              <div
+                key={phone.name + phone.storage}
+                className="relative bg-muted/40 border border-border p-5 flex flex-col gap-3"
+                data-testid="financing-phone-example"
+              >
+                {phone.tag && (
+                  <span className="absolute top-3 right-3 bg-primary text-primary-foreground text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5">
+                    {phone.tag}
+                  </span>
+                )}
+                <div className="bg-foreground text-white w-10 h-10 flex items-center justify-center shrink-0">
+                  <Smartphone className="w-5 h-5 text-primary" />
+                </div>
+                <div>
+                  <div className="font-semibold text-base text-foreground leading-tight">{phone.name}</div>
+                  <div className="text-xs font-bold text-muted-foreground">{phone.storage}</div>
+                </div>
+                <div className="mt-auto">
+                  <div className="text-3xl font-semibold text-primary">
+                    from ${phone.fromMonthly}
+                    <span className="text-base font-bold text-muted-foreground">/mo</span>
+                  </div>
+                  <div className="text-xs font-bold text-muted-foreground mt-0.5">
+                    Retail ~${phone.retailPrice} · 18-mo est.
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* CALCULATOR */}
+          <FinancingCalculator />
         </div>
       </section>
 
