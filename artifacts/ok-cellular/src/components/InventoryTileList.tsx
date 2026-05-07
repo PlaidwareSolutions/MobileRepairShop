@@ -6,6 +6,8 @@ import { ReservationForm } from "@/components/forms/ReservationForm";
 import { useBusiness } from "@/components/BusinessContext";
 import { FINANCING } from "@/content";
 import type { InventoryItem } from "@/data/inventory";
+import { calcMonthlyEstimate } from "@/lib/financing";
+import { isPhoneCategory } from "@/lib/inventoryGroups";
 
 const BRAND_FALLBACK_IMAGE: Record<string, { slug: string; alt: string }> = {
   apple:       { slug: "iphone-repair",  alt: "Apple iPhone repair at OK Cellular" },
@@ -135,6 +137,19 @@ export function InventoryTileList({ items }: Props) {
                   <div className="font-semibold text-2xl text-primary">
                     {it.price}
                   </div>
+                  {(() => {
+                    const mo = (isPhoneCategory(it.category) || isPhoneCategory(it.model)) ? calcMonthlyEstimate(it.price) : null;
+                    return mo ? (
+                      <Link
+                        href={FINANCING.pagePath}
+                        className="bg-primary/10 text-primary border border-primary/40 rounded-full px-2.5 py-0.5 font-semibold text-[11px] tracking-wide hover:bg-primary hover:text-white hover:border-primary transition-colors"
+                        data-testid={`monthly-estimate-${it.id}`}
+                        aria-label={`Finance from $${mo}/mo — learn more on the financing page`}
+                      >
+                        from ${mo}/mo
+                      </Link>
+                    ) : null;
+                  })()}
                   {it.financingEnabled && (
                     <Link
                       href={FINANCING.pagePath}

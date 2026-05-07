@@ -3,6 +3,7 @@ import { Calculator, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { FINANCING_PAGE } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
+import { calcMonthlyEstimateNumeric } from "@/lib/financing";
 
 const TERMS = [12, 18, 24] as const;
 type Term = (typeof TERMS)[number];
@@ -23,10 +24,10 @@ export function FinancingCalculator() {
 
   const maxDown = Math.max(0, phonePrice - 1);
 
-  const monthly = useMemo(() => {
-    const balance = clamp(phonePrice - downPayment, 1, phonePrice);
-    return balance / term;
-  }, [phonePrice, downPayment, term]);
+  const monthly = useMemo(
+    () => calcMonthlyEstimateNumeric(phonePrice, downPayment, term),
+    [phonePrice, downPayment, term],
+  );
 
   function handlePriceChange(raw: string) {
     const val = parseInt(raw.replace(/\D/g, ""), 10) || 0;
