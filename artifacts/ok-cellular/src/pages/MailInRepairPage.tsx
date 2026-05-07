@@ -130,7 +130,7 @@ export default function MailInRepairPage() {
                 <Truck className="w-3.5 h-3.5" /> Mail-In Repair
               </span>
               <span className="bg-muted text-foreground border border-border rounded-full px-3 py-1 font-semibold uppercase tracking-wide text-xs inline-block">
-                15 Years in Humble
+                5+ Years in Business
               </span>
             </div>
             <h1 className="text-4xl md:text-6xl lg:text-7xl leading-tight font-semibold tracking-tight text-foreground">

@@ -2,10 +2,6 @@ import { Link, useLocation } from "wouter";
 import { useState, type FormEvent } from "react";
 import {
   Smartphone,
-  Tablet,
-  Laptop,
-  Gamepad2,
-  Headphones,
   Battery,
   Search,
   Phone,
@@ -20,6 +16,8 @@ import {
   CheckCircle2,
   Wifi,
   Wrench,
+  Laptop,
+  Gamepad2,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
@@ -30,7 +28,7 @@ import { SEO, localBusinessJsonLd } from "@/components/SEO";
 import { useBusiness } from "@/components/BusinessContext";
 import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { BeforeAfter, type BeforeAfterPair } from "@/components/BeforeAfter";
-import { BUSINESS, SHIPPING, FINANCING } from "@/content";
+import { BUSINESS, SHIPPING, FINANCING, DELIVERY } from "@/content";
 import { INVENTORY_GROUPS } from "@/lib/inventoryGroups";
 
 const inventoryHref = (slug: string) => `/inventory/${encodeURIComponent(slug)}`;
@@ -45,27 +43,18 @@ const photo = (slug: string, alt: string): Photo => ({
   alt,
 });
 
-const DEVICE_TILES: { name: string; desc: string; icon: LucideIcon; to: string; image?: Photo }[] = [
-  { name: "iPhone", desc: "iPhone 6 through 16 Pro Max", icon: Smartphone, to: "/iphone-repair-humble-tx",
-    image: photo("iphone-repair", "Technician using a precision screwdriver on an opened iPhone") },
-  { name: "Samsung Galaxy", desc: "S, Note, A and Z series", icon: Smartphone, to: "/samsung-repair-humble-tx",
-    image: photo("samsung-repair", "Disassembled Samsung smartphone with the back glass removed on a repair workbench") },
-  { name: "Google Pixel", desc: "Pixel 3 through 9 Pro", icon: Smartphone, to: "/google-pixel-repair-humble-tx",
-    image: photo("pixel-repair", "Pixel-style smartphone laid out with repair tools on a workbench") },
-  { name: "iPad / Tablet", desc: "Glass, LCD and battery", icon: Tablet, to: "/tablet-repair-humble-tx",
-    image: photo("tablet-repair", "Hands holding a digital tablet up close") },
-  { name: "MacBook", desc: "Screen, battery, board", icon: Laptop, to: "/macbook-repair-humble-tx",
-    image: photo("macbook-repair", "Technician soldering a laptop logic board at the workbench") },
-  { name: "PC Laptop", desc: "HP, Dell, Lenovo, ASUS", icon: Laptop, to: "/laptop-repair-humble-tx",
-    image: photo("laptop-repair", "A hand fixing the internal parts of a laptop") },
-  { name: "PlayStation", desc: "HDMI, disc drive, no power", icon: Gamepad2, to: "/ps5-repair-humble-tx",
-    image: photo("ps5-repair", "Close-up of a PlayStation 5 DualSense controller") },
-  { name: "Xbox", desc: "Power, HDMI, disc drive", icon: Gamepad2, to: "/xbox-repair-humble-tx",
-    image: photo("xbox-repair", "Xbox controller and console set up on a workbench") },
-  { name: "Battery Replace", desc: "Phones, tablets, laptops", icon: Battery, to: "/battery-replacement-humble-tx",
-    image: photo("battery-replace", "Open phone with battery exposed and repair tools laid out") },
-  { name: "Accessories", desc: "Cases, chargers, audio", icon: Headphones, to: "/phone-accessories-humble-tx",
-    image: photo("accessories", "Smartphone displayed alongside cases and accessories on a counter") },
+type DeviceTile = { name: string; desc: string; imgSlug: string; to: string };
+const DEVICE_TILES: DeviceTile[] = [
+  { name: "iPhone", desc: "6 through 16 Pro Max", imgSlug: "iphone-repair", to: "/iphone-repair-humble-tx" },
+  { name: "Samsung Galaxy", desc: "S, Note, A and Z series", imgSlug: "samsung-repair", to: "/samsung-repair-humble-tx" },
+  { name: "Google Pixel", desc: "Pixel 3 through 9 Pro", imgSlug: "pixel-repair", to: "/google-pixel-repair-humble-tx" },
+  { name: "iPad / Tablet", desc: "Glass, LCD and battery", imgSlug: "tablet-repair", to: "/tablet-repair-humble-tx" },
+  { name: "MacBook", desc: "Screen, battery, board", imgSlug: "macbook-repair", to: "/macbook-repair-humble-tx" },
+  { name: "PC Laptop", desc: "HP, Dell, Lenovo, ASUS", imgSlug: "laptop-repair", to: "/laptop-repair-humble-tx" },
+  { name: "PlayStation", desc: "HDMI, disc drive, no power", imgSlug: "ps5-repair", to: "/ps5-repair-humble-tx" },
+  { name: "Xbox", desc: "Power, HDMI, disc drive", imgSlug: "xbox-repair", to: "/xbox-repair-humble-tx" },
+  { name: "Battery Replace", desc: "Phones, tablets, laptops", imgSlug: "battery-replace", to: "/battery-replacement-humble-tx" },
+  { name: "Accessories", desc: "Cases, chargers, audio", imgSlug: "accessories", to: "/phone-accessories-humble-tx" },
 ];
 
 const POPULAR_REPAIRS: { name: string; price: string; time: string; to: string; difficulty: string; icon: LucideIcon; grad: string }[] = [
@@ -139,7 +128,7 @@ const AREA_TILES = [
 ];
 
 const STAT_TILES = [
-  { value: "15", unit: "yr", label: "Repairing Humble since 2010" },
+  { value: "5+", unit: "yr", label: "Serving Humble since 2020" },
   { value: "90", unit: "d", label: "Warranty on every repair" },
   { value: "1–2", unit: "h", label: "Typical walk-in turnaround" },
   { value: "5★", unit: "", label: "Average customer rating" },
@@ -233,8 +222,8 @@ export default function HomePage() {
           className="pointer-events-none absolute -bottom-32 right-0 w-[28rem] h-[28rem] rounded-full bg-fuchsia-500/15 blur-3xl"
         />
 
-        <div className="relative max-w-[1240px] mx-auto px-4 pt-14 pb-16 md:pt-20 md:pb-24 grid lg:grid-cols-12 gap-10 lg:gap-14 items-center">
-          <div className="lg:col-span-7 space-y-7">
+        <div className="relative max-w-[1240px] mx-auto px-4 pt-14 pb-16 md:pt-20 md:pb-20 max-w-3xl">
+          <div className="space-y-6 max-w-2xl">
             <div className="flex flex-wrap gap-2 text-xs">
               <span className="inline-flex items-center gap-1.5 bg-white/10 text-white border border-white/15 backdrop-blur rounded-full px-3 py-1 font-medium">
                 <span className="relative flex h-2 w-2">
@@ -250,15 +239,14 @@ export default function HomePage() {
                 <Star className="w-3 h-3 fill-amber-300 text-amber-300" /> 5.0 · 800+ reviews
               </span>
             </div>
-            <h1 className="text-[2.6rem] sm:text-5xl lg:text-[4.25rem] font-extrabold tracking-tight leading-[0.98]">
-              Phones, tablets,<br />
-              laptops &amp; consoles —{" "}
+            <h1 className="text-[2.6rem] sm:text-5xl lg:text-[4rem] font-extrabold tracking-tight leading-[1.0]">
+              Fast, affordable repair —{" "}
               <span className="bg-gradient-to-r from-sky-300 via-cyan-200 to-fuchsia-300 bg-clip-text text-transparent">
-                fixed fast in Humble.
+                any device, Humble TX.
               </span>
             </h1>
-            <p className="text-base md:text-lg text-slate-300 max-w-2xl leading-relaxed">
-              Walk in, mail in, or get a quote in minutes. Real technicians, transparent pricing, and a 90-day warranty on every fix — same shop on Will Clayton Pkwy since 2010.
+            <p className="text-base md:text-lg text-slate-300 leading-relaxed">
+              Walk in or mail in your phone, tablet, laptop, or console. Real technicians, transparent pricing, 90-day warranty on every fix.
             </p>
             <HeroSearch />
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300 pt-1">
@@ -266,52 +254,7 @@ export default function HomePage() {
               <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Walk-ins welcome</span>
               <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> All major brands</span>
             </div>
-            <div className="grid grid-cols-4 gap-3 sm:gap-5 pt-4 max-w-2xl">
-              {STAT_TILES.map((s) => (
-                <div key={s.label} className="rounded-lg bg-white/5 backdrop-blur border border-white/10 px-3 py-3 text-center">
-                  <div className="text-2xl sm:text-3xl font-extrabold text-white tabular-nums leading-none">
-                    {s.value}<span className="bg-gradient-to-r from-sky-300 to-fuchsia-300 bg-clip-text text-transparent">{s.unit}</span>
-                  </div>
-                  <div className="text-[10px] text-slate-400 leading-tight mt-1.5 uppercase tracking-wide">{s.label}</div>
-                </div>
-              ))}
-            </div>
           </div>
-
-          {/* Right: photo collage + visit card */}
-          <aside className="lg:col-span-5 w-full">
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-3 mb-4">
-                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40 rotate-[-2deg]">
-                  <PhotoFrame photo={photo("iphone-repair", "iPhone screen replacement")} aspect="4:3" sizes="220px" loading="eager" fetchPriority="high" hover={false} />
-                </div>
-                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40 rotate-[2deg] mt-6">
-                  <PhotoFrame photo={photo("ps5-repair", "PS5 repair")} aspect="4:3" sizes="220px" loading="eager" hover={false} />
-                </div>
-                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40 rotate-[1deg] -mt-2">
-                  <PhotoFrame photo={photo("macbook-repair", "MacBook repair")} aspect="4:3" sizes="220px" hover={false} />
-                </div>
-                <div className="relative rounded-2xl overflow-hidden ring-1 ring-white/15 shadow-2xl shadow-black/40 rotate-[-1deg] mt-2">
-                  <PhotoFrame photo={photo("samsung-repair", "Samsung repair")} aspect="4:3" sizes="220px" hover={false} />
-                </div>
-              </div>
-              <div className="rounded-xl bg-white/[0.07] backdrop-blur-md ring-1 ring-white/15 p-4 flex items-center justify-between gap-3">
-                <div className="min-w-0">
-                  <div className="text-[10px] font-semibold uppercase tracking-wide text-slate-400">Visit the shop</div>
-                  <div className="text-sm font-semibold text-white truncate">{business.addressLine1}</div>
-                  <div className="text-xs text-slate-400 truncate">{business.addressLine2}</div>
-                </div>
-                <div className="flex gap-2 shrink-0">
-                  <a href={business.phoneTel} className="inline-flex items-center justify-center h-10 px-3 rounded-lg bg-white text-slate-900 hover:bg-slate-100 font-semibold text-sm transition-colors" data-testid="hero-side-call">
-                    <Phone className="w-4 h-4 mr-1.5" /> Call
-                  </a>
-                  <a href={business.mapsLink} target="_blank" rel="noreferrer" className="inline-flex items-center justify-center h-10 w-10 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-colors" aria-label="Directions">
-                    <MapPin className="w-4 h-4" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </aside>
         </div>
 
         {/* Wave divider */}
@@ -319,43 +262,6 @@ export default function HomePage() {
           <svg className="block w-full h-12 md:h-16 text-background" viewBox="0 0 1440 80" preserveAspectRatio="none" fill="currentColor">
             <path d="M0,40 C240,80 480,0 720,30 C960,60 1200,80 1440,40 L1440,80 L0,80 Z" />
           </svg>
-        </div>
-      </section>
-
-      {/* HOW IT WORKS — visual 3-step process */}
-      <section className="relative bg-background border-b border-border overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-x-0 -top-24 h-48 bg-[radial-gradient(50%_100%_at_50%_100%,hsl(var(--primary)/0.06),transparent_70%)]"
-        />
-        <div className="relative max-w-[1240px] mx-auto px-4 py-12 md:py-16">
-          <div className="text-center max-w-2xl mx-auto mb-10">
-            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">How it works</div>
-            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
-              Three steps from broken to back in your pocket
-            </h2>
-          </div>
-          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
-            {[
-              { n: "01", title: "Free diagnostic", desc: "Walk in or send it. A real technician inspects, tests, and gives you a firm price upfront — no fee, no pressure.", img: photo("process-diagnostic", "Technician inspecting a phone at the workbench") },
-              { n: "02", title: "We fix it on-site", desc: "Board-level repair, micro-soldering, screen and battery work — done in our shop using OEM-grade parts.", img: photo("process-bench", "Hands working on a phone logic board with precision tools") },
-              { n: "03", title: "Pick up & warranty", desc: "Most walk-ins are done in 15–20 minutes. Every fix is backed by a 90-day parts-and-labor warranty.", img: photo("process-pickup", "Customer picking up a repaired phone at the counter") },
-            ].map((step, i) => (
-              <div key={step.n} className="group relative rounded-2xl border border-border bg-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all">
-                <div className="relative">
-                  <PhotoFrame photo={step.img} aspect="16:9" sizes="(min-width: 768px) 380px, 100vw" />
-                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
-                </div>
-                <div className={`absolute top-4 left-4 inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br ${i === 0 ? "from-amber-400 to-orange-500" : i === 1 ? "from-sky-400 to-primary" : "from-emerald-400 to-teal-600"} text-white font-extrabold text-lg tabular-nums shadow-xl shadow-black/20 ring-2 ring-white/30`}>
-                  {step.n}
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
@@ -378,35 +284,32 @@ export default function HomePage() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3">
-            {DEVICE_TILES.map((s) => {
-              const Icon = s.icon;
-              return (
-                <Link
-                  key={s.to}
-                  href={s.to}
-                  className="group rounded-md border border-border bg-card hover:border-primary hover:shadow-sm transition-all overflow-hidden"
-                  data-testid={`tile-${s.to}`}
-                >
-                  {s.image ? (
-                    <PhotoFrame
-                      photo={s.image}
-                      aspect="4:3"
-                      sizes="(min-width: 1024px) 220px, (min-width: 640px) 33vw, 50vw"
+            {DEVICE_TILES.map((s) => (
+              <Link
+                key={s.to}
+                href={s.to}
+                className="group rounded-xl border border-border bg-card hover:border-primary hover:shadow-md transition-all overflow-hidden flex flex-col"
+                data-testid={`tile-${s.to}`}
+              >
+                <div className="relative aspect-[4/3] overflow-hidden bg-muted">
+                  <picture>
+                    <source srcSet={`/images/photos/${s.imgSlug}-640.webp`} type="image/webp" />
+                    <img
+                      src={`/images/photos/${s.imgSlug}-640.jpg`}
+                      alt={`${s.name} repair at OK Cellular`}
+                      loading="lazy"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
-                  ) : (
-                    <div className="aspect-[4/3] bg-muted flex items-center justify-center">
-                      <Icon className="w-10 h-10 text-muted-foreground" />
-                    </div>
-                  )}
-                  <div className="p-3.5">
-                    <div className="text-sm font-semibold text-foreground leading-tight group-hover:text-primary transition-colors">
-                      {s.name}
-                    </div>
-                    <div className="text-xs text-muted-foreground mt-0.5">{s.desc}</div>
+                  </picture>
+                </div>
+                <div className="p-3 text-center">
+                  <div className="text-sm font-semibold text-foreground leading-tight group-hover:text-primary transition-colors">
+                    {s.name}
                   </div>
-                </Link>
-              );
-            })}
+                  <div className="text-xs text-muted-foreground mt-0.5">{s.desc}</div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -477,9 +380,46 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* MAIL-IN + FINANCING — utility tiles */}
+      {/* HOW IT WORKS — visual 3-step process */}
+      <section className="relative bg-background border-b border-border overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 -top-24 h-48 bg-[radial-gradient(50%_100%_at_50%_100%,hsl(var(--primary)/0.06),transparent_70%)]"
+        />
+        <div className="relative max-w-[1240px] mx-auto px-4 py-12 md:py-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <div className="text-[11px] font-semibold uppercase tracking-wide text-primary mb-2">How it works</div>
+            <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground">
+              Three steps from broken to back in your pocket
+            </h2>
+          </div>
+          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+            {[
+              { n: "01", title: "Free diagnostic", desc: "Walk in or send it. A real technician inspects, tests, and gives you a firm price upfront — no fee, no pressure.", img: photo("process-diagnostic", "Technician inspecting a phone at the workbench") },
+              { n: "02", title: "We fix it on-site", desc: "Board-level repair, micro-soldering, screen and battery work — done in our shop using OEM-grade parts.", img: photo("process-bench", "Hands working on a phone logic board with precision tools") },
+              { n: "03", title: "Pick up & warranty", desc: "Most walk-ins are done in 15–20 minutes. Every fix is backed by a 90-day parts-and-labor warranty.", img: photo("process-pickup", "Customer picking up a repaired phone at the counter") },
+            ].map((step, i) => (
+              <div key={step.n} className="group relative rounded-2xl border border-border bg-card overflow-hidden hover:shadow-xl hover:-translate-y-1 transition-all">
+                <div className="relative">
+                  <PhotoFrame photo={step.img} aspect="16:9" sizes="(min-width: 768px) 380px, 100vw" />
+                  <div aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-slate-900/40 via-transparent to-transparent" />
+                </div>
+                <div className={`absolute top-4 left-4 inline-flex items-center justify-center h-12 w-12 rounded-2xl bg-gradient-to-br ${i === 0 ? "from-amber-400 to-orange-500" : i === 1 ? "from-sky-400 to-primary" : "from-emerald-400 to-teal-600"} text-white font-extrabold text-lg tabular-nums shadow-xl shadow-black/20 ring-2 ring-white/30`}>
+                  {step.n}
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-bold text-foreground mb-2">{step.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{step.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* MAIL-IN + FINANCING + DELIVERY — utility tiles */}
       <section className="bg-background">
-        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 gap-4 md:gap-6">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16 grid md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           <Link
             href={SHIPPING.mailInSlug}
             className="group relative overflow-hidden rounded-2xl border border-border bg-card hover:shadow-xl hover:-translate-y-0.5 transition-all p-6 md:p-7 flex items-start gap-5"
@@ -524,6 +464,27 @@ export default function HomePage() {
               </div>
             </div>
           </Link>
+          <div
+            className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 md:p-7 flex items-start gap-5"
+            data-testid="cta-delivery-home"
+          >
+            <div aria-hidden="true" className="pointer-events-none absolute -top-16 -right-16 w-40 h-40 rounded-full bg-emerald-400/20 blur-3xl opacity-70" />
+            <div className="relative w-14 h-14 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 text-white shadow-lg shadow-emerald-500/30 flex items-center justify-center shrink-0">
+              <MapPin className="w-7 h-7" strokeWidth={2.25} />
+            </div>
+            <div className="relative min-w-0">
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-emerald-600 mb-1">Local pickup & delivery</div>
+              <div className="text-lg font-bold text-foreground mb-1.5">
+                {DELIVERY.localTitle}
+              </div>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                {DELIVERY.localDesc} {DELIVERY.localNote}
+              </p>
+              <div className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-primary">
+                Also ships nationwide <ArrowRight className="w-4 h-4" />
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -561,7 +522,7 @@ export default function HomePage() {
         <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-16">
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { icon: Star, title: "15 years in Humble", desc: "Same shop on Will Clayton Pkwy since 2010 — owner-operated and independent.", grad: "from-amber-400 to-orange-500", glow: "bg-amber-400/30" },
+              { icon: Star, title: "5+ years in business", desc: "Owner-operated shop on Will Clayton Pkwy since 2020 — trusted by Humble.", grad: "from-amber-400 to-orange-500", glow: "bg-amber-400/30" },
               { icon: Zap, title: "Same-day turnaround", desc: "Most walk-in repairs are done in 15–20 minutes while you wait.", grad: "from-sky-400 to-blue-600", glow: "bg-sky-400/30" },
               { icon: ShieldCheck, title: "Certified technicians", desc: "Board-level repair, micro-soldering and data recovery — done in-house.", grad: "from-emerald-400 to-teal-600", glow: "bg-emerald-400/30" },
               { icon: CheckCircle2, title: "90-day warranty", desc: "Every repair backed by a 90-day warranty on parts and labor.", grad: "from-fuchsia-400 to-violet-600", glow: "bg-fuchsia-400/30" },
@@ -729,6 +690,22 @@ export default function HomePage() {
                 </Link>
               ))}
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* STATS — trust numbers */}
+      <section className="bg-muted/40 border-y border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-12 md:py-14">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {STAT_TILES.map((s) => (
+              <div key={s.label} className="rounded-xl bg-card border border-border px-4 py-6 text-center">
+                <div className="text-3xl md:text-4xl font-extrabold text-foreground tabular-nums leading-none">
+                  {s.value}<span className="text-primary">{s.unit}</span>
+                </div>
+                <div className="text-[11px] text-muted-foreground uppercase tracking-wide mt-2 leading-tight">{s.label}</div>
+              </div>
+            ))}
           </div>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Wrench, ArrowRight } from "lucide-react";
+import { Wrench, ArrowRight, CreditCard, Package } from "lucide-react";
 import { Link, useLocation, useRoute, useSearch } from "wouter";
 import { PageShell } from "@/components/PageShell";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -17,6 +17,7 @@ import {
   type InventoryGroup,
 } from "@/lib/inventoryGroups";
 import { useBusiness } from "@/components/BusinessContext";
+import { FINANCING, DELIVERY } from "@/content";
 
 const DEFAULT_META = {
   title: "Phones & Laptops Inventory Humble | OK Cellular",
@@ -293,6 +294,44 @@ export default function InventoryPage() {
               Nothing in this category right now — call us at {business.phoneDisplay} and we'll let you know when it's back in stock.
             </div>
           )}
+
+          {/* Financing + delivery section */}
+          <div className="mb-6 grid sm:grid-cols-3 gap-3" data-testid="inventory-financing-delivery">
+            <Link
+              href={FINANCING.pagePath}
+              className="group flex items-start gap-3 rounded-xl border border-border bg-card p-4 hover:shadow-md hover:-translate-y-0.5 transition-all"
+              data-testid="inventory-financing-strip"
+            >
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-fuchsia-400 to-violet-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                <CreditCard className="w-4 h-4" />
+              </div>
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-fuchsia-600 mb-0.5">Financing</div>
+                <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">{FINANCING.pillLabel}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">Phones from $10 down</div>
+              </div>
+            </Link>
+            <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4" data-testid="inventory-delivery-local">
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                <Package className="w-4 h-4" />
+              </div>
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-emerald-600 mb-0.5">Local delivery</div>
+                <div className="text-sm font-bold text-foreground">{DELIVERY.localTitle}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{DELIVERY.localNote}</div>
+              </div>
+            </div>
+            <div className="flex items-start gap-3 rounded-xl border border-border bg-card p-4" data-testid="inventory-delivery-national">
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                <Package className="w-4 h-4" />
+              </div>
+              <div>
+                <div className="text-[10px] font-semibold uppercase tracking-wide text-sky-600 mb-0.5">Nationwide</div>
+                <div className="text-sm font-bold text-foreground">{DELIVERY.nationalTitle}</div>
+                <div className="text-xs text-muted-foreground mt-0.5">{DELIVERY.nationalNote}</div>
+              </div>
+            </div>
+          </div>
 
           <InventoryTileList items={visible} />
         </div>

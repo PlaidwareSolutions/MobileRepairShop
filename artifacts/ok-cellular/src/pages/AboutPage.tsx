@@ -22,8 +22,8 @@ export default function AboutPage() {
   return (
     <PageShell hideTicker>
       <SEO
-        title="About OK Cellular | 15 Years in Humble TX"
-        description="About OK Cellular in Humble TX — 15 years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!"
+        title="About OK Cellular | 5+ Years in Humble TX"
+        description="About OK Cellular in Humble TX — 5+ years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!"
         path="/about"
         jsonLd={[localBusinessJsonLd(business), breadcrumbJsonLd([{ name: "About", path: "/about" }])]}
       />
@@ -32,10 +32,10 @@ export default function AboutPage() {
       <section className="py-16 md:py-24 px-4 bg-muted/40 border-b border-border">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-3xl md:text-4xl font-semibold tracking-tight text-foreground mb-8 leading-tight">
-            15 years repairing <span className="text-primary">Humble's devices</span>
+            5+ years repairing <span className="text-primary">Humble's devices</span>
           </h1>
           <p className="text-xl font-bold text-foreground mb-6">
-            OK Cellular has been fixing phones, tablets, laptops and gaming consoles for Humble since 2010.
+            OK Cellular has been fixing phones, tablets, laptops and gaming consoles for Humble since 2020.
             From our shop at {business.addressFull}, we serve walk-in customers six days a week.
           </p>
           <p className="text-lg font-bold text-muted-foreground mb-6">

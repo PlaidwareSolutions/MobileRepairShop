@@ -1,5 +1,5 @@
-import { useRoute, Link } from "wouter";
-import { CheckCircle2, Wrench, Clock, ShieldCheck, ArrowRight, Phone } from "lucide-react";
+import { useRoute, useSearch, Link } from "wouter";
+import { CheckCircle2, Wrench, Clock, ShieldCheck, ArrowRight, Phone, Search } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -93,6 +93,9 @@ export default function ServicePage() {
   const business = useBusiness();
   const [, params] = useRoute<{ slug: string }>("/:slug");
   const slug = params?.slug ?? "";
+  const search = useSearch();
+  const searchParams = new URLSearchParams(search);
+  const noMatchQuery = searchParams.get("q") ?? "";
   const data = SERVICES_BY_SLUG[slug];
   if (!data) return <NotFound />;
   const path = `/${data.slug}`;
@@ -157,6 +160,20 @@ export default function ServicePage() {
           </div>
         }
       />
+
+      {noMatchQuery && (
+        <div
+          className="bg-amber-50 border-b border-amber-200 py-3 px-4"
+          data-testid="no-match-banner"
+          role="status"
+        >
+          <div className="max-w-[1240px] mx-auto flex items-center gap-2 text-sm font-semibold text-amber-800">
+            <Search className="w-4 h-4 shrink-0 text-amber-600" />
+            No exact match for <span className="italic">&ldquo;{noMatchQuery}&rdquo;</span> — browse all repair services below or{" "}
+            <a href={business.phoneTel} className="underline hover:text-amber-900">call us</a> and we'll help.
+          </div>
+        </div>
+      )}
 
       <section className="bg-card border-b border-border">
         <div className="max-w-[1240px] mx-auto px-4 py-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">

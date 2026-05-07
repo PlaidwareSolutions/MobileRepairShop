@@ -32,7 +32,7 @@ export const SERVICES_DATA: ServiceData[] = [
       eyebrow: "Cellphone Repair",
       h1: "Phone Repair in Humble",
       subhead:
-        "Whatever brand, whatever the damage — we fix phones the same day. 15 years repairing Humble's devices from our Will Clayton Pkwy shop.",
+        "Whatever brand, whatever the damage — we fix phones the same day. 5+ years repairing Humble's devices from our Will Clayton Pkwy shop.",
     },
     problems: [
       "Cracked or shattered screen",

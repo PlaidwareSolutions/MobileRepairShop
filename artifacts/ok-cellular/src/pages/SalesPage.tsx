@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useRoute, Link } from "wouter";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, CreditCard, Package } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -22,7 +22,7 @@ import {
   isPhoneCategory,
   isPhonePageSlug,
 } from "@/lib/inventoryGroups";
-import { BUSINESS, FINANCING } from "@/content";
+import { BUSINESS, FINANCING, DELIVERY } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
 import NotFound from "@/pages/not-found";
 
@@ -279,6 +279,52 @@ export default function SalesPage() {
       <Breadcrumbs items={breadcrumbItems} />
 
       <PageHero eyebrow={data.hero.eyebrow} h1={data.hero.h1} subhead={data.hero.subhead} />
+
+      {/* FINANCING + DELIVERY SECTION */}
+      <section className="bg-muted/40 border-b border-border">
+        <div className="max-w-[1240px] mx-auto px-4 py-8 grid sm:grid-cols-3 gap-4">
+          <Link
+            href={FINANCING.pagePath}
+            className="group flex items-start gap-4 rounded-xl border border-border bg-card p-5 hover:shadow-md hover:-translate-y-0.5 transition-all"
+            data-testid="financing-strip-link"
+          >
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-fuchsia-400 to-violet-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+              <CreditCard className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-fuchsia-600 mb-0.5">Buy now, pay later</div>
+              <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">{FINANCING.pillLabel}</div>
+              <div className="text-xs text-muted-foreground mt-1">From $10 down — soft credit check, same day</div>
+            </div>
+          </Link>
+          <div
+            className="flex items-start gap-4 rounded-xl border border-border bg-card p-5"
+            data-testid="delivery-local-tile"
+          >
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+              <Package className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-emerald-600 mb-0.5">Local delivery</div>
+              <div className="text-sm font-bold text-foreground">{DELIVERY.localTitle}</div>
+              <div className="text-xs text-muted-foreground mt-1">{DELIVERY.localNote}</div>
+            </div>
+          </div>
+          <div
+            className="flex items-start gap-4 rounded-xl border border-border bg-card p-5"
+            data-testid="delivery-national-tile"
+          >
+            <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-sky-400 to-blue-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+              <Package className="w-5 h-5" />
+            </div>
+            <div>
+              <div className="text-[11px] font-semibold uppercase tracking-wide text-sky-600 mb-0.5">Nationwide shipping</div>
+              <div className="text-sm font-bold text-foreground">{DELIVERY.nationalTitle}</div>
+              <div className="text-xs text-muted-foreground mt-1">{DELIVERY.nationalNote}</div>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <section className="py-16 px-4 bg-muted/40">
         <div className="max-w-[1240px] mx-auto grid lg:grid-cols-2 gap-12">

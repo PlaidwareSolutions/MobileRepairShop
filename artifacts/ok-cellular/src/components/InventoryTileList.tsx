@@ -7,6 +7,50 @@ import { useBusiness } from "@/components/BusinessContext";
 import { FINANCING } from "@/content";
 import type { InventoryItem } from "@/data/inventory";
 
+const BRAND_FALLBACK_IMAGE: Record<string, { slug: string; alt: string }> = {
+  apple:       { slug: "iphone-repair",  alt: "Apple iPhone repair at OK Cellular" },
+  iphone:      { slug: "iphone-repair",  alt: "Apple iPhone repair at OK Cellular" },
+  samsung:     { slug: "samsung-repair", alt: "Samsung Galaxy repair at OK Cellular" },
+  google:      { slug: "pixel-repair",   alt: "Google Pixel repair at OK Cellular" },
+  pixel:       { slug: "pixel-repair",   alt: "Google Pixel repair at OK Cellular" },
+  macbook:     { slug: "macbook-repair", alt: "MacBook repair at OK Cellular" },
+  sony:        { slug: "ps5-repair",     alt: "PlayStation repair at OK Cellular" },
+  playstation: { slug: "ps5-repair",     alt: "PlayStation repair at OK Cellular" },
+  xbox:        { slug: "xbox-repair",    alt: "Xbox repair at OK Cellular" },
+  microsoft:   { slug: "xbox-repair",    alt: "Xbox repair at OK Cellular" },
+};
+
+function getBrandFallback(brand: string, category: string): { slug: string; alt: string } {
+  const key = brand.toLowerCase().replace(/\s+/g, "");
+  if (BRAND_FALLBACK_IMAGE[key]) return BRAND_FALLBACK_IMAGE[key];
+  const catLow = category.toLowerCase();
+  if (catLow.includes("console") || catLow.includes("playstation")) return BRAND_FALLBACK_IMAGE.playstation!;
+  if (catLow.includes("xbox")) return BRAND_FALLBACK_IMAGE.xbox!;
+  if (catLow.includes("tablet") || catLow.includes("ipad")) return { slug: "tablet-repair", alt: "Tablet repair at OK Cellular" };
+  if (catLow.includes("laptop") || catLow.includes("macbook")) return { slug: "laptop-repair", alt: "Laptop repair at OK Cellular" };
+  return { slug: "sell-phones", alt: `${brand} device at OK Cellular` };
+}
+
+function BrandFallbackImage({ brand, category, model, itemId }: { brand: string; category: string; model: string; itemId: string }) {
+  const fb = getBrandFallback(brand, category);
+  return (
+    <div
+      className="-mx-5 -mt-5 mb-1 aspect-[4/3] bg-muted overflow-hidden border-b border-border"
+      data-testid={`inventory-placeholder-${itemId}`}
+    >
+      <picture>
+        <source srcSet={`/images/photos/${fb.slug}-640.webp`} type="image/webp" />
+        <img
+          src={`/images/photos/${fb.slug}-640.jpg`}
+          alt={`${brand} ${model} — ${fb.alt}`}
+          loading="lazy"
+          className="w-full h-full object-cover"
+        />
+      </picture>
+    </div>
+  );
+}
+
 type Props = {
   items: InventoryItem[];
 };
@@ -28,12 +72,14 @@ export function InventoryTileList({ items }: Props) {
               className="bg-white border border-border p-5 flex flex-col gap-3 hover:border-primary transition-colors"
               data-testid={`inventory-${it.id}`}
             >
-              {images.length > 0 && (
+              {images.length > 0 ? (
                 <ItemImageCarousel
                   images={images}
                   alt={`${it.brand} ${it.model}`}
                   itemId={it.id}
                 />
+              ) : (
+                <BrandFallbackImage brand={it.brand ?? ""} category={it.category ?? ""} model={it.model} itemId={it.id} />
               )}
               <div className="flex items-center justify-between gap-2">
                 <div className="text-muted-foreground font-semibold text-xs tracking-wide">

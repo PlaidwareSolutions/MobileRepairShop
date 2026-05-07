@@ -28,9 +28,9 @@ export const STATIC_ROUTES: RouteEntry[] = [
   },
   {
     path: "/about",
-    metaTitle: "About OK Cellular | 15 Years in Humble TX",
+    metaTitle: "About OK Cellular | 5+ Years in Humble TX",
     metaDescription:
-      "About OK Cellular in Humble TX — 15 years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!",
+      "About OK Cellular in Humble TX — 5+ years of honest repair, sales and prepaid service from our Will Clayton Pkwy shop. Walk-ins welcome!",
   },
   {
     path: "/contact-humble-tx",
