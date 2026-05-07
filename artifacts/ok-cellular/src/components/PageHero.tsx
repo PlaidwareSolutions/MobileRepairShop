@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
-import { Zap, Phone, MapPin, MessageSquare, Star } from "lucide-react";
+import { Zap, Phone, MapPin, MessageSquare, Star, Wrench } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 import { useBusiness } from "@/components/BusinessContext";
 
 export function PageHero({
@@ -50,6 +51,16 @@ export function PageHero({
             {subhead}
           </p>
           <div className="flex flex-wrap gap-2 pt-1">
+            <Button
+              asChild
+              size="lg"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold h-11 px-5 rounded-md shadow-lg shadow-primary/30"
+            >
+              <Link href="/book-repair-humble-tx">
+                <Wrench className="w-4 h-4 mr-2" />
+                Book a Repair
+              </Link>
+            </Button>
             <Button
               asChild
               size="lg"

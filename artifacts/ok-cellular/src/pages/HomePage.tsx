@@ -18,6 +18,7 @@ import {
   Wrench,
   Laptop,
   Gamepad2,
+  CalendarCheck,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
@@ -287,6 +288,17 @@ export default function HomePage() {
               Walk in or mail in your phone, tablet, laptop, or console. Real technicians, transparent pricing, 90-day warranty on every fix.
             </p>
             <HeroSearch />
+            <div className="flex flex-wrap items-center gap-3 pt-1">
+              <Link
+                href="/book-repair-humble-tx"
+                className="inline-flex items-center gap-2 h-11 px-5 rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-sm transition-colors shadow-lg shadow-primary/30"
+                data-testid="link-hero-book-repair"
+              >
+                <CalendarCheck className="w-4 h-4" />
+                Book a Repair
+              </Link>
+              <span className="text-slate-400 text-sm hidden sm:inline">or just walk in — no appointment needed</span>
+            </div>
             <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-300 pt-1">
               <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Free diagnostic</span>
               <span className="inline-flex items-center gap-1.5"><CheckCircle2 className="w-4 h-4 text-emerald-400" /> Walk-ins welcome</span>

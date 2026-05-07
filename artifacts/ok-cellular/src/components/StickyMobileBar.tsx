@@ -1,4 +1,4 @@
-import { Phone, MessageSquare, MessageCircle, Navigation, FileText } from "lucide-react";
+import { Phone, MessageSquare, MessageCircle, Navigation, CalendarCheck } from "lucide-react";
 import { Link } from "wouter";
 import { useBusiness } from "@/components/BusinessContext";
 
@@ -18,12 +18,12 @@ export function StickyMobileBar() {
         Call
       </a>
       <Link
-        href="/contact-humble-tx"
-        data-testid="link-mobile-quote"
+        href="/book-repair-humble-tx"
+        data-testid="link-mobile-book"
         className="flex flex-col items-center justify-center gap-1 py-3 text-primary-foreground bg-primary font-semibold text-[11px] tracking-tight hover:bg-primary/90 transition-colors border-x border-border"
       >
-        <FileText className="w-5 h-5" />
-        Quote
+        <CalendarCheck className="w-5 h-5" />
+        Book
       </Link>
       <a
         href={business.smsHref}
