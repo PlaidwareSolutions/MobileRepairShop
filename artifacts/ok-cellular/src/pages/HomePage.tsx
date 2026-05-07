@@ -1,5 +1,5 @@
 import { Link, useLocation } from "wouter";
-import { useState, type FormEvent } from "react";
+import { useState, useRef, type FormEvent } from "react";
 import {
   Smartphone,
   Battery,
@@ -30,6 +30,7 @@ import { PhotoFrame, type Photo } from "@/components/PhotoFrame";
 import { BeforeAfter, type BeforeAfterPair } from "@/components/BeforeAfter";
 import { BUSINESS, SHIPPING, FINANCING, DELIVERY } from "@/content";
 import { INVENTORY_GROUPS } from "@/lib/inventoryGroups";
+import { buildSuggestions, findSearchMatch } from "@/lib/searchIndex";
 
 const inventoryHref = (slug: string) => `/inventory/${encodeURIComponent(slug)}`;
 const groupSlug = (slug: string): string => {
@@ -134,31 +135,43 @@ const STAT_TILES = [
   { value: "5★", unit: "", label: "Average customer rating" },
 ];
 
+const HERO_PLACEHOLDERS = [
+  "iPhone screen repair",
+  "Samsung battery replacement",
+  "PS5 HDMI repair",
+  "MacBook screen",
+  "iPad charging port",
+];
+
 function HeroSearch() {
   const [, setLocation] = useLocation();
   const [v, setV] = useState("");
+  const [open, setOpen] = useState(false);
+  const blurTimer = useRef<number | null>(null);
+  const [placeholderIdx] = useState(() => Math.floor(Math.random() * HERO_PLACEHOLDERS.length));
+
+  const suggestions = buildSuggestions(v);
+
+  function go(target: string) {
+    setOpen(false);
+    setLocation(target);
+  }
+
   const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    const q = v.trim().toLowerCase();
+    const q = v.trim();
     if (!q) {
-      setLocation("/repair-services-humble-tx");
+      go("/search");
       return;
     }
-    if (q.includes("iphone")) setLocation("/iphone-repair-humble-tx");
-    else if (q.includes("samsung") || q.includes("galaxy")) setLocation("/samsung-repair-humble-tx");
-    else if (q.includes("pixel") || q.includes("google")) setLocation("/google-pixel-repair-humble-tx");
-    else if (q.includes("ipad") || q.includes("tablet")) setLocation("/tablet-repair-humble-tx");
-    else if (q.includes("macbook")) setLocation("/macbook-repair-humble-tx");
-    else if (q.includes("laptop") || q.includes("computer")) setLocation("/laptop-repair-humble-tx");
-    else if (q.includes("ps5") || q.includes("playstation")) setLocation("/ps5-repair-humble-tx");
-    else if (q.includes("xbox")) setLocation("/xbox-repair-humble-tx");
-    else if (q.includes("battery")) setLocation("/battery-replacement-humble-tx");
-    else if (q.includes("hdmi")) setLocation("/hdmi-port-repair-humble-tx");
-    else if (q.includes("unlock")) setLocation("/phone-unlocking-humble-tx");
-    else if (q.includes("mail") || q.includes("ship")) setLocation("/mail-in-repair-humble-tx");
-    else if (q.includes("financ") || q.includes("$10")) setLocation("/financing-humble-tx");
-    else setLocation("/repair-services-humble-tx");
+    const match = findSearchMatch(q);
+    if (match) {
+      go(match.to);
+    } else {
+      go(`/search?q=${encodeURIComponent(q)}`);
+    }
   };
+
   return (
     <form
       role="search"
@@ -166,25 +179,50 @@ function HeroSearch() {
       className="flex flex-col sm:flex-row gap-2 max-w-2xl"
       data-testid="hero-search-form"
     >
-      <label htmlFor="hero-search" className="sr-only">What are you fixing today?</label>
+      <label htmlFor="hero-search" className="sr-only">What can we fix for you?</label>
       <div className="relative flex-1">
-        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+        <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none z-10" />
         <input
           id="hero-search"
           type="search"
           value={v}
-          onChange={(e) => setV(e.target.value)}
-          placeholder="What are you fixing today? e.g. iPhone screen, PS5 HDMI…"
+          onChange={(e) => { setV(e.target.value); setOpen(true); }}
+          onFocus={() => setOpen(true)}
+          onBlur={() => { blurTimer.current = window.setTimeout(() => setOpen(false), 120); }}
+          placeholder={`e.g. "${HERO_PLACEHOLDERS[placeholderIdx]}"`}
           className="w-full h-12 pl-10 pr-4 rounded-md border border-border bg-card text-base text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring"
           data-testid="input-hero-search"
         />
+        {open && suggestions.length > 0 && (
+          <div className="absolute left-0 right-0 top-[calc(100%+4px)] bg-popover border border-border rounded-md shadow-xl z-50 overflow-hidden">
+            <ul role="listbox" className="py-1 text-sm">
+              {suggestions.map((s) => (
+                <li key={s.to}>
+                  <button
+                    type="button"
+                    className="w-full text-left px-3 py-2.5 hover:bg-muted text-foreground flex items-center gap-2"
+                    onMouseDown={(e) => {
+                      e.preventDefault();
+                      if (blurTimer.current) window.clearTimeout(blurTimer.current);
+                      go(s.to);
+                    }}
+                    data-testid={`hero-suggest-${s.to.replace(/\//g, "")}`}
+                  >
+                    <Search className="w-3.5 h-3.5 text-muted-foreground shrink-0" />
+                    <span>{s.label}</span>
+                  </button>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
       </div>
       <button
         type="submit"
         className="inline-flex items-center justify-center gap-2 h-12 px-6 rounded-md bg-primary hover:bg-primary/90 text-primary-foreground font-semibold text-base transition-colors"
         data-testid="button-hero-search"
       >
-        Find a repair <ArrowRight className="w-4 h-4" />
+        Search <ArrowRight className="w-4 h-4" />
       </button>
     </form>
   );
