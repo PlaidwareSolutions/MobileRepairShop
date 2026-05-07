@@ -225,6 +225,7 @@ export type AdminInventoryItem = {
   imageUrl2: string | null;
   imageUrl3: string | null;
   financingEnabled: boolean;
+  financingFeatured: boolean;
   financingDownPaymentCents: number;
   description: string | null;
   sortOrder: number;
@@ -249,6 +250,7 @@ export type InventoryWriteInput = {
   imageUrl2?: string | null;
   imageUrl3?: string | null;
   financingEnabled?: boolean;
+  financingFeatured?: boolean;
   financingDownPaymentCents?: number;
   description?: string | null;
   sortOrder?: number;

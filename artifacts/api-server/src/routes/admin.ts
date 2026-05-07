@@ -533,6 +533,7 @@ const InventoryCreateSchema = z.object({
   imageUrl2: z.string().max(500).optional().nullable(),
   imageUrl3: z.string().max(500).optional().nullable(),
   financingEnabled: z.boolean().optional().default(true),
+  financingFeatured: z.boolean().optional().default(false),
   financingDownPaymentCents: z.number().int().min(0).max(100_000_00).optional().default(8000),
   description: z.string().max(4000).optional().nullable(),
   sortOrder: z.number().finite().optional(),
@@ -644,6 +645,7 @@ router.post("/inventory", async (req: Request, res: Response, next: NextFunction
           imageUrl2: body.imageUrl2 ?? null,
           imageUrl3: body.imageUrl3 ?? null,
           financingEnabled: body.financingEnabled ?? true,
+          financingFeatured: body.financingFeatured ?? false,
           financingDownPaymentCents: body.financingDownPaymentCents ?? 8000,
           description: body.description ?? null,
           sortOrder: String(sortOrder),
@@ -687,6 +689,7 @@ router.patch("/inventory/:id", async (req: Request, res: Response, next: NextFun
     if (body.imageUrl2 !== undefined) updates.imageUrl2 = body.imageUrl2 ?? null;
     if (body.imageUrl3 !== undefined) updates.imageUrl3 = body.imageUrl3 ?? null;
     if (body.financingEnabled !== undefined) updates.financingEnabled = body.financingEnabled;
+    if (body.financingFeatured !== undefined) updates.financingFeatured = body.financingFeatured;
     if (body.financingDownPaymentCents !== undefined) updates.financingDownPaymentCents = body.financingDownPaymentCents;
     if (body.description !== undefined) updates.description = body.description ?? null;
     if (body.sortOrder !== undefined) updates.sortOrder = String(body.sortOrder);

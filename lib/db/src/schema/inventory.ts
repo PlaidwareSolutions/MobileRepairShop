@@ -34,6 +34,7 @@ export const inventoryItemsTable = pgTable("inventory_items", {
   imageUrl2: text("image_url_2"),
   imageUrl3: text("image_url_3"),
   financingEnabled: boolean("financing_enabled").notNull().default(true),
+  financingFeatured: boolean("financing_featured").notNull().default(false),
   financingDownPaymentCents: integer("financing_down_payment_cents").notNull().default(8000),
   description: text("description"),
   sortOrder: numeric("sort_order", { precision: 10, scale: 2 })

@@ -35,6 +35,7 @@ export function serializeInventoryItem(row: InventoryItemRow) {
   if (row.imageUrl3) out.imageUrl3 = row.imageUrl3;
   if (row.description) out.description = row.description;
   out.financingEnabled = row.financingEnabled;
+  out.financingFeatured = row.financingFeatured;
   out.financingDownPaymentCents = row.financingDownPaymentCents;
   out.financingDownPaymentDisplay = centsToDollarsDisplay(row.financingDownPaymentCents);
   return out;
@@ -61,6 +62,7 @@ export function serializeAdminInventoryItem(row: InventoryItemRow) {
     imageUrl2: row.imageUrl2,
     imageUrl3: row.imageUrl3,
     financingEnabled: row.financingEnabled,
+    financingFeatured: row.financingFeatured,
     financingDownPaymentCents: row.financingDownPaymentCents,
     description: row.description,
     sortOrder: Number(row.sortOrder),

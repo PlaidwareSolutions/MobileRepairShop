@@ -38,6 +38,7 @@ type PublicInventoryItem = {
   storage?: string;
   availability?: string;
   financingEnabled?: boolean;
+  financingFeatured?: boolean;
 };
 
 type PhoneCard = {
@@ -100,7 +101,10 @@ export default function FinancingPage() {
         const financingEligible = inStockPhones.filter(
           (it) => it.financingEnabled === true,
         );
-        const candidates = financingEligible.length > 0 ? financingEligible : inStockPhones;
+        const featured = financingEligible.filter(
+          (it) => it.financingFeatured === true,
+        );
+        const candidates = featured.length > 0 ? featured : (financingEligible.length > 0 ? financingEligible : inStockPhones);
         const display = candidates.slice(0, 8);
         if (display.length > 0) {
           setPhoneCards(display.map(toPhoneCard));

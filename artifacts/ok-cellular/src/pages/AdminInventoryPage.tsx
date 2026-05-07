@@ -49,6 +49,7 @@ type FormState = {
   imageUrl2: string;
   imageUrl3: string;
   financingEnabled: boolean;
+  financingFeatured: boolean;
   financingDownPaymentCents: string;
   description: string;
 };
@@ -70,6 +71,7 @@ const EMPTY_FORM: FormState = {
   imageUrl2: "",
   imageUrl3: "",
   financingEnabled: true,
+  financingFeatured: false,
   financingDownPaymentCents: "80",
   description: "",
 };
@@ -102,6 +104,7 @@ function rowToForm(item: AdminInventoryItem): FormState {
     imageUrl2: item.imageUrl2 ?? "",
     imageUrl3: item.imageUrl3 ?? "",
     financingEnabled: item.financingEnabled,
+    financingFeatured: item.financingFeatured,
     financingDownPaymentCents: centsToDollarsString(item.financingDownPaymentCents),
     description: item.description ?? "",
   };
@@ -130,6 +133,7 @@ function formToInput(form: FormState, includeId: boolean): InventoryWriteInput {
     imageUrl2: trimOrNull(form.imageUrl2),
     imageUrl3: trimOrNull(form.imageUrl3),
     financingEnabled: form.financingEnabled,
+    financingFeatured: form.financingFeatured,
     financingDownPaymentCents: financingDownPaymentCents || 8000,
     description: trimOrNull(form.description),
   };
@@ -643,17 +647,40 @@ function InventoryFormCard({
           </label>
         </div>
         {form.financingEnabled && (
-          <div className="flex items-center gap-3">
-            <Label className="font-semibold uppercase text-xs tracking-wide text-muted-foreground shrink-0">Down payment ($)</Label>
-            <Input
-              inputMode="decimal"
-              value={form.financingDownPaymentCents}
-              onChange={(e) => set("financingDownPaymentCents", e.target.value)}
-              placeholder="80"
-              className="bg-white border border-border focus:border-primary h-9 w-36 text-sm"
-              data-testid="input-financing-down"
-            />
-          </div>
+          <>
+            <div className="flex items-center gap-3">
+              <Label className="font-semibold uppercase text-xs tracking-wide text-muted-foreground shrink-0">Down payment ($)</Label>
+              <Input
+                inputMode="decimal"
+                value={form.financingDownPaymentCents}
+                onChange={(e) => set("financingDownPaymentCents", e.target.value)}
+                placeholder="80"
+                className="bg-white border border-border focus:border-primary h-9 w-36 text-sm"
+                data-testid="input-financing-down"
+              />
+            </div>
+            <div className="flex items-center justify-between">
+              <div>
+                <Label className="font-semibold uppercase text-xs tracking-wide text-muted-foreground">Feature on Financing page</Label>
+                <p className="text-[11px] text-muted-foreground mt-0.5">Show this phone in the curated list on the Financing page.</p>
+              </div>
+              <label className="flex items-center gap-2 cursor-pointer select-none">
+                <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  {form.financingFeatured ? "Featured" : "Not featured"}
+                </span>
+                <button
+                  type="button"
+                  role="switch"
+                  aria-checked={form.financingFeatured}
+                  onClick={() => set("financingFeatured", !form.financingFeatured)}
+                  className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-1 ${form.financingFeatured ? "bg-primary" : "bg-border"}`}
+                  data-testid="toggle-financing-featured"
+                >
+                  <span className={`inline-block h-4 w-4 transform rounded-full bg-white shadow transition-transform ${form.financingFeatured ? "translate-x-6" : "translate-x-1"}`} />
+                </button>
+              </label>
+            </div>
+          </>
         )}
       </div>
 
