@@ -1,3 +1,4 @@
+import { useRef, useState } from "react";
 import { Link } from "wouter";
 import {
   CreditCard,
@@ -29,6 +30,21 @@ import { useBusiness } from "@/components/BusinessContext";
 export default function FinancingPage() {
   const business = useBusiness();
   const path = FINANCING.pagePath;
+  const formRef = useRef<HTMLFormElement>(null);
+  const [phoneSelection, setPhoneSelection] = useState<{ name: string; tick: number } | null>(null);
+
+  function handlePhoneCardClick(phoneName: string) {
+    setPhoneSelection((prev) => ({ name: phoneName, tick: (prev?.tick ?? 0) + 1 }));
+  }
+
+  useEffect(() => {
+    if (!phoneSelection) return;
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+    const input = formRef.current?.querySelector<HTMLInputElement>(
+      "[data-testid='input-financing-desired-phone']"
+    );
+    input?.focus();
+  }, [phoneSelection]);
   const meta = {
     title: "Phone Financing Humble TX | $10 Down | OK Cellular",
     description:
@@ -119,7 +135,7 @@ export default function FinancingPage() {
             <p className="text-base font-bold text-muted-foreground mb-6">
               60-second soft check. We text you back today during business hours.
             </p>
-            <FinancingForm />
+            <FinancingForm defaultPhone={phoneSelection?.name} phoneTick={phoneSelection?.tick} formRef={formRef} />
           </div>
         </div>
       </section>
@@ -135,10 +151,13 @@ export default function FinancingPage() {
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
             {FINANCING_PAGE.phoneExamples.map((phone) => (
-              <div
+              <button
                 key={phone.name + phone.storage}
-                className="relative bg-muted/40 border border-border p-5 flex flex-col gap-3"
+                type="button"
+                onClick={() => handlePhoneCardClick(phone.name)}
+                className="relative bg-muted/40 border border-border p-5 flex flex-col gap-3 text-left cursor-pointer hover:border-primary hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-colors group"
                 data-testid="financing-phone-example"
+                aria-label={`Pre-qualify for ${phone.name}`}
               >
                 {phone.tag && (
                   <span className="absolute top-3 right-3 bg-primary text-primary-foreground text-[10px] font-semibold uppercase tracking-wide px-2 py-0.5">
@@ -161,7 +180,10 @@ export default function FinancingPage() {
                     Retail ~${phone.retailPrice} · 18-mo est.
                   </div>
                 </div>
-              </div>
+                <div className="text-[11px] font-semibold uppercase tracking-wide text-primary opacity-0 group-hover:opacity-100 transition-opacity">
+                  Pre-qualify →
+                </div>
+              </button>
             ))}
           </div>
 

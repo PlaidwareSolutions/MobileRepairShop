@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -42,16 +42,29 @@ function buildContactMessage(values: FormValues): string {
   return lines.join("\n");
 }
 
-export function FinancingForm() {
+type FinancingFormProps = {
+  defaultPhone?: string;
+  phoneTick?: number;
+  formRef?: React.RefObject<HTMLFormElement>;
+};
+
+export function FinancingForm({ defaultPhone, phoneTick, formRef }: FinancingFormProps) {
   const {
     register,
     handleSubmit,
     reset,
+    setValue,
     formState: { isSubmitting, errors },
   } = useForm<FormValues>();
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
+
+  useEffect(() => {
+    if (defaultPhone) {
+      setValue("desiredPhone", defaultPhone, { shouldValidate: false });
+    }
+  }, [defaultPhone, phoneTick, setValue]);
   const {
     widget: turnstileWidget,
     ensureToken: ensureTurnstileToken,
@@ -112,6 +125,7 @@ export function FinancingForm() {
 
   return (
     <form
+      ref={formRef}
       onSubmit={handleSubmit(onSubmit)}
       className="bg-muted border border-border p-6 md:p-8 space-y-5"
       data-testid="form-financing"
