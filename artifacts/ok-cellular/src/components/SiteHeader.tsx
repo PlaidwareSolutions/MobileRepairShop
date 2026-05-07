@@ -1,4 +1,4 @@
-import { useState, useRef, type FormEvent } from "react";
+import { useState, useRef, useEffect, useCallback, type FormEvent } from "react";
 import { Link, useLocation } from "wouter";
 import { Phone, ChevronDown, Menu, X, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -168,7 +168,15 @@ const NAV: { label: string; to: string }[] = [
   { label: "Contact", to: "/contact-humble-tx" },
 ];
 
-function GlobalSearch({ id = "site-search" }: { id?: string }) {
+function GlobalSearch({
+  id = "site-search",
+  inputRef,
+  onEscape,
+}: {
+  id?: string;
+  inputRef?: React.RefObject<HTMLInputElement | null>;
+  onEscape?: () => void;
+}) {
   const [, setLocation] = useLocation();
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
@@ -193,6 +201,16 @@ function GlobalSearch({ id = "site-search" }: { id?: string }) {
     }
   }
 
+  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Escape") {
+      e.preventDefault();
+      setOpen(false);
+      setValue("");
+      (e.currentTarget as HTMLInputElement).blur();
+      onEscape?.();
+    }
+  }
+
   return (
     <form
       role="search"
@@ -205,6 +223,7 @@ function GlobalSearch({ id = "site-search" }: { id?: string }) {
       </label>
       <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground pointer-events-none" />
       <input
+        ref={inputRef}
         id={id}
         type="search"
         value={value}
@@ -216,6 +235,7 @@ function GlobalSearch({ id = "site-search" }: { id?: string }) {
         onBlur={() => {
           blurTimer.current = window.setTimeout(() => setOpen(false), 120);
         }}
+        onKeyDown={onKeyDown}
         placeholder="Search repairs, devices, parts…"
         className="w-full h-10 pl-9 pr-3 rounded-md border border-border bg-card text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-ring"
         data-testid="input-global-search"
@@ -561,6 +581,35 @@ export function SiteHeader() {
   const business = useBusiness();
   const [searchOpen, setSearchOpen] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+
+  const openAndFocusSearch = useCallback(() => {
+    setSearchOpen(true);
+    requestAnimationFrame(() => {
+      searchInputRef.current?.focus();
+    });
+  }, []);
+
+  const closeSearch = useCallback(() => {
+    setSearchOpen(false);
+  }, []);
+
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      const tag = (e.target as HTMLElement).tagName;
+      const isEditable =
+        tag === "INPUT" || tag === "TEXTAREA" || (e.target as HTMLElement).isContentEditable;
+
+      if ((e.key === "/" && !isEditable && !e.metaKey && !e.ctrlKey && !e.altKey) ||
+          ((e.metaKey || e.ctrlKey) && e.key === "k" && !isEditable)) {
+        e.preventDefault();
+        openAndFocusSearch();
+      }
+    }
+
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [openAndFocusSearch]);
 
   return (
     <header className="sticky top-0 z-40 bg-card/95 backdrop-blur-md border-b-2 border-primary/20">
@@ -581,10 +630,14 @@ export function SiteHeader() {
 
         {searchOpen ? (
           <div className="hidden md:flex flex-1 max-w-md items-center gap-2 ml-4">
-            <GlobalSearch id="header-search-desktop" />
+            <GlobalSearch
+              id="header-search-desktop"
+              inputRef={searchInputRef}
+              onEscape={closeSearch}
+            />
             <button
               type="button"
-              onClick={() => setSearchOpen(false)}
+              onClick={closeSearch}
               aria-label="Close search"
               className="shrink-0 inline-flex items-center justify-center w-9 h-9 rounded-full hover:bg-muted border border-border text-muted-foreground transition-colors"
             >
@@ -594,12 +647,18 @@ export function SiteHeader() {
         ) : (
           <button
             type="button"
-            onClick={() => setSearchOpen(true)}
-            aria-label="Open search"
+            onClick={openAndFocusSearch}
+            aria-label="Open search (press / or Ctrl+K)"
             data-testid="button-header-search-open"
-            className="hidden md:inline-flex items-center justify-center w-10 h-10 rounded-full border border-border hover:bg-muted text-foreground transition-colors ml-4"
+            className="hidden md:inline-flex items-center gap-2 h-10 px-3 rounded-full border border-border hover:bg-muted text-foreground transition-colors ml-4 text-sm text-muted-foreground"
           >
-            <Search className="w-4 h-4" />
+            <Search className="w-4 h-4 shrink-0" />
+            <span className="hidden md:flex items-center gap-1.5">
+              Search
+              <kbd className="inline-flex items-center gap-0.5 rounded border border-border bg-muted px-1.5 py-0.5 text-[11px] font-mono text-muted-foreground leading-none">
+                /
+              </kbd>
+            </span>
           </button>
         )}
 
