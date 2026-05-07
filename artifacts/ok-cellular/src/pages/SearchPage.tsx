@@ -1,10 +1,14 @@
 import { useSearch } from "wouter";
-import { Search, Phone, ArrowRight, Wrench, ShoppingBag, Tag, Headphones, CreditCard, Package, BookOpen, MapPin } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Search, Phone, ArrowRight, Wrench, ShoppingBag, Tag, Headphones, CreditCard, Package, BookOpen, MapPin, Smartphone } from "lucide-react";
 import { Link } from "wouter";
 import { PageShell } from "@/components/PageShell";
 import { SEO } from "@/components/SEO";
 import { useBusiness } from "@/components/BusinessContext";
 import { SEARCH_INDEX, findAllSearchMatches, categoryForEntry, type ResultCategory, type SearchEntry } from "@/lib/searchIndex";
+import { fetchInventory } from "@/lib/api";
+import { INVENTORY_FALLBACK, type InventoryItem } from "@/data/inventory";
+import { inventoryGroupForCategory } from "@/lib/inventoryGroups";
 
 const CATEGORY_ORDER: ResultCategory[] = ["Repair", "Buy", "Sell", "Accessories", "Prepaid", "Inventory", "Guides", "Other"];
 
@@ -20,12 +24,46 @@ const CATEGORY_META: Record<ResultCategory, { label: string; icon: React.ReactNo
 };
 
 const MAX_PER_CATEGORY = 6;
+const MAX_INVENTORY_RESULTS = 6;
+
+function normalizeApiItem(raw: Record<string, string>): InventoryItem {
+  return {
+    id: raw.id ?? "",
+    category: raw.category ?? "",
+    brand: raw.brand ?? "",
+    model: raw.model ?? "",
+    storage: raw.storage ?? undefined,
+    color: raw.color ?? undefined,
+    condition: raw.condition ?? undefined,
+    carrier: raw.carrier ?? undefined,
+    price: raw.priceDisplay ?? raw.price ?? "",
+    warranty: raw.warranty ?? undefined,
+    availability: raw.availability ?? undefined,
+  };
+}
+
+function matchesQuery(item: InventoryItem, q: string): boolean {
+  const lower = q.toLowerCase();
+  const fields = [item.brand, item.model, item.category, item.condition, item.color, item.storage]
+    .filter(Boolean)
+    .join(" ")
+    .toLowerCase();
+  return lower.split(/\s+/).every((word) => fields.includes(word));
+}
 
 export default function SearchPage() {
   const business = useBusiness();
   const search = useSearch();
   const params = new URLSearchParams(search);
   const query = params.get("q") ?? "";
+
+  const [inventoryItems, setInventoryItems] = useState<InventoryItem[]>([]);
+
+  useEffect(() => {
+    fetchInventory()
+      .then((raw) => setInventoryItems(raw.map(normalizeApiItem)))
+      .catch(() => setInventoryItems(INVENTORY_FALLBACK));
+  }, []);
 
   const allMatches = query.trim().length >= 2 ? findAllSearchMatches(query) : [];
 
@@ -38,7 +76,19 @@ export default function SearchPage() {
     }
   }
 
-  const hasResults = allMatches.length > 0;
+  const stockMatches: InventoryItem[] =
+    query.trim().length >= 2
+      ? inventoryItems
+          .filter(
+            (item) =>
+              (!item.availability ||
+                /in.?stock/i.test(item.availability)) &&
+              matchesQuery(item, query),
+          )
+          .slice(0, MAX_INVENTORY_RESULTS)
+      : [];
+
+  const hasResults = allMatches.length > 0 || stockMatches.length > 0;
   const totalCount = allMatches.length;
 
   return (
@@ -59,7 +109,7 @@ export default function SearchPage() {
               </h1>
               {hasResults && (
                 <p className="text-sm text-muted-foreground">
-                  {totalCount} result{totalCount !== 1 ? "s" : ""} found
+                  {totalCount + stockMatches.length} result{(totalCount + stockMatches.length) !== 1 ? "s" : ""} found
                 </p>
               )}
             </>
@@ -116,6 +166,47 @@ export default function SearchPage() {
 
         {hasResults && (
           <div className="space-y-10">
+            {stockMatches.length > 0 && (
+              <section data-testid="search-group-instock">
+                <div className="flex items-center gap-2 mb-4 pb-2 border-b border-border">
+                  <span className="text-emerald-600"><Smartphone className="w-4 h-4" /></span>
+                  <h2 className="text-base font-semibold text-foreground">In Stock</h2>
+                  <span className="text-xs text-muted-foreground ml-1">({stockMatches.length})</span>
+                </div>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+                  {stockMatches.map((item) => {
+                    const group = inventoryGroupForCategory(item.category, item.brand);
+                    const href = `/inventory/${group.slug}`;
+                    const subtitle = [item.condition, item.storage, item.color]
+                      .filter(Boolean)
+                      .join(" · ");
+                    return (
+                      <li key={item.id}>
+                        <Link
+                          href={href}
+                          className="flex items-center justify-between gap-3 rounded-md border border-border bg-card hover:border-emerald-500 hover:shadow-sm transition-all px-4 py-3 group"
+                          data-testid={`search-instock-${item.id}`}
+                        >
+                          <div className="min-w-0">
+                            <p className="text-sm font-medium text-foreground group-hover:text-emerald-700 transition-colors truncate">
+                              {item.brand} {item.model}
+                            </p>
+                            {subtitle && (
+                              <p className="text-xs text-muted-foreground truncate">{subtitle}</p>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 shrink-0">
+                            <span className="text-sm font-semibold text-emerald-700">{item.price}</span>
+                            <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-emerald-600 transition-colors" />
+                          </div>
+                        </Link>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </section>
+            )}
+
             {CATEGORY_ORDER.filter((cat) => grouped[cat]?.length).map((cat) => {
               const items = grouped[cat]!;
               const meta = CATEGORY_META[cat];
