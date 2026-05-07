@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 import {
   CreditCard,
@@ -26,12 +26,56 @@ import { FinancingCalculator } from "@/components/FinancingCalculator";
 import { Button } from "@/components/ui/button";
 import { BUSINESS, FINANCING, FINANCING_PAGE } from "@/content";
 import { useBusiness } from "@/components/BusinessContext";
+import { fetchInventory } from "@/lib/api";
+import { isPhoneCategory } from "@/lib/inventoryGroups";
+
+type PublicInventoryItem = {
+  id: string;
+  category: string;
+  brand: string;
+  model: string;
+  price: string;
+  storage?: string;
+  availability?: string;
+  financingEnabled?: boolean;
+};
+
+type PhoneCard = {
+  name: string;
+  storage: string;
+  retailPrice: number;
+  fromMonthly: number;
+  tag: string | null;
+  id?: string;
+};
+
+function parseRetailPrice(price: string): number {
+  const n = parseFloat(price.replace(/[^0-9.]/g, ""));
+  return isNaN(n) ? 0 : n;
+}
+
+function toPhoneCard(item: PublicInventoryItem): PhoneCard {
+  const retailPrice = parseRetailPrice(item.price ?? "");
+  return {
+    id: item.id,
+    name: `${item.brand} ${item.model}`.trim(),
+    storage: item.storage ?? "",
+    retailPrice,
+    fromMonthly: retailPrice > 0 ? Math.ceil(retailPrice / 18) : 0,
+    tag: null,
+  };
+}
 
 export default function FinancingPage() {
   const business = useBusiness();
   const path = FINANCING.pagePath;
   const formRef = useRef<HTMLFormElement>(null);
   const [phoneSelection, setPhoneSelection] = useState<{ name: string; tick: number } | null>(null);
+
+  const [phoneCards, setPhoneCards] = useState<PhoneCard[]>(
+    FINANCING_PAGE.phoneExamples,
+  );
+  const [liveLoaded, setLiveLoaded] = useState(false);
 
   function handlePhoneCardClick(phoneName: string) {
     setPhoneSelection((prev) => ({ name: phoneName, tick: (prev?.tick ?? 0) + 1 }));
@@ -45,6 +89,30 @@ export default function FinancingPage() {
     );
     input?.focus();
   }, [phoneSelection]);
+
+  useEffect(() => {
+    fetchInventory()
+      .then((raw) => {
+        const items = raw as unknown as PublicInventoryItem[];
+        const inStockPhones = items.filter(
+          (it) => isPhoneCategory(it.category) && it.availability === "In stock",
+        );
+        const financingEligible = inStockPhones.filter(
+          (it) => it.financingEnabled === true,
+        );
+        const candidates = financingEligible.length > 0 ? financingEligible : inStockPhones;
+        const display = candidates.slice(0, 8);
+        if (display.length > 0) {
+          setPhoneCards(display.map(toPhoneCard));
+          setLiveLoaded(true);
+        }
+        // If API is reachable but no in-stock phones, keep static examples
+      })
+      .catch(() => {
+        // API unreachable — keep static examples silently
+      });
+  }, []);
+
   const meta = {
     title: "Phone Financing Humble TX | $10 Down | OK Cellular",
     description:
@@ -143,16 +211,25 @@ export default function FinancingPage() {
       {/* PHONE EXAMPLES ----------------------------------------------- */}
       <section className="py-16 px-4 bg-white border-b border-border">
         <div className="max-w-[1240px] mx-auto">
-          <h2 className="text-4xl md:text-5xl font-semibold tracking-tight mb-2 text-foreground">
-            Popular phones <span className="text-primary">you can finance</span>
-          </h2>
+          <div className="flex flex-wrap items-baseline gap-3 mb-2">
+            <h2 className="text-4xl md:text-5xl font-semibold tracking-tight text-foreground">
+              Popular phones <span className="text-primary">you can finance</span>
+            </h2>
+            {liveLoaded && (
+              <span className="text-xs font-semibold uppercase tracking-wide text-primary border border-primary px-2 py-0.5">
+                Live Inventory
+              </span>
+            )}
+          </div>
           <p className="text-base font-bold text-muted-foreground mb-8">
-            Example monthly payments based on an 18-month term with $0 down. Exact numbers confirmed in store.
+            {liveLoaded
+              ? "In-stock phones available for financing. Monthly estimates based on an 18-month term with $0 down — exact schedule confirmed in store."
+              : "Example monthly payments based on an 18-month term with $0 down. Exact numbers confirmed in store."}
           </p>
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
-            {FINANCING_PAGE.phoneExamples.map((phone) => (
+            {phoneCards.map((phone) => (
               <button
-                key={phone.name + phone.storage}
+                key={(phone.id ?? phone.name) + phone.storage}
                 type="button"
                 onClick={() => handlePhoneCardClick(phone.name)}
                 className="relative bg-muted/40 border border-border p-5 flex flex-col gap-3 text-left cursor-pointer hover:border-primary hover:bg-primary/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary transition-colors group"
