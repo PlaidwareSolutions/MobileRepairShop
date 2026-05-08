@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -11,7 +12,7 @@ type FormValues = { name: string; phone: string; notes?: string; website?: strin
 
 export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string; itemLabel: string; onClose?: () => void }) {
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<FormValues>();
-  const [done, setDone] = useState(false);
+  const [, setLocation] = useLocation();
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
   const {
@@ -37,23 +38,11 @@ export function ReservationForm({ itemId, itemLabel, onClose }: { itemId: string
         renderedAt: renderedAtRef.current,
         cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
-      setDone(true);
-      renderedAtRef.current = Date.now();
-      resetTurnstile();
+      setLocation("/thank-you?from=reservation");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
       resetTurnstile();
     }
-  }
-
-  if (done) {
-    return (
-      <div className="bg-primary text-primary-foreground p-6 border border-border">
-        <div className="font-semibold text-xl mb-2">Reserved.</div>
-        <p className="font-bold text-sm">We&apos;ll hold {itemLabel} for 24 hours and call to confirm.</p>
-        {onClose && <button onClick={onClose} className="mt-4 underline font-medium text-sm">Close</button>}
-      </div>
-    );
   }
 
   return (

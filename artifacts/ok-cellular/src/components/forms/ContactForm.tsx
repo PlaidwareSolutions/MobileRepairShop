@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -10,8 +11,8 @@ import { useTurnstile, TURNSTILE_CLIENT_ERROR } from "./Turnstile";
 type FormValues = { name: string; contact: string; message: string; website?: string };
 
 export function ContactForm() {
+  const [, setLocation] = useLocation();
   const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormValues>();
-  const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
   const {
@@ -37,24 +38,11 @@ export function ContactForm() {
         renderedAt: renderedAtRef.current,
         cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
-      setDone(true);
-      reset();
-      renderedAtRef.current = Date.now();
-      resetTurnstile();
+      setLocation("/thank-you?from=contact");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
       resetTurnstile();
     }
-  }
-
-  if (done) {
-    return (
-      <div className="bg-primary text-primary-foreground p-6 border border-border shadow-md">
-        <div className="font-semibold text-2xl mb-2">Message received.</div>
-        <p className="font-bold">We&apos;ll get back to you today during business hours.</p>
-        <button onClick={() => setDone(false)} className="mt-4 underline font-medium text-sm">Send another</button>
-      </div>
-    );
   }
 
   return (

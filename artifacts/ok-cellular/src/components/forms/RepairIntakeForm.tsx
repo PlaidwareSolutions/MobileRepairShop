@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -660,10 +661,9 @@ export function RepairIntakeForm() {
     preferredContact: "call",
     notes: "",
   });
+  const [, setLocation] = useLocation();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
-  const [depositPaid, setDepositPaid] = useState(false);
   const [stripeEnabled, setStripeEnabled] = useState(false);
   const [stripePublishableKey, setStripePublishableKey] = useState<string | null>(null);
 
@@ -718,8 +718,7 @@ export function RepairIntakeForm() {
         renderedAt: renderedAtRef.current,
         cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
-      setDepositPaid(!!stripePaymentIntentId);
-      setDone(true);
+      setLocation(`/thank-you?from=booking${stripePaymentIntentId ? "&deposit=1" : ""}`);
       resetTurnstile();
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
@@ -729,41 +728,6 @@ export function RepairIntakeForm() {
     }
   }
 
-  if (done) {
-    return (
-      <div className="bg-primary text-white p-8 space-y-3">
-        <div className="text-3xl font-bold">You&apos;re booked.</div>
-        {depositPaid ? (
-          <p className="font-semibold text-lg">
-            Your $10 deposit is confirmed and your slot is held. We&apos;ll call or text you to confirm the details.
-          </p>
-        ) : (
-          <p className="font-semibold text-lg">
-            We got your request for your {formData.brand} {formData.model}. We&apos;ll call or text you back shortly to confirm.
-          </p>
-        )}
-        <p className="text-white/80 text-sm">
-          Questions? Call <a href="tel:+12814462166" className="underline font-semibold">(281) 446-2166</a>.
-        </p>
-        <button
-          onClick={() => {
-            setDone(false);
-            setStep(1);
-            setFormData({
-              deviceType: "", brand: "", model: "", problem: "", photoUrl: "",
-              urgency: "flexible", source: "in-store", preferredDatetime: "",
-              returnAddress: "", name: "", phone: "", email: "",
-              preferredContact: "call", notes: "",
-            });
-            renderedAtRef.current = Date.now();
-          }}
-          className="mt-2 underline text-sm font-medium text-white/80 hover:text-white"
-        >
-          Submit another request
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div className="bg-muted border border-border p-6 md:p-8">

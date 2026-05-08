@@ -1,4 +1,5 @@
 import { useRef, useState, useEffect } from "react";
+import { useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -49,6 +50,7 @@ type FinancingFormProps = {
 };
 
 export function FinancingForm({ defaultPhone, phoneTick, formRef }: FinancingFormProps) {
+  const [, setLocation] = useLocation();
   const {
     register,
     handleSubmit,
@@ -56,7 +58,6 @@ export function FinancingForm({ defaultPhone, phoneTick, formRef }: FinancingFor
     setValue,
     formState: { isSubmitting, errors },
   } = useForm<FormValues>();
-  const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
 
@@ -92,35 +93,11 @@ export function FinancingForm({ defaultPhone, phoneTick, formRef }: FinancingFor
         renderedAt: renderedAtRef.current,
         cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
-      setDone(true);
-      reset();
-      renderedAtRef.current = Date.now();
-      resetTurnstile();
+      setLocation("/thank-you?from=financing");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
       resetTurnstile();
     }
-  }
-
-  if (done) {
-    return (
-      <div
-        className="bg-primary text-primary-foreground p-6 border border-border shadow-md"
-        data-testid="financing-form-success"
-      >
-        <div className="font-semibold text-2xl mb-2">Pre-qualification received.</div>
-        <p className="font-bold">
-          We&apos;ll text or call you back today during business hours with the next step.
-        </p>
-        <button
-          onClick={() => setDone(false)}
-          className="mt-4 underline font-medium text-sm"
-          data-testid="financing-form-restart"
-        >
-          Submit another
-        </button>
-      </div>
-    );
   }
 
   return (

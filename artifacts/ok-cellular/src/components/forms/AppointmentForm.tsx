@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,10 +18,10 @@ type FormValues = {
 };
 
 export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defaultServiceType?: string }) {
+  const [, setLocation] = useLocation();
   const { register, handleSubmit, reset, formState: { isSubmitting } } = useForm<FormValues>({
     defaultValues: { serviceType: defaultServiceType },
   });
-  const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
   const {
@@ -44,24 +45,11 @@ export function AppointmentForm({ defaultServiceType = "screen-repair" }: { defa
         renderedAt: renderedAtRef.current,
         cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
-      setDone(true);
-      reset();
-      renderedAtRef.current = Date.now();
-      resetTurnstile();
+      setLocation("/thank-you?from=appointment");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
       resetTurnstile();
     }
-  }
-
-  if (done) {
-    return (
-      <div className="bg-primary text-primary-foreground p-6 border border-border shadow-md">
-        <div className="font-semibold text-2xl mb-2">Booked.</div>
-        <p className="font-bold">We&apos;ll confirm your appointment by text or call. Walk-ins welcome too.</p>
-        <button onClick={() => setDone(false)} className="mt-4 underline font-medium text-sm">Book another</button>
-      </div>
-    );
   }
 
   return (

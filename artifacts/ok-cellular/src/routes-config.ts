@@ -9,6 +9,7 @@ export type RouteEntry = {
   path: string;
   metaTitle: string;
   metaDescription: string;
+  noindex?: boolean;
 };
 
 // Home page meta — kept identical for `/` and `/phone-repair-humble-tx` since both

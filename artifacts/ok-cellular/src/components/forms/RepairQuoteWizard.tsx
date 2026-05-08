@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useLocation } from "wouter";
 import {
   Smartphone,
   Tablet,
@@ -50,6 +51,7 @@ const ISSUE_OPTIONS = [
 ];
 
 export function RepairQuoteWizard() {
+  const [, setLocation] = useLocation();
   const business = useBusiness();
   const [step, setStep] = useState<WizardStep>(1);
   const [device, setDevice] = useState("");
@@ -57,7 +59,6 @@ export function RepairQuoteWizard() {
   const [issue, setIssue] = useState("");
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
-  const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const {
@@ -77,7 +78,6 @@ export function RepairQuoteWizard() {
     setIssue("");
     setName("");
     setPhone("");
-    setDone(false);
     setError(null);
   };
 
@@ -105,7 +105,7 @@ export function RepairQuoteWizard() {
         notes: `Submitted via quote wizard. Device: ${device}. Model: ${model}. Issue: ${issue}.`,
         cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
-      setDone(true);
+      setLocation("/thank-you?from=quote");
       resetTurnstile();
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong. Please call us directly.");
@@ -121,37 +121,6 @@ export function RepairQuoteWizard() {
     window.open(url, "_blank", "noopener,noreferrer");
   }
 
-  if (done) {
-    return (
-      <div
-        className="bg-white border border-border p-8 md:p-10 shadow-md"
-        data-testid="wizard-success"
-      >
-        <div className="flex items-start gap-4 mb-4">
-          <div className="bg-primary text-white p-3 shrink-0">
-            <CheckCircle2 className="w-7 h-7" />
-          </div>
-          <div>
-            <h3 className="text-3xl font-semibold tracking-tight mb-2">Got it.</h3>
-            <p className="font-bold text-foreground">
-              We&apos;ll text or call you back today with a firm quote. For the fastest response, call{" "}
-              <a className="text-primary underline" href={business.phoneTel}>
-                {business.phoneDisplay}
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-        <button
-          onClick={reset}
-          className="mt-6 font-semibold tracking-wide text-sm text-muted-foreground hover:text-foreground transition-colors underline"
-          data-testid="button-wizard-reset"
-        >
-          Submit another
-        </button>
-      </div>
-    );
-  }
 
   return (
     <div
@@ -355,7 +324,7 @@ export function RepairQuoteWizard() {
       </div>
 
       <div className="mt-8 pt-6 border-t-2 border-border flex justify-start">
-        {step > 1 && !done && (
+        {step > 1 && (
           <button
             type="button"
             onClick={handlePrev}

@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -44,7 +45,7 @@ export function RepairQuoteForm({
       brand: defaultBrand ?? "",
     },
   });
-  const [done, setDone] = useState(false);
+  const [, setLocation] = useLocation();
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
   const {
@@ -69,34 +70,11 @@ export function RepairQuoteForm({
         renderedAt: renderedAtRef.current,
         cfTurnstileToken: cfTurnstileToken ?? undefined,
       });
-      setDone(true);
-      reset();
-      renderedAtRef.current = Date.now();
-      resetTurnstile();
+      setLocation("/thank-you?from=quote");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
       resetTurnstile();
     }
-  }
-
-  if (done) {
-    return (
-      <div className="bg-primary text-primary-foreground p-6 border border-border shadow-md" data-testid="form-repair-quote-success">
-        <div className="font-semibold text-2xl mb-2">Got it.</div>
-        {isMailIn ? (
-          <p className="font-bold">
-            We&apos;ll call or text you back within one business day with your quote and shipping
-            instructions. For fastest response, call <a className="underline" href="tel:+12814462166">(281) 446-2166</a>.
-          </p>
-        ) : (
-          <p className="font-bold">
-            We&apos;ll call or text you back today with your quote. For fastest response, call{" "}
-            <a className="underline" href="tel:+12814462166">(281) 446-2166</a>.
-          </p>
-        )}
-        <button onClick={() => setDone(false)} className="mt-4 underline font-medium text-sm">Submit another</button>
-      </div>
-    );
   }
 
   return (

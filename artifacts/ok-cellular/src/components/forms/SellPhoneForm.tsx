@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { useLocation } from "wouter";
 import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -27,7 +28,7 @@ export function SellPhoneForm() {
   const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({
     defaultValues: { lockedStatus: "unlocked", condition: "good" },
   });
-  const [done, setDone] = useState(false);
+  const [, setLocation] = useLocation();
   const [error, setError] = useState<string | null>(null);
   const renderedAtRef = useRef<number>(Date.now());
   const {
@@ -53,24 +54,11 @@ export function SellPhoneForm() {
         cfTurnstileToken: cfTurnstileToken ?? undefined,
       };
       await submitSellPhone(payload);
-      setDone(true);
-      reset();
-      renderedAtRef.current = Date.now();
-      resetTurnstile();
+      setLocation("/thank-you?from=sell");
     } catch (e) {
       setError(e instanceof Error ? e.message : "Something went wrong");
       resetTurnstile();
     }
-  }
-
-  if (done) {
-    return (
-      <div className="bg-primary text-primary-foreground p-6 border border-border shadow-md">
-        <div className="font-semibold text-2xl mb-2">Offer coming.</div>
-        <p className="font-bold">We&apos;ll text or call you back today with our offer. Bring your phone in with ID for cash on the spot.</p>
-        <button onClick={() => setDone(false)} className="mt-4 underline font-medium text-sm">Submit another</button>
-      </div>
-    );
   }
 
   return (
