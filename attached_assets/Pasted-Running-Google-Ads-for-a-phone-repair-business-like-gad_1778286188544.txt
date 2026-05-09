@@ -1,0 +1,172 @@
+Running Google Ads for a phone repair business like gadgetxrepairs.com⁠� is absolutely possible, but your specific mix of services matters a lot. Some parts of the business are low-risk for Google Ads approval, while others can trigger policy violations, account suspensions, or repeated ad disapprovals.
+Here’s the practical breakdown.
+Services That Are Usually Safe to Advertise
+These are generally fine under Google Ads policies:
+Cell phone repair
+iPhone screen replacement
+Battery replacement
+Charging port repair
+Laptop/computer repair
+Tablet/iPad repair
+Game console repair
+Refurbished phone sales
+Used phone sales
+Accessories
+Bill payments
+Carrier activations
+Data transfer
+Diagnostic services
+These are common local-service ads and usually perform well with:
+Local Search campaigns
+Performance Max
+Google Maps ads
+Call-only ads
+Areas That Can Trigger Problems
+These are the big ones.
+1. Phone Unlocking Services
+“Phone unlocking” is a gray area.
+Google may allow legitimate carrier unlock services, but ads can get flagged if wording suggests:
+bypassing security,
+IMEI manipulation,
+fraudulent unlocking,
+blacklisted device bypassing,
+unauthorized access.
+Safer wording
+Use:
+“Carrier Unlock Assistance”
+“Eligible Device Unlock Support”
+“Network Unlock Services”
+Avoid:
+“Unlock any phone”
+“Factory unlock all carriers”
+“Blacklist removal”
+“IMEI cleaning”
+Those phrases are high-risk.
+2. FRP / Google Lock Removal
+This is where most repair shops get into trouble.
+If your site mentions:
+Google lock removal
+FRP bypass
+iCloud unlock
+Activation lock bypass
+Samsung reactivation bypass
+Google can classify this under:
+circumvention,
+unauthorized access,
+hacking-related services.
+That can lead to:
+ad disapprovals,
+domain-level restrictions,
+suspended ad accounts.
+Recommendation
+Do NOT advertise those services through Google Ads.
+Even if you legally provide owner-verification-based services in-store, keep them off ad landing pages.
+3. “We Buy Phones” + Used Phones
+This is usually allowed, but Google may want:
+business transparency,
+refund policies,
+contact info,
+physical address,
+business legitimacy.
+Especially if you sell refurbished devices online.
+Biggest Real-World Problem: “Misrepresentation”
+Most local repair shops don’t get suspended for repair ads. They get suspended for poor trust signals.
+Google is extremely aggressive now about:
+unclear ownership,
+thin websites,
+low trust,
+missing policies,
+misleading claims.
+You should make sure your site has:
+Mandatory Trust Pages
+Create all of these:
+Privacy Policy
+Terms & Conditions
+Refund Policy
+Warranty Policy
+Contact Page
+About Us
+Physical address
+Business hours
+And make them visible in the footer.
+Your Website Must Look Legitimate
+Google now evaluates ad destination quality heavily.
+Your website should include:
+real storefront photos,
+technician photos,
+local Houston references,
+Google reviews,
+map embed,
+clear phone number,
+branded email,
+SSL certificate,
+fast mobile performance.
+This matters more than people realize.
+High-Performing Campaign Structure for Your Business
+For a repair shop in Houston, this usually works best:
+Campaign 1 — Core Repairs
+Keywords:
+iphone repair near me
+screen replacement
+phone repair houston
+ipad repair
+samsung repair
+Landing pages:
+one page per repair type
+Campaign 2 — Emergency / Same-Day
+Keywords:
+same day iphone repair
+cracked screen repair today
+fast phone repair
+Use:
+call extensions,
+location extensions,
+booking CTA.
+Campaign 3 — Device Buy/Sell
+Keywords:
+sell my iphone
+buy used iphone houston
+Separate this from repair campaigns.
+Campaign 4 — Accessories
+Only if margins are strong.
+Usually lower ROI than repair services.
+What I Would Avoid Entirely
+I would NOT run Google Ads for:
+FRP bypass
+iCloud unlock
+Google account removal
+IMEI repair
+blacklist removal
+“hack” style terminology
+Those can poison the entire ad account.
+One More Important Thing: Local Service Ads (LSA)
+You should also look into:
+Google Local Services Ads
+These appear above normal search ads with:
+“Google Guaranteed”
+For repair shops, availability varies by region/category, but if eligible, they often outperform standard search ads for local intent.
+What Usually Gets the Best ROI
+For repair shops, the highest ROI is usually:
+Google Search Ads
+Google Maps optimization
+Local SEO
+Google reviews
+Retargeting ads
+TikTok/Instagram local content
+A lot of repair shops waste money on broad display campaigns. Search intent is where the money is.
+Strong Recommendation Before Launching Ads
+Before spending on ads:
+Remove or isolate risky unlocking language
+Create all legal/trust pages
+Add strong local SEO signals
+Create service-specific landing pages
+Connect:
+Google Ads
+Google Analytics
+Google Search Console
+Google Business Profile
+Then start with:
+a small geo-targeted search campaign,
+focused only on repair keywords,
+within 10–15 miles of your shop.
+That gives you cleaner conversions and lowers the risk of account scrutiny.
