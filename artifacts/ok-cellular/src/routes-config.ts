@@ -74,6 +74,26 @@ export const STATIC_ROUTES: RouteEntry[] = [
     metaTitle: "Admin · Leads | OK Cellular",
     metaDescription: "Admin lead inbox for OK Cellular.",
   },
+  {
+    path: "/privacy-policy",
+    metaTitle: "Privacy Policy | OK Cellular Humble TX",
+    metaDescription: "Privacy Policy for OK Cellular in Humble, TX. Learn how we collect, use, and protect your personal information.",
+  },
+  {
+    path: "/terms",
+    metaTitle: "Terms & Conditions | OK Cellular Humble TX",
+    metaDescription: "Terms and conditions for repair, sales, and services at OK Cellular in Humble, TX.",
+  },
+  {
+    path: "/refund-policy",
+    metaTitle: "Refund Policy | OK Cellular Humble TX",
+    metaDescription: "Refund policy for repair services and device sales at OK Cellular in Humble, TX. No-fix, no-fee on repairs.",
+  },
+  {
+    path: "/warranty-policy",
+    metaTitle: "Warranty Policy | OK Cellular Humble TX",
+    metaDescription: "90-day warranty on all repairs at OK Cellular in Humble, TX. Parts and labor guaranteed. Learn what's covered.",
+  },
 ];
 
 // Per-category inventory pages (e.g. /inventory/phones). Each known group

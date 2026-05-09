@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useEffect } from "react";
 import { Link } from "wouter";
 import { CheckCircle2, Phone, Calendar, ArrowRight, Home } from "lucide-react";
 import { PageShell } from "@/components/PageShell";
@@ -64,6 +64,17 @@ export default function ThankYouPage() {
   }, []);
 
   const msg = MESSAGES[from];
+
+  useEffect(() => {
+    if (typeof window.gtag === "function") {
+      window.gtag("event", "conversion", {
+        send_to: "AW-XXXXXXXXXX/XXXXXXXXXXXXXXXXXXXX",
+        value: 1.0,
+        currency: "USD",
+        event_label: from,
+      });
+    }
+  }, [from]);
 
   return (
     <PageShell>

@@ -118,8 +118,14 @@ export function SiteFooter() {
           </div>
         </div>
       </div>
-      <div className="max-w-[1240px] mx-auto px-4 mt-12 pt-6 border-t border-border text-muted-foreground text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+      <div className="max-w-[1240px] mx-auto px-4 mt-12 pt-6 border-t border-border text-muted-foreground text-xs flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
         <span>{COPYRIGHT}</span>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-1">
+          <Link href="/privacy-policy" className="hover:text-primary transition-colors">Privacy Policy</Link>
+          <Link href="/terms" className="hover:text-primary transition-colors">Terms &amp; Conditions</Link>
+          <Link href="/refund-policy" className="hover:text-primary transition-colors">Refund Policy</Link>
+          <Link href="/warranty-policy" className="hover:text-primary transition-colors">Warranty</Link>
+        </div>
         <span className="text-[11px]">
           Independent repair shop. Not affiliated with Apple Inc., Samsung, Google, Sony, or Microsoft.
         </span>

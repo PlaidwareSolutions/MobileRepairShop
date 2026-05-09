@@ -1557,31 +1557,31 @@ export const SERVICES_DATA: ServiceData[] = [
   },
   {
     slug: "google-lock-removal-humble-tx",
-    title: "Google Account Lock Removal Humble",
-    metaTitle: "Google Lock Removal Humble TX | OK Cellular",
+    title: "Android Account Lock Removal Humble",
+    metaTitle: "Android Account Lock Removal Humble TX | OK Cellular",
     metaDescription:
-      "Get your Google account lock removed in Humble TX. Fast FRP bypass service at OK Cellular. All Android devices supported. Walk-ins welcome!",
+      "Android account lock removal in Humble TX — for devices you legally own. Valid photo ID required. Walk-ins welcome at OK Cellular!",
     hero: {
-      eyebrow: "Google Lock Removal",
-      h1: "Google Account / FRP Lock Removal in Humble",
+      eyebrow: "Android Account Lock Removal",
+      h1: "Android Account Lock Removal in Humble",
       subhead:
-        "Bought a used phone and it's stuck on a previous owner's Google login? FRP lock removal for devices you legally own, ID required.",
+        "Bought a used Android and it's stuck on a previous owner's Google login? We remove account locks for devices you legally own. ID required.",
     },
-    problems: ["Stuck on \"Verify your Google account\" after factory reset", "Bought a used Android with someone else's Google account", "Inherited or gifted device with no login info", "Locked out of your own Samsung / Pixel after a reset"],
+    problems: ["Stuck on \"Verify your Google account\" after factory reset", "Bought a used Android with someone else's account on it", "Inherited or gifted device with no login info", "Locked out of your own Samsung / Pixel after a reset"],
     brands: ["Samsung Galaxy", "Google Pixel", "Motorola", "TCL", "T-Mobile Revvl", "Most Android phones and tablets"],
     process: [
-      { step: "Eligibility check", detail: "Free check by IMEI to confirm the device isn't blacklisted." },
+      { step: "Eligibility check", detail: "We verify the device is eligible and not reported lost or stolen." },
       { step: "ID required", detail: "We only remove locks on devices you legally own. Photo ID and proof of purchase required." },
-      { step: "Most unlocks 1–24h", detail: "Most Google account / FRP removals done same day." },
-      { step: "Lifetime", detail: "Once removed, you can set up your own Google account on the device." },
+      { step: "Same-day in most cases", detail: "Most Android account lock removals are completed same day." },
+      { step: "Fresh start", detail: "Once complete, you can set up your own Google account on the device." },
     ],
     pricing: [
-      { label: "Most Google account / FRP removals", price: "from $49" },
+      { label: "Most Android account lock removals", price: "from $49" },
       { label: "Locked Samsung accounts", price: "from $79" },
     ],
     faqs: [
       { q: "Is this legal?", a: "Yes — for devices you legally own. We require photo ID and a receipt or other proof of ownership before any work begins." },
-      { q: "Will my data be wiped?", a: "Yes — Google account / FRP removal involves a clean state for the device. There is no data to recover from a locked Android." },
+      { q: "Will my data be wiped?", a: "Yes — account lock removal requires a clean state for the device. There is no data to recover from a locked Android." },
     ],
     serviceType: "phone-unlocking",
     related: ["phone-unlocking-humble-tx", "samsung-repair-humble-tx", "phone-repair-humble-tx"],

@@ -24,6 +24,10 @@ import AdminBusinessSettingsPage from "@/pages/AdminBusinessSettingsPage";
 import SearchPage from "@/pages/SearchPage";
 import BookRepairPage from "@/pages/BookRepairPage";
 import ThankYouPage from "@/pages/ThankYouPage";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicyPage";
+import TermsPage from "@/pages/TermsPage";
+import RefundPolicyPage from "@/pages/RefundPolicyPage";
+import WarrantyPolicyPage from "@/pages/WarrantyPolicyPage";
 
 import { SERVICES_DATA } from "@/data/services";
 import { SALES_DATA } from "@/data/sales";
@@ -90,6 +94,10 @@ export function Routes() {
       <Route path="/search" component={SearchPage} />
       <Route path="/book-repair-humble-tx" component={BookRepairPage} />
       <Route path="/thank-you" component={ThankYouPage} />
+      <Route path="/privacy-policy" component={PrivacyPolicyPage} />
+      <Route path="/terms" component={TermsPage} />
+      <Route path="/refund-policy" component={RefundPolicyPage} />
+      <Route path="/warranty-policy" component={WarrantyPolicyPage} />
       <Route path="/admin/leads" component={AdminLeadsPage} />
       <Route path="/admin/inventory" component={AdminInventoryPage} />
       <Route path="/admin/promotions" component={AdminPromotionsPage} />
