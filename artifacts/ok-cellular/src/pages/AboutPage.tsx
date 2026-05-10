@@ -58,7 +58,76 @@ export default function AboutPage() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
 
+      <section className="py-14 md:py-20 px-4 bg-background border-b border-border">
+        <div className="max-w-3xl mx-auto">
+          <h2 className="text-2xl md:text-3xl font-semibold tracking-tight text-foreground mb-2">
+            Our <span className="text-primary">shop & team</span>
+          </h2>
+          <p className="text-muted-foreground mb-8">A peek inside the OK Cellular shop on Will Clayton Pkwy.</p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+            <figure className="rounded-xl overflow-hidden shadow-md border border-border bg-card">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src="/images/photos/storefront-placeholder.svg"
+                  alt="OK Cellular storefront — placeholder, real photo coming soon"
+                  className="w-full h-full object-cover"
+                  width={1024}
+                  height={768}
+                />
+              </div>
+              <figcaption className="px-4 py-3 text-sm text-muted-foreground font-medium">Our Humble TX shop — Will Clayton Pkwy</figcaption>
+            </figure>
+
+            <figure className="rounded-xl overflow-hidden shadow-md border border-border bg-card">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src="/images/photos/process-bench-1024.jpg"
+                  alt="OK Cellular technician at the repair bench"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                />
+              </div>
+              <figcaption className="px-4 py-3 text-sm text-muted-foreground font-medium">Technician at the repair bench</figcaption>
+            </figure>
+
+            <figure className="rounded-xl overflow-hidden shadow-md border border-border bg-card">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src="/images/photos/iphone-repair-1024.jpg"
+                  alt="OK Cellular technician performing a screen repair"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                  width={1024}
+                  height={768}
+                />
+              </div>
+              <figcaption className="px-4 py-3 text-sm text-muted-foreground font-medium">Screen repair in progress</figcaption>
+            </figure>
+
+            <figure className="rounded-xl overflow-hidden shadow-md border border-border bg-card">
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src="/images/photos/storefront-placeholder.svg"
+                  alt="OK Cellular storefront interior — placeholder, real photo coming soon"
+                  className="w-full h-full object-cover"
+                  width={1024}
+                  height={768}
+                />
+              </div>
+              <figcaption className="px-4 py-3 text-sm text-muted-foreground font-medium">Inside our OK Cellular storefront</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-14 md:py-20 px-4 bg-muted/40 border-b border-border">
+        <div className="max-w-3xl mx-auto">
           <div className="flex flex-wrap gap-3">
             <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90 font-semibold h-12 px-6">
               <a href={business.phoneTel}>Call {business.phoneDisplay}</a>
