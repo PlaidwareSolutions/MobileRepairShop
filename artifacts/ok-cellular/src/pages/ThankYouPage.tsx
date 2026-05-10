@@ -66,15 +66,9 @@ export default function ThankYouPage() {
   const msg = MESSAGES[from];
 
   useEffect(() => {
-    if (typeof window.gtag === "function") {
-      window.gtag("event", "conversion", {
-        send_to: "AW-XXXXXXXXXX/XXXXXXXXXXXXXXXXXXXX",
-        value: 1.0,
-        currency: "USD",
-        event_label: from,
-      });
-    }
-  }, [from]);
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: "conversion" });
+  }, []);
 
   return (
     <PageShell>
