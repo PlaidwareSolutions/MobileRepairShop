@@ -1,0 +1,31 @@
+What the site needs to be Google Ads-ready
+ 🚨 Priority 1 — Must fix before running any ads 
+1.⁠ ⁠Sanitize the FRP / Google Lock Removal page
+The meta description literally says "Fast FRP bypass service" — that exact phrase can get your entire ad domain flagged or suspended by Google, even if you never advertise that specific service. The H1, body copy, and pricing labels all use "FRP", "FRP bypass", and "FRP removal" throughout. This page needs its language softened to something like "Android Reactivation Assistance" or "Previous Account Lock Removal — ID required." The service page on carrier unlocking is mostly fine, but the IMEI mention in the eligibility step should be reviewed.
+
+2.⁠ ⁠Create 4 legal/trust pages — and link them in the footer
+The guide lists these as mandatory. Right now none exist:
+
+Page	Status
+Privacy Policy	❌ Missing
+Terms & Conditions	❌ Missing
+Refund Policy	❌ Missing
+Warranty Policy	❌ Missing
+The footer currently has About, Reviews, Contact, Mail-In, and Financing — no legal links at all. Google evaluates ad destination quality and these missing pages are a major red flag.
+
+⚠️ Priority 2 — Needed before ads go live 
+3.⁠ ⁠Add Google Analytics (GA4) tag
+No tracking tags exist anywhere on the site right now. GA4 needs to be in index.html before any campaign launches so you have data from day one.
+
+4.⁠ ⁠Wire up Google Ads conversion tracking on /thank-you
+The /thank-you redirect is now in place (just shipped). The next step is adding the gtag conversion event that fires when someone lands there. Without this, Google Ads has no signal to optimize your campaigns.
+
+5.⁠ ⁠Add Google Search Console verification tag
+One meta tag in index.html — takes 2 minutes, enables Google to crawl and index the site properly. Required before connecting Ads + Analytics.
+
+ 📸 Priority 3 — Trust signals (lowers ad scrutiny) 
+6.⁠ ⁠Storefront and technician photos on the About page
+The About page currently has no photos — just text. The guide specifically calls out "real storefront photos" and "technician photos" as what Google looks for when evaluating whether a business is legitimate. Even 2–3 real photos would help significantly.
+
+7.⁠ ⁠Map embed visibility
+A Google Maps embed already exists inside LocationCard — but it's currently only shown on the Contact page and Thank You page. Adding it to the About page as well strengthens the local business signals.
