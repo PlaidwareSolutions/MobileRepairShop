@@ -311,25 +311,25 @@ export default function Home() {
               {
                 title: "Charging Solutions",
                 desc: "Fast chargers, wireless charging accessories, power banks, USB cables, and charging essentials.",
-                img: "/images/category-charging.png",
+                img: `${import.meta.env.BASE_URL}images/category-charging.png`,
                 icon: <BatteryCharging className="w-6 h-6" />
               },
               {
                 title: "Audio Products",
                 desc: "Wireless earbuds, headphones, speakers, microphones, and audio accessories.",
-                img: "/images/category-audio.png",
+                img: `${import.meta.env.BASE_URL}images/category-audio.png`,
                 icon: <Headphones className="w-6 h-6" />
               },
               {
                 title: "Computer Accessories",
                 desc: "Keyboards, mice, USB hubs, storage accessories, laptop stands, and office essentials.",
-                img: "/images/category-computer.png",
+                img: `${import.meta.env.BASE_URL}images/category-computer.png`,
                 icon: <Laptop className="w-6 h-6" />
               },
               {
                 title: "Electronics & Gadgets",
                 desc: "Trending electronic products and useful gadgets for home, office, and travel.",
-                img: "/images/category-electronics.png",
+                img: `${import.meta.env.BASE_URL}images/category-electronics.png`,
                 icon: <Gamepad2 className="w-6 h-6" />
               }
             ].map((cat, i) => (
