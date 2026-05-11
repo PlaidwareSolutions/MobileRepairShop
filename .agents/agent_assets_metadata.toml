@@ -96,6 +96,36 @@ uri = "file://artifacts/ok-cellular/public/images/photos/_tmp/sell-consoles.png"
 type = "image"
 title = "sell gaming consoles"
 
+[[generated]]
+id = "XDhdrYCzpbsz4MTlCRaPE"
+uri = "file://artifacts/ok-cellular-landing/public/images/category-mobile.png"
+type = "image"
+title = "Mobile accessories cases protectors"
+
+[[generated]]
+id = "sakCGSGzf3H7Cc-G1lozR"
+uri = "file://artifacts/ok-cellular-landing/public/images/category-charging.png"
+type = "image"
+title = "Fast chargers and power banks"
+
+[[generated]]
+id = "GYG2Q3Z6USq3eX3fc1eTF"
+uri = "file://artifacts/ok-cellular-landing/public/images/category-audio.png"
+type = "image"
+title = "Wireless earbuds and headphones"
+
+[[generated]]
+id = "L3k5II-nyXGbfgqdIhXHZ"
+uri = "file://artifacts/ok-cellular-landing/public/images/category-computer.png"
+type = "image"
+title = "Computer and laptop accessories"
+
+[[generated]]
+id = "fDaOwcwGpByoiwCqudZ1H"
+uri = "file://artifacts/ok-cellular-landing/public/images/category-electronics.png"
+type = "image"
+title = "Trending electronic gadgets"
+
 [[outputs]]
 id = "VGlLSuKNQN2nlsyGrc-ja"
 uri = "file://artifacts/mockup-sandbox/public/images/owner-portrait.jpg"
