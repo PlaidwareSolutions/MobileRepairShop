@@ -393,7 +393,7 @@ export default function AdminInventoryPage() {
                           <div className="flex gap-1">
                             {[it.imageUrl, it.imageUrl2, it.imageUrl3].map((url, idx) =>
                               url ? (
-                                <img key={idx} src={url} alt="" className="w-12 h-10 object-cover rounded border border-border shrink-0" />
+                                <img key={idx} src={url} alt="" className="w-12 h-10 object-contain bg-muted/30 rounded border border-border shrink-0" />
                               ) : null
                             )}
                             {!it.imageUrl && !it.imageUrl2 && !it.imageUrl3 && (
@@ -475,7 +475,7 @@ function ImageSlot({
       <div className="flex items-start gap-3">
         {url ? (
           <div className="relative shrink-0">
-            <img src={url} alt="" className="w-20 h-16 object-cover rounded border border-border" />
+            <img src={url} alt="" className="w-20 h-16 object-contain bg-muted/30 rounded border border-border" />
             <button
               type="button"
               onClick={() => onUrl("")}
