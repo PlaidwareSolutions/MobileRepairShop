@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { 
-  PhoneCall, MapPin, Mail, Clock, ShieldCheck, Zap,
+  Phone, PhoneCall, MapPin, Mail, Clock, ShieldCheck, Zap,
   Headphones, Laptop, Smartphone, BatteryCharging, Gamepad2, ChevronRight, Menu, X, Star
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -10,16 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Badge } from "@/components/ui/badge";
 
 export default function Home() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   const scrollToSection = (id: string) => {
     setMobileMenuOpen(false);
@@ -46,81 +37,105 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-background font-sans overflow-x-hidden">
-      {/* NAVBAR */}
-      <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-background/95 backdrop-blur-md shadow-sm border-b" : "bg-transparent"
-        }`}
-        data-testid="navbar"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-20">
-            <div className="flex-shrink-0 flex items-center cursor-pointer" onClick={() => window.scrollTo({top: 0, behavior: 'smooth'})}>
-              <img src={`${import.meta.env.BASE_URL}ok-cellular-logo-transparent.png`} alt="OK Cellular Logo" className="h-10 w-auto" />
-            </div>
-            
-            {/* Desktop Nav */}
-            <div className="hidden md:flex space-x-8 items-center">
-              {['About', 'Categories', 'Why Us', 'FAQ', 'Contact'].map((item) => (
-                <button 
-                  key={item} 
-                  onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
-                  className="text-sm font-medium text-foreground/80 hover:text-primary transition-colors"
-                  data-testid={`nav-link-${item.toLowerCase().replace(' ', '-')}`}
-                >
-                  {item}
-                </button>
-              ))}
-              <Button onClick={() => window.location.href = "tel:+12814462166"} className="rounded-full shadow-md hover:shadow-lg transition-all" data-testid="button-nav-call">
-                <PhoneCall className="w-4 h-4 mr-2" />
-                (281) 446-2166
-              </Button>
-            </div>
-
-            {/* Mobile menu button */}
-            <div className="md:hidden flex items-center">
-              <button 
-                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="text-foreground p-2"
-                data-testid="button-mobile-menu"
-              >
-                {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
-            </div>
+      {/* STICKY HEADER — utility bar + main nav */}
+      <header className="sticky top-0 z-50" data-testid="site-header">
+        {/* TOP UTILITY BAR */}
+        <div className="bg-primary text-primary-foreground overflow-hidden py-1.5" data-testid="utility-bar">
+          <div className="flex justify-center items-center gap-6 flex-wrap px-4">
+            <span className="text-[13px] font-semibold whitespace-nowrap">Fast Customer Assistance Available</span>
+            <span className="text-[13px] font-semibold whitespace-nowrap hidden sm:inline">·</span>
+            <span className="text-[13px] font-semibold whitespace-nowrap hidden sm:inline">Quality Electronics &amp; Accessories</span>
+            <span className="text-[13px] font-semibold whitespace-nowrap hidden md:inline">·</span>
+            <a href="tel:+12814462166" className="text-[13px] font-semibold whitespace-nowrap hidden md:inline hover:underline">(281) 446-2166</a>
           </div>
         </div>
 
-        {/* Mobile Nav */}
-        {mobileMenuOpen && (
-          <motion.div 
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-background border-b"
-          >
-            <div className="px-4 pt-2 pb-6 space-y-1">
-              {['About', 'Categories', 'Why Us', 'FAQ', 'Contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
-                  className="block w-full text-left px-3 py-3 text-base font-medium text-foreground hover:bg-muted rounded-md"
-                >
-                  {item}
-                </button>
-              ))}
-              <div className="pt-4">
-                <Button onClick={() => window.location.href = "tel:+12814462166"} className="w-full justify-center">
-                  <PhoneCall className="w-4 h-4 mr-2" />
-                  Call Us
-                </Button>
+        {/* MAIN NAV */}
+        <nav className="bg-background border-b border-border" data-testid="navbar">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center h-16">
+              <div
+                className="flex-shrink-0 flex items-center cursor-pointer"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                data-testid="logo-home"
+              >
+                <img
+                  src={`${import.meta.env.BASE_URL}ok-cellular-logo-transparent.png`}
+                  alt="OK Cellular"
+                  className="h-9 w-auto"
+                />
               </div>
+
+              {/* Desktop nav links */}
+              <div className="hidden md:flex items-center gap-7">
+                {['About', 'Categories', 'Why Us', 'FAQ', 'Contact'].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
+                    className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+                    data-testid={`nav-link-${item.toLowerCase().replace(' ', '-')}`}
+                  >
+                    {item}
+                  </button>
+                ))}
+                <a
+                  href="tel:+12814462166"
+                  className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-sm font-semibold px-4 py-2 rounded hover:opacity-90 transition-opacity"
+                  data-testid="button-nav-call"
+                >
+                  <Phone className="w-4 h-4" />
+                  (281) 446-2166
+                </a>
+              </div>
+
+              {/* Mobile hamburger */}
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded border border-border text-foreground hover:bg-muted transition-colors"
+                data-testid="button-mobile-menu"
+              >
+                {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+              </button>
             </div>
-          </motion.div>
-        )}
-      </nav>
+          </div>
+
+          {/* Mobile drawer */}
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden border-t border-border bg-background"
+            >
+              <div className="px-4 py-3 space-y-0.5">
+                {['About', 'Categories', 'Why Us', 'FAQ', 'Contact'].map((item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item.toLowerCase().replace(' ', '-'))}
+                    className="block w-full text-left px-3 py-3 text-sm font-medium text-foreground hover:bg-muted border-b border-border last:border-b-0"
+                  >
+                    {item}
+                  </button>
+                ))}
+                <div className="pt-3 pb-1">
+                  <a
+                    href="tel:+12814462166"
+                    className="flex items-center gap-2 px-3 py-3 text-sm font-semibold text-primary hover:bg-muted"
+                    data-testid="link-mobile-call"
+                  >
+                    <Phone className="w-4 h-4" />
+                    (281) 446-2166
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </nav>
+      </header>
 
       {/* HERO SECTION */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden">
+      <section className="relative pt-16 pb-20 md:pt-24 md:pb-32 overflow-hidden">
         {/* Background elements */}
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-background to-secondary/20 -z-10" />
         <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-primary/10 blur-[100px] -z-10" />
@@ -178,7 +193,7 @@ export default function Home() {
               className="relative hidden lg:block"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl border bg-card/50 backdrop-blur-sm p-4">
-                <img src="/images/category-mobile.png" alt="Mobile Accessories Collection" className="w-full h-auto rounded-xl object-cover" />
+                <img src={`${import.meta.env.BASE_URL}images/category-mobile.png`} alt="Mobile Accessories Collection" className="w-full h-auto rounded-xl object-cover" />
                 
                 {/* Floating cards */}
                 <div className="absolute -bottom-6 -left-6 bg-background rounded-xl p-4 shadow-xl border flex items-center gap-4">
@@ -236,8 +251,8 @@ export default function Home() {
               className="order-2 lg:order-1"
             >
               <div className="grid grid-cols-2 gap-4">
-                <img src="/images/category-audio.png" alt="Audio Products" className="rounded-2xl w-full h-48 md:h-64 object-cover shadow-md" />
-                <img src="/images/category-computer.png" alt="Computer Accessories" className="rounded-2xl w-full h-48 md:h-64 object-cover shadow-md mt-8" />
+                <img src={`${import.meta.env.BASE_URL}images/category-audio.png`} alt="Audio Products" className="rounded-2xl w-full h-48 md:h-64 object-cover shadow-md" />
+                <img src={`${import.meta.env.BASE_URL}images/category-computer.png`} alt="Computer Accessories" className="rounded-2xl w-full h-48 md:h-64 object-cover shadow-md mt-8" />
               </div>
             </motion.div>
             
@@ -290,7 +305,7 @@ export default function Home() {
               {
                 title: "Mobile Accessories",
                 desc: "Cases, screen protectors, charging cables, adapters, holders, and everyday accessories for modern devices.",
-                img: "/images/category-mobile.png",
+                img: `${import.meta.env.BASE_URL}images/category-mobile.png`,
                 icon: <Smartphone className="w-6 h-6" />
               },
               {
