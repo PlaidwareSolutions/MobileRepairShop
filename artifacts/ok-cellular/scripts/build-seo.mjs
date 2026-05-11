@@ -210,8 +210,12 @@ function injectRendered(baseHtml, route, rendered) {
   if (!/<meta[^>]*property=["']og:description["'][^>]*>/i.test(headStr)) {
     safetyTags.push(`<meta property="og:description" content="${escape(route.metaDescription)}" />`);
   }
-  if (route.path.startsWith("/admin") && !/<meta[^>]*name=["']robots["'][^>]*>/i.test(headStr)) {
-    safetyTags.push(`<meta name="robots" content="noindex, nofollow" />`);
+  if (!/<meta[^>]*name=["']robots["'][^>]*>/i.test(headStr)) {
+    if (route.path.startsWith("/admin") || route.noindex) {
+      safetyTags.push(`<meta name="robots" content="noindex, nofollow" />`);
+    } else {
+      safetyTags.push(`<meta name="robots" content="index, follow" />`);
+    }
   }
 
   out = out.replace("</head>", `${headBlock}${safetyTags.join("\n")}\n</head>`);
