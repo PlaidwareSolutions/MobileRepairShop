@@ -1,5 +1,8 @@
 import { Router, type IRouter, type Request, type Response } from "express";
 import { Readable } from "stream";
+import { eq } from "drizzle-orm";
+import { db } from "@workspace/db";
+import { inventoryImagesTable } from "@workspace/db";
 import { ObjectStorageService } from "../lib/objectStorage";
 
 const router: IRouter = Router();
@@ -10,6 +13,26 @@ const objectStorageService = new ObjectStorageService();
  * No auth: only files explicitly written to a public search path are reachable here,
  * so callers (admin upload endpoint) decide what becomes public at write time.
  */
+router.get("/storage/db-images/:id", async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const [row] = await db
+      .select()
+      .from(inventoryImagesTable)
+      .where(eq(inventoryImagesTable.id, id));
+    if (!row) {
+      res.status(404).json({ error: "Image not found" });
+      return;
+    }
+    res.setHeader("Content-Type", row.contentType);
+    res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+    res.send(row.data);
+  } catch (error) {
+    req.log.error({ err: error }, "Error serving db image");
+    res.status(500).json({ error: "Failed to serve image" });
+  }
+});
+
 router.get("/storage/public-objects/*filePath", async (req: Request, res: Response) => {
   try {
     const raw = req.params.filePath;

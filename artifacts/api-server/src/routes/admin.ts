@@ -15,6 +15,7 @@ import {
   contactMessagesTable,
   itemReservationsTable,
   inventoryItemsTable,
+  inventoryImagesTable,
   AVAILABILITY_VALUES,
   leadCommunicationsTable,
   leadReplyTemplatesTable,
@@ -29,6 +30,7 @@ import {
   updateBusinessSettings,
   serializePublicBusinessSettings,
 } from "../lib/businessSettings";
+import multer from "multer";
 import { ObjectStorageService } from "../lib/objectStorage";
 import { serializeAdminInventoryItem } from "../lib/inventoryMapper";
 import { serializeAdminPromotion } from "../lib/promotionsMapper";
@@ -797,18 +799,37 @@ router.post("/inventory/reorder", async (req: Request, res: Response, next: Next
   }
 });
 
-router.post("/inventory/upload-url", async (req: Request, res: Response, next: NextFunction) => {
-  try {
-    UploadUrlSchema.parse(req.body ?? {});
-    const { uploadURL, servingUrl } = await objectStorageService.getPublicObjectUploadURL({
-      subdir: "inventory",
-    });
-    res.json({ uploadURL, servingUrl });
-  } catch (err) {
-    if (handleZod(err, res)) return;
-    next(err as Error);
-  }
+const uploadMemory = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 },
+  fileFilter: (_req, file, cb) => {
+    if ((ALLOWED_IMAGE_TYPES as readonly string[]).includes(file.mimetype)) {
+      cb(null, true);
+    } else {
+      cb(new Error("Invalid image type"));
+    }
+  },
 });
+
+router.post(
+  "/inventory/upload-image",
+  uploadMemory.single("file"),
+  async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      if (!req.file) {
+        res.status(400).json({ error: "No file provided" });
+        return;
+      }
+      const [row] = await db
+        .insert(inventoryImagesTable)
+        .values({ data: req.file.buffer, contentType: req.file.mimetype })
+        .returning({ id: inventoryImagesTable.id });
+      res.json({ servingUrl: `/api/storage/db-images/${row.id}` });
+    } catch (err) {
+      next(err as Error);
+    }
+  },
+);
 
 function serializeDates<T extends { createdAt: Date; updatedAt: Date }>(row: T) {
   return {

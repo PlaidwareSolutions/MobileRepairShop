@@ -303,32 +303,19 @@ export async function adminReorderInventory(password: string, ids: string[]) {
   })) as { ok: true; count: number };
 }
 
-export async function adminRequestUploadUrl(password: string, file: File) {
-  return (await adminFetch(password, "/admin/inventory/upload-url", {
-    method: "POST",
-    body: JSON.stringify({
-      name: file.name,
-      size: file.size,
-      contentType: file.type,
-    }),
-  })) as { uploadURL: string; servingUrl: string };
-}
-
-/**
- * Two-step upload: ask for a presigned URL, then PUT the bytes directly to GCS.
- * Returns the public serving URL (relative path) suitable for storing on an item.
- */
 export async function adminUploadImage(password: string, file: File): Promise<string> {
-  const { uploadURL, servingUrl } = await adminRequestUploadUrl(password, file);
-  const put = await fetch(uploadURL, {
-    method: "PUT",
-    headers: { "Content-Type": file.type || "application/octet-stream" },
-    body: file,
+  const formData = new FormData();
+  formData.append("file", file);
+  const res = await fetch(`${BASE}/admin/inventory/upload-image`, {
+    method: "POST",
+    headers: { "x-admin-password": password },
+    body: formData,
   });
-  if (!put.ok) {
-    const text = await put.text();
-    throw new Error(`Upload failed (${put.status}): ${text || put.statusText}`);
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Upload failed (${res.status}): ${text || res.statusText}`);
   }
+  const { servingUrl } = (await res.json()) as { servingUrl: string };
   return servingUrl;
 }
 

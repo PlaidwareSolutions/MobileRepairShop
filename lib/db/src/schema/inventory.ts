@@ -5,9 +5,17 @@ import {
   integer,
   numeric,
   boolean,
+  uuid,
+  customType,
 } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 import { z } from "zod/v4";
+
+const bytea = customType<{ data: Buffer }>({
+  dataType() {
+    return "bytea";
+  },
+});
 
 export const AVAILABILITY_VALUES = [
   "in_stock",
@@ -57,8 +65,18 @@ const baseInsert = createInsertSchema(inventoryItemsTable, {
 export const insertInventoryItemSchema = baseInsert;
 export const inventoryItemSchema = createSelectSchema(inventoryItemsTable);
 export const updateInventoryItemSchema = baseInsert.partial().extend({
-  // id cannot be updated through this schema
   id: z.string().optional(),
 });
 export type InsertInventoryItem = z.infer<typeof insertInventoryItemSchema>;
 export type UpdateInventoryItem = z.infer<typeof updateInventoryItemSchema>;
+
+export const inventoryImagesTable = pgTable("inventory_images", {
+  id: uuid("id").primaryKey().defaultRandom(),
+  data: bytea("data").notNull(),
+  contentType: text("content_type").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
+
+export type InventoryImageRow = typeof inventoryImagesTable.$inferSelect;
